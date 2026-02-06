@@ -1,0 +1,45 @@
+{
+  "id": "HS_0079",
+  "selectedTier": "gold",
+  "draft": {
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door",
+      "Patio slider",
+      "Exterior door #5"
+    ],
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  "expect": {
+    "status": "complete_with_addons",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_unvr",
+      "nvr_drive_4tb"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_ck"
+    ],
+    "gaps": [],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "gap",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}

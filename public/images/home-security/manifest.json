@@ -1,0 +1,48 @@
+{
+  "hs_card_core-platform": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_card_core-platform.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_card_core-platform.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_card_core-platform.webp"
+  },
+  "hs_card_video-door-chime": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_card_video-door-chime.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_card_video-door-chime.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_card_video-door-chime.webp"
+  },
+  "hs_card_indoor-outdoor-coverage": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_card_indoor-outdoor-coverage.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_card_indoor-outdoor-coverage.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_card_indoor-outdoor-coverage.webp"
+  },
+  "hs_card_sensors-alerts": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_card_sensors-alerts.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_card_sensors-alerts.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_card_sensors-alerts.webp"
+  },
+  "hs_hero_home-security": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_hero_home-security.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_hero_home-security.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_hero_home-security.webp"
+  },
+  "hs_diagram_local-first-architecture": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_diagram_local-first-architecture.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_diagram_local-first-architecture.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_diagram_local-first-architecture.webp"
+  },
+  "hs_graphic_typical-coverage-by-package": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_graphic_typical-coverage-by-package.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_graphic_typical-coverage-by-package.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_graphic_typical-coverage-by-package.webp"
+  },
+  "hs_badges_trust-grid": {
+    "png": "/mnt/data/rec_assets_home_security_images/hs_badges_trust-grid.png",
+    "jpg": "/mnt/data/rec_assets_home_security_images/hs_badges_trust-grid.jpg",
+    "webp": "/mnt/data/rec_assets_home_security_images/hs_badges_trust-grid.webp"
+  },
+  "_source_composite_package-cards": {
+    "png": "/mnt/data/A_set_of_four_promotional_digital_images_showcases.png"
+  },
+  "_source_composite_home-security-series": {
+    "png": "/mnt/data/A_series_of_four_promotional_graphics_showcases_a_.png"
+  }
+}

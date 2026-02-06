@@ -1,0 +1,2102 @@
+[
+  {
+    "id": "HS_0001",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 0,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0002",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 9,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0003",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0004",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0005",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0006",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0007",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 5,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0008",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0009",
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0010",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 8,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0011",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0012",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0013",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 3,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0014",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0015",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0016",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 6,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0017",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0018",
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0019",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 1,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0020",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0021",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0022",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 4,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0023",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0024",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0025",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 7,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0026",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0027",
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0028",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0029",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0030",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0031",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 5,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0032",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0033",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0034",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 8,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0035",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0036",
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0037",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 3,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0038",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0039",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0040",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 6,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0041",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0042",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0043",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 1,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0044",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0045",
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0046",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 4,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0047",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0048",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0049",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 7,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0050",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0051",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0052",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0053",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0054",
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0055",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 5,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0056",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0057",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0058",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 8,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0059",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0060",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0061",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 3,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0062",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0063",
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0064",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 6,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0065",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0066",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0067",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 1,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0068",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0069",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0070",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 4,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0071",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0072",
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0073",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 7,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0074",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0075",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0076",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0077",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0078",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0079",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 5,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0080",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0081",
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0082",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 8,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0083",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0084",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0085",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 3,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0086",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0087",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0088",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 6,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0089",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0090",
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0091",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 1,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0092",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0093",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0094",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 4,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0095",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0096",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0097",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 7,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0098",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0099",
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0100",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0101",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0102",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 4,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0103",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 5,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  {
+    "id": "HS_0104",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 6,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0105",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 7,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0106",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 8,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "security",
+      "packages"
+    ]
+  },
+  {
+    "id": "HS_0107",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  {
+    "id": "HS_0108",
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 2,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  {
+    "tier": "bronze",
+    "propertyType": "apartment",
+    "floors": 2,
+    "sizeBand": "small",
+    "garage": "attached",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ],
+    "id": "HS_0109"
+  },
+  {
+    "tier": "silver",
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 8,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security",
+      "water"
+    ],
+    "id": "HS_0110"
+  },
+  {
+    "tier": "gold",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "none",
+    "doors": 1,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "security"
+    ],
+    "id": "HS_0111"
+  },
+  {
+    "tier": "bronze",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ],
+    "id": "HS_0112"
+  },
+  {
+    "tier": "silver",
+    "propertyType": "apartment",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "attached",
+    "doors": 0,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ],
+    "id": "HS_0113"
+  },
+  {
+    "tier": "gold",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "doors": 7,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "packages"
+    ],
+    "id": "HS_0114"
+  },
+  {
+    "tier": "bronze",
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "doors": 3,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "water"
+    ],
+    "id": "HS_0115"
+  },
+  {
+    "tier": "silver",
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "none",
+    "doors": 6,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "security"
+    ],
+    "id": "HS_0116"
+  },
+  {
+    "tier": "gold",
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "attached",
+    "doors": 4,
+    "slider": true,
+    "garageEntry": true,
+    "groundWindows": "some",
+    "pets": true,
+    "elders": true,
+    "priorities": [
+      "water"
+    ],
+    "id": "HS_0117"
+  },
+  {
+    "tier": "bronze",
+    "propertyType": "house",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "detached",
+    "doors": 8,
+    "slider": false,
+    "garageEntry": true,
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "packages",
+      "water"
+    ],
+    "id": "HS_0118"
+  },
+  {
+    "tier": "silver",
+    "propertyType": "condo",
+    "floors": 1,
+    "sizeBand": "small",
+    "garage": "attached",
+    "doors": 2,
+    "slider": true,
+    "garageEntry": false,
+    "groundWindows": "no",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security",
+      "packages"
+    ],
+    "id": "HS_0119"
+  },
+  {
+    "tier": "gold",
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "none",
+    "doors": 5,
+    "slider": false,
+    "garageEntry": false,
+    "groundWindows": "some",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security",
+      "water"
+    ],
+    "id": "HS_0120"
+  }
+]

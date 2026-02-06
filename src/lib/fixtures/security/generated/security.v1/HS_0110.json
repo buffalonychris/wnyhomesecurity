@@ -1,0 +1,53 @@
+{
+  "id": "HS_0110",
+  "selectedTier": "silver",
+  "draft": {
+    "propertyType": "house",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door",
+      "Patio slider",
+      "Garage entry",
+      "Exterior door #6",
+      "Exterior door #7",
+      "Exterior door #8"
+    ],
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  "expect": {
+    "status": "gap",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_ck"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_unvr"
+    ],
+    "gaps": [
+      {
+        "key": "contact_sensor",
+        "missing": 2
+      }
+    ],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "gap",
+      "silver": "gap",
+      "gold": "complete_with_addons"
+    }
+  }
+}

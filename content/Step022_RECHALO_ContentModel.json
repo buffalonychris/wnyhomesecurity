@@ -1,0 +1,302 @@
+{
+  "feature_flags": {
+    "enable_sms": false,
+    "enable_email": false,
+    "enable_push": false,
+    "enable_two_way_voice_claim": false,
+    "enable_payments": false
+  },
+  "landing": {
+    "seo": {
+      "title": "HALO Launch — Reliable Elder Care",
+      "description": "Launch guide for HALO PushButton owners: setup, support, privacy, terms, and checkout."
+    },
+    "badge": "HALO Launch",
+    "title": "HALO PushButton launch hub",
+    "intro": "Start here to set up your HALO PushButton, confirm verification, and review the plain-language privacy and terms pages for launch.",
+    "launch_essentials": {
+      "title": "Launch essentials",
+      "items": [
+        {
+          "title": "Setup",
+          "body": "Follow the start checklist and verify contacts.",
+          "href": "/halo/setup",
+          "variant": "primary",
+          "cta": "Go to setup"
+        },
+        {
+          "title": "Support",
+          "body": "Re-run Test & Verified or troubleshoot any issues.",
+          "href": "/halo/support",
+          "variant": "primary",
+          "cta": "Get support"
+        },
+        {
+          "title": "Checkout",
+          "body": "Review the launch purchase details and current checkout status.",
+          "href": "/halo/checkout",
+          "variant": "primary",
+          "cta": "View checkout"
+        },
+        {
+          "title": "Privacy",
+          "body": "Review HALO privacy commitments in plain language.",
+          "href": "/halo/privacy",
+          "variant": "primary",
+          "cta": "Read privacy"
+        },
+        {
+          "title": "Terms",
+          "body": "Launch placeholder terms pending legal review.",
+          "href": "/halo/terms",
+          "variant": "primary",
+          "cta": "Read terms"
+        }
+      ]
+    },
+    "package_cta": {
+      "title": "Need the full HALO experience?",
+      "body": "HALO Pushbutton works as a standalone launch. For broader coverage, review the full Reliable Elder Care system.",
+      "href": "/halo-package",
+      "label": "Explore HALO Package"
+    }
+  },
+  "setup": {
+    "seo": {
+      "title": "Setup — HALO PushButton",
+      "description": "Start the HALO PushButton launch checklist, confirm contacts, and complete Test & Verified."
+    },
+    "badge": "HALO Setup",
+    "title": "Start your HALO PushButton launch",
+    "intro": "Use this checklist to get set up, confirm contacts, and run Test & Verified when it is safe.",
+    "wizard": {
+      "title": "HALO Setup Wizard",
+      "intro": "Complete each step to capture contact details and document Test & Verified.",
+      "navigation": {
+        "back": "Back",
+        "next": "Next"
+      },
+      "steps": {
+        "connection": {
+          "title": "Step 1 — Connection",
+          "body": "Collect Wi-Fi details or skip for now.",
+          "ssid_label": "Wi-Fi network name (SSID)",
+          "password_label": "Wi-Fi password",
+          "show_password_label": "Show password",
+          "hide_password_label": "Hide password",
+          "skip_label": "Skip Wi-Fi for now",
+          "confirmation_note": "This prepares information; device connection is confirmed during Test & Verified.",
+          "wifi_assist_title": "Wi-Fi Assist",
+          "wifi_assist_body": "You are likely already connected to the Wi-Fi you want HALO to use. Confirm the network name in your device Wi-Fi settings and enter it here.",
+          "wifi_assist_cellular_hint": "It looks like you may be on cellular. Switch to your home Wi-Fi before continuing.",
+          "wifi_assist_wifi_hint": "If you are on Wi-Fi, this is likely the correct network."
+        },
+        "contacts": {
+          "title": "Step 2 — Contacts",
+          "body": "Add at least one contact. Each contact can include a phone number and/or email address.",
+          "add_button": "Add contact",
+          "remove_button": "Remove",
+          "name_label": "Contact name",
+          "phone_label": "Phone number",
+          "mobile_label": "This phone number is a mobile (cell) phone",
+          "carrier_label": "Mobile carrier (optional)",
+          "email_label": "Email address",
+          "role_label": "Contact role",
+          "profile_label": "Notification profile",
+          "role_options": [
+            "Family",
+            "Caregiver",
+            "Medical Assistant",
+            "Neighbor",
+            "Other"
+          ],
+          "profile_options": [
+            "Informative",
+            "Detailed"
+          ],
+          "carrier_options": [
+            "Unknown",
+            "AT&T",
+            "Verizon",
+            "T-Mobile",
+            "Other"
+          ],
+          "helper": "At least one contact must include a phone number or email address.",
+          "addons_title": "Add-ons owned",
+          "wrist_label": "Wrist trigger wearable",
+          "wall_label": "Wall pushbutton"
+        },
+        "notifications": {
+          "title": "Step 3 — Notification Preferences",
+          "body": "Select which notification methods should be used once enabled.",
+          "sms_label": "SMS",
+          "email_label": "Email",
+          "push_label": "App notification",
+          "none_enabled_note": "Notification methods will be confirmed during verification."
+        },
+        "review": {
+          "title": "Step 4 — Review",
+          "body": "Confirm the details below before beginning Test & Verified.",
+          "edit_note": "Update any step as needed before proceeding.",
+          "cta_label": "Begin Test & Verified"
+        },
+        "test_verified": {
+          "title": "Step 5 — Test & Verified",
+          "body": "Confirm each test when it is safe to do so.",
+          "safety_note": "Do not use Test Mode during an emergency.",
+          "status_label": "Status",
+          "timestamp_label": "Timestamp",
+          "checks": {
+            "base_unit": "Base unit HELP trigger test confirmed",
+            "pendant": "Included pendant HELP trigger test confirmed",
+            "sms_delivery": "SMS delivery confirmed",
+            "email_delivery": "Email delivery confirmed",
+            "push_delivery": "App notification confirmed",
+            "wrist_trigger": "Wrist trigger test confirmed",
+            "wall_button": "Wall button trigger test confirmed",
+            "two_way_voice": "Two-way voice verified"
+          }
+        },
+        "summary": {
+          "title": "Step 6 — Test Summary",
+          "body": "Summary of Test & Verified checks that applied.",
+          "generated_label": "Summary generated",
+          "copy_button": "Copy Summary",
+          "download_button": "Download JSON",
+          "email_button": "Email certification",
+          "status_labels": {
+            "pass": "Pass",
+            "fail": "Fail",
+            "unchecked": "Unchecked"
+          }
+        }
+      }
+    },
+    "checklist": {
+      "title": "Start checklist",
+      "items": [
+        "Place the pushbutton where it is easy to reach.",
+        "Add primary and backup contacts.",
+        "Confirm the device and contacts are ready before testing.",
+        "Run Test & Verified at a safe time.",
+        "Review any add-ons you own."
+      ]
+    },
+    "after_setup": {
+      "title": "After setup",
+      "body": "If anything fails during Test & Verified, use the support steps to fix only what failed and re-test.",
+      "cta": {
+        "label": "Go to support",
+        "href": "/halo/support"
+      }
+    }
+  },
+  "support": {
+    "seo": {
+      "title": "Support — HALO PushButton",
+      "description": "Re-run verification, update contacts, or troubleshoot."
+    },
+    "badge": "HALO Support",
+    "title": "Support tools for HALO PushButton",
+    "intro": "Re-run verification, update contacts, or walk through plain-language troubleshooting steps.",
+    "tiles_title": "What would you like to do?",
+    "tiles": [
+      {
+        "title": "Run Test & Verified again",
+        "body": "Re-run the verification test at a safe time for ongoing confidence.",
+        "href": "/halo/setup#start",
+        "isExternal": false
+      },
+      {
+        "title": "Update contacts",
+        "body": "Update who gets notified and how.",
+        "href": "/halo/setup#start",
+        "isExternal": false
+      },
+      {
+        "title": "Troubleshooting",
+        "body": "Fix common issues with plain-language steps, then re-test only what failed.",
+        "href": "#troubleshooting",
+        "isExternal": true
+      }
+    ],
+    "troubleshooting": {
+      "title": "Troubleshooting topics",
+      "topics": [
+        "Connection not ready",
+        "Contact details incomplete",
+        "SMS not delivered",
+        "Email not delivered",
+        "App notifications not delivered",
+        "Voice check failed",
+        "Pendant wearable not responding",
+        "Wrist wearable not responding (if owned)",
+        "Wall button not responding (if owned)"
+      ],
+      "note": "Troubleshooting content should map to Step019 Fix Screens (F01–F12) in implementation."
+    }
+  },
+  "privacy": {
+    "seo": {
+      "title": "Privacy — HALO — Reliable Elder Care",
+      "description": "Plain-language privacy posture. Avoid absolutes unless enforceable."
+    },
+    "badge": "HALO Privacy",
+    "title": "Privacy, plainly",
+    "body_blocks": [
+      {
+        "title": "Privacy, plainly",
+        "body": "We aim to keep the HALO experience focused on safety and usability. Privacy commitments published here must be specific, enforceable, and consistent with our policies and agreements."
+      },
+      {
+        "title": "What this page is not",
+        "body": "This page is not a promise of absolutes unless explicitly stated in enforceable terms. We avoid broad claims that cannot be verified or controlled."
+      },
+      {
+        "title": "Your choices",
+        "body": "You choose who gets notified and how. Verification is documented through Test & Verified."
+      }
+    ]
+  },
+  "terms": {
+    "seo": {
+      "title": "Terms — HALO — Reliable Elder Care",
+      "description": "Terms of sale and site use (placeholder pending legal review)."
+    },
+    "badge": "HALO Terms",
+    "title": "Terms",
+    "body_blocks": [
+      {
+        "title": "Terms",
+        "body": "These terms are a launch placeholder pending legal review. Use final approved terms before scaling paid traffic."
+      }
+    ]
+  },
+  "checkout": {
+    "seo": {
+      "title": "Checkout — HALO — Reliable Elder Care",
+      "description": "Review the HALO PushButton order summary and current checkout status."
+    },
+    "badge": "HALO Checkout",
+    "title": "HALO PushButton checkout",
+    "intro": "Review the HALO PushButton order summary and confirm next steps before launch.",
+    "summary": {
+      "title": "Order summary",
+      "body": "HALO PushButton is a one-time purchase with no monthly subscription required.",
+      "price": "$399 one-time purchase",
+      "note": "Payments are currently disabled by default. Checkout will remain informational until payments are enabled."
+    },
+    "steps": {
+      "title": "What happens next",
+      "items": [
+        "Confirm the hardware details with our team.",
+        "Review launch readiness and contact verification.",
+        "Enable payment only after internal approval."
+      ]
+    },
+    "cta": {
+      "label": "Checkout coming soon",
+      "note": "Payments are disabled right now. Contact the team if you need to move forward."
+    }
+  }
+}

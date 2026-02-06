@@ -1,0 +1,44 @@
+{
+  "id": "HS_0054",
+  "selectedTier": "silver",
+  "draft": {
+    "propertyType": "apartment",
+    "floors": 3,
+    "sizeBand": "large",
+    "garage": "detached",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door",
+      "Exterior door #4"
+    ],
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  "expect": {
+    "status": "complete_with_addons",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_ck"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_unvr"
+    ],
+    "gaps": [],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "complete_with_addons",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}

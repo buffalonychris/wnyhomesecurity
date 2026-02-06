@@ -1,0 +1,1548 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 1`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Pet-safe placement: avoid direct line-of-sight to common pet paths.",
+      "Privacy-first placement: disable interior cameras where desired.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 2,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": [
+        "Privacy-first placement with easy on/off control.",
+      ],
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": [
+        "Pet-safe placement: avoid direct line-of-sight to pet paths.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 2`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "gap",
+      "tier": "bronze",
+      "top_line": "Bronze: gap (missing 5 door sensors)",
+    },
+    {
+      "coverage_status": "gap",
+      "tier": "silver",
+      "top_line": "Silver: gap (missing 3 door sensors)",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [
+      {
+        "impact": "Exterior door coverage",
+        "key": "contact_sensor",
+        "missing": 5,
+      },
+    ],
+    "status": "gap",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Pet-safe placement: avoid direct line-of-sight to common pet paths.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 1,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 4,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 9,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+        "Exterior door #4",
+        "Exterior door #5",
+        "Exterior door #6",
+        "Exterior door #7",
+        "Exterior door #8",
+        "Exterior door #9",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": [
+        "Pet-safe placement: avoid direct line-of-sight to pet paths.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 3`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 2,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 2,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+        "Water heater",
+      ],
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Front door",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 4`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 1,
+      "required": false,
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 2,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 2,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 5`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 2,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 4,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 3,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 6`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Pet-safe placement: avoid direct line-of-sight to common pet paths.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 3,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 2,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+        "Water heater",
+      ],
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 4,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+        "Exterior door #4",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": [
+        "Pet-safe placement: avoid direct line-of-sight to pet paths.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 7`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "gap",
+      "tier": "bronze",
+      "top_line": "Bronze: gap (missing 1 door sensor)",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [
+      {
+        "impact": "Exterior door coverage",
+        "key": "contact_sensor",
+        "missing": 1,
+      },
+    ],
+    "status": "gap",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Pet-safe placement: avoid direct line-of-sight to common pet paths.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 2,
+      "required": false,
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 2,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 5,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+        "Patio slider",
+        "Exterior door #5",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": [
+        "Pet-safe placement: avoid direct line-of-sight to pet paths.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 8`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "gap",
+      "tier": "bronze",
+      "top_line": "Bronze: gap (missing 2 door sensors)",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [
+      {
+        "impact": "Exterior door coverage",
+        "key": "contact_sensor",
+        "missing": 2,
+      },
+    ],
+    "status": "gap",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Privacy-first placement: disable interior cameras where desired.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 3,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 4,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 6,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+        "Exterior door #4",
+        "Exterior door #5",
+        "Exterior door #6",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": [
+        "Privacy-first placement with easy on/off control.",
+      ],
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 9`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "gap",
+      "tier": "bronze",
+      "top_line": "Bronze: gap (missing 3 door sensors)",
+    },
+    {
+      "coverage_status": "gap",
+      "tier": "silver",
+      "top_line": "Silver: gap (missing 1 door sensor)",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [
+      {
+        "impact": "Exterior door coverage",
+        "key": "contact_sensor",
+        "missing": 3,
+      },
+    ],
+    "status": "gap",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 4,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 2,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+        "Water heater",
+      ],
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 7,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+        "Garage entry",
+        "Exterior door #5",
+        "Exterior door #6",
+        "Exterior door #7",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 10`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "gap",
+      "tier": "bronze",
+      "top_line": "Bronze: gap (missing 4 door sensors)",
+    },
+    {
+      "coverage_status": "gap",
+      "tier": "silver",
+      "top_line": "Silver: gap (missing 2 door sensors)",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [
+      {
+        "impact": "Exterior door coverage",
+        "key": "contact_sensor",
+        "missing": 4,
+      },
+    ],
+    "status": "gap",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 2,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 8,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+        "Side door",
+        "Patio slider",
+        "Exterior door #5",
+        "Exterior door #6",
+        "Exterior door #7",
+        "Exterior door #8",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 11`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Pet-safe placement: avoid direct line-of-sight to common pet paths.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "cam_outdoor_poe",
+      "label": "Outdoor PoE camera (exterior coverage add-on)",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Front entry angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 1,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 1,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "contact_sensor",
+      "label": "Ground-level window sensors",
+      "quantity": 4,
+      "required": false,
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Front door",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": [
+        "Pet-safe placement: avoid direct line-of-sight to pet paths.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;
+
+exports[`homeSecurityPlannerFixtures.v1 > matches planner expectations 12`] = `
+{
+  "bundles": [
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "bronze",
+      "top_line": "Bronze: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "silver",
+      "top_line": "Silver: covered + optional add-ons",
+    },
+    {
+      "coverage_status": "complete_with_addons",
+      "tier": "gold",
+      "top_line": "Gold: covered + optional add-ons",
+    },
+  ],
+  "coverage": {
+    "gaps": [],
+    "status": "complete_with_addons",
+    "summary": [
+      "Exterior entries are the first priority. Add sensors until every door is covered.",
+      "Pet-safe placement: avoid direct line-of-sight to common pet paths.",
+    ],
+  },
+  "optionalAddons": [
+    {
+      "key": "motion_sensor",
+      "label": "Additional motion sensors",
+      "notes": [
+        "Adds coverage to hallways and stair landings.",
+      ],
+      "quantity": 2,
+      "required": false,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Additional leak sensors",
+      "quantity": 2,
+      "required": false,
+      "zones": [
+        "Kitchen sink",
+        "Water heater",
+      ],
+    },
+  ],
+  "placements": [
+    {
+      "key": "contact_sensor",
+      "label": "Exterior door contact sensors",
+      "quantity": 2,
+      "required": true,
+      "zones": [
+        "Front door",
+        "Back door",
+      ],
+    },
+    {
+      "key": "doorbell_wifi",
+      "label": "Doorbell camera",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "cam_indoor_wifi",
+      "label": "Indoor cameras",
+      "notes": undefined,
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Entry-facing interior angle",
+      ],
+    },
+    {
+      "key": "motion_sensor",
+      "label": "Motion sensors",
+      "notes": [
+        "Pet-safe placement: avoid direct line-of-sight to pet paths.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "leak_sensor",
+      "label": "Leak sensors",
+      "quantity": 1,
+      "required": true,
+      "zones": [
+        "Kitchen sink",
+      ],
+    },
+    {
+      "key": "siren_chime",
+      "label": "Siren / chime",
+      "quantity": 1,
+      "required": true,
+    },
+    {
+      "key": "smart_plug",
+      "label": "Smart plugs",
+      "quantity": 2,
+      "required": true,
+    },
+    {
+      "key": "protect_brains_ck",
+      "label": "Local recording host",
+      "notes": [
+        "Technical: Cloud Key Gen2 Plus.",
+      ],
+      "quantity": 1,
+      "required": true,
+    },
+  ],
+  "selectedTier": "bronze",
+}
+`;

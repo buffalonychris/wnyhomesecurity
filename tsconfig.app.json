@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", "src/vite-env.d.ts"],
+  "exclude": [
+    "api",
+    "api/**",
+    "types/node",
+    "types/nodemailer",
+    "node_modules",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

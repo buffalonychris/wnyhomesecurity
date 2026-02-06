@@ -1,0 +1,51 @@
+{
+  "id": "HS_0024",
+  "selectedTier": "bronze",
+  "draft": {
+    "propertyType": "condo",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door",
+      "Exterior door #4",
+      "Exterior door #5",
+      "Exterior door #6"
+    ],
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages",
+      "water"
+    ]
+  },
+  "expect": {
+    "status": "gap",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_ck"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_unvr"
+    ],
+    "gaps": [
+      {
+        "key": "contact_sensor",
+        "missing": 2
+      }
+    ],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "gap",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}

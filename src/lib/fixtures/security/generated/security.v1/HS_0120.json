@@ -1,0 +1,46 @@
+{
+  "id": "HS_0120",
+  "selectedTier": "gold",
+  "draft": {
+    "propertyType": "rental",
+    "floors": 1,
+    "sizeBand": "medium",
+    "garage": "none",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door",
+      "Exterior door #4",
+      "Exterior door #5"
+    ],
+    "groundWindows": "some",
+    "pets": false,
+    "elders": true,
+    "priorities": [
+      "security",
+      "water"
+    ]
+  },
+  "expect": {
+    "status": "complete_with_addons",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_unvr",
+      "nvr_drive_4tb"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_ck"
+    ],
+    "gaps": [],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "gap",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}

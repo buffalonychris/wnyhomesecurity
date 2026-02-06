@@ -1,0 +1,42 @@
+{
+  "id": "HS_0069",
+  "selectedTier": "silver",
+  "draft": {
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "large",
+    "garage": "detached",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door"
+    ],
+    "groundWindows": "no",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "water"
+    ]
+  },
+  "expect": {
+    "status": "complete_with_addons",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_ck"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_unvr"
+    ],
+    "gaps": [],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "complete_with_addons",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}

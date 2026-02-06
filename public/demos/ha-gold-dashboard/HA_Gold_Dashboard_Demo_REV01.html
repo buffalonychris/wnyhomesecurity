@@ -1,0 +1,1150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HA Gold Package — Interactive Demo Dashboard</title>
+  <style>
+    :root{
+      --bg0:#070b12;
+      --bg1:#0b1220;
+      --border: rgba(255,255,255,.10);
+      --text:#e9f2ff;
+      --muted: rgba(233,242,255,.70);
+      --muted2: rgba(233,242,255,.55);
+      --good:#30d158;
+      --warn:#ffd60a;
+      --bad:#ff453a;
+
+      --gold:#ffb400;
+      --gold2:#ff7a00;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.45);
+
+      --r:18px;
+      --r2:26px;
+
+      --focus: 0 0 0 3px rgba(255,180,0,.35), 0 0 0 1px rgba(255,255,255,.18) inset;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 30% -10%, rgba(0,153,255,.25), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(255,180,0,.18), transparent 55%),
+        radial-gradient(800px 500px at 60% 95%, rgba(48,209,88,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    .app{
+      min-height:100%;
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:18px;
+      padding:18px;
+      max-width: 1320px;
+      margin:0 auto;
+    }
+
+    @media (max-width: 980px){
+      .app{grid-template-columns: 1fr; padding:14px;}
+      .sidebar{position:sticky; top:12px;}
+    }
+
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .sidebar{
+      border-radius: var(--r2);
+      padding:14px;
+    }
+
+    .main{
+      border-radius: var(--r2);
+      padding:14px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      margin-bottom:12px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.35), transparent 55%),
+        linear-gradient(135deg, rgba(255,180,0,.95), rgba(255,122,0,.70));
+      box-shadow: 0 10px 22px rgba(255,180,0,.15);
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .brand h1{
+      font-size:14px; line-height:1.15; margin:0;
+      letter-spacing:.2px;
+    }
+    .brand .sub{
+      font-size:12px; color:var(--muted); margin-top:2px;
+    }
+
+    .nav{
+      display:grid;
+      gap:8px;
+      margin-top:12px;
+    }
+    .nav button{
+      appearance:none;
+      width:100%;
+      text-align:left;
+      border:1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border-radius:14px;
+      padding:10px 12px;
+      cursor:pointer;
+      display:flex; align-items:center; justify-content:space-between;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+    }
+    .nav button:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14);
+    }
+    .nav button[aria-current="page"]{
+      background:
+        radial-gradient(240px 90px at 10% 30%, rgba(255,180,0,.18), transparent 60%),
+        rgba(255,255,255,.05);
+      border-color: rgba(255,180,0,.28);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+    .nav .pill{
+      font-family: var(--mono);
+      font-size:11px;
+      color: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      padding:3px 8px;
+      border-radius:999px;
+    }
+
+    .mini{
+      margin-top:14px;
+      padding:12px;
+      border-radius:18px;
+      background: rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .mini .row{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .mini .title{font-size:12px; color:var(--muted)}
+    .mini .value{font-family:var(--mono); font-size:12px; color:rgba(255,255,255,.85)}
+    .chip{
+      display:inline-flex; align-items:center; gap:7px;
+      font-size:12px; padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .dot{width:8px; height:8px; border-radius:50%}
+    .dot.good{background:var(--good); box-shadow:0 0 16px rgba(48,209,88,.45)}
+    .dot.warn{background:var(--warn); box-shadow:0 0 16px rgba(255,214,10,.35)}
+    .dot.bad{background:var(--bad); box-shadow:0 0 16px rgba(255,69,58,.35)}
+
+    .header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding:12px 12px 14px;
+      border-radius: 22px;
+      margin-bottom:14px;
+      background:
+        radial-gradient(900px 160px at 20% 0%, rgba(0,153,255,.18), transparent 60%),
+        radial-gradient(700px 160px at 75% 0%, rgba(255,180,0,.14), transparent 60%),
+        rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .header .left{
+      display:flex; align-items:center; gap:10px; min-width: 260px;
+    }
+    .modeBadge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+    .modeBadge .big{
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .modeBadge .small{
+      font-size:12px; color:var(--muted);
+      margin-top:2px;
+    }
+
+    .header .right{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 12px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      display:inline-flex; align-items:center; gap:8px;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+    .btn:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+    .btn.primary{
+      background:
+        radial-gradient(220px 70px at 20% 30%, rgba(255,180,0,.25), transparent 60%),
+        linear-gradient(135deg, rgba(255,180,0,.24), rgba(255,122,0,.14));
+      border-color: rgba(255,180,0,.34);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    @media (max-width: 1180px){
+      .grid{grid-template-columns: 1fr;}
+    }
+
+    .card{
+      border-radius: var(--r2);
+      padding:14px;
+    }
+
+    .cardTitleRow{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .cardTitleRow h2{
+      margin:0; font-size:14px; letter-spacing:.2px;
+    }
+    .cardTitleRow .hint{
+      font-size:12px; color:var(--muted);
+    }
+
+    .cameraGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width: 720px){
+      .cameraGrid{grid-template-columns: 1fr;}
+    }
+
+    .cam{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      box-shadow: 0 10px 25px rgba(0,0,0,.30);
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+      position:relative;
+    }
+    .cam:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,180,0,.22);
+      box-shadow: 0 16px 35px rgba(0,0,0,.42);
+    }
+    .cam:focus-visible{ outline:none; box-shadow: var(--focus); }
+    .cam img{ display:block; width:100%; height:160px; object-fit:cover; }
+    .cam .label{
+      position:absolute; left:10px; bottom:10px;
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px;
+      color: rgba(255,255,255,.90);
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.14);
+      padding:6px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .cam .status{
+      position:absolute; right:10px; top:10px;
+      font-family:var(--mono);
+      font-size:11px;
+      color: rgba(255,255,255,.92);
+      background: rgba(0,0,0,.30);
+      border:1px solid rgba(255,255,255,.12);
+      padding:5px 8px;
+      border-radius:999px;
+    }
+
+    .stack{ display:grid; gap:14px; }
+
+    .list{
+      display:grid; gap:10px;
+    }
+
+    .item{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .item .left{ display:flex; gap:10px; }
+    .icon{
+      width:30px; height:30px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(10px 10px at 35% 30%, rgba(255,255,255,.25), transparent 55%),
+        rgba(0,0,0,.20);
+      display:grid; place-items:center;
+      font-size:14px;
+    }
+    .item .meta{
+      display:grid; gap:2px;
+    }
+    .item .meta .t{
+      font-size:13px; font-weight:650; letter-spacing:.2px;
+    }
+    .item .meta .s{
+      font-size:12px; color:var(--muted);
+    }
+    .tag{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:5px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.85);
+      height:fit-content;
+      white-space:nowrap;
+    }
+    .tag.good{ border-color: rgba(48,209,88,.25); box-shadow: 0 0 0 1px rgba(48,209,88,.12) inset; }
+    .tag.warn{ border-color: rgba(255,214,10,.25); box-shadow: 0 0 0 1px rgba(255,214,10,.12) inset; }
+    .tag.bad{ border-color: rgba(255,69,58,.25); box-shadow: 0 0 0 1px rgba(255,69,58,.12) inset; }
+
+    .controls{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width: 520px){
+      .controls{grid-template-columns: 1fr;}
+    }
+
+    .toggle{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .toggle .name{ display:grid; gap:2px; }
+    .toggle .name .t{ font-size:13px; font-weight:650; }
+    .toggle .name .s{ font-size:12px; color:var(--muted); }
+    .switch{
+      width:46px; height:28px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      position:relative;
+      cursor:pointer;
+      transition: background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      flex:0 0 auto;
+    }
+    .switch::after{
+      content:"";
+      width:22px; height:22px;
+      border-radius:999px;
+      position:absolute; top:2px; left:2px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 18px rgba(0,0,0,.35);
+      transition: transform .12s ease;
+    }
+    .switch[aria-checked="true"]{
+      background: linear-gradient(135deg, rgba(48,209,88,.40), rgba(48,209,88,.15));
+      border-color: rgba(48,209,88,.35);
+      box-shadow: 0 0 0 1px rgba(48,209,88,.12) inset;
+    }
+    .switch[aria-checked="true"]::after{ transform: translateX(18px); }
+    .switch:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      z-index: 50;
+    }
+    .modal[open]{ display:flex; }
+    .modalCard{
+      width:min(980px, 100%);
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+    }
+    .modalTop .mTitle{ font-weight:700; letter-spacing:.2px; }
+    .modalBody{ padding:0; background: rgba(0,0,0,.20); }
+    .modalBody img{ width:100%; height:min(520px, 60vh); object-fit:cover; display:block; }
+    .modalBottom{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:12px 14px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+    .kbd{
+      font-family:var(--mono);
+      font-size:11px;
+      color: rgba(255,255,255,.70);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      padding:4px 8px;
+      border-radius:10px;
+    }
+
+    .page{ display:none; }
+    .page[active]{ display:block; }
+
+    footer{
+      max-width:1320px;
+      margin: 12px auto 26px;
+      padding: 0 18px;
+      color: rgba(233,242,255,.55);
+      font-size:12px;
+      line-height:1.35;
+      text-align:center;
+    }
+    footer .legal{
+      font-family: var(--mono);
+      font-size:11px;
+      opacity:.8;
+      margin-top:6px;
+    }
+  
+    .btn.mini{
+      padding:8px 10px;
+      font-size:12px;
+      border-radius:12px;
+      line-height:1;
+      white-space:nowrap;
+    }
+</style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar glass" aria-label="Dashboard navigation">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Reliable Elder Care</h1>
+          <div class="sub">HA Gold Package • Demo Dashboard</div>
+        </div>
+      </div>
+
+      <div class="nav" role="navigation">
+        <button class="navBtn" data-page="overview" aria-current="page">
+          <span>Home</span>
+          <span class="pill">Overview</span>
+        </button>
+        <button class="navBtn" data-page="cameras">
+          <span>Cameras</span>
+          <span class="pill">6</span>
+        </button>
+        <button class="navBtn" data-page="sensors">
+          <span>Sensors</span>
+          <span class="pill">Live</span>
+        </button>
+        <button class="navBtn" data-page="automations">
+          <span>Automations</span>
+          <span class="pill">Rules</span>
+        </button>
+        <button class="navBtn" data-page="settings">
+          <span>Settings</span>
+          <span class="pill">Demo</span>
+        </button>
+      </div>
+
+      <div class="mini" aria-label="System status summary">
+        <div class="row">
+          <div class="title">System</div>
+          <div class="value" id="sysClock">--:--</div>
+        </div>
+        <div class="row">
+          <div class="chip"><span class="dot good" id="netDot"></span><span id="netText">Internet: Online</span></div>
+        </div>
+        <div class="row" style="margin-bottom:0">
+          <div class="chip"><span class="dot warn" id="armDot"></span><span id="armText">Mode: Home</span></div>
+        </div>
+      </div>
+
+      <div class="mini" aria-label="Self-monitoring disclosure">
+        <div class="title" style="margin-bottom:8px">No monthly fees. No remote monitoring.</div>
+        <div style="font-size:12px; color:var(--muted); line-height:1.35">
+          This demo represents a <b>self-monitored</b> system. You’re responsible for monitoring alerts and contacting emergency services (911) when needed.
+        </div>
+      </div>
+    </aside>
+
+    <main class="main glass" aria-label="Dashboard content">
+      <div class="header">
+        <div class="left">
+          <div class="modeBadge">
+            <div>
+              <div class="big" id="modeLabel">Armed: Home</div>
+              <div class="small" id="modeSub">Perimeter monitoring • Indoor motion limited</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right">
+          <button class="btn" id="btnSimAlert" title="Simulate an alert">⚡ Sim Alert</button>
+          <button class="btn" id="btnToggleNet" title="Toggle internet (offline-first demo)">🌐 Toggle Net</button>
+          <button class="btn" id="btnCamTheme" title="Toggle camera view (day/night)">🌙 Night View</button>
+          <button class="btn" id="btnMode" title="Cycle arming mode">🛡️ Change Mode</button>
+          <button class="btn primary" id="btnReset" title="Reset demo state">↺ Reset</button>
+        </div>
+      </div>
+
+      <section class="page" id="page-overview" active>
+        <div class="grid">
+          <section class="card glass" aria-label="Camera snapshots">
+            <div class="cardTitleRow">
+              <h2>Cameras</h2>
+              <div class="hint">Tap any camera for “full-screen” view</div>
+            </div>
+            <div class="cameraGrid" id="cameraGrid"></div>
+          </section>
+
+          <section class="stack" aria-label="Right-side widgets">
+            <section class="card glass" aria-label="Alerts">
+              <div class="cardTitleRow">
+                <h2>Alerts</h2>
+                <div class="hint">Recent activity</div>
+              </div>
+              <div class="list" id="alertList"></div>
+            </section>
+
+            <section class="card glass" aria-label="Controls">
+              <div class="cardTitleRow">
+                <h2>Controls</h2>
+                <div class="hint">Tap toggles</div>
+              </div>
+              <div class="controls" id="controlsGrid"></div>
+            </section>
+
+            <section class="card glass" aria-label="Safety Status">
+              <div class="cardTitleRow">
+                <h2>Safety</h2>
+                <div class="hint">Status checks</div>
+              </div>
+              <div class="list" id="safetyList"></div>
+            </section>
+
+            <section class="card glass" aria-label="Door Locks">
+              <div class="cardTitleRow">
+                <h2>Door Locks</h2>
+                <div class="hint">Lock / unlock</div>
+              </div>
+              <div class="list" id="locksList"></div>
+            </section>
+          </section>
+        </div>
+      </section>
+
+      <section class="page" id="page-cameras">
+        <section class="card glass">
+          <div class="cardTitleRow">
+            <h2>Camera Matrix</h2>
+            <div class="hint">Static demo imagery (click to open)</div>
+          </div>
+          <div class="cameraGrid" id="cameraGridAll"></div>
+        </section>
+      </section>
+
+      <section class="page" id="page-sensors">
+        <section class="card glass">
+          <div class="cardTitleRow">
+            <h2>Sensors</h2>
+            <div class="hint">Live status (demo)</div>
+          </div>
+          <div class="list" id="sensorList"></div>
+        </section>
+      </section>
+
+      <section class="page" id="page-automations">
+        <section class="card glass">
+          <div class="cardTitleRow">
+            <h2>Automations</h2>
+            <div class="hint">Sample rules & simulated actions</div>
+          </div>
+          <div class="list" id="automationList"></div>
+        </section>
+      </section>
+
+      <section class="page" id="page-settings">
+        <section class="card glass">
+          <div class="cardTitleRow">
+            <h2>Demo Settings</h2>
+            <div class="hint">Personalize the walkthrough</div>
+          </div>
+
+          <div class="item">
+            <div class="left">
+              <div class="icon">🏷️</div>
+              <div class="meta">
+                <div class="t">Customer Name</div>
+                <div class="s">Shown in alerts for realism</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <input id="customerName" type="text" placeholder="e.g., Alex" style="
+                width:220px; max-width: 45vw;
+                border-radius: 14px; border:1px solid rgba(255,255,255,.14);
+                background: rgba(0,0,0,.22);
+                color: var(--text); padding: 10px 12px; outline:none;
+              " />
+              <button class="btn" id="saveName">Save</button>
+            </div>
+          </div>
+
+          <div class="item" style="margin-top:12px;">
+            <div class="left">
+              <div class="icon">🧪</div>
+              <div class="meta">
+                <div class="t">Walkthrough Tips</div>
+                <div class="s">Use <span class="kbd">⚡ Sim Alert</span> + click cameras to demonstrate features.</div>
+              </div>
+            </div>
+            <span class="tag">Demo</span>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="camModal" aria-label="Camera modal">
+    <div class="modalCard">
+      <div class="modalTop">
+        <div class="mTitle" id="modalTitle">Camera</div>
+        <button class="btn" id="modalClose">✕ Close</button>
+      </div>
+      <div class="modalBody">
+        <img id="modalImg" alt="Camera view" />
+      </div>
+      <div class="modalBottom">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span class="tag" id="modalStatus">REC</span>
+          <span style="font-size:12px; color:var(--muted)" id="modalNote">Static demo frame</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <span class="kbd">Esc</span>
+          <span class="kbd">Click outside</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer>
+    <div>HA Gold Package Dashboard Demo — interactive walkthrough experience (static camera frames, simulated devices).</div>
+    <div class="legal">© 2025 KickAss Inc. All Rights Reserved. Unauthorized use is prohibited.</div>
+  </footer>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function nowTime(){
+      const d = new Date();
+      const hh = String(d.getHours()).padStart(2,'0');
+      const mm = String(d.getMinutes()).padStart(2,'0');
+      return `${hh}:${mm}`;
+    }
+    function uid(){ return Math.random().toString(16).slice(2) + Date.now().toString(16); }
+
+    function cameraFrameDataUrl(label, scene){
+      const bg = scene === 'outdoor' ? ['#071b2a','#0b2a44'] : ['#101827','#0f172a'];
+      const glow = scene === 'outdoor' ? 'rgba(0,153,255,.35)' : 'rgba(255,180,0,.22)';
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="${bg[0]}"/>
+              <stop offset="1" stop-color="${bg[1]}"/>
+            </linearGradient>
+            <filter id="n">
+              <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+              <feColorMatrix type="matrix" values="
+                1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 .08 0"/>
+            </filter>
+          </defs>
+
+          <rect width="1200" height="700" fill="url(#g)"/>
+          <rect width="1200" height="700" filter="url(#n)" opacity=".35"/>
+
+          <circle cx="240" cy="160" r="220" fill="${glow}" opacity=".35"/>
+          <circle cx="980" cy="120" r="260" fill="rgba(255,255,255,.06)" opacity=".8"/>
+
+          <g opacity=".85">
+            <rect x="60" y="470" width="520" height="160" rx="22" fill="rgba(0,0,0,.28)" stroke="rgba(255,255,255,.18)"/>
+            <rect x="640" y="440" width="500" height="190" rx="22" fill="rgba(0,0,0,.22)" stroke="rgba(255,255,255,.16)"/>
+          </g>
+
+          <text x="90" y="520" fill="rgba(233,242,255,.92)" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="700">${label}</text>
+          <text x="90" y="575" fill="rgba(233,242,255,.70)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24">${scene.toUpperCase()} • Static Demo Frame</text>
+
+          <g>
+            <rect x="920" y="40" width="240" height="54" rx="18" fill="rgba(0,0,0,.30)" stroke="rgba(255,255,255,.14)"/>
+            <text x="940" y="75" fill="rgba(233,242,255,.88)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="22">REC • ${nowTime()}</text>
+          </g>
+
+          <g opacity=".9">
+            <circle cx="90" cy="84" r="10" fill="rgba(48,209,88,.95)"/>
+            <text x="112" y="92" fill="rgba(233,242,255,.75)" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18">LOCAL</text>
+          </g>
+        </svg>
+      `.trim();
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
+
+    const STORAGE_KEY = "ka_ha_gold_demo_v1";
+    function defaultState(){
+      return {
+        customerName: "Customer",
+        internetOnline: true,
+        mode: "home",
+        cameraTheme: "day", // "day" | "night"
+        controls: { siren:false, porchLight:false, drivewayLight:true, interiorLights:false },
+        locks: { frontDoor:true, backDoor:true, garageDoor:true }, // true = locked
+        safety: { fire:"OK", smoke:"OK", leak:"OK", co:"OK" },
+        sensors: [
+          { id:"front_door", label:"Front Door", type:"contact", status:"Closed", sev:"good" },
+          { id:"back_door", label:"Back Door", type:"contact", status:"Closed", sev:"good" },
+          { id:"garage_door", label:"Garage Door", type:"contact", status:"Closed", sev:"good" },
+
+          { id:"lower_front_window", label:"Lower Front Window", type:"contact", status:"Open (FYI — 11:00 PM)", sev:"warn" },
+
+          { id:"rear_patio", label:"Rear Patio", type:"motion", status:"Standby", sev:"good" },
+          { id:"side_walkway", label:"Side Walkway", type:"motion", status:"Standby", sev:"good" },
+          { id:"glass_break_living", label:"Living Room Glass Break", type:"glass", status:"Standby", sev:"good" },
+          { id:"leak_basement", label:"Basement Leak Sensor", type:"leak", status:"Dry", sev:"good" }
+        ],
+        alerts: [
+          { id: uid(), icon:"🛡️", title:"System Ready", sub:"All sensors normal", age:"Just now", sev:"good" },
+          { id: uid(), icon:"📷", title:"NVR Recording", sub:"Local storage active", age:"2m ago", sev:"good" },
+        ]
+      };
+    }
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return defaultState();
+        const s = JSON.parse(raw);
+        return { ...defaultState(), ...s };
+      }catch{
+        return defaultState();
+      }
+    }
+    function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    let state = loadState();
+
+    const cameraImages = {
+      day: {
+        front_entrance: "cam_assets/day_front_door.png",
+        driveway: "cam_assets/day_driveway.png",
+        garage: "cam_assets/day_garage.png",
+        rear_patio: "cam_assets/day_backyard.png",
+        side_walkway: "cam_assets/day_side_yard.png",
+        doorbell: "cam_assets/day_front_door.png"
+      },
+      night: {
+        front_entrance: "cam_assets/night_front_door.png",
+        driveway: "cam_assets/night_driveway.png",
+        garage: "cam_assets/night_garage.png",
+        rear_patio: "cam_assets/night_backyard.png",
+        side_walkway: "cam_assets/night_side_yard.png",
+        doorbell: "cam_assets/night_front_door.png"
+      }
+    };
+
+    const cameras = [
+      { id:"front_entrance", label:"Front Entrance", scene:"outdoor" },
+      { id:"driveway", label:"Driveway", scene:"outdoor" },
+      { id:"garage", label:"Garage", scene:"indoor" },
+      { id:"rear_patio", label:"Rear Patio", scene:"outdoor" },
+      { id:"side_walkway", label:"Side Walkway", scene:"outdoor" },
+      { id:"doorbell", label:"Doorbell (Ring)", scene:"outdoor" },
+    ].map(c => ({ ...c, img: () => cameraImages[state.cameraTheme][c.id] }));
+
+    const automationRules = [
+      { icon:"⚙️", title:"Away Mode: Full Coverage", sub:"Arm perimeter + indoor motion, enable siren", tag:"Rule" },
+      { icon:"💡", title:"Motion Lights at Night", sub:"Driveway/Walkway motion turns on exterior lights", tag:"Rule" },
+      { icon:"📷", title:"Record on Alert", sub:"Alerts pin the camera frame + keep local recording", tag:"Rule" },
+      { icon:"🔔", title:"Push Notifications", sub:"Send alerts to phone + tablet wall panel", tag:"Rule" },
+    ];
+
+    function setNav(pageKey){
+      $$(".navBtn").forEach(b => b.setAttribute("aria-current", b.dataset.page === pageKey ? "page" : "false"));
+      $$(".page").forEach(p => p.removeAttribute("active"));
+      $("#page-"+pageKey).setAttribute("active","");
+    }
+
+    function modeInfo(mode){
+      if(mode === "away") return { label:"Armed: Away", sub:"Perimeter + indoor motion • Highest protection", dot:"bad" };
+      if(mode === "disarmed") return { label:"Disarmed", sub:"Monitoring only • No arming", dot:"good" };
+      return { label:"Armed: Home", sub:"Perimeter monitoring • Indoor motion limited", dot:"warn" };
+    }
+
+    function renderHeader(){
+      const info = modeInfo(state.mode);
+      $("#modeLabel").textContent = info.label;
+      $("#modeSub").textContent = info.sub;
+      $("#sysClock").textContent = nowTime();
+      $("#netDot").className = "dot " + (state.internetOnline ? "good" : "warn");
+      $("#netText").textContent = "Internet: " + (state.internetOnline ? "Online" : "Offline (Local-first)");
+      $("#armDot").className = "dot " + info.dot;
+      $("#armText").textContent = "Mode: " + (state.mode.charAt(0).toUpperCase()+state.mode.slice(1));
+    }
+
+    function renderCameras(targetSel){
+      const grid = $(targetSel);
+      grid.innerHTML = "";
+      cameras.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "cam";
+        btn.type = "button";
+        btn.innerHTML = `
+          <img alt="${c.label} camera view" src="${(typeof c.img === "function" ? c.img() : c.img)}">
+          <div class="status">REC • ${nowTime()}</div>
+          <div class="label">📷 <span>${c.label}</span></div>
+        `;
+        btn.addEventListener("click", () => openCamera(c));
+        grid.appendChild(btn);
+      });
+    }
+
+    function sevTag(sev){
+      if(sev === "bad") return "tag bad";
+      if(sev === "warn") return "tag warn";
+      return "tag good";
+    }
+
+    function renderAlerts(){
+      const list = $("#alertList");
+      list.innerHTML = "";
+      state.alerts.slice(0,5).forEach(a => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div class="left">
+            <div class="icon">${a.icon}</div>
+            <div class="meta">
+              <div class="t">${a.title}</div>
+              <div class="s">${a.sub}</div>
+            </div>
+          </div>
+          <div style="display:grid; gap:6px; justify-items:end">
+            <span class="${sevTag(a.sev)}">${a.sev.toUpperCase()}</span>
+            <span style="font-family:var(--mono); font-size:11px; color:var(--muted2)">${a.age}</span>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function renderControls(){
+      const grid = $("#controlsGrid");
+      grid.innerHTML = "";
+
+      const items = [
+        { key:"porchLight", title:"Porch Light", sub:"Exterior lighting", icon:"💡" },
+        { key:"drivewayLight", title:"Driveway Lights", sub:"Motion lighting", icon:"✨" },
+        { key:"interiorLights", title:"Interior Lights", sub:"Evening scene", icon:"🏠" },
+        { key:"siren", title:"Siren", sub:"Local audible alarm", icon:"🚨" },
+      ];
+
+      items.forEach(i => {
+        const on = !!state.controls[i.key];
+        const div = document.createElement("div");
+        div.className = "toggle";
+        div.innerHTML = `
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div class="icon">${i.icon}</div>
+            <div class="name">
+              <div class="t">${i.title}</div>
+              <div class="s">${i.sub}</div>
+            </div>
+          </div>
+          <button class="switch" role="switch" aria-checked="${on}" aria-label="${i.title} toggle"></button>
+        `;
+        div.querySelector(".switch").addEventListener("click", () => {
+          state.controls[i.key] = !state.controls[i.key];
+          saveState();
+          renderControls();
+          pushAlert("⚙️", `${i.title} ${state.controls[i.key] ? "On" : "Off"}`, "Control toggled", "good");
+        });
+        grid.appendChild(div);
+      });
+    }
+
+
+    function renderSafety(){
+      const list = $("#safetyList");
+      if(!list) return;
+      list.innerHTML = "";
+      const items = [
+        { key:"fire", label:"Fire", icon:"🔥", ok:"👍 No Fire" },
+        { key:"smoke", label:"Smoke", icon:"🚨", ok:"👍 No Smoke" },
+        { key:"leak", label:"Leak", icon:"💧", ok:"👍 No Leak" },
+        { key:"co", label:"Carbon Monoxide", icon:"🫁", ok:"👍 No CO" },
+      ];
+      items.forEach(it => {
+        const row = document.createElement("div");
+        row.className = "item";
+        const sev = (state.safety?.[it.key] === "OK") ? "good" : "bad";
+        row.innerHTML = `
+          <div class="dot ${sev}"></div>
+          <div class="txt">
+            <div class="title">${it.icon} ${it.label}</div>
+            <div class="sub">${it.ok}</div>
+          </div>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    function renderLocks(){
+      const list = $("#locksList");
+      if(!list) return;
+      list.innerHTML = "";
+      const items = [
+        { key:"frontDoor", label:"Front Door", icon:"🚪" },
+        { key:"backDoor", label:"Back Door", icon:"🚪" },
+        { key:"garageDoor", label:"Garage Door", icon:"🚪" },
+      ];
+      items.forEach(it => {
+        const locked = !!(state.locks?.[it.key]);
+        const row = document.createElement("div");
+        row.className = "item";
+        row.innerHTML = `
+          <div class="dot ${locked ? "good" : "warn"}"></div>
+          <div class="txt">
+            <div class="title">${it.icon} ${it.label}</div>
+            <div class="sub">${locked ? "Locked" : "Unlocked"}</div>
+          </div>
+          <button class="btn mini" type="button" data-lock="${it.key}">${locked ? "Unlock" : "Lock"}</button>
+        `;
+        row.querySelector("button").addEventListener("click", (e) => {
+          e.stopPropagation();
+          state.locks[it.key] = !locked;
+          saveState();
+          renderLocks();
+          pushAlert("🔑", `${it.label} ${state.locks[it.key] ? "Locked" : "Unlocked"}`, "Door lock changed", "good");
+        });
+        list.appendChild(row);
+      });
+    }
+
+    function renderSensors(){
+      const list = $("#sensorList");
+      list.innerHTML = "";
+      state.sensors.forEach(s => {
+        const icon = s.type === "contact" ? "🚪" : s.type === "motion" ? "🏃" : s.type === "glass" ? "🔊" : s.type === "leak" ? "💧" : "🧭";
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div class="left">
+            <div class="icon">${icon}</div>
+            <div class="meta">
+              <div class="t">${s.label}</div>
+              <div class="s">${s.type.toUpperCase()}</div>
+            </div>
+          </div>
+          <span class="${sevTag(s.sev)}">${s.status}</span>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function renderAutomations(){
+      const list = $("#automationList");
+      list.innerHTML = "";
+      automationRules.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div class="left">
+            <div class="icon">${r.icon}</div>
+            <div class="meta">
+              <div class="t">${r.title}</div>
+              <div class="s">${r.sub}</div>
+            </div>
+          </div>
+          <span class="tag">${r.tag}</span>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    const modal = $("#camModal");
+    function openCamera(c){
+      $("#modalTitle").textContent = c.label;
+      $("#modalImg").src = (typeof c.img === "function" ? c.img() : c.img);
+      $("#modalStatus").textContent = state.internetOnline ? "REC • LOCAL" : "REC • OFFLINE";
+      $("#modalNote").textContent = state.internetOnline ? "Static demo frame (simulated live view)" : "Offline-first: local dashboard remains available";
+      modal.setAttribute("open","");
+    }
+    function closeModal(){ modal.removeAttribute("open"); }
+
+    $("#modalClose").addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+    function pushAlert(icon, title, sub, sev){
+      const name = (state.customerName || "Customer").trim();
+      state.alerts.unshift({ id: uid(), icon, title, sub: `${sub} • ${name}`, age: "Just now", sev });
+      state.alerts = state.alerts.slice(0, 10);
+      saveState();
+      renderAlerts();
+    }
+
+    function simulateAlert(){
+      const candidates = ["front_door","garage_door","rear_patio","side_walkway","glass_break_living"];
+      const pick = candidates[Math.floor(Math.random()*candidates.length)];
+      const s = state.sensors.find(x => x.id === pick);
+      if(!s) return;
+
+      if(s.type === "contact"){
+        const open = s.status !== "Open";
+        s.status = open ? "Open" : "Closed";
+        s.sev = open ? "bad" : "good";
+        pushAlert("🚪", `${s.label} ${open ? "Opened" : "Closed"}`, "Contact sensor", open ? "bad" : "good");
+      } else if(s.type === "motion"){
+        const motion = s.status !== "Motion";
+        s.status = motion ? "Motion" : "Standby";
+        s.sev = motion ? (state.mode === "away" ? "bad" : "warn") : "good";
+        pushAlert("🏃", `${s.label}: ${motion ? "Motion Detected" : "Standby"}`, "Motion sensor", s.sev);
+      } else if(s.type === "glass"){
+        const trig = s.status !== "Triggered";
+        s.status = trig ? "Triggered" : "Standby";
+        s.sev = trig ? "bad" : "good";
+        pushAlert("🔊", `${s.label}: ${trig ? "Triggered" : "Standby"}`, "Acoustic sensor", s.sev);
+      }
+
+      saveState();
+      renderSensors();
+      renderHeader();
+    }
+
+    function cycleMode(){
+      const order = ["home","away","disarmed"];
+      const idx = order.indexOf(state.mode);
+      state.mode = order[(idx+1) % order.length];
+      saveState();
+      renderHeader();
+      pushAlert("🛡️", `Mode set to ${state.mode.toUpperCase()}`, "System mode change", state.mode === "away" ? "warn" : "good");
+    }
+
+    function toggleInternet(){
+      state.internetOnline = !state.internetOnline;
+      saveState();
+      renderHeader();
+      pushAlert("🌐", state.internetOnline ? "Internet Online" : "Internet Offline", "System remains local-first", "good");
+      if(modal.hasAttribute("open")) $("#modalStatus").textContent = state.internetOnline ? "REC • LOCAL" : "REC • OFFLINE";
+    }
+
+    function toggleCameraTheme(){
+      state.cameraTheme = (state.cameraTheme === "day") ? "night" : "day";
+      saveState();
+      // Update button label
+      const btn = $("#btnCamTheme");
+      btn.textContent = (state.cameraTheme === "day") ? "🌙 Night View" : "☀️ Day View";
+      // Re-render camera grids to swap imagery
+      renderCameras("#cameraGrid");
+      renderCameras("#cameraGridAll");
+      // If modal is open, swap the currently shown image
+      if(modal.hasAttribute("open")){
+        const title = $("#modalTitle").textContent;
+        const cam = cameras.find(c => c.label === title);
+        if(cam) $("#modalImg").src = (typeof cam.img === "function" ? cam.img() : cam.img);
+      }
+    }
+
+
+    function resetDemo(){
+      state = defaultState();
+      saveState();
+      init();
+    }
+
+    $$(".navBtn").forEach(b => b.addEventListener("click", () => setNav(b.dataset.page)));
+
+    $("#saveName").addEventListener("click", () => {
+      state.customerName = ($("#customerName").value || "Customer").trim();
+      saveState();
+      pushAlert("🏷️", "Customer label updated", "Personalization", "good");
+    });
+
+    $("#btnSimAlert").addEventListener("click", simulateAlert);
+    $("#btnMode").addEventListener("click", cycleMode);
+    $("#btnToggleNet").addEventListener("click", toggleInternet);
+    $("#btnCamTheme").addEventListener("click", toggleCameraTheme);
+    $("#btnReset").addEventListener("click", resetDemo);
+
+    setInterval(() => { $("#sysClock").textContent = nowTime(); }, 5000);
+
+    function loadSettingsUI(){ $("#customerName").value = state.customerName || ""; }
+
+    function init(){
+      renderHeader();
+      // set camera theme button label based on persisted state
+      $("#btnCamTheme").textContent = (state.cameraTheme === "day") ? "🌙 Night View" : "☀️ Day View";
+      renderCameras("#cameraGrid");
+      renderCameras("#cameraGridAll");
+      renderAlerts();
+      renderControls();
+      renderSafety();
+      renderLocks();
+      renderSensors();
+      renderAutomations();
+      loadSettingsUI();
+    }
+    init();
+  </script>
+</body>
+</html>

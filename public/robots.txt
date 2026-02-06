@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Internal / Operational Only
+Disallow: /uat
+Disallow: /certificate
+
+Sitemap: https://reliableeldercare.com/sitemap.xml

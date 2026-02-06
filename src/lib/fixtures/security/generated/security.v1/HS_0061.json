@@ -1,0 +1,44 @@
+{
+  "id": "HS_0061",
+  "selectedTier": "silver",
+  "draft": {
+    "propertyType": "condo",
+    "floors": 3,
+    "sizeBand": "small",
+    "garage": "none",
+    "exteriorDoors": [
+      "Front door",
+      "Back door",
+      "Side door"
+    ],
+    "groundWindows": "some",
+    "pets": true,
+    "elders": false,
+    "priorities": [
+      "security"
+    ]
+  },
+  "expect": {
+    "status": "complete_with_addons",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_ck"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_unvr"
+    ],
+    "gaps": [],
+    "notesMustContain": [
+      "Pet-safe placement"
+    ],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "complete_with_addons",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}

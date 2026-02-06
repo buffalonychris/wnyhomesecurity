@@ -1,0 +1,41 @@
+{
+  "id": "HS_0068",
+  "selectedTier": "silver",
+  "draft": {
+    "propertyType": "rental",
+    "floors": 2,
+    "sizeBand": "medium",
+    "garage": "attached",
+    "exteriorDoors": [
+      "Front door",
+      "Back door"
+    ],
+    "groundWindows": "yes",
+    "pets": false,
+    "elders": false,
+    "priorities": [
+      "packages"
+    ]
+  },
+  "expect": {
+    "status": "complete_with_addons",
+    "mustHaveKeys": [
+      "contact_sensor",
+      "doorbell_wifi",
+      "protect_brains_ck"
+    ],
+    "mustNotHaveKeys": [
+      "protect_brains_unvr"
+    ],
+    "gaps": [],
+    "notesMustContain": [],
+    "forbiddenPhrases": [
+      "pet-immune"
+    ],
+    "bundleStatus": {
+      "bronze": "complete_with_addons",
+      "silver": "complete_with_addons",
+      "gold": "complete_with_addons"
+    }
+  }
+}
