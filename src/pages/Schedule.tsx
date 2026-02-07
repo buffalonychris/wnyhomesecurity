@@ -182,11 +182,9 @@ const Schedule = () => {
       <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <div>
-            <div className="badge">Installation scheduling</div>
-            <h1 style={{ margin: 0, color: '#fff7e6' }}>Request your installation window</h1>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
-              Scheduling opens after agreement acceptance and deposit confirmation.
-            </p>
+            <div className="badge">Step 6 — Schedule</div>
+            <h1 className="wnyhs-funnel-title">Step 6: Schedule</h1>
+            <p className="wnyhs-funnel-subtitle">Scheduling opens after agreement acceptance and deposit confirmation.</p>
           </div>
           {!isHomeSecurity && (
             <button type="button" className="btn btn-primary" onClick={handlePrint}>

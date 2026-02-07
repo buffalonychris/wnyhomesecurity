@@ -9,6 +9,7 @@ import AccordionSection from './AccordionSection';
 type Props = {
   pkg: PackageTier;
   vertical?: VerticalKey;
+  pathParam?: string | null;
   imageCaption?: string;
   image?: {
     alt: string;
@@ -22,13 +23,15 @@ type Props = {
   };
 };
 
-const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
+const PackageCard = ({ pkg, vertical, pathParam, imageCaption, image }: Props) => {
   const tierId = pkg.id.toUpperCase() as PackageTierId;
   const verticalQuery = vertical === 'home-security' ? '?vertical=home-security' : '';
   const isMostPopular = vertical === 'home-security' && pkg.id === 'a2';
   const contactLink = vertical === 'home-security' ? `/contact?vertical=home-security&package=${pkg.id}` : '/contact';
-  const primaryLabel = vertical === 'home-security' ? `Choose ${pkg.name}` : `View ${pkg.name}`;
   const isHomeSecurity = vertical === 'home-security';
+  const primaryLabel = isHomeSecurity ? `Choose ${pkg.name}` : `View ${pkg.name}`;
+  const discoveryPath = pathParam ? `&path=${pathParam}` : '';
+  const primaryHref = isHomeSecurity ? `/discovery?vertical=home-security${discoveryPath}` : `/packages/${pkg.id}${verticalQuery}`;
   const featureList = isHomeSecurity ? pkg.features ?? [] : pkg.includes;
   const featurePreview = isHomeSecurity ? featureList.slice(0, 4) : featureList;
   const hardwareList = isHomeSecurity ? pkg.hardware ?? [] : [];
@@ -105,22 +108,27 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
       <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
         <Link
           className={`btn btn-primary${isHomeSecurity ? ' package-cta' : ''}`}
-          to={`/packages/${pkg.id}${verticalQuery}`}
+          to={primaryHref}
           aria-label={primaryLabel}
           onClick={handleSelect}
         >
           {primaryLabel}
         </Link>
-        {vertical !== 'home-security' && (
-          <Link
-            className="btn btn-secondary"
-            to={contactLink}
-            aria-label="Talk to us about this package"
-          >
+      </div>
+      {isHomeSecurity && (
+        <div className="package-card-links">
+          <Link className="package-card-link" to={`/packages/${pkg.id}${verticalQuery}`}>
+            View details
+          </Link>
+        </div>
+      )}
+      {!isHomeSecurity && (
+        <div className="package-card-links">
+          <Link className="package-card-link" to={contactLink} aria-label="Talk to us about this package">
             Talk to us
           </Link>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1030,9 +1030,9 @@ const HomeSecurityPlanner = () => {
     <WnyhsPageLayout mode="funnel" showStepRail>
       <div className="wnyhs-funnel-stack" style={{ display: 'grid', gap: '1.5rem' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <h1 style={{ margin: 0 }}>Home Security Precision Planner</h1>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>Optional. For customers who want surgical precision.</p>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>This does not change your package unless you choose to.</p>
+          <h1 className="wnyhs-funnel-title">Step 3: Precision Planner</h1>
+          <p className="wnyhs-funnel-subtitle">Optional. For customers who want surgical precision.</p>
+          <p className="wnyhs-funnel-subtitle">This does not change your package unless you choose to.</p>
         </div>
 
         <AccordionSection title="What the Precision Planner does" description="" defaultOpen={false}>

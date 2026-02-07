@@ -467,9 +467,11 @@ const AgreementReview = () => {
             >
               <div style={{ display: 'grid', gap: '0.75rem' }}>
                 <div>
-                  <div className="badge">Step 2 — Agreement Review</div>
-                  <h1 style={{ margin: '0.25rem 0', color: '#fff7e6' }}>Decision-ready agreement</h1>
-                  <p style={{ margin: 0, color: '#c8c0aa' }}>
+                  <div className="badge">Step 4 — Agreement</div>
+                  <h1 className="wnyhs-funnel-title" style={{ marginTop: '0.25rem' }}>
+                    Step 4: Agreement
+                  </h1>
+                  <p className="wnyhs-funnel-subtitle">
                     Calm, plain-language overview first. This locks in your quote so we can collect the deposit and schedule
                     installation.
                   </p>

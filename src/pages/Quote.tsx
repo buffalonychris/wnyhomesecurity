@@ -239,8 +239,12 @@ const Quote = () => {
       )}
       <div className="hero-card motion-fade-up" style={{ display: 'grid', gap: '0.75rem' }}>
         {!isHomeSecurity && <div className="badge">Deterministic quote</div>}
-        <h1 style={{ margin: 0, color: '#fff7e6' }}>{isHomeSecurity ? 'Your quote' : `Build a ${brandSite} quote`}</h1>
-        <p style={{ margin: 0, color: '#e6ddc7' }}>
+        {isHomeSecurity ? (
+          <h1 className="wnyhs-funnel-title">Step 2: Quote</h1>
+        ) : (
+          <h1 style={{ margin: 0, color: '#fff7e6' }}>{`Build a ${brandSite} quote`}</h1>
+        )}
+        <p className={isHomeSecurity ? 'wnyhs-funnel-subtitle' : undefined} style={!isHomeSecurity ? { margin: 0, color: '#e6ddc7' } : undefined}>
           Capture the basics, pick a package, and see an upfront one-time estimate. Pricing uses a
           fixed table—no AI, no monthly subscriptions required.
         </p>

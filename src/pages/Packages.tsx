@@ -21,11 +21,15 @@ const Packages = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [guidedMode, setGuidedMode] = useState<boolean>(() => loadRetailFlow().guidedMode ?? false);
+  const pathParam = searchParams.get('path');
   const vertical = resolveVertical(searchParams.get('vertical'));
   const packageList = getPackages(vertical);
   const isHomeSecurity = vertical === 'home-security';
   const homeSecurityTierMedia = isHomeSecurity ? HOME_SECURITY_TIER_MEDIA : null;
   const plannerHref = '/home-security/planner?vertical=home-security';
+  const discoveryLink = pathParam
+    ? `/discovery?vertical=home-security&path=${pathParam}`
+    : '/discovery?vertical=home-security';
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -40,7 +44,6 @@ const Packages = () => {
 
   useEffect(() => {
     const guidedParam = searchParams.get('guided') === '1';
-    const pathParam = searchParams.get('path');
     if (pathParam === 'online' || pathParam === 'onsite') {
       updateRetailFlow({ homeSecurity: { selectedPath: pathParam } });
     }
@@ -128,7 +131,7 @@ const Packages = () => {
             <strong>Want surgical precision?</strong>
             <span style={{ color: 'var(--kaec-muted)' }}>Use the Precision Planner for optional layout detail.</span>
           </div>
-          <Link className="btn btn-secondary" to={plannerHref} onClick={handlePlannerOpen}>
+          <Link className="btn btn-link" to={plannerHref} onClick={handlePlannerOpen}>
             Use Precision Planner (optional)
           </Link>
         </div>
@@ -141,6 +144,7 @@ const Packages = () => {
               key={pkg.id}
               pkg={pkg}
               vertical={vertical}
+              pathParam={pathParam}
               imageCaption={tierMedia?.caption}
               image={tierMedia?.image}
             />
@@ -196,7 +200,7 @@ const Packages = () => {
 
   if (isHomeSecurity) {
     return (
-      <WnyhsPageLayout mode="marketing" ctaLink="/discovery?vertical=home-security">
+      <WnyhsPageLayout mode="marketing" ctaLink={discoveryLink}>
         {content}
       </WnyhsPageLayout>
     );

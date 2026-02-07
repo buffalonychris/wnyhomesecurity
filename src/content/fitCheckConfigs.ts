@@ -19,7 +19,7 @@ export type FitCheckConfig = {
 
 export const fitCheckConfigs: Record<string, FitCheckConfig> = {
   'home-security': {
-    heroTitle: 'Check fit for Home Security',
+    heroTitle: 'Step 1: Fit Check',
     heroSubtitle:
       'Answer a few quick questions to see the best-fit tier and what coverage looks like for your home.',
     tiers: {

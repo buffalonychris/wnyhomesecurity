@@ -20,6 +20,7 @@ type LegacyHomeSecurityContentProps = {
 };
 
 const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityContentProps) => {
+  const normalizedPathParam = pathParam.replace(/^&path=/, '') || null;
   return (
     <>
       <section className="vertical-hero vertical-hero--media vertical-hero--campaign">
@@ -135,6 +136,7 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
                 key={pkg.id}
                 pkg={pkg}
                 vertical="home-security"
+                pathParam={normalizedPathParam}
                 imageCaption={tierMedia?.caption}
                 image={tierMedia?.image}
               />

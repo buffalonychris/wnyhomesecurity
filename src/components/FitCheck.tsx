@@ -377,8 +377,18 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
       style={{ display: 'grid', gap: '2rem' }}
     >
       <header style={{ display: 'grid', gap: '0.75rem' }}>
-        <h1 style={{ marginBottom: 0 }}>{config.heroTitle}</h1>
-        <p style={{ margin: 0, maxWidth: '54rem', color: 'rgba(214, 233, 248, 0.88)' }}>{config.heroSubtitle}</p>
+        <h1
+          className={isHomeSecurity ? 'wnyhs-funnel-title' : undefined}
+          style={!isHomeSecurity ? { marginBottom: 0 } : undefined}
+        >
+          {config.heroTitle}
+        </h1>
+        <p
+          className={isHomeSecurity ? 'wnyhs-funnel-subtitle' : undefined}
+          style={!isHomeSecurity ? { margin: 0, maxWidth: '54rem', color: 'rgba(214, 233, 248, 0.88)' } : undefined}
+        >
+          {config.heroSubtitle}
+        </p>
       </header>
 
       <section style={sectionSpacingStyle}>

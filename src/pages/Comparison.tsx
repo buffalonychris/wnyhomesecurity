@@ -61,44 +61,67 @@ const Comparison = () => {
   });
   const content = (
     <div className={vertical === 'home-security' ? 'wnyhs-marketing-stack' : 'container section'}>
-      <h2 style={{ marginTop: 0 }}>
-        {vertical === 'home-security' ? 'Compare Home Security packages' : `Compare ${brandSite} packages`}
-      </h2>
-      <p>
-        {vertical === 'home-security'
-          ? 'Home Security tiers keep Home Assistant as the single dashboard. Remote access requires internet; local control stays available on LAN.'
-          : 'All tiers keep Home Assistant as the single control surface and prioritize local operation when power is available. Pricing is one-time and upfront across the board.'}
-      </p>
       {vertical === 'home-security' ? (
-        <HomeSecurityComparisonTable />
+        <>
+          <div className="wnyhs-comparison-header">
+            <div className="badge">Comparison</div>
+            <h1 style={{ margin: 0 }}>Compare Home Security packages</h1>
+            <p className="wnyhs-comparison-subtitle">
+              Home Security tiers keep Home Assistant as the single dashboard. Remote access requires internet; local control stays available on LAN.
+            </p>
+          </div>
+          <div className="wnyhs-comparison-grid">
+            <div className="wnyhs-comparison-card">
+              <strong>Local-first operation</strong>
+              <p>Every tier keeps local automations, alerts, and dashboards running on your home network.</p>
+            </div>
+            <div className="wnyhs-comparison-card">
+              <strong>Coverage difference</strong>
+              <p>Bronze focuses on entry coverage, Silver extends indoor + outdoor cameras, and Gold expands every zone.</p>
+            </div>
+            <div className="wnyhs-comparison-card">
+              <strong>Optional monitoring</strong>
+              <p>Professional monitoring is optional and provided directly by third-party services you choose.</p>
+            </div>
+          </div>
+          <div className="wnyhs-comparison-table">
+            <HomeSecurityComparisonTable />
+          </div>
+        </>
       ) : (
-        <div className="card" style={{ overflowX: 'auto' }}>
-          <table className="table" aria-label="Package comparison table">
-            <thead>
-              <tr>
-                <th scope="col">Feature</th>
-                {packages.map((pkg) => (
-                  <th scope="col" key={pkg.id}>
-                    <div style={{ display: 'grid' }}>
-                      <span style={{ fontWeight: 700 }}>{pkg.name}</span>
-                      <small style={{ color: 'var(--kaec-gold)' }}>{pkg.price}</small>
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {featureRows.map((feature) => (
-                <tr key={feature}>
-                  <th scope="row">{feature}</th>
+        <>
+          <h2 style={{ marginTop: 0 }}>{`Compare ${brandSite} packages`}</h2>
+          <p>
+            All tiers keep Home Assistant as the single control surface and prioritize local operation when power is available. Pricing is one-time and upfront across the board.
+          </p>
+          <div className="card" style={{ overflowX: 'auto' }}>
+            <table className="table" aria-label="Package comparison table">
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
                   {packages.map((pkg) => (
-                    <td key={`${pkg.id}-${feature}`}>{comparisonValues[pkg.id][feature]}</td>
+                    <th scope="col" key={pkg.id}>
+                      <div style={{ display: 'grid' }}>
+                        <span style={{ fontWeight: 700 }}>{pkg.name}</span>
+                        <small style={{ color: 'var(--kaec-gold)' }}>{pkg.price}</small>
+                      </div>
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {featureRows.map((feature) => (
+                  <tr key={feature}>
+                    <th scope="row">{feature}</th>
+                    {packages.map((pkg) => (
+                      <td key={`${pkg.id}-${feature}`}>{comparisonValues[pkg.id][feature]}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );

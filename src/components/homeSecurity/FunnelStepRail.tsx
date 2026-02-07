@@ -95,7 +95,7 @@ const FunnelStepRail = () => {
                 type="button"
                 className={className}
                 aria-disabled="true"
-                onClick={() => setGateMessage('Complete the prior step first to continue.')}
+                onClick={() => setGateMessage('Complete the prior step first.')}
               >
                 {step.label}
               </button>
