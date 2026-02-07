@@ -17,7 +17,7 @@ import FlowGuidePanel from '../components/FlowGuidePanel';
 import TierBadge from '../components/TierBadge';
 import { brandSite } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
@@ -435,7 +435,7 @@ const AgreementReview = () => {
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {vertical === 'home-security' && <HomeSecurityFunnelSteps currentStep="deposit" />}
+      {vertical === 'home-security' && <FunnelStepRail />}
       {vertical === 'home-security' && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to="/quoteReview">

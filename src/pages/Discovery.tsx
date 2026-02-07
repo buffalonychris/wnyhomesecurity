@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import FitCheck from '../components/FitCheck';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { fitCheckConfigs } from '../content/fitCheckConfigs';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
 import { updateRetailFlow } from '../lib/retailFlow';
 
 const Discovery = () => {
@@ -39,7 +39,7 @@ const Discovery = () => {
 
   return (
     <section className="section">
-      {isHomeSecurity && <HomeSecurityFunnelSteps currentStep="fit-check" />}
+      {isHomeSecurity && <FunnelStepRail />}
       {isHomeSecurity && (
         <div className="container" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-link" to="/packages?vertical=home-security">
