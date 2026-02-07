@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import FitCheck from '../components/FitCheck';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { fitCheckConfigs } from '../content/fitCheckConfigs';
-import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import { updateRetailFlow } from '../lib/retailFlow';
 
 const Discovery = () => {
@@ -38,30 +38,25 @@ const Discovery = () => {
   }, [isHomeSecurity, pathParam]);
 
   return (
-    <section className="section">
-      {isHomeSecurity && <FunnelStepRail />}
-      {isHomeSecurity && (
-        <div className="container" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <Link className="btn btn-link" to="/packages?vertical=home-security">
-            Back to packages
-          </Link>
-        </div>
-      )}
-      {showUnknownNote ? (
-        <div className="container" style={{ marginBottom: '1rem' }}>
-          <p style={{ margin: 0, color: 'rgba(165, 216, 247, 0.8)' }}>
-            We couldn’t find that discovery vertical, so we loaded Home Security instead.
-          </p>
-        </div>
-      ) : null}
-      {isHomeSecurity ? (
-        <div className="container">
-          <FitCheck config={config} layout="embedded" />
-        </div>
-      ) : (
-        <FitCheck config={config} />
-      )}
-    </section>
+    <WnyhsPageLayout mode="funnel" showStepRail={isHomeSecurity}>
+      <div className="wnyhs-funnel-stack">
+        {isHomeSecurity && (
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link className="btn btn-link" to="/packages?vertical=home-security">
+              Back to packages
+            </Link>
+          </div>
+        )}
+        {showUnknownNote ? (
+          <div>
+            <p style={{ margin: 0, color: 'rgba(165, 216, 247, 0.8)' }}>
+              We couldn’t find that discovery vertical, so we loaded Home Security instead.
+            </p>
+          </div>
+        ) : null}
+        {isHomeSecurity ? <FitCheck config={config} layout="embedded" /> : <FitCheck config={config} />}
+      </div>
+    </WnyhsPageLayout>
   );
 };
 

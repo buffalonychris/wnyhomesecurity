@@ -4,7 +4,6 @@ import { brandHomeSecurity } from '../../lib/brand';
 
 type WnyhsTopNavProps = {
   ctaLink: string;
-  pathParam?: string;
 };
 
 type NavItem = {
@@ -15,15 +14,7 @@ type NavItem = {
 
 const APP_ROUTES = new Set(['/comparison', '/home-security/whats-included']);
 
-const appendPathParam = (href: string, pathParam?: string) => {
-  if (!pathParam) return href;
-  if (href.includes('?')) {
-    return `${href}${pathParam}`;
-  }
-  return `${href}${pathParam.replace('&', '?')}`;
-};
-
-const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
+const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -43,75 +34,33 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
       { label: 'Packages', href: '/packages?vertical=home-security' },
       { label: 'Comparison', href: comparisonHref },
       { label: 'What’s Included', href: whatsIncludedHref },
-      { label: 'Fit Check', href: appendPathParam('/discovery?vertical=home-security', pathParam) },
-      { label: 'Quote Builder', href: appendPathParam('/quote?vertical=home-security', pathParam) },
-      { label: 'Planner', href: '/home-security/planner?vertical=home-security' },
       { label: 'Dashboard Demo', href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html', external: true },
-      { label: 'Agreement Review', href: '/agreementReview' },
-      { label: 'Agreement Print', href: '/agreementPrint' },
-      { label: 'Payment', href: '/payment' },
-      { label: 'Payment Success', href: '/home-security/payment/success' },
-      { label: 'Payment Canceled', href: '/home-security/payment/canceled' },
-      { label: 'Scheduling', href: appendPathParam('/schedule', pathParam) },
-      { label: 'About Us', href: '/about' },
       { label: 'Contact', href: '/contact' },
+      { label: 'About', href: '/about' },
       { label: 'Support', href: '/support' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
     ];
-  }, [comparisonHref, pathParam, whatsIncludedHref]);
+  }, [comparisonHref, whatsIncludedHref]);
 
   const primaryNavItems = navItems.filter((item) =>
-    ['Home', 'Packages', 'Comparison', 'What’s Included', 'Fit Check', 'Quote Builder', 'Planner'].includes(item.label),
+    ['Home', 'Packages', 'Comparison', 'What’s Included'].includes(item.label),
   );
 
   const moreNavItems = navItems.filter((item) =>
-    [
-      'Dashboard Demo',
-      'Agreement Review',
-      'Agreement Print',
-      'Payment',
-      'Payment Success',
-      'Payment Canceled',
-      'Scheduling',
-      'About Us',
-      'Contact',
-      'Support',
-      'Privacy',
-      'Terms',
-    ].includes(item.label),
+    ['Dashboard Demo', 'Contact', 'About', 'Support', 'Privacy', 'Terms'].includes(item.label),
   );
 
   const drawerGroups = [
     {
       title: 'Primary',
       items: navItems.filter((item) =>
-        ['Home', 'Packages', 'Comparison', 'What’s Included', 'Fit Check', 'Quote Builder', 'Planner'].includes(item.label),
+        ['Home', 'Packages', 'Comparison', 'What’s Included'].includes(item.label),
       ),
     },
     {
-      title: 'Dashboard Demo',
-      items: navItems.filter((item) => ['Dashboard Demo'].includes(item.label)),
-    },
-    {
-      title: 'Agreements',
-      items: navItems.filter((item) => ['Agreement Review', 'Agreement Print'].includes(item.label)),
-    },
-    {
-      title: 'Payments',
-      items: navItems.filter((item) => ['Payment', 'Payment Success', 'Payment Canceled'].includes(item.label)),
-    },
-    {
-      title: 'Scheduling',
-      items: navItems.filter((item) => ['Scheduling'].includes(item.label)),
-    },
-    {
-      title: 'Company',
-      items: navItems.filter((item) => ['About Us', 'Contact'].includes(item.label)),
-    },
-    {
-      title: 'Support / Legal',
-      items: navItems.filter((item) => ['Support', 'Privacy', 'Terms'].includes(item.label)),
+      title: 'More',
+      items: navItems.filter((item) => ['Dashboard Demo', 'Contact', 'About', 'Support', 'Privacy', 'Terms'].includes(item.label)),
     },
   ];
 

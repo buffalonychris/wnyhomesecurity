@@ -11,7 +11,7 @@ import { buildResumeUrl } from '../lib/resumeToken';
 import { buildQuoteReference } from '../lib/quoteUtils';
 import { brandShort } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackagePricing } from '../data/pricing';
 import { getHomeSecurityPackageSpec } from '../content/homeSecurityPackageData';
@@ -247,15 +247,15 @@ const Payment = () => {
     const spec = getHomeSecurityPackageSpec(selectedPackage.id.toLowerCase() as 'a1' | 'a2' | 'a3');
 
     return (
-      <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
-        <FunnelStepRail />
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <Link className="btn btn-link" to="/agreementReview">
-            Back
-          </Link>
-        </div>
+      <WnyhsPageLayout mode="funnel" showStepRail>
+        <div className="wnyhs-funnel-stack" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link className="btn btn-link" to="/agreementReview">
+              Back
+            </Link>
+          </div>
 
-        <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Deposit</div>
           <h1 style={{ margin: 0, color: '#fff7e6' }}>Pay your deposit to reserve installation</h1>
           <p style={{ margin: 0, color: '#c8c0aa' }}>
@@ -337,21 +337,14 @@ const Payment = () => {
             </button>
             {stripeMessage && <small style={{ color: '#c8c0aa' }}>{stripeMessage}</small>}
           </div>
+          </div>
         </div>
-      </div>
+      </WnyhsPageLayout>
     );
   }
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {isHomeSecurity && <FunnelStepRail />}
-      {isHomeSecurity && (
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <Link className="btn btn-secondary" to="/agreementReview">
-            Review Agreement
-          </Link>
-        </div>
-      )}
       <style>{printStyles}</style>
       <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>

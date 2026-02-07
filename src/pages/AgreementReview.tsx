@@ -17,7 +17,7 @@ import FlowGuidePanel from '../components/FlowGuidePanel';
 import TierBadge from '../components/TierBadge';
 import { brandSite } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
@@ -433,9 +433,8 @@ const AgreementReview = () => {
   const depositDue = calculateDepositDue(estimatedTotal, siteConfig.depositPolicy);
   const balanceDue = Math.max(estimatedTotal - depositDue, 0);
 
-  return (
-    <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {vertical === 'home-security' && <FunnelStepRail />}
+  const content = (
+    <div className={vertical === 'home-security' ? 'wnyhs-funnel-stack' : 'container'} style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
       {vertical === 'home-security' && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to="/quoteReview">
@@ -1082,6 +1081,16 @@ const AgreementReview = () => {
     )}
     </div>
   );
+
+  if (vertical === 'home-security') {
+    return (
+      <WnyhsPageLayout mode="funnel" showStepRail>
+        {content}
+      </WnyhsPageLayout>
+    );
+  }
+
+  return content;
 };
 
 export default AgreementReview;
