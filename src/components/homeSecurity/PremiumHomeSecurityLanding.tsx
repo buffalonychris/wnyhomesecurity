@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
-import HomeSecurityTopNav from './HomeSecurityTopNav';
+import WnyHomeSecurityNav from '../nav/WnyHomeSecurityNav';
 import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
 
 type Props = {
   packages: PackageTier[];
   ctaLink: string;
+  pathParam?: string;
 };
 
-const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
+const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => {
   return (
     <div className="hs-premium-shell">
-      <HomeSecurityTopNav ctaLink={ctaLink} />
+      <WnyHomeSecurityNav ctaLink={ctaLink} pathParam={pathParam} />
 
       <div className="hs-premium-value-strip" aria-label="Key coverage highlights">
         <div className="hs-premium-strip-item">
