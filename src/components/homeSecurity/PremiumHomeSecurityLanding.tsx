@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
-import WnyHomeSecurityNav from '../nav/WnyHomeSecurityNav';
+import DemoDashboardLink from '../DemoDashboardLink';
 import PackageTierCards from './PackageTierCards';
+import WnyhsTopNav from './WnyhsTopNav';
 import '../../styles/homeSecurityPremium.css';
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => {
   return (
     <div className="hs-premium-shell">
-      <WnyHomeSecurityNav ctaLink={ctaLink} pathParam={pathParam} />
+      <WnyhsTopNav ctaLink={ctaLink} pathParam={pathParam} />
 
       <div className="hs-premium-value-strip" aria-label="Key coverage highlights">
         <div className="hs-premium-strip-item">
@@ -121,16 +122,48 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
               chosen by the customer.
             </p>
           </article>
+          <article className="hs-premium-feature-card">
+            <div className="hs-premium-feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M8 15l3-3 2 2 3-4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+            </div>
+            <h3>Quote in Minutes</h3>
+            <p>Confirm your fit check, lock in pricing with a deposit, and move straight into scheduling.</p>
+          </article>
+          <article className="hs-premium-feature-card">
+            <div className="hs-premium-feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6 3h12v18H6z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M9 7h6M9 11h6M9 15h6" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+            </div>
+            <h3>Clear Next Steps</h3>
+            <p>Sign your agreement, complete payment, and choose the installation date that works for you.</p>
+          </article>
         </div>
       </section>
 
-      <section id="plans" className="hs-premium-packages">
+      <section id="packages" className="hs-premium-packages">
         <div className="hs-premium-section-header">
           <p className="hs-premium-eyebrow">Packages</p>
           <h2>Home Security Packages for Every Need</h2>
           <p>Bronze, Silver, and Gold tiers are professionally installed and keep Home Assistant as your single dashboard.</p>
         </div>
         <PackageTierCards packages={packages} />
+      </section>
+
+      <section id="dashboard-preview" className="hs-premium-dashboard-cta">
+        <div>
+          <p className="hs-premium-eyebrow">Dashboard Preview</p>
+          <h2>See the home dashboard you’ll use</h2>
+          <p>Preview the Home Assistant dashboard with live-style camera views, sensor status, and alerts.</p>
+        </div>
+        <div className="hs-premium-dashboard-actions">
+          <DemoDashboardLink variant="button" label="Open Dashboard Demo" />
+          <div className="hs-premium-dashboard-note">Opens in a new tab.</div>
+        </div>
       </section>
 
       <section className="hs-premium-cta">
@@ -152,22 +185,6 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
             <div>
               <span aria-hidden="true">✓</span> Local control with optional remote access
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="hs-premium-reassurance">
-        <div>
-          <h2>Get Peace of Mind Today</h2>
-          <p>Local-first coverage, professional installation, and a clear path from quote to installation.</p>
-        </div>
-        <div className="hs-premium-reassurance-actions">
-          <Link className="btn btn-secondary" to={ctaLink}>
-            Get My Free Quote
-          </Link>
-          <div className="hs-premium-reassurance-badges">
-            <span>Security you control</span>
-            <span>Reliable local monitoring</span>
           </div>
         </div>
       </section>
