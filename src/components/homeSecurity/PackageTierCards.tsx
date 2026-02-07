@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
 import { HOME_SECURITY_TIER_MEDIA } from '../../content/homeSecurityPackageData';
+import { updateRetailFlow } from '../../lib/retailFlow';
+import { PackageTierId } from '../../data/pricing';
 
 type Props = {
   packages: PackageTier[];
@@ -13,8 +15,10 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
       {packages.map((pkg) => {
         const tierMedia = HOME_SECURITY_TIER_MEDIA[pkg.id as keyof typeof HOME_SECURITY_TIER_MEDIA];
         const image = tierMedia?.image;
+        const tierId = pkg.id.toUpperCase() as PackageTierId;
         const features = pkg.features ?? pkg.includes ?? [];
         const highlights = features.slice(0, 2);
+        const handleSelect = () => updateRetailFlow({ homeSecurity: { selectedPackageId: tierId } });
         return (
           <article key={pkg.id} className="hs-premium-package-card" aria-label={`${pkg.name} package`}>
             {image ? (
@@ -61,11 +65,13 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
                 </details>
               ) : null}
               <div className="hs-premium-package-actions">
-                <Link className="btn btn-secondary" to={`/packages/${pkg.id}?vertical=home-security`}>
-                  View Details
-                </Link>
-                <Link className="btn btn-primary" to={ctaLink}>
+                <Link className="btn btn-primary" to={ctaLink} onClick={handleSelect}>
                   Choose {pkg.name}
+                </Link>
+              </div>
+              <div className="hs-premium-package-meta">
+                <Link className="hs-premium-package-link" to={`/packages/${pkg.id}?vertical=home-security`}>
+                  View details
                 </Link>
               </div>
             </div>

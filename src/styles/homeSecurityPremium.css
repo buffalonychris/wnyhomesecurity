@@ -79,6 +79,17 @@
   gap: 0.5rem;
 }
 
+.wnyhs-funnel-title {
+  margin: 0;
+  color: #fff7e6;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+}
+
+.wnyhs-funnel-subtitle {
+  margin: 0;
+  color: #c8c0aa;
+}
+
 .wnyhs-top-nav {
   position: sticky;
   top: 0;
@@ -764,6 +775,22 @@
   flex-wrap: wrap;
 }
 
+.hs-premium-package-meta {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.82rem;
+  color: var(--hs-premium-muted);
+}
+
+.hs-premium-package-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hs-premium-package-link:hover {
+  color: #fff7e6;
+}
+
 .hs-premium-cta {
   display: grid;
   gap: 1.2rem;
@@ -883,6 +910,84 @@
   text-align: left;
   font-size: 0.85rem;
   letter-spacing: 0.01em;
+}
+
+.hs-premium-legacy-toggle--soft {
+  border: none;
+  background: none;
+  color: var(--hs-premium-muted);
+  padding: 0;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.hs-premium-legacy-toggle--soft span {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hs-premium-text-link {
+  color: #fff7e6;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hs-premium-text-link:hover {
+  color: var(--hs-premium-accent);
+}
+
+.wnyhs-comparison-header {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 760px;
+}
+
+.wnyhs-comparison-subtitle {
+  margin: 0;
+  color: var(--hs-premium-muted);
+}
+
+.wnyhs-comparison-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.wnyhs-comparison-card {
+  padding: 1.1rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(9, 12, 16, 0.7);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.wnyhs-comparison-card p {
+  margin: 0;
+  color: var(--hs-premium-muted);
+}
+
+.wnyhs-comparison-table {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.wnyhs-comparison-table .table {
+  color: #fff7e6;
+}
+
+.wnyhs-whats-included-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wnyhs-whats-included-card {
+  display: grid;
+  gap: 1.25rem;
 }
 
 details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle {

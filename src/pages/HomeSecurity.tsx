@@ -37,11 +37,11 @@ const HomeSecurity = () => {
       <div className="hs-premium-legacy-accordion">
         <button
           type="button"
-          className="hs-premium-legacy-toggle"
+          className="hs-premium-legacy-toggle hs-premium-legacy-toggle--soft"
           aria-expanded={legacyOpen}
           onClick={() => setLegacyOpen((open) => !open)}
         >
-          More details
+          See technical details <span aria-hidden="true">›</span>
         </button>
         <div className="hs-premium-legacy-meta">
           <span>Prefer the original layout?</span>

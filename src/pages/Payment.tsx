@@ -256,87 +256,86 @@ const Payment = () => {
           </div>
 
           <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <div className="badge">Deposit</div>
-          <h1 style={{ margin: 0, color: '#fff7e6' }}>Pay your deposit to reserve installation</h1>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
-            Deposit due today: 50% of the system cost. Remaining balance due on installation day.
-          </p>
-        </div>
-        <SelfMonitoringDisclosure variant="full" className="ka-disclosure--spaced" />
+            <div className="badge">Step 5 — Deposit</div>
+            <h1 className="wnyhs-funnel-title">Step 5: Deposit</h1>
+            <p className="wnyhs-funnel-subtitle">
+              Pay your deposit to reserve installation. Deposit due today: 50% of the system cost. Remaining balance due on installation day.
+            </p>
+          </div>
+          <SelfMonitoringDisclosure variant="full" className="ka-disclosure--spaced" />
 
-        <div className="card" style={{ display: 'grid', gap: '1rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-            <div>
-              <div className="badge">Selected package</div>
-              <h2 style={{ margin: '0.35rem 0' }}>{selectedPackage.name}</h2>
-              <p style={{ margin: 0, color: '#c8c0aa' }}>{selectedPackage.summary}</p>
+          <div className="card" style={{ display: 'grid', gap: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+              <div>
+                <div className="badge">Selected package</div>
+                <h2 style={{ margin: '0.35rem 0' }}>{selectedPackage.name}</h2>
+                <p style={{ margin: 0, color: '#c8c0aa' }}>{selectedPackage.summary}</p>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ color: '#c8c0aa' }}>Base price</div>
+                <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--kaec-gold)' }}>
+                  {formatCurrency(selectedPackage.basePrice)}
+                </div>
+              </div>
             </div>
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ color: '#c8c0aa' }}>Base price</div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--kaec-gold)' }}>
-                {formatCurrency(selectedPackage.basePrice)}
+            <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+              <div>
+                <strong>Coverage range</strong>
+                <p style={{ margin: '0.35rem 0', color: '#c8c0aa' }}>{spec.coverage}</p>
+              </div>
+              <div>
+                <strong>Included hardware summary</strong>
+                <ul className="list" style={{ marginTop: '0.35rem' }}>
+                  <li>
+                    <span />
+                    <span>Video doorbell: {spec.hardware.videoDoorbell}</span>
+                  </li>
+                  <li>
+                    <span />
+                    <span>Indoor cameras: {spec.hardware.indoorCameras}</span>
+                  </li>
+                  <li>
+                    <span />
+                    <span>Outdoor PoE cameras: {spec.hardware.outdoorPoECameras}</span>
+                  </li>
+                  <li>
+                    <span />
+                    <span>Door/window sensors: {spec.hardware.doorWindowSensors}</span>
+                  </li>
+                  <li>
+                    <span />
+                    <span>Motion sensors: {spec.hardware.motionSensors}</span>
+                  </li>
+                  <li>
+                    <span />
+                    <span>Leak/smoke sensors: {spec.hardware.leakSmokeSensors}</span>
+                  </li>
+                  <li>
+                    <span />
+                    <span>{spec.hardware.nvrIncluded ? 'NVR included' : 'No NVR included'}</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
-            <div>
-              <strong>Coverage range</strong>
-              <p style={{ margin: '0.35rem 0', color: '#c8c0aa' }}>{spec.coverage}</p>
+          <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
+            <div className="badge">Deposit summary</div>
+            <div style={{ display: 'grid', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <strong>Deposit due today</strong>
+                <strong style={{ color: 'var(--kaec-gold)' }}>{formatCurrency(depositDue)}</strong>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <span style={{ color: '#c8c0aa' }}>Remaining balance on installation day</span>
+                <span style={{ color: '#c8c0aa' }}>{formatCurrency(balanceDue)}</span>
+              </div>
             </div>
-            <div>
-              <strong>Included hardware summary</strong>
-              <ul className="list" style={{ marginTop: '0.35rem' }}>
-                <li>
-                  <span />
-                  <span>Video doorbell: {spec.hardware.videoDoorbell}</span>
-                </li>
-                <li>
-                  <span />
-                  <span>Indoor cameras: {spec.hardware.indoorCameras}</span>
-                </li>
-                <li>
-                  <span />
-                  <span>Outdoor PoE cameras: {spec.hardware.outdoorPoECameras}</span>
-                </li>
-                <li>
-                  <span />
-                  <span>Door/window sensors: {spec.hardware.doorWindowSensors}</span>
-                </li>
-                <li>
-                  <span />
-                  <span>Motion sensors: {spec.hardware.motionSensors}</span>
-                </li>
-                <li>
-                  <span />
-                  <span>Leak/smoke sensors: {spec.hardware.leakSmokeSensors}</span>
-                </li>
-                <li>
-                  <span />
-                  <span>{spec.hardware.nvrIncluded ? 'NVR included' : 'No NVR included'}</span>
-                </li>
-              </ul>
+            <div style={{ display: 'grid', gap: '0.5rem' }}>
+              <button type="button" className="btn btn-primary" onClick={startStripeCheckout} disabled={stripeLoading}>
+                {stripeLoading ? 'Starting checkout…' : 'Pay Deposit (50%)'}
+              </button>
+              {stripeMessage && <small style={{ color: '#c8c0aa' }}>{stripeMessage}</small>}
             </div>
-          </div>
-        </div>
-
-        <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <div className="badge">Deposit summary</div>
-          <div style={{ display: 'grid', gap: '0.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-              <strong>Deposit due today</strong>
-              <strong style={{ color: 'var(--kaec-gold)' }}>{formatCurrency(depositDue)}</strong>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-              <span style={{ color: '#c8c0aa' }}>Remaining balance on installation day</span>
-              <span style={{ color: '#c8c0aa' }}>{formatCurrency(balanceDue)}</span>
-            </div>
-          </div>
-          <div style={{ display: 'grid', gap: '0.5rem' }}>
-            <button type="button" className="btn btn-primary" onClick={startStripeCheckout} disabled={stripeLoading}>
-              {stripeLoading ? 'Starting checkout…' : 'Pay Deposit (50%)'}
-            </button>
-            {stripeMessage && <small style={{ color: '#c8c0aa' }}>{stripeMessage}</small>}
-          </div>
           </div>
         </div>
       </WnyhsPageLayout>

@@ -27,7 +27,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
           </ul>
           <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
-              Get My Free Quote
+              Get Started
             </Link>
             <Link className="btn btn-secondary" to="/packages?vertical=home-security">
               View Packages
@@ -166,7 +166,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
           </ul>
         </div>
         <div className="hs-premium-dashboard-actions">
-          <DemoDashboardLink variant="button" label="Open Dashboard Demo" />
+          <DemoDashboardLink variant="link" label="Open Dashboard Demo" />
           <div className="hs-premium-dashboard-note">Opens in a new tab.</div>
         </div>
       </section>
@@ -184,7 +184,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
           </p>
         </div>
         <div className="hs-premium-cta-actions">
-          <Link className="btn btn-primary" to={ctaLink}>
+          <Link className="hs-premium-text-link" to={ctaLink}>
             Get Started
           </Link>
         </div>

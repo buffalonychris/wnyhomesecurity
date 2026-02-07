@@ -1,3 +1,4 @@
+import AccordionSection from '../components/AccordionSection';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import {
@@ -29,12 +30,12 @@ const HomeSecurityWhatsIncluded = () => {
           </p>
         </div>
 
-        <div className="section" style={{ display: 'grid', gap: '1.5rem' }}>
+        <div className="section wnyhs-whats-included-grid">
           {tierOrder.map((tierId) => {
             const tier = HOME_SECURITY_PACKAGE_SPECS[tierId];
             const hardwareItems = getHomeSecurityHardwareItems(tierId);
             return (
-              <section key={tier.id} className="card">
+              <section key={tier.id} className="card wnyhs-whats-included-card">
                 <div style={{ display: 'grid', gap: '0.5rem' }}>
                   <div className="badge">{tier.name} Tier</div>
                   <h3 style={{ margin: 0 }}>Typical coverage</h3>
@@ -53,9 +54,8 @@ const HomeSecurityWhatsIncluded = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="section">
-                  <h4 style={{ marginTop: 0 }}>Included hardware</h4>
-                  <ul className="list">
+                <AccordionSection title="Included hardware" description="Full hardware counts for this tier." defaultOpen={false}>
+                  <ul className="list" style={{ marginTop: 0 }}>
                     {hardwareItems.map((item) => (
                       <li key={`${tier.id}-${item.label}`}>
                         <span />
@@ -65,10 +65,9 @@ const HomeSecurityWhatsIncluded = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="section">
-                  <h4 style={{ marginTop: 0 }}>Capabilities</h4>
-                  <ul className="list">
+                </AccordionSection>
+                <AccordionSection title="Capabilities" description="Core coverage and automation highlights." defaultOpen={false}>
+                  <ul className="list" style={{ marginTop: 0 }}>
                     {tier.capabilities.map((capability) => (
                       <li key={`${tier.id}-${capability}`}>
                         <span />
@@ -76,7 +75,7 @@ const HomeSecurityWhatsIncluded = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </AccordionSection>
               </section>
             );
           })}
