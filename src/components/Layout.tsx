@@ -42,6 +42,7 @@ const Layout = () => {
   const isHomeSecurityFunnel =
     isFunnel &&
     (location.pathname.startsWith('/home-security') || location.search.includes('vertical=home-security'));
+  const hideFunnelHeader = isHomeSecurityVertical;
   const brandLink = isHomeSecurityFunnel ? '/home-security' : '/';
   const supportLink = isHomeSecurityFunnel ? '/support?vertical=home-security' : '/support';
   const contactLink = isHomeSecurityFunnel ? '/contact?vertical=home-security' : '/contact';
@@ -50,7 +51,7 @@ const Layout = () => {
     <LayoutConfigContext.Provider value={{ layoutConfig, setLayoutConfig }}>
       <div>
         <Seo />
-        {isFunnel ? (
+        {isFunnel && !hideFunnelHeader ? (
           <header className={`funnel-header hide-when-print${isHomeSecurityFunnelStep ? ' funnel-header-muted' : ''}`}>
             <div className="container funnel-header-inner">
               <NavLink to={brandLink} className="brand" aria-label={`${brandSite} home`}>

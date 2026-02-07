@@ -18,6 +18,67 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
 }
 
+.wnyhs-page-layout {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 0 3rem;
+}
+
+.wnyhs-page-layout-body {
+  display: grid;
+}
+
+.wnyhs-page-layout-container {
+  display: grid;
+  gap: 2rem;
+}
+
+.wnyhs-marketing-stack,
+.wnyhs-funnel-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wnyhs-funnel-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 18px;
+  background: rgba(9, 12, 16, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(14px);
+}
+
+.wnyhs-funnel-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.wnyhs-funnel-brand-icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--hs-premium-accent);
+}
+
+.wnyhs-funnel-exit {
+  white-space: nowrap;
+}
+
+.wnyhs-funnel-rail {
+  display: grid;
+  gap: 0.5rem;
+}
+
 .wnyhs-top-nav {
   position: sticky;
   top: 0;
@@ -189,6 +250,11 @@
   border-top: 1px solid var(--hs-premium-border);
 }
 
+.hs-funnel-step-rail-wrap {
+  display: grid;
+  gap: 0.35rem;
+}
+
 .hs-funnel-step-rail {
   display: flex;
   flex-wrap: wrap;
@@ -210,12 +276,36 @@
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.04);
   white-space: nowrap;
+  font: inherit;
+  cursor: pointer;
 }
 
 .hs-funnel-step-rail-link.is-active {
   border-color: rgba(240, 194, 113, 0.6);
   color: #fff7e6;
   background: rgba(240, 194, 113, 0.12);
+}
+
+.hs-funnel-step-rail-link.is-complete {
+  border-color: rgba(84, 160, 82, 0.4);
+}
+
+.hs-funnel-step-rail-link.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.hs-funnel-step-rail-link.is-disabled:focus {
+  outline: none;
+}
+
+.hs-funnel-step-rail-banner {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 192, 66, 0.35);
+  background: rgba(17, 23, 29, 0.75);
+  color: var(--hs-premium-muted);
+  font-size: 0.78rem;
 }
 
 .wny-hs-nav {
@@ -377,7 +467,8 @@
   justify-content: flex-end;
 }
 
-.hs-premium-value-strip {
+.hs-premium-value-strip,
+.hs-premium-trust-strip {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.75rem;
@@ -386,6 +477,10 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   font-size: 0.85rem;
+}
+
+.hs-premium-legacy-strip {
+  margin-top: 1.25rem;
 }
 
 .hs-premium-strip-item {
@@ -556,6 +651,7 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   display: grid;
+  grid-template-rows: auto 1fr;
   min-height: 100%;
 }
 
@@ -617,6 +713,15 @@
   margin: 0;
 }
 
+.hs-premium-package-highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--hs-premium-muted);
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
 .hs-premium-package-list {
   margin: 0;
   padding-left: 1.1rem;
@@ -624,6 +729,32 @@
   display: grid;
   gap: 0.35rem;
   font-size: 0.9rem;
+}
+
+.hs-premium-package-accordion {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 0.65rem 0.8rem;
+  background: rgba(6, 9, 13, 0.6);
+}
+
+.hs-premium-package-accordion summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  color: #fff7e6;
+}
+
+.hs-premium-package-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.hs-premium-package-accordion[open] {
+  background: rgba(6, 9, 13, 0.8);
+}
+
+.hs-premium-package-accordion .hs-premium-package-list {
+  margin-top: 0.6rem;
 }
 
 .hs-premium-package-actions {
@@ -754,6 +885,15 @@
   letter-spacing: 0.01em;
 }
 
+details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle {
+  cursor: pointer;
+  list-style: none;
+}
+
+details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-details-marker {
+  display: none;
+}
+
 .hs-premium-legacy-meta {
   display: flex;
   flex-wrap: wrap;
@@ -818,6 +958,11 @@
 
   .wnyhs-top-nav-strip {
     display: none;
+  }
+
+  .wnyhs-funnel-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

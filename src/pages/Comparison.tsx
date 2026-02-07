@@ -1,5 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import HomeSecurityComparisonTable from '../components/HomeSecurityComparisonTable';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
 import { brandSite } from '../lib/brand';
 import { resolveVertical } from '../lib/verticals';
@@ -52,8 +54,13 @@ const Comparison = () => {
   const [searchParams] = useSearchParams();
   const vertical = resolveVertical(searchParams.get('vertical'));
   const packages = getPackages(vertical);
-  return (
-    <div className="container section">
+
+  useLayoutConfig({
+    layoutVariant: vertical === 'home-security' ? 'funnel' : 'sitewide',
+    showBreadcrumbs: false,
+  });
+  const content = (
+    <div className={vertical === 'home-security' ? 'wnyhs-marketing-stack' : 'container section'}>
       <h2 style={{ marginTop: 0 }}>
         {vertical === 'home-security' ? 'Compare Home Security packages' : `Compare ${brandSite} packages`}
       </h2>
@@ -95,6 +102,16 @@ const Comparison = () => {
       )}
     </div>
   );
+
+  if (vertical === 'home-security') {
+    return (
+      <WnyhsPageLayout mode="marketing" ctaLink="/discovery?vertical=home-security">
+        {content}
+      </WnyhsPageLayout>
+    );
+  }
+
+  return content;
 };
 
 export default Comparison;

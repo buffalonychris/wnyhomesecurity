@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import LegacyHomeSecurityContent from '../components/homeSecurity/LegacyHomeSecurityContent';
 import PremiumHomeSecurityLanding from '../components/homeSecurity/PremiumHomeSecurityLanding';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
 import { HomeSecurityPathChoice } from '../lib/homeSecurityFunnel';
@@ -31,8 +32,8 @@ const HomeSecurity = () => {
   const pathParam = selectedPath ? `&path=${selectedPath}` : '';
   const ctaLink = `/discovery?vertical=home-security${pathParam}`;
   return (
-    <div className="container section home-security-page hub-container">
-      <PremiumHomeSecurityLanding packages={packages} ctaLink={ctaLink} pathParam={pathParam} />
+    <WnyhsPageLayout mode="marketing" ctaLink={ctaLink}>
+      <PremiumHomeSecurityLanding packages={packages} ctaLink={ctaLink} />
       <div className="hs-premium-legacy-accordion">
         <button
           type="button"
@@ -40,10 +41,10 @@ const HomeSecurity = () => {
           aria-expanded={legacyOpen}
           onClick={() => setLegacyOpen((open) => !open)}
         >
-          View legacy content (preserved)
+          More details
         </button>
         <div className="hs-premium-legacy-meta">
-          <span>Need the original page?</span>
+          <span>Prefer the original layout?</span>
           <Link to="/home-security/legacy">Open the standalone legacy route</Link>
         </div>
         {legacyOpen ? (
@@ -52,7 +53,7 @@ const HomeSecurity = () => {
           </div>
         ) : null}
       </div>
-    </div>
+    </WnyhsPageLayout>
   );
 };
 

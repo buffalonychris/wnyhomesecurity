@@ -13,6 +13,8 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
       {packages.map((pkg) => {
         const tierMedia = HOME_SECURITY_TIER_MEDIA[pkg.id as keyof typeof HOME_SECURITY_TIER_MEDIA];
         const image = tierMedia?.image;
+        const features = pkg.features ?? pkg.includes ?? [];
+        const highlights = features.slice(0, 2);
         return (
           <article key={pkg.id} className="hs-premium-package-card" aria-label={`${pkg.name} package`}>
             {image ? (
@@ -41,17 +43,29 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
                 <div className="hs-premium-package-price">{pkg.price}</div>
               </div>
               <p className="hs-premium-package-summary">{pkg.oneLiner}</p>
-              <ul className="hs-premium-package-list">
-                {(pkg.features ?? pkg.includes).slice(0, 4).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              {highlights.length ? (
+                <ul className="hs-premium-package-highlights">
+                  {highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {features.length ? (
+                <details className="hs-premium-package-accordion">
+                  <summary>What’s included</summary>
+                  <ul className="hs-premium-package-list">
+                    {features.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </details>
+              ) : null}
               <div className="hs-premium-package-actions">
                 <Link className="btn btn-secondary" to={`/packages/${pkg.id}?vertical=home-security`}>
-                  Learn More
+                  View Details
                 </Link>
                 <Link className="btn btn-primary" to={ctaLink}>
-                  Choose
+                  Choose {pkg.name}
                 </Link>
               </div>
             </div>
