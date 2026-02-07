@@ -71,6 +71,12 @@ const FiveDayDemo = lazy(() => import('./pages/FiveDayDemo'));
 const Partners = lazy(() => import('./pages/Partners'));
 const Support = lazy(() => import('./pages/Support'));
 
+const HomeRoute = () => {
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
+  const isHomeSecurityHost = hostname.includes('wnyhomesecurity.com');
+  return isHomeSecurityHost ? <Navigate to="/home-security" replace /> : <RetailLanding />;
+};
+
 const App = () => {
   return (
     <Suspense
@@ -83,7 +89,7 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route element={<DefaultLayout />}>
-            <Route path="/" element={<RetailLanding />} />
+            <Route path="/" element={<HomeRoute />} />
             <Route path="/halo-splash" element={<Home />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/packages/:id" element={<PackageDetail />} />

@@ -4,10 +4,10 @@ import AccordionSection from '../components/AccordionSection';
 import DemoDashboardLink from '../components/DemoDashboardLink';
 import HomeSecurityComparisonTable from '../components/HomeSecurityComparisonTable';
 import PackageCard from '../components/PackageCard';
-import ResponsivePublicImage from '../components/ResponsivePublicImage';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
+import PremiumHomeSecurityLanding from '../components/homeSecurity/PremiumHomeSecurityLanding';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import { getPackages } from '../content/packages';
+import { getPackages, PackageTier } from '../content/packages';
 import { HOME_SECURITY_TIER_MEDIA } from '../content/homeSecurityPackageData';
 import { HomeSecurityPathChoice } from '../lib/homeSecurityFunnel';
 import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
@@ -19,29 +19,15 @@ const monitoringCopy = (
   </>
 );
 
-const HomeSecurity = () => {
-  const [searchParams] = useSearchParams();
-  const packages = useMemo(() => getPackages('home-security'), []);
-  const [selectedPath, setSelectedPath] = useState<HomeSecurityPathChoice | null>(() => {
-    return loadRetailFlow().homeSecurity?.selectedPath ?? null;
-  });
-
-  useLayoutConfig({
-    layoutVariant: 'funnel',
-    showBreadcrumbs: false,
-  });
-
-  useEffect(() => {
-    const pathParam = searchParams.get('path');
-    if (pathParam === 'online' || pathParam === 'onsite') {
-      setSelectedPath(pathParam);
-      updateRetailFlow({ homeSecurity: { selectedPath: pathParam } });
-    }
-  }, [searchParams]);
-
-  const pathParam = selectedPath ? `&path=${selectedPath}` : '';
+const LegacyHomeSecurityContent = ({
+  packages,
+  pathParam,
+}: {
+  packages: PackageTier[];
+  pathParam: string;
+}) => {
   return (
-    <div className="container section home-security-page hub-container">
+    <>
       <section className="vertical-hero vertical-hero--media vertical-hero--campaign">
         <div className="vertical-hero-media" aria-hidden="true">
           <picture>
@@ -252,6 +238,37 @@ const HomeSecurity = () => {
           </AccordionSection>
         </div>
       </section>
+    </>
+  );
+};
+
+const HomeSecurity = () => {
+  const [searchParams] = useSearchParams();
+  const packages = useMemo(() => getPackages('home-security'), []);
+  const [selectedPath, setSelectedPath] = useState<HomeSecurityPathChoice | null>(() => {
+    return loadRetailFlow().homeSecurity?.selectedPath ?? null;
+  });
+
+  useLayoutConfig({
+    layoutVariant: 'funnel',
+    showBreadcrumbs: false,
+  });
+
+  useEffect(() => {
+    const pathParam = searchParams.get('path');
+    if (pathParam === 'online' || pathParam === 'onsite') {
+      setSelectedPath(pathParam);
+      updateRetailFlow({ homeSecurity: { selectedPath: pathParam } });
+    }
+  }, [searchParams]);
+
+  const pathParam = selectedPath ? `&path=${selectedPath}` : '';
+  const ctaLink = `/discovery?vertical=home-security${pathParam}`;
+  return (
+    <div className="container section home-security-page hub-container">
+      <PremiumHomeSecurityLanding packages={packages} ctaLink={ctaLink} />
+      <div className="section-divider" aria-hidden="true" />
+      <LegacyHomeSecurityContent packages={packages} pathParam={pathParam} />
     </div>
   );
 };
