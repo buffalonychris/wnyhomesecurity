@@ -57,6 +57,36 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
         </div>
       </section>
 
+      <div className="hs-premium-value-strip hs-premium-legacy-strip" aria-label="Legacy coverage highlights">
+        <div className="hs-premium-strip-item">
+          <span className="hs-premium-strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M12 7v6l4 2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+          </span>
+          24/7 Intrusion Monitoring
+        </div>
+        <div className="hs-premium-strip-item">
+          <span className="hs-premium-strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="4" y="6" width="16" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+          </span>
+          Smart Cameras
+        </div>
+        <div className="hs-premium-strip-item">
+          <span className="hs-premium-strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="7" y="3.5" width="10" height="17" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+            </svg>
+          </span>
+          App Control
+        </div>
+      </div>
+
       <div className="section-divider" aria-hidden="true" />
 
       <section id="orientation" className="space-grid two-column">

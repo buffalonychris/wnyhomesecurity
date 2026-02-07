@@ -2,50 +2,16 @@ import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
 import DemoDashboardLink from '../DemoDashboardLink';
 import PackageTierCards from './PackageTierCards';
-import WnyhsTopNav from './WnyhsTopNav';
 import '../../styles/homeSecurityPremium.css';
 
 type Props = {
   packages: PackageTier[];
   ctaLink: string;
-  pathParam?: string;
 };
 
-const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => {
+const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
   return (
     <div className="hs-premium-shell">
-      <WnyhsTopNav ctaLink={ctaLink} pathParam={pathParam} />
-
-      <div className="hs-premium-value-strip" aria-label="Key coverage highlights">
-        <div className="hs-premium-strip-item">
-          <span className="hs-premium-strip-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="1.6" />
-              <path d="M12 7v6l4 2" fill="none" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </span>
-          24/7 Intrusion Monitoring
-        </div>
-        <div className="hs-premium-strip-item">
-          <span className="hs-premium-strip-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <rect x="4" y="6" width="16" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
-              <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </span>
-          Smart Cameras
-        </div>
-        <div className="hs-premium-strip-item">
-          <span className="hs-premium-strip-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <rect x="7" y="3.5" width="10" height="17" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
-              <circle cx="12" cy="16.5" r="1" fill="currentColor" />
-            </svg>
-          </span>
-          App Control
-        </div>
-      </div>
-
       <section className="hs-premium-hero">
         <div className="hs-premium-hero-content">
           <p className="hs-premium-eyebrow">Local-first</p>
@@ -80,6 +46,40 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
           <div className="hs-premium-hero-overlay" aria-hidden="true" />
         </div>
       </section>
+
+      <div className="hs-premium-trust-strip" aria-label="Local trust points">
+        <div className="hs-premium-strip-item">
+          <span className="hs-premium-strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2l7 3v6c0 5-3.2 9.3-7 11-3.8-1.7-7-6-7-11V5l7-3z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              />
+            </svg>
+          </span>
+          Local-first protection
+        </div>
+        <div className="hs-premium-strip-item">
+          <span className="hs-premium-strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="5" y="6" width="14" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M8 6V4h8v2" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+          </span>
+          Professionally installed
+        </div>
+        <div className="hs-premium-strip-item">
+          <span className="hs-premium-strip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M8 12h8" fill="none" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+          </span>
+          No subscriptions sold by us
+        </div>
+      </div>
 
       <div id="whats-included" className="hs-premium-anchor" aria-hidden="true" />
       <section id="how-it-works" className="hs-premium-how">

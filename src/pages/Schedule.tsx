@@ -5,7 +5,7 @@ import { loadRetailFlow, markFlowStep, ScheduleRequest, updateRetailFlow } from 
 import FlowGuidePanel from '../components/FlowGuidePanel';
 import PaymentInstallDayAccordion from '../components/PaymentInstallDayAccordion';
 import TierBadge from '../components/TierBadge';
-import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
@@ -170,9 +170,8 @@ const Schedule = () => {
     },
   ];
 
-  return (
-    <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {isHomeSecurity && <FunnelStepRail />}
+  const content = (
+    <div className={isHomeSecurity ? 'wnyhs-funnel-stack' : 'container'} style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to="/payment">
@@ -513,6 +512,16 @@ const Schedule = () => {
       </div>
     </div>
   );
+
+  if (isHomeSecurity) {
+    return (
+      <WnyhsPageLayout mode="funnel" showStepRail>
+        {content}
+      </WnyhsPageLayout>
+    );
+  }
+
+  return content;
 };
 
 export default Schedule;

@@ -14,6 +14,7 @@ import { loadRetailFlow, markFlowStep, updateRetailFlow } from '../lib/retailFlo
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
 const Packages = () => {
@@ -63,9 +64,8 @@ const Packages = () => {
     track('hs_planner_opened', { source: 'packages' });
   };
 
-  return (
-    <div className={`container section ${isHomeSecurity ? 'hub-container' : ''}`}>
-      {isHomeSecurity && <HomeSecurityFunnelSteps currentStep="packages" />}
+  const content = (
+    <div className={isHomeSecurity ? 'wnyhs-marketing-stack' : 'container section'}>
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <Link className="btn btn-link" to="/home-security">
@@ -174,6 +174,15 @@ const Packages = () => {
         </div>
       )}
 
+      {vertical === 'home-security' && (
+        <details className="hs-premium-legacy-accordion">
+          <summary className="hs-premium-legacy-toggle">More details</summary>
+          <div className="hs-premium-legacy-body">
+            <HomeSecurityFunnelSteps currentStep="packages" />
+          </div>
+        </details>
+      )}
+
       {vertical !== 'home-security' && <ComparisonLadder />}
 
       {!isHomeSecurity && (
@@ -184,6 +193,16 @@ const Packages = () => {
       )}
     </div>
   );
+
+  if (isHomeSecurity) {
+    return (
+      <WnyhsPageLayout mode="marketing" ctaLink="/discovery?vertical=home-security">
+        {content}
+      </WnyhsPageLayout>
+    );
+  }
+
+  return content;
 };
 
 export default Packages;

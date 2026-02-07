@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import LegacyHomeSecurityContent from '../components/homeSecurity/LegacyHomeSecurityContent';
+import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
 import { HomeSecurityPathChoice } from '../lib/homeSecurityFunnel';
@@ -29,9 +30,9 @@ const HomeSecurityLegacy = () => {
   const pathParam = selectedPath ? `&path=${selectedPath}` : '';
 
   return (
-    <div className="container section home-security-page hub-container">
+    <WnyhsPageLayout mode="marketing" ctaLink={`/discovery?vertical=home-security${pathParam}`}>
       <LegacyHomeSecurityContent packages={packages} pathParam={pathParam} />
-    </div>
+    </WnyhsPageLayout>
   );
 };
 
