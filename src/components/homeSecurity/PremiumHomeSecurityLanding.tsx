@@ -60,7 +60,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
             <li>Control from one dashboard with optional remote access.</li>
           </ul>
           <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary" to={ctaLink}>
+            <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
               Get My Free Quote
             </Link>
             <Link className="btn btn-secondary" to="/packages?vertical=home-security">
@@ -81,11 +81,12 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
         </div>
       </section>
 
+      <div id="whats-included" className="hs-premium-anchor" aria-hidden="true" />
       <section id="how-it-works" className="hs-premium-how">
         <div className="hs-premium-how-intro">
           <p className="hs-premium-eyebrow">How it Works</p>
           <h2>Simple steps, professional installation</h2>
-          <ol>
+          <ol className="hs-premium-steps">
             <li>Choose a package.</li>
             <li>Confirm fit in minutes.</li>
             <li>Lock your quote with a deposit.</li>
@@ -145,20 +146,24 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
         </div>
       </section>
 
+      <div id="comparison" className="hs-premium-anchor" aria-hidden="true" />
       <section id="packages" className="hs-premium-packages">
         <div className="hs-premium-section-header">
           <p className="hs-premium-eyebrow">Packages</p>
           <h2>Home Security Packages for Every Need</h2>
           <p>Bronze, Silver, and Gold tiers are professionally installed and keep Home Assistant as your single dashboard.</p>
         </div>
-        <PackageTierCards packages={packages} />
+        <PackageTierCards packages={packages} ctaLink={ctaLink} />
       </section>
 
-      <section id="dashboard-preview" className="hs-premium-dashboard-cta">
+      <section id="dashboard" className="hs-premium-dashboard-cta">
         <div>
           <p className="hs-premium-eyebrow">Dashboard Preview</p>
           <h2>See the home dashboard you’ll use</h2>
-          <p>Preview the Home Assistant dashboard with live-style camera views, sensor status, and alerts.</p>
+          <ul className="hs-premium-dashboard-list">
+            <li>Live-style camera views and sensor status.</li>
+            <li>Alerts, history, and controls in one place.</li>
+          </ul>
         </div>
         <div className="hs-premium-dashboard-actions">
           <DemoDashboardLink variant="button" label="Open Dashboard Demo" />
@@ -166,26 +171,22 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink, pathParam }: Props) => 
         </div>
       </section>
 
-      <section className="hs-premium-cta">
+      <section id="get-started" className="hs-premium-cta">
         <div>
           <p className="hs-premium-eyebrow">Your Safety, Our Priority</p>
           <h2>Start your fit check in minutes</h2>
           <p>
             Answer a few quick questions about your home so we can match you with the right tier and recommended coverage.
+            <span className="hs-premium-cta-inline">
+              {' '}
+              ✓ No subscriptions sold by us · ✓ Local control with optional remote access.
+            </span>
           </p>
         </div>
         <div className="hs-premium-cta-actions">
           <Link className="btn btn-primary" to={ctaLink}>
             Get Started
           </Link>
-          <div className="hs-premium-cta-micro">
-            <div>
-              <span aria-hidden="true">✓</span> No subscriptions sold by us
-            </div>
-            <div>
-              <span aria-hidden="true">✓</span> Local control with optional remote access
-            </div>
-          </div>
         </div>
       </section>
     </div>

@@ -4,9 +4,10 @@ import { HOME_SECURITY_TIER_MEDIA } from '../../content/homeSecurityPackageData'
 
 type Props = {
   packages: PackageTier[];
+  ctaLink: string;
 };
 
-const PackageTierCards = ({ packages }: Props) => {
+const PackageTierCards = ({ packages, ctaLink }: Props) => {
   return (
     <div className="hs-premium-package-grid">
       {packages.map((pkg) => {
@@ -45,9 +46,14 @@ const PackageTierCards = ({ packages }: Props) => {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-              <Link className="btn btn-secondary" to={`/packages/${pkg.id}?vertical=home-security`}>
-                Learn More
-              </Link>
+              <div className="hs-premium-package-actions">
+                <Link className="btn btn-secondary" to={`/packages/${pkg.id}?vertical=home-security`}>
+                  Learn More
+                </Link>
+                <Link className="btn btn-primary" to={ctaLink}>
+                  Choose
+                </Link>
+              </div>
             </div>
           </article>
         );
