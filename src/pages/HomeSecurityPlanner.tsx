@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AccordionSection from '../components/AccordionSection';
 import FloorplanCanvas from '../components/floorplan/FloorplanCanvas';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import {
   DEVICE_CATALOG,
@@ -1029,7 +1029,7 @@ const HomeSecurityPlanner = () => {
   return (
     <section className="section">
       <div className="container" style={{ display: 'grid', gap: '1.5rem' }}>
-        <HomeSecurityFunnelSteps currentStep="fit-check" />
+        <FunnelStepRail />
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <h1 style={{ margin: 0 }}>Home Security Precision Planner</h1>
           <p style={{ margin: 0, color: '#c8c0aa' }}>Optional. For customers who want surgical precision.</p>

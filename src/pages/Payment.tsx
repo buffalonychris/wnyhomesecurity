@@ -11,7 +11,7 @@ import { buildResumeUrl } from '../lib/resumeToken';
 import { buildQuoteReference } from '../lib/quoteUtils';
 import { brandShort } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackagePricing } from '../data/pricing';
 import { getHomeSecurityPackageSpec } from '../content/homeSecurityPackageData';
@@ -248,7 +248,7 @@ const Payment = () => {
 
     return (
       <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
-        <HomeSecurityFunnelSteps currentStep="deposit" />
+        <FunnelStepRail />
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-link" to="/agreementReview">
             Back
@@ -344,7 +344,7 @@ const Payment = () => {
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {isHomeSecurity && <HomeSecurityFunnelSteps currentStep="deposit" />}
+      {isHomeSecurity && <FunnelStepRail />}
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to="/agreementReview">

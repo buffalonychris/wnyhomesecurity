@@ -5,7 +5,7 @@ import { loadRetailFlow, markFlowStep, ScheduleRequest, updateRetailFlow } from 
 import FlowGuidePanel from '../components/FlowGuidePanel';
 import PaymentInstallDayAccordion from '../components/PaymentInstallDayAccordion';
 import TierBadge from '../components/TierBadge';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
@@ -172,7 +172,7 @@ const Schedule = () => {
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {isHomeSecurity && <HomeSecurityFunnelSteps currentStep="schedule" />}
+      {isHomeSecurity && <FunnelStepRail />}
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to="/payment">

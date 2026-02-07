@@ -26,6 +26,7 @@ const appendPathParam = (href: string, pathParam?: string) => {
 const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const hasComparisonRoute = APP_ROUTES.has('/comparison');
   const hasWhatsIncludedRoute = APP_ROUTES.has('/home-security/whats-included');
   const comparisonHref = hasComparisonRoute ? '/comparison?vertical=home-security' : '/home-security#comparison';
@@ -33,6 +34,7 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
 
   useEffect(() => {
     setMenuOpen(false);
+    setMoreOpen(false);
   }, [location.pathname, location.search, location.hash]);
 
   const navItems = useMemo<NavItem[]>(() => {
@@ -41,18 +43,18 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
       { label: 'Packages', href: '/packages?vertical=home-security' },
       { label: 'Comparison', href: comparisonHref },
       { label: 'What’s Included', href: whatsIncludedHref },
-      { label: 'Dashboard (Demo)', href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html', external: true },
       { label: 'Fit Check', href: appendPathParam('/discovery?vertical=home-security', pathParam) },
       { label: 'Quote Builder', href: appendPathParam('/quote?vertical=home-security', pathParam) },
       { label: 'Planner', href: '/home-security/planner?vertical=home-security' },
+      { label: 'Dashboard Demo', href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html', external: true },
       { label: 'Agreement Review', href: '/agreementReview' },
       { label: 'Agreement Print', href: '/agreementPrint' },
       { label: 'Payment', href: '/payment' },
       { label: 'Payment Success', href: '/home-security/payment/success' },
       { label: 'Payment Canceled', href: '/home-security/payment/canceled' },
       { label: 'Scheduling', href: appendPathParam('/schedule', pathParam) },
-      { label: 'Contact', href: '/contact' },
       { label: 'About Us', href: '/about' },
+      { label: 'Contact', href: '/contact' },
       { label: 'Support', href: '/support' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
@@ -60,29 +62,56 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
   }, [comparisonHref, pathParam, whatsIncludedHref]);
 
   const primaryNavItems = navItems.filter((item) =>
-    ['Home', 'Packages', 'Comparison', 'What’s Included', 'Planner'].includes(item.label),
+    ['Home', 'Packages', 'Comparison', 'What’s Included', 'Fit Check', 'Quote Builder', 'Planner'].includes(item.label),
+  );
+
+  const moreNavItems = navItems.filter((item) =>
+    [
+      'Dashboard Demo',
+      'Agreement Review',
+      'Agreement Print',
+      'Payment',
+      'Payment Success',
+      'Payment Canceled',
+      'Scheduling',
+      'About Us',
+      'Contact',
+      'Support',
+      'Privacy',
+      'Terms',
+    ].includes(item.label),
   );
 
   const drawerGroups = [
     {
-      title: 'Start Here',
-      items: navItems.filter((item) => ['Fit Check', 'Quote Builder', 'Packages'].includes(item.label)),
-    },
-    {
-      title: 'Plan',
-      items: navItems.filter((item) => ['Planner', 'What’s Included', 'Comparison', 'Dashboard (Demo)'].includes(item.label)),
-    },
-    {
-      title: 'Finish',
+      title: 'Primary',
       items: navItems.filter((item) =>
-        ['Agreement Review', 'Agreement Print', 'Payment', 'Payment Success', 'Payment Canceled', 'Scheduling'].includes(
-          item.label,
-        ),
+        ['Home', 'Packages', 'Comparison', 'What’s Included', 'Fit Check', 'Quote Builder', 'Planner'].includes(item.label),
       ),
     },
     {
-      title: 'Support',
-      items: navItems.filter((item) => ['Contact', 'Support', 'Privacy', 'Terms'].includes(item.label)),
+      title: 'Dashboard Demo',
+      items: navItems.filter((item) => ['Dashboard Demo'].includes(item.label)),
+    },
+    {
+      title: 'Agreements',
+      items: navItems.filter((item) => ['Agreement Review', 'Agreement Print'].includes(item.label)),
+    },
+    {
+      title: 'Payments',
+      items: navItems.filter((item) => ['Payment', 'Payment Success', 'Payment Canceled'].includes(item.label)),
+    },
+    {
+      title: 'Scheduling',
+      items: navItems.filter((item) => ['Scheduling'].includes(item.label)),
+    },
+    {
+      title: 'Company',
+      items: navItems.filter((item) => ['About Us', 'Contact'].includes(item.label)),
+    },
+    {
+      title: 'Support / Legal',
+      items: navItems.filter((item) => ['Support', 'Privacy', 'Terms'].includes(item.label)),
     },
   ];
 
@@ -96,6 +125,8 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
     if (!hash) return pathMatches;
     return pathMatches && location.hash === `#${hash}`;
   };
+
+  const isMoreActive = moreNavItems.some((item) => isActiveLink(item.href));
 
   return (
     <header className="wnyhs-top-nav">
@@ -132,6 +163,55 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
               </NavLink>
             );
           })}
+          <div
+            className="wnyhs-top-nav-more"
+            onMouseLeave={() => setMoreOpen(false)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                setMoreOpen(false);
+              }
+            }}
+          >
+            <button
+              type="button"
+              className={['wnyhs-top-nav-more-btn', isMoreActive ? 'is-active' : null].filter(Boolean).join(' ')}
+              aria-expanded={moreOpen}
+              aria-haspopup="true"
+              aria-controls="wnyhs-top-nav-more-menu"
+              onClick={() => setMoreOpen((open) => !open)}
+            >
+              More
+            </button>
+            <div
+              id="wnyhs-top-nav-more-menu"
+              className={`wnyhs-top-nav-more-menu${moreOpen ? ' is-open' : ''}`}
+              role="menu"
+            >
+              {moreNavItems.map((item) => {
+                const active = isActiveLink(item.href);
+                const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
+                if (item.external) {
+                  return (
+                    <a
+                      key={item.label}
+                      className={className}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      role="menuitem"
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+                return (
+                  <NavLink key={item.label} className={className} to={item.href} role="menuitem">
+                    {item.label}
+                  </NavLink>
+                );
+              })}
+            </div>
+          </div>
         </nav>
 
         <div className="wnyhs-top-nav-actions">

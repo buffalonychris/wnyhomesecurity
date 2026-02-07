@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import LegacyHomeSecurityContent from '../components/homeSecurity/LegacyHomeSecurityContent';
 import PremiumHomeSecurityLanding from '../components/homeSecurity/PremiumHomeSecurityLanding';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
@@ -12,6 +13,7 @@ const HomeSecurity = () => {
   const [selectedPath, setSelectedPath] = useState<HomeSecurityPathChoice | null>(() => {
     return loadRetailFlow().homeSecurity?.selectedPath ?? null;
   });
+  const [legacyOpen, setLegacyOpen] = useState(false);
 
   useLayoutConfig({
     layoutVariant: 'funnel',
@@ -31,8 +33,24 @@ const HomeSecurity = () => {
   return (
     <div className="container section home-security-page hub-container">
       <PremiumHomeSecurityLanding packages={packages} ctaLink={ctaLink} pathParam={pathParam} />
-      <div className="hs-premium-legacy-link">
-        <Link to="/home-security/legacy">Legacy (preserved)</Link>
+      <div className="hs-premium-legacy-accordion">
+        <button
+          type="button"
+          className="hs-premium-legacy-toggle"
+          aria-expanded={legacyOpen}
+          onClick={() => setLegacyOpen((open) => !open)}
+        >
+          View legacy content (preserved)
+        </button>
+        <div className="hs-premium-legacy-meta">
+          <span>Need the original page?</span>
+          <Link to="/home-security/legacy">Open the standalone legacy route</Link>
+        </div>
+        {legacyOpen ? (
+          <div className="hs-premium-legacy-body">
+            <LegacyHomeSecurityContent packages={packages} pathParam={pathParam} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

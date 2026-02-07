@@ -14,7 +14,7 @@ import OwnershipOfflineGuarantee from '../components/OwnershipOfflineGuarantee';
 import ResponsivePublicImage from '../components/ResponsivePublicImage';
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import FunnelStepRail from '../components/homeSecurity/FunnelStepRail';
 import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from '../lib/homeSecurityFunnel';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 import {
@@ -227,7 +227,7 @@ const Quote = () => {
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
-      {isHomeSecurity && <HomeSecurityFunnelSteps currentStep="quote" />}
+      {isHomeSecurity && <FunnelStepRail />}
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-link" to="/discovery?vertical=home-security">
