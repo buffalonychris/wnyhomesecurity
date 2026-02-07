@@ -7,7 +7,11 @@ import OperatorLayout from './layouts/OperatorLayout';
 const Home = lazy(() => import('./pages/Home'));
 const RetailLanding = lazy(() => import('./pages/RetailLanding'));
 const HomeSecurity = lazy(() => import('./pages/HomeSecurity'));
+const HomeSecurityLegacy = lazy(() => import('./pages/HomeSecurityLegacy'));
 const HomeSecurityPlanner = lazy(() => import('./pages/HomeSecurityPlanner'));
+const HomeSecurityDashboard = lazy(() => import('./pages/HomeSecurityDashboard'));
+const HomeSecurityWhatsIncluded = lazy(() => import('./pages/HomeSecurityWhatsIncluded'));
+const About = lazy(() => import('./pages/About'));
 const Discovery = lazy(() => import('./pages/Discovery'));
 const HomeAutomation = lazy(() => import('./pages/HomeAutomation'));
 const ElderCareTech = lazy(() => import('./pages/ElderCare'));
@@ -98,6 +102,7 @@ const App = () => {
             <Route path="/reliability" element={<Reliability />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/recommend" element={<Recommendation />} />
@@ -133,7 +138,10 @@ const App = () => {
             <Route path="/lp/agency" element={<AgencyLanding />} />
             <Route path="/halo" element={<HaloLanding />} />
             <Route path="/home-security" element={<HomeSecurity />} />
+            <Route path="/home-security/legacy" element={<HomeSecurityLegacy />} />
             <Route path="/home-security/planner" element={<HomeSecurityPlanner />} />
+            <Route path="/home-security/dashboard" element={<HomeSecurityDashboard />} />
+            <Route path="/home-security/whats-included" element={<HomeSecurityWhatsIncluded />} />
             <Route path="/discovery" element={<Discovery />} />
             <Route path="/home-security/packages" element={<Navigate to="/packages?vertical=home-security" replace />} />
             <Route path="/home-security/add-ons" element={<Navigate to="/quote?vertical=home-security#addons" replace />} />

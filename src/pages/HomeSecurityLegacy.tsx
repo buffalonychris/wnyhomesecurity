@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import PremiumHomeSecurityLanding from '../components/homeSecurity/PremiumHomeSecurityLanding';
+import { useSearchParams } from 'react-router-dom';
+import LegacyHomeSecurityContent from '../components/homeSecurity/LegacyHomeSecurityContent';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
 import { HomeSecurityPathChoice } from '../lib/homeSecurityFunnel';
 import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
 
-const HomeSecurity = () => {
+const HomeSecurityLegacy = () => {
   const [searchParams] = useSearchParams();
   const packages = useMemo(() => getPackages('home-security'), []);
   const [selectedPath, setSelectedPath] = useState<HomeSecurityPathChoice | null>(() => {
@@ -27,15 +27,12 @@ const HomeSecurity = () => {
   }, [searchParams]);
 
   const pathParam = selectedPath ? `&path=${selectedPath}` : '';
-  const ctaLink = `/discovery?vertical=home-security${pathParam}`;
+
   return (
     <div className="container section home-security-page hub-container">
-      <PremiumHomeSecurityLanding packages={packages} ctaLink={ctaLink} pathParam={pathParam} />
-      <div className="hs-premium-legacy-link">
-        <Link to="/home-security/legacy">Legacy (preserved)</Link>
-      </div>
+      <LegacyHomeSecurityContent packages={packages} pathParam={pathParam} />
     </div>
   );
 };
 
-export default HomeSecurity;
+export default HomeSecurityLegacy;
