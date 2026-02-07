@@ -13,6 +13,8 @@ type NavItem = {
   external?: boolean;
 };
 
+const APP_ROUTES = new Set(['/comparison', '/home-security/whats-included']);
+
 const appendPathParam = (href: string, pathParam?: string) => {
   if (!pathParam) return href;
   if (href.includes('?')) {
@@ -24,6 +26,10 @@ const appendPathParam = (href: string, pathParam?: string) => {
 const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const hasComparisonRoute = APP_ROUTES.has('/comparison');
+  const hasWhatsIncludedRoute = APP_ROUTES.has('/home-security/whats-included');
+  const comparisonHref = hasComparisonRoute ? '/comparison?vertical=home-security' : '/home-security#comparison';
+  const whatsIncludedHref = hasWhatsIncludedRoute ? '/home-security/whats-included' : '/home-security#whats-included';
 
   useEffect(() => {
     setMenuOpen(false);
@@ -33,12 +39,12 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
     return [
       { label: 'Home', href: '/home-security' },
       { label: 'Packages', href: '/packages?vertical=home-security' },
-      { label: 'Comparison', href: '/comparison?vertical=home-security' },
-      { label: 'What’s Included', href: '/home-security/whats-included' },
+      { label: 'Comparison', href: comparisonHref },
+      { label: 'What’s Included', href: whatsIncludedHref },
       { label: 'Dashboard (Demo)', href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html', external: true },
       { label: 'Fit Check', href: appendPathParam('/discovery?vertical=home-security', pathParam) },
       { label: 'Quote Builder', href: appendPathParam('/quote?vertical=home-security', pathParam) },
-      { label: 'Precision Planner', href: '/home-security/planner?vertical=home-security' },
+      { label: 'Planner', href: '/home-security/planner?vertical=home-security' },
       { label: 'Agreement Review', href: '/agreementReview' },
       { label: 'Agreement Print', href: '/agreementPrint' },
       { label: 'Payment', href: '/payment' },
@@ -51,7 +57,34 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
     ];
-  }, [pathParam]);
+  }, [comparisonHref, pathParam, whatsIncludedHref]);
+
+  const primaryNavItems = navItems.filter((item) =>
+    ['Home', 'Packages', 'Comparison', 'What’s Included', 'Planner'].includes(item.label),
+  );
+
+  const drawerGroups = [
+    {
+      title: 'Start Here',
+      items: navItems.filter((item) => ['Fit Check', 'Quote Builder', 'Packages'].includes(item.label)),
+    },
+    {
+      title: 'Plan',
+      items: navItems.filter((item) => ['Planner', 'What’s Included', 'Comparison', 'Dashboard (Demo)'].includes(item.label)),
+    },
+    {
+      title: 'Finish',
+      items: navItems.filter((item) =>
+        ['Agreement Review', 'Agreement Print', 'Payment', 'Payment Success', 'Payment Canceled', 'Scheduling'].includes(
+          item.label,
+        ),
+      ),
+    },
+    {
+      title: 'Support',
+      items: navItems.filter((item) => ['Contact', 'Support', 'Privacy', 'Terms'].includes(item.label)),
+    },
+  ];
 
   const isActiveLink = (href: string) => {
     if (href.startsWith('http') || href.startsWith('mailto:')) {
@@ -83,7 +116,7 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
         </Link>
 
         <nav className="wnyhs-top-nav-links" aria-label="WNY Home Security">
-          {navItems.map((item) => {
+          {primaryNavItems.map((item) => {
             const active = isActiveLink(item.href);
             const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
             if (item.external) {
@@ -117,31 +150,49 @@ const WnyhsTopNav = ({ ctaLink, pathParam }: WnyhsTopNavProps) => {
         </div>
       </div>
 
+      <div className="wnyhs-top-nav-strip" aria-label="Home Security highlights">
+        <span>Local-first</span>
+        <span>Professionally installed</span>
+        <span>No subscriptions sold by us</span>
+      </div>
+
       <div id="wnyhs-top-nav-drawer" className={`wnyhs-top-nav-drawer${menuOpen ? ' is-open' : ''}`}>
         <div className="wnyhs-top-nav-drawer-inner" role="dialog" aria-label="Home Security menu">
-          {navItems.map((item) => {
-            const active = isActiveLink(item.href);
-            const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
-            if (item.external) {
-              return (
-                <a
-                  key={item.label}
-                  className={className}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              );
-            }
-            return (
-              <NavLink key={item.label} className={className} to={item.href} onClick={() => setMenuOpen(false)}>
-                {item.label}
-              </NavLink>
-            );
-          })}
+          {drawerGroups.map((group) => (
+            <div key={group.title} className="wnyhs-top-nav-drawer-group">
+              <p className="wnyhs-top-nav-drawer-title">{group.title}</p>
+              <div className="wnyhs-top-nav-drawer-links">
+                {group.items.map((item) => {
+                  const active = isActiveLink(item.href);
+                  const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
+                  if (item.external) {
+                    return (
+                      <a
+                        key={item.label}
+                        className={className}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    );
+                  }
+                  return (
+                    <NavLink key={item.label} className={className} to={item.href} onClick={() => setMenuOpen(false)}>
+                      {item.label}
+                    </NavLink>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          <div className="wnyhs-top-nav-drawer-cta">
+            <Link className="btn btn-primary" to={ctaLink} onClick={() => setMenuOpen(false)}>
+              Get Started
+            </Link>
+          </div>
         </div>
       </div>
     </header>
