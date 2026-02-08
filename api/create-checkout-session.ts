@@ -1,7 +1,8 @@
 import { getAddOns, getPackagePricing, PackageTierId } from '../src/data/pricing.js';
+import { recordDepositStatus } from './depositStore.js';
 
 type CheckoutSessionRequest = {
-  quoteId?: string;
+  quoteRef?: string;
   packageId?: PackageTierId;
   selectedAddOns?: string[];
   vertical?: string;
@@ -91,7 +92,7 @@ export default async function handler(req: RequestLike, res: any) {
   try {
     const stripeSecretKey = requireEnv('STRIPE_SECRET_KEY');
     const publicSiteUrl = requireEnv('PUBLIC_SITE_URL').replace(/\/$/, '');
-    const quoteId = toString(body.quoteId) ?? 'unknown';
+    const quoteRef = toString(body.quoteRef) ?? 'unknown';
 
     const successPath = '/home-security/payment/success';
     const cancelPath = '/home-security/payment/canceled';
@@ -104,7 +105,7 @@ export default async function handler(req: RequestLike, res: any) {
       'line_items[0][price_data][product_data][name]': 'Home Security Deposit (50%)',
       'line_items[0][price_data][unit_amount]': `${depositCents}`,
       'line_items[0][quantity]': '1',
-      'metadata[quoteId]': quoteId,
+      'metadata[quoteRef]': quoteRef,
       'metadata[vertical]': 'home-security',
       'metadata[deposit_policy]': '50%',
       'metadata[totalCents]': `${totalCents}`,
@@ -123,6 +124,14 @@ export default async function handler(req: RequestLike, res: any) {
     if (!response.ok || !data?.url) {
       throw new Error(data?.error?.message || 'Stripe API request failed.');
     }
+
+    recordDepositStatus({
+      quoteRef,
+      status: 'pending',
+      amountCents: depositCents,
+      totalCents,
+      updatedAt: new Date().toISOString(),
+    });
 
     res.status(200).json({ url: data.url });
   } catch (error) {

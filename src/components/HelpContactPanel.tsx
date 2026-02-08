@@ -1,6 +1,12 @@
-import { supportContact } from '../content/paymentInstallDay';
+import { wnyhsContact, buildSupportMailto, buildTel, buildSms } from '../content/wnyhsContact';
 
-const HelpContactPanel = () => {
+type HelpContactPanelProps = {
+  quoteRef?: string;
+  issuePrompt?: string;
+};
+
+const HelpContactPanel = ({ quoteRef, issuePrompt }: HelpContactPanelProps) => {
+  const mailto = buildSupportMailto({ quoteRef, issue: issuePrompt });
   return (
     <div
       className="card"
@@ -15,17 +21,23 @@ const HelpContactPanel = () => {
       <div style={{ display: 'grid', gap: '0.35rem', color: '#c8c0aa' }}>
         <span>
           Email:{' '}
-          <a href={`mailto:${supportContact.email}`} style={{ color: '#f5c042' }}>
-            {supportContact.email}
+          <a href={mailto} style={{ color: '#f5c042' }}>
+            {wnyhsContact.emails.support}
           </a>
         </span>
         <span>
           Phone:{' '}
-          <a href={`tel:${supportContact.phone}`} style={{ color: '#f5c042' }}>
-            {supportContact.phone}
+          <a href={buildTel(wnyhsContact.phone.tel)} style={{ color: '#f5c042' }}>
+            {wnyhsContact.phone.display}
           </a>
         </span>
-        <span>Location: {supportContact.location}</span>
+        <span>
+          Text:{' '}
+          <a href={buildSms(wnyhsContact.phone.sms, 'Hi! I need help with my Home Security quote.')} style={{ color: '#f5c042' }}>
+            {wnyhsContact.phone.display}
+          </a>
+        </span>
+        <span>Location: {wnyhsContact.location}</span>
       </div>
     </div>
   );

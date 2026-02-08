@@ -6,7 +6,6 @@ import { getHardwareGroups } from '../data/hardware';
 import { getFeatureGroups } from '../data/features';
 import { generateAgreement, QuoteContext } from '../lib/agreement';
 import { buildAgreementReference, computeAgreementHash } from '../lib/agreementHash';
-import { copyToClipboard, shortenMiddle } from '../lib/displayUtils';
 import { loadRetailFlow, markFlowStep, updateRetailFlow, AcceptanceRecord } from '../lib/retailFlow';
 import { buildResumeUrl } from '../lib/resumeToken';
 import { siteConfig } from '../config/site';
@@ -23,6 +22,9 @@ import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
+import { getHomeSecurityHardwareList } from '../content/homeSecurityPackageData';
+import { buildSupportMailto, wnyhsContact } from '../content/wnyhsContact';
+import { buildQuoteReference } from '../lib/quoteUtils';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 const formatEmailStatus = (status?: string) => {
@@ -56,10 +58,6 @@ const AgreementReview = () => {
   const [guidedMode, setGuidedMode] = useState<boolean>(() => initialFlow.guidedMode ?? false);
   const [agreementEmailPayload, setAgreementEmailPayload] =
     useState<Awaited<ReturnType<typeof buildAgreementEmailPayload>> | null>(null);
-  const [hashCopied, setHashCopied] = useState(false);
-  const [priorHashCopied, setPriorHashCopied] = useState(false);
-  const [quoteHashCopied, setQuoteHashCopied] = useState(false);
-  const [resumeCopied, setResumeCopied] = useState(false);
   const [authorityMeta, setAuthorityMeta] = useState<DocAuthorityMeta | null>(null);
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
   const [hydrationAttempted, setHydrationAttempted] = useState(false);
@@ -214,18 +212,13 @@ const AgreementReview = () => {
     [quote, vertical]
   );
   const agreementReference = quote ? buildAgreementReference(quote) : '';
-  const quoteHashDisplay = shortenMiddle(quote?.quoteHash || '');
-  const supersedesQuote = shortenMiddle(quote?.priorQuoteHash || '');
-  const displayedAgreementHash = shortenMiddle(agreementHash);
-  const supersedesAgreement = shortenMiddle(
-    storedAcceptance?.supersedesAgreementHash ?? storedAcceptance?.agreementHash
-  );
+  const quoteRef = quote ? buildQuoteReference(quote) : '';
+  const supportMailto = buildSupportMailto({ quoteRef, issue: 'Question about agreement review.' });
   const resumeUrl = quote
     ? storedAcceptance?.accepted
       ? buildResumeUrl(quote, 'payment')
       : buildResumeUrl(quote, 'agreement')
     : '';
-  const shortResume = shortenMiddle(resumeUrl);
   const customerName = quote?.customerName?.trim() || 'Customer';
   const agreementDate = agreement?.header?.generatedDate || '';
   const agreementVersion = siteConfig.agreementDocVersion;
@@ -262,35 +255,6 @@ const AgreementReview = () => {
   const agreementEmailStatus = acceptanceSnapshot?.emailLastStatus ?? acceptanceSnapshot?.emailStatus ?? 'not_sent';
   const rebuildSourceQuote = locationQuote ?? initialFlow.quote ?? null;
   const canRebuildFromQuote = Boolean(rebuildSourceQuote);
-
-  const handleCopyAgreementHash = async () => {
-    if (!agreementHash) return;
-    await copyToClipboard(agreementHash);
-    setHashCopied(true);
-    setTimeout(() => setHashCopied(false), 2000);
-  };
-
-  const handleCopyPriorAgreementHash = async () => {
-    const prior = storedAcceptance?.supersedesAgreementHash ?? storedAcceptance?.agreementHash;
-    if (!prior) return;
-    await copyToClipboard(prior);
-    setPriorHashCopied(true);
-    setTimeout(() => setPriorHashCopied(false), 2000);
-  };
-
-  const handleCopyQuoteHash = async () => {
-    if (!quote?.quoteHash) return;
-    await copyToClipboard(quote.quoteHash);
-    setQuoteHashCopied(true);
-    setTimeout(() => setQuoteHashCopied(false), 2000);
-  };
-
-  const handleCopyResume = async () => {
-    if (!resumeUrl) return;
-    await copyToClipboard(resumeUrl);
-    setResumeCopied(true);
-    setTimeout(() => setResumeCopied(false), 2000);
-  };
 
   const handleUpdateEmail = (value: string) => {
     setEmail(value);
@@ -727,11 +691,7 @@ const AgreementReview = () => {
               <a href={resumeUrl} style={{ fontWeight: 800 }}>
                 Continue your order
               </a>
-              <button type="button" className="btn btn-secondary" onClick={handleCopyResume} disabled={!resumeUrl}>
-                {resumeCopied ? 'Copied link' : 'Copy link'}
-              </button>
             </div>
-            <small style={{ color: '#c8c0aa' }}>{shortResume}</small>
           </div>
         </div>
 
@@ -853,26 +813,9 @@ const AgreementReview = () => {
             {!isHomeSecurity && agreementEmailPayload?.links && (
               <details style={{ color: '#c8c0aa' }}>
                 <summary style={{ cursor: 'pointer', color: '#fff7e6' }}>Email payload links</summary>
-                <ul className="list" style={{ marginTop: '0.5rem' }}>
-                  <li>
-                    <span />
-                    <span className="break-all">Print: {agreementEmailPayload.links.printUrl}</span>
-                  </li>
-                  <li>
-                    <span />
-                    <span className="break-all">Verify: {agreementEmailPayload.links.verifyUrl}</span>
-                  </li>
-                  <li>
-                    <span />
-                    <span className="break-all">Resume: {agreementEmailPayload.links.resumeUrl}</span>
-                  </li>
-                  {agreementEmailPayload.links.reviewUrl && (
-                    <li>
-                      <span />
-                      <span className="break-all">Review: {agreementEmailPayload.links.reviewUrl}</span>
-                    </li>
-                  )}
-                </ul>
+                <p style={{ marginTop: '0.5rem' }}>
+                  Print, review, and resume links are included in the email delivery. Use the email copy to access them.
+                </p>
               </details>
             )}
           </div>
@@ -883,10 +826,22 @@ const AgreementReview = () => {
         </small>
       </div>
 
+      {isHomeSecurity && (
+        <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+          <div className="badge">Support</div>
+          <p style={{ margin: 0, color: '#c8c0aa' }}>
+            Questions about the agreement or next steps? Email the support team for help.
+          </p>
+          <a href={supportMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+            Email {wnyhsContact.emails.support}
+          </a>
+        </div>
+      )}
+
       {!isHomeSecurity && (
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
           <button type="button" className="accordion-toggle" onClick={() => toggleSection('agreement-details')}>
-            <span>Agreement details & hashes</span>
+            <span>Agreement details</span>
             <span>{openSections['agreement-details'] ? '−' : '+'}</span>
           </button>
           <div className={`accordion-content ${openSections['agreement-details'] ? 'open' : ''}`} style={{ display: 'grid', gap: '0.75rem' }}>
@@ -907,48 +862,16 @@ const AgreementReview = () => {
                 </li>
                 <li>
                   <span />
-                  <span>
-                    Agreement Hash: <span className="mono-text">{displayedAgreementHash}</span>{' '}
-                    {agreementHash && (
-                      <button type="button" className="btn btn-secondary" onClick={handleCopyAgreementHash}>
-                        {hashCopied ? 'Copied full hash' : 'Copy full hash'}
-                      </button>
-                    )}
-                  </span>
+                  <span>Linked quote reference: {agreement.quoteBinding.reference}</span>
                 </li>
                 <li>
                   <span />
-                  <span>
-                    Supersedes prior agreement hash: <span className="mono-text">{supersedesAgreement}</span>{' '}
-                    {supersedesAgreement !== 'None' && (
-                      <button type="button" className="btn btn-secondary" onClick={handleCopyPriorAgreementHash}>
-                        {priorHashCopied ? 'Copied prior hash' : 'Copy prior hash'}
-                      </button>
-                    )}
-                  </span>
-                </li>
-                <li>
-                  <span />
-                  <span>
-                    Linked quote reference: {agreement.quoteBinding.reference} (hash {quoteHashDisplay}){' '}
-                    {quote.quoteHash && (
-                      <button type="button" className="btn btn-secondary" onClick={handleCopyQuoteHash}>
-                        {quoteHashCopied ? 'Copied full hash' : 'Copy full hash'}
-                      </button>
-                    )}
-                  </span>
-                </li>
-                <li>
-                  <span />
-                  <span>Supersedes prior quote hash: <span className="mono-text">{supersedesQuote}</span></span>
+                  <span>This agreement supersedes prior agreements for the same customer/property context.</span>
                 </li>
               </ul>
-              <small style={{ color: '#c8c0aa' }}>
-                This agreement supersedes prior agreements for the same customer/property context.
-              </small>
             </div>
 
-            <AuthorityBlock meta={authorityMeta} />
+            <AuthorityBlock meta={authorityMeta} showInternal={false} />
           </div>
         </div>
       )}
@@ -1000,6 +923,19 @@ const AgreementReview = () => {
                 ))}
               </ul>
             </div>
+            {vertical === 'home-security' && quote && (
+              <div className="card" style={{ border: '1px solid rgba(245, 192, 66, 0.35)' }}>
+                <strong>Hardware included</strong>
+                <ul className="list" style={{ marginTop: '0.35rem' }}>
+                  {getHomeSecurityHardwareList(quote.packageId.toLowerCase() as 'a1' | 'a2' | 'a3').map((item) => (
+                    <li key={item}>
+                      <span />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           {vertical !== 'home-security' && (
             <>

@@ -1,7 +1,7 @@
 import { getAddOns, getPackagePricing } from '../data/pricing';
 import { siteConfig } from '../config/site';
 import { QuoteContext } from './agreement';
-import { buildQuoteReference } from './quoteUtils';
+import { buildAgreementReferenceValue, buildQuoteReference } from './quoteUtils';
 import { AcceptanceRecord } from './retailFlow';
 
 const normalizeValue = (value: unknown): unknown => {
@@ -116,4 +116,5 @@ export const computeAgreementHash = async (
   return toHex(digest);
 };
 
-export const buildAgreementReference = (quote?: QuoteContext | null) => buildQuoteReference(quote ?? defaultContext());
+export const buildAgreementReference = (quote?: QuoteContext | null) =>
+  buildAgreementReferenceValue(quote ?? defaultContext());

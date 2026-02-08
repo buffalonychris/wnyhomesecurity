@@ -31,7 +31,7 @@ const HomeSecurityPaymentSuccess = () => {
             description="Your Home Security deposit is confirmed."
             support="Next, we’ll coordinate your installation window and finalize on-site placement."
           />
-          {sessionId && <small style={{ color: '#c8c0aa' }}>Stripe session: {sessionId}</small>}
+          {sessionId && <small style={{ color: '#c8c0aa' }}>Deposit processing complete.</small>}
         </div>
 
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>

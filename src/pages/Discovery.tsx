@@ -8,6 +8,7 @@ import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHea
 import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { updateRetailFlow } from '../lib/retailFlow';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
+import { buildTalkToUsMailto, wnyhsContact } from '../content/wnyhsContact';
 
 const Discovery = () => {
   const [searchParams] = useSearchParams();
@@ -44,6 +45,7 @@ const Discovery = () => {
   }, [isHomeSecurity, pathParam]);
 
   const redirectMessage = (location.state as { message?: string } | undefined)?.message;
+  const talkToUsMailto = buildTalkToUsMailto('Tell us about your home and the best time to reach you.');
 
   return (
     <WnyhsFunnelLayout showStepRail={isHomeSecurity}>
@@ -73,6 +75,17 @@ const Discovery = () => {
           </div>
         ) : null}
         {isHomeSecurity ? <FitCheck config={config} layout="embedded" /> : <FitCheck config={config} />}
+        {isHomeSecurity && (
+          <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+            <div className="badge">Talk to us</div>
+            <p style={{ margin: 0, color: '#c8c0aa' }}>
+              Prefer to talk with a coordinator? Email us and we&apos;ll follow up with the next best step.
+            </p>
+            <a href={talkToUsMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+              Email {wnyhsContact.emails.hello}
+            </a>
+          </div>
+        )}
       </div>
     </WnyhsFunnelLayout>
   );

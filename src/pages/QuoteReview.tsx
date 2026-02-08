@@ -29,6 +29,7 @@ import {
   getHomeSecurityHardwareList,
 } from '../content/homeSecurityPackageData';
 import { useLayoutConfig } from '../components/LayoutConfig';
+import { buildQuoteHelpMailto, wnyhsContact } from '../content/wnyhsContact';
 // SaveProgressCard intentionally removed from this flow to consolidate share & save actions.
 
 type AccordionSectionProps = {
@@ -82,7 +83,6 @@ const QuoteReview = () => {
   const [quote, setQuote] = useState<QuoteContext | null>(null);
   const [narrative, setNarrative] = useState<NarrativeResponse | null>(null);
   const [narrativeLoading, setNarrativeLoading] = useState(false);
-  const [linkCopied, setLinkCopied] = useState(false);
   const [hashCopied, setHashCopied] = useState(false);
   const [priorHashCopied, setPriorHashCopied] = useState(false);
   const [email, setEmail] = useState('');
@@ -314,13 +314,6 @@ const QuoteReview = () => {
     handleSendEmail(quote.contact, 'auto');
   }, [emailPayload, quote, sending, handleSendEmail]);
 
-  const handleCopyResumeLink = async () => {
-    if (!resumeUrl) return;
-    await copyToClipboard(resumeUrl);
-    setLinkCopied(true);
-    setTimeout(() => setLinkCopied(false), 2000);
-  };
-
   const handleCopyHash = async () => {
     if (!quote?.quoteHash) return;
     await copyToClipboard(quote.quoteHash);
@@ -353,6 +346,11 @@ const QuoteReview = () => {
   }
 
   const reference = buildQuoteReference(quote);
+  const quoteHelpMailto = buildQuoteHelpMailto({
+    packageName: selectedPackage.name,
+    quoteRef: reference,
+    date: formatQuoteDate(quote.generatedAt),
+  });
   const quoteVersion = quote.quoteDocVersion ?? siteConfig.quoteDocVersion;
   const displayedHash = shortenMiddle(quote.quoteHash);
   const supersedes = shortenMiddle(quote.priorQuoteHash);
@@ -401,8 +399,25 @@ const QuoteReview = () => {
             )}
           </div>
         </div>
-        {isHomeSecurity && <HelpContactPanel />}
+        {isHomeSecurity && (
+          <HelpContactPanel
+            quoteRef={quote ? buildQuoteReference(quote) : undefined}
+            issuePrompt="I have a question about my Home Security quote."
+          />
+        )}
       </div>
+
+      {isHomeSecurity && (
+        <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+          <div className="badge">Quote help</div>
+          <p style={{ margin: 0, color: '#c8c0aa' }}>
+            Need adjustments or have questions about your package? Email our quoting team and we&apos;ll respond quickly.
+          </p>
+          <a href={quoteHelpMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+            Email {wnyhsContact.emails.quotes}
+          </a>
+        </div>
+      )}
 
       <div className="card" style={{ display: 'grid', gap: '0.75rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
@@ -617,11 +632,7 @@ const QuoteReview = () => {
                 <a href={resumeUrl} style={{ color: 'var(--kaec-gold)', fontWeight: 700 }}>
                   Continue your order
                 </a>
-                <button type="button" className="btn btn-secondary" onClick={handleCopyResumeLink}>
-                  {linkCopied ? 'Copied resume link' : 'Copy resume link'}
-                </button>
               </div>
-              <small className="break-all" style={{ color: '#c8c0aa' }}>{resumeUrl}</small>
             </div>
           )}
         </div>

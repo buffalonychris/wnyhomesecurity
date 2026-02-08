@@ -20,6 +20,7 @@ import { getHomeSecurityPackageSpec } from '../content/homeSecurityPackageData';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
+import { buildBillingMailto, buildSupportMailto, buildTel, wnyhsContact } from '../content/wnyhsContact';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
@@ -37,6 +38,8 @@ const Payment = () => {
   const [leadRequestStatus, setLeadRequestStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [stripeMessage, setStripeMessage] = useState('');
   const [stripeLoading, setStripeLoading] = useState(false);
+  const stripePublishableKey = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env
+    ?.STRIPE_PUBLISHABLE_KEY;
 
   useEffect(() => {
     markFlowStep('payment');
@@ -85,6 +88,27 @@ const Payment = () => {
   }, [acceptanceRecord?.emailTo, quoteContext?.contact]);
 
   useEffect(() => {
+    if (!quoteContext) return;
+    let isMounted = true;
+    const syncDepositStatus = async () => {
+      try {
+        const response = await fetch(`/api/deposit-status?quoteRef=${encodeURIComponent(buildQuoteReference(quoteContext))}`);
+        const data = (await response.json().catch(() => null)) as { status?: PaymentStatus } | null;
+        if (isMounted && data?.status === 'completed') {
+          setDepositStatus('completed');
+          updateRetailFlow({ payment: { depositStatus: 'completed' } });
+        }
+      } catch (error) {
+        console.error('Failed to sync deposit status', error);
+      }
+    };
+    syncDepositStatus();
+    return () => {
+      isMounted = false;
+    };
+  }, [quoteContext]);
+
+  useEffect(() => {
     let isMounted = true;
     const run = async () => {
       if (!quoteContext || !acceptanceRecord) {
@@ -109,6 +133,9 @@ const Payment = () => {
   const depositDue = useMemo(() => calculateDepositDue(total, siteConfig.depositPolicy), [total]);
   const balanceDue = useMemo(() => Math.max(total - depositDue, 0), [depositDue, total]);
   const resumeUrl = useMemo(() => (quoteContext ? buildResumeUrl(quoteContext, 'payment') : ''), [quoteContext]);
+  const quoteRef = quoteContext ? buildQuoteReference(quoteContext) : '';
+  const billingMailto = buildBillingMailto({ quoteRef, amount: depositDue ? formatCurrency(depositDue) : undefined });
+  const supportMailto = buildSupportMailto({ quoteRef, issue: 'Help with deposit checkout.' });
 
   const handleSimulate = (status: PaymentStatus) => {
     setDepositStatus(status);
@@ -152,7 +179,7 @@ const Payment = () => {
     if (leadRequestStatus === 'sending') return;
     setLeadRequestStatus('sending');
     const customerEmail = saveEmail || acceptanceRecord?.emailTo || quoteContext?.contact;
-    const referenceId = quoteContext ? buildQuoteReference(quoteContext) : acceptanceRecord?.agreementHash;
+    const referenceId = quoteContext ? buildQuoteReference(quoteContext) : undefined;
     const payload = {
       event: 'Lead Signal: Payment Next Steps Requested',
       customerEmail,
@@ -216,16 +243,21 @@ const Payment = () => {
       return;
     }
 
+    if (!stripePublishableKey) {
+      setStripeMessage('Stripe checkout is not enabled yet. Please contact us so we can take your deposit manually.');
+      return;
+    }
+
     setStripeLoading(true);
 
-    const quoteId = quoteContext.quoteHash ?? buildQuoteReference(quoteContext);
+    const quoteRef = buildQuoteReference(quoteContext);
 
     try {
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          quoteId,
+          quoteRef,
           vertical: 'home-security',
           packageId: quoteContext.packageId,
           selectedAddOns: quoteContext.selectedAddOns,
@@ -338,10 +370,23 @@ const Payment = () => {
               </div>
             </div>
             <div style={{ display: 'grid', gap: '0.5rem' }}>
-              <button type="button" className="btn btn-primary" onClick={startStripeCheckout} disabled={stripeLoading}>
+              <button type="button" className="btn btn-primary" onClick={startStripeCheckout} disabled={stripeLoading || !stripePublishableKey}>
                 {stripeLoading ? 'Starting checkout…' : 'Pay Deposit (50%)'}
               </button>
               {stripeMessage && <small style={{ color: '#c8c0aa' }}>{stripeMessage}</small>}
+              {!stripePublishableKey && (
+                <small style={{ color: '#c8c0aa' }}>
+                  Stripe keys are not configured yet. Email{' '}
+                  <a href={billingMailto} style={{ color: '#f5c042' }}>
+                    {wnyhsContact.emails.billing}
+                  </a>{' '}
+                  or call{' '}
+                  <a href={buildTel(wnyhsContact.phone.tel)} style={{ color: '#f5c042' }}>
+                    {wnyhsContact.phone.display}
+                  </a>{' '}
+                  to arrange the deposit.
+                </small>
+              )}
             </div>
           </div>
         </div>
@@ -374,7 +419,7 @@ const Payment = () => {
           <strong>Quote reference</strong>
           {quoteContext ? (
             <p style={{ margin: 0, color: '#c8c0aa' }}>
-              Package {quoteContext.packageId} — Total {formatCurrency(total)} (add-ons: {quoteContext.selectedAddOns.length || 'none'})
+              {quoteRef} • {getPackagePricing(quoteContext.vertical ?? 'elder-tech').find((pkg) => pkg.id === quoteContext.packageId)?.name ?? 'Package'} — Total {formatCurrency(total)} (add-ons: {quoteContext.selectedAddOns.length || 'none'})
             </p>
           ) : (
             <p style={{ margin: 0, color: '#c8c0aa' }}>
@@ -405,10 +450,10 @@ const Payment = () => {
             <small style={{ color: '#c8c0aa' }}>
               We couldn&apos;t send that right now. Please email{' '}
               <a
-                href="mailto:admin@reliableeldercare.com?subject=HALO%20Next%20Steps%20Request"
+                href={supportMailto}
                 style={{ color: '#f5c042' }}
               >
-                admin@reliableeldercare.com
+                {wnyhsContact.emails.support}
               </a>
               .
             </small>

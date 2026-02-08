@@ -6,6 +6,8 @@ import HelpContactPanel from '../components/HelpContactPanel';
 import PaymentInstallDayAccordion from '../components/PaymentInstallDayAccordion';
 import { paymentTodayChecklist } from '../content/paymentInstallDay';
 import { calculateDepositDue } from '../lib/paymentTerms';
+import { buildBillingMailto, wnyhsContact } from '../content/wnyhsContact';
+import { buildQuoteReference } from '../lib/quoteUtils';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
@@ -15,6 +17,8 @@ const PaymentProcessing = () => {
   const total = flow.quote?.pricing.total ?? 0;
   const depositDue = useMemo(() => calculateDepositDue(total, siteConfig.depositPolicy), [total]);
   const balanceDue = useMemo(() => Math.max(total - depositDue, 0), [depositDue, total]);
+  const quoteRef = flow.quote ? buildQuoteReference(flow.quote) : undefined;
+  const billingMailto = buildBillingMailto({ quoteRef, amount: depositDue ? formatCurrency(depositDue) : undefined });
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
@@ -26,7 +30,7 @@ const PaymentProcessing = () => {
             Secure checkout will be handled by Stripe. Card entry, Apple Pay, and Google Pay are supported so your deposit can be captured without exposing card data to {brandShort}.
           </p>
         </div>
-        {isHomeSecurity && <HelpContactPanel />}
+        {isHomeSecurity && <HelpContactPanel quoteRef={quoteRef} issuePrompt="Question about deposit checkout." />}
       </div>
       <div className="card" style={{ display: 'grid', gap: '1rem' }}>
         <div className="badge">Deposit breakdown</div>
@@ -104,8 +108,8 @@ const PaymentProcessing = () => {
         <div className="badge">Alternate payment options</div>
         <p style={{ margin: 0, color: '#c8c0aa' }}>
           Cash App and Venmo are accepted as alternate deposit methods. Email{' '}
-          <a href="mailto:admin@reliableeldercare.com" style={{ color: '#f5c042' }}>
-            admin@reliableeldercare.com
+          <a href={billingMailto} style={{ color: '#f5c042' }}>
+            {wnyhsContact.emails.billing}
           </a>{' '}
           for the correct handle and include your quote reference so we apply the deposit immediately.
         </p>

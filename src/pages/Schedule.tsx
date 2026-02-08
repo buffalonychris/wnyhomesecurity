@@ -11,6 +11,8 @@ import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
+import { buildScheduleHelpMailto, wnyhsContact } from '../content/wnyhsContact';
+import { buildQuoteReference } from '../lib/quoteUtils';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
 
@@ -75,6 +77,11 @@ const Schedule = () => {
     () => getAddOns(vertical).filter((addOn) => selectedAddOns.includes(addOn.id)).map((addOn) => addOn.label),
     [selectedAddOns, vertical]
   );
+  const quoteRef = quoteContext ? buildQuoteReference(quoteContext) : '';
+  const scheduleMailto = buildScheduleHelpMailto({
+    preferredWindows: [preferredTimeWindow1, preferredTimeWindow2].filter(Boolean),
+    city: installCity || quoteContext?.city,
+  });
 
   const schedulingAllowed = Boolean(quoteContext && acceptance?.accepted && depositStatus === 'completed');
 
@@ -187,7 +194,7 @@ const Schedule = () => {
         <div style={{ display: 'grid', gap: '0.35rem', color: '#c8c0aa' }}>
           <strong>Quote reference</strong>
           <small>
-            Package {quoteContext.packageId} — One-time total {formatCurrency(quoteContext.pricing.total)} (add-ons: {
+            {quoteRef} • {selectedPackage.name} — One-time total {formatCurrency(quoteContext.pricing.total)} (add-ons: {
               addOnLabels.length ? addOnLabels.join(', ') : 'none'
             })
           </small>
@@ -199,6 +206,17 @@ const Schedule = () => {
           <small>Deposit status: {depositStatus}</small>
         </div>
       </div>
+      {isHomeSecurity && (
+        <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+          <div className="badge">Need scheduling help?</div>
+          <p style={{ margin: 0, color: '#c8c0aa' }}>
+            Email our scheduling team with your preferred windows and city so we can lock in the install window.
+          </p>
+          <a href={scheduleMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+            Email {wnyhsContact.emails.schedule}
+          </a>
+        </div>
+      )}
 
       <FlowGuidePanel
         currentStep="schedule"
