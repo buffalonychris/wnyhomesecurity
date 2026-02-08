@@ -29,7 +29,7 @@ import {
   getHomeSecurityHardwareList,
 } from '../content/homeSecurityPackageData';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import { buildQuoteHelpMailto, wnyhsContact } from '../content/wnyhsContact';
+import { buildQuoteHelpMailto, buildSupportMailto, wnyhsContact } from '../content/wnyhsContact';
 // SaveProgressCard intentionally removed from this flow to consolidate share & save actions.
 
 type AccordionSectionProps = {
@@ -74,6 +74,18 @@ const AccordionSection = ({ title, description, defaultOpen = false, children }:
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 
+const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
+
+const isValidQuoteContext = (value: unknown): value is QuoteContext => {
+  if (!isRecord(value)) return false;
+  if (typeof value.packageId !== 'string') return false;
+  if (!Array.isArray(value.selectedAddOns) || !value.selectedAddOns.every((item) => typeof item === 'string')) return false;
+  if (!isRecord(value.pricing)) return false;
+  const { packagePrice, addOnTotal, total } = value.pricing as Record<string, unknown>;
+  if (![packagePrice, addOnTotal, total].every((amount) => typeof amount === 'number' && Number.isFinite(amount))) return false;
+  return true;
+};
+
 const QuoteReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -106,21 +118,35 @@ const QuoteReview = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     markFlowStep('quote');
+    const hydrateQuote = (candidate: QuoteContext | null) => {
+      if (candidate && isValidQuoteContext(candidate)) {
+        setQuote(candidate);
+        setEmail(candidate.contact ?? '');
+        return true;
+      }
+      return false;
+    };
     if (token) {
       const payload = parseResumeToken(token);
       if (payload) {
         const restored = buildQuoteFromResumePayload(payload);
-        setQuote(restored);
-        setEmail(restored.contact ?? '');
-        return;
+        if (hydrateQuote(restored)) {
+          return;
+        }
       }
     }
 
-    const stored = loadRetailFlow();
-    if (stored.quote) {
-      setQuote(stored.quote);
-      setEmail(stored.quote.contact ?? '');
+    let stored: ReturnType<typeof loadRetailFlow> | null = null;
+    try {
+      stored = loadRetailFlow();
+    } catch (error) {
+      console.error('Failed to read saved quote', error);
+      stored = null;
     }
+    if (stored?.quote && hydrateQuote(stored.quote)) {
+      return;
+    }
+    setQuote(null);
   }, [token]);
 
   const vertical = quote?.vertical ?? 'elder-tech';
@@ -136,6 +162,38 @@ const QuoteReview = () => {
         ]
       : [],
   });
+
+  if (!quote) {
+    return (
+      <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
+        <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <div className="badge">Quote review</div>
+          <h1 style={{ margin: 0, color: '#fff7e6' }}>We couldn’t find a saved quote on this device.</h1>
+          <p style={{ margin: 0, color: '#c8c0aa' }}>
+            Start a new quote or contact support if you expected to see a saved quote here.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <Link className="btn btn-primary" to="/quote">
+              Start a new quote
+            </Link>
+            <a
+              className="btn btn-secondary"
+              href={buildSupportMailto({
+                pageRoute: '/quoteReview',
+                issue: 'Quote missing or could not be loaded',
+                contactMethod: wnyhsContact.phone.display,
+              })}
+            >
+              Contact support
+            </a>
+          </div>
+          <small style={{ color: '#c8c0aa' }}>
+            Or call us at <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>.
+          </small>
+        </div>
+      </div>
+    );
+  }
   const selectedPackage = useMemo(
     () => getPackagePricing(vertical).find((pkg) => pkg.id === quote?.packageId) ?? getPackagePricing(vertical)[0],
     [quote, vertical]
@@ -231,10 +289,7 @@ const QuoteReview = () => {
   const handlePrint = () => {
     if (!quote) return;
     updateRetailFlow({ quote });
-    const printWindow = window.open('/quotePrint', '_blank', 'noopener,noreferrer');
-    if (printWindow) {
-      printWindow.focus();
-    }
+    navigate('/quotePrint', { state: { autoPrint: true } });
   };
 
   const quoteDate = quote ? formatQuoteDate(quote.generatedAt) : formatQuoteDate();
