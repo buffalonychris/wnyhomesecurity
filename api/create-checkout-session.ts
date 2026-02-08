@@ -1,5 +1,4 @@
 import { getAddOns, getPackagePricing, PackageTierId } from '../src/data/pricing.js';
-import { recordDepositStatus } from './depositStore.js';
 
 type CheckoutSessionRequest = {
   quoteRef?: string;
@@ -93,6 +92,7 @@ export default async function handler(req: RequestLike, res: any) {
     const stripeSecretKey = requireEnv('STRIPE_SECRET_KEY');
     const publicSiteUrl = requireEnv('PUBLIC_SITE_URL').replace(/\/$/, '');
     const quoteRef = toString(body.quoteRef) ?? 'unknown';
+    const tier = toString(body.packageId) ?? 'unknown';
 
     const successPath = '/home-security/payment/success';
     const cancelPath = '/home-security/payment/canceled';
@@ -109,6 +109,9 @@ export default async function handler(req: RequestLike, res: any) {
       'metadata[vertical]': 'home-security',
       'metadata[deposit_policy]': '50%',
       'metadata[totalCents]': `${totalCents}`,
+      'metadata[expectedDepositCents]': `${depositCents}`,
+      'metadata[expectedTotalCents]': `${totalCents}`,
+      'metadata[tier]': tier,
     });
 
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
@@ -124,14 +127,6 @@ export default async function handler(req: RequestLike, res: any) {
     if (!response.ok || !data?.url) {
       throw new Error(data?.error?.message || 'Stripe API request failed.');
     }
-
-    recordDepositStatus({
-      quoteRef,
-      status: 'pending',
-      amountCents: depositCents,
-      totalCents,
-      updatedAt: new Date().toISOString(),
-    });
 
     res.status(200).json({ url: data.url });
   } catch (error) {

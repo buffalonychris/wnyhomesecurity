@@ -49,7 +49,7 @@ export type FlowStep = 'learn' | 'select' | 'quote' | 'agreement' | 'payment' | 
 export type RetailFlowState = {
   quote?: QuoteContext;
   agreementAcceptance?: AcceptanceRecord;
-  payment?: { depositStatus?: PaymentStatus };
+  payment?: { depositStatus?: PaymentStatus; depositByQuoteRef?: Record<string, PaymentStatus> };
   scheduleRequest?: ScheduleRequest;
   currentStep?: FlowStep;
   guidedMode?: boolean;
@@ -82,7 +82,16 @@ export const updateRetailFlow = (patch: Partial<RetailFlowState>) => {
     agreementAcceptance: patch.agreementAcceptance
       ? { ...current.agreementAcceptance, ...patch.agreementAcceptance }
       : current.agreementAcceptance,
-    payment: patch.payment ? { ...current.payment, ...patch.payment } : current.payment,
+    payment: patch.payment
+      ? {
+          ...current.payment,
+          ...patch.payment,
+          depositByQuoteRef: {
+            ...(current.payment?.depositByQuoteRef ?? {}),
+            ...(patch.payment?.depositByQuoteRef ?? {}),
+          },
+        }
+      : current.payment,
     scheduleRequest: patch.scheduleRequest ?? current.scheduleRequest,
     homeSecurity: patch.homeSecurity ? { ...current.homeSecurity, ...patch.homeSecurity } : current.homeSecurity,
   };
@@ -91,4 +100,26 @@ export const updateRetailFlow = (patch: Partial<RetailFlowState>) => {
 
 export const markFlowStep = (step: FlowStep) => {
   return updateRetailFlow({ currentStep: step });
+};
+
+export const getDepositStatusForQuote = (flowState: RetailFlowState, quoteRef?: string | null) => {
+  if (quoteRef) {
+    const byQuote = flowState.payment?.depositByQuoteRef ?? {};
+    const status = byQuote[quoteRef];
+    if (status) return status;
+  }
+  return flowState.payment?.depositStatus ?? 'pending';
+};
+
+export const setDepositStatusForQuote = (quoteRef: string, status: PaymentStatus) => {
+  const current = loadRetailFlow();
+  return updateRetailFlow({
+    payment: {
+      depositStatus: status,
+      depositByQuoteRef: {
+        ...(current.payment?.depositByQuoteRef ?? {}),
+        [quoteRef]: status,
+      },
+    },
+  });
 };
