@@ -1,5 +1,6 @@
 import { getHomeSecurityFunnelSteps } from '../content/wnyhsNavigation';
 import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from './homeSecurityFunnel';
+import { getDepositStatusForQuote } from './retailFlow';
 import type { RetailFlowState } from './retailFlow';
 
 export const getHomeSecurityFunnelProgress = (flowState: RetailFlowState) => {
@@ -9,7 +10,8 @@ export const getHomeSecurityFunnelProgress = (flowState: RetailFlowState) => {
   const quoteComplete = Boolean(flowState.quote);
   const plannerComplete = Boolean(flowState.homeSecurity?.plannerRecommendation || flowState.homeSecurity?.floorplan);
   const agreementComplete = Boolean(flowState.agreementAcceptance?.accepted);
-  const paymentComplete = flowState.payment?.depositStatus === 'completed';
+  const quoteRef = flowState.quote?.quoteReference;
+  const paymentComplete = getDepositStatusForQuote(flowState, quoteRef) === 'completed';
   const scheduleComplete = Boolean(flowState.scheduleRequest);
   const completionMap = [
     fitCheckComplete,

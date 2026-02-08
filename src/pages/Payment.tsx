@@ -2,7 +2,15 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { siteConfig } from '../config/site';
 import { QuoteContext } from '../lib/agreement';
-import { loadRetailFlow, PaymentStatus, updateRetailFlow, AcceptanceRecord, markFlowStep } from '../lib/retailFlow';
+import {
+  loadRetailFlow,
+  PaymentStatus,
+  updateRetailFlow,
+  AcceptanceRecord,
+  markFlowStep,
+  getDepositStatusForQuote,
+  setDepositStatusForQuote,
+} from '../lib/retailFlow';
 import FlowGuidePanel from '../components/FlowGuidePanel';
 import SaveProgressCard from '../components/SaveProgressCard';
 import { buildAgreementEmailPayload, isValidEmail } from '../lib/emailPayload';
@@ -66,9 +74,8 @@ const Payment = () => {
     if (flow.quote) {
       setQuoteContext(flow.quote);
     }
-    if (flow.payment?.depositStatus) {
-      setDepositStatus(flow.payment.depositStatus);
-    }
+    const flowQuoteRef = flow.quote ? flow.quote.quoteReference ?? buildQuoteReference(flow.quote) : null;
+    setDepositStatus(getDepositStatusForQuote(flow, flowQuoteRef));
   }, [location.state, navigate]);
 
   useEffect(() => {
@@ -77,9 +84,8 @@ const Payment = () => {
     if (flow.quote) {
       setQuoteContext(flow.quote);
     }
-    if (flow.payment?.depositStatus) {
-      setDepositStatus(flow.payment.depositStatus);
-    }
+    const flowQuoteRef = flow.quote ? flow.quote.quoteReference ?? buildQuoteReference(flow.quote) : null;
+    setDepositStatus(getDepositStatusForQuote(flow, flowQuoteRef));
   }, [accessGranted]);
 
   useEffect(() => {
@@ -87,28 +93,7 @@ const Payment = () => {
     setSaveEmail(nextEmail);
   }, [acceptanceRecord?.emailTo, quoteContext?.contact]);
 
-  useEffect(() => {
-    if (!quoteContext) return;
-    let isMounted = true;
-    const syncDepositStatus = async () => {
-      try {
-        const response = await fetch(
-          `/api/deposit-status?quoteRef=${encodeURIComponent(quoteContext.quoteReference ?? buildQuoteReference(quoteContext))}`,
-        );
-        const data = (await response.json().catch(() => null)) as { status?: PaymentStatus } | null;
-        if (isMounted && data?.status === 'completed') {
-          setDepositStatus('completed');
-          updateRetailFlow({ payment: { depositStatus: 'completed' } });
-        }
-      } catch (error) {
-        console.error('Failed to sync deposit status', error);
-      }
-    };
-    syncDepositStatus();
-    return () => {
-      isMounted = false;
-    };
-  }, [quoteContext]);
+  const quoteRef = quoteContext ? quoteContext.quoteReference ?? buildQuoteReference(quoteContext) : '';
 
   useEffect(() => {
     let isMounted = true;
@@ -135,7 +120,7 @@ const Payment = () => {
   const depositDue = useMemo(() => calculateDepositDue(total, siteConfig.depositPolicy), [total]);
   const balanceDue = useMemo(() => Math.max(total - depositDue, 0), [depositDue, total]);
   const resumeUrl = useMemo(() => (quoteContext ? buildResumeUrl(quoteContext, 'payment') : ''), [quoteContext]);
-  const quoteRef = quoteContext ? quoteContext.quoteReference ?? buildQuoteReference(quoteContext) : '';
+  const depositStatusLabel = quoteRef ? depositStatus : 'pending';
   const billingMailto = buildBillingMailto({
     quoteRef,
     tier: quoteContext ? getPackagePricing(quoteContext.vertical ?? 'elder-tech').find((pkg) => pkg.id === quoteContext.packageId)?.name : undefined,
@@ -149,8 +134,9 @@ const Payment = () => {
   });
 
   const handleSimulate = (status: PaymentStatus) => {
+    if (!quoteRef) return;
     setDepositStatus(status);
-    updateRetailFlow({ payment: { depositStatus: status } });
+    setDepositStatusForQuote(quoteRef, status);
   };
 
   const recordPaymentEmailResult = (
@@ -505,7 +491,7 @@ const Payment = () => {
           <div className="card" style={{ border: '1px solid rgba(245,192,66,0.35)' }}>
             <strong>Deposit due</strong>
             <p style={{ margin: '0.35rem 0', fontSize: '1.35rem' }}>{formatCurrency(depositDue)}</p>
-            <small style={{ color: '#c8c0aa' }}>Status: {depositStatus}</small>
+            <small style={{ color: '#c8c0aa' }}>Status: {depositStatusLabel}</small>
           </div>
           <div className="card" style={{ border: '1px solid rgba(245,192,66,0.35)' }}>
             <strong>Balance due</strong>
@@ -567,13 +553,13 @@ const Payment = () => {
         <p style={{ margin: 0, color: '#c8c0aa' }}>
           Deposit completion unlocks scheduling. No payment is collected in this mock flow, and no card details are handled here.
         </p>
-        {depositStatus === 'completed' ? (
+        {depositStatusLabel === 'completed' ? (
           <button type="button" className="btn btn-primary" onClick={() => navigate(HOME_SECURITY_ROUTES.schedule)}>
             Proceed to Scheduling
           </button>
         ) : (
           <small style={{ color: '#c8c0aa' }}>
-            Complete the deposit (simulated) to enable scheduling. Payment status is currently {depositStatus}.
+            Complete the deposit (simulated) to enable scheduling. Payment status is currently {depositStatusLabel}.
           </small>
         )}
         <small style={{ color: '#c8c0aa' }}>
