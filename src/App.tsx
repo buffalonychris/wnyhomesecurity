@@ -83,6 +83,9 @@ const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
 const DemoHAGoldDashboard = lazy(() => import('./newsite/pages/DemoHAGoldDashboard'));
 const HomeSecurityPackages = lazy(() => import('./newsite/pages/HomeSecurityPackages'));
 const HomeSecurityPackageTierPage = lazy(() => import('./newsite/pages/HomeSecurityPackageTier'));
+const NewSiteHomeSecurityPayDeposit = lazy(() => import('./newsite/pages/HomeSecurityPayDeposit'));
+const NewSiteHomeSecurityPaymentSuccess = lazy(() => import('./newsite/pages/HomeSecurityPaymentSuccess'));
+const NewSiteHomeSecurityPaymentCancel = lazy(() => import('./newsite/pages/HomeSecurityPaymentCancel'));
 
 const HomeRoute = () => {
   const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
@@ -194,6 +197,9 @@ const App = () => {
             <Route path="demos/ha-gold-dashboard" element={<DemoHAGoldDashboard />} />
             <Route path="home-security/packages" element={<HomeSecurityPackages />} />
             <Route path="home-security/packages/:tier" element={<HomeSecurityPackageTierPage />} />
+            <Route path="home-security/pay-deposit" element={<NewSiteHomeSecurityPayDeposit />} />
+            <Route path="home-security/payment/success" element={<NewSiteHomeSecurityPaymentSuccess />} />
+            <Route path="home-security/payment/cancel" element={<NewSiteHomeSecurityPaymentCancel />} />
           </Route>
           <Route element={<OperatorLayout />}>
             <Route path="/operator" element={<Operator />} />
