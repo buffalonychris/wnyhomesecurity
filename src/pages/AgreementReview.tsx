@@ -18,7 +18,11 @@ import TierBadge from '../components/TierBadge';
 import { brandSite } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
+import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
+import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
+import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
+import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 const formatEmailStatus = (status?: string) => {
@@ -182,14 +186,17 @@ const AgreementReview = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Agreement' },
-        ]
-      : [],
+    showBreadcrumbs: !isHomeSecurity,
+    breadcrumb: [],
   });
+
+  useEffect(() => {
+    if (!isHomeSecurity) return;
+    const pathParam = new URLSearchParams(location.search).get('path');
+    const gate = getHomeSecurityGateTarget(loadRetailFlow(), 'agreement', pathParam);
+    if (!gate) return;
+    navigate(gate.requiredStep.href, { replace: true, state: { message: gate.message } });
+  }, [isHomeSecurity, location.search, navigate]);
   const hardwareGroups = useMemo(
     () => (quote && vertical !== 'home-security' ? getHardwareGroups(quote.packageId, quote.selectedAddOns) : []),
     [quote, vertical]
@@ -402,7 +409,7 @@ const AgreementReview = () => {
 
   const handleProceedToPayment = async () => {
     if (!storedAcceptance?.accepted || !quote) return;
-    navigate('/payment', { state: { quoteContext: quote } });
+    navigate(HOME_SECURITY_ROUTES.deposit, { state: { quoteContext: quote } });
   };
 
   const handlePrint = () => {
@@ -433,7 +440,7 @@ const AgreementReview = () => {
   const balanceDue = Math.max(estimatedTotal - depositDue, 0);
 
   const content = (
-    <div className={vertical === 'home-security' ? 'wnyhs-funnel-stack' : 'container'} style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
+    <div className={vertical === 'home-security' ? 'wnyhs-funnel-stack' : 'container'} style={vertical !== 'home-security' ? { padding: '3rem 0', display: 'grid', gap: '2rem' } : undefined}>
       {vertical === 'home-security' && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to="/quoteReview">
@@ -441,11 +448,7 @@ const AgreementReview = () => {
           </Link>
         </div>
       )}
-      {redirectMessage && (
-        <div className="card" style={{ border: '1px solid rgba(245, 192, 66, 0.35)', color: '#c8c0aa' }}>
-          {redirectMessage}
-        </div>
-      )}
+      {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
       {bannerMessage && (
         <div className="card" style={{ border: '1px solid rgba(84, 160, 82, 0.5)', color: '#c8c0aa' }}>
           {bannerMessage}
@@ -465,16 +468,21 @@ const AgreementReview = () => {
               }}
             >
               <div style={{ display: 'grid', gap: '0.75rem' }}>
-                <div>
-                  <div className="badge">Step 4 — Agreement</div>
-                  <h1 className="wnyhs-funnel-title" style={{ marginTop: '0.25rem' }}>
-                    Step 4: Agreement
-                  </h1>
-                  <p className="wnyhs-funnel-subtitle">
-                    Calm, plain-language overview first. This locks in your quote so we can collect the deposit and schedule
-                    installation.
-                  </p>
-                </div>
+                {isHomeSecurity ? (
+                  <WnyhsFunnelStepHeader
+                    stepId="agreement"
+                    title="Agreement"
+                    description="Calm, plain-language overview first. This locks in your quote so we can collect the deposit and schedule installation."
+                  />
+                ) : (
+                  <>
+                    <div className="badge">Agreement review</div>
+                    <h1 style={{ marginTop: '0.25rem', color: '#fff7e6' }}>Agreement review</h1>
+                    <p style={{ margin: 0, color: '#c8c0aa' }}>
+                      Confirm the quote, acceptance details, and payment terms before moving to the next step.
+                    </p>
+                  </>
+                )}
                 <div>
                   <strong>What this covers</strong>
                   <ul className="list" style={{ marginTop: '0.35rem' }}>

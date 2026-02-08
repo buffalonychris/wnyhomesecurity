@@ -12,10 +12,14 @@ import { buildQuoteReference } from '../lib/quoteUtils';
 import { brandShort } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
+import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
+import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackagePricing } from '../data/pricing';
 import { getHomeSecurityPackageSpec } from '../content/homeSecurityPackageData';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
+import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
+import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
@@ -40,32 +44,27 @@ const Payment = () => {
 
   useEffect(() => {
     const flow = loadRetailFlow();
-    if (!flow.quote) {
-      navigate('/discovery?vertical=home-security', {
-        replace: true,
-        state: { message: 'Please complete the Fit Check and Quote before leaving a deposit.' },
-      });
+    if (flow.quote?.vertical && flow.quote.vertical !== 'home-security') {
+      return;
     }
-  }, [navigate]);
-
-  useEffect(() => {
-    try {
-      const flow = loadRetailFlow();
-      const parsed = flow.agreementAcceptance;
-      if (!parsed?.accepted) {
-        navigate('/agreementReview', {
-          state: {
-            message: 'Please accept the combined agreement before payment.',
-            quoteContext: (location.state as { quoteContext?: QuoteContext } | undefined)?.quoteContext,
-          },
-        });
-        return;
-      }
-      setAcceptanceRecord(parsed);
-      setAccessGranted(true);
-    } catch (error) {
-      console.error('Error loading acceptance state', error);
-      navigate('/agreementReview', { state: { message: 'Please accept the combined agreement before payment.' } });
+    const gate = getHomeSecurityGateTarget(flow, 'deposit');
+    if (gate) {
+      navigate(gate.requiredStep.href, {
+        replace: true,
+        state: {
+          message: gate.message,
+          quoteContext: (location.state as { quoteContext?: QuoteContext } | undefined)?.quoteContext,
+        },
+      });
+      return;
+    }
+    setAcceptanceRecord(flow.agreementAcceptance ?? null);
+    setAccessGranted(true);
+    if (flow.quote) {
+      setQuoteContext(flow.quote);
+    }
+    if (flow.payment?.depositStatus) {
+      setDepositStatus(flow.payment.depositStatus);
     }
   }, [location.state, navigate]);
 
@@ -75,7 +74,6 @@ const Payment = () => {
     if (flow.quote) {
       setQuoteContext(flow.quote);
     }
-
     if (flow.payment?.depositStatus) {
       setDepositStatus(flow.payment.depositStatus);
     }
@@ -199,18 +197,15 @@ const Payment = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Deposit' },
-        ]
-      : [],
+    showBreadcrumbs: !isHomeSecurity,
+    breadcrumb: [],
   });
 
   if (!accessGranted) {
     return null;
   }
+
+  const redirectMessage = (location.state as { message?: string } | undefined)?.message;
 
   const startStripeCheckout = async () => {
     if (stripeLoading) return;
@@ -258,19 +253,21 @@ const Payment = () => {
 
     return (
       <WnyhsFunnelLayout showStepRail>
-        <div className="wnyhs-funnel-stack" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
+        <div className="wnyhs-funnel-stack">
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <Link className="btn btn-link" to="/agreementReview">
+            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.agreement}>
               Back
             </Link>
           </div>
 
+          {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
           <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-            <div className="badge">Step 5 — Deposit</div>
-            <h1 className="wnyhs-funnel-title">Step 5: Deposit</h1>
-            <p className="wnyhs-funnel-subtitle">
-              Pay your deposit to reserve installation. Deposit due today: 50% of the system cost. Remaining balance due on installation day.
-            </p>
+            <WnyhsFunnelStepHeader
+              stepId="deposit"
+              title="Deposit"
+              description="Pay your deposit to reserve installation."
+              support="Deposit due today: 50% of the system cost. Remaining balance due on installation day."
+            />
           </div>
           <SelfMonitoringDisclosure variant="short" className="ka-disclosure--spaced" />
 
@@ -432,7 +429,7 @@ const Payment = () => {
         currentStep="payment"
         nextDescription="Scheduling is next. Once the deposit is recorded, move forward to propose installation windows."
         ctaLabel="Continue to Scheduling"
-        onCta={() => navigate('/schedule')}
+        onCta={() => navigate(HOME_SECURITY_ROUTES.schedule)}
       />
 
       <div className="card" style={{ display: 'grid', gap: '1rem' }}>
@@ -515,7 +512,7 @@ const Payment = () => {
           Deposit completion unlocks scheduling. No payment is collected in this mock flow, and no card details are handled here.
         </p>
         {depositStatus === 'completed' ? (
-          <button type="button" className="btn btn-primary" onClick={() => navigate('/schedule')}>
+          <button type="button" className="btn btn-primary" onClick={() => navigate(HOME_SECURITY_ROUTES.schedule)}>
             Proceed to Scheduling
           </button>
         ) : (

@@ -4,6 +4,8 @@ import FitCheck from '../components/FitCheck';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { fitCheckConfigs } from '../content/fitCheckConfigs';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
+import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
+import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { updateRetailFlow } from '../lib/retailFlow';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
@@ -19,24 +21,20 @@ const Discovery = () => {
     }
     return 'home-security';
   }, [requestedVertical]);
+  const isHomeSecurity = resolvedVertical === 'home-security';
 
   useLayoutConfig({
     layoutVariant: 'funnel',
-    showBreadcrumbs: true,
-    breadcrumb:
-      resolvedVertical === 'home-security'
-        ? [
-            { label: 'Home Security', href: HOME_SECURITY_ROUTES.home },
-            { label: 'Fit Check' },
-          ]
-        : [
-            { label: 'Discovery', href: `/discovery?vertical=${resolvedVertical}` },
-            { label: 'Fit Check' },
-          ],
+    showBreadcrumbs: !isHomeSecurity,
+    breadcrumb: !isHomeSecurity
+      ? [
+          { label: 'Discovery', href: `/discovery?vertical=${resolvedVertical}` },
+          { label: 'Fit Check' },
+        ]
+      : [],
   });
 
   const config = fitCheckConfigs[resolvedVertical];
-  const isHomeSecurity = resolvedVertical === 'home-security';
   const showUnknownNote = requestedVertical !== resolvedVertical;
 
   useEffect(() => {
@@ -52,21 +50,19 @@ const Discovery = () => {
       <div className="wnyhs-funnel-stack">
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <Link className="btn btn-link" to="/packages?vertical=home-security">
+            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
               Back to packages
             </Link>
           </div>
         )}
-        {redirectMessage ? (
-          <div className="card" style={{ border: '1px solid rgba(245, 192, 66, 0.35)', color: '#c8c0aa' }}>
-            {redirectMessage}
-          </div>
-        ) : null}
+        {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
         {isHomeSecurity && (
-          <div className="hero-card" style={{ display: 'grid', gap: '0.5rem' }}>
-            <div className="badge">Step 1 — Fit Check</div>
-            <h1 className="wnyhs-funnel-title">Step 1: Fit Check</h1>
-            <p className="wnyhs-funnel-subtitle">Answer a few quick questions to match the right tier.</p>
+          <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+            <WnyhsFunnelStepHeader
+              stepId="fit-check"
+              title="Fit Check"
+              description="Answer a few quick questions to match the right tier."
+            />
           </div>
         )}
         {showUnknownNote ? (

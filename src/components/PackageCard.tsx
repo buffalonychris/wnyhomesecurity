@@ -4,6 +4,7 @@ import TierBadge from './TierBadge';
 import { PackageTierId } from '../data/pricing';
 import { VerticalKey } from '../lib/verticals';
 import { updateRetailFlow } from '../lib/retailFlow';
+import { appendQueryParam, getHomeSecurityCtaLink } from '../content/wnyhsNavigation';
 import AccordionSection from './AccordionSection';
 
 type Props = {
@@ -30,8 +31,16 @@ const PackageCard = ({ pkg, vertical, pathParam, imageCaption, image }: Props) =
   const contactLink = vertical === 'home-security' ? `/contact?vertical=home-security&package=${pkg.id}` : '/contact';
   const isHomeSecurity = vertical === 'home-security';
   const primaryLabel = isHomeSecurity ? `Choose ${pkg.name}` : `View ${pkg.name}`;
-  const discoveryPath = pathParam ? `&path=${pathParam}` : '';
-  const primaryHref = isHomeSecurity ? `/discovery?vertical=home-security${discoveryPath}` : `/packages/${pkg.id}${verticalQuery}`;
+  const tierQueryMap: Record<string, string> = {
+    a1: 'bronze',
+    a2: 'silver',
+    a3: 'gold',
+  };
+  const tierParam = tierQueryMap[pkg.id] ?? pkg.name.toLowerCase();
+  const discoveryBase = getHomeSecurityCtaLink(pathParam);
+  const primaryHref = isHomeSecurity
+    ? appendQueryParam(discoveryBase, 'tier', tierParam)
+    : `/packages/${pkg.id}${verticalQuery}`;
   const featureList = isHomeSecurity ? pkg.features ?? [] : pkg.includes;
   const featurePreview = isHomeSecurity ? featureList.slice(0, 4) : featureList;
   const hardwareList = isHomeSecurity ? pkg.hardware ?? [] : [];

@@ -18,6 +18,11 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
 }
 
+.wnyhs-page-layout [id],
+.hs-premium-shell [id] {
+  scroll-margin-top: 140px;
+}
+
 .wnyhs-page-layout {
   display: grid;
   gap: 1.5rem;
@@ -33,10 +38,22 @@
   gap: 2rem;
 }
 
+.wnyhs-page-layout--funnel .wnyhs-page-layout-container {
+  max-width: 980px;
+}
+
+.wnyhs-page-layout--marketing .wnyhs-page-layout-container {
+  max-width: 1120px;
+}
+
 .wnyhs-marketing-stack,
 .wnyhs-funnel-stack {
   display: grid;
   gap: 1.5rem;
+}
+
+.wnyhs-funnel-stack {
+  padding: 2.5rem 0;
 }
 
 .wnyhs-funnel-header {
@@ -79,6 +96,18 @@
   gap: 0.5rem;
 }
 
+.wnyhs-funnel-breadcrumb {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 247, 230, 0.55);
+}
+
+.wnyhs-funnel-eyebrow {
+  font-size: 0.9rem;
+  color: var(--hs-premium-muted);
+}
+
 .wnyhs-funnel-title {
   margin: 0;
   color: #fff7e6;
@@ -88,6 +117,26 @@
 .wnyhs-funnel-subtitle {
   margin: 0;
   color: #c8c0aa;
+}
+
+.wnyhs-funnel-support {
+  margin: 0;
+  color: rgba(255, 247, 230, 0.75);
+  font-size: 0.95rem;
+}
+
+.wnyhs-funnel-step-header {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.wnyhs-funnel-notice {
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(245, 192, 66, 0.3);
+  background: rgba(9, 12, 16, 0.55);
+  color: #d9d0ba;
+  font-size: 0.95rem;
 }
 
 .wnyhs-top-nav {
@@ -212,6 +261,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  opacity: 0.85;
 }
 
 .wnyhs-top-nav-strip span {
@@ -1020,6 +1070,18 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 .hs-premium-legacy-body {
   border-top: 1px solid var(--hs-premium-border);
   padding-top: 1.25rem;
+}
+
+@media (max-width: 860px) {
+  .hs-funnel-step-rail {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hs-funnel-step-rail::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media (max-width: 720px) {

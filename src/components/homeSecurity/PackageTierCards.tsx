@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
 import { HOME_SECURITY_TIER_MEDIA } from '../../content/homeSecurityPackageData';
+import { appendQueryParam } from '../../content/wnyhsNavigation';
 import { updateRetailFlow } from '../../lib/retailFlow';
 import { PackageTierId } from '../../data/pricing';
 
@@ -10,12 +11,19 @@ type Props = {
 };
 
 const PackageTierCards = ({ packages, ctaLink }: Props) => {
+  const tierQueryMap: Record<string, string> = {
+    a1: 'bronze',
+    a2: 'silver',
+    a3: 'gold',
+  };
   return (
     <div className="hs-premium-package-grid">
       {packages.map((pkg) => {
         const tierMedia = HOME_SECURITY_TIER_MEDIA[pkg.id as keyof typeof HOME_SECURITY_TIER_MEDIA];
         const image = tierMedia?.image;
         const tierId = pkg.id.toUpperCase() as PackageTierId;
+        const tierParam = tierQueryMap[pkg.id] ?? pkg.name.toLowerCase();
+        const tierCtaLink = appendQueryParam(ctaLink, 'tier', tierParam);
         const features = pkg.features ?? pkg.includes ?? [];
         const highlights = features.slice(0, 2);
         const handleSelect = () => updateRetailFlow({ homeSecurity: { selectedPackageId: tierId } });
@@ -65,7 +73,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
                 </details>
               ) : null}
               <div className="hs-premium-package-actions">
-                <Link className="btn btn-primary" to={ctaLink} onClick={handleSelect}>
+                <Link className="btn btn-primary" to={tierCtaLink} onClick={handleSelect}>
                   Choose {pkg.name}
                 </Link>
               </div>
