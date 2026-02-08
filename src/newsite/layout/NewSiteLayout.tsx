@@ -52,8 +52,8 @@ const NewSiteLayout = () => {
               <summary>How it works</summary>
               <div className="newsite-dropdown-panel">
                 <NavLink to="/newsite#overview">Overview</NavLink>
-                <NavLink to="/newsite#fit-check">Fit Check</NavLink>
-                <NavLink to="/newsite#planner">Precision Planner (Advanced)</NavLink>
+                <NavLink to="/newsite/home-security/fit-check">Fit Check</NavLink>
+                <NavLink to="/newsite/home-security/planner">Precision Planner (Advanced)</NavLink>
                 <NavLink to="/newsite/demos">Demos</NavLink>
               </div>
             </details>
@@ -63,7 +63,7 @@ const NewSiteLayout = () => {
             <details className="newsite-dropdown">
               <summary>Get Started</summary>
               <div className="newsite-dropdown-panel">
-                <NavLink to="/quote">Start online quote</NavLink>
+                <NavLink to="/newsite/quote">Start online quote</NavLink>
                 <NavLink to="/newsite/home-security/pay-deposit">Pay deposit</NavLink>
                 <NavLink to="/newsite/callback">Request callback</NavLink>
                 <NavLink to="/newsite/on-site-quote">Request on-site quote</NavLink>
