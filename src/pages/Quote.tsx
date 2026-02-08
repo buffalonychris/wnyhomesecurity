@@ -14,9 +14,8 @@ import OwnershipOfflineGuarantee from '../components/OwnershipOfflineGuarantee';
 import ResponsivePublicImage from '../components/ResponsivePublicImage';
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from '../lib/homeSecurityFunnel';
-import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 import {
   HOME_SECURITY_CLARITY_FOOTER,
   getHomeSecurityHardwareList,
@@ -273,7 +272,6 @@ const Quote = () => {
             !isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Direct navigation safe: /quote works online or offline cache.</small>
           )}
         </div>
-        {isHomeSecurity && <SelfMonitoringDisclosure variant="short" className="ka-disclosure--spaced" />}
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ color: '#c8c0aa' }}>Want to preview the dashboard?</span>
@@ -699,9 +697,9 @@ const Quote = () => {
 
   if (isHomeSecurity) {
     return (
-      <WnyhsPageLayout mode="funnel" showStepRail>
+      <WnyhsFunnelLayout showStepRail>
         {content}
-      </WnyhsPageLayout>
+      </WnyhsFunnelLayout>
     );
   }
 

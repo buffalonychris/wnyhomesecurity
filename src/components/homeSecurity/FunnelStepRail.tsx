@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from '../../lib/homeSecurityFunnel';
 import { loadRetailFlow } from '../../lib/retailFlow';
 
@@ -19,6 +19,7 @@ const appendPathParam = (href: string, pathParam?: string | null) => {
 
 const FunnelStepRail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const pathParam = searchParams.get('path');
   const [gateMessage, setGateMessage] = useState('');
@@ -32,6 +33,7 @@ const FunnelStepRail = () => {
   const paymentComplete = flowState.payment?.depositStatus === 'completed';
   const scheduleComplete = Boolean(flowState.scheduleRequest);
   const completionMap = [fitCheckComplete, quoteComplete, plannerComplete, agreementComplete, paymentComplete, scheduleComplete];
+  const earliestIncompleteIndex = Math.max(completionMap.findIndex((completed) => !completed), 0);
 
   const steps: FunnelStep[] = [
     {
@@ -95,7 +97,10 @@ const FunnelStepRail = () => {
                 type="button"
                 className={className}
                 aria-disabled="true"
-                onClick={() => setGateMessage('Complete the prior step first.')}
+                onClick={() => {
+                  setGateMessage('Complete the required step first.');
+                  navigate(steps[earliestIncompleteIndex]?.href ?? steps[0].href);
+                }}
               >
                 {step.label}
               </button>

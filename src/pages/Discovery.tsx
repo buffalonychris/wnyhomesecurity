@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import FitCheck from '../components/FitCheck';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { fitCheckConfigs } from '../content/fitCheckConfigs';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { updateRetailFlow } from '../lib/retailFlow';
 
 const Discovery = () => {
@@ -38,13 +38,20 @@ const Discovery = () => {
   }, [isHomeSecurity, pathParam]);
 
   return (
-    <WnyhsPageLayout mode="funnel" showStepRail={isHomeSecurity}>
+    <WnyhsFunnelLayout showStepRail={isHomeSecurity}>
       <div className="wnyhs-funnel-stack">
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link className="btn btn-link" to="/packages?vertical=home-security">
               Back to packages
             </Link>
+          </div>
+        )}
+        {isHomeSecurity && (
+          <div className="hero-card" style={{ display: 'grid', gap: '0.5rem' }}>
+            <div className="badge">Step 1 — Fit Check</div>
+            <h1 className="wnyhs-funnel-title">Step 1: Fit Check</h1>
+            <p className="wnyhs-funnel-subtitle">Answer a few quick questions to match the right tier.</p>
           </div>
         )}
         {showUnknownNote ? (
@@ -56,7 +63,7 @@ const Discovery = () => {
         ) : null}
         {isHomeSecurity ? <FitCheck config={config} layout="embedded" /> : <FitCheck config={config} />}
       </div>
-    </WnyhsPageLayout>
+    </WnyhsFunnelLayout>
   );
 };
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AccordionSection from '../components/AccordionSection';
 import FloorplanCanvas from '../components/floorplan/FloorplanCanvas';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import {
   DEVICE_CATALOG,
@@ -1027,7 +1027,7 @@ const HomeSecurityPlanner = () => {
   }, [plan, selectedTier]);
 
   return (
-    <WnyhsPageLayout mode="funnel" showStepRail>
+    <WnyhsFunnelLayout showStepRail>
       <div className="wnyhs-funnel-stack" style={{ display: 'grid', gap: '1.5rem' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <h1 className="wnyhs-funnel-title">Step 3: Precision Planner</h1>
@@ -2507,7 +2507,7 @@ const HomeSecurityPlanner = () => {
           <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.8)' }}>You can change anything on the quote page.</p>
         </div>
       </div>
-    </WnyhsPageLayout>
+    </WnyhsFunnelLayout>
   );
 };
 

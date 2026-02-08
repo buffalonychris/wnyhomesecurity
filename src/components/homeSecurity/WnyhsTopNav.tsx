@@ -35,11 +35,11 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
       { label: 'Comparison', href: comparisonHref },
       { label: 'What’s Included', href: whatsIncludedHref },
       { label: 'Dashboard Demo', href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html', external: true },
-      { label: 'Contact', href: '/contact' },
-      { label: 'About', href: '/about' },
-      { label: 'Support', href: '/support' },
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
+      { label: 'About', href: '/about?vertical=home-security' },
+      { label: 'Contact', href: '/contact?vertical=home-security' },
+      { label: 'Support', href: '/support?vertical=home-security' },
+      { label: 'Privacy', href: '/privacy?vertical=home-security' },
+      { label: 'Terms', href: '/terms?vertical=home-security' },
     ];
   }, [comparisonHref, whatsIncludedHref]);
 
@@ -48,7 +48,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
   );
 
   const moreNavItems = navItems.filter((item) =>
-    ['Dashboard Demo', 'Contact', 'About', 'Support', 'Privacy', 'Terms'].includes(item.label),
+    ['Dashboard Demo', 'About', 'Contact', 'Support', 'Privacy', 'Terms'].includes(item.label),
   );
 
   const drawerGroups = [
@@ -60,7 +60,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
     },
     {
       title: 'More',
-      items: navItems.filter((item) => ['Dashboard Demo', 'Contact', 'About', 'Support', 'Privacy', 'Terms'].includes(item.label)),
+      items: navItems.filter((item) => ['Dashboard Demo', 'About', 'Contact', 'Support', 'Privacy', 'Terms'].includes(item.label)),
     },
   ];
 

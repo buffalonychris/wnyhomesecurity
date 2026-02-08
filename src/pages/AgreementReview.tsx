@@ -17,9 +17,8 @@ import FlowGuidePanel from '../components/FlowGuidePanel';
 import TierBadge from '../components/TierBadge';
 import { brandSite } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 const formatEmailStatus = (status?: string) => {
@@ -631,9 +630,6 @@ const AgreementReview = () => {
           </p>
         </div>
         {vertical === 'home-security' && (
-          <SelfMonitoringDisclosure variant="full" className="ka-disclosure--spaced" />
-        )}
-        {vertical === 'home-security' && (
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <input
               type="checkbox"
@@ -1086,9 +1082,9 @@ const AgreementReview = () => {
 
   if (vertical === 'home-security') {
     return (
-      <WnyhsPageLayout mode="funnel" showStepRail>
-        {content}
-      </WnyhsPageLayout>
+    <WnyhsFunnelLayout showStepRail>
+      {content}
+    </WnyhsFunnelLayout>
     );
   }
 

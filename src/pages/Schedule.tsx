@@ -5,9 +5,8 @@ import { loadRetailFlow, markFlowStep, ScheduleRequest, updateRetailFlow } from 
 import FlowGuidePanel from '../components/FlowGuidePanel';
 import PaymentInstallDayAccordion from '../components/PaymentInstallDayAccordion';
 import TierBadge from '../components/TierBadge';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
 
@@ -35,7 +34,11 @@ const Schedule = () => {
     const stored = loadRetailFlow();
     setFlowState(stored);
     markFlowStep('schedule');
-  }, []);
+    const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
+    if (!stored.quote && isHomeSecurityHost) {
+      navigate('/discovery?vertical=home-security', { replace: true });
+    }
+  }, [navigate]);
 
   const quoteContext = flowState.quote;
   const acceptance = flowState.agreementAcceptance;
@@ -137,20 +140,7 @@ const Schedule = () => {
   };
 
   if (!quoteContext) {
-    return (
-      <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
-        <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <div className="badge">Scheduling requires a quote</div>
-          <h1 style={{ margin: 0, color: '#fff7e6' }}>Start with a deterministic quote</h1>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
-            We could not find your quote context. Build a quote first so we can attach your installation request.
-          </p>
-          <button type="button" className="btn btn-primary" onClick={() => navigate('/quote')}>
-            Go to Quote
-          </button>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   const timeWindowOptions = ['Morning', 'Afternoon', 'Evening'];
@@ -256,7 +246,6 @@ const Schedule = () => {
               Thanks for submitting. A coordinator will review your windows and reach out to confirm. Reference timestamp:{' '}
               {flowState.scheduleRequest.requestedAt}.
             </p>
-            {isHomeSecurity && <SelfMonitoringDisclosure variant="full" className="ka-disclosure--spaced" />}
             <ul className="list" style={{ marginTop: 0 }}>
               <li>
                 <span />
@@ -513,9 +502,9 @@ const Schedule = () => {
 
   if (isHomeSecurity) {
     return (
-      <WnyhsPageLayout mode="funnel" showStepRail>
+      <WnyhsFunnelLayout showStepRail>
         {content}
-      </WnyhsPageLayout>
+      </WnyhsFunnelLayout>
     );
   }
 

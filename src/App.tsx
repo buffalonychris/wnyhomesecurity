@@ -8,6 +8,7 @@ const Home = lazy(() => import('./pages/Home'));
 const RetailLanding = lazy(() => import('./pages/RetailLanding'));
 const HomeSecurity = lazy(() => import('./pages/HomeSecurity'));
 const HomeSecurityLegacy = lazy(() => import('./pages/HomeSecurityLegacy'));
+const HomeSecurityLegacyPremium = lazy(() => import('./pages/HomeSecurityLegacyPremium'));
 const HomeSecurityPlanner = lazy(() => import('./pages/HomeSecurityPlanner'));
 const HomeSecurityDashboard = lazy(() => import('./pages/HomeSecurityDashboard'));
 const HomeSecurityWhatsIncluded = lazy(() => import('./pages/HomeSecurityWhatsIncluded'));
@@ -139,6 +140,7 @@ const App = () => {
             <Route path="/halo" element={<HaloLanding />} />
             <Route path="/home-security" element={<HomeSecurity />} />
             <Route path="/home-security/legacy" element={<HomeSecurityLegacy />} />
+            <Route path="/home-security/legacy-premium" element={<HomeSecurityLegacyPremium />} />
             <Route path="/home-security/planner" element={<HomeSecurityPlanner />} />
             <Route path="/home-security/dashboard" element={<HomeSecurityDashboard />} />
             <Route path="/home-security/whats-included" element={<HomeSecurityWhatsIncluded />} />

@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import HomeSecurityLanding from '../components/homeSecurity/HomeSecurityLanding';
 import LegacyHomeSecurityContent from '../components/homeSecurity/LegacyHomeSecurityContent';
-import PremiumHomeSecurityLanding from '../components/homeSecurity/PremiumHomeSecurityLanding';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
 import { HomeSecurityPathChoice } from '../lib/homeSecurityFunnel';
@@ -32,8 +32,8 @@ const HomeSecurity = () => {
   const pathParam = selectedPath ? `&path=${selectedPath}` : '';
   const ctaLink = `/discovery?vertical=home-security${pathParam}`;
   return (
-    <WnyhsPageLayout mode="marketing" ctaLink={ctaLink}>
-      <PremiumHomeSecurityLanding packages={packages} ctaLink={ctaLink} />
+    <WnyhsMarketingLayout ctaLink={ctaLink}>
+      <HomeSecurityLanding packages={packages} ctaLink={ctaLink} />
       <div className="hs-premium-legacy-accordion">
         <button
           type="button"
@@ -41,11 +41,12 @@ const HomeSecurity = () => {
           aria-expanded={legacyOpen}
           onClick={() => setLegacyOpen((open) => !open)}
         >
-          See technical details <span aria-hidden="true">›</span>
+          More details <span aria-hidden="true">›</span>
         </button>
         <div className="hs-premium-legacy-meta">
-          <span>Prefer the original layout?</span>
-          <Link to="/home-security/legacy">Open the standalone legacy route</Link>
+          <span>Legacy references:</span>
+          <Link to="/home-security/legacy">Full legacy overview</Link>
+          <Link to="/home-security/legacy-premium">Previous premium landing</Link>
         </div>
         {legacyOpen ? (
           <div className="hs-premium-legacy-body">
@@ -53,7 +54,7 @@ const HomeSecurity = () => {
           </div>
         ) : null}
       </div>
-    </WnyhsPageLayout>
+    </WnyhsMarketingLayout>
   );
 };
 

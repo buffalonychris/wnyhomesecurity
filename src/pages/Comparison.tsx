@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import HomeSecurityComparisonTable from '../components/HomeSecurityComparisonTable';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackages } from '../content/packages';
 import { brandSite } from '../lib/brand';
@@ -128,9 +128,9 @@ const Comparison = () => {
 
   if (vertical === 'home-security') {
     return (
-      <WnyhsPageLayout mode="marketing" ctaLink="/discovery?vertical=home-security">
+      <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">
         {content}
-      </WnyhsPageLayout>
+      </WnyhsMarketingLayout>
     );
   }
 

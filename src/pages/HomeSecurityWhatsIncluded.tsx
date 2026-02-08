@@ -1,6 +1,6 @@
 import AccordionSection from '../components/AccordionSection';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import {
   HOME_SECURITY_CLARITY_FOOTER,
   HOME_SECURITY_PACKAGE_SPECS,
@@ -20,7 +20,7 @@ const HomeSecurityWhatsIncluded = () => {
   });
 
   return (
-    <WnyhsPageLayout mode="marketing" ctaLink="/discovery?vertical=home-security">
+    <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">
       <div className="wnyhs-marketing-stack">
         <div style={{ display: 'grid', gap: '0.5rem', maxWidth: 720 }}>
           <div className="badge">What’s Included</div>
@@ -86,7 +86,7 @@ const HomeSecurityWhatsIncluded = () => {
           <p style={{ marginBottom: 0, color: 'var(--kaec-muted)' }}>{HOME_SECURITY_CLARITY_FOOTER}</p>
         </div>
       </div>
-    </WnyhsPageLayout>
+    </WnyhsMarketingLayout>
   );
 };
 
