@@ -83,6 +83,9 @@ const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
 const DemoHAGoldDashboard = lazy(() => import('./newsite/pages/DemoHAGoldDashboard'));
 const HomeSecurityPackages = lazy(() => import('./newsite/pages/HomeSecurityPackages'));
 const HomeSecurityPackageTierPage = lazy(() => import('./newsite/pages/HomeSecurityPackageTier'));
+const NewSiteFitCheck = lazy(() => import('./newsite/pages/NewSiteFitCheck'));
+const NewSiteHomeSecurityPlanner = lazy(() => import('./newsite/pages/NewSiteHomeSecurityPlanner'));
+const NewSiteQuote = lazy(() => import('./newsite/pages/NewSiteQuote'));
 const NewSiteHomeSecurityPayDeposit = lazy(() => import('./newsite/pages/HomeSecurityPayDeposit'));
 const NewSiteHomeSecurityPaymentSuccess = lazy(() => import('./newsite/pages/HomeSecurityPaymentSuccess'));
 const NewSiteHomeSecurityPaymentCancel = lazy(() => import('./newsite/pages/HomeSecurityPaymentCancel'));
@@ -200,6 +203,9 @@ const App = () => {
             <Route path="demos/ha-gold-dashboard" element={<DemoHAGoldDashboard />} />
             <Route path="home-security/packages" element={<HomeSecurityPackages />} />
             <Route path="home-security/packages/:tier" element={<HomeSecurityPackageTierPage />} />
+            <Route path="home-security/fit-check" element={<NewSiteFitCheck />} />
+            <Route path="home-security/planner" element={<NewSiteHomeSecurityPlanner />} />
+            <Route path="quote" element={<NewSiteQuote />} />
             <Route path="home-security/pay-deposit" element={<NewSiteHomeSecurityPayDeposit />} />
             <Route path="home-security/payment/success" element={<NewSiteHomeSecurityPaymentSuccess />} />
             <Route path="home-security/payment/cancel" element={<NewSiteHomeSecurityPaymentCancel />} />

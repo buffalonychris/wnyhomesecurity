@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AccordionSection from '../components/AccordionSection';
 import FloorplanCanvas from '../components/floorplan/FloorplanCanvas';
@@ -70,6 +70,16 @@ import { migrateFloorplanPlacements } from '../lib/homeSecurityFunnel';
 import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
 import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
 import { HOME_SECURITY_ROUTES, appendQueryParam } from '../content/wnyhsNavigation';
+import '../styles/homeSecurityPremium.css';
+
+type HomeSecurityPlannerProps = {
+  layout?: 'legacy' | 'newsite';
+  routeOverrides?: Partial<{
+    discovery: string;
+    packages: string;
+    quote: string;
+  }>;
+};
 
 const priorityOptions = ['Security', 'Packages', 'Water'] as const;
 const wallOptions: Array<{ value: FloorplanWall; label: string }> = [
@@ -314,7 +324,7 @@ const applyTemplateToFloors = (
   return { ...floorplan, floors: nextFloors };
 };
 
-const HomeSecurityPlanner = () => {
+const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurityPlannerProps) => {
   useLayoutConfig({
     layoutVariant: 'funnel',
     showBreadcrumbs: false,
@@ -686,7 +696,7 @@ const HomeSecurityPlanner = () => {
         },
       },
     });
-    navigate(appendQueryParam(HOME_SECURITY_ROUTES.quote, 'tier', recommendedPackageId));
+    navigate(appendQueryParam(routeConfig.quote, 'tier', recommendedPackageId));
   };
 
   const handleSelectFloor = (floorId: string) => {
@@ -1035,12 +1045,32 @@ const HomeSecurityPlanner = () => {
     return `${label} covers your doors without add-ons.`;
   }, [plan, selectedTier]);
   const redirectMessage = (location.state as { message?: string } | undefined)?.message;
+  const routeConfig = useMemo(
+    () => ({
+      discovery: HOME_SECURITY_ROUTES.discovery,
+      packages: HOME_SECURITY_ROUTES.packages,
+      quote: HOME_SECURITY_ROUTES.quote,
+      ...routeOverrides,
+    }),
+    [routeOverrides],
+  );
+  const advancedBadgeStyle: CSSProperties = {
+    fontSize: '0.75rem',
+    textTransform: 'uppercase',
+    letterSpacing: '0.08em',
+    padding: '0.35rem 0.6rem',
+    borderRadius: '999px',
+    background: 'rgba(108, 246, 255, 0.12)',
+    color: 'rgba(214, 233, 248, 0.9)',
+    width: 'fit-content',
+  };
 
-  return (
-    <WnyhsFunnelLayout showStepRail>
+  const plannerContent = (
+    <>
       <div className="wnyhs-funnel-stack">
         {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <span style={advancedBadgeStyle}>Advanced</span>
           <WnyhsFunnelStepHeader
             stepId="planner"
             title="Planner"
@@ -1235,10 +1265,10 @@ const HomeSecurityPlanner = () => {
             <button type="button" className="btn btn-primary" onClick={handleSaveDraft}>
               Save draft
             </button>
-            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.discovery}>
+            <Link className="btn btn-link" to={routeConfig.discovery}>
               Back to Fit Check
             </Link>
-            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
+            <Link className="btn btn-link" to={routeConfig.packages}>
               Back to Packages
             </Link>
             <button type="button" className="btn btn-secondary" onClick={handleContinue}>
@@ -2521,8 +2551,14 @@ const HomeSecurityPlanner = () => {
           <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.8)' }}>You can change anything on the quote page.</p>
         </div>
       </div>
-    </WnyhsFunnelLayout>
+    </>
   );
+
+  if (layout === 'newsite') {
+    return <div className="newsite-container newsite-section">{plannerContent}</div>;
+  }
+
+  return <WnyhsFunnelLayout showStepRail>{plannerContent}</WnyhsFunnelLayout>;
 };
 
 export default HomeSecurityPlanner;
