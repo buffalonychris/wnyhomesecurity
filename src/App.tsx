@@ -81,6 +81,8 @@ const NewSiteLayout = lazy(() => import('./newsite/layout/NewSiteLayout'));
 const NewSiteHome = lazy(() => import('./newsite/pages/NewSiteHome'));
 const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
 const DemoHAGoldDashboard = lazy(() => import('./newsite/pages/DemoHAGoldDashboard'));
+const HomeSecurityPackages = lazy(() => import('./newsite/pages/HomeSecurityPackages'));
+const HomeSecurityPackageTierPage = lazy(() => import('./newsite/pages/HomeSecurityPackageTier'));
 
 const HomeRoute = () => {
   const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
@@ -190,6 +192,8 @@ const App = () => {
             <Route index element={<NewSiteHome />} />
             <Route path="demos" element={<DemosIndex />} />
             <Route path="demos/ha-gold-dashboard" element={<DemoHAGoldDashboard />} />
+            <Route path="home-security/packages" element={<HomeSecurityPackages />} />
+            <Route path="home-security/packages/:tier" element={<HomeSecurityPackageTierPage />} />
           </Route>
           <Route element={<OperatorLayout />}>
             <Route path="/operator" element={<Operator />} />

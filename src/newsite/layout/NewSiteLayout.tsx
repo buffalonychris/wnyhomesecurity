@@ -39,7 +39,15 @@ const NewSiteLayout = () => {
         </div>
         <div id="newsite-nav-menu" className={`newsite-nav-menu${menuOpen ? ' is-open' : ''}`}>
           <nav className="newsite-container newsite-nav-links" aria-label="NewSite primary navigation">
-            <NavLink to="/newsite#packages">Packages</NavLink>
+            <details className="newsite-dropdown">
+              <summary>Packages</summary>
+              <div className="newsite-dropdown-panel">
+                <NavLink to="/newsite/home-security/packages">All packages</NavLink>
+                <NavLink to="/newsite/home-security/packages/bronze">Bronze package</NavLink>
+                <NavLink to="/newsite/home-security/packages/silver">Silver package</NavLink>
+                <NavLink to="/newsite/home-security/packages/gold">Gold package</NavLink>
+              </div>
+            </details>
             <details className="newsite-dropdown">
               <summary>How it works</summary>
               <div className="newsite-dropdown-panel">

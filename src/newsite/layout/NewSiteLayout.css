@@ -193,6 +193,26 @@
   border-color: var(--ns-border);
 }
 
+.newsite-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.newsite-price {
+  font-weight: 600;
+  color: var(--ns-text-strong);
+}
+
+.newsite-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--ns-text);
+  display: grid;
+  gap: 0.4rem;
+}
+
 .newsite-section {
   margin-top: var(--ns-spacing-xl);
 }
