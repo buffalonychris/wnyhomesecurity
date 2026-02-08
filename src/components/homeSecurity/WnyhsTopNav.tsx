@@ -1,81 +1,36 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
+import { getAllHomeSecurityNavItems, getHomeSecurityNavGroups, homeSecurityMarketingNav } from '../../content/wnyhsNavigation';
 
 type WnyhsTopNavProps = {
   ctaLink: string;
 };
 
-type NavItem = {
-  label: string;
-  href: string;
-  external?: boolean;
-};
-
-const APP_ROUTES = new Set(['/comparison', '/home-security/whats-included']);
-
 const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
-  const hasComparisonRoute = APP_ROUTES.has('/comparison');
-  const hasWhatsIncludedRoute = APP_ROUTES.has('/home-security/whats-included');
-  const comparisonHref = hasComparisonRoute ? '/comparison?vertical=home-security' : '/home-security#comparison';
-  const whatsIncludedHref = hasWhatsIncludedRoute ? '/home-security/whats-included' : '/home-security#whats-included';
 
   useEffect(() => {
     setMenuOpen(false);
     setMoreOpen(false);
   }, [location.pathname, location.search, location.hash]);
 
-  const navItems = useMemo<NavItem[]>(() => {
-    return [
-      { label: 'Home', href: '/home-security' },
-      { label: 'Packages', href: '/packages?vertical=home-security' },
-      { label: 'Comparison', href: comparisonHref },
-      { label: 'What’s Included', href: whatsIncludedHref },
-      { label: 'Dashboard Demo', href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html', external: true },
-      { label: 'About', href: '/about?vertical=home-security' },
-      { label: 'Contact', href: '/contact?vertical=home-security' },
-      { label: 'Support', href: '/support?vertical=home-security' },
-      { label: 'Privacy', href: '/privacy?vertical=home-security' },
-      { label: 'Terms', href: '/terms?vertical=home-security' },
-    ];
-  }, [comparisonHref, whatsIncludedHref]);
+  const drawerGroups = getHomeSecurityNavGroups();
+  type NavItem = ReturnType<typeof getAllHomeSecurityNavItems>[number];
 
-  const primaryNavItems = navItems.filter((item) =>
-    ['Home', 'Packages', 'Comparison', 'What’s Included'].includes(item.label),
-  );
-
-  const moreNavItems = navItems.filter((item) =>
-    ['Dashboard Demo', 'About', 'Contact', 'Support', 'Privacy', 'Terms'].includes(item.label),
-  );
-
-  const drawerGroups = [
-    {
-      title: 'Primary',
-      items: navItems.filter((item) =>
-        ['Home', 'Packages', 'Comparison', 'What’s Included'].includes(item.label),
-      ),
-    },
-    {
-      title: 'More',
-      items: navItems.filter((item) => ['Dashboard Demo', 'About', 'Contact', 'Support', 'Privacy', 'Terms'].includes(item.label)),
-    },
-  ];
-
-  const isActiveLink = (href: string) => {
-    if (href.startsWith('http') || href.startsWith('mailto:')) {
+  const isActiveLink = (item: NavItem) => {
+    if (item.external || item.href.startsWith('http') || item.href.startsWith('mailto:')) {
       return false;
     }
-    const [pathWithQuery, hash] = href.split('#');
-    const [path] = pathWithQuery.split('?');
-    const pathMatches = location.pathname === path;
-    if (!hash) return pathMatches;
-    return pathMatches && location.hash === `#${hash}`;
+    const matchPath = item.matchPath ?? item.href.split('?')[0].split('#')[0];
+    const pathMatches = location.pathname === matchPath;
+    if (!item.matchHash) return pathMatches;
+    return pathMatches && location.hash === item.matchHash;
   };
 
-  const isMoreActive = moreNavItems.some((item) => isActiveLink(item.href));
+  const isMoreActive = homeSecurityMarketingNav.more.some((item) => isActiveLink(item));
 
   return (
     <header className="wnyhs-top-nav">
@@ -96,8 +51,8 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
         </Link>
 
         <nav className="wnyhs-top-nav-links" aria-label="WNY Home Security">
-          {primaryNavItems.map((item) => {
-            const active = isActiveLink(item.href);
+          {homeSecurityMarketingNav.primary.map((item) => {
+            const active = isActiveLink(item);
             const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
             if (item.external) {
               return (
@@ -136,8 +91,8 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
               className={`wnyhs-top-nav-more-menu${moreOpen ? ' is-open' : ''}`}
               role="menu"
             >
-              {moreNavItems.map((item) => {
-                const active = isActiveLink(item.href);
+          {homeSecurityMarketingNav.more.map((item) => {
+                const active = isActiveLink(item);
                 const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
                 if (item.external) {
                   return (
@@ -192,7 +147,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
               <p className="wnyhs-top-nav-drawer-title">{group.title}</p>
               <div className="wnyhs-top-nav-drawer-links">
                 {group.items.map((item) => {
-                  const active = isActiveLink(item.href);
+                  const active = isActiveLink(item);
                   const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
                   if (item.external) {
                     return (

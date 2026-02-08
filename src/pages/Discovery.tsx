@@ -1,13 +1,15 @@
 import { useEffect, useMemo } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import FitCheck from '../components/FitCheck';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { fitCheckConfigs } from '../content/fitCheckConfigs';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { updateRetailFlow } from '../lib/retailFlow';
+import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const Discovery = () => {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const requestedVertical = searchParams.get('vertical') ?? 'home-security';
   const pathParam = searchParams.get('path');
 
@@ -21,10 +23,16 @@ const Discovery = () => {
   useLayoutConfig({
     layoutVariant: 'funnel',
     showBreadcrumbs: true,
-    breadcrumb: [
-      { label: 'Discovery', href: `/discovery?vertical=${resolvedVertical}` },
-      { label: 'Fit Check' },
-    ],
+    breadcrumb:
+      resolvedVertical === 'home-security'
+        ? [
+            { label: 'Home Security', href: HOME_SECURITY_ROUTES.home },
+            { label: 'Fit Check' },
+          ]
+        : [
+            { label: 'Discovery', href: `/discovery?vertical=${resolvedVertical}` },
+            { label: 'Fit Check' },
+          ],
   });
 
   const config = fitCheckConfigs[resolvedVertical];
@@ -37,6 +45,8 @@ const Discovery = () => {
     }
   }, [isHomeSecurity, pathParam]);
 
+  const redirectMessage = (location.state as { message?: string } | undefined)?.message;
+
   return (
     <WnyhsFunnelLayout showStepRail={isHomeSecurity}>
       <div className="wnyhs-funnel-stack">
@@ -47,6 +57,11 @@ const Discovery = () => {
             </Link>
           </div>
         )}
+        {redirectMessage ? (
+          <div className="card" style={{ border: '1px solid rgba(245, 192, 66, 0.35)', color: '#c8c0aa' }}>
+            {redirectMessage}
+          </div>
+        ) : null}
         {isHomeSecurity && (
           <div className="hero-card" style={{ display: 'grid', gap: '0.5rem' }}>
             <div className="badge">Step 1 — Fit Check</div>

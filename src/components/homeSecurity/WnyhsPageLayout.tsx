@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
+import { getHomeSecurityCtaLink, HOME_SECURITY_ROUTES } from '../../content/wnyhsNavigation';
 import FunnelStepRail from './FunnelStepRail';
 import WnyhsTopNav from './WnyhsTopNav';
 import '../../styles/homeSecurityPremium.css';
@@ -12,14 +13,14 @@ type WnyhsPageLayoutProps = {
   children: ReactNode;
 };
 
-const WnyhsPageLayout = ({ mode, ctaLink = '/discovery?vertical=home-security', showStepRail, children }: WnyhsPageLayoutProps) => {
+const WnyhsPageLayout = ({ mode, ctaLink = getHomeSecurityCtaLink(), showStepRail, children }: WnyhsPageLayoutProps) => {
   return (
     <div className={`wnyhs-page-layout wnyhs-page-layout--${mode}`}>
       {mode === 'marketing' ? (
         <WnyhsTopNav ctaLink={ctaLink} />
       ) : (
         <div className="wnyhs-funnel-header">
-          <Link to="/home-security" className="wnyhs-funnel-brand" aria-label={`${brandHomeSecurity} home`}>
+          <Link to={HOME_SECURITY_ROUTES.home} className="wnyhs-funnel-brand" aria-label={`${brandHomeSecurity} home`}>
             <span className="wnyhs-funnel-brand-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img" focusable="false">
                 <path
@@ -33,7 +34,7 @@ const WnyhsPageLayout = ({ mode, ctaLink = '/discovery?vertical=home-security', 
             </span>
             <span>{brandHomeSecurity}</span>
           </Link>
-          <Link className="btn btn-secondary wnyhs-funnel-exit" to="/home-security">
+          <Link className="btn btn-secondary wnyhs-funnel-exit" to={HOME_SECURITY_ROUTES.home}>
             Exit to Home
           </Link>
         </div>

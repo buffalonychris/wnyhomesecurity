@@ -40,9 +40,11 @@ const Payment = () => {
 
   useEffect(() => {
     const flow = loadRetailFlow();
-    const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
-    if (!flow.quote && isHomeSecurityHost) {
-      navigate('/discovery?vertical=home-security', { replace: true });
+    if (!flow.quote) {
+      navigate('/discovery?vertical=home-security', {
+        replace: true,
+        state: { message: 'Please complete the Fit Check and Quote before leaving a deposit.' },
+      });
     }
   }, [navigate]);
 

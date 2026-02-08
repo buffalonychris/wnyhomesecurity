@@ -16,6 +16,7 @@ import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from '../lib/homeSecurityFunnel';
+import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
 import {
   HOME_SECURITY_CLARITY_FOOTER,
   getHomeSecurityHardwareList,
@@ -53,7 +54,7 @@ const Quote = () => {
     breadcrumb: isHomeSecurity
       ? [
           { label: 'Home Security', href: '/home-security' },
-          { label: 'Build a quote' },
+          { label: 'Quote' },
         ]
       : [],
   });
@@ -507,6 +508,7 @@ const Quote = () => {
             </small>
           </div>
         </div>
+        {isHomeSecurity ? <SelfMonitoringDisclosure variant="short" className="ka-disclosure--spaced" /> : null}
 
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           {!isHomeSecurity && (

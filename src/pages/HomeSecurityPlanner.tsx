@@ -316,7 +316,7 @@ const HomeSecurityPlanner = () => {
     showBreadcrumbs: true,
     breadcrumb: [
       { label: 'Home Security', href: '/home-security' },
-      { label: 'Precision Planner' },
+      { label: 'Planner' },
     ],
   });
 
@@ -1030,8 +1030,8 @@ const HomeSecurityPlanner = () => {
     <WnyhsFunnelLayout showStepRail>
       <div className="wnyhs-funnel-stack" style={{ display: 'grid', gap: '1.5rem' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <h1 className="wnyhs-funnel-title">Step 3: Precision Planner</h1>
-          <p className="wnyhs-funnel-subtitle">Optional. For customers who want surgical precision.</p>
+          <h1 className="wnyhs-funnel-title">Step 3: Planner</h1>
+          <p className="wnyhs-funnel-subtitle">Precision Planner (optional) for customers who want surgical precision.</p>
           <p className="wnyhs-funnel-subtitle">This does not change your package unless you choose to.</p>
         </div>
 
