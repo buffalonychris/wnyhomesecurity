@@ -1,0 +1,16 @@
+.newsite-theme {
+  --ns-color-bg: #0b0a08;
+  --ns-color-surface: #15120d;
+  --ns-color-surface-strong: #1f1a13;
+  --ns-color-border: rgba(203, 171, 129, 0.24);
+  --ns-color-text: #f7f1e8;
+  --ns-color-text-muted: #d7c7b4;
+  --ns-color-text-strong: #fff8ee;
+  --ns-color-accent: #e1b278;
+  --ns-color-accent-strong: #f0c992;
+  --ns-color-accent-soft: rgba(225, 178, 120, 0.16);
+  --ns-color-nav-backdrop: rgba(11, 10, 8, 0.9);
+  --ns-color-accent-contrast: #0b0a08;
+  --ns-shadow-soft-color: 0 18px 45px rgba(8, 6, 4, 0.55);
+  --ns-shadow-strong-color: 0 24px 70px rgba(6, 4, 2, 0.7);
+}

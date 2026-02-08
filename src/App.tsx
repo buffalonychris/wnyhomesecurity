@@ -77,6 +77,10 @@ const Pricing = lazy(() => import('./pages/Pricing'));
 const FiveDayDemo = lazy(() => import('./pages/FiveDayDemo'));
 const Partners = lazy(() => import('./pages/Partners'));
 const Support = lazy(() => import('./pages/Support'));
+const NewSiteLayout = lazy(() => import('./newsite/layout/NewSiteLayout'));
+const NewSiteHome = lazy(() => import('./newsite/pages/NewSiteHome'));
+const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
+const DemoHAGoldDashboard = lazy(() => import('./newsite/pages/DemoHAGoldDashboard'));
 
 const HomeRoute = () => {
   const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
@@ -181,6 +185,11 @@ const App = () => {
             <Route path="/5-day-demo" element={<FiveDayDemo />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/support" element={<Support />} />
+          </Route>
+          <Route path="/newsite" element={<NewSiteLayout />}>
+            <Route index element={<NewSiteHome />} />
+            <Route path="demos" element={<DemosIndex />} />
+            <Route path="demos/ha-gold-dashboard" element={<DemoHAGoldDashboard />} />
           </Route>
           <Route element={<OperatorLayout />}>
             <Route path="/operator" element={<Operator />} />
