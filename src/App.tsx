@@ -34,8 +34,10 @@ const AgreementReview = lazy(() => import('./pages/AgreementReview'));
 const AgreementPrint = lazy(() => import('./pages/AgreementPrint'));
 const ESign = lazy(() => import('./pages/ESign'));
 const Payment = lazy(() => import('./pages/Payment'));
+const HomeSecurityPayDeposit = lazy(() => import('./pages/HomeSecurityPayDeposit'));
 const HomeSecurityPaymentSuccess = lazy(() => import('./pages/HomeSecurityPaymentSuccess'));
 const HomeSecurityPaymentCanceled = lazy(() => import('./pages/HomeSecurityPaymentCanceled'));
+const HomeSecurityPaymentCancel = lazy(() => import('./pages/HomeSecurityPaymentCancel'));
 const PaymentProcessing = lazy(() => import('./pages/PaymentProcessing'));
 const Schedule = lazy(() => import('./pages/Schedule'));
 const UAT = lazy(() => import('./pages/UAT'));
@@ -115,8 +117,10 @@ const App = () => {
             <Route path="/agreementPrint" element={<AgreementPrint />} />
             <Route path="/esign" element={<ESign />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/home-security/pay-deposit" element={<HomeSecurityPayDeposit />} />
             <Route path="/home-security/payment/success" element={<HomeSecurityPaymentSuccess />} />
             <Route path="/home-security/payment/canceled" element={<HomeSecurityPaymentCanceled />} />
+            <Route path="/home-security/payment/cancel" element={<HomeSecurityPaymentCancel />} />
             <Route path="/payment-processing" element={<PaymentProcessing />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/resume" element={<Resume />} />
