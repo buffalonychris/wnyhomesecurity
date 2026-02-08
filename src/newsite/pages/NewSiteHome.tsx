@@ -149,7 +149,7 @@ const NewSiteHome = () => {
         <div className="newsite-surface">
           <h2>Connect with a security advisor</h2>
           <p>Call us at (716) 391-2405 or request a callback to begin planning your system.</p>
-          <NavLink className="newsite-btn" to="/contact">
+          <NavLink className="newsite-btn" to="/newsite/contact">
             Request callback
           </NavLink>
         </div>

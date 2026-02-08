@@ -59,14 +59,14 @@ const NewSiteLayout = () => {
             </details>
             <NavLink to="/newsite#pricing">Pricing</NavLink>
             <NavLink to="/newsite#faq">FAQ</NavLink>
-            <NavLink to="/newsite#contact">Contact</NavLink>
+            <NavLink to="/newsite/contact">Contact</NavLink>
             <details className="newsite-dropdown">
               <summary>Get Started</summary>
               <div className="newsite-dropdown-panel">
                 <NavLink to="/quote">Start online quote</NavLink>
                 <NavLink to="/newsite/home-security/pay-deposit">Pay deposit</NavLink>
-                <NavLink to="/contact">Request callback</NavLink>
-                <NavLink to="/schedule">Request on-site quote</NavLink>
+                <NavLink to="/newsite/callback">Request callback</NavLink>
+                <NavLink to="/newsite/on-site-quote">Request on-site quote</NavLink>
               </div>
             </details>
           </nav>
@@ -81,7 +81,7 @@ const NewSiteLayout = () => {
             <NavLink to="/privacy">Privacy</NavLink>
             <NavLink to="/terms">Terms</NavLink>
             <NavLink to="/support">Support</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/newsite/contact">Contact</NavLink>
           </div>
           <div className="newsite-footer-meta">
             Premium security experiences tailored for Western New York households.

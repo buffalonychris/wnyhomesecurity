@@ -86,6 +86,9 @@ const HomeSecurityPackageTierPage = lazy(() => import('./newsite/pages/HomeSecur
 const NewSiteHomeSecurityPayDeposit = lazy(() => import('./newsite/pages/HomeSecurityPayDeposit'));
 const NewSiteHomeSecurityPaymentSuccess = lazy(() => import('./newsite/pages/HomeSecurityPaymentSuccess'));
 const NewSiteHomeSecurityPaymentCancel = lazy(() => import('./newsite/pages/HomeSecurityPaymentCancel'));
+const NewSiteContact = lazy(() => import('./newsite/pages/NewSiteContact'));
+const NewSiteCallback = lazy(() => import('./newsite/pages/NewSiteCallback'));
+const NewSiteOnSiteQuote = lazy(() => import('./newsite/pages/NewSiteOnSiteQuote'));
 
 const HomeRoute = () => {
   const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
@@ -200,6 +203,9 @@ const App = () => {
             <Route path="home-security/pay-deposit" element={<NewSiteHomeSecurityPayDeposit />} />
             <Route path="home-security/payment/success" element={<NewSiteHomeSecurityPaymentSuccess />} />
             <Route path="home-security/payment/cancel" element={<NewSiteHomeSecurityPaymentCancel />} />
+            <Route path="contact" element={<NewSiteContact />} />
+            <Route path="callback" element={<NewSiteCallback />} />
+            <Route path="on-site-quote" element={<NewSiteOnSiteQuote />} />
           </Route>
           <Route element={<OperatorLayout />}>
             <Route path="/operator" element={<Operator />} />
