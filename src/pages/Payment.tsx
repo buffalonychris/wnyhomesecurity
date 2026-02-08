@@ -39,7 +39,7 @@ const Payment = () => {
   const [stripeMessage, setStripeMessage] = useState('');
   const [stripeLoading, setStripeLoading] = useState(false);
   const stripePublishableKey = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env
-    ?.STRIPE_PUBLISHABLE_KEY;
+    ?.VITE_STRIPE_PUBLISHABLE_KEY;
 
   useEffect(() => {
     markFlowStep('payment');
@@ -92,7 +92,9 @@ const Payment = () => {
     let isMounted = true;
     const syncDepositStatus = async () => {
       try {
-        const response = await fetch(`/api/deposit-status?quoteRef=${encodeURIComponent(buildQuoteReference(quoteContext))}`);
+        const response = await fetch(
+          `/api/deposit-status?quoteRef=${encodeURIComponent(quoteContext.quoteReference ?? buildQuoteReference(quoteContext))}`,
+        );
         const data = (await response.json().catch(() => null)) as { status?: PaymentStatus } | null;
         if (isMounted && data?.status === 'completed') {
           setDepositStatus('completed');
@@ -133,9 +135,18 @@ const Payment = () => {
   const depositDue = useMemo(() => calculateDepositDue(total, siteConfig.depositPolicy), [total]);
   const balanceDue = useMemo(() => Math.max(total - depositDue, 0), [depositDue, total]);
   const resumeUrl = useMemo(() => (quoteContext ? buildResumeUrl(quoteContext, 'payment') : ''), [quoteContext]);
-  const quoteRef = quoteContext ? buildQuoteReference(quoteContext) : '';
-  const billingMailto = buildBillingMailto({ quoteRef, amount: depositDue ? formatCurrency(depositDue) : undefined });
-  const supportMailto = buildSupportMailto({ quoteRef, issue: 'Help with deposit checkout.' });
+  const quoteRef = quoteContext ? quoteContext.quoteReference ?? buildQuoteReference(quoteContext) : '';
+  const billingMailto = buildBillingMailto({
+    quoteRef,
+    tier: quoteContext ? getPackagePricing(quoteContext.vertical ?? 'elder-tech').find((pkg) => pkg.id === quoteContext.packageId)?.name : undefined,
+    question: depositDue ? `Deposit due today is ${formatCurrency(depositDue)}.` : undefined,
+    pageRoute: `${location.pathname}${location.search}`,
+  });
+  const supportMailto = buildSupportMailto({
+    quoteRef,
+    issue: 'Help with deposit checkout.',
+    pageRoute: `${location.pathname}${location.search}`,
+  });
 
   const handleSimulate = (status: PaymentStatus) => {
     setDepositStatus(status);
@@ -179,7 +190,7 @@ const Payment = () => {
     if (leadRequestStatus === 'sending') return;
     setLeadRequestStatus('sending');
     const customerEmail = saveEmail || acceptanceRecord?.emailTo || quoteContext?.contact;
-    const referenceId = quoteContext ? buildQuoteReference(quoteContext) : undefined;
+    const referenceId = quoteRef || undefined;
     const payload = {
       event: 'Lead Signal: Payment Next Steps Requested',
       customerEmail,
@@ -250,7 +261,7 @@ const Payment = () => {
 
     setStripeLoading(true);
 
-    const quoteRef = buildQuoteReference(quoteContext);
+    const quoteRef = quoteContext.quoteReference ?? buildQuoteReference(quoteContext);
 
     try {
       const response = await fetch('/api/create-checkout-session', {
@@ -381,7 +392,7 @@ const Payment = () => {
                     {wnyhsContact.emails.billing}
                   </a>{' '}
                   or call{' '}
-                  <a href={buildTel(wnyhsContact.phone.tel)} style={{ color: '#f5c042' }}>
+                  <a href={buildTel()} style={{ color: '#f5c042' }}>
                     {wnyhsContact.phone.display}
                   </a>{' '}
                   to arrange the deposit.

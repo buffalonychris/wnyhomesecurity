@@ -147,10 +147,11 @@ const QuotePrint = () => {
     );
   }
 
-  const reference = buildQuoteReference(quote);
+  const reference = quote.quoteReference ?? buildQuoteReference(quote);
   const quoteDate = formatQuoteDate(quote.generatedAt);
   const customerName = quote.customerName?.trim() || 'Customer';
   const quoteVersion = quote.quoteDocVersion ?? siteConfig.quoteDocVersion;
+  const isHomeSecurity = quote.vertical === 'home-security';
   const resumeUrl = buildResumeUrl(quote, 'agreement');
   const depositDue = calculateDepositDue(quote.pricing.total, siteConfig.depositPolicy);
   const balanceDue = Math.max(quote.pricing.total - depositDue, 0);
@@ -166,7 +167,7 @@ const QuotePrint = () => {
           <div style={{ textAlign: 'right', fontSize: '0.95rem' }}>
             <div>Date: {quoteDate}</div>
             <div>Quote Ref: {reference}</div>
-            <div>Quote Version: {quoteVersion}</div>
+            {!isHomeSecurity && <div>Quote Version: {quoteVersion}</div>}
           </div>
         </header>
 

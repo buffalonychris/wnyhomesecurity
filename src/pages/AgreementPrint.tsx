@@ -53,7 +53,7 @@ const AgreementPrint = () => {
     const shouldAutoPrint = (location.state as { autoPrint?: boolean } | null)?.autoPrint ?? true;
     const name = quote.customerName?.trim() || 'Customer';
     const date = formatQuoteDate(quote.generatedAt);
-    const reference = buildAgreementReference(quote);
+    const reference = quote.agreementReference ?? buildAgreementReference(quote);
 
     if (!shouldAutoPrint) return undefined;
 
@@ -142,11 +142,12 @@ const AgreementPrint = () => {
     );
   }
 
-  const agreementReference = buildAgreementReference(quote);
+  const agreementReference = quote.agreementReference ?? buildAgreementReference(quote);
   const resumeUrl = acceptance?.accepted ? buildResumeUrl(quote, 'payment') : buildResumeUrl(quote, 'agreement');
   const docDate = formatQuoteDate(quote.generatedAt ?? agreement.header.generatedDate);
   const customerName = quote.customerName?.trim() || 'Customer';
   const agreementVersion = siteConfig.agreementDocVersion;
+  const isHomeSecurity = quote.vertical === 'home-security';
   const depositDue = calculateDepositDue(quote.pricing.total, siteConfig.depositPolicy);
   const balanceDue = Math.max(quote.pricing.total - depositDue, 0);
 
@@ -169,7 +170,7 @@ const AgreementPrint = () => {
           <div style={{ textAlign: 'right', fontSize: '0.95rem', display: 'grid', gap: '0.35rem' }}>
             <div>Date: {docDate}</div>
             <div>Agreement Ref: {agreementReference}</div>
-            <div>Agreement Version: {agreementVersion}</div>
+            {!isHomeSecurity && <div>Agreement Version: {agreementVersion}</div>}
             <div>This agreement supersedes prior agreements for the same customer/property context.</div>
             <div>Quote Ref: {agreement.quoteBinding.reference}</div>
             <div style={{ fontWeight: 700, color: '#000', marginTop: '0.5rem', display: 'grid', gap: '0.25rem' }}>

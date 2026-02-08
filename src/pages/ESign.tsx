@@ -35,7 +35,7 @@ const ESign = () => {
         </a>
         {state?.quoteContext && (
           <small style={{ color: '#c8c0aa' }}>
-            Quote reference: {buildQuoteReference(state.quoteContext)} — {getPackagePricing(state.quoteContext.vertical ?? 'elder-tech').find((pkg) => pkg.id === state.quoteContext?.packageId)?.name ?? 'Package'} — ${state.quoteContext.pricing.total.toLocaleString()}
+            Quote reference: {state.quoteContext.quoteReference ?? buildQuoteReference(state.quoteContext)} — {getPackagePricing(state.quoteContext.vertical ?? 'elder-tech').find((pkg) => pkg.id === state.quoteContext?.packageId)?.name ?? 'Package'} — ${state.quoteContext.pricing.total.toLocaleString()}
           </small>
         )}
       </div>

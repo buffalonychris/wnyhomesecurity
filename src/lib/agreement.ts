@@ -35,6 +35,8 @@ export type QuoteContext = {
     addOnTotal: number;
     total: number;
   };
+  quoteReference?: string;
+  agreementReference?: string;
   quoteHash?: string;
   priorQuoteHash?: string;
   quoteDocVersion?: string;

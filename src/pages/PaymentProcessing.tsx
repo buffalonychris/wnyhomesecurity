@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { siteConfig } from '../config/site';
 import { brandShort } from '../lib/brand';
 import { loadRetailFlow } from '../lib/retailFlow';
@@ -8,17 +9,24 @@ import { paymentTodayChecklist } from '../content/paymentInstallDay';
 import { calculateDepositDue } from '../lib/paymentTerms';
 import { buildBillingMailto, wnyhsContact } from '../content/wnyhsContact';
 import { buildQuoteReference } from '../lib/quoteUtils';
+import { getPackagePricing } from '../data/pricing';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 const PaymentProcessing = () => {
   const flow = loadRetailFlow();
+  const location = useLocation();
   const isHomeSecurity = flow.quote?.vertical === 'home-security';
   const total = flow.quote?.pricing.total ?? 0;
   const depositDue = useMemo(() => calculateDepositDue(total, siteConfig.depositPolicy), [total]);
   const balanceDue = useMemo(() => Math.max(total - depositDue, 0), [depositDue, total]);
-  const quoteRef = flow.quote ? buildQuoteReference(flow.quote) : undefined;
-  const billingMailto = buildBillingMailto({ quoteRef, amount: depositDue ? formatCurrency(depositDue) : undefined });
+  const quoteRef = flow.quote ? flow.quote.quoteReference ?? buildQuoteReference(flow.quote) : undefined;
+  const billingMailto = buildBillingMailto({
+    quoteRef,
+    tier: flow.quote ? getPackagePricing(flow.quote.vertical ?? 'elder-tech').find((pkg) => pkg.id === flow.quote?.packageId)?.name : undefined,
+    question: depositDue ? `Deposit due today is ${formatCurrency(depositDue)}.` : undefined,
+    pageRoute: `${location.pathname}${location.search}`,
+  });
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>

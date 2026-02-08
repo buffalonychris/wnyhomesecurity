@@ -11,7 +11,7 @@ import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
-import { buildScheduleHelpMailto, wnyhsContact } from '../content/wnyhsContact';
+import { buildScheduleHelpMailto, buildSms, buildTel, wnyhsContact } from '../content/wnyhsContact';
 import { buildQuoteReference } from '../lib/quoteUtils';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
@@ -77,10 +77,13 @@ const Schedule = () => {
     () => getAddOns(vertical).filter((addOn) => selectedAddOns.includes(addOn.id)).map((addOn) => addOn.label),
     [selectedAddOns, vertical]
   );
-  const quoteRef = quoteContext ? buildQuoteReference(quoteContext) : '';
+  const quoteRef = quoteContext ? quoteContext.quoteReference ?? buildQuoteReference(quoteContext) : '';
   const scheduleMailto = buildScheduleHelpMailto({
+    tier: selectedPackage.name,
     preferredWindows: [preferredTimeWindow1, preferredTimeWindow2].filter(Boolean),
     city: installCity || quoteContext?.city,
+    accessNotes,
+    pageRoute: `${location.pathname}${location.search}`,
   });
 
   const schedulingAllowed = Boolean(quoteContext && acceptance?.accepted && depositStatus === 'completed');
@@ -215,6 +218,14 @@ const Schedule = () => {
           <a href={scheduleMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
             Email {wnyhsContact.emails.schedule}
           </a>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <a href={buildTel()} style={{ color: '#f5c042' }}>
+              Call {wnyhsContact.phone.display}
+            </a>
+            <a href={buildSms('Hi! I need help scheduling my Home Security install.')} style={{ color: '#f5c042' }}>
+              Text {wnyhsContact.phone.display}
+            </a>
+          </div>
         </div>
       )}
 
