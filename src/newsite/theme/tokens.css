@@ -1,0 +1,28 @@
+:root {
+  --ns-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ns-font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --ns-radius-sm: 10px;
+  --ns-radius-md: 16px;
+  --ns-radius-lg: 24px;
+  --ns-radius-pill: 999px;
+  --ns-spacing-xs: 0.5rem;
+  --ns-spacing-sm: 0.75rem;
+  --ns-spacing-md: 1.25rem;
+  --ns-spacing-lg: 2rem;
+  --ns-spacing-xl: 3rem;
+  --ns-max-width: 1120px;
+  --ns-shadow-soft: var(--ns-shadow-soft-color);
+  --ns-shadow-strong: var(--ns-shadow-strong-color);
+  --ns-bg: var(--ns-color-bg);
+  --ns-surface: var(--ns-color-surface);
+  --ns-surface-strong: var(--ns-color-surface-strong);
+  --ns-border: var(--ns-color-border);
+  --ns-text: var(--ns-color-text);
+  --ns-text-muted: var(--ns-color-text-muted);
+  --ns-text-strong: var(--ns-color-text-strong);
+  --ns-accent: var(--ns-color-accent);
+  --ns-accent-strong: var(--ns-color-accent-strong);
+  --ns-accent-soft: var(--ns-color-accent-soft);
+  --ns-nav-bg: var(--ns-color-nav-backdrop);
+  --ns-text-on-accent: var(--ns-color-accent-contrast);
+}
