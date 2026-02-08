@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { generateNarrative, NarrativeResponse } from '../lib/narrative';
 import { getAddOns, getPackagePricing, PackageTierId } from '../data/pricing';
 import { brandSite } from '../lib/brand';
@@ -15,17 +15,22 @@ import ResponsivePublicImage from '../components/ResponsivePublicImage';
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
+import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
+import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from '../lib/homeSecurityFunnel';
 import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
+import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
 import {
   HOME_SECURITY_CLARITY_FOOTER,
   getHomeSecurityHardwareList,
 } from '../content/homeSecurityPackageData';
+import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 
 const Quote = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const vertical = resolveVertical(searchParams.get('vertical'));
   const isHomeSecurity = vertical === 'home-security';
@@ -50,18 +55,20 @@ const Quote = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Quote' },
-        ]
-      : [],
+    showBreadcrumbs: !isHomeSecurity,
+    breadcrumb: [],
   });
 
   useEffect(() => {
     markFlowStep('quote');
   }, []);
+
+  useEffect(() => {
+    if (!isHomeSecurity) return;
+    const gate = getHomeSecurityGateTarget(loadRetailFlow(), 'quote', searchParams.get('path'));
+    if (!gate) return;
+    navigate(gate.requiredStep.href, { replace: true, state: { message: gate.message } });
+  }, [isHomeSecurity, navigate, searchParams]);
 
   useEffect(() => {
     const pathParam = searchParams.get('path');
@@ -225,53 +232,55 @@ const Quote = () => {
     await navigator.clipboard.writeText(text);
   };
 
+  const redirectMessage = (location.state as { message?: string } | undefined)?.message;
+
   const content = (
-    <div className={isHomeSecurity ? 'wnyhs-funnel-stack' : 'container'} style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
+    <div className={isHomeSecurity ? 'wnyhs-funnel-stack' : 'container'} style={!isHomeSecurity ? { padding: '3rem 0', display: 'grid', gap: '2rem' } : undefined}>
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <Link className="btn btn-link" to="/discovery?vertical=home-security">
+          <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.discovery}>
             Back to Fit Check
           </Link>
-          <Link className="btn btn-link" to="/packages?vertical=home-security">
+          <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
             Change package
           </Link>
         </div>
       )}
+      {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
       <div className="hero-card motion-fade-up" style={{ display: 'grid', gap: '0.75rem' }}>
         {!isHomeSecurity && <div className="badge">Deterministic quote</div>}
         {isHomeSecurity ? (
-          <h1 className="wnyhs-funnel-title">Step 2: Quote</h1>
+          <WnyhsFunnelStepHeader
+            stepId="quote"
+            title="Quote"
+            description="Capture the basics, pick a package, and see an upfront one-time estimate."
+            support="Pricing uses a fixed table—no AI, no monthly subscriptions required."
+          />
         ) : (
           <h1 style={{ margin: 0, color: '#fff7e6' }}>{`Build a ${brandSite} quote`}</h1>
         )}
-        <p className={isHomeSecurity ? 'wnyhs-funnel-subtitle' : undefined} style={!isHomeSecurity ? { margin: 0, color: '#e6ddc7' } : undefined}>
-          Capture the basics, pick a package, and see an upfront one-time estimate. Pricing uses a
-          fixed table—no AI, no monthly subscriptions required.
-        </p>
+        {!isHomeSecurity && (
+          <p style={{ margin: 0, color: '#e6ddc7' }}>
+            Capture the basics, pick a package, and see an upfront one-time estimate. Pricing uses a
+            fixed table—no AI, no monthly subscriptions required.
+          </p>
+        )}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={generateQuote}
-            disabled={!packageId || (isHomeSecurity && !fitCheckComplete)}
-          >
-            {isHomeSecurity ? 'Review Your Quote' : 'Generate Quote'}
-          </button>
+          {isHomeSecurity && !fitCheckComplete ? (
+            <Link className="btn btn-primary" to={HOME_SECURITY_ROUTES.discovery}>
+              Go to Fit Check
+            </Link>
+          ) : (
+            <button type="button" className="btn btn-primary" onClick={generateQuote} disabled={!packageId}>
+              {isHomeSecurity ? 'Review your quote' : 'Generate Quote'}
+            </button>
+          )}
           {!isHomeSecurity && (
             <button type="button" className="btn btn-secondary" onClick={printQuote}>
               Print / Save PDF
             </button>
           )}
-          {isHomeSecurity && !fitCheckComplete ? (
-            <small style={{ color: '#f0b267' }}>
-              Complete the Fit Check before generating a Home Security quote.{' '}
-              <Link to="/discovery?vertical=home-security" style={{ color: 'var(--kaec-gold)' }}>
-                Go to Fit Check
-              </Link>
-            </small>
-          ) : (
-            !isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Direct navigation safe: /quote works online or offline cache.</small>
-          )}
+          {!isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Direct navigation safe: /quote works online or offline cache.</small>}
         </div>
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>

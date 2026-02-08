@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AccordionSection from '../components/AccordionSection';
 import FloorplanCanvas from '../components/floorplan/FloorplanCanvas';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
+import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
+import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import {
   DEVICE_CATALOG,
@@ -66,6 +68,8 @@ import {
 } from '../lib/homeSecurityPlannerEngine';
 import { migrateFloorplanPlacements } from '../lib/homeSecurityFunnel';
 import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
+import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
+import { HOME_SECURITY_ROUTES, appendQueryParam } from '../content/wnyhsNavigation';
 
 const priorityOptions = ['Security', 'Packages', 'Water'] as const;
 const wallOptions: Array<{ value: FloorplanWall; label: string }> = [
@@ -313,11 +317,8 @@ const applyTemplateToFloors = (
 const HomeSecurityPlanner = () => {
   useLayoutConfig({
     layoutVariant: 'funnel',
-    showBreadcrumbs: true,
-    breadcrumb: [
-      { label: 'Home Security', href: '/home-security' },
-      { label: 'Planner' },
-    ],
+    showBreadcrumbs: false,
+    breadcrumb: [],
   });
 
   const storedFlow = loadRetailFlow();
@@ -362,7 +363,15 @@ const HomeSecurityPlanner = () => {
   const [roomWidthInput, setRoomWidthInput] = useState('');
   const [roomDepthInput, setRoomDepthInput] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
   const workspaceHeight = 'max(620px, calc(100vh - 320px))';
+
+  useEffect(() => {
+    const pathParam = new URLSearchParams(location.search).get('path');
+    const gate = getHomeSecurityGateTarget(loadRetailFlow(), 'planner', pathParam);
+    if (!gate) return;
+    navigate(gate.requiredStep.href, { replace: true, state: { message: gate.message } });
+  }, [location.search, navigate]);
 
   const exteriorDoors = draft.exteriorDoors ?? [];
   const priorities = draft.priorities ?? [];
@@ -677,7 +686,7 @@ const HomeSecurityPlanner = () => {
         },
       },
     });
-    navigate(`/quote?vertical=home-security&tier=${recommendedPackageId}`);
+    navigate(appendQueryParam(HOME_SECURITY_ROUTES.quote, 'tier', recommendedPackageId));
   };
 
   const handleSelectFloor = (floorId: string) => {
@@ -1025,14 +1034,19 @@ const HomeSecurityPlanner = () => {
     const label = higherTier.tier.charAt(0).toUpperCase() + higherTier.tier.slice(1);
     return `${label} covers your doors without add-ons.`;
   }, [plan, selectedTier]);
+  const redirectMessage = (location.state as { message?: string } | undefined)?.message;
 
   return (
     <WnyhsFunnelLayout showStepRail>
-      <div className="wnyhs-funnel-stack" style={{ display: 'grid', gap: '1.5rem' }}>
+      <div className="wnyhs-funnel-stack">
+        {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <h1 className="wnyhs-funnel-title">Step 3: Planner</h1>
-          <p className="wnyhs-funnel-subtitle">Precision Planner (optional) for customers who want surgical precision.</p>
-          <p className="wnyhs-funnel-subtitle">This does not change your package unless you choose to.</p>
+          <WnyhsFunnelStepHeader
+            stepId="planner"
+            title="Planner"
+            description="Precision Planner (optional) for customers who want surgical precision."
+            support="This does not change your package unless you choose to."
+          />
         </div>
 
         <AccordionSection title="What the Precision Planner does" description="" defaultOpen={false}>
@@ -1221,10 +1235,10 @@ const HomeSecurityPlanner = () => {
             <button type="button" className="btn btn-primary" onClick={handleSaveDraft}>
               Save draft
             </button>
-            <Link className="btn btn-link" to="/discovery?vertical=home-security">
+            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.discovery}>
               Back to Fit Check
             </Link>
-            <Link className="btn btn-link" to="/packages?vertical=home-security">
+            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
               Back to Packages
             </Link>
             <button type="button" className="btn btn-secondary" onClick={handleContinue}>

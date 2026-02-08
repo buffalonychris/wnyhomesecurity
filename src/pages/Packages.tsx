@@ -30,13 +30,8 @@ const Packages = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Packages', href: '/packages?vertical=home-security' },
-        ]
-      : [],
+    showBreadcrumbs: !isHomeSecurity,
+    breadcrumb: [],
   });
 
   useEffect(() => {

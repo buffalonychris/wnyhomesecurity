@@ -56,12 +56,14 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
   ],
 };
 
+export const appendQueryParam = (href: string, key: string, value?: string | null) => {
+  if (!value) return href;
+  const separator = href.includes('?') ? '&' : '?';
+  return `${href}${separator}${key}=${encodeURIComponent(value)}`;
+};
+
 const appendPathParam = (href: string, pathParam?: string | null) => {
-  if (!pathParam) return href;
-  if (href.includes('?')) {
-    return `${href}&path=${pathParam}`;
-  }
-  return `${href}?path=${pathParam}`;
+  return appendQueryParam(href, 'path', pathParam);
 };
 
 export const getHomeSecurityFunnelSteps = (pathParam?: string | null): FunnelStepDefinition[] => [

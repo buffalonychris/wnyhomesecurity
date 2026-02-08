@@ -1,17 +1,22 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAddOns, getPackagePricing } from '../data/pricing';
 import { loadRetailFlow, markFlowStep, ScheduleRequest, updateRetailFlow } from '../lib/retailFlow';
 import FlowGuidePanel from '../components/FlowGuidePanel';
 import PaymentInstallDayAccordion from '../components/PaymentInstallDayAccordion';
 import TierBadge from '../components/TierBadge';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
+import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
+import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
 import { useLayoutConfig } from '../components/LayoutConfig';
+import { getHomeSecurityGateTarget } from '../lib/homeSecurityFunnelProgress';
+import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
 
 const Schedule = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [flowState, setFlowState] = useState(loadRetailFlow());
   const existingRequest = flowState.scheduleRequest;
   const [submitted, setSubmitted] = useState(Boolean(existingRequest));
@@ -34,17 +39,15 @@ const Schedule = () => {
     const stored = loadRetailFlow();
     setFlowState(stored);
     markFlowStep('schedule');
-    const missingRequiredState =
-      !stored.quote ||
-      !stored.agreementAcceptance?.accepted ||
-      stored.payment?.depositStatus !== 'completed';
-    if (missingRequiredState) {
-      navigate('/discovery?vertical=home-security', {
-        replace: true,
-        state: { message: 'Complete the Fit Check, Agreement, and Deposit before scheduling your installation.' },
-      });
+    if (stored.quote?.vertical && stored.quote.vertical !== 'home-security') {
+      return;
     }
-  }, [navigate]);
+    const pathParam = new URLSearchParams(location.search).get('path');
+    const gate = getHomeSecurityGateTarget(stored, 'schedule', pathParam);
+    if (gate) {
+      navigate(gate.requiredStep.href, { replace: true, state: { message: gate.message } });
+    }
+  }, [location.search, navigate]);
 
   const quoteContext = flowState.quote;
   const acceptance = flowState.agreementAcceptance;
@@ -55,13 +58,8 @@ const Schedule = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Schedule' },
-        ]
-      : [],
+    showBreadcrumbs: !isHomeSecurity,
+    breadcrumb: [],
   });
   const selectedPackage = useMemo(
     () => getPackagePricing(vertical).find((pkg) => pkg.id === quoteContext?.packageId) ?? getPackagePricing(vertical)[0],
@@ -151,36 +149,34 @@ const Schedule = () => {
 
   const timeWindowOptions = ['Morning', 'Afternoon', 'Evening'];
 
-  const gateCards: { condition: boolean; message: string; action?: () => void; actionLabel?: string }[] = [
-    {
-      condition: !acceptance?.accepted,
-      message: 'Acceptance required: Please review and accept the combined agreement before scheduling.',
-      action: () => navigate('/agreementReview'),
-      actionLabel: 'Review Agreement',
-    },
-    {
-      condition: depositStatus !== 'completed',
-      message: 'Scheduling opens once your deposit is confirmed.',
-      action: () => navigate('/payment'),
-      actionLabel: 'Return to Payment',
-    },
-  ];
+  const redirectMessage = (location.state as { message?: string } | undefined)?.message;
 
   const content = (
-    <div className={isHomeSecurity ? 'wnyhs-funnel-stack' : 'container'} style={{ padding: '3rem 0', display: 'grid', gap: '2rem' }}>
+    <div className={isHomeSecurity ? 'wnyhs-funnel-stack' : 'container'} style={!isHomeSecurity ? { padding: '3rem 0', display: 'grid', gap: '2rem' } : undefined}>
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <Link className="btn btn-secondary" to="/payment">
+          <Link className="btn btn-secondary" to={HOME_SECURITY_ROUTES.deposit}>
             Change Payment Method
           </Link>
         </div>
       )}
+      {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
       <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <div>
-            <div className="badge">Step 6 — Schedule</div>
-            <h1 className="wnyhs-funnel-title">Step 6: Schedule</h1>
-            <p className="wnyhs-funnel-subtitle">Scheduling opens after agreement acceptance and deposit confirmation.</p>
+            {isHomeSecurity ? (
+              <WnyhsFunnelStepHeader
+                stepId="schedule"
+                title="Schedule"
+                description="Scheduling opens after agreement acceptance and deposit confirmation."
+              />
+            ) : (
+              <>
+                <div className="badge">Schedule</div>
+                <h1 style={{ margin: 0, color: '#fff7e6' }}>Schedule installation</h1>
+                <p style={{ margin: 0, color: '#c8c0aa' }}>Confirm your address and preferred windows for installation.</p>
+              </>
+            )}
           </div>
           {!isHomeSecurity && (
             <button type="button" className="btn btn-primary" onClick={handlePrint}>
@@ -212,23 +208,6 @@ const Schedule = () => {
       />
 
       {isHomeSecurity && <PaymentInstallDayAccordion />}
-
-      {gateCards
-        .filter((gate) => gate.condition)
-        .map((gate) => (
-          <div
-            key={gate.message}
-            className="card"
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}
-          >
-            <span style={{ color: '#c8c0aa' }}>{gate.message}</span>
-            {gate.action && gate.actionLabel && (
-              <button type="button" className="btn btn-secondary" onClick={gate.action}>
-                {gate.actionLabel}
-              </button>
-            )}
-          </div>
-        ))}
 
       <div className="card" style={{ display: 'grid', gap: '1.25rem' }}>
         <div style={{ display: 'grid', gap: '0.35rem' }}>

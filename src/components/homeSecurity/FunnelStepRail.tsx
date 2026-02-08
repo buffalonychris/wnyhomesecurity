@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { defaultHomeSecurityFitCheckAnswers, isHomeSecurityFitCheckComplete } from '../../lib/homeSecurityFunnel';
 import { loadRetailFlow } from '../../lib/retailFlow';
 import { getHomeSecurityFunnelSteps } from '../../content/wnyhsNavigation';
+import { getHomeSecurityFunnelProgress } from '../../lib/homeSecurityFunnelProgress';
 
 const FunnelStepRail = () => {
   const location = useLocation();
@@ -11,16 +11,7 @@ const FunnelStepRail = () => {
   const pathParam = searchParams.get('path');
   const [gateMessage, setGateMessage] = useState('');
   const flowState = useMemo(() => loadRetailFlow(), [location.pathname, location.search]);
-  const fitCheckComplete = isHomeSecurityFitCheckComplete(
-    flowState.homeSecurity?.fitCheckAnswers ?? defaultHomeSecurityFitCheckAnswers,
-  );
-  const quoteComplete = Boolean(flowState.quote);
-  const plannerComplete = Boolean(flowState.homeSecurity?.plannerRecommendation || flowState.homeSecurity?.floorplan);
-  const agreementComplete = Boolean(flowState.agreementAcceptance?.accepted);
-  const paymentComplete = flowState.payment?.depositStatus === 'completed';
-  const scheduleComplete = Boolean(flowState.scheduleRequest);
-  const completionMap = [fitCheckComplete, quoteComplete, plannerComplete, agreementComplete, paymentComplete, scheduleComplete];
-  const earliestIncompleteIndex = Math.max(completionMap.findIndex((completed) => !completed), 0);
+  const { completionMap, earliestIncompleteIndex } = useMemo(() => getHomeSecurityFunnelProgress(flowState), [flowState]);
 
   const steps = useMemo(() => getHomeSecurityFunnelSteps(pathParam), [pathParam]);
 
@@ -31,9 +22,7 @@ const FunnelStepRail = () => {
   }, [gateMessage]);
 
   const requiredStep = steps[earliestIncompleteIndex];
-  const gateCopy = requiredStep
-    ? `Next up: ${requiredStep.label}. ${requiredStep.helperText ?? ''}`.trim()
-    : 'Complete the required step first.';
+  const gateCopy = requiredStep ? `To continue, complete ${requiredStep.label} first.` : 'Complete the required step first.';
 
   return (
     <div className="hs-funnel-step-rail-wrap">
@@ -60,7 +49,9 @@ const FunnelStepRail = () => {
                 aria-disabled="true"
                 onClick={() => {
                   setGateMessage(gateCopy);
-                  navigate(steps[earliestIncompleteIndex]?.href ?? steps[0].href);
+                  navigate(steps[earliestIncompleteIndex]?.href ?? steps[0].href, {
+                    state: { message: gateCopy },
+                  });
                 }}
               >
                 {step.label}

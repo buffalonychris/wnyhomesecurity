@@ -12,11 +12,8 @@ const tierOrder = ['a1', 'a2', 'a3'] as const;
 const HomeSecurityWhatsIncluded = () => {
   useLayoutConfig({
     layoutVariant: 'funnel',
-    showBreadcrumbs: true,
-    breadcrumb: [
-      { label: 'Home Security', href: '/home-security' },
-      { label: 'What’s Included' },
-    ],
+    showBreadcrumbs: false,
+    breadcrumb: [],
   });
 
   return (
