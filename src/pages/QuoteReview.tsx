@@ -345,15 +345,26 @@ const QuoteReview = () => {
     );
   }
 
-  const reference = buildQuoteReference(quote);
+  const reference = quote.quoteReference ?? buildQuoteReference(quote);
   const quoteHelpMailto = buildQuoteHelpMailto({
-    packageName: selectedPackage.name,
+    tier: selectedPackage.name,
+    addOns: selectedAddOns.map((addOn) => addOn.label),
+    city: quote.city,
+    contactMethod: email || quote.contact,
+    notes: 'Please help me refine my quote or answer a question.',
     quoteRef: reference,
-    date: formatQuoteDate(quote.generatedAt),
+    pageRoute: `${location.pathname}${location.search}`,
   });
   const quoteVersion = quote.quoteDocVersion ?? siteConfig.quoteDocVersion;
   const displayedHash = shortenMiddle(quote.quoteHash);
   const supersedes = shortenMiddle(quote.priorQuoteHash);
+
+  useEffect(() => {
+    if (!quote || quote.quoteReference) return;
+    const nextQuote = { ...quote, quoteReference: buildQuoteReference(quote) };
+    setQuote(nextQuote);
+    updateRetailFlow({ quote: nextQuote });
+  }, [quote]);
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
@@ -399,12 +410,12 @@ const QuoteReview = () => {
             )}
           </div>
         </div>
-        {isHomeSecurity && (
-          <HelpContactPanel
-            quoteRef={quote ? buildQuoteReference(quote) : undefined}
-            issuePrompt="I have a question about my Home Security quote."
-          />
-        )}
+      {isHomeSecurity && (
+        <HelpContactPanel
+          quoteRef={reference}
+          issuePrompt="I have a question about my Home Security quote."
+        />
+      )}
       </div>
 
       {isHomeSecurity && (
@@ -428,19 +439,20 @@ const QuoteReview = () => {
               <h2 style={{ margin: 0 }}>{selectedPackage.name}</h2>
             </div>
             <p style={{ margin: 0, color: '#c8c0aa' }}>Ref: {reference} • Date: {quoteDate}</p>
-            <small style={{ color: '#c8c0aa' }}>Quote Version: {quoteVersion}</small>
+            {!isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Quote Version: {quoteVersion}</small>}
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ color: '#c8c0aa', fontSize: '0.95rem' }}>One-time estimate</div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--kaec-gold)' }}>
-              {formatCurrency(quote.pricing.total)}
-            </div>
-            <small style={{ color: '#c8c0aa' }}>
-              {vertical === 'home-security'
-                ? 'Add-ons are quoted separately; no subscriptions sold.'
-                : 'No monthly subscriptions required.'}
-            </small>
-            <div style={{ display: 'grid', gap: '0.25rem', marginTop: '0.5rem', color: '#c8c0aa' }}>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ color: '#c8c0aa', fontSize: '0.95rem' }}>One-time estimate</div>
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--kaec-gold)' }}>
+                {formatCurrency(quote.pricing.total)}
+              </div>
+              <small style={{ color: '#c8c0aa' }}>
+                {vertical === 'home-security'
+                  ? 'Add-ons are quoted separately; no subscriptions sold.'
+                  : 'No monthly subscriptions required.'}
+              </small>
+              {isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Purpose: Local-first security with professional install.</small>}
+              <div style={{ display: 'grid', gap: '0.25rem', marginTop: '0.5rem', color: '#c8c0aa' }}>
               <small>Deposit due today: {formatCurrency(depositDue)}</small>
               <small>Remaining balance on arrival: {formatCurrency(balanceDue)}</small>
               <small>Deposit due today: 50% of the system cost. Remaining balance due on installation day.</small>

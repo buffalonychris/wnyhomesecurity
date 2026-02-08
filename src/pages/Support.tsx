@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SectionHeader from '../components/operator/SectionHeader';
 import SpaceFrame from '../components/operator/SpaceFrame';
@@ -9,6 +9,7 @@ import { buildSms, buildSupportMailto, buildTel, wnyhsContact } from '../content
 
 const Support = () => {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const vertical = resolveVertical(searchParams.get('vertical'));
   const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
   const isHomeSecurity = vertical === 'home-security' || isHomeSecurityHost;
@@ -50,7 +51,13 @@ const Support = () => {
         <p>Send us a message and include your name, address, and the best number to reach you.</p>
         <p>
           <strong>
-            <a href={buildSupportMailto({ issue: 'Tell us what you need help with.' })} style={{ color: '#f5c042' }}>
+            <a
+              href={buildSupportMailto({
+                issue: 'Tell us what you need help with.',
+                pageRoute: `${location.pathname}${location.search}`,
+              })}
+              style={{ color: '#f5c042' }}
+            >
               {wnyhsContact.emails.support}
             </a>
           </strong>
@@ -60,10 +67,10 @@ const Support = () => {
         <h2>Phone or text</h2>
         <p>Call or text the WNY Home Security team for urgent support.</p>
         <p style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <a href={buildTel(wnyhsContact.phone.tel)} style={{ color: '#f5c042' }}>
+          <a href={buildTel()} style={{ color: '#f5c042' }}>
             Call {wnyhsContact.phone.display}
           </a>
-          <a href={buildSms(wnyhsContact.phone.sms, 'Hi! I need help with my Home Security system.')} style={{ color: '#f5c042' }}>
+          <a href={buildSms('Hi! I need help with my Home Security system.')} style={{ color: '#f5c042' }}>
             Text {wnyhsContact.phone.display}
           </a>
         </p>

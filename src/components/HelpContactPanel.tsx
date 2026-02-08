@@ -7,6 +7,7 @@ type HelpContactPanelProps = {
 
 const HelpContactPanel = ({ quoteRef, issuePrompt }: HelpContactPanelProps) => {
   const mailto = buildSupportMailto({ quoteRef, issue: issuePrompt });
+  const smsBody = `Hi! I need help with my Home Security quote${quoteRef ? ` (Ref ${quoteRef})` : ''}.`;
   return (
     <div
       className="card"
@@ -27,13 +28,13 @@ const HelpContactPanel = ({ quoteRef, issuePrompt }: HelpContactPanelProps) => {
         </span>
         <span>
           Phone:{' '}
-          <a href={buildTel(wnyhsContact.phone.tel)} style={{ color: '#f5c042' }}>
+          <a href={buildTel()} style={{ color: '#f5c042' }}>
             {wnyhsContact.phone.display}
           </a>
         </span>
         <span>
           Text:{' '}
-          <a href={buildSms(wnyhsContact.phone.sms, 'Hi! I need help with my Home Security quote.')} style={{ color: '#f5c042' }}>
+          <a href={buildSms(smsBody)} style={{ color: '#f5c042' }}>
             {wnyhsContact.phone.display}
           </a>
         </span>

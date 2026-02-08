@@ -18,31 +18,42 @@ export type FunnelStepDefinition = {
   stepNumber: number;
 };
 
-const normalizePhoneNumber = (value: string) => value.replace(/[^\d]/g, '');
+export const PUBLIC_PHONE_DISPLAY = '716.391.2405';
+export const PUBLIC_PHONE_TEL = '+17163912405';
+export const PUBLIC_PHONE_SMS = '+17163912405';
 
-const PUBLIC_PHONE = '716-391-2405';
-const normalizedPhone = normalizePhoneNumber(PUBLIC_PHONE);
+export const EMAILS = {
+  hello: 'hello@wnyhomesecurity.com',
+  quotes: 'quotes@wnyhomesecurity.com',
+  schedule: 'schedule@wnyhomesecurity.com',
+  support: 'support@wnyhomesecurity.com',
+  billing: 'billing@wnyhomesecurity.com',
+  install: 'install@wnyhomesecurity.com',
+  privacy: 'privacy@wnyhomesecurity.com',
+  partners: 'partners@wnyhomesecurity.com',
+} as const;
 
 export const wnyhsContact = {
   phone: {
-    display: '716.391.2405',
-    tel: `+1${normalizedPhone}`,
-    sms: `+1${normalizedPhone}`,
+    display: PUBLIC_PHONE_DISPLAY,
+    tel: PUBLIC_PHONE_TEL,
+    sms: PUBLIC_PHONE_SMS,
   },
-  emails: {
-    hello: 'hello@wnyhomesecurity.com',
-    quotes: 'quotes@wnyhomesecurity.com',
-    schedule: 'schedule@wnyhomesecurity.com',
-    support: 'support@wnyhomesecurity.com',
-    billing: 'billing@wnyhomesecurity.com',
-    install: 'install@wnyhomesecurity.com',
-    privacy: 'privacy@wnyhomesecurity.com',
-    partners: 'partners@wnyhomesecurity.com',
-  },
+  emails: EMAILS,
   location: 'West Seneca, NY 14224',
 } as const;
 
-export const buildMailto = (to: string, subject?: string, body?: string) => {
+const formatValue = (value?: string) => value?.trim() || '—';
+
+const formatList = (value?: string[] | string) => {
+  if (!value) return '—';
+  if (Array.isArray(value)) {
+    return value.length ? value.join(', ') : '—';
+  }
+  return value.trim() || '—';
+};
+
+export const buildMailto = (to: string, subject: string, body: string) => {
   const params = new URLSearchParams();
   if (subject) params.set('subject', subject);
   if (body) params.set('body', body);
@@ -50,68 +61,130 @@ export const buildMailto = (to: string, subject?: string, body?: string) => {
   return query ? `mailto:${to}?${query}` : `mailto:${to}`;
 };
 
-export const buildSms = (to: string, body?: string) => {
+export const buildSms = (body?: string) => {
   const params = new URLSearchParams();
   if (body) params.set('body', body);
   const query = params.toString();
-  return query ? `sms:${to}?${query}` : `sms:${to}`;
+  return query ? `sms:${PUBLIC_PHONE_SMS}?${query}` : `sms:${PUBLIC_PHONE_SMS}`;
 };
 
-export const buildTel = (to: string) => `tel:${to}`;
+export const buildTel = () => `tel:${PUBLIC_PHONE_TEL}`;
 
-export const buildTalkToUsMailto = (body?: string) =>
-  buildMailto(
-    wnyhsContact.emails.hello,
-    'Talk to WNY Home Security',
-    body || 'Tell us about your home and the best way to reach you.',
-  );
-
-export const buildQuoteHelpMailto = (context: { packageName?: string; quoteRef?: string; date?: string }) => {
+export const buildTalkToUsMailto = (context?: {
+  pageRoute?: string;
+  preferredCallbackTime?: string;
+  phone?: string;
+  question?: string;
+  summary?: string;
+}) => {
   const body = [
-    'Quote help request',
+    `Date: ${formatQuoteDate()}`,
+    `Preferred callback time: ${formatValue(context?.preferredCallbackTime)}`,
+    `Phone: ${formatValue(context?.phone)}`,
+    `Page: ${formatValue(context?.pageRoute)}`,
     '',
-    `Package: ${context.packageName || 'Not selected yet'}`,
-    `Quote reference: ${context.quoteRef || 'Not available yet'}`,
-    `Date: ${context.date || formatQuoteDate()}`,
-    '',
-    'Questions / details:',
+    'Question:',
+    context?.question || 'Tell us how we can help.',
+    ...(context?.summary ? ['', 'Details:', context.summary] : []),
   ].join('\n');
-  return buildMailto(wnyhsContact.emails.quotes, 'Quote help request', body);
+  return buildMailto(wnyhsContact.emails.hello, 'WNY Home Security — Quick question', body);
 };
 
-export const buildScheduleHelpMailto = (context: { preferredWindows?: string[]; city?: string }) => {
-  const windows = context.preferredWindows?.filter(Boolean).join(', ') || 'Not set yet';
+export const buildQuoteHelpMailto = (context: {
+  tier?: string;
+  addOns?: string[];
+  city?: string;
+  contactMethod?: string;
+  notes?: string;
+  quoteRef?: string;
+  pageRoute?: string;
+}) => {
+  const tierLabel = context.tier ? `Quote help — ${context.tier}` : 'Quote help — Home Security';
   const body = [
-    'Scheduling help request',
+    `Date: ${formatQuoteDate()}`,
+    `Tier: ${formatValue(context.tier)}`,
+    `Add-ons: ${formatList(context.addOns)}`,
+    `City: ${formatValue(context.city)}`,
+    `Best contact method: ${formatValue(context.contactMethod)}`,
+    `Reference: ${formatValue(context.quoteRef)}`,
+    `Page: ${formatValue(context.pageRoute)}`,
     '',
-    `Preferred windows: ${windows}`,
-    `City: ${context.city || 'Not provided'}`,
-    '',
-    'Please share any access notes or constraints:',
+    'Notes:',
+    context.notes || 'Please share any questions or adjustments needed.',
   ].join('\n');
-  return buildMailto(wnyhsContact.emails.schedule, 'Scheduling help request', body);
+  return buildMailto(wnyhsContact.emails.quotes, tierLabel, body);
 };
 
-export const buildSupportMailto = (context: { quoteRef?: string; issue?: string }) => {
+export const buildScheduleHelpMailto = (context: {
+  tier?: string;
+  city?: string;
+  preferredWindows?: string[];
+  accessNotes?: string;
+  pageRoute?: string;
+}) => {
   const body = [
-    'Support request',
+    `Date: ${formatQuoteDate()}`,
+    `Tier: ${formatValue(context.tier)}`,
+    `City: ${formatValue(context.city)}`,
+    `Preferred windows: ${formatList(context.preferredWindows)}`,
+    `Page: ${formatValue(context.pageRoute)}`,
     '',
-    `Quote reference: ${context.quoteRef || 'Not available'}`,
-    `Issue summary: ${context.issue || 'Describe the issue or question.'}`,
+    'Access notes:',
+    context.accessNotes || 'Please share any access constraints or gate details.',
   ].join('\n');
-  return buildMailto(wnyhsContact.emails.support, 'Support request', body);
+  return buildMailto(wnyhsContact.emails.schedule, 'Scheduling — Request install window', body);
 };
 
-export const buildBillingMailto = (context: { quoteRef?: string; amount?: string }) => {
+export const buildSupportMailto = (context: {
+  quoteRef?: string;
+  issue?: string;
+  pageRoute?: string;
+  when?: string;
+  contactMethod?: string;
+}) => {
+  const when = context.when?.trim();
+  const contactMethod = context.contactMethod?.trim();
+  const subject = `Support — ${context.issue || 'Help needed'}${context.quoteRef ? ` — ${context.quoteRef}` : ''}`;
   const body = [
-    'Billing request',
+    `Date: ${formatQuoteDate()}`,
+    `Reference: ${formatValue(context.quoteRef)}`,
+    `Issue: ${formatValue(context.issue)}`,
+    `When did it happen?: ${when || 'Please add date/time.'}`,
+    `Best contact method: ${contactMethod || 'Phone or email (please specify).'}`,
+    `Page: ${formatValue(context.pageRoute)}`,
     '',
-    `Quote reference: ${context.quoteRef || 'Not available'}`,
-    `Amount: ${context.amount || 'Not specified'}`,
-    '',
-    'Please include any additional billing details:',
+    'Photos/video link (optional):',
   ].join('\n');
-  return buildMailto(wnyhsContact.emails.billing, 'Billing request', body);
+  return buildMailto(wnyhsContact.emails.support, subject, body);
+};
+
+export const buildBillingMailto = (context: { quoteRef?: string; tier?: string; question?: string; pageRoute?: string }) => {
+  const body = [
+    `Date: ${formatQuoteDate()}`,
+    `Tier: ${formatValue(context.tier)}`,
+    `Reference: ${formatValue(context.quoteRef)}`,
+    `Page: ${formatValue(context.pageRoute)}`,
+    '',
+    'Question:',
+    context.question || 'Please share your deposit or balance question.',
+  ].join('\n');
+  return buildMailto(wnyhsContact.emails.billing, 'Billing — Deposit / balance question', body);
+};
+
+export const buildInstallMailto = (context?: { pageRoute?: string }) => {
+  const body = [
+    `Date: ${formatQuoteDate()}`,
+    `Page: ${formatValue(context?.pageRoute)}`,
+    '',
+    'Address:',
+    '',
+    'Parking/access notes:',
+    '',
+    'Pets on site:',
+    '',
+    'Gate codes:',
+  ].join('\n');
+  return buildMailto(wnyhsContact.emails.install, 'Install day logistics', body);
 };
 
 export const HOME_SECURITY_ROUTES = {

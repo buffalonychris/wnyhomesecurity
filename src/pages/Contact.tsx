@@ -1,5 +1,5 @@
 import { FormEvent, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { brandHomeSecurity, brandSite } from '../lib/brand';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
@@ -8,6 +8,7 @@ import { buildSms, buildTalkToUsMailto, buildTel, wnyhsContact } from '../conten
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const vertical = resolveVertical(searchParams.get('vertical'));
   const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
   const isHomeSecurity = vertical === 'home-security' || isHomeSecurityHost;
@@ -46,7 +47,17 @@ const Contact = () => {
     [address, bestTime, email, name, needs, notes, phone],
   );
 
-  const mailtoLink = useMemo(() => buildTalkToUsMailto(summary), [summary]);
+  const mailtoLink = useMemo(
+    () =>
+      buildTalkToUsMailto({
+        pageRoute: `${location.pathname}${location.search}`,
+        preferredCallbackTime: bestTime,
+        phone,
+        question: needs ? `Requesting help with: ${needs}.` : undefined,
+        summary,
+      }),
+    [bestTime, location.pathname, location.search, needs, phone, summary],
+  );
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,10 +73,10 @@ const Contact = () => {
       </p>
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <a className="btn btn-secondary" href={mailtoLink}>Email us</a>
-        <a className="btn btn-link" href={buildTel(wnyhsContact.phone.tel)}>
+        <a className="btn btn-link" href={buildTel()}>
           Call {wnyhsContact.phone.display}
         </a>
-        <a className="btn btn-link" href={buildSms(wnyhsContact.phone.sms)}>
+        <a className="btn btn-link" href={buildSms('Hi! I’d like to talk about Home Security. Please call me back.')}>
           Text {wnyhsContact.phone.display}
         </a>
       </div>

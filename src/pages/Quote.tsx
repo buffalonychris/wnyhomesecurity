@@ -25,7 +25,7 @@ import {
   getHomeSecurityHardwareList,
 } from '../content/homeSecurityPackageData';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
-import { buildQuoteReference, formatQuoteDate } from '../lib/quoteUtils';
+import { buildQuoteReference } from '../lib/quoteUtils';
 import { buildQuoteHelpMailto, wnyhsContact } from '../content/wnyhsContact';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
@@ -113,14 +113,22 @@ const Quote = () => {
     () => packagePricing.find((pkg) => pkg.id === packageId) ?? packagePricing[0],
     [packageId, packagePricing]
   );
+  const selectedAddOnLabels = useMemo(
+    () => addOns.filter((addOn) => selectedAddOns.includes(addOn.id)).map((addOn) => addOn.label),
+    [addOns, selectedAddOns],
+  );
   const quoteHelpMailto = useMemo(
     () =>
       buildQuoteHelpMailto({
-        packageName: selectedPackage.name,
-        quoteRef: flowState.quote ? buildQuoteReference(flowState.quote) : undefined,
-        date: formatQuoteDate(),
+        tier: selectedPackage.name,
+        addOns: selectedAddOnLabels,
+        city,
+        contactMethod: contact || 'Email',
+        notes: 'Please help me refine my quote.',
+        quoteRef: flowState.quote ? flowState.quote.quoteReference ?? buildQuoteReference(flowState.quote) : undefined,
+        pageRoute: `${location.pathname}${location.search}`,
       }),
-    [flowState.quote, selectedPackage.name]
+    [city, contact, flowState.quote, location.pathname, location.search, selectedAddOnLabels, selectedPackage.name]
   );
 
   const toggleAddOn = (id: string) => {
@@ -193,7 +201,8 @@ const Quote = () => {
     const previousHash = existing.quote?.quoteHash;
     const quoteWithPrior = previousHash ? { ...enrichedQuote, priorQuoteHash: previousHash } : enrichedQuote;
     const quoteHash = await computeQuoteHash(quoteWithPrior);
-    const nextQuote = { ...quoteWithPrior, quoteHash };
+    const quoteReference = buildQuoteReference(quoteWithPrior);
+    const nextQuote = { ...quoteWithPrior, quoteHash, quoteReference };
     updateRetailFlow({ quote: nextQuote });
     return nextQuote;
   };

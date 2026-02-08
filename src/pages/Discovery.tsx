@@ -45,7 +45,11 @@ const Discovery = () => {
   }, [isHomeSecurity, pathParam]);
 
   const redirectMessage = (location.state as { message?: string } | undefined)?.message;
-  const talkToUsMailto = buildTalkToUsMailto('Tell us about your home and the best time to reach you.');
+  const talkToUsMailto = buildTalkToUsMailto({
+    pageRoute: `${location.pathname}${location.search}`,
+    preferredCallbackTime: 'Weekdays 9am–6pm',
+    question: 'Tell us about your home and the best time to reach you.',
+  });
 
   return (
     <WnyhsFunnelLayout showStepRail={isHomeSecurity}>

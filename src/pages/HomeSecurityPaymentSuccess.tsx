@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
 import { useLayoutConfig } from '../components/LayoutConfig';
@@ -7,9 +7,6 @@ import { markFlowStep, updateRetailFlow } from '../lib/retailFlow';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const HomeSecurityPaymentSuccess = () => {
-  const [searchParams] = useSearchParams();
-  const sessionId = searchParams.get('session_id');
-
   useEffect(() => {
     markFlowStep('payment');
     updateRetailFlow({ payment: { depositStatus: 'completed' } });
@@ -31,7 +28,7 @@ const HomeSecurityPaymentSuccess = () => {
             description="Your Home Security deposit is confirmed."
             support="Next, we’ll coordinate your installation window and finalize on-site placement."
           />
-          {sessionId && <small style={{ color: '#c8c0aa' }}>Deposit processing complete.</small>}
+          <small style={{ color: '#c8c0aa' }}>Deposit processing complete.</small>
         </div>
 
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>

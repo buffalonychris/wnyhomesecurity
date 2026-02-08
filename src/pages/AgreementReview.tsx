@@ -211,9 +211,13 @@ const AgreementReview = () => {
     () => (quote ? getAddOns(vertical).filter((item) => quote.selectedAddOns.includes(item.id)) : []),
     [quote, vertical]
   );
-  const agreementReference = quote ? buildAgreementReference(quote) : '';
-  const quoteRef = quote ? buildQuoteReference(quote) : '';
-  const supportMailto = buildSupportMailto({ quoteRef, issue: 'Question about agreement review.' });
+  const agreementReference = quote ? quote.agreementReference ?? buildAgreementReference(quote) : '';
+  const quoteRef = quote ? quote.quoteReference ?? buildQuoteReference(quote) : '';
+  const supportMailto = buildSupportMailto({
+    quoteRef,
+    issue: 'Question about agreement review.',
+    pageRoute: `${location.pathname}${location.search}`,
+  });
   const resumeUrl = quote
     ? storedAcceptance?.accepted
       ? buildResumeUrl(quote, 'payment')
@@ -251,6 +255,24 @@ const AgreementReview = () => {
     }
     return null;
   }, [acceptanceReady, acceptedDate, acceptedName, agreementHash, agreementVersion, email, storedAcceptance]);
+
+  useEffect(() => {
+    if (!quote) return;
+    const nextQuote: QuoteContext = { ...quote };
+    let updated = false;
+    if (!nextQuote.quoteReference) {
+      nextQuote.quoteReference = buildQuoteReference(nextQuote);
+      updated = true;
+    }
+    if (!nextQuote.agreementReference) {
+      nextQuote.agreementReference = buildAgreementReference(nextQuote);
+      updated = true;
+    }
+    if (updated) {
+      setQuote(nextQuote);
+      updateRetailFlow({ quote: nextQuote });
+    }
+  }, [quote]);
 
   const agreementEmailStatus = acceptanceSnapshot?.emailLastStatus ?? acceptanceSnapshot?.emailStatus ?? 'not_sent';
   const rebuildSourceQuote = locationQuote ?? initialFlow.quote ?? null;
@@ -511,7 +533,19 @@ const AgreementReview = () => {
                 <div style={{ display: 'grid', gap: '0.5rem' }}>
                   <strong style={{ fontSize: '1.1rem' }}>One-time total: {formatCurrency(estimatedTotal)}</strong>
                   <small style={{ color: '#c8c0aa' }}>Based on your selected tier and add-ons.</small>
+                  {isHomeSecurity && (
+                    <small style={{ color: '#c8c0aa' }}>
+                      This agreement confirms your {selectedPackage.name} tier and reserves installation scheduling.
+                    </small>
+                  )}
                 </div>
+                {isHomeSecurity && (
+                  <div style={{ display: 'grid', gap: '0.25rem', color: '#c8c0aa' }}>
+                    <small>Agreement ref: {agreementReference}</small>
+                    <small>Quote ref: {quoteRef}</small>
+                    <small>Date: {agreementDate}</small>
+                  </div>
+                )}
                 <div style={{ display: 'grid', gap: '0.25rem', color: '#c8c0aa' }}>
                   <small>Deposit due today: {formatCurrency(depositDue)}</small>
                   <small>Remaining balance on arrival: {formatCurrency(balanceDue)}</small>
@@ -560,6 +594,19 @@ const AgreementReview = () => {
                     <small style={{ color: '#c8c0aa' }}>No add-ons selected.</small>
                   )}
                 </div>
+                {isHomeSecurity && (
+                  <div style={{ display: 'grid', gap: '0.35rem' }}>
+                    <strong>Included hardware summary</strong>
+                    <ul className="list" style={{ marginTop: 0 }}>
+                      {getHomeSecurityHardwareList(quote.packageId.toLowerCase() as 'a1' | 'a2' | 'a3').map((item) => (
+                        <li key={item}>
+                          <span />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -588,6 +635,26 @@ const AgreementReview = () => {
           </li>
         </ul>
       </div>
+
+      {isHomeSecurity && (
+        <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+          <div className="badge">Assumptions &amp; exclusions</div>
+          <ul className="list" style={{ marginTop: 0 }}>
+            {agreement.assumptions.slice(0, 3).map((item) => (
+              <li key={item}>
+                <span />
+                <span>{item}</span>
+              </li>
+            ))}
+            {agreement.exclusions.slice(0, 3).map((item) => (
+              <li key={item}>
+                <span />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div
         ref={acceptanceSectionRef}
@@ -783,7 +850,7 @@ const AgreementReview = () => {
                       ? `Email queued for ${acceptedRecord.emailRecipients?.[0] ?? acceptedRecord.emailTo ?? email}.`
                       : 'We could not send the email. Please try again.')}
                 </strong>
-                {acceptedRecord.emailProvider && (
+                {!isHomeSecurity && acceptedRecord.emailProvider && (
                   <div style={{ marginTop: '0.25rem' }}>
                     <small>
                       Provider: {acceptedRecord.emailProvider}
