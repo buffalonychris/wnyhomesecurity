@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual as timingSafeEqualBuffer } from 'crypto';
+import { recordDepositStatus } from './depositStore.js';
 
 type RequestLike = {
   method?: string;
@@ -96,10 +97,18 @@ export default async function handler(req: RequestLike, res: any) {
 
   if (event?.type === 'checkout.session.completed') {
     const session = event.data?.object;
-    const quoteId = session?.metadata?.quoteId;
+    const quoteRef = session?.metadata?.quoteRef;
 
-    // TODO: Persist deposit payment status for the quoteId in a backend datastore.
-    console.info('Stripe checkout completed', { quoteId, sessionId: session?.id });
+    if (quoteRef) {
+      recordDepositStatus({
+        quoteRef,
+        status: 'completed',
+        sessionId: session?.id,
+        updatedAt: new Date().toISOString(),
+      });
+    }
+
+    console.info('Stripe checkout completed', { quoteRef, sessionId: session?.id });
   }
 
   res.status(200).json({ received: true });

@@ -1,12 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import { QuoteContext } from '../lib/agreement';
-import { brandShort } from '../lib/brand';
+import { buildQuoteReference } from '../lib/quoteUtils';
+import { buildSupportMailto } from '../content/wnyhsContact';
+import { getPackagePricing } from '../data/pricing';
 
 const ESign = () => {
   const location = useLocation();
   const state = location.state as { quoteContext?: QuoteContext; fullName?: string; acceptanceDate?: string } | undefined;
 
-  const mailSubject = encodeURIComponent(`${brandShort} E-Signature Request`);
+  const mailto = buildSupportMailto({ issue: 'E-signature request for agreement completion.' });
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
@@ -28,12 +30,12 @@ const ESign = () => {
         <p style={{ margin: 0, color: '#c8c0aa' }}>
           Agreement is not fully executed until e-signature is completed.
         </p>
-        <a className="btn btn-primary" href={`mailto:care@kickassfamily.com?subject=${mailSubject}`}>
+        <a className="btn btn-primary" href={mailto}>
           Contact us to complete signing
         </a>
         {state?.quoteContext && (
           <small style={{ color: '#c8c0aa' }}>
-            Quote reference: {state.quoteContext.packageId} — {state.quoteContext.pricing.total}
+            Quote reference: {buildQuoteReference(state.quoteContext)} — {getPackagePricing(state.quoteContext.vertical ?? 'elder-tech').find((pkg) => pkg.id === state.quoteContext?.packageId)?.name ?? 'Package'} — ${state.quoteContext.pricing.total.toLocaleString()}
           </small>
         )}
       </div>

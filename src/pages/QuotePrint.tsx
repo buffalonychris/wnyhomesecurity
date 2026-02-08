@@ -11,7 +11,6 @@ import { buildQuoteReference, formatQuoteDate } from '../lib/quoteUtils';
 import { quoteAssumptions, quoteDeliverables, quoteExclusions } from '../lib/quoteHash';
 import { buildResumeUrl, buildQuoteFromResumePayload, parseResumeToken } from '../lib/resumeToken';
 import { siteConfig } from '../config/site';
-import { copyToClipboard, shortenMiddle } from '../lib/displayUtils';
 import { buildQuoteAuthorityMeta, DocAuthorityMeta } from '../lib/docAuthority';
 import TierBadge from '../components/TierBadge';
 import { brandSite } from '../lib/brand';
@@ -28,9 +27,6 @@ const QuotePrint = () => {
   const isInternalView = searchParams.get('internal') === '1';
   const [quote, setQuote] = useState<QuoteContext | null>(null);
   const [narrative, setNarrative] = useState<NarrativeResponse | null>(null);
-  const [hashCopied, setHashCopied] = useState(false);
-  const [priorHashCopied, setPriorHashCopied] = useState(false);
-  const [resumeCopied, setResumeCopied] = useState(false);
   const [authorityMeta, setAuthorityMeta] = useState<DocAuthorityMeta | null>(null);
 
   useEffect(() => {
@@ -155,31 +151,9 @@ const QuotePrint = () => {
   const quoteDate = formatQuoteDate(quote.generatedAt);
   const customerName = quote.customerName?.trim() || 'Customer';
   const quoteVersion = quote.quoteDocVersion ?? siteConfig.quoteDocVersion;
-  const displayedHash = shortenMiddle(quote.quoteHash);
-  const supersedes = shortenMiddle(quote.priorQuoteHash);
   const resumeUrl = buildResumeUrl(quote, 'agreement');
   const depositDue = calculateDepositDue(quote.pricing.total, siteConfig.depositPolicy);
   const balanceDue = Math.max(quote.pricing.total - depositDue, 0);
-
-  const handleCopyHash = async () => {
-    if (!quote?.quoteHash) return;
-    await copyToClipboard(quote.quoteHash);
-    setHashCopied(true);
-    setTimeout(() => setHashCopied(false), 2000);
-  };
-
-  const handleCopyPriorHash = async () => {
-    if (!quote?.priorQuoteHash) return;
-    await copyToClipboard(quote.priorQuoteHash);
-    setPriorHashCopied(true);
-    setTimeout(() => setPriorHashCopied(false), 2000);
-  };
-
-  const handleCopyResume = async () => {
-    await copyToClipboard(resumeUrl);
-    setResumeCopied(true);
-    setTimeout(() => setResumeCopied(false), 2000);
-  };
 
   return (
     <div className="print-page" style={{ padding: '3rem 0' }}>
@@ -204,11 +178,7 @@ const QuotePrint = () => {
               <a href={resumeUrl} style={{ fontWeight: 800 }}>
                 Continue your order
               </a>
-              <button type="button" className="btn btn-secondary" onClick={handleCopyResume}>
-                {resumeCopied ? 'Copied resume link' : 'Copy resume link'}
-              </button>
             </div>
-            <small className="break-all" style={{ color: '#222' }}>{resumeUrl}</small>
           </div>
           <div style={{ color: '#111' }}>
             If you are viewing a saved PDF or email version, click the “Continue your order” link above to resume exactly where
@@ -424,28 +394,7 @@ const QuotePrint = () => {
         {isInternalView && (
           <section className="print-section page-break" style={{ marginTop: '1.5rem' }}>
             <h2>Internal support log (not customer-facing)</h2>
-            <div style={{ display: 'grid', gap: '0.75rem', fontSize: '0.95rem' }}>
-              <div style={{ display: 'grid', gap: '0.35rem' }}>
-                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span className="mono-text" title={quote.quoteHash || undefined}>Quote Hash: {displayedHash}</span>
-                  {quote.quoteHash && (
-                    <button type="button" className="btn btn-secondary" onClick={handleCopyHash}>
-                      {hashCopied ? 'Copied full hash' : 'Copy full hash'}
-                    </button>
-                  )}
-                </div>
-                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span className="mono-text" title={quote.priorQuoteHash || undefined}>Supersedes prior quote hash: {supersedes}</span>
-                  {quote.priorQuoteHash && (
-                    <button type="button" className="btn btn-secondary" onClick={handleCopyPriorHash}>
-                      {priorHashCopied ? 'Copied prior hash' : 'Copy prior hash'}
-                    </button>
-                  )}
-                </div>
-                {quote.issuedAtISO && <div>Issued: {quote.issuedAtISO}</div>}
-              </div>
-              <AuthorityBlock meta={authorityMeta} />
-            </div>
+            <AuthorityBlock meta={authorityMeta} />
           </section>
         )}
       </div>

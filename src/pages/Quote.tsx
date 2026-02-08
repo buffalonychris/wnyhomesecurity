@@ -25,6 +25,8 @@ import {
   getHomeSecurityHardwareList,
 } from '../content/homeSecurityPackageData';
 import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
+import { buildQuoteReference, formatQuoteDate } from '../lib/quoteUtils';
+import { buildQuoteHelpMailto, wnyhsContact } from '../content/wnyhsContact';
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
 
@@ -110,6 +112,15 @@ const Quote = () => {
   const selectedPackage = useMemo(
     () => packagePricing.find((pkg) => pkg.id === packageId) ?? packagePricing[0],
     [packageId, packagePricing]
+  );
+  const quoteHelpMailto = useMemo(
+    () =>
+      buildQuoteHelpMailto({
+        packageName: selectedPackage.name,
+        quoteRef: flowState.quote ? buildQuoteReference(flowState.quote) : undefined,
+        date: formatQuoteDate(),
+      }),
+    [flowState.quote, selectedPackage.name]
   );
 
   const toggleAddOn = (id: string) => {
@@ -289,6 +300,17 @@ const Quote = () => {
           </div>
         )}
       </div>
+      {isHomeSecurity && (
+        <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+          <div className="badge">Quote help</div>
+          <p style={{ margin: 0, color: '#c8c0aa' }}>
+            Need a hand choosing a package or refining your quote? Email the WNY Home Security quoting team.
+          </p>
+          <a href={quoteHelpMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+            Email {wnyhsContact.emails.quotes}
+          </a>
+        </div>
+      )}
       {isHomeSecurity && plannerRecommendation && (
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <strong>Applied from Precision Planner</strong>

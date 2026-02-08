@@ -4,6 +4,7 @@ import { useLayoutConfig } from '../components/LayoutConfig';
 import { brandHomeSecurity, brandSite } from '../lib/brand';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { resolveVertical } from '../lib/verticals';
+import { buildSms, buildTalkToUsMailto, buildTel, wnyhsContact } from '../content/wnyhsContact';
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
@@ -45,11 +46,7 @@ const Contact = () => {
     [address, bestTime, email, name, needs, notes, phone],
   );
 
-  const mailtoLink = useMemo(() => {
-    const subject = encodeURIComponent('Home Security intake request');
-    const body = encodeURIComponent(summary);
-    return `mailto:admin@reliableeldercare.com?subject=${subject}&body=${body}`;
-  }, [summary]);
+  const mailtoLink = useMemo(() => buildTalkToUsMailto(summary), [summary]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,6 +60,15 @@ const Contact = () => {
       <p style={{ maxWidth: 640 }}>
         Start the intake so we can route you to the right next step. We respond with a simple, one-time quote—no subscriptions.
       </p>
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <a className="btn btn-secondary" href={mailtoLink}>Email us</a>
+        <a className="btn btn-link" href={buildTel(wnyhsContact.phone.tel)}>
+          Call {wnyhsContact.phone.display}
+        </a>
+        <a className="btn btn-link" href={buildSms(wnyhsContact.phone.sms)}>
+          Text {wnyhsContact.phone.display}
+        </a>
+      </div>
       <form className="form" aria-label="Intake form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name</label>
@@ -109,7 +115,11 @@ const Contact = () => {
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <button className="btn btn-primary" type="submit">Submit intake</button>
           <a className="btn btn-secondary" href={mailtoLink}>Email intake summary</a>
-          {submitted && <small style={{ color: 'var(--kaec-text-muted)' }}>Opening your email client to route this intake to admin@reliableeldercare.com.</small>}
+          {submitted && (
+            <small style={{ color: 'var(--kaec-text-muted)' }}>
+              Opening your email client to route this intake to {wnyhsContact.emails.hello}.
+            </small>
+          )}
         </div>
       </form>
     </>

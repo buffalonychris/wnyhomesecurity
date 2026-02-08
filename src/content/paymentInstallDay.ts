@@ -1,3 +1,5 @@
+import { wnyhsContact } from './wnyhsContact';
+
 export type PaymentInstallDaySection = {
   title: string;
   items: string[];
@@ -51,7 +53,7 @@ export const paymentTodayChecklist = [
 ];
 
 export const supportContact = {
-  email: 'admin@reliableeldercare.com',
-  phone: '716.391.2405',
-  location: 'West Seneca, NY 14224',
+  email: wnyhsContact.emails.support,
+  phone: wnyhsContact.phone.display,
+  location: wnyhsContact.location,
 };
