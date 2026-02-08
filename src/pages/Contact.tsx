@@ -1,13 +1,15 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import { brandSite } from '../lib/brand';
+import { brandHomeSecurity, brandSite } from '../lib/brand';
+import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { resolveVertical } from '../lib/verticals';
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
   const vertical = resolveVertical(searchParams.get('vertical'));
-  const isHomeSecurity = vertical === 'home-security';
+  const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
+  const isHomeSecurity = vertical === 'home-security' || isHomeSecurityHost;
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -55,9 +57,9 @@ const Contact = () => {
     window.location.href = mailtoLink;
   };
 
-  return (
-    <div className="container section">
-      <h2 style={{ marginTop: 0 }}>Talk with {brandSite}</h2>
+  const content = (
+    <>
+      <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
       <p style={{ maxWidth: 640 }}>
         Start the intake so we can route you to the right next step. We respond with a simple, one-time quote—no subscriptions.
       </p>
@@ -110,8 +112,18 @@ const Contact = () => {
           {submitted && <small style={{ color: 'var(--kaec-text-muted)' }}>Opening your email client to route this intake to admin@reliableeldercare.com.</small>}
         </div>
       </form>
-    </div>
+    </>
   );
+
+  if (isHomeSecurity) {
+    return (
+      <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">
+        <div className="wnyhs-marketing-stack">{content}</div>
+      </WnyhsMarketingLayout>
+    );
+  }
+
+  return <div className="container section">{content}</div>;
 };
 
 export default Contact;

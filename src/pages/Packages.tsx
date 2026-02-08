@@ -14,8 +14,7 @@ import { loadRetailFlow, markFlowStep, updateRetailFlow } from '../lib/retailFlo
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
-import SelfMonitoringDisclosure from '../components/disclosures/SelfMonitoringDisclosure';
+import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 
 const Packages = () => {
   const navigate = useNavigate();
@@ -152,9 +151,6 @@ const Packages = () => {
         })}
       </div>
       {vertical === 'home-security' && (
-        <SelfMonitoringDisclosure variant="short" className="ka-disclosure--spaced" />
-      )}
-      {vertical === 'home-security' && (
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center', marginTop: '0.5rem' }}>
           <span style={{ color: 'var(--kaec-muted)' }}>Want to preview the interface?</span>
           <DemoDashboardLink variant="link" />
@@ -200,9 +196,9 @@ const Packages = () => {
 
   if (isHomeSecurity) {
     return (
-      <WnyhsPageLayout mode="marketing" ctaLink={discoveryLink}>
+      <WnyhsMarketingLayout ctaLink={discoveryLink}>
         {content}
-      </WnyhsPageLayout>
+      </WnyhsMarketingLayout>
     );
   }
 

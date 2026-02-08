@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { markFlowStep, updateRetailFlow } from '../lib/retailFlow';
 
@@ -20,11 +20,11 @@ const HomeSecurityPaymentCanceled = () => {
   });
 
   return (
-    <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
-      <HomeSecurityFunnelSteps currentStep="deposit" />
+    <WnyhsFunnelLayout showStepRail>
+      <div className="wnyhs-funnel-stack" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
       <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
         <div className="badge">Payment canceled</div>
-        <h1 style={{ margin: 0, color: '#fff7e6' }}>No payment was taken</h1>
+        <h1 className="wnyhs-funnel-title">Step 5: Payment needed</h1>
         <p style={{ margin: 0, color: '#c8c0aa' }}>
           Your card has not been charged. If you&apos;re ready, you can retry the secure checkout to complete the
           Home Security deposit.
@@ -46,6 +46,7 @@ const HomeSecurityPaymentCanceled = () => {
         </div>
       </div>
     </div>
+    </WnyhsFunnelLayout>
   );
 };
 

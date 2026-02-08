@@ -11,7 +11,7 @@ import { buildResumeUrl } from '../lib/resumeToken';
 import { buildQuoteReference } from '../lib/quoteUtils';
 import { brandShort } from '../lib/brand';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import WnyhsPageLayout from '../components/homeSecurity/WnyhsPageLayout';
+import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { getPackagePricing } from '../data/pricing';
 import { getHomeSecurityPackageSpec } from '../content/homeSecurityPackageData';
@@ -37,6 +37,14 @@ const Payment = () => {
   useEffect(() => {
     markFlowStep('payment');
   }, []);
+
+  useEffect(() => {
+    const flow = loadRetailFlow();
+    const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
+    if (!flow.quote && isHomeSecurityHost) {
+      navigate('/discovery?vertical=home-security', { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     try {
@@ -247,7 +255,7 @@ const Payment = () => {
     const spec = getHomeSecurityPackageSpec(selectedPackage.id.toLowerCase() as 'a1' | 'a2' | 'a3');
 
     return (
-      <WnyhsPageLayout mode="funnel" showStepRail>
+      <WnyhsFunnelLayout showStepRail>
         <div className="wnyhs-funnel-stack" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link className="btn btn-link" to="/agreementReview">
@@ -262,7 +270,7 @@ const Payment = () => {
               Pay your deposit to reserve installation. Deposit due today: 50% of the system cost. Remaining balance due on installation day.
             </p>
           </div>
-          <SelfMonitoringDisclosure variant="full" className="ka-disclosure--spaced" />
+          <SelfMonitoringDisclosure variant="short" className="ka-disclosure--spaced" />
 
           <div className="card" style={{ display: 'grid', gap: '1rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
@@ -338,7 +346,7 @@ const Payment = () => {
             </div>
           </div>
         </div>
-      </WnyhsPageLayout>
+      </WnyhsFunnelLayout>
     );
   }
 
