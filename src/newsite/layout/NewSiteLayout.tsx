@@ -64,7 +64,7 @@ const NewSiteLayout = () => {
               <summary>Get Started</summary>
               <div className="newsite-dropdown-panel">
                 <NavLink to="/quote">Start online quote</NavLink>
-                <NavLink to="/home-security/pay-deposit">Pay deposit</NavLink>
+                <NavLink to="/newsite/home-security/pay-deposit">Pay deposit</NavLink>
                 <NavLink to="/contact">Request callback</NavLink>
                 <NavLink to="/schedule">Request on-site quote</NavLink>
               </div>

@@ -49,8 +49,13 @@ export const onRequestPost: PagesFunction<StripeEnv> = async ({ request, env }) 
     const totalCents = HOME_SECURITY_TOTAL_CENTS[tier];
     const depositCents = Math.round(totalCents * 0.5);
     const origin = new URL(request.url).origin;
-    const successUrl = `${origin}/home-security/payment/success?session_id={CHECKOUT_SESSION_ID}`;
-    const cancelUrl = `${origin}/home-security/payment/cancel`;
+    const referer = request.headers.get("referer") ?? "";
+    const isNewSite = referer.includes("/newsite/");
+    const paymentBase = isNewSite
+      ? "/newsite/home-security/payment"
+      : "/home-security/payment";
+    const successUrl = `${origin}${paymentBase}/success?session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl = `${origin}${paymentBase}/cancel`;
     const tierLabel = getHomeSecurityTierLabel(tier);
 
     const stripeBody: Record<string, string | number> = {

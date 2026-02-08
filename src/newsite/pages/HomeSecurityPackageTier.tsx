@@ -79,7 +79,7 @@ const HomeSecurityPackageTierPage = () => {
             <NavLink className="newsite-btn newsite-btn-secondary" to="/contact">
               Request callback
             </NavLink>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/home-security/pay-deposit">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/home-security/pay-deposit">
               Pay deposit
             </NavLink>
           </div>
