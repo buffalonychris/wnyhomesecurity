@@ -303,6 +303,77 @@
   font-size: 0.9rem;
 }
 
+.newsite-form {
+  background: var(--ns-surface-strong);
+  border-radius: var(--ns-radius-lg);
+  border: 1px solid var(--ns-border);
+  padding: 1.5rem;
+  box-shadow: var(--ns-shadow-soft);
+  display: grid;
+  gap: 1rem;
+}
+
+.newsite-form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.newsite-field {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 500;
+  color: var(--ns-text);
+}
+
+.newsite-input,
+.newsite-textarea {
+  width: 100%;
+  border-radius: var(--ns-radius-md);
+  border: 1px solid var(--ns-border);
+  background: var(--ns-surface);
+  color: var(--ns-text-strong);
+  padding: 0.65rem 0.8rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.newsite-input:focus,
+.newsite-textarea:focus {
+  outline: 2px solid var(--ns-accent);
+  outline-offset: 2px;
+}
+
+.newsite-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.newsite-helper {
+  margin: 0;
+  color: var(--ns-text-muted);
+  font-size: 0.9rem;
+}
+
+.newsite-form-error {
+  color: #b15353;
+  font-size: 0.85rem;
+}
+
+.newsite-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.newsite-summary {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--ns-text);
+  font-size: 0.95rem;
+}
+
 @media (max-width: 900px) {
   .newsite-nav-menu {
     display: none;
