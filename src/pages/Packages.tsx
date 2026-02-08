@@ -13,8 +13,8 @@ import { track } from '../lib/analytics';
 import { loadRetailFlow, markFlowStep, updateRetailFlow } from '../lib/retailFlow';
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
+import { getHomeSecurityCtaLink, HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
 
 const Packages = () => {
   const navigate = useNavigate();
@@ -25,10 +25,8 @@ const Packages = () => {
   const packageList = getPackages(vertical);
   const isHomeSecurity = vertical === 'home-security';
   const homeSecurityTierMedia = isHomeSecurity ? HOME_SECURITY_TIER_MEDIA : null;
-  const plannerHref = '/home-security/planner?vertical=home-security';
-  const discoveryLink = pathParam
-    ? `/discovery?vertical=home-security&path=${pathParam}`
-    : '/discovery?vertical=home-security';
+  const plannerHref = HOME_SECURITY_ROUTES.planner;
+  const discoveryLink = getHomeSecurityCtaLink(pathParam);
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -172,15 +170,6 @@ const Packages = () => {
             <HomeSecurityComparisonTable />
           </AccordionSection>
         </div>
-      )}
-
-      {vertical === 'home-security' && (
-        <details className="hs-premium-legacy-accordion">
-          <summary className="hs-premium-legacy-toggle">More details</summary>
-          <div className="hs-premium-legacy-body">
-            <HomeSecurityFunnelSteps currentStep="packages" />
-          </div>
-        </details>
       )}
 
       {vertical !== 'home-security' && <ComparisonLadder />}

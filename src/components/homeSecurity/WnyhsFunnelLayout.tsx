@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
+import { HOME_SECURITY_ROUTES } from '../../content/wnyhsNavigation';
 import FunnelStepRail from './FunnelStepRail';
 import '../../styles/homeSecurityPremium.css';
 
@@ -13,7 +14,7 @@ const WnyhsFunnelLayout = ({ showStepRail = true, children }: WnyhsFunnelLayoutP
   return (
     <div className="wnyhs-page-layout wnyhs-page-layout--funnel">
       <div className="wnyhs-funnel-header">
-        <Link to="/home-security" className="wnyhs-funnel-brand" aria-label={`${brandHomeSecurity} home`}>
+        <Link to={HOME_SECURITY_ROUTES.home} className="wnyhs-funnel-brand" aria-label={`${brandHomeSecurity} home`}>
           <span className="wnyhs-funnel-brand-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" role="img" focusable="false">
               <path
@@ -27,7 +28,7 @@ const WnyhsFunnelLayout = ({ showStepRail = true, children }: WnyhsFunnelLayoutP
           </span>
           <span>{brandHomeSecurity}</span>
         </Link>
-        <Link className="btn btn-secondary wnyhs-funnel-exit" to="/home-security">
+        <Link className="btn btn-secondary wnyhs-funnel-exit" to={HOME_SECURITY_ROUTES.home}>
           Exit to Home
         </Link>
       </div>

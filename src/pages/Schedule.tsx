@@ -34,9 +34,15 @@ const Schedule = () => {
     const stored = loadRetailFlow();
     setFlowState(stored);
     markFlowStep('schedule');
-    const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
-    if (!stored.quote && isHomeSecurityHost) {
-      navigate('/discovery?vertical=home-security', { replace: true });
+    const missingRequiredState =
+      !stored.quote ||
+      !stored.agreementAcceptance?.accepted ||
+      stored.payment?.depositStatus !== 'completed';
+    if (missingRequiredState) {
+      navigate('/discovery?vertical=home-security', {
+        replace: true,
+        state: { message: 'Complete the Fit Check, Agreement, and Deposit before scheduling your installation.' },
+      });
     }
   }, [navigate]);
 

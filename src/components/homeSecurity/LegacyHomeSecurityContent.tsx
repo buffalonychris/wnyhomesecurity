@@ -3,7 +3,7 @@ import AccordionSection from '../AccordionSection';
 import DemoDashboardLink from '../DemoDashboardLink';
 import HomeSecurityComparisonTable from '../HomeSecurityComparisonTable';
 import PackageCard from '../PackageCard';
-import SelfMonitoringDisclosure from '../disclosures/SelfMonitoringDisclosure';
+import HomeSecurityFunnelSteps from '../HomeSecurityFunnelSteps';
 import type { PackageTier } from '../../content/packages';
 import { HOME_SECURITY_TIER_MEDIA } from '../../content/homeSecurityPackageData';
 
@@ -48,7 +48,6 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
                 View Packages
               </a>
             </div>
-            <SelfMonitoringDisclosure variant="short" className="home-security-disclosure" />
           </div>
           <div className="vertical-hero-badges" aria-label="Key promises">
             <span>Offline-first</span>
@@ -210,6 +209,13 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
               Confirm fit in minutes
             </a>
           </div>
+        </div>
+      </section>
+
+      <section className="space-grid">
+        <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <div className="badge">Legacy funnel overview</div>
+          <HomeSecurityFunnelSteps currentStep="packages" />
         </div>
       </section>
 

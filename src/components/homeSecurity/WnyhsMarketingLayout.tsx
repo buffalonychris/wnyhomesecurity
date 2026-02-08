@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import WnyhsTopNav from './WnyhsTopNav';
+import { getHomeSecurityCtaLink } from '../../content/wnyhsNavigation';
 import '../../styles/homeSecurityPremium.css';
 
 type WnyhsMarketingLayoutProps = {
@@ -7,7 +8,7 @@ type WnyhsMarketingLayoutProps = {
   children: ReactNode;
 };
 
-const WnyhsMarketingLayout = ({ ctaLink = '/discovery?vertical=home-security', children }: WnyhsMarketingLayoutProps) => {
+const WnyhsMarketingLayout = ({ ctaLink = getHomeSecurityCtaLink(), children }: WnyhsMarketingLayoutProps) => {
   return (
     <div className="wnyhs-page-layout wnyhs-page-layout--marketing">
       <WnyhsTopNav ctaLink={ctaLink} />

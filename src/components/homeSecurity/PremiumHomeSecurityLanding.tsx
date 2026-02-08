@@ -3,6 +3,7 @@ import type { PackageTier } from '../../content/packages';
 import DemoDashboardLink from '../DemoDashboardLink';
 import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
+import { HOME_SECURITY_ROUTES } from '../../content/wnyhsNavigation';
 
 type Props = {
   packages: PackageTier[];
@@ -29,7 +30,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
             <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
               Get Started
             </Link>
-            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+            <Link className="btn btn-secondary" to={HOME_SECURITY_ROUTES.packages}>
               View Packages
             </Link>
           </div>
