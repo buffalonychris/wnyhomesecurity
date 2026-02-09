@@ -24,10 +24,10 @@ const HomeSecurityPackageTierPage = () => {
           </p>
           <p>{pkg.summary}</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/quote">
+            <NavLink className="newsite-btn" to="/newsite/quote">
               Start online quote
             </NavLink>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/contact">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Request callback
             </NavLink>
           </div>
@@ -73,10 +73,10 @@ const HomeSecurityPackageTierPage = () => {
           <h2>Next steps</h2>
           <p>Connect with a security advisor or place your deposit to reserve installation.</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/quote">
+            <NavLink className="newsite-btn" to="/newsite/quote">
               Start online quote
             </NavLink>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/contact">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Request callback
             </NavLink>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/home-security/pay-deposit">

@@ -86,6 +86,10 @@ const HomeSecurityPackageTierPage = lazy(() => import('./newsite/pages/HomeSecur
 const NewSiteFitCheck = lazy(() => import('./newsite/pages/NewSiteFitCheck'));
 const NewSiteHomeSecurityPlanner = lazy(() => import('./newsite/pages/NewSiteHomeSecurityPlanner'));
 const NewSiteQuote = lazy(() => import('./newsite/pages/NewSiteQuote'));
+const NewSiteQuoteReview = lazy(() => import('./newsite/pages/NewSiteQuoteReview'));
+const NewSiteQuotePrint = lazy(() => import('./newsite/pages/NewSiteQuotePrint'));
+const NewSiteAgreementReview = lazy(() => import('./newsite/pages/NewSiteAgreementReview'));
+const NewSiteAgreementPrint = lazy(() => import('./newsite/pages/NewSiteAgreementPrint'));
 const NewSiteHomeSecurityPayDeposit = lazy(() => import('./newsite/pages/HomeSecurityPayDeposit'));
 const NewSiteHomeSecurityPaymentSuccess = lazy(() => import('./newsite/pages/HomeSecurityPaymentSuccess'));
 const NewSiteHomeSecurityPaymentCancel = lazy(() => import('./newsite/pages/HomeSecurityPaymentCancel'));
@@ -206,6 +210,10 @@ const App = () => {
             <Route path="home-security/fit-check" element={<NewSiteFitCheck />} />
             <Route path="home-security/planner" element={<NewSiteHomeSecurityPlanner />} />
             <Route path="quote" element={<NewSiteQuote />} />
+            <Route path="quote/review" element={<NewSiteQuoteReview />} />
+            <Route path="quote/print" element={<NewSiteQuotePrint />} />
+            <Route path="agreement/review" element={<NewSiteAgreementReview />} />
+            <Route path="agreement/print" element={<NewSiteAgreementPrint />} />
             <Route path="home-security/pay-deposit" element={<NewSiteHomeSecurityPayDeposit />} />
             <Route path="home-security/payment/success" element={<NewSiteHomeSecurityPaymentSuccess />} />
             <Route path="home-security/payment/cancel" element={<NewSiteHomeSecurityPaymentCancel />} />

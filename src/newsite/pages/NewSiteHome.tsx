@@ -64,7 +64,7 @@ const NewSiteHome = () => {
           <strong>Next step: Design your system</strong>
           <p>Start the planning flow to match sensors, zones, and smart automations.</p>
           <div>
-            <NavLink className="newsite-btn" to="/quote">
+            <NavLink className="newsite-btn" to="/newsite/quote">
               Start online quote
             </NavLink>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/demos">

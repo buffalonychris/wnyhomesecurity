@@ -26,7 +26,7 @@ const HomeSecurityPaymentCancel = () => {
           <h2>Need assistance?</h2>
           <p>Our team can help answer any questions about the deposit or installation timeline.</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/contact">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Request callback
             </NavLink>
             <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">

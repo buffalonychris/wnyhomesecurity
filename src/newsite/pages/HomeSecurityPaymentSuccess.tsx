@@ -91,7 +91,7 @@ const HomeSecurityPaymentSuccess = () => {
           <h2>Need anything else?</h2>
           <p>Our team is standing by if you have questions about the next steps.</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/contact">
+            <NavLink className="newsite-btn" to="/newsite/contact">
               Contact support
             </NavLink>
             <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">
