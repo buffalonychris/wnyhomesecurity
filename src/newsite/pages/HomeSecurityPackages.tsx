@@ -17,10 +17,10 @@ const HomeSecurityPackages = () => {
           <strong>Need help selecting a package?</strong>
           <p>Talk with a security advisor or begin an online quote to customize your coverage.</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/quote">
+            <NavLink className="newsite-btn" to="/newsite/quote">
               Start online quote
             </NavLink>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/contact">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Request callback
             </NavLink>
           </div>
@@ -69,13 +69,13 @@ const HomeSecurityPackages = () => {
           <h2>Ready to begin?</h2>
           <p>Choose how you want to connect with our security advisors today.</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/quote">
+            <NavLink className="newsite-btn" to="/newsite/quote">
               Start online quote
             </NavLink>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/contact">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Request callback
             </NavLink>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/schedule">
+            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/on-site-quote">
               Request on-site quote
             </NavLink>
             <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">
