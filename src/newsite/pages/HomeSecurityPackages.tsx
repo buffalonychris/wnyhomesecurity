@@ -9,8 +9,8 @@ const HomeSecurityPackages = () => {
           <span className="newsite-badge">Home security packages</span>
           <h1>Choose the package that matches your home.</h1>
           <p>
-            Every package includes professional monitoring and concierge onboarding. Compare the tiers below and select
-            the coverage level that fits your household.
+            Every package includes professional setup and concierge onboarding. Compare the tiers below and select the
+            coverage level that fits your household.
           </p>
         </div>
         <div className="newsite-card">

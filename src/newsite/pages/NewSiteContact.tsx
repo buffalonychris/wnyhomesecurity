@@ -24,7 +24,7 @@ const NewSiteContact = () => (
         </div>
       </div>
       <div className="newsite-card">
-        <strong>White-glove response</strong>
+        <strong>White-glove support</strong>
         <p>We confirm details quickly, prioritize your timing, and align next steps before the call ends.</p>
         <ul className="newsite-list">
           <li>Same-day or next-day call windows when available.</li>

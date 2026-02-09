@@ -23,7 +23,7 @@ const DemosIndex = () => {
         <div className="newsite-grid">
           <div className="newsite-card">
             <strong>HA Gold dashboard</strong>
-            <p>Review monitoring status, automation routines, and smart device health.</p>
+            <p>Review system status, automation routines, and smart device health.</p>
             <NavLink className="newsite-btn" to="/newsite/demos/ha-gold-dashboard">
               Open demo
             </NavLink>

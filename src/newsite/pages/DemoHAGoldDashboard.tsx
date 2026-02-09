@@ -1,6 +1,6 @@
 const summaryCards = [
-  { label: 'Monitoring status', value: 'Active · All zones secure' },
-  { label: 'Response readiness', value: 'Verified · 24/7 dispatch ready' },
+  { label: 'System status', value: 'Active · All zones secure' },
+  { label: 'Readiness overview', value: 'Verified · 24/7 support ready' },
   { label: 'System health', value: '98% · All devices online' },
 ];
 
@@ -31,7 +31,7 @@ const DemoHAGoldDashboard = () => {
         <div>
           <span className="newsite-badge">HA Gold demo</span>
           <h1>Homeowner dashboard</h1>
-          <p>Review monitoring coverage, device health, and automation routines in a read-only environment.</p>
+          <p>Review system coverage, device health, and automation routines in a read-only environment.</p>
         </div>
         <div className="newsite-card">
           <strong>Demo mode — simulated data</strong>

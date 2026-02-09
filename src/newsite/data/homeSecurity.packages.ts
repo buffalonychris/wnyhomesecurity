@@ -25,7 +25,7 @@ export const homeSecurityPackages: HomeSecurityPackage[] = [
     includedSummary: [
       'Entry + motion coverage for key zones',
       'Mobile app control with instant alerts',
-      'Professional monitoring setup',
+      'Professional setup + walkthrough',
     ],
     features: [
       {
@@ -37,8 +37,8 @@ export const homeSecurityPackages: HomeSecurityPackage[] = [
         detail: 'Arm, disarm, and check status from anywhere with the WNY Home Security app.',
       },
       {
-        title: 'Rapid-response monitoring',
-        detail: '24/7 monitoring with verified dispatch coordination.',
+        title: 'Real-time system oversight',
+        detail: 'Around-the-clock visibility with concierge support when you need it.',
       },
       {
         title: 'Guided setup session',
@@ -56,11 +56,11 @@ export const homeSecurityPackages: HomeSecurityPackage[] = [
     name: 'Silver Package',
     priceCents: 259900,
     highlight: 'Recommended',
-    summary: 'Balanced coverage with expanded sensors, smart scenes, and priority response.',
+    summary: 'Balanced coverage with expanded sensors, smart scenes, and priority care.',
     includedSummary: [
       'Expanded perimeter coverage',
       'Smart automation scenes prebuilt',
-      'Priority response playbooks',
+      'Priority care guides',
     ],
     features: [
       {
@@ -72,8 +72,8 @@ export const homeSecurityPackages: HomeSecurityPackage[] = [
         detail: 'Preset scenes for arrival, bedtime, and away routines.',
       },
       {
-        title: 'Priority response workflow',
-        detail: 'Enhanced escalation steps keep your household informed.',
+        title: 'Priority care workflow',
+        detail: 'Enhanced check-ins keep your household informed.',
       },
       {
         title: 'Camera-ready infrastructure',
@@ -87,7 +87,7 @@ export const homeSecurityPackages: HomeSecurityPackage[] = [
     goodFit: [
       'Families wanting added automation',
       'Multi-entry homes needing wider coverage',
-      'Households seeking proactive monitoring updates',
+      'Households seeking proactive system updates',
     ],
   },
   {
