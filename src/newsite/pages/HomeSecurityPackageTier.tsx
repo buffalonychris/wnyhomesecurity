@@ -19,9 +19,7 @@ const HomeSecurityPackageTierPage = () => {
         <div>
           {pkg.highlight && <span className="newsite-badge">{pkg.highlight}</span>}
           <h1>{pkg.name}</h1>
-          <p>
-            {formatPackagePrice(pkg.priceCents)} one-time · Professional monitoring included
-          </p>
+          <p>{formatPackagePrice(pkg.priceCents)} one-time · Professional setup included</p>
           <p>{pkg.summary}</p>
           <div className="newsite-cta-row">
             <NavLink className="newsite-btn" to="/newsite/quote">

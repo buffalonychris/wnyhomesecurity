@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 const packages = [
   {
     name: 'HA Gold',
-    description: 'Premium monitoring with smart automation and concierge onboarding.',
+    description: 'Premium protection with smart automation and concierge onboarding.',
     highlight: 'Most popular',
   },
   {
     name: 'HA Silver',
-    description: 'Balanced protection with priority response and guided setup.',
+    description: 'Balanced protection with priority care and guided setup.',
     highlight: 'Best value',
   },
   {
@@ -25,7 +25,7 @@ const steps = [
   },
   {
     title: 'Design with Fit Check',
-    detail: 'Validate device placement, entry coverage, and monitoring needs.',
+    detail: 'Validate device placement, entry coverage, and service needs.',
   },
   {
     title: 'Precision Planner',
@@ -39,8 +39,8 @@ const faq = [
     answer: 'Most installs can be scheduled within 7-10 days after confirming your plan.',
   },
   {
-    question: 'Is monitoring 24/7?',
-    answer: 'Yes. Our team monitors alarms around the clock with rapid dispatch protocols.',
+    question: 'Is coverage supported 24/7?',
+    answer: 'Yes. Our team provides around-the-clock system oversight and concierge support.',
   },
   {
     question: 'Can I add smart devices later?',
@@ -76,7 +76,7 @@ const NewSiteHome = () => {
 
       <section className="newsite-section" id="packages">
         <h2>Packages built for premium peace of mind</h2>
-        <p>Choose a starting point, then layer in smart automation and monitoring enhancements.</p>
+        <p>Choose a starting point, then layer in smart automation and system enhancements.</p>
         <div className="newsite-grid">
           {packages.map((pkg) => (
             <div className="newsite-card" key={pkg.name}>
@@ -109,8 +109,8 @@ const NewSiteHome = () => {
           <span className="newsite-badge">Precision Planner (Advanced)</span>
           <h2>Plan device placement with confidence</h2>
           <p>
-            Use the Precision Planner to map zones, assign sensors, and forecast response coverage before your
-            technician arrives.
+            Use the Precision Planner to map zones, assign sensors, and forecast coverage before your technician
+            arrives.
           </p>
         </div>
       </section>
@@ -120,7 +120,7 @@ const NewSiteHome = () => {
         <div className="newsite-grid">
           <div className="newsite-card">
             <strong>Essential</strong>
-            <p>Starter monitoring with core sensors and mobile alerts.</p>
+            <p>Starter coverage with core sensors and mobile alerts.</p>
           </div>
           <div className="newsite-card">
             <strong>Premium</strong>
@@ -128,7 +128,7 @@ const NewSiteHome = () => {
           </div>
           <div className="newsite-card">
             <strong>Concierge</strong>
-            <p>White-glove onboarding, priority response, and ongoing optimization.</p>
+            <p>White-glove onboarding, priority care, and ongoing optimization.</p>
           </div>
         </div>
       </section>

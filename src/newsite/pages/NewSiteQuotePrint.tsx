@@ -66,7 +66,7 @@ const NewSiteQuotePrint = () => {
         <ul className="newsite-list">
           <li>Pricing assumes standard installation within the WNY Home Security service area.</li>
           <li>Existing power and Wi-Fi connectivity are available at the installation site.</li>
-          <li>Package coverage is based on the included sensor and monitoring scope.</li>
+          <li>Package coverage is based on the included sensor and service scope.</li>
         </ul>
       </section>
 
@@ -78,7 +78,7 @@ const NewSiteQuotePrint = () => {
       <section className="newsite-surface">
         <h2>Disclaimers</h2>
         <ul className="newsite-list">
-          <li>Monitoring service and optional add-ons are billed separately.</li>
+          <li>Service add-ons and optional enhancements are billed separately.</li>
           <li>Final installation schedule is confirmed after deposit and walkthrough approval.</li>
         </ul>
       </section>

@@ -89,10 +89,10 @@ const HomeSecurityPaymentSuccess = () => {
       <section className="newsite-section">
         <div className="newsite-surface">
           <h2>Need anything else?</h2>
-          <p>Our team is standing by if you have questions about the next steps.</p>
+          <p>Schedule your installation or reach us if you have questions about the next steps.</p>
           <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/newsite/contact">
-              Contact support
+            <NavLink className="newsite-btn" to="/newsite/schedule">
+              Schedule installation
             </NavLink>
             <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">
               Call (716) 391-2405
