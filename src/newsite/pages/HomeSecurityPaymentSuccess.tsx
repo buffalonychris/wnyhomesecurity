@@ -1,10 +1,20 @@
 import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
+type HomeSecurityTier = 'bronze' | 'silver' | 'gold';
+
+type VerifyState =
+  | { status: 'loading' }
+  | { status: 'missing' }
+  | { status: 'verified'; tier: HomeSecurityTier }
+  | { status: 'unverified' }
+  | { status: 'error' };
+
+const formatTierLabel = (tier: HomeSecurityTier) => `${tier.charAt(0).toUpperCase()}${tier.slice(1)}`;
+
 const HomeSecurityPaymentSuccess = () => {
   const location = useLocation();
-  const [status, setStatus] = useState<'idle' | 'loading' | 'verified' | 'missing' | 'unpaid' | 'error'>('idle');
-  const [metadata, setMetadata] = useState<Record<string, string> | null>(null);
+  const [verifyState, setVerifyState] = useState<VerifyState>({ status: 'loading' });
 
   const sessionId = useMemo(() => {
     const params = new URLSearchParams(location.search);
@@ -13,37 +23,37 @@ const HomeSecurityPaymentSuccess = () => {
 
   useEffect(() => {
     if (!sessionId) {
-      setStatus('missing');
+      setVerifyState({ status: 'missing' });
       return;
     }
 
     let isMounted = true;
+
     const verify = async () => {
-      setStatus('loading');
+      setVerifyState({ status: 'loading' });
       try {
-        const response = await fetch('/api/verify-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId }),
-        });
+        const response = await fetch(`/api/stripe/verify-session?session_id=${encodeURIComponent(sessionId)}`);
         const data = (await response.json().catch(() => null)) as
-          | { ok?: boolean; paid?: boolean; metadata?: Record<string, string> }
+          | { verified?: boolean; tier?: HomeSecurityTier }
           | null;
 
         if (!isMounted) return;
 
-        if (response.ok && data?.ok) {
-          if (data.paid) {
-            setMetadata(data.metadata ?? null);
-            setStatus('verified');
-            return;
-          }
-          setStatus('unpaid');
+        if (response.ok && data?.verified && data.tier) {
+          setVerifyState({ status: 'verified', tier: data.tier });
           return;
         }
-        setStatus('error');
-      } catch (error) {
-        if (isMounted) setStatus('error');
+
+        if (response.ok) {
+          setVerifyState({ status: 'unverified' });
+          return;
+        }
+
+        setVerifyState({ status: 'error' });
+      } catch {
+        if (isMounted) {
+          setVerifyState({ status: 'error' });
+        }
       }
     };
 
@@ -54,53 +64,58 @@ const HomeSecurityPaymentSuccess = () => {
     };
   }, [sessionId]);
 
-  const tierLabel = metadata?.tier ? `${metadata.tier.charAt(0).toUpperCase()}${metadata.tier.slice(1)}` : null;
+  const scheduleTo =
+    verifyState.status === 'verified'
+      ? `/newsite/schedule?tier=${encodeURIComponent(verifyState.tier)}&source=verified`
+      : '/newsite/schedule';
 
   return (
     <div className="newsite-container">
       <section className="newsite-hero">
         <div>
           <span className="newsite-badge">Deposit confirmation</span>
-          <h1>Deposit confirmed.</h1>
-          <p>Your Home Security deposit is confirmed and we&apos;ll follow up to schedule installation.</p>
-          <p>
-            Remaining balance is due on arrival (day of install) after a walkthrough confirmation.
-          </p>
-          <p>
-            {status === 'loading' && 'Confirming your deposit...'}
-            {status === 'verified' && 'Deposit processing complete.'}
-            {status === 'missing' && 'We did not detect a checkout session yet.'}
-            {status === 'unpaid' && 'This checkout is not marked as paid yet.'}
-            {status === 'error' && 'We are still verifying your deposit.'}
-          </p>
+          <h1>
+            {verifyState.status === 'verified'
+              ? 'Payment confirmed.'
+              : verifyState.status === 'missing'
+                ? 'We couldn\'t find your session.'
+                : 'We\'re confirming your payment.'}
+          </h1>
+          {verifyState.status === 'verified' ? (
+            <>
+              <p>Your Home Security deposit is verified and your install scheduling is ready.</p>
+              <p>Verified package tier: {formatTierLabel(verifyState.tier)}.</p>
+            </>
+          ) : (
+            <p>
+              If you just completed checkout, keep this page open for a moment and try refreshing. If this persists,
+              contact our team and we&apos;ll confirm your payment quickly.
+            </p>
+          )}
+          {verifyState.status === 'loading' ? <p>Checking Stripe confirmation...</p> : null}
+          {verifyState.status === 'unverified' ? <p>Payment was not yet verified for this session.</p> : null}
+          {verifyState.status === 'error' ? <p>We hit an issue while checking Stripe. Please contact us.</p> : null}
         </div>
         <div className="newsite-card">
           <strong>Next steps</strong>
-          <p>
-            We&apos;ll coordinate your installation window and confirm the final placement checklist.
-          </p>
-          {tierLabel ? <p>Deposit received for the {tierLabel} tier.</p> : null}
+          {verifyState.status === 'verified' ? (
+            <>
+              <p>Your payment is confirmed.</p>
+              <NavLink className="newsite-btn" to={scheduleTo}>
+                Schedule your install
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <p>We&apos;ll help verify and schedule with you directly.</p>
+              <a className="newsite-btn" href="tel:17163912405">
+                Call (716) 391-2405
+              </a>
+            </>
+          )}
           <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/home-security/packages">
             Explore packages
           </NavLink>
-        </div>
-      </section>
-
-      <section className="newsite-section">
-        <div className="newsite-surface">
-          <h2>Need anything else?</h2>
-          <p>Schedule your installation or reach us if you have questions about the next steps.</p>
-          <div className="newsite-cta-row">
-            <NavLink className="newsite-btn" to="/newsite/schedule">
-              Schedule installation
-            </NavLink>
-            <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">
-              Call (716) 391-2405
-            </a>
-            <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/home-security/pay-deposit">
-              Back to deposit
-            </NavLink>
-          </div>
         </div>
       </section>
     </div>
