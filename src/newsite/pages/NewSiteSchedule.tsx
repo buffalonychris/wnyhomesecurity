@@ -1,11 +1,40 @@
-import { useMemo } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { formatPackagePrice, getHomeSecurityPackage } from '../data/homeSecurity.packages';
 import { getQuoteDraft } from '../lib/quoteStorage';
 
+type HomeSecurityTier = 'bronze' | 'silver' | 'gold';
+
+const isTier = (value: string | null): value is HomeSecurityTier => value === 'bronze' || value === 'silver' || value === 'gold';
+
+const tierLabel = (tier: HomeSecurityTier) => `${tier.charAt(0).toUpperCase()}${tier.slice(1)}`;
+
 const NewSiteSchedule = () => {
+  const location = useLocation();
+
   const quoteDraft = useMemo(() => getQuoteDraft(), []);
   const selectedPackage = quoteDraft ? getHomeSecurityPackage(quoteDraft.selectedTier) : null;
+
+  const tierFromQuery = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    const tier = params.get('tier');
+    return isTier(tier) ? tier : null;
+  }, [location.search]);
+
+  const sourceFromQuery = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('source') ?? 'unknown';
+  }, [location.search]);
+
+  useEffect(() => {
+    fetch('/api/stripe/schedule-initiated', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier: tierFromQuery, source: sourceFromQuery }),
+    }).catch(() => {
+      // Best effort logging only.
+    });
+  }, [sourceFromQuery, tierFromQuery]);
 
   return (
     <div className="newsite-container">
@@ -20,6 +49,12 @@ const NewSiteSchedule = () => {
         </div>
         <div className="newsite-card">
           <strong>Selected package</strong>
+          {tierFromQuery && sourceFromQuery === 'verified' ? (
+            <p>Verified purchase: {tierLabel(tierFromQuery)} tier.</p>
+          ) : null}
+          {tierFromQuery && sourceFromQuery !== 'verified' ? (
+            <p>Requested package: {tierLabel(tierFromQuery)} tier (pending verification).</p>
+          ) : null}
           {selectedPackage ? (
             <>
               <p>{selectedPackage.name}</p>
