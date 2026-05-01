@@ -1,4 +1,10 @@
 export type UtmParams = {
+  gclid?: string;
+  gbraid?: string;
+  wbraid?: string;
+  msclkid?: string;
+  fbclid?: string;
+  ttclid?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -15,6 +21,12 @@ const utmKeys: (keyof Omit<UtmParams, 'landing_path' | 'timestamp'>)[] = [
   'utm_campaign',
   'utm_content',
   'utm_term',
+  'gclid',
+  'gbraid',
+  'wbraid',
+  'msclkid',
+  'fbclid',
+  'ttclid',
 ];
 
 export const getPreferredStorage = (): Storage | null => {

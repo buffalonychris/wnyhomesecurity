@@ -1,3 +1,4 @@
+import { updateDealByQuoteRefOrDealId } from './_hubspot.js';
 import { createHmac, timingSafeEqual as timingSafeEqualBuffer } from 'crypto';
 
 type RequestLike = {
@@ -99,6 +100,7 @@ export default async function handler(req: RequestLike, res: any) {
     const quoteRef = session?.metadata?.quoteRef;
 
     console.info('Stripe checkout completed', { quoteRef });
+    await updateDealByQuoteRefOrDealId({ quoteRef, properties: { dealstage: 'Deposit Paid', wny_deposit_status: 'paid', wny_payment_verified_server_side: true } });
   }
 
   res.status(200).json({ received: true });

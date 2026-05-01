@@ -22,6 +22,7 @@ import {
 } from '../lib/homeSecurityFunnel';
 import { track } from '../lib/analytics';
 import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
+import { sendFitCheckCompleted } from '../lib/hubspotLeadSignal';
 
 type FitCheckAnswers = HomeSecurityFitCheckAnswers;
 type FitCheckResult = HomeSecurityFitCheckResult;
@@ -312,6 +313,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
     params.set('fitTier', tier);
     params.set('package', tierToPackageId(tier));
     setSearchParams(params, { replace: true });
+    void sendFitCheckCompleted({ pathChoice: searchParams.get('path') === 'onsite' ? 'onsite_confirmation_first' : 'online_first', deal: { packageTier: tier.toLowerCase(), packageId: tierToPackageId(tier), plannerSummary: buildSummary(answers) } });
     return tier;
   };
 

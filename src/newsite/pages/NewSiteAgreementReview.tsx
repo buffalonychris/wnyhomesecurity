@@ -9,6 +9,7 @@ import {
   getQuoteDraft,
   saveAgreementDraft,
 } from '../lib/quoteStorage';
+import { sendAgreementAccepted } from '../../lib/hubspotLeadSignal';
 
 const fallbackTier: HomeSecurityTier = 'silver';
 
@@ -119,7 +120,7 @@ const NewSiteAgreementReview = () => {
                 <input
                   type="checkbox"
                   checked={accepted}
-                  onChange={(event) => setAccepted(event.target.checked)}
+                  onChange={(event) => { const next = event.target.checked; setAccepted(next); if (next) { const quote = getQuoteDraft(); void sendAgreementAccepted({ deal: { quoteRef: quote?.quoteId, packageTier: selectedTier } }); } }}
                 />
                 {' '}I accept the package and pricing summary above.
               </span>

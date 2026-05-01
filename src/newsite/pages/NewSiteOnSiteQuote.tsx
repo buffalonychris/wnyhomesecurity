@@ -1,4 +1,6 @@
 import { useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { sendWalkthroughRequested } from '../../lib/hubspotLeadSignal';
 import { NavLink } from 'react-router-dom';
 
 type QuoteFormState = {
@@ -45,6 +47,7 @@ const NewSiteOnSiteQuote = () => {
     notes: '',
   });
   const [errors, setErrors] = useState<QuoteFormErrors>({});
+  const [searchParams] = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
 
   const mailtoHref = useMemo(() => {
@@ -102,6 +105,7 @@ const NewSiteOnSiteQuote = () => {
       preferredTimes: formState.preferredTimes.trim(),
       notes: formState.notes.trim(),
     });
+    void sendWalkthroughRequested({ pathChoice: 'onsite_confirmation_first', contact: { name: formState.name.trim(), email: formState.email.trim(), phone: formState.phone.trim(), address: formState.address.trim() }, walkthrough: { requested: true, status: 'requested', preferredTimeWindow1: formState.preferredTimes.trim(), notes: formState.notes.trim() }, deal: { packageTier: searchParams.get('tier') || 'custom_fit', quoteRef: searchParams.get('quoteRef') || undefined } });
     setSubmitted(true);
   };
 

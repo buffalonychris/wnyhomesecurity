@@ -115,6 +115,13 @@ export const onRequestPost: PagesFunction<StripeWebhookEnv> = async ({
       quoteRef: session?.metadata?.quoteRef,
       sessionId: session?.id,
     });
+    const token = env.HUBSPOT_PRIVATE_APP_TOKEN;
+    if (token && session?.metadata?.quoteRef) {
+      await fetch('https://api.hubapi.com/crm/v3/objects/deals/search', { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: session.metadata.quoteRef }] }], limit: 1 }) })
+        .then((r) => r.json())
+        .then(async (d) => { const id = d?.results?.[0]?.id; if (id) { await fetch(`https://api.hubapi.com/crm/v3/objects/deals/${id}`, { method: 'PATCH', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ properties: { dealstage: 'Deposit Paid', wny_deposit_status: 'paid', wny_payment_verified_server_side: true } }) }); } })
+        .catch(() => {});
+    }
   }
 
   return new Response(JSON.stringify({ received: true }), {

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getHomeSecurityPackage, homeSecurityPackages, type HomeSecurityTier } from '../data/homeSecurity.packages';
 import { ensureQuoteDraft, formatCurrency, getQuoteDraft } from '../lib/quoteStorage';
+import { sendQuoteGenerated } from '../../lib/hubspotLeadSignal';
 
 const fallbackTier: HomeSecurityTier = 'silver';
 
@@ -12,6 +13,11 @@ const NewSiteQuoteReview = () => {
   useEffect(() => {
     const draft = ensureQuoteDraft(selectedTier);
     setQuoteId(draft.quoteId);
+    const key = `quote_generated_${draft.quoteId}`;
+    if (typeof window !== 'undefined' && !window.sessionStorage.getItem(key)) {
+      window.sessionStorage.setItem(key, '1');
+      void sendQuoteGenerated({ deal: { quoteRef: draft.quoteId, packageTier: draft.selectedTier, amount: (getHomeSecurityPackage(draft.selectedTier)?.priceCents || 0) / 100 } });
+    }
   }, [selectedTier]);
 
   const selectedPackage = useMemo(
@@ -94,6 +100,9 @@ const NewSiteQuoteReview = () => {
             </NavLink>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Talk to an advisor
+            </NavLink>
+            <NavLink className="newsite-btn newsite-btn-secondary" to={`/newsite/on-site-quote?path=onsite&tier=${selectedTier}&quoteRef=${quoteId}`}>
+              Schedule On-Site Walkthrough Instead
             </NavLink>
           </div>
         </div>
