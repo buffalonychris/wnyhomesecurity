@@ -7,25 +7,42 @@ import { sendQuoteGenerated } from '../../lib/hubspotLeadSignal';
 const fallbackTier: HomeSecurityTier = 'silver';
 
 const NewSiteQuoteReview = () => {
-  const [selectedTier, setSelectedTier] = useState<HomeSecurityTier>(() => getQuoteDraft()?.selectedTier ?? fallbackTier);
-  const [quoteId, setQuoteId] = useState<string>(() => getQuoteDraft()?.quoteId ?? '');
+  const existingDraft = useMemo(() => getQuoteDraft(), []);
+  const [selectedTier, setSelectedTier] = useState<HomeSecurityTier>(existingDraft?.selectedTier ?? fallbackTier);
+  const [quoteId, setQuoteId] = useState<string>(existingDraft?.quoteId ?? '');
 
   useEffect(() => {
+    if (!existingDraft) {
+      return;
+    }
+
     const draft = ensureQuoteDraft(selectedTier);
     setQuoteId(draft.quoteId);
-    const sessionMarker = typeof window !== 'undefined' ? (window.sessionStorage.getItem('quote_generated_session_marker') ?? window.sessionStorage.getItem('session_marker') ?? 'default_session') : 'default_session';
-    if (typeof window !== 'undefined' && !window.sessionStorage.getItem('quote_generated_session_marker')) {
-      window.sessionStorage.setItem('quote_generated_session_marker', sessionMarker);
+    try {
+      if (typeof window === 'undefined') return;
+
+      const sessionMarker = window.sessionStorage.getItem('quote_generated_session_marker') ?? window.sessionStorage.getItem('session_marker') ?? 'default_session';
+
+      if (!window.sessionStorage.getItem('quote_generated_session_marker')) {
+        window.sessionStorage.setItem('quote_generated_session_marker', sessionMarker);
+      }
+
+      const key = `quote_generated_${draft.quoteId}_${sessionMarker}`;
+      if (!window.sessionStorage.getItem(key)) {
+        window.sessionStorage.setItem(key, '1');
+        void sendQuoteGenerated({
+          deal: {
+            quoteRef: draft.quoteId,
+            packageTier: draft.selectedTier,
+            amount: (getHomeSecurityPackage(draft.selectedTier)?.priceCents || 0) / 100,
+          },
+          sessionMarker,
+        });
+      }
+    } catch (error) {
+      console.warn('Quote generated signal failed', error);
     }
-    const key = `quote_generated_${draft.quoteId}_${sessionMarker}`;
-    if (typeof window !== 'undefined' && !window.sessionStorage.getItem(key)) {
-      window.sessionStorage.setItem(key, '1');
-      void sendQuoteGenerated({
-        deal: { quoteRef: draft.quoteId, packageTier: draft.selectedTier, amount: (getHomeSecurityPackage(draft.selectedTier)?.priceCents || 0) / 100 },
-        sessionMarker,
-      });
-    }
-  }, [selectedTier]);
+  }, [existingDraft, selectedTier]);
 
   const selectedPackage = useMemo(
     () => getHomeSecurityPackage(selectedTier) ?? homeSecurityPackages[0],
@@ -38,6 +55,27 @@ const NewSiteQuoteReview = () => {
     const remainingCents = totalCents - depositCents;
     return { totalCents, depositCents, remainingCents };
   }, [selectedPackage]);
+
+  if (!existingDraft) {
+    return (
+      <div className="newsite-container">
+        <section className="newsite-hero">
+          <div className="newsite-card" style={{ display: 'grid', gap: '1rem' }}>
+            <h1>We couldn’t load your quote yet.</h1>
+            <p>Your recommendation may not have been saved correctly. You can return to Fit Check or choose a package again.</p>
+            <div className="newsite-cta-row">
+              <NavLink className="newsite-btn" to="/discovery">
+                Return to Fit Check
+              </NavLink>
+              <NavLink className="newsite-btn newsite-btn-secondary" to="/packages">
+                View Packages
+              </NavLink>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="newsite-container">

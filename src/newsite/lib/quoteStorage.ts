@@ -35,7 +35,12 @@ const readFromStorage = <T,>(key: string): T | null => {
     return null;
   }
 
-  const raw = window.localStorage.getItem(key);
+  let raw: string | null = null;
+  try {
+    raw = window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
   if (!raw) {
     return null;
   }
@@ -51,7 +56,12 @@ const writeToStorage = <T,>(key: string, value: T) => {
   if (typeof window === 'undefined') {
     return;
   }
-  window.localStorage.setItem(key, JSON.stringify(value));
+
+  try {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Swallow storage write errors so UI rendering never crashes.
+  }
 };
 
 export const getQuoteDraft = () => {
