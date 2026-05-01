@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
 import { getAllHomeSecurityNavItems, getHomeSecurityNavGroups, homeSecurityMarketingNav } from '../../content/wnyhsNavigation';
@@ -11,11 +11,26 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const moreMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMenuOpen(false);
     setMoreOpen(false);
   }, [location.pathname, location.search, location.hash]);
+
+
+  useEffect(() => {
+    if (!moreOpen) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!moreMenuRef.current?.contains(event.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
+  }, [moreOpen]);
 
   const drawerGroups = getHomeSecurityNavGroups();
   type NavItem = ReturnType<typeof getAllHomeSecurityNavItems>[number];
@@ -68,6 +83,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
             );
           })}
           <div
+            ref={moreMenuRef}
             className="wnyhs-top-nav-more"
             onMouseLeave={() => setMoreOpen(false)}
             onBlur={(event) => {
@@ -132,12 +148,11 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
             Get Started
           </Link>
         </div>
-      </div>
-
-      <div className="wnyhs-top-nav-strip" aria-label="Home Security highlights">
-        <span>Local-first</span>
-        <span>Professionally installed</span>
-        <span>No subscriptions sold by us</span>
+        <div className="wnyhs-top-nav-strip" aria-label="Home Security highlights">
+          <span>Local-first</span>
+          <span>Professionally installed</span>
+          <span>No subscriptions sold by us</span>
+        </div>
       </div>
 
       <div id="wnyhs-top-nav-drawer" className={`wnyhs-top-nav-drawer${menuOpen ? ' is-open' : ''}`}>
