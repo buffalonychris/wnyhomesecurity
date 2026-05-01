@@ -24,7 +24,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
       return false;
     }
     const matchPath = item.matchPath ?? item.href.split('?')[0].split('#')[0];
-    const pathMatches = location.pathname === matchPath;
+    const pathMatches = location.pathname === matchPath || location.pathname.startsWith(`${matchPath}/`);
     if (!item.matchHash) return pathMatches;
     return pathMatches && location.hash === item.matchHash;
   };
