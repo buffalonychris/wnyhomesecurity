@@ -203,7 +203,7 @@
 
 .wnyhs-top-nav-more-menu {
   position: absolute;
-  top: calc(100% + 0.6rem);
+  top: 100%;
   right: 0;
   min-width: 220px;
   display: none;
@@ -254,8 +254,11 @@
 .wnyhs-top-nav-strip {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
-  padding-top: 0.2rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--hs-premium-muted);
   font-size: 0.75rem;
