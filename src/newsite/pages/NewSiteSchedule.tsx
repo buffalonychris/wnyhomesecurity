@@ -29,8 +29,25 @@ const NewSiteSchedule = () => {
     return params.get('source') ?? 'unknown';
   }, [location.search]);
 
+  const preferredWindow = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('preferredWindow') ?? undefined;
+  }, [location.search]);
+
+  const notes = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('notes') ?? undefined;
+  }, [location.search]);
+
   useEffect(() => {
-    if (onsitePath) { void sendWalkthroughScheduled({ pathChoice: 'onsite_confirmation_first', walkthrough: { status: 'scheduled' } }); } else { void sendInstallScheduled({ pathChoice: 'online_first' }); }
+    if (onsitePath) {
+      void sendWalkthroughScheduled({
+        pathChoice: 'onsite_confirmation_first',
+        contact: { name: undefined, email: undefined, phone: undefined, address: undefined },
+        deal: { packageTier: tierFromQuery ?? 'custom_fit', quoteRef: quoteDraft?.quoteId },
+        walkthrough: { status: 'scheduled', preferredTimeWindow1: preferredWindow, notes },
+      });
+    } else { void sendInstallScheduled({ pathChoice: 'online_first' }); }
     fetch('/api/stripe/schedule-initiated', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +55,7 @@ const NewSiteSchedule = () => {
     }).catch(() => {
       // Best effort logging only.
     });
-  }, [onsitePath, sourceFromQuery, tierFromQuery]);
+  }, [notes, onsitePath, preferredWindow, quoteDraft?.quoteId, sourceFromQuery, tierFromQuery]);
 
   return (
     <div className="newsite-container">
