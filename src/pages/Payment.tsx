@@ -229,6 +229,22 @@ const Payment = () => {
     return null;
   }
 
+  if (!quoteContext) {
+    return (
+      <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1rem' }}>
+        <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <div className="badge">Payment</div>
+          <h1 style={{ margin: 0, color: '#fff7e6' }}>We couldn’t find your saved quote details for payment.</h1>
+          <p style={{ margin: 0, color: '#c8c0aa' }}>Please return to quote review to reload your quote, then continue to payment.</p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link className="btn btn-primary" to="/quoteReview">Return to Quote Review</Link>
+            <Link className="btn btn-secondary" to="/quote">Start New Quote</Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const redirectMessage = (location.state as { message?: string } | undefined)?.message;
 
   const startStripeCheckout = async () => {

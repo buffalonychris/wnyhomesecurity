@@ -5,17 +5,17 @@ const HaloPackage = () => {
   return (
     <div className="container section">
       <Seo
-        title="HALO™ Reliable Elder Care Package | Reliable Elder Care"
+        title="HALO™ Home Security Package | WNY Home Security"
         description="A full, privacy-legitimate elder care system: wireless, self-install, offline-first reliability with no monthly fees."
       />
       <div style={{ display: 'grid', gap: '1.5rem' }}>
         <div style={{ textAlign: 'center' }}>
           <p className="badge" style={{ marginBottom: '0.5rem' }}>
-            Reliable Elder Care — HALO™
+            WNY Home Security — HALO™
           </p>
           <h2 style={{ margin: 0 }}>Independence and dignity, protected with a real system.</h2>
           <p style={{ maxWidth: 720, margin: '0.75rem auto 0' }}>
-            The HALO™ Reliable Elder Care Package is wireless, self-install capable, and built for
+            The HALO™ WNY Home Security Package is wireless, self-install capable, and built for
             offline-first reliability. It is easy to use, designed for real homes, and never requires
             monthly fees.
           </p>

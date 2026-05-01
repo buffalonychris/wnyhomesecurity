@@ -4,6 +4,7 @@ import DemoDashboardLink from '../DemoDashboardLink';
 import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
 import { HOME_SECURITY_ROUTES } from '../../content/wnyhsNavigation';
+import { SITE_BUILD_DATE, SITE_BUILD_LABEL } from '../../lib/siteVersion';
 
 type Props = {
   packages: PackageTier[];
@@ -98,6 +99,12 @@ const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
           </Link>
         </div>
       </section>
+      <section className="hs-premium-cta" style={{ paddingTop: '0.5rem' }} aria-label="Site build version">
+        <small style={{ opacity: 0.78 }}>
+          {SITE_BUILD_LABEL} · Build: {SITE_BUILD_DATE}
+        </small>
+      </section>
+
     </div>
   );
 };

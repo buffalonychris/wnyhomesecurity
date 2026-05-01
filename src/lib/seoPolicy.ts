@@ -4,7 +4,7 @@ export type SeoPolicy = {
   noindexReason?: string;
 };
 
-const CANONICAL_BASE_URL = 'https://reliableeldercare.com';
+const CANONICAL_BASE_URL = 'https://wnyhomesecurity.com';
 
 const CATEGORY_A_PATHS = new Set<string>([
   '/',
