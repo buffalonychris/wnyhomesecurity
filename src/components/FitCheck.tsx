@@ -313,7 +313,11 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
     params.set('fitTier', tier);
     params.set('package', tierToPackageId(tier));
     setSearchParams(params, { replace: true });
-    void sendFitCheckCompleted({ pathChoice: searchParams.get('path') === 'onsite' ? 'onsite_confirmation_first' : 'online_first', deal: { packageTier: tier.toLowerCase(), packageId: tierToPackageId(tier), plannerSummary: buildSummary(answers) } });
+    void sendFitCheckCompleted({
+      pathChoice: searchParams.get('path') === 'onsite' ? 'onsite_confirmation_first' : 'online_first',
+      deal: { packageTier: tier.toLowerCase(), packageId: tierToPackageId(tier), plannerSummary: buildSummary(answers) },
+      fitCheck: { recommendedTier: tier, answers, assumedCoverage: nextResult.assumedCoverage },
+    });
     return tier;
   };
 

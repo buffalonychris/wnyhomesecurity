@@ -13,10 +13,17 @@ const NewSiteQuoteReview = () => {
   useEffect(() => {
     const draft = ensureQuoteDraft(selectedTier);
     setQuoteId(draft.quoteId);
-    const key = `quote_generated_${draft.quoteId}`;
+    const sessionMarker = typeof window !== 'undefined' ? (window.sessionStorage.getItem('quote_generated_session_marker') ?? window.sessionStorage.getItem('session_marker') ?? 'default_session') : 'default_session';
+    if (typeof window !== 'undefined' && !window.sessionStorage.getItem('quote_generated_session_marker')) {
+      window.sessionStorage.setItem('quote_generated_session_marker', sessionMarker);
+    }
+    const key = `quote_generated_${draft.quoteId}_${sessionMarker}`;
     if (typeof window !== 'undefined' && !window.sessionStorage.getItem(key)) {
       window.sessionStorage.setItem(key, '1');
-      void sendQuoteGenerated({ deal: { quoteRef: draft.quoteId, packageTier: draft.selectedTier, amount: (getHomeSecurityPackage(draft.selectedTier)?.priceCents || 0) / 100 } });
+      void sendQuoteGenerated({
+        deal: { quoteRef: draft.quoteId, packageTier: draft.selectedTier, amount: (getHomeSecurityPackage(draft.selectedTier)?.priceCents || 0) / 100 },
+        sessionMarker,
+      });
     }
   }, [selectedTier]);
 
