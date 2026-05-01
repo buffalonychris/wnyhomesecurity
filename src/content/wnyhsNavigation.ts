@@ -33,26 +33,17 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
   primary: [
     { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/home-security' },
     { id: 'packages', label: 'Packages', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
-    { id: 'comparison', label: 'Comparison', href: HOME_SECURITY_ROUTES.comparison, matchPath: '/comparison' },
-    {
-      id: 'whats-included',
-      label: 'What’s Included',
-      href: HOME_SECURITY_ROUTES.whatsIncluded,
-      matchPath: '/home-security/whats-included',
-    },
+    { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
+    { id: 'planner', label: 'Planner', href: HOME_SECURITY_ROUTES.planner, matchPath: '/home-security/planner' },
+    { id: 'schedule', label: 'Schedule', href: '/schedule?path=onsite', matchPath: '/schedule' },
+    { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
   ],
   more: [
-    {
-      id: 'dashboard-demo',
-      label: 'Dashboard Demo',
-      href: '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html',
-      external: true,
-    },
     { id: 'about', label: 'About', href: '/about?vertical=home-security', matchPath: '/about' },
     { id: 'contact', label: 'Contact', href: '/contact?vertical=home-security', matchPath: '/contact' },
-    { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
     { id: 'privacy', label: 'Privacy', href: '/privacy?vertical=home-security', matchPath: '/privacy' },
     { id: 'terms', label: 'Terms', href: '/terms?vertical=home-security', matchPath: '/terms' },
+    { id: 'support-footer', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
   ],
 };
 

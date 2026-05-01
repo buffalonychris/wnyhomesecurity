@@ -4,7 +4,6 @@ import DemoDashboardLink from '../DemoDashboardLink';
 import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
 import { HOME_SECURITY_ROUTES } from '../../content/wnyhsNavigation';
-import { SITE_BUILD_DATE, SITE_BUILD_LABEL } from '../../lib/siteVersion';
 
 type Props = {
   packages: PackageTier[];
@@ -27,6 +26,11 @@ const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
             <li>No subscriptions sold by us; you own the equipment.</li>
             <li>Simple, predictable steps from fit check to install.</li>
           </ul>
+          <div className="hs-premium-trust-badges" aria-label="Trust highlights">
+            <span>LOCAL-FIRST</span>
+            <span>PROFESSIONALLY INSTALLED</span>
+            <span>NO SUBSCRIPTIONS SOLD BY US</span>
+          </div>
           <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
               Get Started
@@ -99,12 +103,6 @@ const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
           </Link>
         </div>
       </section>
-      <section className="hs-premium-cta" style={{ paddingTop: '0.5rem' }} aria-label="Site build version">
-        <small style={{ opacity: 0.78 }}>
-          {SITE_BUILD_LABEL} · Build: {SITE_BUILD_DATE}
-        </small>
-      </section>
-
     </div>
   );
 };
