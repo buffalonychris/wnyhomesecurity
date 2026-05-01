@@ -5,13 +5,13 @@ const HaloPushbutton = () => {
   return (
     <div className="container section">
       <Seo
-        title="HALO™ Pushbutton | Reliable Elder Care"
+        title="HALO™ Pushbutton | WNY Home Security"
         description="A calm, privacy-first pushbutton with no monthly fees. HALO™ removes paid relay layers without surveillance or monitoring claims."
       />
       <div style={{ display: 'grid', gap: '1.5rem' }}>
         <div>
           <p className="badge" style={{ marginBottom: '0.5rem' }}>
-            Reliable Elder Care — HALO™
+            WNY Home Security — HALO™
           </p>
           <h2 style={{ margin: 0 }}>HALO™ Pushbutton keeps help reachable without monthly fees.</h2>
           <p style={{ maxWidth: 720, marginTop: '0.75rem' }}>
@@ -110,7 +110,7 @@ const HaloPushbutton = () => {
             Elder Care package adds a complete, privacy-legitimate system.
           </p>
           <Link className="btn btn-secondary" to="/halo-package">
-            Explore HALO™ Reliable Elder Care Package
+            Explore HALO™ WNY Home Security Package
           </Link>
         </section>
 
