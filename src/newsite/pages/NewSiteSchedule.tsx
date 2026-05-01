@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { sendInstallScheduled, sendWalkthroughScheduled } from '../../lib/hubspotLeadSignal';
 import { formatPackagePrice, getHomeSecurityPackage } from '../data/homeSecurity.packages';
 import { getQuoteDraft } from '../lib/quoteStorage';
 
@@ -21,12 +22,15 @@ const NewSiteSchedule = () => {
     return isTier(tier) ? tier : null;
   }, [location.search]);
 
+  const onsitePath = useMemo(() => new URLSearchParams(location.search).get('path') === 'onsite', [location.search]);
+
   const sourceFromQuery = useMemo(() => {
     const params = new URLSearchParams(location.search);
     return params.get('source') ?? 'unknown';
   }, [location.search]);
 
   useEffect(() => {
+    if (onsitePath) { void sendWalkthroughScheduled({ pathChoice: 'onsite_confirmation_first', walkthrough: { status: 'scheduled' } }); } else { void sendInstallScheduled({ pathChoice: 'online_first' }); }
     fetch('/api/stripe/schedule-initiated', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -34,14 +38,14 @@ const NewSiteSchedule = () => {
     }).catch(() => {
       // Best effort logging only.
     });
-  }, [sourceFromQuery, tierFromQuery]);
+  }, [onsitePath, sourceFromQuery, tierFromQuery]);
 
   return (
     <div className="newsite-container">
       <section className="newsite-hero">
         <div>
-          <span className="newsite-badge">Installation scheduling</span>
-          <h1>Next step: schedule your install</h1>
+          <span className="newsite-badge">{onsitePath ? 'On-site walkthrough scheduling' : 'Installation scheduling'}</span>
+          <h1>{onsitePath ? 'Schedule Your On-Site Walkthrough' : 'Next step: schedule your install'}</h1>
           <p>
             We&apos;ll align on timing, confirm access details, and make sure your home is ready for a seamless
             installation day.
