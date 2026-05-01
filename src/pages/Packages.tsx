@@ -120,12 +120,19 @@ const Packages = () => {
           }}
         >
           <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <strong>Want surgical precision?</strong>
-            <span style={{ color: 'var(--kaec-muted)' }}>Use the Precision Planner for optional layout detail.</span>
+            <strong>Optional Precision Planner</strong>
+            <span style={{ color: 'var(--kaec-muted)' }}>
+              Sketch your layout and place sensors, cameras, and leak protection before you build your quote.
+            </span>
           </div>
-          <Link className="btn btn-link" to={plannerHref} onClick={handlePlannerOpen}>
-            Use Precision Planner (optional)
-          </Link>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <Link className="btn btn-secondary" to={plannerHref} onClick={handlePlannerOpen}>
+              Open Planner
+            </Link>
+            <Link className="btn btn-link" to="/home-security/quote?vertical=home-security">
+              Skip and Continue
+            </Link>
+          </div>
         </div>
       )}
       <div className="card-grid motion-stagger">

@@ -357,6 +357,7 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
   const [activeDeviceKey, setActiveDeviceKey] = useState<FloorplanDeviceType | null>(null);
   const [activeStairsDirection, setActiveStairsDirection] = useState<FloorplanStairDirection | null>(null);
   const [dockOpen, setDockOpen] = useState<'left' | 'right' | null>(null);
+  const [panelMode, setPanelMode] = useState<'rooms' | 'templates' | 'devices' | 'selected' | 'closed'>('closed');
   const [showCoverage, setShowCoverage] = useState(false);
   const [showFurnishings, setShowFurnishings] = useState(true);
   const [showExteriorContext, setShowExteriorContext] = useState(true);
@@ -575,6 +576,15 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
 
   const handleDockToggle = (dock: 'left' | 'right') => {
     setDockOpen((open) => (open === dock ? null : dock));
+  };
+
+  const openBottomPanel = (mode: 'rooms' | 'templates' | 'devices' | 'selected' | 'closed') => {
+    setPanelMode(mode);
+    if (mode === 'closed') {
+      setDockOpen(null);
+      return;
+    }
+    setDockOpen(mode === 'devices' || mode === 'selected' ? 'right' : 'left');
   };
 
   useEffect(() => {
@@ -1286,6 +1296,28 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
             <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.75)' }}>
               You can skip this and keep recommendations.
             </p>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '0.5rem',
+              alignItems: 'center',
+              padding: '0.65rem 0.75rem',
+              borderRadius: '0.75rem',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              background: 'rgba(15, 19, 32, 0.75)',
+            }}
+          >
+            <Link className="btn btn-link" to={routeConfig.packages}>Back</Link>
+            <strong style={{ marginRight: 'auto' }}>Precision Planner</strong>
+            <button type="button" className="btn btn-secondary" onClick={handleAddRoom}>Add Room</button>
+            <button type="button" className="btn btn-secondary" onClick={() => openBottomPanel('templates')}>Templates</button>
+            <button type="button" className="btn btn-secondary" onClick={handleResetMap}>Reset</button>
+            <button type="button" className="btn btn-secondary" onClick={() => { setActiveDeviceKey(null); setActiveStairsDirection(null); }}>Select Tool</button>
+            <button type="button" className="btn btn-secondary" onClick={() => openBottomPanel('devices')}>Place Device</button>
+            <button type="button" className="btn btn-primary" onClick={handleApplyToQuote}>Apply to Quote</button>
+            <button type="button" className="btn btn-link" onClick={handleContinue}>Continue Without Planner</button>
           </div>
 
           <div
@@ -2006,9 +2038,10 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
                 <div style={{ display: 'grid', gap: '0.25rem' }}>
                   <strong>Workspace canvas</strong>
                   <span style={{ fontSize: '0.85rem', color: 'rgba(214, 233, 248, 0.75)' }}>
-                    Use the rails for actions (left) and device palette (right).
+                    Use the top toolbar and bottom panel controls to edit rooms, templates, and devices.
                   </span>
                 </div>
+                {panelMode !== 'closed' ? <span style={{ fontSize: '0.8rem', opacity: 0.85 }}>Panel: {panelMode}</span> : null}
                 {dockOpen !== 'right' && selectedSummary ? (
                   <span
                     style={{
@@ -2558,7 +2591,7 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
     return <div className="newsite-container newsite-section">{plannerContent}</div>;
   }
 
-  return <WnyhsFunnelLayout showStepRail>{plannerContent}</WnyhsFunnelLayout>;
+  return <WnyhsFunnelLayout showStepRail={false}>{plannerContent}</WnyhsFunnelLayout>;
 };
 
 export default HomeSecurityPlanner;
