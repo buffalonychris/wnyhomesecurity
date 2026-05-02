@@ -9,8 +9,8 @@
 
 ## VERSION
 
-- Version was incremented in `src/lib/siteVersion.ts`
-- New version is visible in footer/homepage
+- Version incremented in `src/lib/siteVersion.ts`
+- New version visible in footer/homepage
 
 ---
 
@@ -25,15 +25,15 @@
 
 ## FUNNEL INTEGRITY
 
-Verify core flow works without errors:
+Verify core flow loads without errors:
 
-- / → landing loads
-- /packages loads
-- /discovery (Fit Check) loads and progresses
-- /quoteReview loads
-- /agreementReview loads
-- /payment loads
-- /schedule loads
+- `/` (landing)
+- `/packages`
+- `/discovery` (Fit Check)
+- `/quoteReview`
+- `/agreementReview`
+- `/payment`
+- `/schedule`
 
 - Funnel order is NOT broken
 - Back navigation behaves correctly
@@ -53,7 +53,7 @@ Verify core flow works without errors:
 - HubSpot files NOT modified
 - No direct CRM writes added
 - Uses `/api/lead-signal` only
-- No schema/pipeline changes
+- No schema or pipeline changes
 
 ---
 
