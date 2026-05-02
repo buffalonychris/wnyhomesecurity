@@ -28,6 +28,7 @@ src/lib/siteVersion.ts
 
 Return:
 
+- New version number
 - Summary of changes
 - Files modified
 - Confirmation HubSpot untouched
