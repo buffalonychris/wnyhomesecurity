@@ -2,18 +2,20 @@
 
 This repository is governed by:
 
-/docs/system/project.md  
-/docs/system/agent.md  
-/docs/system/plan.md  
-/docs/system/guardrails.md  
+- /docs/system/project.md
+- /docs/system/agent.md
+- /docs/system/plan.md
+- /docs/system/guardrails.md
 
 HubSpot Architecture (Versioned):
-/docs/crm/hubspot/hubspot_kb_rev01.md  
-/docs/crm/hubspot/hubspot_kb_rev02.md  
-/docs/crm/hubspot/hubspot_kb_rev03.md  
+
+- /docs/crm/hubspot/hubspot_kb_rev01.md
+- /docs/crm/hubspot/hubspot_kb_rev02.md
+- /docs/crm/hubspot/hubspot_kb_rev03.md
 
 Controlling Step:
-/docs/system/step-current.md
+
+- /docs/system/step-current.md
 
 ---
 
@@ -22,9 +24,9 @@ Controlling Step:
 All Codex executions MUST:
 
 - Follow the authority chain defined in project.md
-- Reference the controlling Step document before making changes
-- Follow additive vs destructive discipline exactly
-- Create a new branch and open a PR (never merge)
+- Reference the controlling Step document BEFORE making changes
+- Follow additive vs destructive discipline EXACTLY
+- Create a new branch and open a PR (DO NOT MERGE)
 - Run build before completion
 
 ---
@@ -33,32 +35,47 @@ All Codex executions MUST:
 
 - HubSpot REV03 is LOCKED and AUTHORITATIVE
 - REV01 and REV02 are historical reference only
-- ALL CRM writes MUST go through `/api/lead-signal`
-- NEVER modify HubSpot schema, properties, or pipeline
-- NEVER bypass the API layer
-- NEVER update payment status outside Stripe webhook
+- ALL CRM writes MUST go through: `/api/lead-signal`
+- API layer is the ONLY allowed write path
+
+Codex MUST NOT:
+
+- Modify HubSpot schema, properties, or pipeline
+- Bypass the API layer
+- Write directly to HubSpot from frontend or client logic
+- Update payment state outside Stripe webhook
 
 If a task touches CRM behavior:
-→ STOP and verify against REV03 first
+
+→ STOP  
+→ Verify against REV03  
+→ Request Step revision if unclear  
 
 ---
 
 ## STRIPE ENFORCEMENT
 
 - Stripe verification MUST be server-side
-- NEVER trust frontend success states
-- NEVER expose secrets
-- NEVER modify payment logic without explicit instruction
+- Payment success MUST be webhook-verified
+- Frontend success states are NOT authoritative
+
+Codex MUST NOT:
+
+- Trust redirect URLs for payment confirmation
+- Implement client-side payment confirmation logic
+- Expose Stripe secrets
+- Modify Stripe logic without explicit instruction
 
 ---
 
 ## COPY & CLAIMS ENFORCEMENT
 
 Forbidden claims MUST NOT appear:
+
 - monitoring / monitored
 - dispatch / dispatcher
 - “we respond”
-- police / authorities
+- police / authorities / emergency services
 - guarantee / guaranteed
 - central station
 
@@ -66,10 +83,12 @@ Forbidden claims MUST NOT appear:
 
 ## SYSTEM RULES
 
-- Use semantic token system only (no hardcoded colors)
-- Do not introduce new features outside Step scope
-- Do not change funnel order or routing
-- Do not modify architecture without Step revision
+Codex MUST NOT:
+
+- Introduce new features outside Step scope
+- Change funnel order or routing
+- Modify architecture without Step revision
+- Hardcode colors outside semantic token system
 
 ---
 
@@ -77,15 +96,15 @@ Forbidden claims MUST NOT appear:
 
 If a request:
 
-- conflicts with Step documents
-- touches HubSpot logic
-- touches Stripe logic
-- violates guardrails
+- Conflicts with Step documents
+- Touches HubSpot logic
+- Touches Stripe logic
+- Violates guardrails
 
-You MUST:
+Codex MUST:
 
 1. STOP execution  
-2. State the conflict  
+2. State the conflict clearly  
 3. Request Step revision  
 
 No silent deviation allowed.
