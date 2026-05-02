@@ -92,6 +92,19 @@ Codex MUST NOT:
 
 ---
 
+## OUTPUT REQUIREMENTS (MANDATORY)
+
+Every Codex execution MUST return:
+
+- New version number
+- Summary of changes
+- Files modified
+- Confirmation HubSpot untouched
+- Confirmation Stripe untouched
+- Build result
+
+---
+
 ## STOP CONDITIONS (MANDATORY)
 
 If a request:
