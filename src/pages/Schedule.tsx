@@ -528,7 +528,7 @@ const Schedule = () => {
 
   if (isHomeSecurity) {
     return (
-      <WnyhsFunnelLayout showStepRail>
+      <WnyhsFunnelLayout showStepRail={false}>
         {content}
       </WnyhsFunnelLayout>
     );
