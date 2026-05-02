@@ -36,6 +36,7 @@ const Schedule = () => {
   const [preferredTimeWindow2, setPreferredTimeWindow2] = useState(existingRequest?.preferredTimeWindow2 ?? '');
   const [accessNotes, setAccessNotes] = useState(existingRequest?.accessNotes ?? '');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const stored = loadRetailFlow();
@@ -101,7 +102,7 @@ const Schedule = () => {
     );
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -144,6 +145,13 @@ const Schedule = () => {
       scheduleSource: 'retail',
     };
 
+    setIsSubmitting(true);
+    const response = await fetch('/api/schedule', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(scheduleRequest) });
+    setIsSubmitting(false);
+    if (!response.ok) {
+      setError('We could not submit your scheduling request right now. Please try again.');
+      return;
+    }
     const updated = updateRetailFlow({ scheduleRequest });
     setFlowState(updated);
     setSubmitted(true);
@@ -458,8 +466,8 @@ const Schedule = () => {
           </div>
 
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <button type="submit" className="btn btn-primary" disabled={!schedulingAllowed}>
-              {isHomeSecurity ? 'Confirm Installation' : 'Schedule Installation'}
+            <button type="submit" className="btn btn-primary" disabled={!schedulingAllowed || isSubmitting}>
+              {isSubmitting ? 'Submitting request…' : isHomeSecurity ? 'Confirm Installation' : 'Schedule Installation'}
             </button>
             {!schedulingAllowed && (
               <small style={{ color: '#c8c0aa' }}>

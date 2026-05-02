@@ -318,6 +318,16 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
       deal: { packageTier: tier.toLowerCase(), packageId: tierToPackageId(tier), plannerSummary: buildSummary(answers) },
       fitCheck: { recommendedTier: tier, answers, assumedCoverage: nextResult.assumedCoverage },
     });
+    void fetch('/api/fit-check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        recommendedTier: tier,
+        plannerSummary: buildSummary(answers),
+        answers,
+        pageRoute: typeof window !== 'undefined' ? window.location.pathname : undefined,
+      }),
+    });
     return tier;
   };
 

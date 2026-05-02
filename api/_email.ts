@@ -36,7 +36,7 @@ type SendEmailInput = {
   subject: string;
   html: string;
   text: string;
-  replyTo?: string;
+  replyTo?: string | string[];
 };
 
 type LeadSignalPayload = {
@@ -294,6 +294,9 @@ export const sendLeadSignalEmail = async (payload: LeadSignalPayload): Promise<E
     replyTo: payload.customerEmail || 'sales@wnyhomesecurity.com',
   });
 };
+
+export const sendOperationalEmail = async (message: SendEmailInput): Promise<EmailResult> => sendEmail(message);
+export const getConfiguredRecipients = (name: string): string[] => parseEmails((process.env as Record<string, string | undefined>)[name]);
 
 
 const getDocRouting = (docLabel: 'Quote' | 'Agreement') => {
