@@ -50,6 +50,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
               <div className="hs-premium-package-header">
                 <div>
                   <p className="hs-premium-package-tier">{pkg.name}</p>
+                  <p className="hs-premium-package-for">For: {pkg.idealFor}</p>
                   <h3>{pkg.tagline}</h3>
                 </div>
                 <div className="hs-premium-package-price">{pkg.price}</div>
@@ -74,12 +75,12 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
               ) : null}
               <div className="hs-premium-package-actions">
                 <Link className="btn btn-primary" to={tierCtaLink} onClick={handleSelect}>
-                  Choose {pkg.name}
+                  Get Estimate
                 </Link>
               </div>
               <div className="hs-premium-package-meta">
                 <Link className="hs-premium-package-link" to={`/packages/${pkg.id}?vertical=home-security`}>
-                  View details
+                  View Details
                 </Link>
               </div>
             </div>
