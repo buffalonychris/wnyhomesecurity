@@ -30,7 +30,9 @@ type EmailFailure = { ok: false; provider: EmailProvider; error: string };
 type EmailResult = EmailSuccess | EmailFailure;
 
 type SendEmailInput = {
-  to: string;
+  to: string | string[];
+  cc?: string[];
+  bcc?: string[];
   subject: string;
   html: string;
   text: string;
@@ -51,8 +53,14 @@ const isEmailFailure = (result: EmailResult): result is EmailFailure => result.o
 
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
+const parseEmails = (value?: string) =>
+  (value ?? '')
+    .split(',')
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0 && isEmail(item));
+
 const getEmailProvider = (): EmailProvider => {
-  const provider = (process.env.EMAIL_PROVIDER || 'mock').toLowerCase();
+  const provider = (process.env.EMAIL_PROVIDER || 'resend').toLowerCase();
   if (provider === 'resend' || provider === 'smtp' || provider === 'mock') return provider;
   return 'mock';
 };
@@ -89,7 +97,7 @@ const renderButton = (href: string, label: string) =>
 
 const buildContent = (payload: EmailPayload, docLabel: 'Quote' | 'Agreement') => {
   const reference = (payload.meta.reference as string) || docLabel;
-  const subject = `Reliable Elder Care — ${docLabel} ${reference}`;
+  const subject = `[WNYHS ${docLabel}] ${reference}`;
   const hash = (payload.meta.hashShort as string) || '';
   const issuedAt = (payload.meta.issuedAtISO as string) || '';
   const header = '<p style="margin:0 0 12px 0;font-size:16px;font-weight:700">Your official copy is ready.</p>';
@@ -159,7 +167,7 @@ const buildContent = (payload: EmailPayload, docLabel: 'Quote' | 'Agreement') =>
 
 const sendViaResend = async (message: SendEmailInput): Promise<EmailResult> => {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
+  const from = process.env.MAIL_FROM || process.env.EMAIL_FROM;
   if (!apiKey || !from) return { ok: false, provider: 'resend', error: 'Resend not configured' };
 
   const res = await fetch('https://api.resend.com/emails', {
@@ -171,6 +179,8 @@ const sendViaResend = async (message: SendEmailInput): Promise<EmailResult> => {
     body: JSON.stringify({
       from,
       to: message.to,
+      cc: message.cc,
+      bcc: message.bcc,
       subject: message.subject,
       html: message.html,
       text: message.text,
@@ -188,7 +198,9 @@ const sendViaResend = async (message: SendEmailInput): Promise<EmailResult> => {
 };
 
 const sendViaSmtp = async (message: SendEmailInput): Promise<EmailResult> => {
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, EMAIL_FROM } = process.env;
+  const env = process.env as Record<string, string | undefined>;
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = env;
+  const EMAIL_FROM = env.MAIL_FROM || env.EMAIL_FROM;
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !EMAIL_FROM) {
     return { ok: false, provider: 'smtp', error: 'SMTP not configured' };
   }
@@ -207,6 +219,8 @@ const sendViaSmtp = async (message: SendEmailInput): Promise<EmailResult> => {
   const result = await transporter.sendMail({
     from: EMAIL_FROM,
     to: message.to,
+    cc: message.cc,
+    bcc: message.bcc,
     subject: message.subject,
     text: message.text,
     html: message.html,
@@ -264,18 +278,41 @@ const buildLeadSignalContent = (payload: LeadSignalPayload) => {
 };
 
 export const sendLeadSignalEmail = async (payload: LeadSignalPayload): Promise<EmailResult> => {
-  const adminTo = process.env.EMAIL_ADMIN_TO;
-  if (!adminTo) {
+  const env = process.env as Record<string, string | undefined>;
+  const adminTo = parseEmails(env.MAIL_ADMIN_TO || env.EMAIL_ADMIN_TO);
+  const auditTo = parseEmails(env.MAIL_AUDIT_TO);
+  const recipients = Array.from(new Set([...adminTo, ...auditTo]));
+  if (!recipients.length) {
     return { ok: false, provider: getEmailProvider(), error: 'Admin email not configured' };
   }
   const content = buildLeadSignalContent(payload);
   return sendEmail({
-    to: adminTo,
+    to: recipients,
     subject: content.subject,
     html: content.html,
     text: content.text,
-    replyTo: payload.customerEmail,
+    replyTo: payload.customerEmail || 'sales@wnyhomesecurity.com',
   });
+};
+
+
+const getDocRouting = (docLabel: 'Quote' | 'Agreement') => {
+  const env = process.env as Record<string, string | undefined>;
+  const auditTo = parseEmails(env.MAIL_AUDIT_TO);
+  const quoteTo = parseEmails(env.MAIL_QUOTES_TO);
+  const adminTo = parseEmails(env.MAIL_ADMIN_TO);
+
+  if (docLabel === 'Quote') {
+    return {
+      replyTo: 'quotes@wnyhomesecurity.com',
+      bcc: Array.from(new Set([...auditTo, ...quoteTo])),
+    };
+  }
+
+  return {
+    replyTo: 'admin@wnyhomesecurity.com',
+    bcc: Array.from(new Set([...auditTo, ...adminTo])),
+  };
 };
 
 export const handleEmailRequest = async (
@@ -295,6 +332,11 @@ export const handleEmailRequest = async (
   }
 
   const content = buildContent(payload, docLabel);
+  const routing = getDocRouting(docLabel);
+  if (!routing.bcc.length) {
+    res.status(500).json({ ok: false, provider: getEmailProvider(), error: 'Audit recipients not configured' });
+    return;
+  }
   const eventName = docLabel === 'Quote' ? 'Lead Signal: Quote Email Requested' : 'Lead Signal: Agreement Email Requested';
   const routeName = docLabel === 'Quote' ? 'api/send-quote' : 'api/send-agreement';
 
@@ -304,6 +346,8 @@ export const handleEmailRequest = async (
       subject: content.subject,
       html: content.html,
       text: content.text,
+      replyTo: routing.replyTo,
+      bcc: routing.bcc,
     });
 
     const leadSignal = await sendLeadSignalEmail({
