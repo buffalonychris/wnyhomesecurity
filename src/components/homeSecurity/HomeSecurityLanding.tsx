@@ -1,106 +1,96 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
-import DemoDashboardLink from '../DemoDashboardLink';
 import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
-import { HOME_SECURITY_ROUTES } from '../../content/wnyhsNavigation';
 
 type Props = {
   packages: PackageTier[];
   ctaLink: string;
 };
 
-const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
+const HomeSecurityLanding = ({ packages }: Props) => {
   return (
     <div className="hs-premium-shell">
       <section className="hs-premium-hero">
         <div className="hs-premium-hero-content">
-          <p className="hs-premium-eyebrow">Local-first security</p>
-          <h1>Home security that stays reliable when the internet drops</h1>
-          <p className="hs-premium-hero-subhead">
-            A professionally installed system with one calm dashboard, clear one-time pricing, and local control that
-            keeps working inside your home.
-          </p>
-          <ul className="hs-premium-hero-list">
-            <li>Local-first protection with optional remote access.</li>
-            <li>No subscriptions sold by us; you own the equipment.</li>
-            <li>Simple, predictable steps from fit check to install.</li>
-          </ul>
-          <div className="hs-premium-trust-badges" aria-label="Trust highlights">
-            <span>LOCAL-FIRST</span>
-            <span>PROFESSIONALLY INSTALLED</span>
-            <span>NO SUBSCRIPTIONS SOLD BY US</span>
-          </div>
+          <p className="hs-premium-eyebrow">Local-first home security</p>
+          <h1>Know what’s happening. Stay in control. No contracts required.</h1>
+          <p className="hs-premium-hero-subhead">Local-first home security with cameras, sensors, and automations you own.</p>
           <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
-              Get Started
+            <Link className="btn btn-primary hs-premium-primary-cta" to="/contact?vertical=home-security">
+              Schedule On-Site Estimate
             </Link>
-            <Link className="btn btn-secondary" to={HOME_SECURITY_ROUTES.packages}>
-              View Packages
+            <Link className="btn btn-secondary" to="/discovery?vertical=home-security">
+              Check Fit First
             </Link>
           </div>
-        </div>
-        <div className="hs-premium-hero-media" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcSet="/images/home-security/hs_hero_home-security.webp" />
-            <img
-              src="/images/home-security/hs_hero_home-security.png"
-              alt="Local-first home security dashboard with calm lighting"
-              loading="eager"
-            />
-          </picture>
-          <div className="hs-premium-hero-overlay" aria-hidden="true" />
+          <p>
+            Already know what you want? <Link to="/packages?vertical=home-security">View Packages</Link>
+          </p>
         </div>
       </section>
 
-      <section id="how-it-works" className="hs-premium-how">
+      <section className="hs-premium-how">
         <div className="hs-premium-how-intro">
-          <p className="hs-premium-eyebrow">How it works</p>
-          <h2>From fit check to install in six consistent steps</h2>
-          <ol className="hs-premium-steps">
-            <li>Fit Check: answer a few quick questions.</li>
-            <li>Quote: lock your package pricing.</li>
-            <li>Planner: optional layout precision.</li>
-            <li>Agreement → Deposit → Schedule.</li>
-          </ol>
+          <p className="hs-premium-eyebrow">What this system does / does not do</p>
+          <p>
+            This is a locally-run home security platform that combines sensors, cameras, and automations. Core local
+            functions are designed to keep working on your home network when internet service is unavailable.
+          </p>
+          <ul className="hs-premium-steps">
+            <li>What it is not: a mandatory monitoring contract.</li>
+            <li>What it is not: a closed ecosystem.</li>
+            <li>What it is not: surveillance-first by default.</li>
+            <li>You own your equipment and data.</li>
+            <li>No subscriptions are sold by us.</li>
+            <li>Expandable later as your needs change.</li>
+          </ul>
         </div>
       </section>
 
       <section id="packages" className="hs-premium-packages">
         <div className="hs-premium-section-header">
           <p className="hs-premium-eyebrow">Packages</p>
-          <h2>Pick a tier, then we confirm your fit</h2>
-          <p>Bronze, Silver, and Gold tiers keep Home Assistant as your single dashboard.</p>
+          <h2>Choose Bronze, Silver, or Gold</h2>
+          <p>Outcomes-first options with clear next steps.</p>
         </div>
-        <PackageTierCards packages={packages} ctaLink={ctaLink} />
+        <PackageTierCards packages={packages} ctaLink="/contact?vertical=home-security" />
       </section>
 
-      <section id="dashboard" className="hs-premium-dashboard-cta">
+      <section id="how-it-works" className="hs-premium-how">
+        <div className="hs-premium-how-intro">
+          <p className="hs-premium-eyebrow">How it works</p>
+          <ol className="hs-premium-steps">
+            <li>Choose a starting point: check fit online, browse packages, or schedule an on-site estimate.</li>
+            <li>Confirm the right system: we match your package to layout, entry points, cameras, and reliability needs.</li>
+            <li>Approve, deposit, and schedule: quote, agreement, deposit, and installation scheduling stay clear and documented.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="fit-check" className="hs-premium-cta">
         <div>
-          <p className="hs-premium-eyebrow">Dashboard preview</p>
-          <h2>See the home dashboard you’ll use</h2>
-          <p className="hs-premium-dashboard-note">
-            Preview camera views, alerts, and sensor status in one place.
+          <p className="hs-premium-eyebrow">Fit Check / Discovery</p>
+          <p>
+            Not sure where to start? Answer a few quick questions and we’ll recommend a package. If you already know
+            you want us to walk the home, schedule an on-site estimate instead.
           </p>
         </div>
-        <div className="hs-premium-dashboard-actions">
-          <DemoDashboardLink variant="link" label="Open Dashboard Demo" />
-          <div className="hs-premium-dashboard-note">Opens in a new tab.</div>
+        <div className="hs-premium-cta-actions">
+          <Link className="btn btn-primary" to="/discovery?vertical=home-security">Get My Recommendation</Link>
+          <Link className="btn btn-secondary" to="/contact?vertical=home-security">Schedule On-Site Estimate</Link>
         </div>
       </section>
 
       <section id="get-started" className="hs-premium-cta">
         <div>
-          <p className="hs-premium-eyebrow">Ready to begin?</p>
-          <h2>Start your fit check in minutes</h2>
-          <p>
-            Answer a few questions so we can confirm the right tier and get you ready for installation scheduling.
-          </p>
+          <p className="hs-premium-eyebrow">Next step</p>
+          <h2>Ready to design the right system for your home?</h2>
         </div>
         <div className="hs-premium-cta-actions">
-          <Link className="hs-premium-text-link" to={ctaLink}>
-            Get Started
-          </Link>
+          <Link className="btn btn-primary" to="/contact?vertical=home-security">Schedule On-Site Estimate</Link>
+          <Link className="btn btn-secondary" to="/discovery?vertical=home-security">Check Fit First</Link>
+          <Link className="hs-premium-text-link" to="/packages?vertical=home-security">View Packages</Link>
         </div>
       </section>
     </div>
