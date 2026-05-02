@@ -1,4 +1,5 @@
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SectionHeader from '../components/operator/SectionHeader';
 import SpaceFrame from '../components/operator/SpaceFrame';
@@ -58,6 +59,7 @@ const Support = () => {
           </strong>
         </p>
       </SpaceFrame>
+      <SupportRequestForm pageRoute={`${location.pathname}${location.search}`} />
       <SpaceFrame>
         <h2>Phone or text</h2>
         <p>Call or text the WNY Home Security team for urgent support.</p>
@@ -96,6 +98,21 @@ const Support = () => {
       <div className="container section space-grid">{content}</div>
     </div>
   );
+};
+
+const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [topic, setTopic] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus('sending');
+    const response = await fetch('/api/support', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, topic, message, pageRoute }) });
+    setStatus(response.ok ? 'success' : 'error');
+  };
+  return <SpaceFrame><h2>Submit support request</h2><form className="form" onSubmit={onSubmit}><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required /><input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="Topic" required /><textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="How can we help?" rows={4} required /><button className="btn btn-primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send request'}</button>{status === 'success' && <p>Request received. We will follow up.</p>}{status === 'error' && <p>We could not send your request. Please try again.</p>}</form></SpaceFrame>;
 };
 
 export default Support;

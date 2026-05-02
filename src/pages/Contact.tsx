@@ -32,6 +32,8 @@ const Contact = () => {
   const [needs, setNeeds] = useState('');
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const summary = useMemo(
     () =>
@@ -59,10 +61,17 @@ const Contact = () => {
     [bestTime, location.pathname, location.search, needs, phone, summary],
   );
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError('');
+    setIsSubmitting(true);
+    const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, email, address, bestTime, needs, notes, pageRoute: `${location.pathname}${location.search}` }) });
+    setIsSubmitting(false);
+    if (!response.ok) {
+      setError('We could not submit your intake right now. Please try again.');
+      return;
+    }
     setSubmitted(true);
-    window.location.href = mailtoLink;
   };
 
   const content = (
@@ -124,13 +133,14 @@ const Contact = () => {
           />
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <button className="btn btn-primary" type="submit">Submit intake</button>
+          <button className="btn btn-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Submit intake'}</button>
           <a className="btn btn-secondary" href={mailtoLink}>Email intake summary</a>
           {submitted && (
             <small style={{ color: 'var(--kaec-text-muted)' }}>
-              Opening your email client to route this intake to {wnyhsContact.emails.hello}.
+              Request received. Our team will follow up.
             </small>
           )}
+          {error && <small style={{ color: 'var(--kaec-accent-danger)' }}>{error}</small>}
         </div>
       </form>
     </>
