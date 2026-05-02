@@ -2591,7 +2591,7 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
     return <div className="newsite-container newsite-section">{plannerContent}</div>;
   }
 
-  return <WnyhsFunnelLayout showStepRail>{plannerContent}</WnyhsFunnelLayout>;
+  return <WnyhsFunnelLayout showStepRail={false}>{plannerContent}</WnyhsFunnelLayout>;
 };
 
 export default HomeSecurityPlanner;
