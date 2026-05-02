@@ -52,12 +52,12 @@ const Discovery = () => {
   });
 
   return (
-    <WnyhsFunnelLayout showStepRail={false}>
+    <WnyhsFunnelLayout showStepRail>
       <div className="wnyhs-funnel-stack">
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
-              Back to packages
+              ← Back to Packages
             </Link>
           </div>
         )}

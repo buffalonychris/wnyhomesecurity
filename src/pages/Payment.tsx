@@ -301,7 +301,7 @@ const Payment = () => {
         <div className="wnyhs-funnel-stack">
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.agreement}>
-              Back
+              ← Back to Agreement
             </Link>
           </div>
 

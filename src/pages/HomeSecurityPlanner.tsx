@@ -1276,10 +1276,10 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
               Save draft
             </button>
             <Link className="btn btn-link" to={routeConfig.discovery}>
-              Back to Fit Check
+              ← Back to Fit Check
             </Link>
             <Link className="btn btn-link" to={routeConfig.packages}>
-              Back to Packages
+              ← Back to Packages
             </Link>
             <button type="button" className="btn btn-secondary" onClick={handleContinue}>
               Continue
@@ -1309,7 +1309,7 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
               background: 'rgba(15, 19, 32, 0.75)',
             }}
           >
-            <Link className="btn btn-link" to={routeConfig.packages}>Back</Link>
+            <Link className="btn btn-link" to={routeConfig.packages}>← Back to Fit Check</Link>
             <strong style={{ marginRight: 'auto' }}>Precision Planner</strong>
             <button type="button" className="btn btn-secondary" onClick={handleAddRoom}>Add Room</button>
             <button type="button" className="btn btn-secondary" onClick={() => openBottomPanel('templates')}>Templates</button>
@@ -2591,7 +2591,7 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
     return <div className="newsite-container newsite-section">{plannerContent}</div>;
   }
 
-  return <WnyhsFunnelLayout showStepRail={false}>{plannerContent}</WnyhsFunnelLayout>;
+  return <WnyhsFunnelLayout showStepRail>{plannerContent}</WnyhsFunnelLayout>;
 };
 
 export default HomeSecurityPlanner;

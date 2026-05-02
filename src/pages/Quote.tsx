@@ -259,7 +259,7 @@ const Quote = () => {
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.discovery}>
-            Back to Fit Check
+            ← Back to Fit Check
           </Link>
           <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
             Change package
