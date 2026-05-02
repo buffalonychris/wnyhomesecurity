@@ -16,7 +16,7 @@ const Support = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
+    showBreadcrumbs: false,
     breadcrumb: isHomeSecurity
       ? [
           { label: 'Home Security', href: '/home-security' },
