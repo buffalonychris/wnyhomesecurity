@@ -17,12 +17,7 @@ const Support = () => {
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
     showBreadcrumbs: false,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Support' },
-        ]
-      : [],
+    breadcrumb: [],
   });
 
   const content = (
