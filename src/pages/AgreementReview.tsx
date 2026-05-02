@@ -1078,7 +1078,7 @@ const AgreementReview = () => {
         </p>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button type="button" className="btn btn-primary" onClick={() => navigate('/quote')}>
-            Back to quote builder
+            ← Back to Quote
           </button>
           {canRebuildFromQuote && (
             <button type="button" className="btn btn-secondary" onClick={handleRebuildFromQuote}>

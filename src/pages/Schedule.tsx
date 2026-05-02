@@ -178,7 +178,7 @@ const Schedule = () => {
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-secondary" to={HOME_SECURITY_ROUTES.deposit}>
-            Change Payment Method
+            ← Back to Deposit
           </Link>
         </div>
       )}
@@ -528,7 +528,7 @@ const Schedule = () => {
 
   if (isHomeSecurity) {
     return (
-      <WnyhsFunnelLayout showStepRail={false}>
+      <WnyhsFunnelLayout showStepRail>
         {content}
       </WnyhsFunnelLayout>
     );
