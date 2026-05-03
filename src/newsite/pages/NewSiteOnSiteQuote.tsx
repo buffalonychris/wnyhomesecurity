@@ -34,7 +34,7 @@ const saveSubmission = (payload: Record<string, string>) => {
 
 const buildMailto = (subject: string, body: string) => {
   const params = new URLSearchParams({ subject, body });
-  return `mailto:admin@reliableeldercare.com?${params.toString()}`;
+  return `mailto:admin@wnyhomesecurity.com?${params.toString()}`;
 };
 
 const NewSiteOnSiteQuote = () => {
