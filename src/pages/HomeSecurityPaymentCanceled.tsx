@@ -19,7 +19,7 @@ const HomeSecurityPaymentCanceled = () => {
   });
 
   return (
-    <WnyhsFunnelLayout showStepRail>
+    <WnyhsFunnelLayout showStepRail={false}>
       <div className="wnyhs-funnel-stack">
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <WnyhsFunnelStepHeader

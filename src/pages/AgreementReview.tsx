@@ -1093,7 +1093,7 @@ const AgreementReview = () => {
 
   if (vertical === 'home-security') {
     return (
-    <WnyhsFunnelLayout showStepRail>
+    <WnyhsFunnelLayout showStepRail={false}>
       {content}
     </WnyhsFunnelLayout>
     );
