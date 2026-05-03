@@ -1,117 +1,123 @@
-# WNYHS Agent Discipline (UPDATED)
+# WNY Home Security — Agent Execution Rules
 
-Codex must operate under strict execution discipline.
-
----
-
-## 1. HUBSPOT ENFORCEMENT (CRITICAL)
-
-- HubSpot REV03 is LOCKED and AUTHORITATIVE
-- NEVER modify HubSpot schema, properties, or pipeline
-- ALL CRM writes MUST go through `/api/lead-signal`
-- NEVER bypass the API layer
-- NEVER update payment outside Stripe webhook
-
-If a task touches CRM:
-
-→ STOP  
-→ Verify against REV03  
-→ Request Step revision if needed  
+Status: Active
 
 ---
 
-## 2. ADDITIVE DISCIPLINE (DEFAULT)
+## 1. Required Startup Checks
 
-All work is additive unless explicitly defined otherwise.
+Before implementation, the agent must:
 
-Codex MUST NOT:
+1. Confirm the repo is `buffalonychris/wnyhomesecurity`
+2. Confirm the path is not `/workspace/KAECRetailWebsite`
+3. Read:
+   - `/docs/system/project.md`
+   - `/docs/system/agent.md`
+   - `/docs/system/plan.md`
+   - `/docs/system/guardrails.md`
+   - `/docs/system/step-current.md`
+4. Read all active Step files referenced by `step-current.md`
 
-- Delete existing code
-- Refactor unrelated components
-- Rewrite architecture
-- Change routes outside scope
-- Mix unrelated changes in the same PR
-
-All changes must be:
-
-- Minimal
-- Scoped
-- Task-specific
+If the repo is wrong, stop.
 
 ---
 
-## 3. DESTRUCTIVE DISCIPLINE (EXPLICIT ONLY)
+## 2. Active Step Interpretation
 
-Destructive changes are ONLY allowed when:
+`step-current.md` may contain one or more active Step references.
 
-- A controlling Step explicitly permits it
+The agent must treat all listed Steps as active.
 
-Requirements:
+A task may proceed when every requested change is authorized by at least one active Step and does not violate guardrails.
 
-- Separate destructive-only PR
-- Explicit deletion inventory
-- Search-before-delete required
-- Zero orphan references
-- Build must pass
+Examples:
 
----
-
-## 4. STRIPE ENFORCEMENT
-
-- Stripe verification MUST be server-side
-- Payment success MUST be webhook-verified
-
-Codex MUST NOT:
-
-- Implement client-side payment confirmation
-- Trust redirect success states
-- Modify Stripe logic without explicit instruction
+- UI cleanup → Step101
+- Email/API work → Step201
+- A prompt that includes UI cleanup and email wiring may proceed only if both Step101 and Step201 are active.
 
 ---
 
-## 5. PR DISCIPLINE
+## 3. Additive Discipline
 
-Every Codex execution MUST:
+Default behavior is additive and surgical.
 
-- Create a new branch
-- Open a PR
-- NOT merge automatically
-- Include:
-  - Summary
-  - Files changed
-  - Build result
+Allowed:
 
----
+- Add props to suppress UI elements
+- Add endpoints
+- Add shared helpers
+- Add routing wrappers
+- Replace public-facing copy only when within active Step scope
+- Remove confirmed leftover junk only when explicitly authorized
 
-## 6. EXECUTION SCOPE RULES
+Avoid:
 
-Codex MUST:
-
-- Follow controlling Step (`/docs/system/step-current.md`)
-- Stay within Step scope
-- Avoid unrelated changes
-
-Codex MUST NOT:
-
-- Introduce new features outside Step scope
-- Modify funnel order or routing
-- Change architecture without Step revision
+- Broad deletions
+- Route removals without route audit
+- Silent architecture changes
+- Rewriting working flows without need
 
 ---
 
-## 7. CONFLICT RESOLUTION
+## 4. Destructive Changes
 
-If a request:
+Destructive changes require explicit authorization in the active Step or prompt.
 
-- Conflicts with Step documents
-- Violates HubSpot REV03
-- Violates Stripe rules
-- Violates guardrails
+Destructive examples:
 
-Codex MUST:
+- Deleting routes
+- Deleting components
+- Removing planner/quote/agreement/payment/schedule functionality
+- Removing data structures used by multiple flows
+- Changing Stripe webhook/session behavior
 
-1. STOP execution  
-2. State the conflict clearly  
-3. Request Step revision  
+---
 
-No silent deviation allowed.
+## 5. Semantic Token Contract
+
+Do not hardcode new colors or design primitives when existing semantic tokens/components exist.
+
+Use the site’s existing design system and token conventions.
+
+---
+
+## 6. Stripe Rules
+
+Stripe/payment behavior is protected.
+
+Do not modify:
+
+- Checkout session verification
+- Webhook verification
+- Deposit amount calculation
+- Payment success/cancel semantics
+
+unless an active Step explicitly authorizes Stripe/payment work.
+
+---
+
+## 7. Email Rules
+
+When Step201 is active:
+
+- Use Resend for outbound only
+- Keep receiving on Cloudflare Email Routing
+- Keep secrets server-side
+- Every system-generated email must include an internal audit copy
+- Do not enable Resend receiving on the root domain
+
+---
+
+## 8. Return Requirements
+
+Implementation responses must include:
+
+1. Confirmed repo path
+2. Active Step(s)
+3. Files changed
+4. Summary of changes
+5. Tests/build result
+6. Confirmed untouched protected systems
+7. Any unresolved issues
+

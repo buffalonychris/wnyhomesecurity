@@ -1,116 +1,128 @@
-# WNYHS Guardrails (UPDATED)
+# WNY Home Security — Guardrails
 
-This document enforces system constraints across all Codex executions.
-
----
-
-## 1. HUBSPOT ENFORCEMENT (CRITICAL)
-
-HubSpot REV03 governs:
-
-- data flow
-- lifecycle stages
-- payment state
-- deduplication
-
-Location:
-/docs/crm/hubspot/hubspot_kb_rev03.md
-
-### STRICT RULES
-
-- API (`/api/lead-signal`) is the ONLY write layer
-- Stripe webhook is the ONLY payment authority
-- No frontend CRM logic allowed
-
-### FORBIDDEN
-
-- Direct HubSpot writes
-- Client-side payment confirmation
-- Bypassing API layer
-- Updating payment outside webhook
+Status: Active
 
 ---
 
-## 2. STRIPE ENFORCEMENT (CRITICAL)
+## 1. Hard Stops
 
-- Stripe verification MUST be server-side
-- Payment success MUST be webhook-verified
-- Frontend success states are NOT authoritative
+Stop before implementation if:
 
-### FORBIDDEN
-
-- Trusting redirect success states
-- Client-side payment confirmation logic
-- Exposing Stripe secrets
-- Modifying Stripe logic without explicit instruction
+- Repo is not `buffalonychris/wnyhomesecurity`
+- Required governance files are missing
+- Requested work is not covered by any active Step
+- Requested work would expose secrets
+- Requested work would modify Stripe/payment verification without authorization
+- Requested work would delete protected funnel functionality without authorization
 
 ---
 
-## 3. COPY & CLAIMS GUARDRAILS
+## 2. No New Claims
 
-Forbidden claims MUST NOT appear:
+Do not add claims that are not already authorized by Step/spec copy.
 
-- monitoring / monitored
-- dispatch / dispatcher
-- “we respond”
-- police / authorities / emergency services
-- guarantee / guaranteed
-- central station
+Avoid claims around:
 
----
+- guaranteed emergency response
+- professional monitoring included
+- police/fire dispatch
+- medical monitoring
+- guaranteed prevention of break-ins, water damage, or emergencies
 
-## 4. THEME & UI RULES
+Allowed posture:
 
-- All styling MUST use semantic tokens
-- No hardcoded colors in components
-- No inline styling overrides that bypass token system
-
----
-
-## 5. STEP DISCIPLINE ENFORCEMENT
-
-- Additive-only during Step001 / Step003 / Step004 / Step005
-- Destructive changes ONLY allowed in Step002
-- No mixed additive + destructive PRs
-- No scope expansion beyond controlling Step
+- local-first
+- self-monitored
+- no subscriptions sold by us
+- remote access requires internet
+- final scope depends on site conditions
 
 ---
 
-## 6. EXECUTION SAFETY RULES
+## 3. No BOM Exposure
 
-Codex MUST NOT:
+Never expose public-facing:
 
-- Modify architecture without Step revision
-- Introduce unrelated changes in same PR
-- Change funnel routing or order
-- Modify HubSpot or Stripe logic without explicit instruction
+- full BOMs
+- cost basis
+- internal pricing breakdowns
+- margin assumptions
+- supplier/vendor private notes
 
----
-
-## 7. VALIDATION REQUIREMENTS
-
-Every change MUST:
-
-- Pass `npm run build`
-- Pass QA checklist
-- Avoid forbidden claims
-- Avoid CRM or payment violations
+Package pages may show customer-facing outcomes and plain-English inclusions only.
 
 ---
 
-## 8. STOP CONDITIONS
+## 4. Protected Chain
 
-If a task:
+Do not break:
 
-- violates HubSpot REV03
-- violates Stripe contract
-- violates Step discipline
-- introduces forbidden claims
+Quote Review → Agreement Review → Payment → Payment Success/Cancel → Schedule
 
-Codex MUST:
+Do not remove or silently bypass any of those routes.
 
-1. STOP execution  
-2. State the violation  
-3. Request Step revision  
+---
 
-No silent deviation allowed.
+## 5. Precision Planner Protection
+
+The Precision Planner is protected.
+
+Do not delete:
+
+- planner page
+- planner route
+- planner engine/state
+- floorplan components
+- quote handoff behavior
+
+unless a future Step explicitly authorizes planner replacement.
+
+---
+
+## 6. Payment / Stripe Protection
+
+Do not alter:
+
+- Stripe secret usage
+- webhook signature verification
+- checkout session creation semantics
+- payment success/cancel semantics
+- deposit calculation
+
+unless payment work is explicitly authorized by an active Step.
+
+---
+
+## 7. Email Protection
+
+When email work is active:
+
+- Resend is outbound only
+- Cloudflare Email Routing remains inbound
+- Root MX records must not be changed by code work
+- `RESEND_API_KEY` must stay server-side
+- Every system-generated email must include audit copy
+
+---
+
+## 8. Additive vs Destructive
+
+Additive work may proceed when in active Step scope.
+
+Destructive work requires explicit authorization.
+
+When uncertain:
+
+- suppress instead of delete
+- redirect instead of remove
+- preserve data/constants
+- report suspicious leftovers instead of deleting
+
+---
+
+## 9. Version Badge
+
+For site-impacting implementation prompts, increment the visible site version badge.
+
+This is required for Cloudflare deployment confirmation.
+

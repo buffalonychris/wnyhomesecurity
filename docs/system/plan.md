@@ -1,86 +1,127 @@
-# WNYHS Execution Plan (UPDATED)
+# WNY Home Security — Execution Plan
 
-This document defines the execution model aligned with Step101 and HubSpot REV03.
-
----
-
-## 1. FUNNEL FLOW (LOCKED)
-
-### Online Path
-
-Landing → Fit Check → Planner (Optional) → Quote → Agreement → Payment → Schedule
-
-### On-Site Path
-
-Landing → Walkthrough Request → Schedule → Quote → Agreement → Payment → Install
-
-Funnel order MUST NOT be changed.
+Status: Active
 
 ---
 
-## 2. HUBSPOT INTEGRATION (REV03)
+## 1. Work Modes
 
-All funnel steps MUST emit events via:
+The repo supports parallel active work modes through active Steps.
 
-POST /api/lead-signal
+### Step101 — Funnel / UI / Page Structure
 
-### Event Pipeline (Execution Order)
+Use for:
 
-1. fit_check_completed  
-2. walkthrough_requested (optional)  
-3. walkthrough_scheduled  
-4. quote_generated  
-5. agreement_accepted  
-6. install_scheduled OR payment flow  
-7. Stripe webhook → deposit_paid  
+- Homepage cleanup
+- Funnel page layout
+- CTA alignment
+- Route and nav cleanup
+- Secondary rail suppression
+- WNYHS-only visual cleanup
+- Version badge bump
 
-No deviation allowed.
+### Step201 — Email Infrastructure / Resend
 
----
+Use for:
 
-## 3. PAYMENT FLOW (LOCKED)
-
-- Stripe webhook is the ONLY source of truth
-- Frontend MUST NOT confirm payment
-- Payment state MUST come from server verification
-
----
-
-## 4. API CONTRACT (CRITICAL)
-
-- `/api/lead-signal` is the ONLY CRM write endpoint
-- No direct HubSpot interaction from frontend
-- All payloads must follow REV03 structure
+- Resend outbound wiring
+- Server email endpoints
+- Email audit copy enforcement
+- Email environment variables
+- Contact/support/schedule/fit-check email handling
 
 ---
 
-## 5. EXECUTION RULES
+## 2. Default Active Steps
 
-All development MUST:
+During final website cleanup, both of these may remain active:
 
-- Follow controlling Step (`/docs/system/step-current.md`)
-- Be additive unless explicitly destructive Step
-- Be scoped to task only (no unrelated changes)
-- Preserve funnel order and routing
-- Preserve HubSpot and Stripe contracts
+- Step101 — Home Security Funnel + Page Spec (REV02)
+- Step201 — Email Infrastructure + Resend Integration (REV01)
 
----
-
-## 6. VALIDATION
-
-Every change must:
-
-- Pass build (`npm run build`)
-- Pass QA checklist
-- Not modify HubSpot or Stripe logic
-- Not break funnel flow
+This prevents unnecessary stop loops when cleanup tasks touch UI and system-email behavior in adjacent passes.
 
 ---
 
-## 7. FINAL RULE
+## 3. Implementation Order
 
-If unsure:
+Preferred order:
 
-DO NOT MODIFY HUBSPOT  
-DO NOT MODIFY STRIPE  
-REQUEST STEP REVISION
+1. Version bump for deploy visibility
+2. Surgical route/page cleanup
+3. Build verification
+4. Protected-flow confirmation
+5. PR summary
+
+---
+
+## 4. Route Audit Procedure
+
+When identifying non-WNYHS pages, do not guess.
+
+Audit:
+
+- `src/App.tsx`
+- `src/routes/*`
+- `src/pages/*`
+- visible nav links
+- CTA destinations
+- imported page components
+
+Classify routes as:
+
+1. Required WNYHS route
+2. Transaction route
+3. Tool/demo route
+4. Suspicious legacy/hub route
+5. Confirmed removable route
+
+Do not delete suspicious routes until a removal Step or explicit prompt authorizes it.
+
+---
+
+## 5. Build Requirements
+
+Run:
+
+```bash
+npm run build
+```
+
+Run additional scripts when available:
+
+```bash
+npm run lint
+npm run typecheck
+npm run typecheck:api
+```
+
+If a script fails due to pre-existing unrelated issues, state that clearly and confirm whether changed files introduced new errors.
+
+---
+
+## 6. Grep Audits
+
+Use when relevant:
+
+```bash
+git grep -nI "Reliable Elder Care\|ReliableElderCare\|reliableeldercare\.com\|KAEC"
+git grep -nI "FunnelStepRail"
+git grep -nI "showStepRail"
+git grep -nI "WnyhsFunnelLayout"
+git grep -nI "mailto:"
+git grep -nI "RESEND_API_KEY" src public
+```
+
+---
+
+## 7. Completion Standard
+
+A task is complete when:
+
+- It stays within active Step scope
+- It avoids protected-system changes
+- It builds successfully or reports pre-existing failures clearly
+- It preserves funnel integrity
+- It preserves quote/agreement/payment/schedule chain
+

@@ -1,160 +1,140 @@
-# WNY Home Security — Project Operating System (UPDATED)
+# WNY Home Security — Project Governance
 
-Repository: wnyhomesecurity  
-Runtime: Cloudflare (Pages + Functions)  
-AI Execution: Codex  
-Payments: Stripe  
-CRM: HubSpot  
+Status: Active
+Scope: Standalone WNY Home Security website and funnel
+Repository: buffalonychris/wnyhomesecurity
 
 ---
 
-## 1. AUTHORITY CHAIN (LOCKED)
+## 1. Authority Chain
 
-All work is governed in the following order:
+When working in this repository, follow this authority chain:
 
-1. Step documents (REV-controlled)
-2. /docs/system/*
-3. HubSpot REV03 (LOCKED CONTRACT)
-4. Codex execution prompts
-5. PR validation + QA checklist
+1. Repository governance files in `/docs/system/`
+2. Active Step files listed in `/docs/system/step-current.md`
+3. Supporting specs in `/docs/specs/`
+4. User task prompt
+5. Existing implementation patterns in the codebase
 
-If any conflict occurs:
-
-→ The higher authority wins  
-→ No silent deviation allowed  
+If a lower authority conflicts with a higher authority, the higher authority wins.
 
 ---
 
-## 2. HUBSPOT GOVERNANCE (REV03)
+## 2. Project Objective
 
-HubSpot REV03 is:
+Deploy and maintain a clean, standalone WNY Home Security website that supports the complete customer path:
 
-- LOCKED
-- AUTHORITATIVE
-- NON-OPTIONAL
+Landing → Fit Check → Packages → Optional Planner → Quote Review → Agreement → Deposit → Schedule
 
-Location:
+The site must remain:
 
-/docs/crm/hubspot/hubspot_kb_rev03.md
-
-### Required Rules
-
-- ALL CRM writes MUST go through `/api/lead-signal`
-- API layer is the ONLY write path
-- NO frontend HubSpot writes allowed
-- NO direct property updates outside API
-- DEDUPLICATION rules MUST be enforced
-- Deal lifecycle MUST follow REV03 event model
-
-### Payment Rules
-
-- Stripe webhook is the ONLY source of truth for payment
-- NEVER update payment status from frontend
-- NEVER trust redirect success state
-
-Violation = system breach
+- Clean and single-purpose
+- Home-security focused
+- Free of hub/other-vertical junk
+- On-spec with the active Step documents
+- Ready for Cloudflare Pages deployment
 
 ---
 
-## 3. STEP DISCIPLINE (CRITICAL)
+## 3. Required Funnel Routes
 
-All implementation work MUST:
+### Public / indexable
 
-- Reference a controlling Step document
-- Stay within Step scope
-- Follow additive vs destructive rules
+- `/`
+- `/packages`
+- `/packages/:id`
+- `/discovery`
+- `/contact`
+- `/support`
+- `/privacy`
+- `/terms`
 
-### Additive Steps (Default)
+### Transaction / noindex
 
-- No deletions
-- No architecture rewrites
-- No unrelated changes
-- Only scoped improvements
+- `/quoteReview`
+- `/quotePrint`
+- `/agreementReview`
+- `/agreementPrint`
+- `/payment`
+- `/payment/success`
+- `/payment/canceled`
+- `/schedule`
 
-### Destructive Steps (Explicit Only)
+### Tools / demos
 
-- Separate PR required
-- Full deletion inventory required
-- Zero orphan references
-- Full validation required
-
----
-
-## 4. CODEX EXECUTION RULES
-
-All Codex executions MUST:
-
-- Read and follow `/AGENTS.md`
-- Reference `/docs/system/step-current.md`
-- Make minimal, surgical changes only
-- Create a new branch and open a PR
-- NEVER merge automatically
-- Run `npm run build` before completion
+- `/home-security/planner`
+- `/demos/ha-gold-dashboard`
 
 ---
 
-## 5. STRIPE CONTRACT (LOCKED)
+## 4. Non-Negotiable Preservation Rules
 
-- Stripe verification MUST be server-side
-- Payment success MUST be webhook-verified
-- Frontend success states are NOT authoritative
+Do not break or remove:
 
-Codex MUST NOT:
-
-- Implement client-side payment confirmation
-- Modify Stripe logic without explicit instruction
-- Expose Stripe secrets
-
----
-
-## 6. COPY & CLAIMS GOVERNANCE
-
-Forbidden claims MUST NOT appear:
-
-- monitoring / monitored
-- dispatch / dispatcher
-- “we respond”
-- police / authorities / emergency services
-- guarantee / guaranteed
-- central station
+- Precision Planner
+- Quote → Agreement → Payment → Schedule chain
+- Stripe server-side verification
+- Existing quote/agreement verification or hash behavior
+- Required transaction routes
+- Required public routes
+- Email audit-copy behavior once implemented
 
 ---
 
-## 7. SYSTEM RULES
+## 5. Forbidden Public Exposure
 
-Codex MUST NOT:
+Do not expose publicly:
 
-- Introduce features outside Step scope
-- Change funnel order or routing
-- Modify architecture without Step revision
-- Hardcode colors outside semantic token system
-
----
-
-## 8. STOP CONDITIONS (MANDATORY)
-
-If a request:
-
-- Conflicts with Step documents
-- Touches HubSpot logic
-- Touches Stripe logic
-- Violates guardrails
-
-Codex MUST:
-
-1. STOP execution  
-2. State the conflict  
-3. Request Step revision  
-
-No silent deviation allowed.
+- Internal BOMs
+- Internal margin math
+- Vendor cost breakdowns
+- Private implementation notes
+- Secrets, API keys, tokens, webhook secrets
 
 ---
 
-## 9. VALIDATION REQUIREMENTS
+## 6. Brand Rules
 
-Before merge:
+The standalone site must use WNY Home Security branding.
 
-- Build must pass
-- QA checklist must pass
-- No forbidden claims introduced
-- No HubSpot or Stripe violations
+Forbidden public-facing leftovers:
+
+- Reliable Elder Care
+- ReliableElderCare
+- reliableeldercare.com
+- KAEC, unless part of a historical imported artifact that is explicitly being removed or migrated
+
+---
+
+## 7. Version Bump Rule
+
+For all Codex implementation prompts that affect the deployed site, bump the visible site/homepage version badge first.
+
+Reason: the version badge is used to confirm Cloudflare has published merged changes.
+
+---
+
+## 8. Step Governance Model
+
+This repo supports **multi-step governance**.
+
+The active step file `/docs/system/step-current.md` may authorize more than one active Step at the same time.
+
+Codex/agents must not stop merely because a task spans more than one valid active Step, as long as every part of the task is authorized by at least one active Step and no guardrail is violated.
+
+If a task is not covered by any active Step, stop and request a Step revision.
+
+---
+
+## 9. Conflict Handling
+
+Stop only when:
+
+- The requested work is not authorized by any active Step
+- The requested work violates guardrails
+- The requested work would expose secrets or private data
+- The requested work would change Stripe/payment verification without authorization
+- The requested work would delete protected routes/components during an additive step
+
+Do not stop merely because multiple active Steps apply.
+
