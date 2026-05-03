@@ -5,4 +5,4 @@ Allow: /
 Disallow: /uat
 Disallow: /certificate
 
-Sitemap: https://reliableeldercare.com/sitemap.xml
+Sitemap: https://www.wnyhomesecurity.com/sitemap.xml

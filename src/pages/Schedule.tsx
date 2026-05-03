@@ -262,7 +262,7 @@ const Schedule = () => {
         <div style={{ display: 'grid', gap: '0.35rem' }}>
           <div className="badge">Installation details</div>
           <p style={{ margin: 0, color: '#c8c0aa' }}>
-            Provide your preferred windows and access notes. This captures a structured request for the KAEC installer workflow.
+            Provide your preferred windows and access notes. This captures a structured request for the WNY Home Security installer workflow.
           </p>
         </div>
 
@@ -487,7 +487,7 @@ const Schedule = () => {
           </li>
           <li>
             <span />
-            <span>Installer coordination happens in the KAEC backend—no double booking here.</span>
+            <span>Installer coordination happens in the WNY Home Security backend—no double booking here.</span>
           </li>
           <li>
             <span />

@@ -15,7 +15,7 @@ const SHORT_COPY = (
 );
 
 const FULL_COPY =
-  'Reliable Elder Care does not provide 24/7 professional monitoring or emergency dispatch. Your system is self-monitored. You are responsible for configuring notifications, monitoring alerts, and contacting emergency services (including 911) if needed. If you want professional monitoring, you must obtain it separately through a third-party provider compatible with your configuration.';
+  'WNY Home Security does not provide 24/7 professional monitoring or emergency dispatch. Your system is self-monitored. You are responsible for configuring notifications, monitoring alerts, and contacting emergency services (including 911) if needed. If you want professional monitoring, you must obtain it separately through a third-party provider compatible with your configuration.';
 
 const SelfMonitoringDisclosure: FC<SelfMonitoringDisclosureProps> = ({ variant = 'short', className }) => {
   const disclosureClassName = ['ka-disclosure', className].filter(Boolean).join(' ');

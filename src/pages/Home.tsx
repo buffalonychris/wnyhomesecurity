@@ -6,13 +6,13 @@ const Home = () => {
       <section className="section">
         <div className="container hero">
           <div style={{ display: 'grid', gap: '1.25rem' }}>
-            <span className="badge">Reliable Elder Care platform</span>
+            <span className="badge">WNY Home Security platform</span>
             <h1 style={{ margin: 0, fontSize: 'clamp(2.4rem, 4vw, 3.4rem)' }}>
               Residential, commercial, and SaaS security &amp; automation—grounded in elder care
               expertise.
             </h1>
             <p style={{ margin: 0, color: 'var(--kaec-text-muted)', fontSize: '1.05rem' }}>
-              Reliable Elder Care delivers modern protection and automation for homes, businesses,
+              WNY Home Security delivers modern protection and automation for homes, businesses,
               and partners. Elder care remains our foundational design philosophy, so every system
               is human-centered, dependable, and ready to scale.
             </p>
@@ -72,7 +72,7 @@ const Home = () => {
         <div className="container">
           <h2>What we do</h2>
           <p style={{ color: 'var(--kaec-text-muted)', maxWidth: '780px' }}>
-            Reliable Elder Care is a full security and automation platform that supports households,
+            WNY Home Security is a full security and automation platform that supports households,
             businesses, and SaaS partners. Elder care informs every workflow, giving you calm,
             reliable experiences across any property.
           </p>
@@ -235,7 +235,7 @@ const Home = () => {
 
       <section className="section">
         <div className="container">
-          <h2>Why Reliable Elder Care</h2>
+          <h2>Why WNY Home Security</h2>
           <div className="card-grid">
             <div className="card">
               <h3 style={{ marginTop: 0, color: 'var(--kaec-text-strong)' }}>Reliability</h3>

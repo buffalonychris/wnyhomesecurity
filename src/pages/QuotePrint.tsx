@@ -119,7 +119,7 @@ const QuotePrint = () => {
 
     const timer = setTimeout(() => {
       const quoteLabel = vertical === 'home-security' ? 'Home Security' : 'ElderCare';
-      document.title = `${quoteLabel} Quote From KAEC ${date} for ${name}`;
+      document.title = `${quoteLabel} Quote From WNY Home Security ${date} for ${name}`;
       window.print();
       document.title = originalTitle;
     }, 600);
@@ -161,7 +161,7 @@ const QuotePrint = () => {
       <div className="print-document kaec-doc" role="document">
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.4rem' }}>{brandSite} (KAEC)</div>
+            <div style={{ fontWeight: 800, fontSize: '1.4rem' }}>{brandSite} </div>
             <div style={{ fontSize: '0.95rem', color: '#333' }}>Local-first safety, security, and monitoring.</div>
           </div>
           <div style={{ textAlign: 'right', fontSize: '0.95rem' }}>

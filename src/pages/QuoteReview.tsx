@@ -663,7 +663,7 @@ const QuoteReview = () => {
               <small style={{ color: '#f0b267' }}>Enter a valid email.</small>
             )}
             <small style={{ color: '#c8c0aa' }}>
-              We email the legally binding tokenized copy through KAEC servers without changing pricing or package content.
+              We email the legally binding tokenized copy through WNY Home Security servers without changing pricing or package content.
             </small>
           </label>
 

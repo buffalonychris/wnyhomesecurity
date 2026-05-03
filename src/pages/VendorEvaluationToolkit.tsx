@@ -17,7 +17,7 @@ const VendorEvaluationToolkit = () => {
           </p>
           <h2 style={{ margin: 0 }}>Evaluation Toolkit</h2>
           <p style={{ maxWidth: 760, margin: '0.75rem auto 0' }}>
-            This overview explains what vendors receive and how KAEC evaluates hardware and firmware against
+            This overview explains what vendors receive and how WNY Home Security evaluates hardware and firmware against
             offline-first standards.
           </p>
         </section>
@@ -26,7 +26,7 @@ const VendorEvaluationToolkit = () => {
           <h3 style={{ marginTop: 0, color: '#fff7e6' }}>1) Overview</h3>
           <p>
             Vendors receive a clear evaluation outline, logistics expectations, and the binary technical gate.
-            KAEC evaluates offline reliability, deterministic behavior, and local control readiness.
+            WNY Home Security evaluates offline reliability, deterministic behavior, and local control readiness.
           </p>
         </section>
 
@@ -125,7 +125,7 @@ const VendorEvaluationToolkit = () => {
             Email only. This is a manual process and every request is reviewed individually.
           </p>
           <p className="mono-text break-all" style={{ marginBottom: '0.75rem' }}>
-            admin@reliableeldercare.com
+            admin@wnyhomesecurity.com
           </p>
           <ul className="list">
             <li>

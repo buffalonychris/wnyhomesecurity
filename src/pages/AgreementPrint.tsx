@@ -58,7 +58,7 @@ const AgreementPrint = () => {
     if (!shouldAutoPrint) return undefined;
 
     const timer = setTimeout(() => {
-      document.title = `KAEC Agreement ${date} - ${name} - ${reference}`;
+      document.title = `WNY Home Security Agreement ${date} - ${name} - ${reference}`;
       window.print();
       document.title = originalTitle;
     }, 600);
@@ -156,7 +156,7 @@ const AgreementPrint = () => {
       <div className="print-document kaec-doc" role="document">
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.4rem' }}>{brandSite} (KAEC)</div>
+            <div style={{ fontWeight: 800, fontSize: '1.4rem' }}>{brandSite} </div>
             <div style={{ fontSize: '0.95rem', color: '#333' }}>Local-first safety, security, and monitoring.</div>
             <div style={{ marginTop: '0.4rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
               <button type="button" className="btn btn-secondary" onClick={() => navigate(-1)}>
@@ -366,7 +366,7 @@ const AgreementPrint = () => {
               <div>{acceptance?.acceptanceDate || 'Not provided'}</div>
             </div>
             <div style={{ marginTop: '0.75rem', color: '#333' }}>
-              Not fully executed until e-signature is completed in the KAEC backend package. Retail acceptance is sufficient to
+              Not fully executed until e-signature is completed in the WNY Home Security backend package. Retail acceptance is sufficient to
               proceed to payment in this mock flow.
             </div>
           </div>
