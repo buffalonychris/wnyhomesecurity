@@ -22,7 +22,6 @@ import { buildQuoteAuthorityMeta, DocAuthorityMeta } from '../lib/docAuthority';
 import TierBadge from '../components/TierBadge';
 import DemoDashboardLink from '../components/DemoDashboardLink';
 import { calculateDepositDue } from '../lib/paymentTerms';
-import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
 import { buildAssumedCoverage } from '../lib/homeSecurityFunnel';
 import {
   HOME_SECURITY_CLARITY_FOOTER,
@@ -423,7 +422,6 @@ const QuoteReview = () => {
 
   return (
     <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
-      {isHomeSecurity && <HomeSecurityFunnelSteps currentStep="quote" />}
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link className="btn btn-link" to="/quote?vertical=home-security">

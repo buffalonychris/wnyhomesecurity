@@ -297,7 +297,7 @@ const Payment = () => {
     const spec = getHomeSecurityPackageSpec(selectedPackage.id.toLowerCase() as 'a1' | 'a2' | 'a3');
 
     return (
-      <WnyhsFunnelLayout showStepRail>
+      <WnyhsFunnelLayout showStepRail={false}>
         <div className="wnyhs-funnel-stack">
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.agreement}>
