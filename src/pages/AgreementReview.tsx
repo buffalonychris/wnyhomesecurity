@@ -229,6 +229,13 @@ const AgreementReview = () => {
   const acceptedName = fullName || storedAcceptance?.fullName || '';
   const acceptedDate = acceptanceDate || storedAcceptance?.acceptanceDate || '';
   const acceptanceReady = (acceptChecked || storedAcceptance?.accepted) && Boolean(acceptedName.trim()) && isValidEmail(email);
+
+  const quoteReferenceValid = Boolean(quoteRef.trim());
+  const quoteHashRequired = Boolean(quote?.quoteHash);
+  const quoteVersionRequired = Boolean(quote?.quoteDocVersion);
+  const quoteHashValid = !quoteHashRequired || Boolean(quote?.quoteHash?.trim());
+  const quoteVersionValid = !quoteVersionRequired || Boolean(quote?.quoteDocVersion?.trim());
+  const quoteContextValid = quoteReferenceValid && quoteHashValid && quoteVersionValid;
   const acceptanceSnapshot: AcceptanceRecord | null = useMemo(() => {
     if (storedAcceptance?.accepted || acceptanceReady) {
       return {
@@ -389,11 +396,15 @@ const AgreementReview = () => {
   };
 
   const handleAccept = async () => {
-    if (!acceptChecked || !fullName.trim() || !isValidEmail(email)) return;
+    if (!quoteContextValid || !acceptChecked || !fullName.trim() || !isValidEmail(email)) return;
     await persistAcceptance();
   };
 
   const handleProceedToPayment = async () => {
+    if (!quoteContextValid) {
+      navigate('/quoteReview', { replace: true, state: { message: 'Quote context is missing. Please review your quote before continuing.' } });
+      return;
+    }
     if (!storedAcceptance?.accepted || !quote) return;
     navigate(HOME_SECURITY_ROUTES.deposit, { state: { quoteContext: quote } });
   };
@@ -435,6 +446,9 @@ const AgreementReview = () => {
         </div>
       )}
       {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
+      {!quoteContextValid && (
+        <WnyhsFunnelNotice message="Quote context is missing or invalid. Please return to Quote Review before accepting the agreement." />
+      )}
       {bannerMessage && (
         <div className="card" style={{ border: '1px solid rgba(84, 160, 82, 0.5)', color: '#c8c0aa' }}>
           {bannerMessage}
@@ -720,7 +734,7 @@ const AgreementReview = () => {
           </label>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <button type="button" className="btn btn-primary" onClick={handleAccept} disabled={!acceptanceReady}>
+          <button type="button" className="btn btn-primary" onClick={handleAccept} disabled={!acceptanceReady || !quoteContextValid}>
             {vertical === 'home-security' ? 'Agree & Continue' : 'Approve Agreement & Pay Deposit'}
           </button>
           <button
