@@ -7,12 +7,7 @@ Controlling Step: Step102 — WNYHS Replication-Readiness Hardening — REV01
 
 ## Active Tasks
 
-### Step102 Active Tasks
-
-1. Fix Payment → Schedule quote-scoped deposit validation
-2. Replace hardcoded payment vertical metadata with validated vertical context
-3. Add Agreement → Payment binding metadata
-4. Strengthen Quote → Agreement validation
+No Active Tasks are currently recorded.
 
 ---
 
@@ -36,7 +31,12 @@ No Blocked Tasks are currently recorded.
 
 ## Completed Tasks
 
-No Completed Tasks are currently recorded.
+### Step102 Completed Tasks
+
+1. Fix Payment → Schedule quote-scoped deposit validation
+2. Replace hardcoded payment vertical metadata with validated vertical context
+3. Add Agreement → Payment binding metadata
+4. Strengthen Quote → Agreement validation
 
 ---
 
