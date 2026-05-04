@@ -9,6 +9,7 @@ import {
   HOME_SECURITY_DEPOSIT_TOTAL_CENTS,
   type HomeSecurityDepositTier,
 } from '../content/homeSecurityDepositPricing';
+import { loadRetailFlow } from '../lib/retailFlow';
 
 const formatCurrency = (amountCents: number) =>
   `$${(amountCents / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -38,11 +39,22 @@ const HomeSecurityPayDeposit = () => {
     setStatus('loading');
     setErrorMessage(null);
 
+    const flow = loadRetailFlow();
+    const quote = flow.quote;
+    const acceptance = flow.agreementAcceptance;
+
     try {
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier: selectedTier }),
+        body: JSON.stringify({
+          tier: selectedTier,
+          quoteRef: quote?.quoteReference,
+          agreementRef: quote?.agreementReference,
+          agreementAccepted: acceptance?.accepted,
+          agreementAcceptedAt: acceptance?.acceptedAt ?? acceptance?.recordedAt,
+          agreementAcceptanceDate: acceptance?.acceptanceDate,
+        }),
       });
       const data = (await response.json().catch(() => null)) as { url?: string; error?: string } | null;
 
