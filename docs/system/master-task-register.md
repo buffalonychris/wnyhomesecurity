@@ -1,13 +1,17 @@
 # Master Task Register
 
 Status: Active  
-Controlling Step: Step102 — WNYHS Replication-Readiness Hardening — REV01
+Controlling Step: Step103 — Full Funnel Validation — REV01
 
 ---
 
 ## Active Tasks
 
-No Active Tasks are currently recorded.
+### Step103 Active Tasks
+
+1. Diagnose and fix Quote Review quote generation/display failure
+2. Remove duplicate package card image overlay/pill labels
+3. Run full funnel validation after fixes
 
 ---
 
@@ -43,7 +47,7 @@ No Blocked Tasks are currently recorded.
 ## Promotion Rule
 
 - A task may be promoted to **Active Tasks** only when it is authorized by the current controlling Step listed in `/docs/system/step-current.md`.
-- If scope is unclear or outside Step102, stop and request a Step revision before promotion.
+- If scope is unclear or outside Step103, stop and request a Step revision before promotion.
 
 ---
 
