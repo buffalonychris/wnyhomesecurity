@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { homeSecurityPackages, type HomeSecurityTier } from '../data/homeSecurity.packages';
 
 const formatCurrency = (amountCents: number) =>
@@ -6,6 +7,7 @@ const formatCurrency = (amountCents: number) =>
 
 const HomeSecurityPayDeposit = () => {
   const [selectedTier, setSelectedTier] = useState<HomeSecurityTier>('silver');
+  const [searchParams] = useSearchParams();
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -21,6 +23,8 @@ const HomeSecurityPayDeposit = () => {
     return { totalCents, depositCents, remainingCents };
   }, [selectedPackage]);
 
+  const vertical = searchParams.get('vertical') === 'elder-tech' ? 'elder-tech' : 'home-security';
+
   const handleCheckout = async () => {
     setStatus('loading');
     setErrorMessage(null);
@@ -29,7 +33,7 @@ const HomeSecurityPayDeposit = () => {
       const response = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier: selectedTier }),
+        body: JSON.stringify({ tier: selectedTier, vertical }),
       });
       const data = (await response.json().catch(() => null)) as { url?: string; error?: string } | null;
 
