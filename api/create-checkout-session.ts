@@ -2,9 +2,14 @@ import { getAddOns, getPackagePricing, PackageTierId } from '../src/data/pricing
 
 type CheckoutSessionRequest = {
   quoteRef?: string;
+  agreementRef?: string;
+  agreementAccepted?: boolean;
+  agreementAcceptedAt?: string;
+  agreementAcceptanceDate?: string;
   packageId?: PackageTierId;
   selectedAddOns?: string[];
   vertical?: string;
+  tier?: 'bronze' | 'silver' | 'gold';
 };
 
 type JsonValue = Record<string, unknown> | null;
@@ -34,6 +39,8 @@ const toStringArray = (value: unknown) => {
   return value.filter((entry) => typeof entry === 'string') as string[];
 };
 
+const toBoolean = (value: unknown) => (typeof value === 'boolean' ? value : undefined);
+
 const requireEnv = (key: string) => {
   const value = process.env[key];
   if (!value) {
@@ -54,33 +61,45 @@ export default async function handler(req: RequestLike, res: any) {
     return;
   }
 
-  const vertical = body.vertical === 'home-security' ? 'home-security' : null;
-  if (!vertical) {
-    res.status(400).json({ ok: false, error: 'Only home-security checkout is supported.' });
-    return;
+  const tierTotals: Record<'bronze' | 'silver' | 'gold', number> = {
+    bronze: 169900,
+    silver: 259900,
+    gold: 349900,
+  };
+
+  let totalCents = 0;
+  if (body.tier) {
+    totalCents = tierTotals[body.tier];
+  } else {
+    const vertical = body.vertical === 'home-security' ? 'home-security' : null;
+    if (!vertical) {
+      res.status(400).json({ ok: false, error: 'Only home-security checkout is supported.' });
+      return;
+    }
+
+    const packageId = body.packageId;
+    if (!packageId) {
+      res.status(400).json({ ok: false, error: 'Missing packageId.' });
+      return;
+    }
+
+    const packagePricing = getPackagePricing('home-security');
+    const selectedPackage = packagePricing.find((pkg) => pkg.id === packageId);
+    if (!selectedPackage) {
+      res.status(400).json({ ok: false, error: 'Invalid packageId.' });
+      return;
+    }
+
+    const selectedAddOns = toStringArray(body.selectedAddOns);
+    const addOns = getAddOns('home-security');
+    const addOnTotal = addOns
+      .filter((addOn) => selectedAddOns.includes(addOn.id))
+      .reduce((sum, addOn) => sum + addOn.price, 0);
+
+    const total = selectedPackage.basePrice + addOnTotal;
+    totalCents = Math.round(total * 100);
   }
 
-  const packageId = body.packageId;
-  if (!packageId) {
-    res.status(400).json({ ok: false, error: 'Missing packageId.' });
-    return;
-  }
-
-  const packagePricing = getPackagePricing('home-security');
-  const selectedPackage = packagePricing.find((pkg) => pkg.id === packageId);
-  if (!selectedPackage) {
-    res.status(400).json({ ok: false, error: 'Invalid packageId.' });
-    return;
-  }
-
-  const selectedAddOns = toStringArray(body.selectedAddOns);
-  const addOns = getAddOns('home-security');
-  const addOnTotal = addOns
-    .filter((addOn) => selectedAddOns.includes(addOn.id))
-    .reduce((sum, addOn) => sum + addOn.price, 0);
-
-  const total = selectedPackage.basePrice + addOnTotal;
-  const totalCents = Math.round(total * 100);
   const depositCents = Math.round(totalCents * 0.5);
 
   if (totalCents <= 0 || depositCents <= 0) {
@@ -92,7 +111,11 @@ export default async function handler(req: RequestLike, res: any) {
     const stripeSecretKey = requireEnv('STRIPE_SECRET_KEY');
     const publicSiteUrl = requireEnv('PUBLIC_SITE_URL').replace(/\/$/, '');
     const quoteRef = toString(body.quoteRef) ?? 'unknown';
-    const tier = toString(body.packageId) ?? 'unknown';
+    const tier = toString(body.packageId ?? body.tier) ?? 'unknown';
+    const agreementRef = toString(body.agreementRef);
+    const agreementAccepted = toBoolean(body.agreementAccepted);
+    const agreementAcceptedAt = toString(body.agreementAcceptedAt);
+    const agreementAcceptanceDate = toString(body.agreementAcceptanceDate);
 
     const successPath = '/home-security/payment/success';
     const cancelPath = '/home-security/payment/canceled';
@@ -113,6 +136,10 @@ export default async function handler(req: RequestLike, res: any) {
       'metadata[expectedTotalCents]': `${totalCents}`,
       'metadata[tier]': tier,
     });
+    if (agreementRef) params.set('metadata[agreementRef]', agreementRef);
+    if (agreementAccepted !== undefined) params.set('metadata[agreementAccepted]', `${agreementAccepted}`);
+    if (agreementAcceptedAt) params.set('metadata[agreementAcceptedAt]', agreementAcceptedAt);
+    if (agreementAcceptanceDate) params.set('metadata[agreementAcceptanceDate]', agreementAcceptanceDate);
 
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
