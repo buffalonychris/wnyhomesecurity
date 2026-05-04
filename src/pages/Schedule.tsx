@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAddOns, getPackagePricing } from '../data/pricing';
-import { loadRetailFlow, markFlowStep, ScheduleRequest, updateRetailFlow } from '../lib/retailFlow';
+import { getDepositStatusForQuote, loadRetailFlow, markFlowStep, ScheduleRequest, updateRetailFlow } from '../lib/retailFlow';
 import FlowGuidePanel from '../components/FlowGuidePanel';
 import PaymentInstallDayAccordion from '../components/PaymentInstallDayAccordion';
 import TierBadge from '../components/TierBadge';
@@ -54,7 +54,7 @@ const Schedule = () => {
 
   const quoteContext = flowState.quote;
   const acceptance = flowState.agreementAcceptance;
-  const depositStatus = flowState.payment?.depositStatus ?? 'pending';
+  const depositStatus = getDepositStatusForQuote(flowState, quoteContext ? quoteContext.quoteReference ?? buildQuoteReference(quoteContext) : null);
 
   const vertical = quoteContext?.vertical ?? 'elder-tech';
   const isHomeSecurity = vertical === 'home-security';
