@@ -121,3 +121,15 @@ Codex MUST:
 3. Request Step revision  
 
 No silent deviation allowed.
+
+---
+
+## TASK MANAGEMENT LAYER
+
+Task system references:
+
+- /docs/system/master-task-register.md
+- /docs/system/task-command-vocabulary.md
+- /docs/codex/CODEX_TASK_REGISTER_RULES.md
+
+Codex must check **Active Tasks** in `/docs/system/master-task-register.md` before implementation.
