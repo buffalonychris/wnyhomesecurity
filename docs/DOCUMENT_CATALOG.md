@@ -120,3 +120,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Historical/reference HubSpot revisions:**
   - `docs/crm/hubspot/hubspot_kb_rev01.md`
   - `docs/crm/hubspot/hubspot_kb_rev02.md`
+
+## `docs/steps/`
+
+### `/docs/steps/step_103_full_funnel_validation_rev_01.md`
+- **File path:** `docs/steps/step_103_full_funnel_validation_rev_01.md`
+- **Purpose / likely role:** Controlling Step103 document for full-funnel validation authority, scope, findings, and acceptance criteria.
+- **Authority level:** **Step control / active**
+- **Notes:** Current controlling execution Step for validation-phase work.
