@@ -1,5 +1,7 @@
 type HomeSecurityTier = 'bronze' | 'silver' | 'gold';
 
+type VerticalKey = 'elder-tech' | 'home-security';
+
 type RequestLike = {
   method?: string;
   body?: unknown;
@@ -34,6 +36,9 @@ const requireEnv = (key: string) => {
 
 const isTier = (value: unknown): value is HomeSecurityTier => value === 'bronze' || value === 'silver' || value === 'gold';
 
+const resolveVertical = (value: unknown): VerticalKey | null =>
+  value === 'home-security' || value === 'elder-tech' ? value : null;
+
 const maskSessionId = (sessionId: string) => sessionId.slice(-6);
 
 export default async function handler(req: RequestLike, res: any) {
@@ -51,6 +56,8 @@ export default async function handler(req: RequestLike, res: any) {
 
   const totalCents = TIER_PRICING_CENTS[tier];
   const depositCents = Math.round(totalCents * 0.5);
+  const requestVertical = resolveVertical(body?.vertical);
+  const vertical: VerticalKey = requestVertical ?? 'home-security';
 
   try {
     const stripeSecretKey = requireEnv('STRIPE_SECRET_KEY');
@@ -65,7 +72,7 @@ export default async function handler(req: RequestLike, res: any) {
       'line_items[0][price_data][unit_amount]': `${depositCents}`,
       'line_items[0][quantity]': '1',
       'metadata[tier]': tier,
-      'metadata[vertical]': 'home-security',
+      'metadata[vertical]': vertical,
       'metadata[deposit_policy]': '50%',
       'metadata[expectedDepositCents]': `${depositCents}`,
       'metadata[expectedTotalCents]': `${totalCents}`,
