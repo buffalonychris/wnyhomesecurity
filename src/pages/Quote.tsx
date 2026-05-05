@@ -49,6 +49,7 @@ const Quote = () => {
   const [plannerSelectionsApplied, setPlannerSelectionsApplied] = useState(false);
   const [narrative, setNarrative] = useState<NarrativeResponse | null>(null);
   const [narrativeLoading, setNarrativeLoading] = useState(false);
+  const [quoteError, setQuoteError] = useState('');
   const flowState = useMemo(() => loadRetailFlow(), []);
   const plannerRecommendation = flowState.homeSecurity?.plannerRecommendation;
   const fitCheckComplete = isHomeSecurity
@@ -167,6 +168,8 @@ const Quote = () => {
   const persistQuote = async () => {
     const existing = loadRetailFlow();
     const previousQuote = existing.quote;
+    const pathParam = searchParams.get('path');
+    const selectedPath = pathParam === 'online' || pathParam === 'onsite' ? pathParam : existing.homeSecurity?.selectedPath;
     const payload: QuoteContext = {
       vertical,
       customerName,
@@ -203,14 +206,31 @@ const Quote = () => {
     const quoteHash = await computeQuoteHash(quoteWithPrior);
     const quoteReference = buildQuoteReference(quoteWithPrior);
     const nextQuote = { ...quoteWithPrior, quoteHash, quoteReference };
-    updateRetailFlow({ quote: nextQuote });
+    const nextFlow = updateRetailFlow({
+      quote: nextQuote,
+      homeSecurity: isHomeSecurity
+        ? {
+            selectedPath,
+            selectedPackageId: packageId,
+          }
+        : undefined,
+    });
+    if (!nextFlow.quote || nextFlow.quote.quoteReference !== nextQuote.quoteReference) {
+      throw new Error('Quote could not be saved.');
+    }
     return nextQuote;
   };
 
   const generateQuote = async () => {
     if (isHomeSecurity && !fitCheckComplete) return;
-    await persistQuote();
-    navigate('/quoteReview');
+    setQuoteError('');
+    try {
+      await persistQuote();
+      navigate('/quoteReview');
+    } catch (error) {
+      console.error('Unable to generate quote', error);
+      setQuoteError('We could not generate your quote. Please check your details and try again.');
+    }
   };
 
   const printQuote = async () => {
@@ -302,6 +322,7 @@ const Quote = () => {
           )}
           {!isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Direct navigation safe: /quote works online or offline cache.</small>}
         </div>
+        {quoteError ? <small style={{ color: '#f5b1b1' }}>{quoteError}</small> : null}
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ color: '#c8c0aa' }}>Want to preview the dashboard?</span>
