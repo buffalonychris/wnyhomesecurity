@@ -9,9 +9,13 @@ Controlling Step: Step103 — Full Funnel Validation — REV01
 
 ### Step103 Active Tasks
 
-1. Diagnose and fix Quote Review quote generation/display failure
-2. Remove duplicate package card image overlay/pill labels
-3. Run full funnel validation after fixes
+1. Enforce Quote Review requires generated quote (no fallback entry)
+2. Make /quote the only quote generation point
+3. Normalize Fit Check progression to next-page flow
+4. Normalize Packages progression CTA hierarchy
+5. Rename Quote CTA for clarity
+6. Remove duplicate package card image overlay/pill labels
+7. Run full funnel validation after fixes
 
 ---
 
@@ -34,6 +38,10 @@ No Blocked Tasks are currently recorded.
 ---
 
 ## Completed Tasks
+
+### Step103 Completed Tasks
+
+1. Diagnose and fix Quote Review quote generation/display failure
 
 ### Step102 Completed Tasks
 
