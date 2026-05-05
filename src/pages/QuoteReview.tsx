@@ -12,7 +12,7 @@ import { loadRetailFlow, markFlowStep, updateRetailFlow } from '../lib/retailFlo
 import { getHardwareGroups } from '../data/hardware';
 import { getFeatureGroups } from '../data/features';
 import { buildQuoteReference, formatQuoteDate } from '../lib/quoteUtils';
-import { computeQuoteHash, quoteAssumptions, quoteDeliverables, quoteExclusions } from '../lib/quoteHash';
+import { quoteAssumptions, quoteDeliverables, quoteExclusions } from '../lib/quoteHash';
 import { buildResumeUrl, buildQuoteFromResumePayload, parseResumeToken } from '../lib/resumeToken';
 import { siteConfig } from '../config/site';
 import { copyToClipboard, shortenMiddle } from '../lib/displayUtils';
@@ -126,32 +126,6 @@ const QuoteReview = () => {
       return false;
     };
 
-    const hydrateFromFallbackState = async (stored: ReturnType<typeof loadRetailFlow>) => {
-      const selectedPackageId = stored.homeSecurity?.selectedPackageId;
-      if (!selectedPackageId) return false;
-      const packageInfo = getPackagePricing('home-security').find((pkg) => pkg.id === selectedPackageId);
-      if (!packageInfo) return false;
-      const generatedAt = new Date().toISOString();
-      const nextQuote: QuoteContext = {
-        vertical: 'home-security',
-        generatedAt,
-        packageId: selectedPackageId,
-        selectedAddOns: [],
-        pricing: {
-          packagePrice: packageInfo.basePrice,
-          addOnTotal: 0,
-          total: packageInfo.basePrice,
-        },
-        quoteDocVersion: siteConfig.quoteDocVersion,
-        quoteHashAlgorithm: siteConfig.quoteHashAlgorithm,
-      };
-      const quoteHash = await computeQuoteHash(nextQuote);
-      const quoteReference = buildQuoteReference(nextQuote);
-      const hydratedFallbackQuote = { ...nextQuote, quoteHash, quoteReference };
-      updateRetailFlow({ quote: hydratedFallbackQuote });
-      return hydrateQuote(hydratedFallbackQuote);
-    };
-
     void (async () => {
       if (token) {
         const payload = parseResumeToken(token);
@@ -171,9 +145,6 @@ const QuoteReview = () => {
         stored = null;
       }
       if (stored?.quote && hydrateQuote(stored.quote)) {
-        return;
-      }
-      if (stored && (await hydrateFromFallbackState(stored))) {
         return;
       }
       setQuote(null);
