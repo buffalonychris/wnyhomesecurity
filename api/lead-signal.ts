@@ -68,16 +68,22 @@ const eventToStage: Record<string, string> = {
 
 export default async function handler(req: { method?: string; body?: unknown }, res: any) {
   const requestId = createRequestId();
-  if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method Not Allowed' });
+  const isDev = process.env.NODE_ENV !== 'production';
+  const fail = (status: number, errorCode: string, userMessage: string, debugMessage?: string) => {
+    const payload: Record<string, unknown> = { ok: false, requestId, errorCode, userMessage };
+    if (isDev && debugMessage) payload.debugMessage = debugMessage;
+    return res.status(status).json(payload);
+  };
+  if (req.method !== 'POST') return fail(405, 'INTERNAL_ERROR', 'We couldn’t submit your request. Please try again.', 'Method Not Allowed');
   const body = getBody(req) as LeadSignalRequest | null;
   if (!body) {
     console.error('[lead-signal] invalid json body', { requestId });
-    return res.status(400).json({ ok: false, error: 'Invalid JSON body', requestId });
+    return fail(400, 'INVALID_JSON', 'We couldn’t submit your request. Please try again.', 'Invalid JSON body');
   }
   const validationError = validateRequest(body);
   if (validationError) {
     console.error('[lead-signal] invalid payload', { requestId, event: body?.event, validationError });
-    return res.status(400).json({ ok: false, error: validationError, requestId });
+    return fail(400, 'INVALID_QR_LEAD_PAYLOAD', 'We couldn’t submit your request. Please check your information and try again.', validationError);
   }
 
   const now = new Date().toISOString();
@@ -89,6 +95,7 @@ export default async function handler(req: { method?: string; body?: unknown }, 
   });
   if (!emailResult.ok) {
     console.error('[lead-signal] notification delivery issue', { requestId, error: emailResult.error });
+    return fail(502, 'EMAIL_NOTIFICATION_FAILED', 'We couldn’t submit your request. Please try again.', 'Notification delivery failed');
   }
 
   let hubspot: any = { ok: false, skipped: true };
@@ -120,6 +127,7 @@ export default async function handler(req: { method?: string; body?: unknown }, 
     hubspot = await createOrUpdateDeal({ dealId: body.deal?.dealId, quoteRef: body.deal?.quoteRef, properties, contactId, dealname: `WNYHS ${body.event} ${now}` });
   } catch (error) {
     console.error('[lead-signal] hubspot sync failed', { requestId, error });
+    return fail(502, 'CRM_SYNC_FAILED', 'We couldn’t submit your request. Please try again.', 'HubSpot sync failed');
   }
 
   res.status(200).json({ ok: true, requestId, email: emailResult, hubspot, leadSummary });
