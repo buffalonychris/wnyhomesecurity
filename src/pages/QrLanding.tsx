@@ -3,6 +3,8 @@ import { Navigate, useSearchParams } from 'react-router-dom';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import '../styles/qrLanding.css';
 
+type PreferredContactMethod = 'Text' | 'Phone call' | 'Email' | 'Any';
+
 type QrLandingFormState = {
   firstName: string;
   lastName: string;
@@ -14,13 +16,16 @@ type QrLandingFormState = {
   zip: string;
   propertyType: string;
   requestedHelp: string;
-  preferredContactMethod: string;
+  preferredContactMethod: PreferredContactMethod | '';
+  textConsent: boolean;
+  emailConsent: boolean;
+  contactTimeAcknowledgement: boolean;
   preferredEstimateDate: string;
   preferredEstimateTimeSlot: string;
   whereDidYouSeeUs: string;
 };
 
-type QrLandingErrors = Partial<Record<keyof QrLandingFormState, string>>;
+type QrLandingErrors = Partial<Record<keyof QrLandingFormState | 'consentSelection', string>>;
 
 const initialState: QrLandingFormState = {
   firstName: '',
@@ -36,6 +41,9 @@ const initialState: QrLandingFormState = {
   preferredContactMethod: '',
   preferredEstimateDate: '',
   preferredEstimateTimeSlot: '',
+  textConsent: false,
+  emailConsent: false,
+  contactTimeAcknowledgement: false,
   whereDidYouSeeUs: '',
 };
 
@@ -69,7 +77,8 @@ const QrLanding = () => {
   const [formState, setFormState] = useState<QrLandingFormState>(initialState);
   const [errors, setErrors] = useState<QrLandingErrors>({});
   const [submitted, setSubmitted] = useState(false);
-  const [apiFailure, setApiFailure] = useState(false);
+  const [apiFailure, setApiFailure] = useState<string | null>(null);
+  const [failureRequestId, setFailureRequestId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [logoAvailable, setLogoAvailable] = useState(true);
   const [searchParams] = useSearchParams();
@@ -85,13 +94,20 @@ const QrLanding = () => {
     (field: keyof QrLandingFormState) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       const nextValue = event.target.value;
+      const checked = 'checked' in event.target ? event.target.checked : false;
       setFormState((prev) => {
+        if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement') {
+          return { ...prev, [field]: checked };
+        }
         if (field === 'preferredEstimateDate') {
           return { ...prev, preferredEstimateDate: nextValue, preferredEstimateTimeSlot: '' };
         }
         return { ...prev, [field]: nextValue };
       });
       setErrors((prev) => {
+        if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement') {
+          return { ...prev, [field]: checked };
+        }
         if (field === 'preferredEstimateDate') {
           const rest = { ...prev };
           delete rest.preferredEstimateDate;
@@ -102,14 +118,18 @@ const QrLanding = () => {
         delete rest[field];
         return rest;
       });
-      setApiFailure(false);
+      setApiFailure(null);
+      setFailureRequestId(null);
     };
 
   const timeSlotOptions = useMemo(() => buildTimeSlotsForDate(formState.preferredEstimateDate), [formState.preferredEstimateDate]);
 
   const validate = (): QrLandingErrors => {
     const next: QrLandingErrors = {};
-    const requiredFields: (keyof QrLandingFormState)[] = [
+    const requiredFields: (keyof Pick<QrLandingFormState,
+      'firstName' | 'lastName' | 'mobilePhone' | 'email' | 'streetAddress' | 'city' | 'state' | 'zip' |
+      'propertyType' | 'requestedHelp' | 'preferredContactMethod' | 'preferredEstimateDate' | 'preferredEstimateTimeSlot'
+    >)[] = [
       'firstName', 'lastName', 'mobilePhone', 'email', 'streetAddress', 'city', 'state', 'zip',
       'propertyType', 'requestedHelp', 'preferredContactMethod', 'preferredEstimateDate', 'preferredEstimateTimeSlot',
     ];
@@ -129,6 +149,12 @@ const QrLanding = () => {
     if (formState.preferredEstimateDate && formState.preferredEstimateDate < todayIso) {
       next.preferredEstimateDate = 'Please choose today or a future date.';
     }
+    if (!formState.contactTimeAcknowledgement) {
+      next.contactTimeAcknowledgement = 'Please acknowledge our contact-hours notice.';
+    }
+    if (!formState.textConsent && !formState.emailConsent && formState.preferredContactMethod !== 'Phone call') {
+      next.consentSelection = 'Please allow text or email contact, or choose Phone call as your preferred contact method.';
+    }
     return next;
   };
 
@@ -139,9 +165,10 @@ const QrLanding = () => {
     if (Object.keys(next).length > 0) return;
 
     setIsSubmitting(true);
-    setApiFailure(false);
+    setApiFailure(null);
+    setFailureRequestId(null);
     try {
-      await sendLeadSignal({
+      const response = await sendLeadSignal({
         event: 'qr_estimate_requested',
         sourceFamily: 'QR_SCAN',
         source: normalizedSource,
@@ -152,6 +179,12 @@ const QrLanding = () => {
         scheduleStatus: 'requested_pending_confirmation',
         calendarProvider: 'google_business_pending_confirmation',
         submittedAt: new Date().toISOString(),
+        textConsent: formState.textConsent,
+        emailConsent: formState.emailConsent,
+        contactTimeAcknowledgement: formState.contactTimeAcknowledgement,
+        consentTimestamp: new Date().toISOString(),
+        communicationUseScope: 'quote_estimate_scheduling_service_only',
+        contactHours: '8am_9pm_7_days',
         contact: {
           firstName: formState.firstName.trim(),
           lastName: formState.lastName.trim(),
@@ -173,8 +206,15 @@ const QrLanding = () => {
         },
       });
       setSubmitted(true);
-    } catch {
-      setApiFailure(true);
+      setFailureRequestId(response?.requestId || null);
+    } catch (error) {
+      const cause = error instanceof Error ? error.cause as Record<string, unknown> | undefined : undefined;
+      const requestId = typeof cause?.requestId === 'string' ? cause.requestId : null;
+      const userMessage = typeof cause?.userMessage === 'string'
+        ? cause.userMessage
+        : 'We couldn’t submit your request. Please try again.';
+      setFailureRequestId(requestId);
+      setApiFailure(userMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -186,6 +226,7 @@ const QrLanding = () => {
         <section className="qr-panel">
           <h1>Estimate request received.</h1>
           <p>Your requested estimate window has been submitted. We’ll confirm availability by text or email.</p>
+          {failureRequestId ? <p><strong>Reference:</strong> {failureRequestId}</p> : null}
           <div className="qr-summary">
             <p><strong>Name:</strong> {formState.firstName} {formState.lastName}</p>
             <p><strong>Phone:</strong> {formState.mobilePhone}</p>
@@ -233,7 +274,10 @@ const QrLanding = () => {
             {([
               ['firstName', 'First name'], ['lastName', 'Last name'], ['mobilePhone', 'Mobile phone'], ['email', 'Email'],
               ['streetAddress', 'Street address'], ['city', 'City'], ['state', 'State'], ['zip', 'ZIP'],
-            ] as [keyof QrLandingFormState, string][]).map(([field, label]) => (
+            ] as [
+              'firstName' | 'lastName' | 'mobilePhone' | 'email' | 'streetAddress' | 'city' | 'state' | 'zip',
+              string,
+            ][]).map(([field, label]) => (
             <label key={field}><span>{label}</span><input
               type={field === 'email' ? 'email' : field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'text' : 'text'}
               inputMode={field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'numeric' : undefined}
@@ -253,7 +297,7 @@ const QrLanding = () => {
             />{errors[field] && <small>{errors[field]}</small>}</label>
             ))}
             <label><span>Property type</span><input value={formState.propertyType} onChange={handleChange('propertyType')} />{errors.propertyType && <small>{errors.propertyType}</small>}</label>
-            <label><span>Preferred contact method</span><input value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')} />{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
+            <label><span>Preferred contact method</span><select value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')}><option value="">Select a contact method</option><option value="Text">Text</option><option value="Phone call">Phone call</option><option value="Email">Email</option><option value="Any">Any</option></select>{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
           </div>
           <label><span>What do you want help with?</span><textarea value={formState.requestedHelp} onChange={handleChange('requestedHelp')} />{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
           <label><span>Preferred estimate date</span><input type="date" min={todayIso} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />{errors.preferredEstimateDate && <small>{errors.preferredEstimateDate}</small>}</label>
@@ -262,7 +306,7 @@ const QrLanding = () => {
 
           <p>Remote access and notifications require internet availability.</p>
           {Object.keys(errors).length > 0 && <p className="qr-error">We couldn’t submit your request. Please check the required fields and try again.</p>}
-          {apiFailure && <p className="qr-error">We couldn’t send this request right now. Please try again, or use the contact option below.</p>}
+          {apiFailure && <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference: ${failureRequestId}.` : ''} If needed, call or text 716-547-1378.</p>}
           <button type="submit" className="qr-cta" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Request My Estimate'}</button>
         </form>
         <p className="qr-sub">Prefer to call later? <a href="tel:17165471378">716-547-1378</a></p>
