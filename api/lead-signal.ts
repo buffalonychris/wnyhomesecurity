@@ -2,12 +2,59 @@ import { sendLeadSignalEmail } from './_email.js';
 import { createOrUpdateDeal, findOrCreateContact } from './_hubspot.js';
 
 type LeadSignalRequest = any;
+const isString = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0;
+const createRequestId = () => `lead_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 const getBody = (req: { body?: unknown }) => {
   if (!req.body) return null;
   if (typeof req.body === 'string') {
     try { return JSON.parse(req.body) as Record<string, unknown>; } catch { return null; }
   }
   return req.body as Record<string, unknown>;
+};
+
+const buildQrLeadSummary = (body: LeadSignalRequest, timestampISO: string) => {
+  const firstName = body?.contact?.firstName?.trim?.() || '';
+  const lastName = body?.contact?.lastName?.trim?.() || '';
+  return {
+    fullName: `${firstName} ${lastName}`.trim(),
+    phone: body?.contact?.phone?.trim?.() || '',
+    email: body?.contact?.email?.trim?.() || '',
+    address: [
+      body?.contact?.address?.street,
+      body?.contact?.address?.city,
+      body?.contact?.address?.state,
+      body?.contact?.address?.zip,
+    ].filter(Boolean).join(', '),
+    propertyType: body?.contact?.address?.propertyType || '',
+    requestedHelp: body?.request?.requestedHelp || '',
+    preferredContactMethod: body?.request?.preferredContactMethod || '',
+    preferredEstimateDate: body?.request?.preferredEstimateDate || '',
+    preferredEstimateTimeSlot: body?.request?.preferredEstimateTimeSlot || '',
+    sourceFamily: body?.sourceFamily || '',
+    source: body?.source || '',
+    campaignFamily: body?.campaignFamily || '',
+    whereDidYouSeeUs: body?.whereDidYouSeeUs || '',
+    createdAt: body?.submittedAt || timestampISO,
+  };
+};
+
+const validateRequest = (body: LeadSignalRequest) => {
+  if (!body || typeof body !== 'object') return 'Request body must be a JSON object';
+  if (!isString(body.event)) return 'event is required';
+  if (body.event === 'qr_estimate_requested') {
+    const required = [
+      body?.contact?.firstName,
+      body?.contact?.lastName,
+      body?.contact?.phone,
+      body?.contact?.email,
+      body?.request?.preferredEstimateDate,
+      body?.request?.preferredEstimateTimeSlot,
+    ];
+    if (required.some((value) => !isString(value))) {
+      return 'qr_estimate_requested is missing required contact/request fields';
+    }
+  }
+  return null;
 };
 
 const eventToStage: Record<string, string> = {
@@ -20,15 +67,29 @@ const eventToStage: Record<string, string> = {
 };
 
 export default async function handler(req: { method?: string; body?: unknown }, res: any) {
+  const requestId = createRequestId();
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method Not Allowed' });
   const body = getBody(req) as LeadSignalRequest | null;
-  if (!body) return res.status(400).json({ ok: false, error: 'Invalid JSON body' });
+  if (!body) {
+    console.error('[lead-signal] invalid json body', { requestId });
+    return res.status(400).json({ ok: false, error: 'Invalid JSON body', requestId });
+  }
+  const validationError = validateRequest(body);
+  if (validationError) {
+    console.error('[lead-signal] invalid payload', { requestId, event: body?.event, validationError });
+    return res.status(400).json({ ok: false, error: validationError, requestId });
+  }
 
   const now = new Date().toISOString();
+  const leadSummary = buildQrLeadSummary(body, now);
+  console.info('[lead-signal] accepted', { requestId, event: body.event, source: body?.source, leadSummary });
   const emailResult = await sendLeadSignalEmail({
     event: body.event || 'Lead Signal', timestampISO: now, customerEmail: body.contact?.email || body.customerEmail,
     referenceId: body.referenceId || body.deal?.quoteRef, resumeUrl: body.resumeUrl, verifyUrl: body.verifyUrl, route: body.route || 'api/lead-signal',
   });
+  if (!emailResult.ok) {
+    console.error('[lead-signal] notification delivery issue', { requestId, error: emailResult.error });
+  }
 
   let hubspot: any = { ok: false, skipped: true };
   try {
@@ -58,8 +119,8 @@ export default async function handler(req: { method?: string; body?: unknown }, 
     Object.keys(properties).forEach((k) => properties[k] == null && delete properties[k]);
     hubspot = await createOrUpdateDeal({ dealId: body.deal?.dealId, quoteRef: body.deal?.quoteRef, properties, contactId, dealname: `WNYHS ${body.event} ${now}` });
   } catch (error) {
-    console.error('lead-signal hubspot sync failed', error);
+    console.error('[lead-signal] hubspot sync failed', { requestId, error });
   }
 
-  res.status(200).json({ ok: true, email: emailResult, hubspot });
+  res.status(200).json({ ok: true, requestId, email: emailResult, hubspot, leadSummary });
 }

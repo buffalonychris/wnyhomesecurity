@@ -31,12 +31,14 @@ export const sendLeadSignal = async (payload: Record<string, unknown>) => {
       route: typeof window !== 'undefined' ? window.location.pathname : undefined,
     }),
   });
+  const responseBody = await response.json().catch(() => null);
   if (!response.ok) {
-    const message = `lead signal failed with status ${response.status}`;
+    const requestId = responseBody?.requestId ? ` (requestId ${responseBody.requestId})` : '';
+    const message = `lead signal failed with status ${response.status}${requestId}`;
     if (import.meta.env.DEV) console.warn(message);
     throw new Error(message);
   }
-  if (import.meta.env.DEV) console.info('lead signal submitted', { status: response.status });
+  if (import.meta.env.DEV) console.info('lead signal submitted', { status: response.status, requestId: responseBody?.requestId });
 };
 
 export const sendFitCheckCompleted = (payload: Record<string, unknown>) => sendLeadSignal({ event: 'fit_check_completed', ...payload });
