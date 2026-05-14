@@ -22,11 +22,21 @@ export const buildAttributionPayload = () => {
 };
 
 export const sendLeadSignal = async (payload: Record<string, unknown>) => {
-  try {
-    await fetch('/api/lead-signal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, attribution: buildAttributionPayload(), route: typeof window !== 'undefined' ? window.location.pathname : undefined }) });
-  } catch (error) {
-    if (import.meta.env.DEV) console.warn('lead signal failed', error);
+  const response = await fetch('/api/lead-signal', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...payload,
+      attribution: buildAttributionPayload(),
+      route: typeof window !== 'undefined' ? window.location.pathname : undefined,
+    }),
+  });
+  if (!response.ok) {
+    const message = `lead signal failed with status ${response.status}`;
+    if (import.meta.env.DEV) console.warn(message);
+    throw new Error(message);
   }
+  if (import.meta.env.DEV) console.info('lead signal submitted', { status: response.status });
 };
 
 export const sendFitCheckCompleted = (payload: Record<string, unknown>) => sendLeadSignal({ event: 'fit_check_completed', ...payload });

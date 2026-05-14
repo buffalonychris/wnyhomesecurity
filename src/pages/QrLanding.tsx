@@ -66,10 +66,17 @@ const QrLanding = () => {
       'propertyType', 'requestedHelp', 'preferredContactMethod', 'preferredEstimateWindow',
     ];
     requiredFields.forEach((field) => {
-      if (!formState[field].trim()) next[field] = 'Required field.';
+      if (!formState[field].trim()) next[field] = 'This field is required.';
     });
     if (formState.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email.trim())) {
-      next.email = 'Enter a valid email.';
+      next.email = 'Please enter a valid email address.';
+    }
+    const phoneDigits = formState.mobilePhone.replace(/\D/g, '');
+    if (formState.mobilePhone && phoneDigits.length < 10) {
+      next.mobilePhone = 'Please enter a valid phone number.';
+    }
+    if (formState.zip && !/^\d{5}(-\d{4})?$/.test(formState.zip.trim())) {
+      next.zip = 'Please enter a valid ZIP code.';
     }
     return next;
   };
@@ -169,13 +176,29 @@ const QrLanding = () => {
               ['firstName', 'First name'], ['lastName', 'Last name'], ['mobilePhone', 'Mobile phone'], ['email', 'Email'],
               ['streetAddress', 'Street address'], ['city', 'City'], ['state', 'State'], ['zip', 'ZIP'],
             ] as [keyof QrLandingFormState, string][]).map(([field, label]) => (
-              <label key={field}><span>{label}</span><input value={formState[field]} onChange={handleChange(field)} />{errors[field] && <small>{errors[field]}</small>}</label>
+            <label key={field}><span>{label}</span><input
+              type={field === 'email' ? 'email' : field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'text' : 'text'}
+              inputMode={field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'numeric' : undefined}
+              autoComplete={
+                field === 'firstName' ? 'given-name'
+                  : field === 'lastName' ? 'family-name'
+                    : field === 'mobilePhone' ? 'tel'
+                      : field === 'email' ? 'email'
+                        : field === 'streetAddress' ? 'street-address'
+                          : field === 'city' ? 'address-level2'
+                            : field === 'state' ? 'address-level1'
+                              : field === 'zip' ? 'postal-code'
+                                : undefined
+              }
+              value={formState[field]}
+              onChange={handleChange(field)}
+            />{errors[field] && <small>{errors[field]}</small>}</label>
             ))}
             <label><span>Property type</span><input value={formState.propertyType} onChange={handleChange('propertyType')} />{errors.propertyType && <small>{errors.propertyType}</small>}</label>
             <label><span>Preferred contact method</span><input value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')} />{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
           </div>
           <label><span>What do you want help with?</span><textarea value={formState.requestedHelp} onChange={handleChange('requestedHelp')} />{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
-          <label><span>Preferred estimate date/time window</span><input value={formState.preferredEstimateWindow} onChange={handleChange('preferredEstimateWindow')} />{errors.preferredEstimateWindow && <small>{errors.preferredEstimateWindow}</small>}</label>
+          <label><span>Preferred estimate date/time window</span><input value={formState.preferredEstimateWindow} onChange={handleChange('preferredEstimateWindow')} autoComplete="off" />{errors.preferredEstimateWindow && <small>{errors.preferredEstimateWindow}</small>}</label>
           <label><span>Where did you see us? (optional)</span><select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}><option value="">Select one</option><option>Barber shop</option><option>Restaurant</option><option>Grocery store</option><option>Laundromat</option><option>Auto shop</option><option>Self-storage / U-Haul / moving location</option><option>Medical office / waiting room</option><option>Retail store</option><option>Apartment/community board</option><option>Friend/referral</option><option>Other</option></select></label>
 
           <p>Remote access and notifications require internet availability.</p>
