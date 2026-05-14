@@ -71,6 +71,7 @@ const QrLanding = () => {
   const [submitted, setSubmitted] = useState(false);
   const [apiFailure, setApiFailure] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [logoAvailable, setLogoAvailable] = useState(true);
   const [searchParams] = useSearchParams();
 
   const todayIso = useMemo(() => new Date().toISOString().slice(0, 10), []);
@@ -199,7 +200,14 @@ const QrLanding = () => {
   return (
     <main className="qr-landing">
       <section className="qr-panel qr-hero">
-        <img src="/ForLouFinalHighEndLogo.png" alt="WNY Home Security" className="qr-logo" />
+        {logoAvailable ? (
+          <img
+            src="/ForLouFinalHighEndLogo.png"
+            alt="WNY Home Security high-end crest logo"
+            className="qr-logo"
+            onError={() => setLogoAvailable(false)}
+          />
+        ) : null}
         <h1>Custom Home Security Installed Locally</h1>
         <p>Cameras, sensors, smart security, local recording, and onsite estimates for Western New York homes.</p>
         <a className="qr-cta" href="#qr-estimate-form">Request My Estimate</a>
