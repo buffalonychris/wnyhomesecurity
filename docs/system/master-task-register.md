@@ -1,21 +1,21 @@
 # Master Task Register
 
 Status: Active  
-Controlling Step: Step103 — Full Funnel Validation — REV01
+Controlling Step: Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
 
 ---
 
 ## Active Tasks
 
-### Step103 Active Tasks
+### Step102 Active Tasks
 
-1. Enforce Quote Review requires generated quote (no fallback entry)
-2. Make /quote the only quote generation point
-3. Normalize Fit Check progression to next-page flow
-4. Normalize Packages progression CTA hierarchy
-5. Rename Quote CTA for clarity
-6. Remove duplicate package card image overlay/pill labels
-7. Run full funnel validation after fixes
+1. Implement additive /qrlanding route
+2. Build mobile-first QR landing funnel experience
+3. Implement estimate-request intake form fields from Step102
+4. Capture QR attribution source family and default source
+5. Integrate CRM onboarding through approved API layer
+6. Implement scheduling request capture with graceful degradation
+7. Validate /qrlanding funnel build and preserve existing flows
 
 ---
 
@@ -43,7 +43,7 @@ No Blocked Tasks are currently recorded.
 
 1. Diagnose and fix Quote Review quote generation/display failure
 
-### Step102 Completed Tasks
+### Step102 (Hardening Baseline) Completed Tasks
 
 1. Fix Payment → Schedule quote-scoped deposit validation
 2. Replace hardcoded payment vertical metadata with validated vertical context
@@ -55,7 +55,7 @@ No Blocked Tasks are currently recorded.
 ## Promotion Rule
 
 - A task may be promoted to **Active Tasks** only when it is authorized by the current controlling Step listed in `/docs/system/step-current.md`.
-- If scope is unclear or outside Step103, stop and request a Step revision before promotion.
+- If scope is unclear or outside Step102, stop and request a Step revision before promotion.
 
 ---
 
