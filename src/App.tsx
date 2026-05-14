@@ -97,6 +97,8 @@ const NewSiteContact = lazy(() => import('./newsite/pages/NewSiteContact'));
 const NewSiteCallback = lazy(() => import('./newsite/pages/NewSiteCallback'));
 const NewSiteOnSiteQuote = lazy(() => import('./newsite/pages/NewSiteOnSiteQuote'));
 const NewSiteSchedule = lazy(() => import('./newsite/pages/NewSiteSchedule'));
+const QrLanding = lazy(() => import('./pages/QrLanding'));
+const QrLandingAlias = lazy(() => import('./pages/QrLanding').then((m) => ({ default: m.QrLandingAlias })));
 
 const HomeRoute = () => {
   const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
@@ -201,6 +203,8 @@ const App = () => {
             <Route path="/5-day-demo" element={<FiveDayDemo />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/qrlanding" element={<QrLanding />} />
+            <Route path="/qrlanding.htm" element={<QrLandingAlias />} />
           </Route>
           <Route path="/newsite" element={<NewSiteLayout />}>
             <Route index element={<NewSiteHome />} />
