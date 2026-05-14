@@ -91,3 +91,17 @@ If ANY item fails:
 
 ❌ DO NOT MERGE  
 Fix issues → re-run QA
+
+
+## QRLANDING PRE-CANVASSING READINESS (STEP102)
+
+- Cloudflare deployment succeeded
+- Version badge shows `v1.0.17`
+- `/qrlanding` loads
+- `/qrlanding?src=placard` loads
+- Live-safe test lead submitted
+- `requestId` captured from API response/logs
+- Notification + CRM path reviewed from `/api/lead-signal` output
+- Success copy does NOT claim appointment confirmation
+- Mobile QA passed (CTA visibility, no overflow, date/time usability)
+- QR code destination points to the intended production URL
