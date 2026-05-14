@@ -1,4 +1,4 @@
-import { useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import '../styles/qrLanding.css';
@@ -82,6 +82,7 @@ const QrLanding = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [logoAvailable, setLogoAvailable] = useState(true);
   const [searchParams] = useSearchParams();
+  const fieldRefs = useRef<Partial<Record<keyof QrLandingFormState, HTMLElement | null>>>({});
 
   const todayIso = useMemo(() => new Date().toISOString().slice(0, 10), []);
 
@@ -162,7 +163,19 @@ const QrLanding = () => {
     event.preventDefault();
     const next = validate();
     setErrors(next);
-    if (Object.keys(next).length > 0) return;
+    if (Object.keys(next).length > 0) {
+      const firstInvalidField = ([
+        'firstName', 'lastName', 'mobilePhone', 'email', 'streetAddress', 'city', 'state', 'zip',
+        'propertyType', 'requestedHelp', 'preferredContactMethod', 'preferredEstimateDate', 'preferredEstimateTimeSlot',
+        'textConsent', 'emailConsent', 'contactTimeAcknowledgement',
+      ] as (keyof QrLandingFormState)[]).find((field) => field in next || (field === 'textConsent' && 'consentSelection' in next));
+      const firstInvalidElement = firstInvalidField ? fieldRefs.current[firstInvalidField] : null;
+      if (firstInvalidElement) {
+        firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalidElement.focus();
+      }
+      return;
+    }
 
     setIsSubmitting(true);
     setApiFailure(null);
@@ -279,6 +292,7 @@ const QrLanding = () => {
               string,
             ][]).map(([field, label]) => (
             <label key={field}><span>{label}</span><input
+              ref={(element) => { fieldRefs.current[field] = element; }}
               type={field === 'email' ? 'email' : field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'text' : 'text'}
               inputMode={field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'numeric' : undefined}
               autoComplete={
@@ -296,17 +310,49 @@ const QrLanding = () => {
               onChange={handleChange(field)}
             />{errors[field] && <small>{errors[field]}</small>}</label>
             ))}
-            <label><span>Property type</span><input value={formState.propertyType} onChange={handleChange('propertyType')} />{errors.propertyType && <small>{errors.propertyType}</small>}</label>
-            <label><span>Preferred contact method</span><select value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')}><option value="">Select a contact method</option><option value="Text">Text</option><option value="Phone call">Phone call</option><option value="Email">Email</option><option value="Any">Any</option></select>{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
+            <label><span>Property type</span><input ref={(element) => { fieldRefs.current.propertyType = element; }} value={formState.propertyType} onChange={handleChange('propertyType')} />{errors.propertyType && <small>{errors.propertyType}</small>}</label>
+            <label><span>Preferred contact method</span><select ref={(element) => { fieldRefs.current.preferredContactMethod = element; }} value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')}><option value="">Select a contact method</option><option value="Text">Text</option><option value="Phone call">Phone call</option><option value="Email">Email</option><option value="Any">Any</option></select>{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
           </div>
-          <label><span>What do you want help with?</span><textarea value={formState.requestedHelp} onChange={handleChange('requestedHelp')} />{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
-          <label><span>Preferred estimate date</span><input type="date" min={todayIso} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />{errors.preferredEstimateDate && <small>{errors.preferredEstimateDate}</small>}</label>
-          <label><span>Preferred 1-hour estimate window</span><select value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')} disabled={!formState.preferredEstimateDate || timeSlotOptions.length === 0}><option value="">{formState.preferredEstimateDate ? 'Select a 1-hour window' : 'Select a date first'}</option>{timeSlotOptions.map((slot) => <option key={slot} value={slot}>{slot}</option>)}</select>{errors.preferredEstimateTimeSlot && <small>{errors.preferredEstimateTimeSlot}</small>}</label>
+          <label><span>What do you want help with?</span><textarea ref={(element) => { fieldRefs.current.requestedHelp = element; }} value={formState.requestedHelp} onChange={handleChange('requestedHelp')} />{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
+          <label><span>Preferred estimate date</span><input ref={(element) => { fieldRefs.current.preferredEstimateDate = element; }} type="date" min={todayIso} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />{errors.preferredEstimateDate && <small>{errors.preferredEstimateDate}</small>}</label>
+          <label><span>Preferred 1-hour estimate window</span><select ref={(element) => { fieldRefs.current.preferredEstimateTimeSlot = element; }} value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')} disabled={!formState.preferredEstimateDate || timeSlotOptions.length === 0}><option value="">{formState.preferredEstimateDate ? 'Select a 1-hour window' : 'Select a date first'}</option>{timeSlotOptions.map((slot) => <option key={slot} value={slot}>{slot}</option>)}</select>{errors.preferredEstimateTimeSlot && <small>{errors.preferredEstimateTimeSlot}</small>}</label>
           <label><span>Where did you see us? (optional)</span><select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}><option value="">Select one</option><option>Barber shop</option><option>Restaurant</option><option>Grocery store</option><option>Laundromat</option><option>Auto shop</option><option>Self-storage / U-Haul / moving location</option><option>Medical office / waiting room</option><option>Retail store</option><option>Apartment/community board</option><option>Friend/referral</option><option>Other</option></select></label>
+          <fieldset>
+            <legend>Communication preferences (required)</legend>
+            <label>
+              <input
+                ref={(element) => { fieldRefs.current.textConsent = element; }}
+                type="checkbox"
+                checked={formState.textConsent}
+                onChange={handleChange('textConsent')}
+              />
+              Allow text message follow-up
+            </label>
+            <label>
+              <input
+                ref={(element) => { fieldRefs.current.emailConsent = element; }}
+                type="checkbox"
+                checked={formState.emailConsent}
+                onChange={handleChange('emailConsent')}
+              />
+              Allow email follow-up
+            </label>
+            <label>
+              <input
+                ref={(element) => { fieldRefs.current.contactTimeAcknowledgement = element; }}
+                type="checkbox"
+                checked={formState.contactTimeAcknowledgement}
+                onChange={handleChange('contactTimeAcknowledgement')}
+              />
+              I understand contact hours are 8am–9pm, 7 days a week.
+            </label>
+            {errors.consentSelection && <small>{errors.consentSelection}</small>}
+            {errors.contactTimeAcknowledgement && <small>{errors.contactTimeAcknowledgement}</small>}
+          </fieldset>
 
           <p>Remote access and notifications require internet availability.</p>
-          {Object.keys(errors).length > 0 && <p className="qr-error">We couldn’t submit your request. Please check the required fields and try again.</p>}
-          {apiFailure && <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference: ${failureRequestId}.` : ''} If needed, call or text 716-547-1378.</p>}
+          {Object.keys(errors).length > 0 && <p className="qr-error">Please complete the highlighted required fields before submitting.</p>}
+          {apiFailure && <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference ID: ${failureRequestId}.` : ''} If needed, call or text 716-547-1378.</p>}
           <button type="submit" className="qr-cta" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Request My Estimate'}</button>
         </form>
         <p className="qr-sub">Prefer to call later? <a href="tel:17165471378">716-547-1378</a></p>
