@@ -15,7 +15,8 @@ type QrLandingFormState = {
   propertyType: string;
   requestedHelp: string;
   preferredContactMethod: string;
-  preferredEstimateWindow: string;
+  preferredEstimateDate: string;
+  preferredEstimateTimeSlot: string;
   whereDidYouSeeUs: string;
 };
 
@@ -33,11 +34,36 @@ const initialState: QrLandingFormState = {
   propertyType: '',
   requestedHelp: '',
   preferredContactMethod: '',
-  preferredEstimateWindow: '',
+  preferredEstimateDate: '',
+  preferredEstimateTimeSlot: '',
   whereDidYouSeeUs: '',
 };
 
 const allowedSrcValues = new Set(['placard', 'card', 'sticker', 'vehicle', 'yard-sign', 'referral']);
+
+
+const formatTo12Hour = (hour: number) => {
+  if (hour === 0) return '12:00 AM';
+  if (hour < 12) return `${hour}:00 AM`;
+  if (hour === 12) return '12:00 PM';
+  return `${hour - 12}:00 PM`;
+};
+
+const buildTimeSlotsForDate = (dateValue: string) => {
+  if (!dateValue) return [];
+  const selectedDate = new Date(`${dateValue}T12:00:00`);
+  if (Number.isNaN(selectedDate.getTime())) return [];
+
+  const day = selectedDate.getDay();
+  const closeHour = day >= 1 && day <= 5 ? 19 : 16;
+  const slots: string[] = [];
+
+  for (let start = 10; start < closeHour; start += 1) {
+    slots.push(`${formatTo12Hour(start)}–${formatTo12Hour(start + 1)}`);
+  }
+
+  return slots;
+};
 
 const QrLanding = () => {
   const [formState, setFormState] = useState<QrLandingFormState>(initialState);
@@ -47,6 +73,8 @@ const QrLanding = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [searchParams] = useSearchParams();
 
+  const todayIso = useMemo(() => new Date().toISOString().slice(0, 10), []);
+
   const normalizedSource = useMemo(() => {
     const src = (searchParams.get('src') || '').toLowerCase().trim();
     return allowedSrcValues.has(src) ? src : 'QR_SCAN_GENERAL';
@@ -55,15 +83,34 @@ const QrLanding = () => {
   const handleChange =
     (field: keyof QrLandingFormState) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      setFormState((prev) => ({ ...prev, [field]: event.target.value }));
+      const nextValue = event.target.value;
+      setFormState((prev) => {
+        if (field === 'preferredEstimateDate') {
+          return { ...prev, preferredEstimateDate: nextValue, preferredEstimateTimeSlot: '' };
+        }
+        return { ...prev, [field]: nextValue };
+      });
+      setErrors((prev) => {
+        if (field === 'preferredEstimateDate') {
+          const rest = { ...prev };
+          delete rest.preferredEstimateDate;
+          delete rest.preferredEstimateTimeSlot;
+          return rest;
+        }
+        const rest = { ...prev };
+        delete rest[field];
+        return rest;
+      });
       setApiFailure(false);
     };
+
+  const timeSlotOptions = useMemo(() => buildTimeSlotsForDate(formState.preferredEstimateDate), [formState.preferredEstimateDate]);
 
   const validate = (): QrLandingErrors => {
     const next: QrLandingErrors = {};
     const requiredFields: (keyof QrLandingFormState)[] = [
       'firstName', 'lastName', 'mobilePhone', 'email', 'streetAddress', 'city', 'state', 'zip',
-      'propertyType', 'requestedHelp', 'preferredContactMethod', 'preferredEstimateWindow',
+      'propertyType', 'requestedHelp', 'preferredContactMethod', 'preferredEstimateDate', 'preferredEstimateTimeSlot',
     ];
     requiredFields.forEach((field) => {
       if (!formState[field].trim()) next[field] = 'This field is required.';
@@ -77,6 +124,9 @@ const QrLanding = () => {
     }
     if (formState.zip && !/^\d{5}(-\d{4})?$/.test(formState.zip.trim())) {
       next.zip = 'Please enter a valid ZIP code.';
+    }
+    if (formState.preferredEstimateDate && formState.preferredEstimateDate < todayIso) {
+      next.preferredEstimateDate = 'Please choose today or a future date.';
     }
     return next;
   };
@@ -117,7 +167,8 @@ const QrLanding = () => {
         request: {
           requestedHelp: formState.requestedHelp.trim(),
           preferredContactMethod: formState.preferredContactMethod.trim(),
-          preferredEstimateWindow: formState.preferredEstimateWindow.trim(),
+          preferredEstimateDate: formState.preferredEstimateDate.trim(),
+          preferredEstimateTimeSlot: formState.preferredEstimateTimeSlot.trim(),
         },
       });
       setSubmitted(true);
@@ -133,13 +184,12 @@ const QrLanding = () => {
       <main className="qr-landing">
         <section className="qr-panel">
           <h1>Estimate request received.</h1>
-          <p>Thanks — we received your estimate request. We’ll review your details and follow up shortly.</p>
-          <p>Your estimate request has been received. Scheduling confirmation will follow after review.</p>
+          <p>Your requested estimate window has been submitted. We’ll confirm availability by text or email.</p>
           <div className="qr-summary">
             <p><strong>Name:</strong> {formState.firstName} {formState.lastName}</p>
             <p><strong>Phone:</strong> {formState.mobilePhone}</p>
             <p><strong>Email:</strong> {formState.email}</p>
-            <p><strong>Requested estimate window:</strong> {formState.preferredEstimateWindow}</p>
+            <p><strong>Requested estimate window:</strong> {formState.preferredEstimateDate} — {formState.preferredEstimateTimeSlot}</p>
           </div>
         </section>
       </main>
@@ -198,7 +248,8 @@ const QrLanding = () => {
             <label><span>Preferred contact method</span><input value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')} />{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
           </div>
           <label><span>What do you want help with?</span><textarea value={formState.requestedHelp} onChange={handleChange('requestedHelp')} />{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
-          <label><span>Preferred estimate date/time window</span><input value={formState.preferredEstimateWindow} onChange={handleChange('preferredEstimateWindow')} autoComplete="off" />{errors.preferredEstimateWindow && <small>{errors.preferredEstimateWindow}</small>}</label>
+          <label><span>Preferred estimate date</span><input type="date" min={todayIso} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />{errors.preferredEstimateDate && <small>{errors.preferredEstimateDate}</small>}</label>
+          <label><span>Preferred 1-hour estimate window</span><select value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')} disabled={!formState.preferredEstimateDate || timeSlotOptions.length === 0}><option value="">{formState.preferredEstimateDate ? 'Select a 1-hour window' : 'Select a date first'}</option>{timeSlotOptions.map((slot) => <option key={slot} value={slot}>{slot}</option>)}</select>{errors.preferredEstimateTimeSlot && <small>{errors.preferredEstimateTimeSlot}</small>}</label>
           <label><span>Where did you see us? (optional)</span><select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}><option value="">Select one</option><option>Barber shop</option><option>Restaurant</option><option>Grocery store</option><option>Laundromat</option><option>Auto shop</option><option>Self-storage / U-Haul / moving location</option><option>Medical office / waiting room</option><option>Retail store</option><option>Apartment/community board</option><option>Friend/referral</option><option>Other</option></select></label>
 
           <p>Remote access and notifications require internet availability.</p>
