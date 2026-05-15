@@ -96,7 +96,7 @@ Fix issues → re-run QA
 ## QRLANDING PRE-CANVASSING READINESS (STEP102)
 
 - Cloudflare deployment succeeded
-- Version badge shows `v1.0.18`
+- Version badge shows `v1.0.24`
 - `/qrlanding` loads
 - `/qrlanding?src=placard` loads
 - Live-safe test lead submitted
@@ -109,3 +109,20 @@ Fix issues → re-run QA
 - Printed assets use `https://www.wnyhomesecurity.com/qrlanding` (or approved `?src=` variant)
 - QR scans are tested from a phone before bulk printing
 - Phone number remains secondary on QR landing experience unless explicitly approved otherwise
+
+
+## QRLANDING PRODUCTION INTEGRATION VALIDATION
+
+- v1.0.24 visible after deploy
+- /qrlanding loads
+- test lead submitted
+- /api/lead-signal returns ok true
+- notification.status checked
+- hubspot.status checked
+- Resend email received
+- HubSpot contact found
+- HubSpot deal found
+- QR source populated
+- estimate date/time populated
+- consent fields populated
+- no fake appointment confirmation

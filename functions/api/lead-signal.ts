@@ -87,7 +87,23 @@ const json = (body: unknown, status = 200) =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: { event: string; timestampISO: string; customerEmail?: string; referenceId?: string; resumeUrl?: string; verifyUrl?: string; route: string; requestId: string; }) => {
+const sendLeadSignalEmail = async (
+  env: LeadSignalEnv,
+  payload: {
+    event: string;
+    timestampISO: string;
+    customerEmail?: string;
+    referenceId?: string;
+    resumeUrl?: string;
+    verifyUrl?: string;
+    route: string;
+    requestId: string;
+    leadSummary: ReturnType<typeof buildQrLeadSummary>;
+    textConsent?: boolean;
+    emailConsent?: boolean;
+    contactTimeAcknowledgement?: boolean;
+  },
+) => {
   const to = parseEmails(env.LEAD_SIGNAL_TO_EMAIL || env.MAIL_SALES_TO || env.MAIL_ADMIN_TO);
   const from = env.RESEND_FROM_EMAIL || env.MAIL_FROM || env.EMAIL_FROM;
   const apiKey = env.RESEND_API_KEY;
@@ -104,18 +120,29 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: { event: string;
     return { ok: false as const, skipped: true, error: 'notification_not_configured' };
   }
 
-  console.info('[lead-signal] resend notification attempting', { requestId: payload.requestId });
-
   const subject = `[WNYHS Lead Signal] ${payload.event}`;
   const text = [
     `requestId: ${payload.requestId}`,
-    `Event: ${payload.event}`,
-    `Timestamp: ${payload.timestampISO}`,
-    `Customer email: ${payload.customerEmail ?? 'Not provided'}`,
-    `Reference ID: ${payload.referenceId ?? 'Not provided'}`,
-    `Resume link: ${payload.resumeUrl ?? 'Not provided'}`,
-    `Verify link: ${payload.verifyUrl ?? 'Not provided'}`,
-    `Route: ${payload.route}`,
+    `event: ${payload.event}`,
+    `name: ${payload.leadSummary.fullName || 'Not provided'}`,
+    `phone: ${payload.leadSummary.phone || 'Not provided'}`,
+    `email: ${payload.leadSummary.email || payload.customerEmail || 'Not provided'}`,
+    `address: ${payload.leadSummary.address || 'Not provided'}`,
+    `requested help: ${payload.leadSummary.requestedHelp || 'Not provided'}`,
+    `preferred contact method: ${payload.leadSummary.preferredContactMethod || 'Not provided'}`,
+    `text consent: ${payload.textConsent ? 'yes' : 'no'}`,
+    `email consent: ${payload.emailConsent ? 'yes' : 'no'}`,
+    `contact-hours acknowledgement: ${payload.contactTimeAcknowledgement ? 'yes' : 'no'}`,
+    `preferred estimate date: ${payload.leadSummary.preferredEstimateDate || 'Not provided'}`,
+    `preferred estimate time slot: ${payload.leadSummary.preferredEstimateTimeSlot || 'Not provided'}`,
+    `qr source family: ${payload.leadSummary.sourceFamily || 'Not provided'}`,
+    `qr source: ${payload.leadSummary.source || 'Not provided'}`,
+    `where customer saw us: ${payload.leadSummary.whereDidYouSeeUs || 'Not provided'}`,
+    `submitted timestamp: ${payload.leadSummary.createdAt || payload.timestampISO}`,
+    `reference ID: ${payload.referenceId ?? 'Not provided'}`,
+    `resume link: ${payload.resumeUrl ?? 'Not provided'}`,
+    `verify link: ${payload.verifyUrl ?? 'Not provided'}`,
+    `route: ${payload.route}`,
   ].join('\n');
 
   const response = await fetch('https://api.resend.com/emails', {
@@ -133,7 +160,6 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: { event: string;
     return { ok: false as const, skipped: false, error: errorText || `resend_error_${response.status}` };
   }
 
-  console.info('[lead-signal] resend notification sent', { requestId: payload.requestId });
   return { ok: true as const };
 };
 
@@ -154,6 +180,9 @@ const hubspotRequest = async (env: LeadSignalEnv, method: 'GET' | 'POST' | 'PATC
   return { ok: true, data };
 };
 
+const extractFailingProperty = (result: any, fallback: string) =>
+  result?.data?.errors?.[0]?.context?.propertyName || result?.data?.category || fallback;
+
 export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) => {
   const requestId = createRequestId();
   const fail = (status: number, errorCode: string, userMessage: string) => json({ ok: false, requestId, errorCode, userMessage }, status);
@@ -168,101 +197,114 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const now = new Date().toISOString();
   const leadSummary = buildQrLeadSummary(body, now);
-  console.info('[lead-signal] accepted', { requestId, event: body.event, source: body?.source, leadSummary });
 
   const emailConfigured = Boolean(env.RESEND_API_KEY) && Boolean(env.RESEND_FROM_EMAIL || env.MAIL_FROM || env.EMAIL_FROM) &&
     Boolean((env.LEAD_SIGNAL_TO_EMAIL || env.MAIL_SALES_TO || env.MAIL_ADMIN_TO || '').trim());
-  console.info('[lead-signal] notification config status', { requestId, configured: emailConfigured });
 
   const emailResult = await sendLeadSignalEmail(env, {
     event: body.event || 'Lead Signal', timestampISO: now, customerEmail: body.contact?.email || body.customerEmail,
     referenceId: body.referenceId || body.deal?.quoteRef, resumeUrl: body.resumeUrl, verifyUrl: body.verifyUrl, route: body.route || 'api/lead-signal', requestId,
+    leadSummary,
+    textConsent: body.textConsent,
+    emailConsent: body.emailConsent,
+    contactTimeAcknowledgement: body.contactTimeAcknowledgement,
   });
 
   const notificationStatus = emailResult.ok ? 'sent' : emailResult.skipped ? 'skipped' : 'failed';
-  if (!emailResult.ok && !emailResult.skipped) return fail(502, 'EMAIL_NOTIFICATION_FAILED', 'We couldn’t submit your request. Please try again.');
 
   const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
-  console.info('[lead-signal] hubspot config status', { requestId, configured: hubspotConfigured });
-
   let hubspotStatus: 'synced' | 'skipped' | 'failed' = 'skipped';
+
   if (hubspotConfigured) {
-    console.info('[lead-signal] hubspot sync attempting', { requestId });
-    const contactPayload = {
-      email: body.contact?.email, firstname: body.contact?.firstName, lastname: body.contact?.lastName, phone: body.contact?.phone,
-      address: body.contact?.address, wny_walkthrough_interest: body.event === 'walkthrough_requested' ? true : undefined,
-      wny_last_walkthrough_request_at: body.event === 'walkthrough_requested' ? now : undefined, wny_preferred_walkthrough_window: body.walkthrough?.preferredTimeWindow1,
+    const contactPayload: Record<string, unknown> = {
+      email: body.contact?.email,
+      firstname: body.contact?.firstName,
+      lastname: body.contact?.lastName,
+      phone: body.contact?.phone,
+      address: body.contact?.address,
+      wny_source_family: body.sourceFamily,
+      wny_source: body.source,
+      wny_where_did_you_see_us: body.whereDidYouSeeUs,
+      wny_preferred_estimate_date: body.request?.preferredEstimateDate,
+      wny_preferred_estimate_time_slot: body.request?.preferredEstimateTimeSlot,
+      wny_text_consent: body.textConsent,
+      wny_email_consent: body.emailConsent,
+      wny_contact_time_acknowledged: body.contactTimeAcknowledgement,
     };
-    Object.keys(contactPayload).forEach((k) => (contactPayload as Record<string, unknown>)[k] == null && delete (contactPayload as Record<string, unknown>)[k]);
+    Object.keys(contactPayload).forEach((k) => contactPayload[k] == null && delete contactPayload[k]);
 
     const search = await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts/search', {
       filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: body.contact?.email }] }], properties: ['email', 'firstname', 'lastname'], limit: 1,
     });
+
     if (!search.ok) {
-      console.error('[lead-signal] hubspot search failed', { requestId, error: (search as any).error });
       hubspotStatus = 'failed';
-      return fail(502, 'CRM_SYNC_FAILED', 'We couldn’t submit your request. Please try again.');
-    }
+      console.error('[lead-signal] hubspot contact search failed', { requestId, failingProperty: extractFailingProperty(search, 'hubspot_contact_search_failed') });
+    } else {
+      const contactId = (search as any)?.data?.results?.[0]?.id;
+      const contactResult = contactId
+        ? await hubspotRequest(env, 'PATCH', `/crm/v3/objects/contacts/${contactId}`, { properties: contactPayload })
+        : await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts', { properties: contactPayload });
 
-    const contactId = (search as any)?.data?.results?.[0]?.id;
-    const contactResult = contactId
-      ? await hubspotRequest(env, 'PATCH', `/crm/v3/objects/contacts/${contactId}`, { properties: contactPayload })
-      : await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts', { properties: contactPayload });
-    if (!contactResult.ok) {
-      console.error('[lead-signal] hubspot contact upsert failed', { requestId, error: (contactResult as any).error });
-      hubspotStatus = 'failed';
-      return fail(502, 'CRM_SYNC_FAILED', 'We couldn’t submit your request. Please try again.');
-    }
-
-    const resolvedContactId = contactId || (contactResult as any)?.data?.id;
-    const properties: Record<string, unknown> = {
-      dealstage: eventToStage[body.event], wny_path_choice: body.pathChoice, wny_package_tier: body.deal?.packageTier, amount: body.deal?.amount,
-      wny_quote_ref: body.deal?.quoteRef, wny_walkthrough_requested: body.walkthrough?.requested,
-      wny_walkthrough_requested_at: body.event === 'walkthrough_requested' ? now : undefined,
-      wny_walkthrough_status: body.walkthrough?.status, wny_walkthrough_preferred_date_1: body.walkthrough?.preferredDate1,
-      wny_walkthrough_preferred_time_window_1: body.walkthrough?.preferredTimeWindow1, wny_walkthrough_preferred_date_2: body.walkthrough?.preferredDate2,
-      wny_walkthrough_preferred_time_window_2: body.walkthrough?.preferredTimeWindow2, wny_walkthrough_scheduled_at: body.walkthrough?.scheduledAt,
-      wny_walkthrough_notes: body.walkthrough?.notes, wny_quote_status: body.event === 'quote_generated' ? 'generated' : undefined,
-      wny_agreement_status: body.event === 'agreement_accepted' ? 'accepted' : undefined, wny_install_status: body.event === 'install_scheduled' ? 'scheduled' : undefined,
-    };
-    Object.keys(properties).forEach((k) => properties[k] == null && delete properties[k]);
-
-    let dealId = body.deal?.dealId;
-    if (!dealId && body.deal?.quoteRef) {
-      const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', {
-        filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1,
-      });
-      if (!foundDeal.ok) {
-        console.error('[lead-signal] hubspot deal search failed', { requestId, error: (foundDeal as any).error });
+      if (!contactResult.ok) {
         hubspotStatus = 'failed';
-        return fail(502, 'CRM_SYNC_FAILED', 'We couldn’t submit your request. Please try again.');
+        console.error('[lead-signal] hubspot contact upsert failed', { requestId, failingProperty: extractFailingProperty(contactResult, 'hubspot_contact_upsert_failed') });
+      } else {
+        const resolvedContactId = contactId || (contactResult as any)?.data?.id;
+        const dealProperties: Record<string, unknown> = {
+          dealstage: eventToStage[body.event],
+          wny_path_choice: body.pathChoice,
+          wny_package_tier: body.deal?.packageTier,
+          amount: body.deal?.amount,
+          wny_quote_ref: body.deal?.quoteRef,
+          wny_source_family: body.sourceFamily,
+          wny_source: body.source,
+          wny_where_did_you_see_us: body.whereDidYouSeeUs,
+          wny_preferred_estimate_date: body.request?.preferredEstimateDate,
+          wny_preferred_estimate_time_slot: body.request?.preferredEstimateTimeSlot,
+          wny_text_consent: body.textConsent,
+          wny_email_consent: body.emailConsent,
+          wny_contact_time_acknowledged: body.contactTimeAcknowledgement,
+        };
+        Object.keys(dealProperties).forEach((k) => dealProperties[k] == null && delete dealProperties[k]);
+
+        let dealId = body.deal?.dealId;
+        if (!dealId && body.deal?.quoteRef) {
+          const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', {
+            filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1,
+          });
+          if (!foundDeal.ok) {
+            hubspotStatus = 'failed';
+            console.error('[lead-signal] hubspot deal search failed', { requestId, failingProperty: extractFailingProperty(foundDeal, 'hubspot_deal_search_failed') });
+          } else {
+            dealId = (foundDeal as any)?.data?.results?.[0]?.id;
+          }
+        }
+
+        if (hubspotStatus !== 'failed') {
+          const dealResult = dealId
+            ? await hubspotRequest(env, 'PATCH', `/crm/v3/objects/deals/${dealId}`, { properties: dealProperties })
+            : await hubspotRequest(env, 'POST', '/crm/v3/objects/deals', { properties: { ...dealProperties, dealname: `WNYHS ${body.event} ${now}` } });
+
+          if (!dealResult.ok) {
+            hubspotStatus = 'failed';
+            console.error('[lead-signal] hubspot deal upsert failed', { requestId, failingProperty: extractFailingProperty(dealResult, 'hubspot_deal_upsert_failed') });
+          } else {
+            const resolvedDealId = dealId || (dealResult as any)?.data?.id;
+            if (resolvedDealId && resolvedContactId) {
+              await hubspotRequest(env, 'PUT', `/crm/v3/objects/deals/${resolvedDealId}/associations/contacts/${resolvedContactId}/deal_to_contact`);
+            }
+            hubspotStatus = 'synced';
+          }
+        }
       }
-      dealId = (foundDeal as any)?.data?.results?.[0]?.id;
     }
-
-    const dealResult = dealId
-      ? await hubspotRequest(env, 'PATCH', `/crm/v3/objects/deals/${dealId}`, { properties })
-      : await hubspotRequest(env, 'POST', '/crm/v3/objects/deals', { properties: { ...properties, dealname: `WNYHS ${body.event} ${now}` } });
-    if (!dealResult.ok) {
-      console.error('[lead-signal] hubspot deal upsert failed', { requestId, error: (dealResult as any).error });
-      hubspotStatus = 'failed';
-      return fail(502, 'CRM_SYNC_FAILED', 'We couldn’t submit your request. Please try again.');
-    }
-
-    const resolvedDealId = dealId || (dealResult as any)?.data?.id;
-    if (resolvedDealId && resolvedContactId) {
-      await hubspotRequest(env, 'PUT', `/crm/v3/objects/deals/${resolvedDealId}/associations/contacts/${resolvedContactId}/deal_to_contact`);
-    }
-    hubspotStatus = 'synced';
-    console.info('[lead-signal] hubspot sync complete', { requestId, status: hubspotStatus });
-  } else {
-    console.warn('[lead-signal] hubspot sync skipped: missing token', { requestId });
   }
 
   const responseBody: Record<string, unknown> = {
     ok: true,
     requestId,
-    notification: { configured: emailConfigured, attempted: true, status: notificationStatus, provider: emailConfigured ? 'resend' : 'none' },
+    notification: { configured: emailConfigured, attempted: true, status: notificationStatus, provider: 'resend' },
     hubspot: { configured: hubspotConfigured, attempted: hubspotConfigured, status: hubspotStatus },
   };
 
