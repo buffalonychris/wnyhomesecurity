@@ -91,6 +91,12 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Authored in RUNTIME002 REV01; marks confirmed assumptions and unknowns needing operator verification.
 
+### `/docs/runtime/stripe_runtime.md`
+- **File path:** `docs/runtime/stripe_runtime.md`
+- **Purpose / likely role:** Canonical Stripe runtime/payment contract for server-side verification, webhook authority, env ownership, diagnostics, and change governance.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME003 REV01 with confirmed repo evidence and explicit UNKNOWN / NEEDS VERIFICATION markers.
+
 ### `/docs/runtime/resend_runtime.md`
 - **File path:** `docs/runtime/resend_runtime.md`
 - **Purpose / likely role:** Canonical outbound Resend runtime contract for ownership boundaries, env vars, flow, diagnostics, and change governance.
