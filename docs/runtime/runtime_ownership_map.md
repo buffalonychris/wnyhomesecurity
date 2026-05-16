@@ -6,7 +6,7 @@ This map defines canonical runtime owner-doc targets and bounded follow-up task 
 
 | System Name | Canonical Owner Doc | Current Status | Depends On | Related Repo Docs | Follow-Up Task ID | Notes |
 |---|---|---|---|---|---|---|
-| Cloudflare Environment Runtime | `/docs/runtime/cloudflare_env.md` | MISSING | Cloudflare Pages runtime configuration | `/docs/system/project.md`, `/docs/system/guardrails.md` | RUNTIME002 | Create contract from template; include env ownership and validation boundaries. |
+| Cloudflare Environment Runtime | `/docs/runtime/cloudflare_env.md` | PARTIAL | Cloudflare Pages runtime configuration | `/docs/system/project.md`, `/docs/system/guardrails.md` | RUNTIME002 | Contract created in REV01 with confirmed assumptions plus explicit UNKNOWN/NEEDS VERIFICATION markers; promote to ACTIVE after operator verification of Cloudflare dashboard/runtime settings. |
 | Stripe Runtime | `/docs/runtime/stripe_runtime.md` | MISSING | Stripe server-side verification + webhook authority | `/docs/system/agent.md`, `/docs/stripe-cloudflare.md` | RUNTIME003 | Must preserve webhook-authoritative payment success model. |
 | Resend Runtime | `/docs/runtime/resend_runtime.md` | MISSING | Resend outbound email service | `/docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md` | RUNTIME004 | Email runtime split from Cloudflare routing. |
 | Cloudflare Email Routing Runtime | `/docs/runtime/cloudflare_email_routing.md` | MISSING | Domain inbound routing on Cloudflare | `/docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md` | RUNTIME004 | Document inbound ownership and coexistence with Resend outbound. |
