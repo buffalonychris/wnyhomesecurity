@@ -48,7 +48,6 @@ const sanitizeProperties = (properties: Record<string, unknown>) => {
   });
   return properties;
 };
-
 const splitName = (contact: any) => {
   const firstName = contact?.firstName?.trim?.();
   const lastName = contact?.lastName?.trim?.();
@@ -161,6 +160,25 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
   const hubspot: any = { configured: hubspotConfigured, attempted: hubspotConfigured, status: 'failed', contact: 'skipped', deal: 'skipped', association: 'skipped', note: 'skipped', task: 'skipped', skippedProperties: [] };
+  const setContactFailure = (stage: 'contact_search' | 'contact_create' | 'contact_update', result: any, fallbackErrorCode: string, attemptedPropertyNames: string[] = []) => {
+    const detail = summarizeHubspotDetails(result, fallbackErrorCode);
+    hubspot.stage = stage;
+    hubspot.errorCode = detail.errorCode;
+    hubspot.httpStatus = detail.httpStatus;
+    hubspot.hubspotCategory = getHubspotCategory(result);
+    hubspot.hubspotMessage = detail.message;
+    hubspot.failingProperty = detail.failingProperty;
+    if (detail.failingProperty && !hubspot.skippedProperties.includes(detail.failingProperty)) hubspot.skippedProperties.push(detail.failingProperty);
+    console.error('[lead-signal] HubSpot contact failure', {
+      requestId,
+      stage,
+      httpStatus: detail.httpStatus,
+      hubspotCategory: getHubspotCategory(result),
+      hubspotMessage: detail.message,
+      failingProperty: detail.failingProperty,
+      attemptedProperties: attemptedPropertyNames,
+    });
+  };
 
   if (hubspotConfigured) {
     const safeSet = async (objectType: 'contacts' | 'deals', id: string | undefined, base: Record<string, unknown>) => {
@@ -220,6 +238,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         wny_gclid: body?.gclid,
         wny_msclkid: body?.msclkid,
       };
+      const contactPropertyNames = Object.keys(sanitizeProperties({ ...contactProps }));
       const contactResult = await safeSet('contacts', contactId, contactProps);
       if (contactResult.ok) {
         const resolvedContactId = contactId || (contactResult as any).data?.id;
@@ -282,8 +301,89 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             hubspot.task = task.ok ? 'created' : 'failed';
           }
         } else hubspot.deal = 'failed';
-      } else hubspot.contact = 'failed';
-    } else hubspot.contact = 'failed';
+      } else {
+        const writeStage = contactId ? 'contact_update' : 'contact_create';
+        setContactFailure(writeStage, contactResult, 'CONTACT_WRITE_FAILED', contactPropertyNames);
+        const minimalContactProps = sanitizeProperties({
+          email: body.contact?.email,
+          firstname: firstName,
+          lastname: lastName,
+          phone: body.contact?.phone,
+        });
+        const minimalPropertyNames = Object.keys(minimalContactProps);
+        console.warn('[lead-signal] Retrying HubSpot contact with minimal fields', { requestId, stage: writeStage, attemptedProperties: minimalPropertyNames });
+        const fallbackContactResult = await (contactId
+          ? hubspotRequest(env, 'PATCH', `/crm/v3/objects/contacts/${contactId}`, { properties: minimalContactProps })
+          : hubspotRequest(env, 'POST', '/crm/v3/objects/contacts', { properties: minimalContactProps }));
+        if (fallbackContactResult.ok) {
+          const resolvedContactId = contactId || (fallbackContactResult as any).data?.id;
+          hubspot.contact = contactId ? 'updated' : 'created';
+          hubspot.status = 'partial';
+          hubspot.skippedProperties = Array.from(new Set([...hubspot.skippedProperties, ...contactPropertyNames.filter((key) => !minimalPropertyNames.includes(key))]));
+
+          const dealNameIdentity = `${(parsedName.firstName || '')} ${(parsedName.lastName || '')}`.trim() || body.contact?.email || 'Lead';
+          let dealId = body?.deal?.dealId;
+          if (!dealId && body?.deal?.quoteRef) {
+            const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1 });
+            if (foundDeal.ok) dealId = (foundDeal as any)?.data?.results?.[0]?.id;
+          }
+          const dealProps = {
+            dealname: `WNYHS QR Estimate Request - ${dealNameIdentity} - ${requestId}`,
+            amount: body?.deal?.amount,
+            wny_deal_vertical: 'home_security',
+            wny_deal_path: 'onsite',
+            wny_path_choice: 'onsite',
+            wny_walkthrough_requested: true,
+            wny_walkthrough_requested_at: submittedTimestamp,
+            wny_walkthrough_status: 'requested',
+            wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
+            wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
+            wny_walkthrough_notes: contactNotes,
+            wny_onsite_quote_required: true,
+            wny_install_address: body?.contact?.address?.street,
+            wny_install_city: body?.contact?.address?.city,
+            wny_install_state: body?.contact?.address?.state,
+            wny_install_zip: body?.contact?.address?.zip,
+            wny_install_status: 'requested',
+            wny_quote_ref: body?.deal?.quoteRef || requestId,
+            wny_quote_status: 'not_started',
+          };
+          const dealResult = await safeSet('deals', dealId, dealProps);
+          if (dealResult.ok) {
+            const resolvedDealId = dealId || (dealResult as any).data?.id;
+            hubspot.deal = dealId ? 'updated' : 'created';
+            if (resolvedDealId && resolvedContactId) {
+              const assoc = await hubspotRequest(env, 'PUT', `/crm/v3/objects/deals/${resolvedDealId}/associations/contacts/${resolvedContactId}/deal_to_contact`);
+              hubspot.association = assoc.ok ? 'created' : 'failed';
+              const noteBody = [
+                'QR estimate request received', `requestId: ${requestId}`, `customer name: ${leadSummary.fullName || 'n/a'}`,
+                `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
+                `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
+                `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
+                `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${body?.request?.preferredEstimateDate || 'n/a'}`,
+                `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `QR source: ${body?.source || 'n/a'}`,
+                `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
+              ].join('\n');
+              const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
+              hubspot.note = note.ok ? 'created' : 'failed';
+              const etNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+              const due = new Date(etNow);
+              if (etNow.getHours() < 19) due.setHours(etNow.getHours() + 2, 0, 0, 0);
+              else due.setDate(due.getDate() + 1), due.setHours(10, 0, 0, 0);
+              const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}`;
+              const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
+              hubspot.task = task.ok ? 'created' : 'failed';
+            }
+          } else hubspot.deal = 'failed';
+        } else {
+          setContactFailure(writeStage, fallbackContactResult, 'CONTACT_FALLBACK_FAILED', minimalPropertyNames);
+          hubspot.contact = 'failed';
+        }
+      }
+    } else {
+      setContactFailure('contact_search', search, 'CONTACT_SEARCH_FAILED', ['email']);
+      hubspot.contact = 'failed';
+    }
 
     const coreFailed = ['failed'].includes(hubspot.contact) || ['failed'].includes(hubspot.deal);
     const auxFailed = ['failed'].includes(hubspot.association) || ['failed'].includes(hubspot.note) || ['failed'].includes(hubspot.task);
