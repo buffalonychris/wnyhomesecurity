@@ -360,6 +360,24 @@ No BLOCKED tasks are currently recorded.
 
 ---
 
+
+### T-SCHED001-001
+- **Task ID:** T-SCHED001-001
+- **Task Name:** SCHED001 — Safe Scheduling Posture + Future Scheduling Model Lock-In
+- **Status:** DONE
+- **Category:** SCHED
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Remove false-confirmation risk from current scheduling UX/copy and lock future scheduling model guidance for subsequent implementation tasks.
+- **Allowed Scope:** Scheduling copy safety audit, minimal customer-facing copy hardening, runtime scheduling model documentation updates, bounded SCHED queue documentation, and register lifecycle update for this task only.
+- **Forbidden Scope:** No Google Calendar implementation; no SMS/reminder/owner-acceptance implementation; no backend scheduling implementation; no Stripe/HubSpot/Resend/env-var/secret changes.
+- **Target Files:** `docs/runtime/scheduling_future_model.md`, `docs/runtime/scheduling_ownership.md`, `docs/audits/scheduling_backend_authority_reconciliation_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `src/pages/NeverMissAnotherEstimate.tsx`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Scheduling documentation and customer-facing scheduling safety copy only.
+- **Documentation Updates Required:** Create future model doc, cross-link scheduling ownership/audit docs, update document catalog, and record task completion in register.
+- **Validation Required:** `git branch --show-current`; `git rev-parse HEAD`; required `rg` audits for scheduling copy/semantics; `npm run build`; `git diff -- docs src functions`.
+- **Exit Criteria:** Current copy does not imply auto-confirmed scheduling in audited customer-facing scheduling paths; future scheduling model is documented; bounded future SCHED queue recorded.
+- **Dependencies:** IMPL009 completion context (manual-confirmation classification).
+- **Operator Decision Required:** Yes (provided in operator prompt).
+
 ## Archived Tasks
 
 No ARCHIVED tasks are currently recorded.

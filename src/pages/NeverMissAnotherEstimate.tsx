@@ -27,7 +27,7 @@ const NeverMissAnotherEstimate = () => (
       <SectionHeader
         kicker="Never Miss Another Estimate"
         title="Never Miss Another Estimate — 24/7 Estimate Scheduling Assistant"
-        subtitle="A scheduling-only assistant that captures estimate requests, collects the essentials, and books the appointment directly on your calendar."
+        subtitle="A scheduling-only assistant that captures estimate requests, collects the essentials, and routes every request for manual confirmation."
         actions={
           <>
             <Link className="btn btn-primary" to="/demo">
@@ -91,7 +91,7 @@ const NeverMissAnotherEstimate = () => (
           <ul className="operator-list">
             <li>Answers calls and texts 24/7 to capture estimate requests.</li>
             <li>Asks only the required questions to schedule an estimate.</li>
-            <li>Books the appointment on your calendar and confirms with the customer.</li>
+            <li>Captures a preferred appointment window and marks it pending manual confirmation.</li>
             <li>Logs the interaction in an operator console for review.</li>
           </ul>
         </SpaceFrame>
@@ -109,7 +109,7 @@ const NeverMissAnotherEstimate = () => (
       <SpaceFrame>
         <h2>Compatibility</h2>
         <p>
-          Works with iPhone &amp; Android, Google Calendar, Apple Calendar, Outlook / Office 365, and is
+          Works with iPhone &amp; Android and is
           CRM-friendly (Jobber, ServiceTitan, Salesforce, HubSpot).
         </p>
       </SpaceFrame>

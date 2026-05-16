@@ -227,3 +227,8 @@ Smallest safe future patch (not implemented in this task):
 - [x] `/api/stripe/schedule-initiated` status was checked.
 - [x] Customer confirmation risk was reviewed.
 - [x] Recommended tasks are bounded.
+
+
+## 15. Future Model Lock-In Reference
+
+Future-state scheduling model, bounded queue sequencing, and non-implemented state markers are now tracked in `/docs/runtime/scheduling_future_model.md`.

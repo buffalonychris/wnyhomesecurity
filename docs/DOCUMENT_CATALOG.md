@@ -116,6 +116,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Required structure for future runtime owner documents.
 
 
+
+### `/docs/runtime/scheduling_future_model.md`
+- **File path:** `docs/runtime/scheduling_future_model.md`
+- **Purpose / likely role:** Canonical future-state scheduling model (state machine, communication consent, ownership split, and bounded future task queue) while preserving current manual-confirmation production posture.
+- **Authority level:** **Operational runtime planning contract**
+- **Notes:** Added by SCHED001; implementation-neutral guidance only (no runtime behavior changes).
+
 ### `/docs/runtime/scheduling_ownership.md`
 - **File path:** `docs/runtime/scheduling_ownership.md`
 - **Purpose / likely role:** Canonical scheduling ownership contract defining request-vs-confirmed appointment semantics, operator responsibility, communication boundaries, and Google Calendar/HubSpot/Stripe/email runtime boundaries.

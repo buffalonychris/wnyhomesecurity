@@ -271,6 +271,7 @@ UNKNOWN / NEEDS VERIFICATION:
 
 - `/docs/runtime/runtime_contract_template.md`
 - `/docs/runtime/runtime_ownership_map.md`
+- `/docs/runtime/scheduling_future_model.md`
 - `/docs/runtime/cloudflare_env.md`
 - `/docs/runtime/resend_runtime.md`
 - `/docs/runtime/cloudflare_email_routing.md`
@@ -284,6 +285,11 @@ UNKNOWN / NEEDS VERIFICATION:
 - `/docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
 - `/docs/audits/qrlanding_crm_notification_inventory_rev01.md`
 - `/docs/codex/QA_CHECKLIST.md`
+
+## Future Model Lock-In
+
+- Future scheduling model canon is documented in `/docs/runtime/scheduling_future_model.md`.
+- Current production posture remains request-first with manual confirmation required.
 
 ## Last Verified
 
