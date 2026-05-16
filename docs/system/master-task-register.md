@@ -1,6 +1,7 @@
 # Master Task Register
 
 Status: Active  
+Current Operational Context: CTX-STEP102-QRLANDING-REV01
 Controlling Step: Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
 
 ---
@@ -54,8 +55,8 @@ No Blocked Tasks are currently recorded.
 
 ## Promotion Rule
 
-- A task may be promoted to **Active Tasks** only when it is authorized by the current controlling Step listed in `/docs/system/step-current.md`.
-- If scope is unclear or outside Step102, stop and request a Step revision before promotion.
+- A task may be promoted to **Active Tasks** only when it is authorized by the current operational context in `/docs/system/step-current.md`.
+- If scope is unclear or outside the current context/controlling Step, stop and request a context revision before promotion.
 
 ---
 
@@ -63,4 +64,5 @@ No Blocked Tasks are currently recorded.
 
 - Codex may execute only tasks listed under **Active Tasks**.
 - Codex must not execute tasks from **Next Tasks**, **Backlog**, or **Blocked Tasks**.
+- Active Tasks are the operational driver for implementation within the current context.
 - On completion, Codex must move finished work to **Completed Tasks**.

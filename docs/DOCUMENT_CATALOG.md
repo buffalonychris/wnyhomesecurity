@@ -58,9 +58,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/system/step-current.md`
 - **File path:** `docs/system/step-current.md`
-- **Purpose / likely role:** Active controlling Step document that defines in-scope execution.
+- **Purpose / likely role:** Current operational context document naming the single controlling Step and preserved Step lineage.
 - **Authority level:** **System governance**
-- **Notes:** Time-sensitive control file; should be checked before every implementation task.
+- **Notes:** Time-sensitive control file; defines one execution controller at a time and should be checked before every implementation task.
 
 ## `docs/codex/`
 
@@ -125,6 +125,6 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/steps/step_103_full_funnel_validation_rev_01.md`
 - **File path:** `docs/steps/step_103_full_funnel_validation_rev_01.md`
-- **Purpose / likely role:** Controlling Step103 document for full-funnel validation authority, scope, findings, and acceptance criteria.
-- **Authority level:** **Step control / active**
-- **Notes:** Current controlling execution Step for validation-phase work.
+- **Purpose / likely role:** Historical Step artifact for full-funnel validation authority, scope, findings, and acceptance criteria at time of execution.
+- **Authority level:** **Step lineage / historical**
+- **Notes:** Preserved for lineage/regression context; not a simultaneous controller unless elevated by `docs/system/step-current.md`.

@@ -16,25 +16,27 @@ Before implementation, the agent must:
    - `/docs/system/plan.md`
    - `/docs/system/guardrails.md`
    - `/docs/system/step-current.md`
-4. Read all active Step files referenced by `step-current.md`
+4. Read the current operational context defined in `step-current.md`
+5. Read Active Tasks in `/docs/system/master-task-register.md`
+6. Read controlling Step and lineage references named by `step-current.md`
 
 If the repo is wrong, stop.
 
 ---
 
-## 2. Active Step Interpretation
+## 2. Current Operational Context Interpretation
 
-`step-current.md` may contain one or more active Step references.
+`step-current.md` defines one current operational context at a time.
 
-The agent must treat all listed Steps as active.
+The agent must treat the controlling Step in that context as the only execution controller for implementation authority.
 
-A task may proceed when every requested change is authorized by at least one active Step and does not violate guardrails.
+A task may proceed only when:
 
-Examples:
+- the task is listed under **Active Tasks** in `/docs/system/master-task-register.md`, and
+- the task is authorized by the current operational context/controlling Step, and
+- the task does not violate guardrails.
 
-- UI cleanup → Step101
-- Email/API work → Step201
-- A prompt that includes UI cleanup and email wiring may proceed only if both Step101 and Step201 are active.
+Historical Steps may be read for lineage/reference but do not authorize implementation by themselves.
 
 ---
 
@@ -114,7 +116,7 @@ When Step201 is active:
 Implementation responses must include:
 
 1. Confirmed repo path
-2. Active Step(s)
+2. Current operational context + controlling Step
 3. Files changed
 4. Summary of changes
 5. Tests/build result

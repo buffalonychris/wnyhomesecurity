@@ -11,10 +11,11 @@ Repository: buffalonychris/wnyhomesecurity
 When working in this repository, follow this authority chain:
 
 1. Repository governance files in `/docs/system/`
-2. Active Step files listed in `/docs/system/step-current.md`
-3. Supporting specs in `/docs/specs/`
-4. User task prompt
-5. Existing implementation patterns in the codebase
+2. Current operational context in `/docs/system/step-current.md`
+3. Active Tasks in `/docs/system/master-task-register.md`
+4. Supporting specs in `/docs/specs/`
+5. User task prompt
+6. Existing implementation patterns in the codebase
 
 If a lower authority conflicts with a higher authority, the higher authority wins.
 
@@ -114,27 +115,28 @@ Reason: the version badge is used to confirm Cloudflare has published merged cha
 
 ---
 
-## 8. Step Governance Model
+## 8. Operational Context and Step Lineage Model
 
-This repo supports **multi-step governance**.
+`/docs/system/step-current.md` defines exactly one **current operational context** at a time.
 
-The active step file `/docs/system/step-current.md` may authorize more than one active Step at the same time.
+- The current operational context may reference a controlling Step.
+- Historical Step documents remain preserved lineage and validation history.
+- Historical Steps are not simultaneous controllers unless explicitly elevated in `step-current.md` as the current context.
 
-Codex/agents must not stop merely because a task spans more than one valid active Step, as long as every part of the task is authorized by at least one active Step and no guardrail is violated.
+Codex/agents must treat historical Step docs as reference lineage, not parallel authority.
 
-If a task is not covered by any active Step, stop and request a Step revision.
+If requested work is outside the current operational context, stop and request a context/Step revision.
 
 ---
 
 ## 9. Conflict Handling
 
-Stop only when:
+Stop when:
 
-- The requested work is not authorized by any active Step
+- The requested work is outside the current operational context
+- The requested work is not listed in Active Tasks in `/docs/system/master-task-register.md`
 - The requested work violates guardrails
 - The requested work would expose secrets or private data
 - The requested work would change Stripe/payment verification without authorization
 - The requested work would delete protected routes/components during an additive step
-
-Do not stop merely because multiple active Steps apply.
 
