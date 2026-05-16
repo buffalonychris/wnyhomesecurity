@@ -195,11 +195,12 @@ No READY tasks are currently promoted.
 ### T-RUNTIME004-001
 - **Task ID:** T-RUNTIME004-001
 - **Task Name:** RUNTIME004 — Email Runtime Contracts
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** EMAIL
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
 - **Purpose:** Author canonical email runtime contracts for Resend outbound and Cloudflare Email Routing inbound ownership boundaries.
 - **Allowed Scope:** Documentation-only updates to runtime email contracts and required register/catalog status updates.
+- **Completion Notes:** REV01 contracts created for Resend and Cloudflare Email Routing; ownership map updated to PARTIAL pending operator verification; DOCUMENT_CATALOG updated.
 - **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes; HubSpot logic/schema changes; UI changes; route changes; product claims; deletion of docs.
 - **Target Files:** `/docs/runtime/resend_runtime.md`, `/docs/runtime/cloudflare_email_routing.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
 - **Runtime Systems Affected:** Email runtime documentation only; no runtime behavior impact.

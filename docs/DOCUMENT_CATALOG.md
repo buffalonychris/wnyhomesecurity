@@ -91,6 +91,18 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Authored in RUNTIME002 REV01; marks confirmed assumptions and unknowns needing operator verification.
 
+### `/docs/runtime/resend_runtime.md`
+- **File path:** `docs/runtime/resend_runtime.md`
+- **Purpose / likely role:** Canonical outbound Resend runtime contract for ownership boundaries, env vars, flow, diagnostics, and change governance.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME004 REV01 with explicit UNKNOWN / NEEDS VERIFICATION markers for unverified live settings.
+
+### `/docs/runtime/cloudflare_email_routing.md`
+- **File path:** `docs/runtime/cloudflare_email_routing.md`
+- **Purpose / likely role:** Canonical inbound Cloudflare Email Routing runtime contract for alias/forwarding ownership and validation procedures.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME004 REV01; separates inbound routing ownership from outbound Resend responsibilities.
+
 ### `/docs/runtime/runtime_contract_template.md`
 - **File path:** `docs/runtime/runtime_contract_template.md`
 - **Purpose / likely role:** Standardized required schema for all runtime contracts.
@@ -135,7 +147,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## Summary Metrics
 
-- **Total Markdown files cataloged:** **19**
+- **Total Markdown files cataloged:** **21**
 - **Primary authoritative set recognized in this catalog:**
   - `AGENTS.md`
   - `docs/system/project.md`
