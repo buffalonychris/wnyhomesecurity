@@ -25,11 +25,21 @@
 
 ---
 
+## Runtime Documentation Hardening Authorization (GOV004)
+
+- Step102 QRLanding remains the current business/funnel context and controlling implementation authority.
+- Runtime documentation hardening is authorized as a **documentation-only operational hardening initiative** under this current context.
+- Runtime hardening authorization is limited to canonical docs under `/docs/runtime` plus related governance-index updates in `/docs/system/master-task-register.md`, `/docs/system/step-current.md`, and `/docs/DOCUMENT_CATALOG.md` when required.
+- Runtime hardening does **not** authorize source-code implementation, runtime behavior changes, UI changes, route changes, environment variable changes, secret exposure, Stripe implementation changes, or HubSpot implementation/schema changes.
+- Runtime hardening execution remains gated by the Master Task Register Active Tasks rule (only tasks listed ACTIVE are executable).
+
+---
+
 ## Notes
 
 - This context is focused on QR scan-code acquisition funnel implementation.
 - Full-funnel and prior Step artifacts remain preserved as lineage and validation history.
-- No unrelated runtime changes are allowed outside the controlling Step scope.
+- Runtime documentation hardening is an operational documentation adjunct and does not supersede Step102 funnel scope.
 
 
 ## Collision Notice
