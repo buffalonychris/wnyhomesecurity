@@ -115,6 +115,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational template standard**
 - **Notes:** Required structure for future runtime owner documents.
 
+
+### `/docs/runtime/scheduling_ownership.md`
+- **File path:** `docs/runtime/scheduling_ownership.md`
+- **Purpose / likely role:** Canonical scheduling ownership contract defining request-vs-confirmed appointment semantics, operator responsibility, communication boundaries, and Google Calendar/HubSpot/Stripe/email runtime boundaries.
+- **Authority level:** Runtime contract (operational hardening canon).
+- **Primary consumers:** Operators, runtime maintainers, QA/release validation owners.
+- **Notes:** Added by RUNTIME007 REV01 with confirmed repo evidence and explicit UNKNOWN / NEEDS VERIFICATION markers.
+
 ### `/docs/runtime/runtime_ownership_map.md`
 - **File path:** `docs/runtime/runtime_ownership_map.md`
 - **Purpose / likely role:** Runtime systems owner-doc index with status tracking and follow-up task mapping.
