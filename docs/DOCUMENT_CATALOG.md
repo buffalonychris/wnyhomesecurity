@@ -255,3 +255,12 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Reference / non-authoritative**
 - **Lineage status:** N/A.
 - **Notes:** No execution authority.
+
+## `docs/specs/`
+
+### `/docs/specs/scheduling_architecture_workflow_spec_rev01.md`
+- **File path:** `docs/specs/scheduling_architecture_workflow_spec_rev01.md`
+- **Purpose / likely role:** Canonical pre-implementation scheduling architecture and operational workflow target consolidating SCHED002–SCHED008.
+- **Authority level:** **SUPPORTING SPECIFICATION (implementation target)**
+- **Lineage status:** Derived from SCHED001 runtime docs/audit; does not override current production manual-confirmation posture.
+- **Notes:** Documentation-only architecture/workflow authority for future bounded SCHED-IMPL tasks.
