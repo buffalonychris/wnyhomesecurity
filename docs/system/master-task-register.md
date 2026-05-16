@@ -131,6 +131,50 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ---
 
+### T-RUNTIME002-001
+- **Task ID:** T-RUNTIME002-001
+- **Task Name:** RUNTIME002 — Cloudflare Runtime Contract
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** Current operational context defined by `/docs/system/step-current.md`; authorized by operator after GOV001–GOV003 and RUNTIME001 completion.
+- **Purpose:** Create the canonical Cloudflare runtime/environment contract for deployment model, Pages runtime assumptions, environment variable ownership, diagnostics, and validation.
+- **Allowed Scope:**
+  - Update `/docs/system/master-task-register.md` only for this task promotion.
+  - Promote only T-RUNTIME002-001 from BACKLOG to ACTIVE.
+  - Preserve all existing GOV001–GOV003 and RUNTIME001 governance semantics.
+- **Forbidden Scope:**
+  - Do not modify source code.
+  - Do not change Cloudflare settings.
+  - Do not change environment variables.
+  - Do not modify Stripe, HubSpot, Resend, UI, routes, or runtime behavior.
+- **Target Files:** `/docs/runtime/cloudflare_env.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/DOCUMENT_CATALOG.md`, `/docs/system/master-task-register.md`
+- **Runtime Systems Affected:** Cloudflare documentation only; no runtime behavior affected.
+- **Documentation Updates Required:** Create/update runtime contract docs + task lifecycle note in register.
+- **Validation Required:**
+  - `git diff -- docs/system/master-task-register.md`
+  - `rg -n "T-RUNTIME002-001|RUNTIME002|Status: ACTIVE|Status: BACKLOG" docs/system/master-task-register.md`
+- **Exit Criteria:**
+  - T-RUNTIME002-001 appears under Active Tasks with Status: ACTIVE.
+  - T-RUNTIME002-001 no longer appears as executable BACKLOG work.
+  - No other tasks are promoted.
+  - No runtime contract docs are created.
+- **Dependencies:** GOV001 complete; GOV002 complete; GOV003 complete; RUNTIME001 complete.
+- **Operator Decision Required:** Operator explicitly authorized promotion in chat.
+
+
+## Ready Tasks
+
+No READY tasks are currently promoted.
+
+---
+
+## Backlog Tasks
+
+
+
+---
+
+
 ### T-RUNTIME003-001
 - **Task ID:** T-RUNTIME003-001
 - **Task Name:** RUNTIME003 — Stripe Runtime Contract
