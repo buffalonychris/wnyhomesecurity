@@ -85,6 +85,12 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational documentation foundation**
 - **Notes:** Introduced by RUNTIME001 as runtime-doc root and guardrail boundary.
 
+### `/docs/runtime/cloudflare_env.md`
+- **File path:** `docs/runtime/cloudflare_env.md`
+- **Purpose / likely role:** Canonical Cloudflare Pages runtime/environment contract covering deployment model, env ownership, diagnostics, and validation.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Authored in RUNTIME002 REV01; marks confirmed assumptions and unknowns needing operator verification.
+
 ### `/docs/runtime/runtime_contract_template.md`
 - **File path:** `docs/runtime/runtime_contract_template.md`
 - **Purpose / likely role:** Standardized required schema for all runtime contracts.
@@ -129,7 +135,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## Summary Metrics
 
-- **Total Markdown files cataloged:** **18**
+- **Total Markdown files cataloged:** **19**
 - **Primary authoritative set recognized in this catalog:**
   - `AGENTS.md`
   - `docs/system/project.md`
