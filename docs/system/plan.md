@@ -4,42 +4,22 @@ Status: Active
 
 ---
 
-## 1. Work Modes
+## 1. Work Model
 
-The repo supports parallel active work modes through active Steps.
+The repo executes through one **current operational context** defined in `/docs/system/step-current.md`, with tasks driven by `/docs/system/master-task-register.md`.
 
-### Step101 — Funnel / UI / Page Structure
-
-Use for:
-
-- Homepage cleanup
-- Funnel page layout
-- CTA alignment
-- Route and nav cleanup
-- Secondary rail suppression
-- WNYHS-only visual cleanup
-- Version badge bump
-
-### Step201 — Email Infrastructure / Resend
-
-Use for:
-
-- Resend outbound wiring
-- Server email endpoints
-- Email audit copy enforcement
-- Email environment variables
-- Contact/support/schedule/fit-check email handling
+Historical Steps are preserved lineage and reference material only unless explicitly elevated as the controlling Step in the current context.
 
 ---
 
-## 2. Default Active Steps
+## 2. Task Activation Model
 
-During final website cleanup, both of these may remain active:
+Execution authority is determined by both documents together:
 
-- Step101 — Home Security Funnel + Page Spec (REV02)
-- Step201 — Email Infrastructure + Resend Integration (REV01)
+- `step-current.md`: defines current context and controlling Step
+- `master-task-register.md`: defines executable Active Tasks
 
-This prevents unnecessary stop loops when cleanup tasks touch UI and system-email behavior in adjacent passes.
+Codex must stop when requested work is not present in Active Tasks or falls outside the current context.
 
 ---
 
