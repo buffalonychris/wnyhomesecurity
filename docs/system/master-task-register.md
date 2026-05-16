@@ -213,7 +213,7 @@ No READY tasks are currently promoted.
 ### T-RUNTIME005-001
 - **Task ID:** T-RUNTIME005-001
 - **Task Name:** RUNTIME005 — Lead Signal + requestId Contracts
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** LEAD
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
 - **Purpose:** Author canonical runtime contracts for `/api/lead-signal` and request-id lifecycle/diagnostics.
@@ -222,6 +222,7 @@ No READY tasks are currently promoted.
 - **Target Files:** `/docs/runtime/lead_signal_contract.md`, `/docs/runtime/request_id_contract.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
 - **Runtime Systems Affected:** Lead and diagnostics documentation only; no runtime behavior impact.
 - **Documentation Updates Required:** Create/update lead-signal and request-id contract docs from template, update ownership-map status, update register task lifecycle.
+- **Completion Notes:** REV01 contracts created for lead signal and requestId; ownership map updated to PARTIAL pending operator verification; DOCUMENT_CATALOG updated.
 - **Validation Required:** `git diff -- docs/runtime/lead_signal_contract.md docs/runtime/request_id_contract.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
 - **Exit Criteria:** Lead-signal and request-id contracts exist with clear API-path and diagnostics boundaries; ownership map updated; no implementation code changes.
 - **Dependencies:** RUNTIME004 recommended first.
