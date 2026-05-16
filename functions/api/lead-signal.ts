@@ -16,6 +16,18 @@ type LeadSignalEnv = {
 };
 
 const HUBSPOT_BASE = 'https://api.hubapi.com';
+const HUBSPOT_ALLOWED_STATUSES = new Set([400, 401, 403, 404, 409, 500]);
+const HUBSPOT_ALLOWED_STAGES = new Set([
+  'contact_search',
+  'contact_create',
+  'contact_update',
+  'deal_search',
+  'deal_create',
+  'deal_update',
+  'association_create',
+]);
+const HUBSPOT_SAFE_CONTACT_PROPERTIES = new Set(['email', 'firstname', 'lastname', 'phone', 'address', 'city', 'state', 'zip']);
+const HUBSPOT_SAFE_DEAL_PROPERTIES = new Set(['dealname', 'amount', 'dealstage', 'pipeline', 'closedate', 'description']);
 
 const isString = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0;
 const createRequestId = () => `lead_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -176,12 +188,38 @@ const hubspotRequest = async (env: LeadSignalEnv, method: 'GET' | 'POST' | 'PATC
     body: body ? JSON.stringify(body) : undefined,
   });
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) return { ok: false, error: 'hubspot_error', data };
-  return { ok: true, data };
+  if (!response.ok) return { ok: false, error: 'hubspot_error', data, status: response.status };
+  return { ok: true, data, status: response.status };
 };
 
-const extractFailingProperty = (result: any, fallback: string) =>
-  result?.data?.errors?.[0]?.context?.propertyName || result?.data?.category || fallback;
+const getHubspotString = (value: unknown) => (typeof value === 'string' && value.trim().length > 0 ? value.trim() : undefined);
+const extractFailingProperty = (result: any) =>
+  getHubspotString(result?.data?.errors?.[0]?.context?.propertyName) ||
+  getHubspotString(result?.data?.errors?.[0]?.context?.properties?.[0]) ||
+  getHubspotString(result?.data?.context?.propertyName) ||
+  getHubspotString(result?.data?.context?.properties?.[0]);
+const getHubspotStatus = (result: any) => (HUBSPOT_ALLOWED_STATUSES.has(result?.status) ? result.status : undefined);
+const getHubspotCategory = (result: any) => getHubspotString(result?.data?.category);
+const getHubspotMessage = (result: any) => getHubspotString(result?.data?.message) || getHubspotString(result?.data?.errors?.[0]?.message);
+
+const summarizeHubspotDetails = (result: any, fallbackErrorCode: string) => {
+  const category = getHubspotCategory(result);
+  const message = getHubspotMessage(result);
+  const failingProperty = extractFailingProperty(result);
+  return {
+    errorCode: category || fallbackErrorCode,
+    httpStatus: getHubspotStatus(result),
+    failingProperty,
+    message,
+  };
+};
+
+const logHubspotFailure = (requestId: string, stage: string, result: any) => {
+  const category = getHubspotCategory(result) || 'unknown_category';
+  const message = getHubspotMessage(result) || 'unknown_message';
+  const failingProperty = extractFailingProperty(result) || 'unknown_property';
+  console.error('[lead-signal] hubspot sync failure', { requestId, stage, httpStatus: result?.status, category, message, failingProperty });
+};
 
 export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) => {
   const requestId = createRequestId();
@@ -214,22 +252,29 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
   let hubspotStatus: 'synced' | 'skipped' | 'failed' = 'skipped';
+  let hubspotFailureDetails: Record<string, unknown> | null = null;
 
   if (hubspotConfigured) {
+    const qrDetail = [
+      `source_family=${body.sourceFamily || 'n/a'}`,
+      `source=${body.source || 'n/a'}`,
+      `where_seen=${body.whereDidYouSeeUs || 'n/a'}`,
+      `preferred_date=${body.request?.preferredEstimateDate || 'n/a'}`,
+      `preferred_slot=${body.request?.preferredEstimateTimeSlot || 'n/a'}`,
+      `text_consent=${body.textConsent ? 'yes' : 'no'}`,
+      `email_consent=${body.emailConsent ? 'yes' : 'no'}`,
+      `contact_time_ack=${body.contactTimeAcknowledgement ? 'yes' : 'no'}`,
+    ].join(' | ');
+
     const contactPayload: Record<string, unknown> = {
       email: body.contact?.email,
       firstname: body.contact?.firstName,
       lastname: body.contact?.lastName,
       phone: body.contact?.phone,
-      address: body.contact?.address,
-      wny_source_family: body.sourceFamily,
-      wny_source: body.source,
-      wny_where_did_you_see_us: body.whereDidYouSeeUs,
-      wny_preferred_estimate_date: body.request?.preferredEstimateDate,
-      wny_preferred_estimate_time_slot: body.request?.preferredEstimateTimeSlot,
-      wny_text_consent: body.textConsent,
-      wny_email_consent: body.emailConsent,
-      wny_contact_time_acknowledged: body.contactTimeAcknowledgement,
+      address: body.contact?.address?.street,
+      city: body.contact?.address?.city,
+      state: body.contact?.address?.state,
+      zip: body.contact?.address?.zip,
     };
     Object.keys(contactPayload).forEach((k) => contactPayload[k] == null && delete contactPayload[k]);
 
@@ -239,7 +284,9 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
     if (!search.ok) {
       hubspotStatus = 'failed';
-      console.error('[lead-signal] hubspot contact search failed', { requestId, failingProperty: extractFailingProperty(search, 'hubspot_contact_search_failed') });
+      const details = summarizeHubspotDetails(search, 'HUBSPOT_CONTACT_SEARCH_FAILED');
+      hubspotFailureDetails = { stage: 'contact_search', ...details };
+      logHubspotFailure(requestId, 'contact_search', search);
     } else {
       const contactId = (search as any)?.data?.results?.[0]?.id;
       const contactResult = contactId
@@ -248,23 +295,22 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
       if (!contactResult.ok) {
         hubspotStatus = 'failed';
-        console.error('[lead-signal] hubspot contact upsert failed', { requestId, failingProperty: extractFailingProperty(contactResult, 'hubspot_contact_upsert_failed') });
+        const stage = contactId ? 'contact_update' : 'contact_create';
+        const details = summarizeHubspotDetails(contactResult, 'HUBSPOT_CONTACT_UPSERT_FAILED');
+        hubspotFailureDetails = { stage, ...details };
+        logHubspotFailure(requestId, stage, contactResult);
       } else {
         const resolvedContactId = contactId || (contactResult as any)?.data?.id;
         const dealProperties: Record<string, unknown> = {
           dealstage: eventToStage[body.event],
-          wny_path_choice: body.pathChoice,
-          wny_package_tier: body.deal?.packageTier,
           amount: body.deal?.amount,
-          wny_quote_ref: body.deal?.quoteRef,
-          wny_source_family: body.sourceFamily,
-          wny_source: body.source,
-          wny_where_did_you_see_us: body.whereDidYouSeeUs,
-          wny_preferred_estimate_date: body.request?.preferredEstimateDate,
-          wny_preferred_estimate_time_slot: body.request?.preferredEstimateTimeSlot,
-          wny_text_consent: body.textConsent,
-          wny_email_consent: body.emailConsent,
-          wny_contact_time_acknowledged: body.contactTimeAcknowledgement,
+          description: [
+            `event=${body.event || 'unknown'}`,
+            `path_choice=${body.pathChoice || 'n/a'}`,
+            `package_tier=${body.deal?.packageTier || 'n/a'}`,
+            `quote_ref=${body.deal?.quoteRef || 'n/a'}`,
+            qrDetail,
+          ].join(' | '),
         };
         Object.keys(dealProperties).forEach((k) => dealProperties[k] == null && delete dealProperties[k]);
 
@@ -275,7 +321,9 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           });
           if (!foundDeal.ok) {
             hubspotStatus = 'failed';
-            console.error('[lead-signal] hubspot deal search failed', { requestId, failingProperty: extractFailingProperty(foundDeal, 'hubspot_deal_search_failed') });
+            const details = summarizeHubspotDetails(foundDeal, 'HUBSPOT_DEAL_SEARCH_FAILED');
+            hubspotFailureDetails = { stage: 'deal_search', ...details };
+            logHubspotFailure(requestId, 'deal_search', foundDeal);
           } else {
             dealId = (foundDeal as any)?.data?.results?.[0]?.id;
           }
@@ -288,13 +336,22 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
           if (!dealResult.ok) {
             hubspotStatus = 'failed';
-            console.error('[lead-signal] hubspot deal upsert failed', { requestId, failingProperty: extractFailingProperty(dealResult, 'hubspot_deal_upsert_failed') });
+            const stage = dealId ? 'deal_update' : 'deal_create';
+            const details = summarizeHubspotDetails(dealResult, 'HUBSPOT_DEAL_UPSERT_FAILED');
+            hubspotFailureDetails = { stage, ...details };
+            logHubspotFailure(requestId, stage, dealResult);
           } else {
             const resolvedDealId = dealId || (dealResult as any)?.data?.id;
             if (resolvedDealId && resolvedContactId) {
-              await hubspotRequest(env, 'PUT', `/crm/v3/objects/deals/${resolvedDealId}/associations/contacts/${resolvedContactId}/deal_to_contact`);
+              const associationResult = await hubspotRequest(env, 'PUT', `/crm/v3/objects/deals/${resolvedDealId}/associations/contacts/${resolvedContactId}/deal_to_contact`);
+              if (!associationResult.ok) {
+                hubspotStatus = 'failed';
+                const details = summarizeHubspotDetails(associationResult, 'HUBSPOT_ASSOCIATION_FAILED');
+                hubspotFailureDetails = { stage: 'association_create', ...details };
+                logHubspotFailure(requestId, 'association_create', associationResult);
+              }
             }
-            hubspotStatus = 'synced';
+            if (hubspotStatus !== 'failed') hubspotStatus = 'synced';
           }
         }
       }
@@ -305,7 +362,21 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     ok: true,
     requestId,
     notification: { configured: emailConfigured, attempted: true, status: notificationStatus, provider: 'resend' },
-    hubspot: { configured: hubspotConfigured, attempted: hubspotConfigured, status: hubspotStatus },
+    hubspot: {
+      configured: hubspotConfigured,
+      attempted: hubspotConfigured,
+      status: hubspotStatus,
+      ...(hubspotStatus === 'failed'
+        ? {
+            stage: HUBSPOT_ALLOWED_STAGES.has(String(hubspotFailureDetails?.stage)) ? hubspotFailureDetails?.stage : 'unknown',
+            errorCode: hubspotFailureDetails?.errorCode || 'HUBSPOT_SYNC_FAILED',
+            httpStatus: hubspotFailureDetails?.httpStatus,
+            failingProperty: hubspotFailureDetails?.failingProperty,
+            message: hubspotFailureDetails?.message,
+            userMessage: 'HubSpot sync failed; intake was still accepted.',
+          }
+        : {}),
+    },
   };
 
   if (!isProduction(env)) {
