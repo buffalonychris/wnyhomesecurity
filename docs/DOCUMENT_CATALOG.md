@@ -115,6 +115,18 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime index**
 - **Notes:** Canonical map for runtime contract rollout sequencing.
 
+### `/docs/runtime/lead_signal_contract.md`
+- **File path:** `docs/runtime/lead_signal_contract.md`
+- **Purpose / likely role:** Canonical lead-signal runtime contract for `/api/lead-signal` ownership boundaries, payload expectations, failure handling, and diagnostics.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME005 REV01 with confirmed source-backed behavior plus explicit UNKNOWN / NEEDS VERIFICATION markers.
+
+### `/docs/runtime/request_id_contract.md`
+- **File path:** `docs/runtime/request_id_contract.md`
+- **Purpose / likely role:** Canonical requestId lifecycle and correlation contract spanning API response, logs, email, and HubSpot propagation boundaries.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME005 REV01; documents confirmed requestId behavior and explicit referenceId relationship unknowns.
+
 ## `docs/crm/hubspot/`
 
 ### `/docs/crm/hubspot/hubspot_kb_rev03.md`
@@ -147,7 +159,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## Summary Metrics
 
-- **Total Markdown files cataloged:** **21**
+- **Total Markdown files cataloged:** **23**
 - **Primary authoritative set recognized in this catalog:**
   - `AGENTS.md`
   - `docs/system/project.md`
