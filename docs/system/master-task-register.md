@@ -249,7 +249,7 @@ No READY tasks are currently promoted.
 ### T-RUNTIME007-001
 - **Task ID:** T-RUNTIME007-001
 - **Task Name:** RUNTIME007 — Scheduling Ownership Contract
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
 - **Purpose:** Author the canonical scheduling ownership runtime contract for request-capture/degrade ownership boundaries.
@@ -258,6 +258,7 @@ No READY tasks are currently promoted.
 - **Target Files:** `/docs/runtime/scheduling_ownership.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
 - **Runtime Systems Affected:** Scheduling documentation only; no runtime behavior impact.
 - **Documentation Updates Required:** Create/update scheduling ownership contract from template, update ownership-map status, update task lifecycle in register.
+- **Completion Notes:** REV01 scheduling ownership contract created; runtime ownership map updated to PARTIAL; DOCUMENT_CATALOG entry added for scheduling runtime contract.
 - **Validation Required:** `git diff -- docs/runtime/scheduling_ownership.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
 - **Exit Criteria:** Scheduling ownership contract exists with documented ownership/fallback boundaries; ownership map updated; no implementation code changes.
 - **Dependencies:** RUNTIME006 documentation recommended first.
