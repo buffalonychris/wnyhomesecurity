@@ -3,7 +3,7 @@ import { Navigate, useSearchParams } from 'react-router-dom';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import '../styles/qrLanding.css';
 
-type PreferredContactMethod = 'Text' | 'Phone call' | 'Email' | 'Any';
+type PreferredContactMethod = 'Text' | 'Phone call' | 'Email';
 
 type QrLandingFormState = {
   firstName: string;
@@ -16,9 +16,11 @@ type QrLandingFormState = {
   zip: string;
   propertyType: string;
   requestedHelp: string;
+  requestDetails: string;
   preferredContactMethod: PreferredContactMethod | '';
   textConsent: boolean;
   emailConsent: boolean;
+  phoneConsent: boolean;
   contactTimeAcknowledgement: boolean;
   preferredEstimateDate: string;
   preferredEstimateTimeSlot: string;
@@ -26,6 +28,8 @@ type QrLandingFormState = {
 };
 
 type QrLandingErrors = Partial<Record<keyof QrLandingFormState | 'consentSelection', string>>;
+
+const todayIsoDate = new Date().toISOString().slice(0, 10);
 
 const initialState: QrLandingFormState = {
   firstName: '',
@@ -38,17 +42,18 @@ const initialState: QrLandingFormState = {
   zip: '',
   propertyType: '',
   requestedHelp: '',
+  requestDetails: '',
   preferredContactMethod: '',
-  preferredEstimateDate: '',
+  preferredEstimateDate: todayIsoDate,
   preferredEstimateTimeSlot: '',
   textConsent: false,
   emailConsent: false,
+  phoneConsent: false,
   contactTimeAcknowledgement: false,
   whereDidYouSeeUs: '',
 };
 
 const allowedSrcValues = new Set(['placard', 'card', 'sticker', 'vehicle', 'yard-sign', 'referral']);
-
 
 const formatTo12Hour = (hour: number) => {
   if (hour === 0) return '12:00 AM';
@@ -84,7 +89,7 @@ const QrLanding = () => {
   const [searchParams] = useSearchParams();
   const fieldRefs = useRef<Partial<Record<keyof QrLandingFormState, HTMLElement | null>>>({});
 
-  const todayIso = useMemo(() => new Date().toISOString().slice(0, 10), []);
+  const todayIso = useMemo(() => todayIsoDate, []);
 
   const normalizedSource = useMemo(() => {
     const src = (searchParams.get('src') || '').toLowerCase().trim();
@@ -97,7 +102,7 @@ const QrLanding = () => {
       const nextValue = event.target.value;
       const checked = 'checked' in event.target ? event.target.checked : false;
       setFormState((prev) => {
-        if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement') {
+        if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement' || field === 'phoneConsent') {
           return { ...prev, [field]: checked };
         }
         if (field === 'preferredEstimateDate') {
@@ -106,8 +111,10 @@ const QrLanding = () => {
         return { ...prev, [field]: nextValue };
       });
       setErrors((prev) => {
-        if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement') {
-          return { ...prev, [field]: checked };
+        if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement' || field === 'phoneConsent') {
+          const rest = { ...prev };
+          delete rest[field];
+          return rest;
         }
         if (field === 'preferredEstimateDate') {
           const rest = { ...prev };
@@ -153,8 +160,8 @@ const QrLanding = () => {
     if (!formState.contactTimeAcknowledgement) {
       next.contactTimeAcknowledgement = 'Please acknowledge our contact-hours notice.';
     }
-    if (!formState.textConsent && !formState.emailConsent && formState.preferredContactMethod !== 'Phone call') {
-      next.consentSelection = 'Please allow text or email contact, or choose Phone call as your preferred contact method.';
+    if (!formState.textConsent && !formState.emailConsent && !formState.phoneConsent) {
+      next.consentSelection = 'Please allow at least one follow-up method.';
     }
     return next;
   };
@@ -167,7 +174,7 @@ const QrLanding = () => {
       const firstInvalidField = ([
         'firstName', 'lastName', 'mobilePhone', 'email', 'streetAddress', 'city', 'state', 'zip',
         'propertyType', 'requestedHelp', 'preferredContactMethod', 'preferredEstimateDate', 'preferredEstimateTimeSlot',
-        'textConsent', 'emailConsent', 'contactTimeAcknowledgement',
+        'textConsent', 'emailConsent', 'phoneConsent', 'contactTimeAcknowledgement',
       ] as (keyof QrLandingFormState)[]).find((field) => field in next || (field === 'textConsent' && 'consentSelection' in next));
       const firstInvalidElement = firstInvalidField ? fieldRefs.current[firstInvalidField] : null;
       if (firstInvalidElement) {
@@ -213,9 +220,15 @@ const QrLanding = () => {
         },
         request: {
           requestedHelp: formState.requestedHelp.trim(),
+          requestDetails: formState.requestDetails.trim() || undefined,
           preferredContactMethod: formState.preferredContactMethod.trim(),
           preferredEstimateDate: formState.preferredEstimateDate.trim(),
           preferredEstimateTimeSlot: formState.preferredEstimateTimeSlot.trim(),
+          followUpAllowedMethods: [
+            formState.textConsent ? 'Text Messages' : null,
+            formState.phoneConsent ? 'Phone Calls' : null,
+            formState.emailConsent ? 'Emails' : null,
+          ].filter(Boolean),
         },
       });
       setSubmitted(true);
@@ -283,69 +296,73 @@ const QrLanding = () => {
       <section className="qr-panel" id="qr-estimate-form">
         <h2>Request My Estimate</h2>
         <form onSubmit={onSubmit} noValidate>
-          <div className="qr-form-grid">
-            {([
-              ['firstName', 'First name'], ['lastName', 'Last name'], ['mobilePhone', 'Mobile phone'], ['email', 'Email'],
-              ['streetAddress', 'Street address'], ['city', 'City'], ['state', 'State'], ['zip', 'ZIP'],
-            ] as [
-              'firstName' | 'lastName' | 'mobilePhone' | 'email' | 'streetAddress' | 'city' | 'state' | 'zip',
-              string,
-            ][]).map(([field, label]) => (
-            <label key={field}><span>{label}</span><input
-              ref={(element) => { fieldRefs.current[field] = element; }}
-              type={field === 'email' ? 'email' : field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'text' : 'text'}
-              inputMode={field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'numeric' : undefined}
-              autoComplete={
-                field === 'firstName' ? 'given-name'
-                  : field === 'lastName' ? 'family-name'
-                    : field === 'mobilePhone' ? 'tel'
-                      : field === 'email' ? 'email'
-                        : field === 'streetAddress' ? 'street-address'
-                          : field === 'city' ? 'address-level2'
-                            : field === 'state' ? 'address-level1'
-                              : field === 'zip' ? 'postal-code'
-                                : undefined
-              }
-              value={formState[field]}
-              onChange={handleChange(field)}
-            />{errors[field] && <small>{errors[field]}</small>}</label>
-            ))}
-            <label><span>Property type</span><input ref={(element) => { fieldRefs.current.propertyType = element; }} value={formState.propertyType} onChange={handleChange('propertyType')} />{errors.propertyType && <small>{errors.propertyType}</small>}</label>
-            <label><span>Preferred contact method</span><select ref={(element) => { fieldRefs.current.preferredContactMethod = element; }} value={formState.preferredContactMethod} onChange={handleChange('preferredContactMethod')}><option value="">Select a contact method</option><option value="Text">Text</option><option value="Phone call">Phone call</option><option value="Email">Email</option><option value="Any">Any</option></select>{errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}</label>
-          </div>
-          <label><span>What do you want help with?</span><textarea ref={(element) => { fieldRefs.current.requestedHelp = element; }} value={formState.requestedHelp} onChange={handleChange('requestedHelp')} />{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
-          <label><span>Preferred estimate date</span><input ref={(element) => { fieldRefs.current.preferredEstimateDate = element; }} type="date" min={todayIso} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />{errors.preferredEstimateDate && <small>{errors.preferredEstimateDate}</small>}</label>
-          <label><span>Preferred 1-hour estimate window</span><select ref={(element) => { fieldRefs.current.preferredEstimateTimeSlot = element; }} value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')} disabled={!formState.preferredEstimateDate || timeSlotOptions.length === 0}><option value="">{formState.preferredEstimateDate ? 'Select a 1-hour window' : 'Select a date first'}</option>{timeSlotOptions.map((slot) => <option key={slot} value={slot}>{slot}</option>)}</select>{errors.preferredEstimateTimeSlot && <small>{errors.preferredEstimateTimeSlot}</small>}</label>
-          <label><span>Where did you see us? (optional)</span><select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}><option value="">Select one</option><option>Barber shop</option><option>Restaurant</option><option>Grocery store</option><option>Laundromat</option><option>Auto shop</option><option>Self-storage / U-Haul / moving location</option><option>Medical office / waiting room</option><option>Retail store</option><option>Apartment/community board</option><option>Friend/referral</option><option>Other</option></select></label>
-          <fieldset>
-            <legend>Communication preferences (required)</legend>
-            <label>
-              <input
-                ref={(element) => { fieldRefs.current.textConsent = element; }}
-                type="checkbox"
-                checked={formState.textConsent}
-                onChange={handleChange('textConsent')}
-              />
-              Allow text message follow-up
-            </label>
-            <label>
-              <input
-                ref={(element) => { fieldRefs.current.emailConsent = element; }}
-                type="checkbox"
-                checked={formState.emailConsent}
-                onChange={handleChange('emailConsent')}
-              />
-              Allow email follow-up
-            </label>
-            <label>
-              <input
-                ref={(element) => { fieldRefs.current.contactTimeAcknowledgement = element; }}
-                type="checkbox"
-                checked={formState.contactTimeAcknowledgement}
-                onChange={handleChange('contactTimeAcknowledgement')}
-              />
-              I understand contact hours are 8am–9pm, 7 days a week.
-            </label>
+          <fieldset className="qr-section">
+            <legend>Contact Information</legend>
+            <div className="qr-form-grid">
+              {([
+                ['firstName', 'First name'], ['lastName', 'Last name'], ['mobilePhone', 'Mobile phone'], ['email', 'Email'],
+                ['streetAddress', 'Street address'], ['city', 'City'], ['state', 'State'], ['zip', 'ZIP'],
+              ] as [
+                'firstName' | 'lastName' | 'mobilePhone' | 'email' | 'streetAddress' | 'city' | 'state' | 'zip',
+                string,
+              ][]).map(([field, label]) => (
+                <label key={field}><span>{label}</span><input
+                  ref={(element) => { fieldRefs.current[field] = element; }}
+                  type={field === 'email' ? 'email' : field === 'mobilePhone' ? 'tel' : 'text'}
+                  inputMode={field === 'mobilePhone' ? 'tel' : field === 'zip' ? 'numeric' : undefined}
+                  autoComplete={
+                    field === 'firstName' ? 'given-name'
+                      : field === 'lastName' ? 'family-name'
+                        : field === 'mobilePhone' ? 'tel'
+                          : field === 'email' ? 'email'
+                            : field === 'streetAddress' ? 'street-address'
+                              : field === 'city' ? 'address-level2'
+                                : field === 'state' ? 'address-level1'
+                                  : field === 'zip' ? 'postal-code'
+                                    : undefined
+                  }
+                  value={formState[field]}
+                  onChange={handleChange(field)}
+                />{errors[field] && <small>{errors[field]}</small>}</label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset className="qr-section">
+            <legend>Property</legend>
+            <label><span>Property type</span><select ref={(element) => { fieldRefs.current.propertyType = element; }} value={formState.propertyType} onChange={handleChange('propertyType')}><option value="">Select property type</option><option value="Home">Home</option><option value="Apartment / Condo">Apartment / Condo</option><option value="Business">Business</option><option value="Other">Other</option></select>{errors.propertyType && <small>{errors.propertyType}</small>}</label>
+            <label><span>Where did you hear about us? (optional)</span><select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}><option value="">Select one</option><option value="QR Placard">QR Placard</option><option value="Yard Sign">Yard Sign</option><option value="Google">Google</option><option value="Referral">Referral</option><option value="Other">Other</option></select></label>
+          </fieldset>
+
+          <fieldset className="qr-section">
+            <legend>Request</legend>
+            <label><span>What do you need help with?</span><select ref={(element) => { fieldRefs.current.requestedHelp = element; }} value={formState.requestedHelp} onChange={handleChange('requestedHelp')}><option value="">Select a service</option><option value="Complete Security System">Complete Security System</option><option value="Cameras Only">Cameras Only</option><option value="System Repair">System Repair</option><option value="System Upgrade">System Upgrade</option><option value="Smart Home Automation">Smart Home Automation</option><option value="Not Sure Yet">Not Sure Yet</option></select>{errors.requestedHelp && <small>{errors.requestedHelp}</small>}</label>
+            <label><span>Additional details (optional)</span><textarea value={formState.requestDetails} onChange={handleChange('requestDetails')} placeholder="Tell us anything helpful about entrances, cameras, repairs, or what you want protected." /></label>
+          </fieldset>
+
+          <fieldset className="qr-section">
+            <legend>Estimate Window</legend>
+            <label><span>Preferred estimate date</span><input ref={(element) => { fieldRefs.current.preferredEstimateDate = element; }} type="date" min={todayIso} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />{errors.preferredEstimateDate && <small>{errors.preferredEstimateDate}</small>}</label>
+            <label><span>Preferred 1-hour estimate window</span><select ref={(element) => { fieldRefs.current.preferredEstimateTimeSlot = element; }} value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')} disabled={!formState.preferredEstimateDate || timeSlotOptions.length === 0}><option value="">{formState.preferredEstimateDate ? 'Select a 1-hour window' : 'Select a date first'}</option>{timeSlotOptions.map((slot) => <option key={slot} value={slot}>{slot}</option>)}</select>{errors.preferredEstimateTimeSlot && <small>{errors.preferredEstimateTimeSlot}</small>}</label>
+          </fieldset>
+
+          <fieldset className="qr-section">
+            <legend>Communication Preferences</legend>
+            <div className="qr-radio-row" role="radiogroup" aria-label="Preferred contact method">
+              {(['Text', 'Phone call', 'Email'] as PreferredContactMethod[]).map((method) => (
+                <label key={method} className="qr-choice">
+                  <input ref={method === 'Text' ? (element) => { fieldRefs.current.preferredContactMethod = element; } : undefined} type="radio" name="preferredContactMethod" value={method} checked={formState.preferredContactMethod === method} onChange={handleChange('preferredContactMethod')} />
+                  <span>{method}</span>
+                </label>
+              ))}
+            </div>
+            {errors.preferredContactMethod && <small>{errors.preferredContactMethod}</small>}
+            <div className="qr-checkbox-list">
+              <label className="qr-choice"><input ref={(element) => { fieldRefs.current.textConsent = element; }} type="checkbox" checked={formState.textConsent} onChange={handleChange('textConsent')} /><span>Text Messages</span></label>
+              <label className="qr-choice"><input ref={(element) => { fieldRefs.current.phoneConsent = element; }} type="checkbox" checked={formState.phoneConsent} onChange={handleChange('phoneConsent')} /><span>Phone Calls</span></label>
+              <label className="qr-choice"><input ref={(element) => { fieldRefs.current.emailConsent = element; }} type="checkbox" checked={formState.emailConsent} onChange={handleChange('emailConsent')} /><span>Emails</span></label>
+              <label className="qr-choice"><input ref={(element) => { fieldRefs.current.contactTimeAcknowledgement = element; }} type="checkbox" checked={formState.contactTimeAcknowledgement} onChange={handleChange('contactTimeAcknowledgement')} /><span>I understand contact hours are 8am–9pm, 7 days/week.</span></label>
+            </div>
             {errors.consentSelection && <small>{errors.consentSelection}</small>}
             {errors.contactTimeAcknowledgement && <small>{errors.contactTimeAcknowledgement}</small>}
           </fieldset>
