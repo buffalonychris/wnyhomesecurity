@@ -139,9 +139,52 @@ No READY tasks are currently promoted.
 
 ## Backlog Tasks
 
-No BACKLOG tasks are currently recorded.
+
 
 ---
+
+
+### T-RUNTIME002-001
+- **Task ID:** T-RUNTIME002-001
+- **Task Name:** RUNTIME002 — Cloudflare Runtime Contract
+- **Status:** BACKLOG
+- **Category:** RUNTIME
+
+### T-RUNTIME003-001
+- **Task ID:** T-RUNTIME003-001
+- **Task Name:** RUNTIME003 — Stripe Runtime Contract
+- **Status:** BACKLOG
+- **Category:** RUNTIME
+
+### T-RUNTIME004-001
+- **Task ID:** T-RUNTIME004-001
+- **Task Name:** RUNTIME004 — Email Runtime Contracts
+- **Status:** BACKLOG
+- **Category:** RUNTIME
+
+### T-RUNTIME005-001
+- **Task ID:** T-RUNTIME005-001
+- **Task Name:** RUNTIME005 — Lead Signal + requestId Contracts
+- **Status:** BACKLOG
+- **Category:** RUNTIME
+
+### T-RUNTIME006-001
+- **Task ID:** T-RUNTIME006-001
+- **Task Name:** RUNTIME006 — HubSpot Runtime Contracts
+- **Status:** BACKLOG
+- **Category:** RUNTIME
+
+### T-RUNTIME007-001
+- **Task ID:** T-RUNTIME007-001
+- **Task Name:** RUNTIME007 — Scheduling Ownership Contract
+- **Status:** BACKLOG
+- **Category:** RUNTIME
+
+### T-QA001-001
+- **Task ID:** T-QA001-001
+- **Task Name:** QA001 — Deployment Validation SOP
+- **Status:** BACKLOG
+- **Category:** QA
 
 ## Blocked Tasks
 

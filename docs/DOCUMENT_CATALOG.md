@@ -76,6 +76,27 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **QA / validation**
 - **Notes:** Complements template and build/test expectations.
 
+
+## `docs/runtime/`
+
+### `/docs/runtime/README.md`
+- **File path:** `docs/runtime/README.md`
+- **Purpose / likely role:** Canonical runtime documentation area definition and scope boundaries.
+- **Authority level:** **Operational documentation foundation**
+- **Notes:** Introduced by RUNTIME001 as runtime-doc root and guardrail boundary.
+
+### `/docs/runtime/runtime_contract_template.md`
+- **File path:** `docs/runtime/runtime_contract_template.md`
+- **Purpose / likely role:** Standardized required schema for all runtime contracts.
+- **Authority level:** **Operational template standard**
+- **Notes:** Required structure for future runtime owner documents.
+
+### `/docs/runtime/runtime_ownership_map.md`
+- **File path:** `docs/runtime/runtime_ownership_map.md`
+- **Purpose / likely role:** Runtime systems owner-doc index with status tracking and follow-up task mapping.
+- **Authority level:** **Operational runtime index**
+- **Notes:** Canonical map for runtime contract rollout sequencing.
+
 ## `docs/crm/hubspot/`
 
 ### `/docs/crm/hubspot/hubspot_kb_rev03.md`
@@ -108,7 +129,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## Summary Metrics
 
-- **Total Markdown files cataloged:** **15**
+- **Total Markdown files cataloged:** **18**
 - **Primary authoritative set recognized in this catalog:**
   - `AGENTS.md`
   - `docs/system/project.md`
