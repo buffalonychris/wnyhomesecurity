@@ -1,3 +1,12 @@
+Status: ARCHIVED / SUPERSEDED
+Authority Role: Historical lineage reference only
+Supersedes: None
+Superseded By: Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
+Current Use: Read-only historical hardening context.
+Do Not Use For: Do not use as controlling context or active implementation authority.
+
+---
+
 # Step102 — WNYHS Replication-Readiness Hardening — REV01
 
 ---

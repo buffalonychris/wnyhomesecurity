@@ -1,3 +1,12 @@
+Status: SUPPORTING REFERENCE
+Authority Role: Isolated scope reference Step
+Supersedes: None
+Superseded By: None
+Current Use: Use only when current context explicitly activates Step201 scope.
+Do Not Use For: Do not apply outside explicit Step201 activation.
+
+---
+
 # Step201 — Email Infrastructure + Resend Integration (REV01)
 
 Status: Active / Controlling for outbound email, Resend, server email endpoints, and audit-copy behavior

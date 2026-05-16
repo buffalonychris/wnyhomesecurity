@@ -1,3 +1,12 @@
+Status: CURRENT CONTEXT
+Authority Role: Controlling Step (when selected by step-current.md)
+Supersedes: None
+Superseded By: None
+Current Use: Active controller only when explicitly named in /docs/system/step-current.md.
+Do Not Use For: Do not use as implicit authority when step-current names a different controlling Step.
+
+---
+
 # Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
 
 Status: ACTIVE

@@ -123,8 +123,44 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/steps/`
 
+### `/docs/steps/step_102_wnyhs_replication_readiness_hardening_rev_01.md`
+- **File path:** `docs/steps/step_102_wnyhs_replication_readiness_hardening_rev_01.md`
+- **Purpose / likely role:** Original Step102 hardening context retained for historical traceability.
+- **Authority level:** **ARCHIVED / SUPERSEDED**
+- **Lineage status:** Superseded by QRLanding Step102 for active Step102 naming.
+- **Notes:** Must not be treated as controlling context.
+
+### `/docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
+- **File path:** `docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
+- **Purpose / likely role:** QR acquisition funnel implementation Step102 artifact.
+- **Authority level:** **CURRENT CONTEXT when selected in step-current**
+- **Lineage status:** Current controlling Step102 under CTX-STEP102-QRLANDING-REV01.
+- **Notes:** Only controlling when explicitly named by `/docs/system/step-current.md`.
+
+### `/docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
+- **File path:** `docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
+- **Purpose / likely role:** Canonical funnel/page structure reference.
+- **Authority level:** **SUPPORTING REFERENCE**
+- **Lineage status:** Historical baseline + ongoing reference for funnel intent.
+- **Notes:** Not a simultaneous controller with current context.
+
 ### `/docs/steps/step_103_full_funnel_validation_rev_01.md`
 - **File path:** `docs/steps/step_103_full_funnel_validation_rev_01.md`
-- **Purpose / likely role:** Historical Step artifact for full-funnel validation authority, scope, findings, and acceptance criteria at time of execution.
-- **Authority level:** **Step lineage / historical**
-- **Notes:** Preserved for lineage/regression context; not a simultaneous controller unless elevated by `docs/system/step-current.md`.
+- **Purpose / likely role:** Full-funnel validation baseline and findings snapshot.
+- **Authority level:** **HISTORICAL BASELINE**
+- **Lineage status:** Completed validation lineage; regression reference.
+- **Notes:** Non-controlling unless explicitly elevated in `step-current.md`.
+
+### `/docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`
+- **File path:** `docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`
+- **Purpose / likely role:** Email architecture Step for isolated Resend scope.
+- **Authority level:** **SUPPORTING REFERENCE**
+- **Lineage status:** Isolated Step lineage, not active unless explicitly activated.
+- **Notes:** Cannot silently override current non-email controlling context.
+
+### `/docs/steps/placeholder.txt`
+- **File path:** `docs/steps/placeholder.txt`
+- **Purpose / likely role:** Directory retention placeholder.
+- **Authority level:** **Reference / non-authoritative**
+- **Lineage status:** N/A.
+- **Notes:** No execution authority.

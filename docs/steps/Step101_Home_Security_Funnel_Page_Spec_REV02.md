@@ -1,3 +1,12 @@
+Status: SUPPORTING REFERENCE
+Authority Role: Canonical funnel/reference specification
+Supersedes: Step101 REV01
+Superseded By: None
+Current Use: Use for funnel/page intent reference under current context.
+Do Not Use For: Do not treat as simultaneous controlling authority.
+
+---
+
 # Step101 — Home Security Funnel + Page Spec (REV02)
 
 Vertical: Residential — Home Security
