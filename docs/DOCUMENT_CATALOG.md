@@ -153,6 +153,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Purpose / likely role:** Canonical HubSpot sync runtime boundary contract for `/api/lead-signal` orchestration, partial sync behavior, and diagnostics.
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Added by RUNTIME006 REV01 and aligned to HubSpot REV03 API-layer-only write path constraints.
+
+### `/docs/runtime/deployment_validation.md`
+- **File path:** `docs/runtime/deployment_validation.md`
+- **Purpose / likely role:** Canonical deployment validation SOP defining pre-deployment, deployment, post-deployment, smoke-test, rollback/freeze, and release-readiness operational gates.
+- **Authority level:** **Operational runtime SOP contract**
+- **Notes:** Added by QA001 REV01 with explicit UNKNOWN / NEEDS VERIFICATION markers for unverified live automation/tooling assumptions.
+
 ## `docs/crm/hubspot/`
 
 ### `/docs/crm/hubspot/hubspot_kb_rev03.md`

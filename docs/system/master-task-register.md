@@ -266,10 +266,18 @@ No READY tasks are currently promoted.
 
 ## Ready Tasks
 
+No READY tasks are currently promoted.
+
+---
+
+## Active Tasks (Execution Driver)
+
+Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+
 ### T-QA001-001
 - **Task ID:** T-QA001-001
 - **Task Name:** QA001 — Deployment Validation SOP
-- **Status:** READY
+- **Status:** DONE
 - **Category:** QA
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
 - **Purpose:** Prepare deployment validation SOP runtime documentation task for safe activation after core runtime contracts are complete.
@@ -277,11 +285,11 @@ No READY tasks are currently promoted.
 - **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes except documentation-only notes; HubSpot logic/schema changes except documentation-only notes; UI changes; route changes; product claims; deletion of docs.
 - **Target Files:** `/docs/runtime/deployment_validation.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
 - **Runtime Systems Affected:** QA/deployment documentation only; no runtime behavior impact.
-- **Documentation Updates Required:** Maintain READY status until explicitly promoted to ACTIVE; define validation evidence requirements.
+- **Documentation Updates Required:** Task promoted by operator authorization and completed with SOP creation, ownership-map update, and catalog/register lifecycle updates.
 - **Validation Required:** `git diff -- docs/system/master-task-register.md docs/runtime/runtime_ownership_map.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
-- **Exit Criteria:** QA001 remains READY with complete bounded schema and clear activation preconditions.
+- **Exit Criteria:** Deployment validation SOP exists with required sections, ownership-map status updated, catalog entry added, and no runtime/source behavior changes.
 - **Dependencies:** RUNTIME004, RUNTIME005, RUNTIME003, RUNTIME006, RUNTIME007 documentation complete.
-- **Operator Decision Required:** Yes (promotion from READY to ACTIVE).
+- **Operator Decision Required:** Satisfied via operator authorization in chat; task completed.
 
 ---
 
