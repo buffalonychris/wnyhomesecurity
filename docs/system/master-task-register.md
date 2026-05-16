@@ -232,7 +232,7 @@ No READY tasks are currently promoted.
 ### T-RUNTIME006-001
 - **Task ID:** T-RUNTIME006-001
 - **Task Name:** RUNTIME006 — HubSpot Runtime Contracts
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** CRM
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
 - **Purpose:** Author canonical HubSpot runtime property and sync contracts aligned to locked REV03 constraints.

@@ -133,6 +133,18 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Added by RUNTIME005 REV01; documents confirmed requestId behavior and explicit referenceId relationship unknowns.
 
+
+### `/docs/runtime/hubspot_properties.md`
+- **File path:** `docs/runtime/hubspot_properties.md`
+- **Purpose / likely role:** Canonical HubSpot runtime property/enum ownership contract and token naming boundary documentation.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME006 REV01 with confirmed evidence and explicit UNKNOWN / NEEDS VERIFICATION markers.
+
+### `/docs/runtime/hubspot_sync_contract.md`
+- **File path:** `docs/runtime/hubspot_sync_contract.md`
+- **Purpose / likely role:** Canonical HubSpot sync runtime boundary contract for `/api/lead-signal` orchestration, partial sync behavior, and diagnostics.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME006 REV01 and aligned to HubSpot REV03 API-layer-only write path constraints.
 ## `docs/crm/hubspot/`
 
 ### `/docs/crm/hubspot/hubspot_kb_rev03.md`
