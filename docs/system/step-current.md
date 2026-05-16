@@ -30,3 +30,10 @@
 - This context is focused on QR scan-code acquisition funnel implementation.
 - Full-funnel and prior Step artifacts remain preserved as lineage and validation history.
 - No unrelated runtime changes are allowed outside the controlling Step scope.
+
+
+## Collision Notice
+
+- A legacy document named `step_102_wnyhs_replication_readiness_hardening_rev_01.md` exists as historical lineage only.
+- It is ARCHIVED / SUPERSEDED and is not a controlling Step in this context.
+- Step102 controlling authority in this context refers only to `Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01`.

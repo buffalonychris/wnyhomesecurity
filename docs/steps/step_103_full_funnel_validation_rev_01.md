@@ -1,3 +1,12 @@
+Status: HISTORICAL BASELINE
+Authority Role: Historical validation baseline
+Supersedes: Step102 — WNYHS Replication-Readiness Hardening — REV01
+Superseded By: None
+Current Use: Reference for completed validation lineage and regression memory.
+Do Not Use For: Do not use as active controller unless explicitly elevated in step-current.md.
+
+---
+
 # Step103 — Full Funnel Validation — REV01
 
 ---
