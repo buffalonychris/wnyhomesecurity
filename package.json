@@ -20,7 +20,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
-    "recharts": "^2.15.4"
+    "recharts": "^2.15.4",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.8",
@@ -37,7 +38,6 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "jsdom": "^27.3.0",
-    "typescript": "^5.6.3",
     "vite": "^5.4.10",
     "vitest": "^2.1.4"
   }
