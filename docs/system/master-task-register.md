@@ -131,88 +131,138 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ---
 
-### T-RUNTIME002-001
-- **Task ID:** T-RUNTIME002-001
-- **Task Name:** RUNTIME002 — Cloudflare Runtime Contract
+### T-RUNTIME003-001
+- **Task ID:** T-RUNTIME003-001
+- **Task Name:** RUNTIME003 — Stripe Runtime Contract
 - **Status:** ACTIVE
-- **Category:** RUNTIME
-- **Controlling Context:** Current operational context defined by `/docs/system/step-current.md`; authorized by operator after GOV001–GOV003 and RUNTIME001 completion.
-- **Purpose:** Create the canonical Cloudflare runtime/environment contract for deployment model, Pages runtime assumptions, environment variable ownership, diagnostics, and validation.
-- **Allowed Scope:**
-  - Update `/docs/system/master-task-register.md` only for this task promotion.
-  - Promote only T-RUNTIME002-001 from BACKLOG to ACTIVE.
-  - Preserve all existing GOV001–GOV003 and RUNTIME001 governance semantics.
-- **Forbidden Scope:**
-  - Do not create `/docs/runtime/cloudflare_env.md`.
-  - Do not edit `/docs/runtime/runtime_ownership_map.md`.
-  - Do not edit `/docs/DOCUMENT_CATALOG.md`.
-  - Do not modify source code.
-  - Do not change Cloudflare settings.
-  - Do not change environment variables.
-  - Do not modify Stripe, HubSpot, Resend, UI, routes, or runtime behavior.
-- **Target Files:** `/docs/system/master-task-register.md`
-- **Runtime Systems Affected:** Cloudflare documentation only; no runtime behavior affected.
-- **Documentation Updates Required:** `master-task-register.md` task status/location only.
-- **Validation Required:**
-  - `git diff -- docs/system/master-task-register.md`
-  - `rg -n "T-RUNTIME002-001|RUNTIME002|Status: ACTIVE|Status: BACKLOG" docs/system/master-task-register.md`
-- **Exit Criteria:**
-  - T-RUNTIME002-001 appears under Active Tasks with Status: ACTIVE.
-  - T-RUNTIME002-001 no longer appears as executable BACKLOG work.
-  - No other tasks are promoted.
-  - No runtime contract docs are created.
-- **Dependencies:** GOV001 complete; GOV002 complete; GOV003 complete; RUNTIME001 complete.
-- **Operator Decision Required:** Operator explicitly authorized promotion in chat.
+- **Category:** PAYMENT
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Author the canonical Stripe runtime contract document to codify server-side verification and webhook-authoritative payment success semantics.
+- **Allowed Scope:** Documentation-only updates for Stripe runtime contract and required register/catalog status updates.
+- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes except documentation-only description; HubSpot logic/schema changes; UI changes; route changes; product claims; deletion of docs.
+- **Target Files:** `/docs/runtime/stripe_runtime.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
+- **Runtime Systems Affected:** Stripe runtime documentation only; no runtime behavior impact.
+- **Documentation Updates Required:** Create/update runtime contract doc from template, update ownership-map status, update task lifecycle in register.
+- **Validation Required:** `git diff -- docs/runtime/stripe_runtime.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
+- **Exit Criteria:** Stripe runtime contract exists with template sections populated; ownership map reflects current status; register status and notes updated; no implementation code changes.
+- **Dependencies:** RUNTIME005 documentation should be completed first per execution order guidance.
+- **Operator Decision Required:** No.
 
+### T-RUNTIME004-001
+- **Task ID:** T-RUNTIME004-001
+- **Task Name:** RUNTIME004 — Email Runtime Contracts
+- **Status:** ACTIVE
+- **Category:** EMAIL
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Author canonical email runtime contracts for Resend outbound and Cloudflare Email Routing inbound ownership boundaries.
+- **Allowed Scope:** Documentation-only updates to runtime email contracts and required register/catalog status updates.
+- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes; HubSpot logic/schema changes; UI changes; route changes; product claims; deletion of docs.
+- **Target Files:** `/docs/runtime/resend_runtime.md`, `/docs/runtime/cloudflare_email_routing.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
+- **Runtime Systems Affected:** Email runtime documentation only; no runtime behavior impact.
+- **Documentation Updates Required:** Create/update both email runtime contract docs from template, update ownership-map status, update task lifecycle in register.
+- **Validation Required:** `git diff -- docs/runtime/resend_runtime.md docs/runtime/cloudflare_email_routing.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
+- **Exit Criteria:** Both email runtime contracts exist with template coverage and clear inbound/outbound ownership boundaries; ownership map updated; no implementation code changes.
+- **Dependencies:** RUNTIME002 completed.
+- **Operator Decision Required:** No.
+
+### T-RUNTIME005-001
+- **Task ID:** T-RUNTIME005-001
+- **Task Name:** RUNTIME005 — Lead Signal + requestId Contracts
+- **Status:** ACTIVE
+- **Category:** LEAD
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Author canonical runtime contracts for `/api/lead-signal` and request-id lifecycle/diagnostics.
+- **Allowed Scope:** Documentation-only updates to lead signal and request-id runtime contracts plus required register/catalog updates.
+- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes; HubSpot logic/schema changes except documentation-only reference to REV03; UI changes; route changes; product claims; deletion of docs.
+- **Target Files:** `/docs/runtime/lead_signal_contract.md`, `/docs/runtime/request_id_contract.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
+- **Runtime Systems Affected:** Lead and diagnostics documentation only; no runtime behavior impact.
+- **Documentation Updates Required:** Create/update lead-signal and request-id contract docs from template, update ownership-map status, update register task lifecycle.
+- **Validation Required:** `git diff -- docs/runtime/lead_signal_contract.md docs/runtime/request_id_contract.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
+- **Exit Criteria:** Lead-signal and request-id contracts exist with clear API-path and diagnostics boundaries; ownership map updated; no implementation code changes.
+- **Dependencies:** RUNTIME004 recommended first.
+- **Operator Decision Required:** No.
+
+### T-RUNTIME006-001
+- **Task ID:** T-RUNTIME006-001
+- **Task Name:** RUNTIME006 — HubSpot Runtime Contracts
+- **Status:** ACTIVE
+- **Category:** CRM
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Author canonical HubSpot runtime property and sync contracts aligned to locked REV03 constraints.
+- **Allowed Scope:** Documentation-only updates to HubSpot runtime contracts and required register/catalog updates.
+- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes; HubSpot logic/schema changes except documentation-only description; UI changes; route changes; product claims; deletion of docs.
+- **Target Files:** `/docs/runtime/hubspot_properties.md`, `/docs/runtime/hubspot_sync_contract.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
+- **Runtime Systems Affected:** CRM runtime documentation only; no runtime behavior impact.
+- **Documentation Updates Required:** Create/update HubSpot runtime contract docs from template, preserve REV03 API-write constraints, update ownership-map status and task lifecycle.
+- **Validation Required:** `git diff -- docs/runtime/hubspot_properties.md docs/runtime/hubspot_sync_contract.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
+- **Exit Criteria:** HubSpot runtime contracts exist and explicitly preserve `/api/lead-signal` write path and REV03 boundaries; ownership map updated; no implementation code changes.
+- **Dependencies:** RUNTIME005 and RUNTIME003 documentation should precede this task.
+- **Operator Decision Required:** No.
+
+### T-RUNTIME007-001
+- **Task ID:** T-RUNTIME007-001
+- **Task Name:** RUNTIME007 — Scheduling Ownership Contract
+- **Status:** ACTIVE
+- **Category:** SCHED
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Author the canonical scheduling ownership runtime contract for request-capture/degrade ownership boundaries.
+- **Allowed Scope:** Documentation-only updates for scheduling ownership contract and required register/catalog updates.
+- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes; HubSpot logic/schema changes; UI changes; route changes; product claims; deletion of docs.
+- **Target Files:** `/docs/runtime/scheduling_ownership.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
+- **Runtime Systems Affected:** Scheduling documentation only; no runtime behavior impact.
+- **Documentation Updates Required:** Create/update scheduling ownership contract from template, update ownership-map status, update task lifecycle in register.
+- **Validation Required:** `git diff -- docs/runtime/scheduling_ownership.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
+- **Exit Criteria:** Scheduling ownership contract exists with documented ownership/fallback boundaries; ownership map updated; no implementation code changes.
+- **Dependencies:** RUNTIME006 documentation recommended first.
+- **Operator Decision Required:** No.
 
 ## Ready Tasks
 
-No READY tasks are currently promoted.
+### T-QA001-001
+- **Task ID:** T-QA001-001
+- **Task Name:** QA001 — Deployment Validation SOP
+- **Status:** READY
+- **Category:** QA
+- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
+- **Purpose:** Prepare deployment validation SOP runtime documentation task for safe activation after core runtime contracts are complete.
+- **Allowed Scope:** Documentation-only updates for deployment validation SOP once promoted to ACTIVE.
+- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes except documentation-only notes; HubSpot logic/schema changes except documentation-only notes; UI changes; route changes; product claims; deletion of docs.
+- **Target Files:** `/docs/runtime/deployment_validation.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
+- **Runtime Systems Affected:** QA/deployment documentation only; no runtime behavior impact.
+- **Documentation Updates Required:** Maintain READY status until explicitly promoted to ACTIVE; define validation evidence requirements.
+- **Validation Required:** `git diff -- docs/system/master-task-register.md docs/runtime/runtime_ownership_map.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
+- **Exit Criteria:** QA001 remains READY with complete bounded schema and clear activation preconditions.
+- **Dependencies:** RUNTIME004, RUNTIME005, RUNTIME003, RUNTIME006, RUNTIME007 documentation complete.
+- **Operator Decision Required:** Yes (promotion from READY to ACTIVE).
 
 ---
 
 ## Backlog Tasks
 
-
+No BACKLOG tasks are currently recorded for runtime hardening queue scope.
 
 ---
 
+## Runtime Hardening Queue (GOV004)
 
-### T-RUNTIME003-001
-- **Task ID:** T-RUNTIME003-001
-- **Task Name:** RUNTIME003 — Stripe Runtime Contract
-- **Status:** BACKLOG
-- **Category:** RUNTIME
+Runtime documentation hardening is authorized as documentation-only work under the current Step102 context. The following recommended execution order is approved to avoid repeated one-by-one promotion stops while preserving ACTIVE-task gating:
 
-### T-RUNTIME004-001
-- **Task ID:** T-RUNTIME004-001
-- **Task Name:** RUNTIME004 — Email Runtime Contracts
-- **Status:** BACKLOG
-- **Category:** RUNTIME
+1. **RUNTIME004 — Email Runtime Contracts**
+2. **RUNTIME005 — Lead Signal + requestId Contracts**
+3. **RUNTIME003 — Stripe Runtime Contract**
+4. **RUNTIME006 — HubSpot Runtime Contracts**
+5. **RUNTIME007 — Scheduling Ownership Contract**
+6. **QA001 — Deployment Validation SOP** (promote from READY when safe)
 
-### T-RUNTIME005-001
-- **Task ID:** T-RUNTIME005-001
-- **Task Name:** RUNTIME005 — Lead Signal + requestId Contracts
-- **Status:** BACKLOG
-- **Category:** RUNTIME
+Rationale:
+- Cloudflare runtime is already documented.
+- Email delivery boundaries should be locked before downstream lead/payment/customer-notification assumptions.
+- Lead/request-id contract definitions should precede Stripe and HubSpot dependency contracts.
+- Stripe runtime documentation should be completed before full deployment validation SOP activation.
+- HubSpot token/property ambiguity should be isolated in its own bounded runtime contracts.
+- Scheduling ownership remains documentation-only until any future implementation authorization.
 
-### T-RUNTIME006-001
-- **Task ID:** T-RUNTIME006-001
-- **Task Name:** RUNTIME006 — HubSpot Runtime Contracts
-- **Status:** BACKLOG
-- **Category:** RUNTIME
-
-### T-RUNTIME007-001
-- **Task ID:** T-RUNTIME007-001
-- **Task Name:** RUNTIME007 — Scheduling Ownership Contract
-- **Status:** BACKLOG
-- **Category:** RUNTIME
-
-### T-QA001-001
-- **Task ID:** T-QA001-001
-- **Task Name:** QA001 — Deployment Validation SOP
-- **Status:** BACKLOG
-- **Category:** QA
+---
 
 ## Blocked Tasks
 
