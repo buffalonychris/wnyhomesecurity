@@ -66,6 +66,41 @@ const timeSlotToBucket = (slot: string | undefined) => {
   if (s.includes('12') || s.includes('1:') || s.includes('2:') || s.includes('3:') || s.includes('4:')) return 'afternoon';
   return 'evening';
 };
+const normalizePreferredContactMethod = (value: unknown) => {
+  const normalized = getHubspotString(value)?.toLowerCase();
+  if (!normalized) return 'unknown';
+  if (normalized === 'text' || normalized === 'sms') return 'sms';
+  if (normalized === 'phone' || normalized === 'phone call') return 'phone';
+  if (normalized === 'email') return 'email';
+  if (normalized === 'any') return 'any';
+  return 'unknown';
+};
+const normalizeLeadSourcePlatform = (value: unknown) => {
+  const normalized = getHubspotString(value)?.toLowerCase();
+  if (!normalized) return 'unknown';
+  if (normalized.includes('referral')) return 'referral';
+  if (normalized.includes('google')) return 'organic_search';
+  if (normalized.includes('qr') || normalized.includes('placard') || normalized.includes('sticker') || normalized.includes('card') || normalized.includes('yard')) return 'manual';
+  return 'unknown';
+};
+const normalizeFunnelStage = (value: unknown) => {
+  const normalized = getHubspotString(value)?.toLowerCase();
+  if (!normalized) return 'unknown';
+  if (normalized === 'quote_generated') return 'quote_generated';
+  if (normalized.includes('qr estimate request') || normalized === 'qr_estimate_requested' || normalized.includes('submitted estimate request')) return 'landing_viewed';
+  return 'unknown';
+};
+const normalizeVerticalInterest = (value: unknown) => {
+  const normalized = getHubspotString(value)?.toLowerCase();
+  if (normalized === 'home security' || normalized === 'home_security') return 'home_security';
+  return 'unknown';
+};
+const normalizeWalkthroughInterest = (value: unknown) => {
+  const normalized = getHubspotString(value)?.toLowerCase();
+  if (!normalized) return 'unknown';
+  if (normalized === 'requested' || normalized === 'request estimate' || normalized === 'qr estimate request') return 'requested';
+  return 'unknown';
+};
 
 const buildQrLeadSummary = (body: LeadSignalRequest, timestampISO: string) => {
   const parsed = splitName(body?.contact);
@@ -146,13 +181,32 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const parsedName = splitName(body.contact);
   const submittedTimestamp = body.submittedAt || nowIso;
   const preferredWindow = [body?.request?.preferredEstimateDate, body?.request?.preferredEstimateTimeSlot].filter(Boolean).join(' — ');
+  const sourceFamily = body?.sourceFamily || 'QR_SCAN';
+  const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);
+  const normalizedLeadSourcePlatform = normalizeLeadSourcePlatform(body?.assetSource || body?.source || body?.whereDidYouSeeUs);
+  const normalizedFunnelStage = normalizeFunnelStage(body?.event);
+  const normalizedVerticalInterest = normalizeVerticalInterest(body?.request?.verticalInterest || 'home_security');
+  const normalizedWalkthroughInterest = normalizeWalkthroughInterest(body?.request?.walkthroughInterest || body?.request?.requestedHelp || body?.event);
+  const consentSummary = `textConsent=${body?.textConsent ? 'yes' : 'no'}; emailConsent=${body?.emailConsent ? 'yes' : 'no'}; contactHoursAck=${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`;
+  const qrDetailSummary = [
+    `requestId=${requestId}`,
+    `sourceFamily=${sourceFamily}`,
+    `source=${body?.source || 'n/a'}`,
+    `assetSource=${body?.assetSource || 'n/a'}`,
+    `whereDidYouSeeUs=${body?.whereDidYouSeeUs || 'n/a'}`,
+    `requestedHelp=${body?.request?.requestedHelp || 'n/a'}`,
+    `requestDetails=${body?.request?.requestDetails || 'n/a'}`,
+    `preferredEstimateDate=${body?.request?.preferredEstimateDate || 'n/a'}`,
+    `preferredEstimateTimeSlot=${body?.request?.preferredEstimateTimeSlot || 'n/a'}`,
+    `consent=${consentSummary}`,
+  ].join(' | ');
   const contactNotes = [
     `requestedHelp: ${body?.request?.requestedHelp || 'n/a'}`,
     `whereDidYouSeeUs: ${body?.whereDidYouSeeUs || 'n/a'}`,
     `textConsent: ${body?.textConsent ? 'yes' : 'no'}`,
     `emailConsent: ${body?.emailConsent ? 'yes' : 'no'}`,
     `contactHoursAck: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`,
-    `requestId: ${requestId}`,
+    `requestId: ${requestId}`, qrDetailSummary,
   ].join(' | ');
 
   const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary });
@@ -216,20 +270,20 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         state: body.contact?.address?.state,
         zip: body.contact?.address?.zip,
         lifecyclestage: 'lead', hs_lead_status: 'NEW',
-        wny_preferred_contact_method: body?.request?.preferredContactMethod,
+        wny_preferred_contact_method: normalizedPreferredContactMethod,
         wny_best_time_to_contact: body?.request?.preferredEstimateTimeSlot,
         wny_contact_notes: contactNotes,
         wny_preferred_walkthrough_window: preferredWindow,
-        wny_vertical_interest: 'home_security',
-        wny_funnel_stage_current: 'qr_estimate_requested',
-        wny_walkthrough_interest: 'requested',
+        wny_vertical_interest: normalizedVerticalInterest,
+        wny_funnel_stage_current: normalizedFunnelStage,
+        wny_walkthrough_interest: normalizedWalkthroughInterest,
         wny_last_walkthrough_request_at: submittedTimestamp,
         wny_first_landing_page: body?.landingRoute || '/qrlanding',
         wny_first_touch_url: body?.currentUrl || body?.landingRoute || '/qrlanding',
         wny_last_touch_url: body?.currentUrl || body?.landingRoute || '/qrlanding',
         wny_first_touch_date: submittedTimestamp,
-        wny_lead_source_platform: 'qr_scan',
-        wny_lead_source_detail: [body?.source, body?.assetSource, body?.whereDidYouSeeUs].filter(Boolean).join(' | '),
+        wny_lead_source_platform: normalizedLeadSourcePlatform,
+        wny_lead_source_detail: qrDetailSummary,
         wny_utm_source: body?.utm?.source,
         wny_utm_medium: body?.utm?.medium,
         wny_utm_campaign: body?.utm?.campaign,
@@ -262,7 +316,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           wny_walkthrough_status: 'requested',
           wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
           wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
-          wny_walkthrough_notes: contactNotes,
+          wny_walkthrough_notes: qrDetailSummary,
           wny_onsite_quote_required: true,
           wny_install_address: body?.contact?.address?.street,
           wny_install_city: body?.contact?.address?.city,
@@ -286,7 +340,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
               `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
               `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${body?.request?.preferredEstimateDate || 'n/a'}`,
-              `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `QR source: ${body?.source || 'n/a'}`,
+              `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
+              `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
               `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
             ].join('\n');
             const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
@@ -338,7 +393,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             wny_walkthrough_status: 'requested',
             wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
             wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
-            wny_walkthrough_notes: contactNotes,
+            wny_walkthrough_notes: qrDetailSummary,
             wny_onsite_quote_required: true,
             wny_install_address: body?.contact?.address?.street,
             wny_install_city: body?.contact?.address?.city,
@@ -361,7 +416,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
                 `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
                 `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
                 `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${body?.request?.preferredEstimateDate || 'n/a'}`,
-                `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `QR source: ${body?.source || 'n/a'}`,
+                `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
+                `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
                 `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
               ].join('\n');
               const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
