@@ -178,7 +178,7 @@ No READY tasks are currently promoted.
 ### T-RUNTIME003-001
 - **Task ID:** T-RUNTIME003-001
 - **Task Name:** RUNTIME003 — Stripe Runtime Contract
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** PAYMENT
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
 - **Purpose:** Author the canonical Stripe runtime contract document to codify server-side verification and webhook-authoritative payment success semantics.
@@ -187,6 +187,7 @@ No READY tasks are currently promoted.
 - **Target Files:** `/docs/runtime/stripe_runtime.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
 - **Runtime Systems Affected:** Stripe runtime documentation only; no runtime behavior impact.
 - **Documentation Updates Required:** Create/update runtime contract doc from template, update ownership-map status, update task lifecycle in register.
+- **Completion Notes:** REV01 Stripe runtime contract created; runtime ownership map updated to PARTIAL pending operator verification; DOCUMENT_CATALOG updated.
 - **Validation Required:** `git diff -- docs/runtime/stripe_runtime.md docs/runtime/runtime_ownership_map.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
 - **Exit Criteria:** Stripe runtime contract exists with template sections populated; ownership map reflects current status; register status and notes updated; no implementation code changes.
 - **Dependencies:** RUNTIME005 documentation should be completed first per execution order guidance.
