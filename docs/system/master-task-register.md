@@ -895,6 +895,16 @@ No BLOCKED tasks are currently recorded.
 
 
 
+
+### MAIN-FUNNEL-FIX003C
+- **Task ID:** MAIN-FUNNEL-FIX003C
+- **Task Name:** Planner CTA positioning / low-friction nav minimization
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (bounded main funnel UX cleanup)
+- **Purpose:** Clarify Planner as optional/advanced/later and reduce nav distraction from estimate-request conversion flow.
+- **Completion Notes:** Updated visible site version to v1.0.51; repositioned top-nav Planner entry as secondary optional item; retained Planner route access; tightened Planner CTA wording in recommendation state to emphasize later optional use; preserved home-security → discovery → recommendation → contact path and runtime boundaries; documented implementation in `docs/audits/main_funnel_fix003c_rev01.md`.
+
 ### MAIN-FUNNEL-FIX003B
 - **Task ID:** MAIN-FUNNEL-FIX003B
 - **Task Name:** Recommendation-state clarity only
