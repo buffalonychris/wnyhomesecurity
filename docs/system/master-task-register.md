@@ -13,6 +13,27 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 
 
+
+### CRM-CONTRACT001
+- **Task ID:** CRM-CONTRACT001
+- **Task Name:** Canonical HubSpot Pipeline Contract Lock
+- **Status:** DONE
+- **Category:** CRM
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (documentation/runtime-contract hardening)
+- **Purpose:** Permanently document live HubSpot pipeline internal IDs and production initial-stage env var to eliminate future guesswork.
+- **Allowed Scope:** Documentation-only updates under `docs/`; task register lifecycle note updates.
+- **Forbidden Scope:** No runtime code changes; no HubSpot API writes/mutations; no Stripe changes; no scheduling implementation changes; no SMS/reminders.
+- **Target Files:**
+  - `docs/crm/hubspot/crm_pipeline_architecture_rev01.md`
+  - `docs/runtime/hubspot_sync_contract.md`
+  - `docs/runtime/hubspot_properties.md`
+  - `docs/system/master-task-register.md`
+  - `docs/DOCUMENT_CATALOG.md` (if catalog update needed)
+- **Validation Required:**
+  - `git diff -- docs`
+  - `rg -n "2282258169|3680633583|HUBSPOT_ESTIMATE_INITIAL_STAGE_ID|WNYHS Sales Pipeline|New Estimate Request|PROTECTED_RUNTIME" docs .`
+- **Completion Notes:** Live pipeline ID (`2282258169`) and canonical stage IDs documented; Cloudflare production env `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID=3680633583` documented; protected runtime and post-deploy QR validation rule restated.
+
 ### CRM-PIPELINE001
 - **Task ID:** CRM-PIPELINE001
 - **Task Name:** Canonical HubSpot Pipeline Architecture

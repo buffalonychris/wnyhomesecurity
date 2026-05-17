@@ -292,3 +292,44 @@ Allowed future runtime changes are bounded to:
 - No HubSpot schema/property creation.
 - No record delete/merge operations.
 - No customer-facing copy claim expansion.
+
+
+## CRM-CONTRACT001 — Live Pipeline ID Lock (Runtime Contract Snapshot)
+
+**Pipeline Name:** `WNYHS Sales Pipeline`  
+**Pipeline Internal ID:** `2282258169`
+
+### Canonical Stage IDs (Internal)
+
+| Canonical Stage Label | Internal Stage ID |
+|---|---:|
+| New Estimate Request | `3680633583` |
+| Operator Review Needed | `3680633584` |
+| Contact Attempted | `3680633585` |
+| On-Site Walkthrough Requested | `3680633586` |
+| Walkthrough Scheduled | `3680633587` |
+| Quote Generated | `3680633588` |
+| Walkthrough Completed | `3680633589` |
+| Quote Sent | `3683126005` |
+| Deposit Requested | `3683126006` |
+| Deposit Paid / Owner Review | `3683126007` |
+| Install Date Requested | `3683126008` |
+| Install Scheduled | `3683126009` |
+| Remainder Due Before Install | `3683126970` |
+| Installed / Complete | `3683126971` |
+
+### Cloudflare Production Environment Variable
+
+- `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID=3680633583`
+- Purpose: canonical initial `dealstage` internal ID for new QR/main-site estimate intake.
+
+### Runtime Contract Rules (Locked)
+
+- Runtime must use **internal stage IDs** (never human labels) when writing `dealstage`.
+- Do not guess pipeline IDs or stage IDs.
+- If HubSpot stage labels are renamed, verify whether internal IDs changed **before** runtime changes.
+- `PROTECTED_RUNTIME` lead intake constraints remain in effect (`/api/lead-signal` only; no direct client HubSpot writes).
+
+### Next Required Validation
+
+After deployment, submit one QR estimate request and confirm the created deal lands in **New Estimate Request** (`3680633583`).

@@ -333,3 +333,6 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Purpose / likely role:** Canonical HubSpot deal pipeline architecture for WNYHS (stages, movement rules, operator workflow, dedupe boundaries, and protected runtime guardrails).
 - **Authority level:** **CRM architecture contract**
 - **Notes:** Added by CRM-PIPELINE001 as documentation-only governance prior to CRM-DEAL002B runtime hardening.
+
+
+- **CRM-CONTRACT001 Note:** `docs/crm/hubspot/crm_pipeline_architecture_rev01.md`, `docs/runtime/hubspot_sync_contract.md`, and `docs/runtime/hubspot_properties.md` now lock the live WNYHS Sales Pipeline ID/stage IDs and production `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID` runtime contract values.
