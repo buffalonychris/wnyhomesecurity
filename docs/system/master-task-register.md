@@ -259,7 +259,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### SCHED-IMPL006
 - **Task ID:** SCHED-IMPL006
 - **Task Name:** Post-Owner-Confirmation Calendar Event Creation
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** After owner confirmation only, create a Google Calendar event for the confirmed estimate appointment.

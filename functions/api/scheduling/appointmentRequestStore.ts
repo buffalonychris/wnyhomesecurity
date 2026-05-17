@@ -13,6 +13,9 @@ export type AppointmentRequestRecord = {
   source: 'lead_signal';
   confirmedBy?: string;
   confirmedAt?: string;
+  calendarEventId?: string;
+  calendarEventHtmlLink?: string;
+  calendarEventCreatedAt?: string;
 };
 
 type AppointmentRequestStoreLike = {
@@ -115,6 +118,36 @@ export const confirmAppointmentRequestByRequestId = async ({
 
   await writeRecord(confirmedRecord, env);
   return confirmedRecord;
+};
+
+
+
+export const attachCalendarEventMetadataByRequestId = async ({
+  requestId,
+  calendarEventId,
+  calendarEventHtmlLink,
+  calendarEventCreatedAt,
+  env,
+}: {
+  requestId: string;
+  calendarEventId: string;
+  calendarEventHtmlLink?: string;
+  calendarEventCreatedAt: string;
+  env?: { APPOINTMENT_REQUESTS_KV?: AppointmentRequestStoreLike };
+}): Promise<AppointmentRequestRecord | undefined> => {
+  const existing = await readByRequestId(requestId, env);
+  if (!existing) return undefined;
+
+  const next: AppointmentRequestRecord = {
+    ...existing,
+    calendarEventId,
+    calendarEventHtmlLink,
+    calendarEventCreatedAt,
+    updatedAt: new Date().toISOString(),
+  };
+
+  await writeRecord(next, env);
+  return next;
 };
 
 export const resetAppointmentRequestStoreForTests = () => appointmentRequestStore.clear();
