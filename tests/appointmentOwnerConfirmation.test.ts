@@ -76,6 +76,8 @@ describe('owner confirmation state transition', () => {
     expect(stored?.calendarEventId).toBe('evt_123');
     expect(stored?.calendarEventHtmlLink).toContain('calendar.google.com');
     expect(stored?.calendarEventCreatedAt).toBe('2026-05-20T10:00:00.000Z');
+    expect(stored?.calendarWriteStatus).toBe('SUCCEEDED');
+    expect(stored?.confirmationEmailStatus).toBe('SENT');
     const resendPayload = JSON.parse(fetchMock.mock.calls[2][1]?.body as string);
     expect(resendPayload.text).toContain('Request ID: lead_confirm_200');
     expect(resendPayload.text).toContain('Calendar event link: https://calendar.google.com/event?eid=123');
@@ -125,5 +127,54 @@ describe('owner confirmation state transition', () => {
     expect(payload.calendarWrite.errorCode).toBe('GOOGLE_CALENDAR_CONFIG_MISSING');
     const resendPayload = JSON.parse(fetchMock.mock.calls[0][1]?.body as string);
     expect(resendPayload.text).toContain('Calendar event link: not available for this confirmation.');
+  });
+
+  it('repeated confirm is idempotent for calendar and email side effects and keeps confirmed audit stable', async () => {
+    const requestId = 'lead_confirm_900';
+    await createPendingOwnerConfirmationAppointmentRequest({
+      requestId,
+      event: 'qr_estimate_requested',
+      preferredWindowText: '2026-05-25 — Afternoon',
+      customerName: 'Avery',
+      customerEmail: 'avery@example.com',
+      preferredEstimateDate: '2026-05-25',
+    });
+
+    const fetchMock = vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(new Response(JSON.stringify({ access_token: 'test_token' }), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ id: 'evt_once', htmlLink: 'https://calendar.google.com/event?eid=once', created: '2026-05-20T10:00:00.000Z' }), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ id: 'email_once' }), { status: 200 }));
+
+    await callConfirmEndpoint({ requestId, confirmedBy: 'owner1@example.com' }, { GOOGLE_CLIENT_ID: 'id', GOOGLE_CLIENT_SECRET: 'secret', GOOGLE_REFRESH_TOKEN: 'refresh', GOOGLE_CALENDAR_ID: 'calendar-id', RESEND_API_KEY: 'rk', RESEND_FROM_EMAIL: 'scheduler@wnyhomesecurity.com' });
+    const first = await getAppointmentRequestByRequestId(requestId);
+
+    const secondResponse = await callConfirmEndpoint({ requestId, confirmedBy: 'owner2@example.com' }, { GOOGLE_CLIENT_ID: 'id', GOOGLE_CLIENT_SECRET: 'secret', GOOGLE_REFRESH_TOKEN: 'refresh', GOOGLE_CALENDAR_ID: 'calendar-id', RESEND_API_KEY: 'rk', RESEND_FROM_EMAIL: 'scheduler@wnyhomesecurity.com' });
+    const secondPayload = await secondResponse.json() as any;
+    const second = await getAppointmentRequestByRequestId(requestId);
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(secondPayload.idempotency.calendarWriteReused).toBe(true);
+    expect(secondPayload.idempotency.emailWriteReused).toBe(true);
+    expect(first?.confirmedBy).toBe('owner1@example.com');
+    expect(second?.confirmedBy).toBe('owner1@example.com');
+    expect(second?.confirmedAt).toBe(first?.confirmedAt);
+  });
+
+  it('uses durable customer email from appointment record when confirm payload email is omitted', async () => {
+    const requestId = 'lead_confirm_901';
+    await createPendingOwnerConfirmationAppointmentRequest({
+      requestId,
+      event: 'qr_estimate_requested',
+      preferredWindowText: '2026-05-25 — Afternoon',
+      customerName: 'Riley',
+      customerEmail: 'riley@example.com',
+    });
+
+    const fetchMock = vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response(JSON.stringify({ id: 'email_123' }), { status: 200 }));
+
+    await callConfirmEndpoint({ requestId, confirmedBy: 'owner@example.com' }, { RESEND_API_KEY: 'rk', RESEND_FROM_EMAIL: 'scheduler@wnyhomesecurity.com' });
+    const resendPayload = JSON.parse(fetchMock.mock.calls[0][1]?.body as string);
+    expect(resendPayload.to).toEqual(['riley@example.com']);
   });
 });

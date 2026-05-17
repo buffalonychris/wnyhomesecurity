@@ -27,6 +27,12 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     preferredEstimateDate: schedulingSummary.preferredEstimateDate,
     preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
     preferredWindowText: schedulingSummary.preferredWindowText,
+    customerName: typeof body.customerName === 'string' ? body.customerName : undefined,
+    customerEmail: typeof body.customerEmail === 'string' ? body.customerEmail : undefined,
+    customerPhone: typeof body.customerPhone === 'string' ? body.customerPhone : undefined,
+    requestedDate: schedulingSummary.preferredEstimateDate,
+    requestedTimeWindow: schedulingSummary.preferredEstimateTimeSlot,
+    timezone: typeof body.timezone === 'string' ? body.timezone : undefined,
     env,
   });
 

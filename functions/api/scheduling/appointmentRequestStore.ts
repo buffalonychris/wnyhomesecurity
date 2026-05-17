@@ -11,11 +11,25 @@ export type AppointmentRequestRecord = {
   createdAt: string;
   updatedAt: string;
   source: 'lead_signal';
+  customerName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  requestedDate?: string;
+  requestedStart?: string;
+  requestedTimeWindow?: string;
+  requestedEnd?: string;
+  timezone?: string;
   confirmedBy?: string;
   confirmedAt?: string;
   calendarEventId?: string;
   calendarEventHtmlLink?: string;
   calendarEventCreatedAt?: string;
+  calendarWriteStatus?: 'NOT_ATTEMPTED' | 'SUCCEEDED' | 'FAILED';
+  calendarWriteErrorCode?: string;
+  confirmationEmailSentAt?: string;
+  confirmationEmailRecipient?: string;
+  confirmationEmailStatus?: 'NOT_ATTEMPTED' | 'SENT' | 'SKIPPED' | 'FAILED';
+  confirmationEmailErrorCode?: string;
 };
 
 type AppointmentRequestStoreLike = {
@@ -66,6 +80,15 @@ export const createPendingOwnerConfirmationAppointmentRequest = async ({
   preferredEstimateDate,
   preferredEstimateTimeSlot,
   preferredWindowText,
+  customerName,
+  customerEmail,
+  customerPhone,
+  requestedDate,
+  requestedStart,
+  requestedTimeWindow,
+  requestedEnd,
+  timezone,
+  source,
   env,
 }: {
   requestId: string;
@@ -73,6 +96,15 @@ export const createPendingOwnerConfirmationAppointmentRequest = async ({
   preferredEstimateDate?: string;
   preferredEstimateTimeSlot?: string;
   preferredWindowText: string;
+  customerName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  requestedDate?: string;
+  requestedStart?: string;
+  requestedTimeWindow?: string;
+  requestedEnd?: string;
+  timezone?: string;
+  source?: 'lead_signal';
   env?: { APPOINTMENT_REQUESTS_KV?: AppointmentRequestStoreLike };
 }): Promise<AppointmentRequestRecord> => {
   const now = new Date().toISOString();
@@ -86,7 +118,17 @@ export const createPendingOwnerConfirmationAppointmentRequest = async ({
     schedulingStatus: SCHEDULING_STATUSES.PENDING_OWNER_CONFIRMATION,
     createdAt: now,
     updatedAt: now,
-    source: 'lead_signal',
+    source: source || 'lead_signal',
+    customerName,
+    customerEmail,
+    customerPhone,
+    requestedDate,
+    requestedStart,
+    requestedTimeWindow,
+    requestedEnd,
+    timezone,
+    calendarWriteStatus: 'NOT_ATTEMPTED',
+    confirmationEmailStatus: 'NOT_ATTEMPTED',
   };
 
   await writeRecord(record, env);
@@ -111,8 +153,8 @@ export const confirmAppointmentRequestByRequestId = async ({
   const confirmedRecord: AppointmentRequestRecord = {
     ...existing,
     schedulingStatus: SCHEDULING_STATUSES.CONFIRMED,
-    confirmedBy,
-    confirmedAt: new Date().toISOString(),
+    confirmedBy: existing.confirmedBy || confirmedBy,
+    confirmedAt: existing.confirmedAt || new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
 
@@ -151,3 +193,55 @@ export const attachCalendarEventMetadataByRequestId = async ({
 };
 
 export const resetAppointmentRequestStoreForTests = () => appointmentRequestStore.clear();
+
+export const setCalendarWriteAuditByRequestId = async ({
+  requestId,
+  calendarWriteStatus,
+  calendarWriteErrorCode,
+  env,
+}: {
+  requestId: string;
+  calendarWriteStatus: 'SUCCEEDED' | 'FAILED';
+  calendarWriteErrorCode?: string;
+  env?: { APPOINTMENT_REQUESTS_KV?: AppointmentRequestStoreLike };
+}): Promise<AppointmentRequestRecord | undefined> => {
+  const existing = await readByRequestId(requestId, env);
+  if (!existing) return undefined;
+  const next: AppointmentRequestRecord = {
+    ...existing,
+    calendarWriteStatus,
+    calendarWriteErrorCode,
+    updatedAt: new Date().toISOString(),
+  };
+  await writeRecord(next, env);
+  return next;
+};
+
+export const setConfirmationEmailAuditByRequestId = async ({
+  requestId,
+  confirmationEmailRecipient,
+  confirmationEmailStatus,
+  confirmationEmailErrorCode,
+  confirmationEmailSentAt,
+  env,
+}: {
+  requestId: string;
+  confirmationEmailRecipient?: string;
+  confirmationEmailStatus: 'SENT' | 'SKIPPED' | 'FAILED';
+  confirmationEmailErrorCode?: string;
+  confirmationEmailSentAt?: string;
+  env?: { APPOINTMENT_REQUESTS_KV?: AppointmentRequestStoreLike };
+}): Promise<AppointmentRequestRecord | undefined> => {
+  const existing = await readByRequestId(requestId, env);
+  if (!existing) return undefined;
+  const next: AppointmentRequestRecord = {
+    ...existing,
+    confirmationEmailRecipient,
+    confirmationEmailStatus,
+    confirmationEmailErrorCode,
+    confirmationEmailSentAt,
+    updatedAt: new Date().toISOString(),
+  };
+  await writeRecord(next, env);
+  return next;
+};

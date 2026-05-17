@@ -349,3 +349,10 @@ Add the following checks for owner/manual confirmation behavior:
 | requestId traceability | `requestId` remains traceable from intake through request storage and confirmation/email payload. | `functions/api/lead-signal.ts`, `functions/api/scheduling/request.ts`, `functions/api/scheduling/confirm.ts`, `tests/appointmentOwnerConfirmation.test.ts` | PASS | Included in API responses/store and confirmation email text. |
 | Forbidden-scope implementation check | No runtime implementation of automatic booking, customer self-confirmation, SMS/reminders/install/dispatch flows in scheduling MVP path. | `rg` repo searches, scheduling runtime/source audit | PASS | Matches owner-confirmation-only posture; terms in docs may appear as forbidden/planned references. |
 | Known baseline failures | Lint, full test, and api typecheck failures separated from scheduling regressions. | Command outputs in SCHED-IMPL008 execution log | PASS (classified) | Baseline: lint errors, `operatorNavbar.test.tsx` assertion failure, and API typecheck issues are unrelated to scheduling MVP. |
+
+
+## SCHED-HARDEN001 Validation Addendum
+
+- Verify repeated owner confirm calls do not create duplicate calendar events.
+- Verify repeated owner confirm calls do not send duplicate customer confirmation emails.
+- Verify durable appointment contact fields are used for confirmation email when confirm payload contact fields are omitted.

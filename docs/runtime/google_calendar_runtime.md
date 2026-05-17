@@ -47,3 +47,13 @@ Failure:
 - Appointment confirmation
 - Owner assignment/acceptance
 - SMS/reminders/install scheduling
+
+
+## SCHED-HARDEN001
+
+Calendar runtime integration now records per-request write metadata:
+- `calendarWriteStatus`
+- `calendarWriteErrorCode`
+- `calendarEventId`
+- `calendarEventHtmlLink`
+- `calendarEventCreatedAt`
