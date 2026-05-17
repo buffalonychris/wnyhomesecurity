@@ -83,7 +83,7 @@ const HomeSecurityPaymentSuccess = () => {
           </h1>
           {verifyState.status === 'verified' ? (
             <>
-              <p>Your Home Security deposit is verified. Next, send your preferred installation window request.</p>
+              <p>Your Home Security deposit is verified. Next, send your preferred installation window request for owner confirmation.</p>
               <p>Verified package tier: {formatTierLabel(verifyState.tier)}.</p>
             </>
           ) : (
@@ -100,14 +100,14 @@ const HomeSecurityPaymentSuccess = () => {
           <strong>Next steps</strong>
           {verifyState.status === 'verified' ? (
             <>
-              <p>Your payment is confirmed.</p>
+              <p>Your payment is confirmed and your scheduling request is the next step.</p>
               <NavLink className="newsite-btn" to={scheduleTo}>
                 Request scheduling
               </NavLink>
             </>
           ) : (
             <>
-              <p>We&apos;ll help verify and schedule with you directly.</p>
+              <p>We&apos;ll help verify your payment and collect your scheduling request directly.</p>
               <a className="newsite-btn" href="tel:17163912405">
                 Call (716) 391-2405
               </a>
