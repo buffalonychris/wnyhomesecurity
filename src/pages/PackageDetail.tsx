@@ -38,7 +38,7 @@ const PackageDetail = () => {
   const contactLink =
     vertical === 'home-security'
       ? pkg
-        ? `/contact?vertical=home-security&package=${pkg.id}`
+        ? `/contact?vertical=home-security&package=${pkg.id}&estimateIntent=selected-package`
         : '/contact?vertical=home-security'
       : '/contact';
   const homeSecurityTierLabel = pkg?.name ?? 'Package';

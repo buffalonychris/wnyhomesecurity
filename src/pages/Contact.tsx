@@ -1,5 +1,5 @@
 import { FormEvent, useMemo, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { brandHomeSecurity, brandSite } from '../lib/brand';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
@@ -28,6 +28,14 @@ const Contact = () => {
   const tierParam = searchParams.get('tier')?.toLowerCase() ?? '';
   const packageTier = tierParam === 'bronze' || tierParam === 'silver' || tierParam === 'gold' ? tierParam : undefined;
   const packageTierLabel = packageTier ? `${packageTier.charAt(0).toUpperCase()}${packageTier.slice(1)}` : null;
+  const requestIntentParam = searchParams.get('estimateIntent')?.toLowerCase() ?? '';
+  const requestIntent =
+    requestIntentParam === 'onsite-walkthrough' || requestIntentParam === 'recommended-system' || requestIntentParam === 'selected-package'
+      ? requestIntentParam
+      : 'general-estimate';
+  const sourceParam = searchParams.get('source')?.toLowerCase() ?? '';
+  const utmSourceParam = searchParams.get('utm_source')?.toLowerCase() ?? '';
+  const hasQrContext = sourceParam.includes('qr') || sourceParam.includes('flyer') || utmSourceParam.includes('qr') || utmSourceParam.includes('flyer');
   const discoveryContext = useMemo<DiscoveryContext | null>(() => {
     const fitCheckCompleted = searchParams.get('fit') === 'complete';
     const recommended = searchParams.get('recommended')?.toLowerCase();
@@ -137,8 +145,18 @@ const Contact = () => {
     <>
       <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
       <p style={{ maxWidth: 640 }}>
-        Share a few details so we can prepare your estimate request and recommend the right next step.
+        Request your estimate here. Share a few details so we can recommend the right next step.
       </p>
+      {!packageTierLabel && !discoveryContext && requestIntent === 'general-estimate' && !hasQrContext && (
+        <div style={{ border: '1px solid var(--kaec-border)', borderRadius: 12, padding: '1rem', marginBottom: '1rem' }}>
+          <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Choose how you want to start your estimate request</p>
+          <ul style={{ margin: 0, paddingLeft: '1.1rem' }}>
+            <li><Link to="/discovery?vertical=home-security">Find the right system first</Link></li>
+            <li><Link to="/packages?vertical=home-security">Choose a package</Link></li>
+            <li><Link to="/contact?vertical=home-security&estimateIntent=onsite-walkthrough">Request an on-site walkthrough estimate</Link></li>
+          </ul>
+        </div>
+      )}
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <a className="btn btn-secondary" href={mailtoLink}>Email us</a>
         <a className="btn btn-link" href={buildTel()}>
@@ -151,7 +169,7 @@ const Contact = () => {
       <form className="form" aria-label="Estimate request form" onSubmit={handleSubmit}>
         {packageTierLabel && (
           <div>
-            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>System you selected: {packageTierLabel}</p>
+            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Selected package estimate request: {packageTierLabel}</p>
           </div>
         )}
         {discoveryContext && (
@@ -163,6 +181,12 @@ const Contact = () => {
             <p style={{ margin: '0 0 0.5rem' }}>Recording preference: {discoveryContext.recordingPreference}</p>
             <p style={{ margin: '0 0 0.5rem' }}>Priority concern: {discoveryContext.priorityConcerns}</p>
           </div>
+        )}
+        {requestIntent === 'onsite-walkthrough' && (
+          <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>On-site walkthrough estimate request</p>
+        )}
+        {hasQrContext && (
+          <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>QR / local flyer estimate request context detected</p>
         )}
         <div>
           <label htmlFor="name">Name</label>
