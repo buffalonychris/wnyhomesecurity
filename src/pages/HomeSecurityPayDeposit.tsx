@@ -81,7 +81,7 @@ const HomeSecurityPayDeposit = () => {
             description="Choose your tier and secure your Home Security installation with a deposit."
             support="Remaining balance is due on arrival (day of install) after a walkthrough confirmation."
           />
-          <small style={{ color: '#c8c0aa' }}>
+          <small style={{ color: 'var(--color-text-secondary)' }}>
             You are on {location.pathname}. All pricing is locked to the tier you select below.
           </small>
         </div>
@@ -116,19 +116,19 @@ const HomeSecurityPayDeposit = () => {
 
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Deposit breakdown</div>
-          <div style={{ display: 'grid', gap: '0.35rem', color: '#c8c0aa' }}>
-            <div>Tier total: <strong style={{ color: '#fff7e6' }}>{formatCurrency(pricing.totalCents)}</strong></div>
+          <div style={{ display: 'grid', gap: '0.35rem', color: 'var(--color-text-secondary)' }}>
+            <div>Tier total: <strong style={{ color: 'var(--color-text-primary)' }}>{formatCurrency(pricing.totalCents)}</strong></div>
             <div>Deposit due today (50%): <strong style={{ color: 'var(--kaec-gold)' }}>{formatCurrency(pricing.depositCents)}</strong></div>
-            <div>Remaining balance on install day: <strong style={{ color: '#fff7e6' }}>{formatCurrency(pricing.remainingCents)}</strong></div>
+            <div>Remaining balance on install day: <strong style={{ color: 'var(--color-text-primary)' }}>{formatCurrency(pricing.remainingCents)}</strong></div>
           </div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Remaining balance is due on arrival (day of install) after a walkthrough confirmation.
           </p>
         </div>
 
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Secure checkout</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             You&apos;ll be redirected to Stripe Checkout to complete the deposit securely.
           </p>
           <button
@@ -140,7 +140,7 @@ const HomeSecurityPayDeposit = () => {
             {status === 'loading' ? 'Starting checkout...' : 'Pay 50% Deposit'}
           </button>
           {status === 'error' ? (
-            <small style={{ color: '#f5b942' }}>{errorMessage}</small>
+            <small style={{ color: 'var(--color-warning)' }}>{errorMessage}</small>
           ) : null}
         </div>
       </div>

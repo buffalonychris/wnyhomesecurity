@@ -52,7 +52,7 @@ const Support = () => {
                 issue: 'Tell us what you need help with.',
                 pageRoute: `${location.pathname}${location.search}`,
               })}
-              style={{ color: '#f5c042' }}
+              style={{ color: 'var(--color-accent)' }}
             >
               {wnyhsContact.emails.support}
             </a>
@@ -64,10 +64,10 @@ const Support = () => {
         <h2>Phone or text</h2>
         <p>Call or text the WNY Home Security team for urgent support.</p>
         <p style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <a href={buildTel()} style={{ color: '#f5c042' }}>
+          <a href={buildTel()} style={{ color: 'var(--color-accent)' }}>
             Call {wnyhsContact.phone.display}
           </a>
-          <a href={buildSms('Hi! I need help with my Home Security system.')} style={{ color: '#f5c042' }}>
+          <a href={buildSms('Hi! I need help with my Home Security system.')} style={{ color: 'var(--color-accent)' }}>
             Text {wnyhsContact.phone.display}
           </a>
         </p>
