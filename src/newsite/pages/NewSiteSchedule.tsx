@@ -61,11 +61,10 @@ const NewSiteSchedule = () => {
     <div className="newsite-container">
       <section className="newsite-hero">
         <div>
-          <span className="newsite-badge">{onsitePath ? 'On-site walkthrough scheduling' : 'Installation scheduling'}</span>
-          <h1>{onsitePath ? 'Schedule Your On-Site Walkthrough' : 'Next step: schedule your install'}</h1>
+          <span className="newsite-badge">{onsitePath ? 'On-site walkthrough request' : 'Installation window request'}</span>
+          <h1>{onsitePath ? 'Request Your On-Site Walkthrough' : 'Next step: request your installation window'}</h1>
           <p>
-            We&apos;ll align on timing, confirm access details, and make sure your home is ready for a seamless
-            installation day.
+            We&apos;ll review your request, confirm access details, and follow up to finalize timing with owner confirmation.
           </p>
         </div>
         <div className="newsite-card">
@@ -93,26 +92,26 @@ const NewSiteSchedule = () => {
       </section>
 
       <section className="newsite-section">
-        <h2>Choose your scheduling path</h2>
+        <h2>Choose your request path</h2>
         <p>Pick the option that feels most convenient. We&apos;ll keep it simple and no-pressure.</p>
         <div className="newsite-grid">
           <div className="newsite-card">
             <strong>Call now</strong>
-            <p>Speak directly with a scheduling concierge to confirm a time.</p>
+            <p>Speak directly with our team to submit your preferred time window.</p>
             <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">
               Call (716) 391-2405
             </a>
           </div>
           <div className="newsite-card">
             <strong>Request a callback</strong>
-            <p>Send a preferred time and we&apos;ll call you to finalize the schedule.</p>
+            <p>Send a preferred time and we&apos;ll call to confirm next available options.</p>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/callback">
               Request callback
             </NavLink>
           </div>
           <div className="newsite-card">
             <strong>Request an on-site quote</strong>
-            <p>Want a final walk-through? Book an on-site visit before we schedule install.</p>
+            <p>Want a final walk-through? Request an on-site visit before installation timing is confirmed.</p>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/on-site-quote">
               Request on-site quote
             </NavLink>
@@ -122,10 +121,9 @@ const NewSiteSchedule = () => {
 
       <section className="newsite-section">
         <div className="newsite-surface">
-          <h2>Calendar scheduling (coming next)</h2>
+          <h2>Calendar request flow (coming next)</h2>
           <p>
-            We&apos;re preparing a self-serve calendar experience. Soon you&apos;ll be able to pick an installation
-            window instantly.
+            We&apos;re preparing a guided calendar request experience. For now, all installation windows are owner-confirmed after review.
           </p>
         </div>
       </section>

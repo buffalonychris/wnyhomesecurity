@@ -251,7 +251,7 @@ const QrLanding = () => {
       <main className="qr-landing">
         <section className="qr-panel">
           <h1>Estimate request received.</h1>
-          <p>Your requested estimate window has been submitted. We’ll confirm availability by text or email.</p>
+          <p>Your requested estimate window has been submitted. We’ll review your request and confirm next steps by your approved contact methods.</p>
           {failureRequestId ? <p><strong>Reference:</strong> {failureRequestId}</p> : null}
           <div className="qr-summary">
             <p><strong>Name:</strong> {formState.firstName} {formState.lastName}</p>

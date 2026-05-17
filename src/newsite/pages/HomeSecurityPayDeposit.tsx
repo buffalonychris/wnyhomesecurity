@@ -55,9 +55,9 @@ const HomeSecurityPayDeposit = () => {
       <section className="newsite-hero">
         <div>
           <span className="newsite-badge">Pay your 50% deposit</span>
-          <h1>Reserve your installation with a deposit.</h1>
+          <h1>Start your installation request with a deposit.</h1>
           <p>
-            Choose a tier below and secure your Home Security installation with a 50% deposit.
+            Choose a tier below and continue your Home Security process with a 50% deposit.
           </p>
           <p>
             Remaining balance is due on arrival (day of install) after a walkthrough confirmation.
@@ -76,7 +76,7 @@ const HomeSecurityPayDeposit = () => {
 
       <section className="newsite-section">
         <h2>Select your tier</h2>
-        <p>Pick the tier you want to reserve. Pricing is locked to your selection.</p>
+        <p>Pick the tier you want to submit for deposit. Pricing is tied to your selection.</p>
         <div className="newsite-grid">
           {homeSecurityPackages.map((pkg) => {
             const isSelected = pkg.tier === selectedTier;

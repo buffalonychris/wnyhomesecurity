@@ -36,11 +36,11 @@ const steps = [
 const faq = [
   {
     question: 'How fast can I get installed?',
-    answer: 'Most installs can be scheduled within 7-10 days after confirming your plan.',
+    answer: 'After your request is reviewed, our team confirms the next available installation window with you directly.',
   },
   {
     question: 'Is coverage supported 24/7?',
-    answer: 'Yes. Our team provides around-the-clock system oversight and concierge support.',
+    answer: 'Your system is self-monitored. If you want professional monitoring, you can add it directly with a third-party provider.',
   },
   {
     question: 'Can I add smart devices later?',

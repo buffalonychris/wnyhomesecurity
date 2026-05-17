@@ -589,7 +589,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### QR-FIX001
 - **Task ID:** QR-FIX001
 - **Task Name:** QR/Newsite Stage-Safe Claim and Status Hardening
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
 - **Purpose:** Remove QR/newsite wording or status cues that imply confirmed scheduling/install readiness before owner confirmation.
@@ -598,6 +598,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 - **Target Files:** `src/pages/QrLanding.tsx`, `src/newsite/pages/**`, `docs/audits/**`, `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** Funnel messaging only.
 - **Documentation Updates Required:** Audit delta log and register lifecycle.
+- **Completion Notes:** Implemented in `docs/audits/qr_fix001_implementation_rev01.md` with stage-safe QR/newsite copy hardening and CTA/status continuity checks.
 - **Validation Required:** Build + forbidden-claims grep + payment/scheduling promise grep.
 - **Exit Criteria:** QR/newsite payment/scheduling claims remain pending-owner-safe and guardrail-compliant.
 - **Dependencies:** FUNNEL-OPS001 audit accepted.

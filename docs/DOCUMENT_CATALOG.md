@@ -24,6 +24,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Audit implementation artifact**
 - **Notes:** Bounded to CTA/link/route continuity fixes; no Stripe/HubSpot/scheduling architecture changes.
 
+
+### `/docs/audits/qr_fix001_implementation_rev01.md`
+- **File path:** `docs/audits/qr_fix001_implementation_rev01.md`
+- **Purpose / likely role:** QR-FIX001 implementation note covering QR/newsite request-stage claim hardening and CTA/status safety updates.
+- **Authority level:** **Audit implementation artifact**
+- **Notes:** Bounded to QR/newsite copy/status/CTA hardening; preserves owner-confirmed scheduling and protected Stripe/HubSpot boundaries.
+
 ### `/docs/audits/funnel_ops001_next_task_sequence_rev01.md`
 - **File path:** `docs/audits/funnel_ops001_next_task_sequence_rev01.md`
 - **Purpose / likely role:** FUNNEL-OPS001 queue-normalization document defining bounded next-task sequencing and priority classes.
