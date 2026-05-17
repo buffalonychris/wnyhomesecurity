@@ -972,12 +972,35 @@ Rationale:
 ### QUOTE-GEN001
 - **Task ID:** QUOTE-GEN001
 - **Task Name:** Quote generation and delivery
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL / CRM / EMAIL
 - **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
 - **Purpose:** Generate quote/review output from existing selected/recommended package context and deliver customer/operator quote copy.
-- **Allowed Scope:** quote artifact/page generation using existing package context; customer quote email; operator/ownership quote email; HubSpot quote context logging; stage update only if explicitly bounded in task.
-- **Forbidden Scope:** no AI proposal generation unless explicitly authorized; no PDF generation unless explicitly authorized; no Stripe payment changes; no scheduling changes; no new HubSpot schema unless explicitly authorized.
+- **Scope:** Preserve existing `/quoteReview` wiring with safe missing-context fallback; ensure estimate-review disclaimer language is visible; implement bounded quote email endpoint (`/api/send-quote`) reusing existing Resend runtime pattern for customer + operator/ownership copies.
+- **Forbidden Scope:** No `/api/lead-signal` or `/api/support` changes; no Stripe/scheduling/SMS/reminders/autonomous booking changes; no PDF or AI proposal generation; no HubSpot schema/pipeline/property changes; no broad CRM-STAGEFLOW001 implementation.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` + `rg` audits completed.
+- **Completion Notes:** Visible site version bumped to `v1.0.60`; quote review flow confirmed wired and safe fallback retained for missing local quote artifacts; added `/api/send-quote` for estimate-summary delivery to customer and operator/ownership with review-only disclaimer language; HubSpot quote logging and stage update deferred to bounded follow-up tasks (`QUOTE-HUBSPOT001`, `QUOTE-STAGE001`) pending safe API-layer contract path and idempotent stage-transition guardrails.
+- **Next Task Recommendation:** CRM-STAGEFLOW001 only after manual QA passes.
+
+
+
+### QUOTE-HUBSPOT001
+- **Task ID:** QUOTE-HUBSPOT001
+- **Task Name:** Quote HubSpot context logging hardening
+- **Status:** READY
+- **Category:** CRM
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Add bounded quote-summary note logging through protected API-layer path when safe against existing contracts.
+- **Forbidden Scope:** No HubSpot schema/pipeline changes; no direct frontend writes; no broad CRM stage-flow automation.
+
+### QUOTE-STAGE001
+- **Task ID:** QUOTE-STAGE001
+- **Task Name:** Quote stage transition hardening
+- **Status:** READY
+- **Category:** CRM
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Bounded idempotent quote stage transitions only after safe deal identification and exact stage-ID contract validation.
+- **Forbidden Scope:** No broad CRM-STAGEFLOW001 implementation; no schema/pipeline changes; no Stripe/scheduling logic changes.
 
 ### CRM-STAGEFLOW001
 - **Task ID:** CRM-STAGEFLOW001
