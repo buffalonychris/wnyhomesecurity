@@ -1,3 +1,5 @@
+import { extractSchedulingRequestSummary } from './scheduling/_boundary';
+
 type LeadSignalRequest = any;
 
 type LeadSignalEnv = {
@@ -180,7 +182,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const leadSummary = buildQrLeadSummary(body, nowIso);
   const parsedName = splitName(body.contact);
   const submittedTimestamp = body.submittedAt || nowIso;
-  const preferredWindow = [body?.request?.preferredEstimateDate, body?.request?.preferredEstimateTimeSlot].filter(Boolean).join(' — ');
+  const schedulingSummary = extractSchedulingRequestSummary(body?.request);
+  const preferredWindow = schedulingSummary.preferredWindowText;
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';
   const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);
   const normalizedLeadSourcePlatform = normalizeLeadSourcePlatform(body?.assetSource || body?.source || body?.whereDidYouSeeUs);
@@ -196,8 +199,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `whereDidYouSeeUs=${body?.whereDidYouSeeUs || 'n/a'}`,
     `requestedHelp=${body?.request?.requestedHelp || 'n/a'}`,
     `requestDetails=${body?.request?.requestDetails || 'n/a'}`,
-    `preferredEstimateDate=${body?.request?.preferredEstimateDate || 'n/a'}`,
-    `preferredEstimateTimeSlot=${body?.request?.preferredEstimateTimeSlot || 'n/a'}`,
+    `preferredEstimateDate=${schedulingSummary.preferredEstimateDate || 'n/a'}`,
+    `preferredEstimateTimeSlot=${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`,
     `consent=${consentSummary}`,
   ].join(' | ');
   const contactNotes = [
@@ -339,8 +342,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
               `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
               `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
-              `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${body?.request?.preferredEstimateDate || 'n/a'}`,
-              `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
+              `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
+              `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
               `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
               `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
             ].join('\n');
@@ -415,8 +418,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
                 `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
                 `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
                 `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
-                `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${body?.request?.preferredEstimateDate || 'n/a'}`,
-                `preferred estimate time slot: ${body?.request?.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
+                `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
+                `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
                 `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
                 `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
               ].join('\n');

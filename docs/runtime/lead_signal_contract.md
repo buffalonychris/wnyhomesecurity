@@ -217,3 +217,13 @@ UNKNOWN / NEEDS VERIFICATION:
 - Verified by: Codex execution for T-RUNTIME005-001
 - Evidence:
   - Source/doc audit of `functions/api/lead-signal.ts`, `src/pages/QrLanding.tsx`, runtime docs, and inventory docs.
+
+## SCHED-IMPL001 Runtime Alignment Addendum
+
+Lead-signal scheduling-window extraction is now normalized through a dedicated scheduling boundary helper:
+- `functions/api/scheduling/_boundary.ts` provides request-window extraction and bounded scheduling status semantics.
+- `functions/api/lead-signal.ts` now reads preferred window fields through that helper.
+
+Behavior remains unchanged:
+- `/api/lead-signal` is still the only CRM write path.
+- Customer-facing posture remains request submitted + pending manual confirmation.
