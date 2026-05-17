@@ -1,8 +1,8 @@
 # Master Task Register
 
 Status: Active  
-Current Operational Context: CTX-SCHED-MVP-REV01  
-Controlling Step: Step-SCHED-MVP — Estimate Scheduling MVP Implementation Authority — REV01
+Current Operational Context: CTX-WNYHS-FINISH-LINE-REV01  
+Controlling Step: Step-WNYHS-FINISH-LINE — Bounded Finish-Line Execution Authority — REV01
 
 ---
 
@@ -13,6 +13,18 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 
 
+
+
+
+### FUNNEL-ARCH002
+- **Task ID:** FUNNEL-ARCH002
+- **Task Name:** Funnel architecture implementation cleanup
+- **Status:** ACTIVE
+- **Category:** FUNNEL / UX-ARCHITECTURE
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Implement approved nav/page-role cleanup from `docs/audits/funnel_arch001_rev01.md`.
+- **Allowed Scope:** remove/demote irrelevant links; align nav hierarchy; align page CTAs with final journey; keep System Planner (Preview) non-authoritative; preserve estimate/contact route behavior.
+- **Forbidden Scope:** no quote generation; no HubSpot changes; no Stripe changes; no scheduling changes; no protected runtime changes.
 
 ### CRM-CONTRACT001
 - **Task ID:** CRM-CONTRACT001
@@ -904,6 +916,58 @@ Rationale:
 
 ---
 
+
+
+### ESTIMATE-FLOW001
+- **Task ID:** ESTIMATE-FLOW001
+- **Task Name:** Estimate/contact/QR intake consolidation
+- **Status:** READY
+- **Category:** FUNNEL / LEAD
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Consolidate estimate/contact/QR intake role and page structure after FUNNEL-ARCH002.
+- **Allowed Scope:** define/implement estimate page gateway behavior; support recommended system estimate request; support selected package estimate request; support onsite estimate request; preserve `/api/lead-signal` contract.
+- **Forbidden Scope:** no quote generation; no HubSpot schema changes unless separately authorized; no Stripe changes; no scheduling changes.
+
+### QUOTE-GEN001
+- **Task ID:** QUOTE-GEN001
+- **Task Name:** Quote generation and delivery
+- **Status:** READY
+- **Category:** FUNNEL / CRM / EMAIL
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Generate quote/review output from existing selected/recommended package context and deliver customer/operator quote copy.
+- **Allowed Scope:** quote artifact/page generation using existing package context; customer quote email; operator/ownership quote email; HubSpot quote context logging; stage update only if explicitly bounded in task.
+- **Forbidden Scope:** no AI proposal generation unless explicitly authorized; no PDF generation unless explicitly authorized; no Stripe payment changes; no scheduling changes; no new HubSpot schema unless explicitly authorized.
+
+### CRM-STAGEFLOW001
+- **Task ID:** CRM-STAGEFLOW001
+- **Task Name:** CRM deal stage-flow rules
+- **Status:** READY
+- **Category:** CRM
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Define and implement deal pipeline advancement rules after quote/deposit/scheduling events.
+- **Allowed Scope:** stage transition rules; idempotent stage updates; diagnostics.
+- **Forbidden Scope:** no schema changes unless separately authorized; no Stripe verification changes; no scheduling authority changes.
+
+### QA-LAUNCH001
+- **Task ID:** QA-LAUNCH001
+- **Task Name:** Launch QA for flyer/public traffic
+- **Status:** READY
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Final public-traffic launch QA for flyer publishing.
+- **Allowed Scope:** route QA; mobile QA; estimate request QA; email QA; HubSpot QA; back/forward navigation QA; QR flyer path QA.
+- **Forbidden Scope:** no feature work unless a separate bug task is created.
+
+### SCHED-FOLLOWUP001
+- **Task ID:** SCHED-FOLLOWUP001
+- **Task Name:** Scheduling follow-up hardening queue preservation
+- **Status:** READY
+- **Category:** SCHED
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Preserve scheduling category as open for future hardening without making it current blocker.
+- **Allowed Scope:** scheduling QA/future hardening docs only unless separately activated.
+- **Forbidden Scope:** no autonomous booking; no SMS/reminders unless separately authorized; no scheduling authority model changes unless separately authorized.
+
 ## Blocked Tasks
 
 No BLOCKED tasks are currently recorded.
@@ -1010,6 +1074,32 @@ No BLOCKED tasks are currently recorded.
 - **Exit Criteria:** Current copy does not imply auto-confirmed scheduling in audited customer-facing scheduling paths; future scheduling model is documented; bounded future SCHED queue recorded.
 - **Dependencies:** IMPL009 completion context (manual-confirmation classification).
 - **Operator Decision Required:** Yes (provided in operator prompt).
+
+
+
+### CRM-DEAL002B
+- **Task ID:** CRM-DEAL002B
+- **Status:** DONE
+
+### MAIN-FUNNEL-AUDIT002
+- **Task ID:** MAIN-FUNNEL-AUDIT002
+- **Status:** DONE
+
+### MAIN-FUNNEL-FIX003A
+- **Task ID:** MAIN-FUNNEL-FIX003A
+- **Status:** DONE
+
+### NAV-BUG001
+- **Task ID:** NAV-BUG001
+- **Status:** DONE
+
+### NAV-UX001
+- **Task ID:** NAV-UX001
+- **Status:** DONE
+
+### FUNNEL-ARCH001
+- **Task ID:** FUNNEL-ARCH001
+- **Status:** DONE
 
 ## Archived Tasks
 

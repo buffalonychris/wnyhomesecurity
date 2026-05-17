@@ -2,11 +2,11 @@
 
 ## Context ID
 
-- CTX-SCHED-MVP-REV01
+- CTX-WNYHS-FINISH-LINE-REV01
 
 ## Context Name
 
-- Estimate Scheduling MVP Implementation
+- WNYHS Finish-Line Execution Context
 
 ## Status
 
@@ -14,69 +14,77 @@
 
 ## Controlling Step
 
-- Step-SCHED-MVP — Estimate Scheduling MVP Implementation Authority — REV01 (CONTROLLING)
+- Step-WNYHS-FINISH-LINE — Bounded Finish-Line Execution Authority — REV01 (CONTROLLING)
 
 ## Purpose
 
-- Authorize bounded implementation of estimate scheduling MVP tasks `SCHED-IMPL002` through `SCHED-IMPL004`.
-- Enforce implementation sequencing and controls derived from `SCHED-ARCH001` and `/docs/specs/scheduling_architecture_workflow_spec_rev01.md`.
-- Preserve current production-safe posture: estimate request/pending-confirmation only until explicitly advanced by authorized tasks.
+- Authorize remaining bounded WNYHS finish-line work across funnel architecture, estimate intake flow, quote generation, CRM stage-flow, scheduling follow-up hardening, and QA/launch-readiness.
+- Remove scheduling-only blocking posture while preserving strict task-level gating from the master task register.
+- Preserve protected runtime and governance stop conditions.
+
+## Open Workstreams (Explicit)
+
+- Scheduling remains open.
+- Funnel architecture remains open.
+- Estimate flow remains open.
+- Quote generation remains open.
+- CRM stage-flow remains open.
+- QA/release validation remains open.
+
+## Governance Enforcement
+
+- Runtime protection remains enforced.
+- Each implementation task still requires its own `ACTIVE` task-register entry before execution.
+- No task may silently expand into another task.
+- Categories are not considered closed until operator explicitly confirms closure.
 
 ## Allowed Scope
 
-- Google Calendar read-only availability for estimate scheduling.
-- Estimate appointment request creation tied to `requestId` and lead intake.
-- Owner/manual confirmation state transitions.
-- Scheduling runtime contract updates and deployment validation updates.
-- Validation for request/pending-confirmation posture and forbidden-scope checks.
+- Governance and task-register updates that activate/sequence bounded finish-line tasks.
+- Implementation only for explicitly prompted tasks that are `ACTIVE` in `/docs/system/master-task-register.md`.
+- Validation/build checks and scope-audit grep verification.
 
 ## Forbidden Scope
 
-- Install scheduling.
-- SMS or reminder automation.
-- Automatic booking or customer self-confirmation.
-- Technician dispatch or route optimization.
-- Stripe/payment behavior changes.
-- New product/package behavior.
-- Customer-facing confirmed-booking claims before owner acceptance.
+- Cross-task bundling or scope expansion beyond the active prompted task.
+- Any bypass of `/api/lead-signal` protected runtime contract.
+- Any direct frontend/client write path to HubSpot.
+- Any Stripe payment verification bypass or redirect-only authority logic.
+- Any scheduling authority rewrite beyond bounded task authorization.
 
 ## Primary Task Register
 
 - `/docs/system/master-task-register.md`
 
-## Controlling Runtime Systems
+## Protected Runtime Locks (Must Remain)
 
-- Scheduling ownership.
-- requestId lifecycle.
-- `/api/lead-signal` boundary.
-- HubSpot sync only where directly required.
-- Email notification only where directly required by pending-confirmation owner/customer flow.
-
-## Controlling Funnel / Route Scope
-
-- Estimate scheduling only.
-- Existing scheduling route/API topology established by `SCHED-IMPL001`.
-- `GET /api/scheduling/availability` as the `SCHED-IMPL002` target.
+- `/api/lead-signal` protected runtime boundary.
+- HubSpot contact/deal/note/task sync protections.
+- `requestId` lifecycle protections.
+- Resend customer/operator email protections.
+- Stripe verification protections.
+- Scheduling owner-confirmation authority.
+- HubSpot pipeline/stage ID locks:
+  - Pipeline ID: `2282258169`
+  - New Estimate Request stage ID: `3680633583`
 
 ## Required Validation
 
+- `npm run lint`
+- `npm run test -- --run`
 - `npm run build`
-- `npm run lint` (if available)
-- `npm run test` (if available)
-- `npm run typecheck` (if available)
-- Route/API validation checks for authorized task scope.
-- Forbidden-scope/content searches.
-- No calendar-write verification for `SCHED-IMPL002`.
-- No SMS/reminder/install-scheduling verification for this context transition task.
+- `git diff -- docs src`
+- `rg -n "CTX-WNYHS-FINISH-LINE-REV01|FUNNEL-ARCH002|ESTIMATE-FLOW001|QUOTE-GEN001|CRM-STAGEFLOW001|QA-LAUNCH001|SCHED-FOLLOWUP001" docs/system docs/audits`
+- `rg -n "lead-signal|requestId|pipeline|dealstage|HubSpot|Stripe|Resend|scheduling|SMS|reminder|autonomous booking" docs/system docs/audits src functions`
 
 ## Historical Lineage (Reference Only)
 
+- CTX-SCHED-MVP-REV01 and Step-SCHED-MVP remain preserved lineage for scheduling MVP authorization history.
 - CTX-STEP102-QRLANDING-REV01 and Step102 remain preserved for QR funnel historical/supporting lineage.
 - SCHED001 and SCHED-ARCH001 remain supporting architecture/specification lineage.
-- Step103 and Step101 remain preserved reference lineage.
 
 ## Enforcement Rules
 
 - Exactly one controlling context governs implementation execution at a time.
-- Tasks must be ACTIVE in `/docs/system/master-task-register.md` before execution.
+- Tasks must be `ACTIVE` in `/docs/system/master-task-register.md` before execution.
 - Any request outside this context requires a context/task-register revision before execution.
