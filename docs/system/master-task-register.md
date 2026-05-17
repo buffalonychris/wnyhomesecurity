@@ -841,6 +841,18 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Forbidden Scope:** Stripe, SMS, reminders, install scheduling
 - **Validation:** `npm run lint`; `npm run test -- --run`; required `rg` mapping/contract checks.
 
+
+### NAV-UX001
+- **Task ID:** NAV-UX001
+- **Task Name:** Route transition page-top normalization + intentional form persistence/reset
+- **Status:** DONE
+- **Category:** FUNNEL / UX-STABILITY
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Scope:** Normalize major customer-facing route transitions to open at page top; preserve existing persisted fit-check behavior; provide clear reset behavior for persisted fit-check state.
+- **Forbidden Scope:** No `/api/lead-signal`, HubSpot runtime/schema/pipeline, requestId lifecycle, Resend, Stripe, scheduling authority, quote-generation, or CRM stage-flow changes.
+- **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `rg` + `git diff` audits.
+- **Completion Notes:** Bumped visible version to `v1.0.54`; added route transition manager for major public routes (home/packages/discovery/contact/system planner/support) with hash-safe behavior; retained fit-check persistence and reset, normalized label to `Start Over`; preserved recommendation/query/contact propagation and protected runtime boundaries; added audit doc `docs/audits/nav_ux001_rev01.md`.
+
 ## Backlog Tasks
 
 ### NAV-BUG001
