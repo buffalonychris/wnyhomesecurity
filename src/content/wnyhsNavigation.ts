@@ -36,7 +36,6 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
     { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
     { id: 'estimate', label: 'Estimate', href: '/contact?vertical=home-security', matchPath: '/contact' },
     { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
-    { id: 'planner', label: 'System Planner (Preview)', href: HOME_SECURITY_ROUTES.planner, matchPath: '/home-security/planner' },
   ],
   more: [
     { id: 'about', label: 'About', href: '/about?vertical=home-security', matchPath: '/about' },
@@ -44,6 +43,7 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
     { id: 'privacy', label: 'Privacy', href: '/privacy?vertical=home-security', matchPath: '/privacy' },
     { id: 'terms', label: 'Terms', href: '/terms?vertical=home-security', matchPath: '/terms' },
     { id: 'support-footer', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
+    { id: 'planner', label: 'System Planner (Preview)', href: HOME_SECURITY_ROUTES.planner, matchPath: '/home-security/planner' },
   ],
 };
 

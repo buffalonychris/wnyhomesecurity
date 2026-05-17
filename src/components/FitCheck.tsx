@@ -774,7 +774,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
             )}
             {isHomeSecurity && (
               <Link to={plannerHref} className="btn btn-secondary" onClick={handlePlannerOpen}>
-                Precision Planner (optional, usually later)
+                System Planner (Preview, optional)
               </Link>
             )}
             <button type="button" className="btn btn-secondary" onClick={() => setShowCompletedAnswers((prev) => !prev)}>

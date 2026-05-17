@@ -19,7 +19,6 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
   }, [location.pathname, location.search]);
 
   const fitCheckLink = `/discovery?vertical=home-security${pathParam}`;
-  const quoteLink = `/quote?vertical=home-security${pathParam}`;
 
   return (
     <header className="wny-hs-nav">
@@ -61,28 +60,16 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
           <NavLink to="/packages?vertical=home-security" className={navLinkClass}>
             Packages
           </NavLink>
-          <NavLink to="/comparison?vertical=home-security" className={navLinkClass}>
-            Comparison
-          </NavLink>
-          <NavLink to="/home-security/whats-included" className={navLinkClass}>
-            What’s Included
-          </NavLink>
-          <NavLink to="/home-security/dashboard" className={navLinkClass}>
-            Dashboard
-          </NavLink>
-          <NavLink to={quoteLink} className={navLinkClass}>
-            Quote Builder
-          </NavLink>
           <NavLink to={fitCheckLink} className={navLinkClass}>
             Fit Check
           </NavLink>
-          <NavLink to="/home-security/planner?vertical=home-security" className={navLinkClass}>
-            System Planner (Preview)
+          <NavLink to="/contact?vertical=home-security" className={navLinkClass}>
+            Estimate
           </NavLink>
         </nav>
         <div className="wny-hs-nav-secondary" aria-label="Home Security support navigation">
           <details className="wny-hs-nav-dropdown">
-            <summary>More</summary>
+            <summary>Support & More</summary>
             <div className="wny-hs-nav-dropdown-panel">
               <NavLink to="/contact?vertical=home-security" className={navLinkClass}>
                 Contact
@@ -92,6 +79,9 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
               </NavLink>
               <NavLink to="/support?vertical=home-security" className={navLinkClass}>
                 Support
+              </NavLink>
+              <NavLink to="/home-security/planner?vertical=home-security" className={navLinkClass}>
+                System Planner (Preview)
               </NavLink>
               <details className="wny-hs-nav-subdropdown">
                 <summary>Legal</summary>
