@@ -842,6 +842,18 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Validation:** `npm run lint`; `npm run test -- --run`; required `rg` mapping/contract checks.
 
 
+
+
+### FUNNEL-ARCH001
+- **Task ID:** FUNNEL-ARCH001
+- **Task Name:** Full funnel/page/nav architecture cleanup plan
+- **Status:** DONE
+- **Category:** FUNNEL / GOV / UX-ARCHITECTURE
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (documentation/audit-only planning gate before quote-generation implementation)
+- **Scope:** Inspect route/page/nav/CTA architecture; define final journey, page roles, nav hierarchy, estimate role, planner role, duplicate/disruptive link findings, and bounded implementation sequence.
+- **Forbidden Scope:** No UI/route/runtime/API/HubSpot/Stripe/scheduling implementation changes beyond visible version bump; no QUOTE-GEN001 or CRM-STAGEFLOW001 implementation.
+- **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `git diff` + `rg` governance checks.
+- **Completion Notes:** Bumped visible site version to `v1.0.55`; added architecture audit doc `docs/audits/funnel_arch001_rev01.md` with dominant journey and alternate paths, page-role matrix, nav hierarchy recommendations, estimate/planner role decisions, duplicate/disruptive link findings, risk analysis, and bounded implementation order (`FUNNEL-ARCH002` → `ESTIMATE-FLOW001` → `QUOTE-GEN001` → `CRM-STAGEFLOW001`); protected runtime and HubSpot/Stripe logic unchanged.
 ### NAV-UX001
 - **Task ID:** NAV-UX001
 - **Task Name:** Route transition page-top normalization + intentional form persistence/reset
