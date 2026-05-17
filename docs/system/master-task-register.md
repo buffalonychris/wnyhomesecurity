@@ -11,6 +11,51 @@ Controlling Step: Step-SCHED-MVP — Estimate Scheduling MVP Implementation Auth
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle.
 
+
+### DESIGN-SKINNING
+- **Task Family ID:** DESIGN-SKINNING
+- **Category:** DESIGN
+- **Controlling Context:** CTX-BRANDING-UX-REV01
+- **Status:** ACTIVE
+- **Purpose:** Authorize ongoing bounded visual/branding/skinning refinement work across WNY Home Security funnels and operational UI surfaces without repeated governance activation overhead.
+- **Allowed Scope:**
+  - visual skinning
+  - branding alignment
+  - typography refinement
+  - spacing/layout refinement
+  - responsive polish
+  - semantic-token-safe color/styling work
+  - conversion-oriented UX refinement
+  - visual hierarchy improvements
+  - animation polish
+  - landing page optimization
+  - QR funnel visual refinement
+  - yard sign / flyer / visual asset integration support
+  - iconography refinement
+  - component visual consistency
+  - design-system refinement
+  - token-safe accessibility improvements
+- **Forbidden Scope:**
+  - no Stripe/payment logic changes unless separately authorized
+  - no scheduling architecture changes unless separately authorized
+  - no HubSpot schema/runtime changes unless separately authorized
+  - no backend security/auth changes unless separately authorized
+  - no destructive repo cleanup
+  - no silent architectural rewrites
+  - no claims violating guardrails
+  - no hardcoded styling outside approved semantic token system
+  - no install scheduling implementation unless separately authorized
+  - no SMS/reminder systems unless separately authorized
+- **Execution Rule:** Multiple DESIGN-SKINNING subtasks may exist simultaneously, but Codex may execute only the explicitly named task in the active prompt.
+- **Completion Rule:** This task family remains ACTIVE until the operator explicitly declares the branding/skinning initiative complete.
+- **Example Subtasks (illustrative only):**
+  - DESIGN-SKIN001 — Homepage visual refinement
+  - DESIGN-SKIN002 — QR funnel conversion polish
+  - DESIGN-SKIN003 — Mobile responsiveness polish
+  - DESIGN-SKIN004 — Typography/system refinement
+  - DESIGN-SKIN005 — Yard sign/print branding alignment
+  - DESIGN-SKIN006 — Animation/motion polish
+
 ### SCHED-IMPL002
 - **Task ID:** SCHED-IMPL002
 - **Task Name:** Shared Google Calendar Availability Read
