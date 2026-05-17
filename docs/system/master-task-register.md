@@ -642,8 +642,8 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 ### LEAD-FIX001
 - **Task ID:** LEAD-FIX001
-- **Task Name:** Pending-Owner Status Visibility Normalization
-- **Status:** READY
+- **Task Name:** Lead Data Continuity / Funnel Intelligence Preservation
+- **Status:** DONE
 - **Category:** LEAD
 - **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
 - **Purpose:** Normalize customer-visible pending-owner states and request lifecycle visibility across funnel variants.
@@ -881,3 +881,6 @@ No ARCHIVED tasks are currently recorded.
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Completion Notes:** Added idempotency guards for repeated owner confirmation side effects, persisted durable customer contact fields at appointment request creation, and added calendar/email audit metadata persistence with focused tests.
+
+
+- **Completion Notes:** LEAD-FIX001 implemented canonical sendLeadSignal funnelContext continuity capture from existing funnel/newsite storage and URL metadata without HubSpot schema changes; version bumped to v1.0.43; validation + build completed.
