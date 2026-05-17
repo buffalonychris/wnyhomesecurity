@@ -32,7 +32,7 @@ const HomeSecurityPaymentCanceled = () => {
 
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Retry</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Return to the deposit step to restart checkout or review the quoted total.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>

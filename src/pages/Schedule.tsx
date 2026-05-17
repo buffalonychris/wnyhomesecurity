@@ -166,8 +166,8 @@ const Schedule = () => {
       <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1rem' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Schedule</div>
-          <h1 style={{ margin: 0, color: '#fff7e6' }}>We couldn’t find your saved quote details for scheduling.</h1>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>Please return to quote review to reload your quote, then continue to schedule.</p>
+          <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We couldn’t find your saved quote details for scheduling.</h1>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>Please return to quote review to reload your quote, then continue to schedule.</p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link className="btn btn-primary" to="/quoteReview">Return to Quote Review</Link>
             <Link className="btn btn-secondary" to="/quote">Start New Quote</Link>
@@ -203,8 +203,8 @@ const Schedule = () => {
             ) : (
               <>
                 <div className="badge">Schedule</div>
-                <h1 style={{ margin: 0, color: '#fff7e6' }}>Schedule installation</h1>
-                <p style={{ margin: 0, color: '#c8c0aa' }}>Confirm your address and preferred windows for installation.</p>
+                <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>Schedule installation</h1>
+                <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>Confirm your address and preferred windows for installation.</p>
               </>
             )}
           </div>
@@ -214,7 +214,7 @@ const Schedule = () => {
             </button>
           )}
         </div>
-        <div style={{ display: 'grid', gap: '0.35rem', color: '#c8c0aa' }}>
+        <div style={{ display: 'grid', gap: '0.35rem', color: 'var(--color-text-secondary)' }}>
           <strong>Quote reference</strong>
           <small>
             {quoteRef} • {selectedPackage.name} — One-time total {formatCurrency(quoteContext.pricing.total)} (add-ons: {
@@ -232,17 +232,17 @@ const Schedule = () => {
       {isHomeSecurity && (
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <div className="badge">Need scheduling help?</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Email our scheduling team with your preferred windows and city so we can lock in the install window.
           </p>
-          <a href={scheduleMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+          <a href={scheduleMailto} style={{ color: 'var(--color-accent)', fontWeight: 700 }}>
             Email {wnyhsContact.emails.schedule}
           </a>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <a href={buildTel()} style={{ color: '#f5c042' }}>
+            <a href={buildTel()} style={{ color: 'var(--color-accent)' }}>
               Call {wnyhsContact.phone.display}
             </a>
-            <a href={buildSms('Hi! I need help scheduling my Home Security install.')} style={{ color: '#f5c042' }}>
+            <a href={buildSms('Hi! I need help scheduling my Home Security install.')} style={{ color: 'var(--color-accent)' }}>
               Text {wnyhsContact.phone.display}
             </a>
           </div>
@@ -261,22 +261,22 @@ const Schedule = () => {
       <div className="card" style={{ display: 'grid', gap: '1.25rem' }}>
         <div style={{ display: 'grid', gap: '0.35rem' }}>
           <div className="badge">Installation details</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Provide your preferred windows and access notes. This captures a structured request for the WNY Home Security installer workflow.
           </p>
         </div>
 
         {error && (
-          <div className="card" style={{ border: '1px solid rgba(255, 99, 99, 0.4)', color: '#ffd7d7', background: 'rgba(255, 99, 99, 0.1)' }}>
+          <div className="card" style={{ border: '1px solid var(--color-danger-border)', color: 'var(--color-danger-text)', background: 'var(--color-danger-surface)' }}>
             {error}
           </div>
         )}
 
         {submitted && flowState.scheduleRequest ? (
-          <div className="card" style={{ display: 'grid', gap: '0.5rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
+          <div className="card" style={{ display: 'grid', gap: '0.5rem', border: '1px solid var(--color-accent-border)' }}>
             <div className="badge">Request submitted</div>
-            <h3 style={{ margin: 0, color: '#fff7e6' }}>We received your scheduling request</h3>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <h3 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We received your scheduling request</h3>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Thanks for submitting. A coordinator will review your windows and reach out to confirm. Reference timestamp:{' '}
               {flowState.scheduleRequest.requestedAt}.
             </p>
@@ -302,7 +302,7 @@ const Schedule = () => {
                 Verify documents
               </Link>
             </div>
-            <small style={{ color: '#c8c0aa' }}>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
               Status: {flowState.scheduleRequest.scheduleStatus} • Source: {flowState.scheduleRequest.scheduleSource}
             </small>
           </div>
@@ -317,7 +317,7 @@ const Schedule = () => {
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="Jane Caregiver"
                 required
-                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
               />
             </label>
             <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -327,7 +327,7 @@ const Schedule = () => {
                 onChange={(e) => setCustomerPhone(e.target.value)}
                 placeholder="(555) 555-1212"
                 required
-                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
               />
             </label>
             <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -336,7 +336,7 @@ const Schedule = () => {
                 value={customerEmail}
                 onChange={(e) => setCustomerEmail(e.target.value)}
                 placeholder="care@kickassfamily.com"
-                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
               />
             </label>
           </div>
@@ -351,7 +351,7 @@ const Schedule = () => {
                   onChange={(e) => setInstallStreet1(e.target.value)}
                   placeholder="123 Care Street"
                   required
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
               <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -360,7 +360,7 @@ const Schedule = () => {
                   value={installStreet2}
                   onChange={(e) => setInstallStreet2(e.target.value)}
                   placeholder="Unit / Apt"
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
               <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -370,7 +370,7 @@ const Schedule = () => {
                   onChange={(e) => setInstallCity(e.target.value)}
                   placeholder="Brooklyn"
                   required
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
               <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -380,7 +380,7 @@ const Schedule = () => {
                   onChange={(e) => setInstallState(e.target.value)}
                   placeholder="NY"
                   required
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
               <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -390,7 +390,7 @@ const Schedule = () => {
                   onChange={(e) => setInstallZip(e.target.value)}
                   placeholder="10001"
                   required
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
             </div>
@@ -406,7 +406,7 @@ const Schedule = () => {
                   value={preferredDate1}
                   onChange={(e) => setPreferredDate1(e.target.value)}
                   required
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
               <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -415,7 +415,7 @@ const Schedule = () => {
                   value={preferredTimeWindow1}
                   onChange={(e) => setPreferredTimeWindow1(e.target.value)}
                   required
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 >
                   <option value="" disabled>
                     Select a window
@@ -433,7 +433,7 @@ const Schedule = () => {
                   type="date"
                   value={preferredDate2}
                   onChange={(e) => setPreferredDate2(e.target.value)}
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 />
               </label>
               <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -441,7 +441,7 @@ const Schedule = () => {
                 <select
                   value={preferredTimeWindow2}
                   onChange={(e) => setPreferredTimeWindow2(e.target.value)}
-                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                  style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
                 >
                   <option value="">None</option>
                   {timeWindowOptions.map((option) => (
@@ -461,7 +461,7 @@ const Schedule = () => {
               onChange={(e) => setAccessNotes(e.target.value)}
               placeholder="Parking, entry instructions, stairs, pets, gate codes, caregiver availability"
               rows={4}
-              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid var(--color-accent-border)', background: 'var(--color-surface-strong)', color: 'var(--color-text-primary)' }}
             />
           </div>
 
@@ -470,7 +470,7 @@ const Schedule = () => {
               {isSubmitting ? 'Submitting request…' : isHomeSecurity ? 'Confirm Installation' : 'Schedule Installation'}
             </button>
             {!schedulingAllowed && (
-              <small style={{ color: '#c8c0aa' }}>
+              <small style={{ color: 'var(--color-text-secondary)' }}>
                 Scheduling opens after agreement acceptance and a confirmed deposit.
               </small>
             )}
@@ -496,36 +496,36 @@ const Schedule = () => {
         </ul>
       </div>
 
-      <div className="card" style={{ display: 'grid', gap: '0.75rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
+      <div className="card" style={{ display: 'grid', gap: '0.75rem', border: '1px solid var(--color-accent-border)' }}>
         <div className="badge">Quote, agreement, deposit</div>
         <div style={{ display: 'grid', gap: '0.35rem' }}>
           <strong>Package</strong>
-          <small style={{ color: '#c8c0aa' }}>
+          <small style={{ color: 'var(--color-text-secondary)' }}>
             <TierBadge tierId={selectedPackage.id} vertical={vertical} /> {selectedPackage.name} — {formatCurrency(selectedPackage.basePrice)}
           </small>
-          <small style={{ color: '#c8c0aa' }}>
+          <small style={{ color: 'var(--color-text-secondary)' }}>
             Add-ons: {addOnLabels.length ? addOnLabels.join(', ') : 'None selected'}
           </small>
-          <small style={{ color: '#c8c0aa' }}>One-time total: {formatCurrency(quoteContext.pricing.total)}</small>
+          <small style={{ color: 'var(--color-text-secondary)' }}>One-time total: {formatCurrency(quoteContext.pricing.total)}</small>
         </div>
         <div style={{ display: 'grid', gap: '0.35rem' }}>
           <strong>Agreement acceptance</strong>
           {acceptance?.accepted ? (
-            <small style={{ color: '#c8c0aa' }}>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
               Accepted by {acceptance.fullName ?? 'Customer'} on {acceptance.acceptanceDate ?? 'date not provided'}
             </small>
           ) : (
-            <small style={{ color: '#c8c0aa' }}>Not yet accepted</small>
+            <small style={{ color: 'var(--color-text-secondary)' }}>Not yet accepted</small>
           )}
         </div>
         <div style={{ display: 'grid', gap: '0.35rem' }}>
           <strong>Deposit status</strong>
-          <small style={{ color: '#c8c0aa' }}>{depositStatus}</small>
+          <small style={{ color: 'var(--color-text-secondary)' }}>{depositStatus}</small>
         </div>
         {flowState.scheduleRequest && (
           <div style={{ display: 'grid', gap: '0.35rem' }}>
             <strong>Last submitted scheduling request</strong>
-            <small style={{ color: '#c8c0aa' }}>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
               Requested at {flowState.scheduleRequest.requestedAt} • Status: {flowState.scheduleRequest.scheduleStatus}
             </small>
           </div>
