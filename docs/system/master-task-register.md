@@ -17,6 +17,28 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 
 
+
+### SUPPORT-FLOW001
+- **Task ID:** SUPPORT-FLOW001
+- **Task Name:** Support page intake wiring / support request handling
+- **Status:** DONE
+- **Category:** SUPPORT / OPS
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Wire support form to dedicated `/api/support`; send operator support notifications and customer acknowledgement using existing email runtime; maintain strict runtime separation from estimate flow.
+- **Forbidden Scope:** No QUOTE-GEN001/CRM-STAGEFLOW001/SCHED-FOLLOWUP001 work; no `/api/lead-signal` changes; no HubSpot estimate pipeline/stage/requestId/Stripe/scheduling authority changes.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` + `rg` audits completed.
+- **Completion Notes:** Support form backend endpoint added at `/api/support`; frontend submission UX hardened with explicit success/error messaging; operator notification + customer acknowledgement implemented via existing Resend runtime env pattern; HubSpot support write deferred for separate task; version bumped to `v1.0.59`.
+- **Next Task Recommendation:** QUOTE-GEN001 only after SUPPORT-FLOW001 manual QA pass.
+
+### SUPPORT-HUBSPOT001
+- **Task ID:** SUPPORT-HUBSPOT001
+- **Task Name:** Optional HubSpot ticket/task support-request sync
+- **Status:** READY
+- **Category:** SUPPORT / CRM
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Optional bounded support-request to HubSpot ticket/task sync only if contract-safe without estimate pipeline impact.
+- **Forbidden Scope:** No estimate deal-stage automation changes; no schema/property/pipeline changes without explicit revision.
+
 ### FITCHECK-CTA001
 - **Task ID:** FITCHECK-CTA001
 - **Task Name:** Recommendation-state CTA hierarchy cleanup
