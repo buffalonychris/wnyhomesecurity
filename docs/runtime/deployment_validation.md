@@ -112,7 +112,7 @@ Validate immediately after deployment:
 | Stripe webhook delivery | Inspect webhook deliveries in Stripe dashboard | Signed webhook deliveries visible and verifiable | Yes | PARTIAL |
 | HubSpot sync | Validate structured `hubspot` status and CRM record effects | Partial/full sync outcomes visible and diagnosable | Yes | PARTIAL |
 | Email notification | Validate notification attempt + inbox receipt for test event | Delivery result visible; failures surfaced | Yes | PARTIAL |
-| Scheduling request flow | Submit scheduling-request metadata through lead flow | Request state remains “requested/pending confirmation” until operator action | Yes | PARTIAL |
+| Scheduling request flow | Submit scheduling-request metadata through lead flow | Request state remains pending confirmation until operator action, then may transition to CONFIRMED with post-confirmation calendar write attempt | Yes | PARTIAL |
 
 No deployment/smoke automation is claimed in this SOP unless separately proven and documented.
 

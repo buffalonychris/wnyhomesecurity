@@ -17,7 +17,7 @@ Read-only availability lookup for estimate scheduling via `GET /api/scheduling/a
 ## Behavior
 - When configured and healthy: returns normalized busy windows and computed available windows.
 - On config/API failure: returns safe unavailable response with manual-confirmation fallback message.
-- No calendar writes are performed.
+- Calendar writes are permitted only after owner confirmation via `POST /api/scheduling/confirm` and never during availability or request capture.
 
 ## Security
 - Credentials are server-side only in Pages Functions env.
@@ -38,8 +38,12 @@ Failure:
 - `availabilityUnavailable: true`
 - manual-confirmation fallback message
 
+## Confirmed Write Boundary
+- `POST /api/scheduling/confirm` may attempt Google Calendar event creation only after appointment state transitions to `CONFIRMED`.
+- Calendar write failure never rolls back `CONFIRMED` + audit fields and returns safe diagnostics only.
+
 ## Out of Scope
-- Event creation
+- Event creation before owner confirmation
 - Appointment confirmation
 - Owner assignment/acceptance
 - SMS/reminders/install scheduling

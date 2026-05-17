@@ -1,5 +1,6 @@
 import { SCHEDULING_STATUSES, buildSchedulingBoundaryDiagnostics } from './_boundary';
-import { confirmAppointmentRequestByRequestId } from './appointmentRequestStore';
+import { attachCalendarEventMetadataByRequestId, confirmAppointmentRequestByRequestId } from './appointmentRequestStore';
+import { createGoogleCalendarEventAfterConfirmation } from './googleCalendarEvents';
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
@@ -30,11 +31,52 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     return json({ ok: false, errorCode: 'REQUEST_NOT_FOUND', userMessage: 'No appointment request exists for the provided requestId.' }, 404);
   }
 
+  const timezone = 'America/New_York';
+  const start = appointmentRequest.preferredEstimateDate
+    ? new Date(`${appointmentRequest.preferredEstimateDate}T14:00:00-04:00`).toISOString()
+    : new Date().toISOString();
+  const end = new Date(new Date(start).getTime() + 60 * 60 * 1000).toISOString();
+
+  const calendarWrite = await createGoogleCalendarEventAfterConfirmation({
+    env,
+    requestId,
+    summary: `WNYHS Estimate Request ${requestId}`,
+    description: [
+      `requestId: ${requestId}`,
+      `preferredWindow: ${appointmentRequest.preferredWindowText}`,
+      `ownerConfirmedBy: ${confirmedBy}`,
+    ].join(' | '),
+    start,
+    end,
+    timezone,
+  });
+
+  let updatedAppointmentRequest = appointmentRequest;
+  if (calendarWrite.ok) {
+    const storedWithCalendar = await attachCalendarEventMetadataByRequestId({
+      requestId,
+      calendarEventId: calendarWrite.calendarEventId,
+      calendarEventHtmlLink: calendarWrite.calendarEventHtmlLink,
+      calendarEventCreatedAt: calendarWrite.calendarEventCreatedAt,
+      env,
+    });
+    if (storedWithCalendar) updatedAppointmentRequest = storedWithCalendar;
+  } else {
+    console.warn('[scheduling:confirm] calendar event creation failed after owner confirmation', {
+      requestId,
+      errorCode: calendarWrite.errorCode,
+      httpStatus: calendarWrite.httpStatus,
+    });
+  }
+
   return json({
     ok: true,
     requestId,
     schedulingStatus: SCHEDULING_STATUSES.CONFIRMED,
-    appointmentRequest,
+    appointmentRequest: updatedAppointmentRequest,
+    calendarWrite: calendarWrite.ok
+      ? { ok: true, calendarEventId: calendarWrite.calendarEventId }
+      : { ok: false, errorCode: calendarWrite.errorCode, message: calendarWrite.safeMessage, httpStatus: calendarWrite.httpStatus },
     message: 'Estimate appointment request confirmed by owner action.',
     boundaries: buildSchedulingBoundaryDiagnostics(),
   });
