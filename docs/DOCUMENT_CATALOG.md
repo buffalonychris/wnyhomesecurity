@@ -311,3 +311,5 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **SUPPORTING SPECIFICATION (implementation target)**
 - **Lineage status:** Derived from SCHED001 runtime docs/audit; does not override current production manual-confirmation posture.
 - **Notes:** Documentation-only architecture/workflow authority for future bounded SCHED-IMPL tasks.
+
+- `docs/audits/lead_fix001_implementation_rev01.md` — LEAD-FIX001 continuity hardening implementation record.
