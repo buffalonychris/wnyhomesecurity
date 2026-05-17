@@ -25,6 +25,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Bounded to CTA/link/route continuity fixes; no Stripe/HubSpot/scheduling architecture changes.
 
 
+
+### `/docs/audits/copy_fix001_implementation_rev01.md`
+- **File path:** `docs/audits/copy_fix001_implementation_rev01.md`
+- **Purpose / likely role:** COPY-FIX001 implementation note covering claim-safe copy sweep corrections across main/newsite/shared funnel messaging.
+- **Authority level:** **Audit implementation artifact**
+- **Notes:** Bounded copy/CTA/status wording hardening only; preserves Stripe/HubSpot/scheduling architecture boundaries.
+
 ### `/docs/audits/qr_fix001_implementation_rev01.md`
 - **File path:** `docs/audits/qr_fix001_implementation_rev01.md`
 - **Purpose / likely role:** QR-FIX001 implementation note covering QR/newsite request-stage claim hardening and CTA/status safety updates.

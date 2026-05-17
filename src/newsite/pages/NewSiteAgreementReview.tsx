@@ -132,7 +132,7 @@ const NewSiteAgreementReview = () => {
       <section className="newsite-section">
         <div className="newsite-surface">
           <h2>Next steps</h2>
-          <p>When you&apos;re ready, place your deposit to reserve your installation.</p>
+          <p>When you&apos;re ready, place your deposit to move to owner-confirmed scheduling review.</p>
           <div className="newsite-cta-row">
             <NavLink className="newsite-btn" to="/newsite/home-security/pay-deposit">
               Pay deposit

@@ -607,7 +607,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### COPY-FIX001
 - **Task ID:** COPY-FIX001
 - **Task Name:** Forbidden Claim Sweep and Approved Phrasing Matrix
-- **Status:** READY
+- **Status:** DONE
 - **Category:** COPY
 - **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
 - **Purpose:** Normalize prohibited claim handling and define approved replacements for future funnel copy updates.
@@ -616,6 +616,8 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 - **Target Files:** `docs/audits/**`, `docs/specs/**`, `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None (documentation/copy governance).
 - **Documentation Updates Required:** Add approved-phrasing matrix reference and update audit register links.
+- **Execution Lifecycle:** Promoted READY -> ACTIVE -> DONE in COPY-FIX001 implementation REV01 after bounded copy sweep and validation.
+- **Completion Notes:** Implemented in `docs/audits/copy_fix001_implementation_rev01.md` with claim-safe copy rewrites across main, newsite, and shared customer-facing surfaces.
 - **Validation Required:** Claim-term grep scans + build.
 - **Exit Criteria:** Forbidden claims inventory resolved into approved phrasing matrix and actionable file-level remediation map.
 - **Dependencies:** FUNNEL-OPS001 audit accepted.

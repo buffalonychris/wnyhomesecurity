@@ -33,7 +33,7 @@ const PaymentProcessing = () => {
       <div className="card-grid" style={{ alignItems: 'start' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Stripe deposit checkout</div>
-          <h1 style={{ margin: 0, color: '#fff7e6' }}>Pay the deposit to reserve your install date</h1>
+          <h1 style={{ margin: 0, color: '#fff7e6' }}>Pay the deposit to move to confirmation</h1>
           <p style={{ margin: 0, color: '#c8c0aa' }}>
             Secure checkout will be handled by Stripe. Card entry, Apple Pay, and Google Pay are supported so your deposit can be captured without exposing card data to {brandShort}.
           </p>
@@ -127,7 +127,7 @@ const PaymentProcessing = () => {
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <div className="badge">Payment terms</div>
           <p style={{ margin: 0, color: '#c8c0aa' }}>
-            A deposit reserves your install date. The remaining balance is due when we arrive, before installation begins. This
+            A deposit confirms intent and starts owner review for your requested visit window. The remaining balance is due when we arrive, before installation begins. This
             avoids payment issues after work is complete and keeps your install day on schedule.
           </p>
         </div>
