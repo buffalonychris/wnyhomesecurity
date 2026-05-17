@@ -18,6 +18,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/`
 
+
+### `/docs/audits/email_fix001_implementation_rev01.md`
+- **File path:** `docs/audits/email_fix001_implementation_rev01.md`
+- **Purpose / likely role:** EMAIL-FIX001 implementation note covering customer/operator email trigger inventory, recipient routing verification, requestId context visibility, and bounded Resend-path hardening.
+- **Authority level:** **Audit implementation artifact**
+- **Notes:** Bounded to existing email runtime/trigger/template hardening; preserves HubSpot/Stripe/scheduling architecture boundaries.
+
 ### `/docs/audits/funnel_fix001_implementation_rev01.md`
 - **File path:** `docs/audits/funnel_fix001_implementation_rev01.md`
 - **Purpose / likely role:** FUNNEL-FIX001 implementation note covering CTA routing corrections and stage continuity normalization.
