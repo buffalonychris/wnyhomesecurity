@@ -692,14 +692,14 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
               {showCompletedAnswers ? 'Hide my answers' : 'Review my answers'}
             </button>
           ) : null}
-          <button type="button" className="btn btn-secondary" onClick={handleReset}>
+          <button type="button" className="btn btn-link" onClick={handleReset}>
             Start Over
           </button>
         </div>
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button type="button" className={submitClassName} disabled={!canSubmit} onClick={handleGenerateQuote}>
-              View Recommended System
+              Continue To Estimate Request
             </button>
           </div>
         )}
@@ -752,34 +752,40 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            {config.tiers[result.tier].ctas.map((cta) => {
-              const tierKey = result.tier.toLowerCase();
-              const to =
-                cta.label === 'Continue To Estimate Request' && discoveryContextParams
-                  ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
-                  : cta.label === 'Request My Estimate' && discoveryContextParams
+          <div style={{ display: 'grid', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              {config.tiers[result.tier].ctas.map((cta) => {
+                const tierKey = result.tier.toLowerCase();
+                const to =
+                  cta.label === 'Continue To Estimate Request' && discoveryContextParams
                     ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
                     : cta.href;
-              return (
-              <Link key={cta.label} to={to} className={buttonClassByVariant[cta.variant]}>
-                {cta.label}
-              </Link>
-              );
-            })}
-            {isHomeSecurity && (
-              <Link to="/packages?vertical=home-security" className="btn btn-link">
-                Change package
-              </Link>
-            )}
-            {isHomeSecurity && (
-              <Link to={plannerHref} className="btn btn-secondary" onClick={handlePlannerOpen}>
-                System Planner (Preview, optional)
-              </Link>
-            )}
-            <button type="button" className="btn btn-secondary" onClick={() => setShowCompletedAnswers((prev) => !prev)}>
-              {showCompletedAnswers ? 'Hide my answers' : 'Edit answers'}
-            </button>
+                return (
+                  <Link key={cta.label} to={to} className={buttonClassByVariant[cta.variant]}>
+                    {cta.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              {isHomeSecurity && (
+                <Link to="/packages?vertical=home-security" className="btn btn-link">
+                  Change package
+                </Link>
+              )}
+              {isHomeSecurity && (
+                <Link to={plannerHref} className="btn btn-link" onClick={handlePlannerOpen}>
+                  System Planner (Preview, optional)
+                </Link>
+              )}
+              <button type="button" className="btn btn-link" onClick={() => setShowCompletedAnswers((prev) => !prev)}>
+                {showCompletedAnswers ? 'Hide my answers' : 'Review my answers'}
+              </button>
+              <button type="button" className="btn btn-link" onClick={handleReset}>
+                Start Over
+              </button>
+            </div>
           </div>
         </section>
       ) : null}

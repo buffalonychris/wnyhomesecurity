@@ -16,6 +16,19 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 
 
+
+### FITCHECK-CTA001
+- **Task ID:** FITCHECK-CTA001
+- **Task Name:** Recommendation-state CTA hierarchy cleanup
+- **Status:** DONE
+- **Category:** FUNNEL / UX
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Keep one clear primary CTA (`Continue To Estimate Request`), keep `Compare Packages` as secondary, demote utility actions (review answers/start over/planner/change package) to lower emphasis, preserve recommendation logic and contact-route context propagation.
+- **Forbidden Scope:** No SUPPORT-FLOW001, QUOTE-GEN001, CRM-STAGEFLOW001, or SCHED-FOLLOWUP001 implementation; no `/api/lead-signal`/HubSpot/Stripe/requestId/Resend/scheduling runtime changes.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` + `rg` audits completed.
+- **Completion Notes:** Removed duplicate estimate CTA (`Request My Estimate`), retained primary/secondary hierarchy, moved utility actions to low-emphasis link treatment, preserved `/contact` query propagation for fit/discovery context, version bumped to `v1.0.58`, protected runtime untouched.
+- **Next Task Recommendation:** SUPPORT-FLOW001
+
 ### FUNNEL-ARCH002
 - **Task ID:** FUNNEL-ARCH002
 - **Task Name:** Funnel architecture implementation cleanup

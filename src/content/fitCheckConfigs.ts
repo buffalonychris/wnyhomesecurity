@@ -65,7 +65,6 @@ export const fitCheckConfigs: Record<string, FitCheckConfig> = {
         ctas: [
           { label: 'Continue To Estimate Request', href: '/quote?vertical=home-security', variant: 'primary' },
           { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
-          { label: 'Request My Estimate', href: '/contact?vertical=home-security', variant: 'ghost' },
         ],
       },
       Silver: {
@@ -73,7 +72,6 @@ export const fitCheckConfigs: Record<string, FitCheckConfig> = {
         ctas: [
           { label: 'Continue To Estimate Request', href: '/quote?vertical=home-security', variant: 'primary' },
           { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
-          { label: 'Request My Estimate', href: '/contact?vertical=home-security', variant: 'ghost' },
         ],
       },
       Gold: {
@@ -81,7 +79,6 @@ export const fitCheckConfigs: Record<string, FitCheckConfig> = {
         ctas: [
           { label: 'Continue To Estimate Request', href: '/quote?vertical=home-security', variant: 'primary' },
           { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
-          { label: 'Request My Estimate', href: '/contact?vertical=home-security', variant: 'ghost' },
         ],
       },
     },
