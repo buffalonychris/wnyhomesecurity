@@ -317,3 +317,10 @@ Internal status constants normalized for future drift prevention:
 - `CONFIRMED`
 - `DECLINED`
 - `CANCELLED`
+
+
+## SCHED-IMPL003 Implementation Note (REV02)
+
+- Canonical estimate appointment request creation now occurs server-side with `requestId` correlation and status `PENDING_OWNER_CONFIRMATION`.
+- Request creation remains request/pending-confirmation only; no confirmed booking state, no SMS/reminders, and no install scheduling automation are introduced.
+- Persistence boundary is currently an in-memory API-layer store (`functions/api/scheduling/appointmentRequestStore.ts`) as the smallest additive repository-consistent pattern, pending future durable storage revisions.
