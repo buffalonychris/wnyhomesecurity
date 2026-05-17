@@ -1,9 +1,9 @@
 :root {
-  --hs-premium-bg: #0f1418;
-  --hs-premium-panel: #131b21;
-  --hs-premium-border: rgba(255, 255, 255, 0.08);
-  --hs-premium-muted: rgba(255, 247, 230, 0.7);
-  --hs-premium-accent: #f0c271;
+  --hs-premium-bg: var(--background);
+  --hs-premium-panel: var(--card);
+  --hs-premium-border: var(--border);
+  --hs-premium-muted: var(--muted-foreground);
+  --hs-premium-accent: var(--primary);
 }
 
 .hs-premium-shell {
@@ -12,7 +12,7 @@
   gap: 1.5rem;
   padding: 1.5rem 1.5rem 2.5rem;
   background: radial-gradient(circle at top, rgba(55, 72, 90, 0.35), transparent 55%), var(--hs-premium-bg);
-  color: #fff7e6;
+  color: var(--foreground);
   border-radius: 28px;
   border: 1px solid var(--hs-premium-border);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
@@ -110,13 +110,13 @@
 
 .wnyhs-funnel-title {
   margin: 0;
-  color: #fff7e6;
+  color: var(--foreground);
   font-size: clamp(1.7rem, 2.6vw, 2.2rem);
 }
 
 .wnyhs-funnel-subtitle {
   margin: 0;
-  color: #c8c0aa;
+  color: var(--muted-foreground);
 }
 
 .wnyhs-funnel-support {
@@ -198,7 +198,7 @@
 }
 
 .wnyhs-top-nav-more-btn.is-active {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .wnyhs-top-nav-more-menu {
@@ -228,14 +228,14 @@
 }
 
 .wnyhs-top-nav-link:hover {
-  color: var(--color-electric-blue, #7dd3fc);
+  color: var(--primary);
   font-weight: 700;
 }
 
 .wnyhs-top-nav-link.is-active {
-  color: var(--color-electric-blue, #7dd3fc);
+  color: var(--primary);
   font-weight: 700;
-  text-shadow: 0 0 14px rgba(125, 211, 252, 0.28);
+  text-shadow: 0 0 14px color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 .wnyhs-top-nav-actions {
@@ -249,7 +249,7 @@
   display: none;
   border: 1px solid var(--hs-premium-border);
   background: rgba(10, 14, 18, 0.75);
-  color: #fff7e6;
+  color: var(--foreground);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
   font-size: 0.9rem;
@@ -354,7 +354,7 @@
 
 .hs-funnel-step-rail-link.is-active {
   border-color: rgba(240, 194, 113, 0.6);
-  color: #fff7e6;
+  color: var(--foreground);
   background: rgba(240, 194, 113, 0.12);
 }
 
@@ -425,7 +425,7 @@
   display: none;
   border: 1px solid var(--hs-premium-border);
   background: rgba(10, 14, 18, 0.75);
-  color: #fff7e6;
+  color: var(--foreground);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
   font-size: 0.9rem;
@@ -453,7 +453,7 @@
 
 .wny-hs-nav-link:hover,
 .wny-hs-nav-link.is-active {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .wny-hs-nav-secondary {
@@ -531,7 +531,7 @@
 }
 
 .hs-premium-nav-links a:hover {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .hs-premium-nav-cta {
@@ -814,7 +814,7 @@
   cursor: pointer;
   list-style: none;
   font-weight: 600;
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .hs-premium-package-accordion summary::-webkit-details-marker {
@@ -849,7 +849,7 @@
 }
 
 .hs-premium-package-link:hover {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .hs-premium-cta {
@@ -950,7 +950,7 @@
 }
 
 .hs-premium-legacy-link a:hover {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .hs-premium-legacy-accordion {
@@ -965,7 +965,7 @@
 .hs-premium-legacy-toggle {
   border: 1px solid var(--hs-premium-border);
   background: rgba(255, 255, 255, 0.04);
-  color: #fff7e6;
+  color: var(--foreground);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
   text-align: left;
@@ -991,7 +991,7 @@
 }
 
 .hs-premium-text-link {
-  color: #fff7e6;
+  color: var(--foreground);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -1038,7 +1038,7 @@
 }
 
 .wnyhs-comparison-table .table {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .wnyhs-whats-included-grid {
@@ -1075,7 +1075,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .hs-premium-legacy-meta a:hover {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 .hs-premium-legacy-body {
@@ -1205,7 +1205,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .wnyhs-marketing-footer a:hover {
-  color: #fff7e6;
+  color: var(--foreground);
 }
 
 @media (max-width: 900px) {

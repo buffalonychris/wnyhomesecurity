@@ -55,6 +55,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
   - DESIGN-SKIN004 — Typography/system refinement
   - DESIGN-SKIN005 — Yard sign/print branding alignment
   - DESIGN-SKIN006 — Animation/motion polish
+  - DESIGN-SKIN007 — Site-wide tactical brand system (VISUAL001 + VISUAL002)
 
 ### SCHED-IMPL002
 - **Task ID:** SCHED-IMPL002

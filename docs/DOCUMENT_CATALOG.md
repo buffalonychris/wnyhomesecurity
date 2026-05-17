@@ -62,6 +62,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **System governance**
 - **Notes:** Time-sensitive control file; defines one execution controller at a time and should be checked before every implementation task.
 
+
+### `/docs/specs/visual-brand-system-rev01.md`
+- **File path:** `docs/specs/visual-brand-system-rev01.md`
+- **Purpose / likely role:** Canonical tactical visual identity contract for WNY Home Security customer-facing surfaces.
+- **Authority level:** **Specification contract**
+- **Notes:** Added for VISUAL001 + VISUAL002; governs semantic-token-safe branding implementation.
+
 ## `docs/codex/`
 
 ### `/docs/codex/CODEX_TASK_TEMPLATE.md`
