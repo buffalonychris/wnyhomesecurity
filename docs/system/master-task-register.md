@@ -626,7 +626,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### CRM-FIX001
 - **Task ID:** CRM-FIX001
 - **Task Name:** Lead-Signal Parity and API Write Reliability Alignment
-- **Status:** READY
+- **Status:** DONE
 - **Category:** CRM
 - **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
 - **Purpose:** Ensure parity and reliability across lead-signal implementations while preserving REV03 API-layer-only write rules.

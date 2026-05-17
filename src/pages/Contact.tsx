@@ -5,6 +5,7 @@ import { brandHomeSecurity, brandSite } from '../lib/brand';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { resolveVertical } from '../lib/verticals';
 import { buildSms, buildTalkToUsMailto, buildTel, wnyhsContact } from '../content/wnyhsContact';
+import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
@@ -33,6 +34,7 @@ const Contact = () => {
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [failureRequestId, setFailureRequestId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const summary = useMemo(
@@ -65,13 +67,28 @@ const Contact = () => {
     event.preventDefault();
     setError('');
     setIsSubmitting(true);
-    const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, email, address, bestTime, needs, notes, pageRoute: `${location.pathname}${location.search}` }) });
-    setIsSubmitting(false);
-    if (!response.ok) {
+    setFailureRequestId(null);
+    try {
+      const response = await sendLeadSignal({
+        event: 'qr_estimate_requested',
+        sourceFamily: 'MAIN_SITE',
+        source: 'contact_page',
+        landingRoute: `${location.pathname}${location.search}`,
+        vertical,
+        submittedAt: new Date().toISOString(),
+        contact: { fullName: name.trim(), phone: phone.trim(), email: email.trim(), address: { street: address.trim() } },
+        request: { requestedHelp: needs.trim(), requestDetails: notes.trim() || undefined, preferredContactMethod: 'Phone call', preferredEstimateDate: new Date().toISOString().slice(0, 10), preferredEstimateTimeSlot: bestTime.trim() },
+      });
+      setSubmitted(true);
+      setFailureRequestId(response?.requestId || null);
+    } catch (submitError) {
+      const cause = submitError instanceof Error ? (submitError.cause as Record<string, unknown> | undefined) : undefined;
+      const requestId = typeof cause?.requestId === 'string' ? cause.requestId : null;
+      setFailureRequestId(requestId);
       setError('We could not submit your intake right now. Please try again.');
-      return;
+    } finally {
+      setIsSubmitting(false);
     }
-    setSubmitted(true);
   };
 
   const content = (
@@ -134,13 +151,12 @@ const Contact = () => {
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <button className="btn btn-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Submit intake'}</button>
-          <a className="btn btn-secondary" href={mailtoLink}>Email intake summary</a>
           {submitted && (
             <small style={{ color: 'var(--kaec-text-muted)' }}>
               Request received. Our team will follow up.
             </small>
           )}
-          {error && <small style={{ color: 'var(--kaec-accent-danger)' }}>{error}</small>}
+          {error && <small style={{ color: 'var(--kaec-accent-danger)' }}>{error}{failureRequestId ? ` (${failureRequestId})` : ''}</small>}
         </div>
       </form>
     </>

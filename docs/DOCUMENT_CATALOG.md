@@ -26,6 +26,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 
 
+
+### `/docs/audits/crm_fix001_implementation_rev01.md`
+- **File path:** `docs/audits/crm_fix001_implementation_rev01.md`
+- **Purpose / likely role:** CRM-FIX001 implementation note documenting canonical lead-intake path normalization to `/api/lead-signal` across main and newsite forms.
+- **Authority level:** **Audit implementation artifact**
+- **Notes:** Bounded CRM intake normalization only; preserves HubSpot REV03 API-layer-only write constraints and Stripe/scheduling protections.
+
 ### `/docs/audits/copy_fix001_implementation_rev01.md`
 - **File path:** `docs/audits/copy_fix001_implementation_rev01.md`
 - **Purpose / likely role:** COPY-FIX001 implementation note covering claim-safe copy sweep corrections across main/newsite/shared funnel messaging.

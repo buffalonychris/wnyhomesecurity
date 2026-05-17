@@ -1,6 +1,6 @@
 import { useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { sendWalkthroughRequested } from '../../lib/hubspotLeadSignal';
+import { sendLeadSignal } from '../../lib/hubspotLeadSignal';
 import { NavLink } from 'react-router-dom';
 
 type QuoteFormState = {
@@ -13,24 +13,6 @@ type QuoteFormState = {
 };
 
 type QuoteFormErrors = Partial<Record<keyof QuoteFormState, string>>;
-
-const storageKey = 'newsite-contact-submissions';
-
-const saveSubmission = (payload: Record<string, string>) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
-  try {
-    const existingRaw = window.localStorage.getItem(storageKey);
-    const existing = existingRaw ? JSON.parse(existingRaw) : [];
-    const next = Array.isArray(existing) ? existing : [];
-    next.push(payload);
-    window.localStorage.setItem(storageKey, JSON.stringify(next));
-  } catch {
-    // Ignore storage errors in private browsing or restricted environments.
-  }
-};
 
 const buildMailto = (subject: string, body: string) => {
   const params = new URLSearchParams({ subject, body });
@@ -49,6 +31,9 @@ const NewSiteOnSiteQuote = () => {
   const [errors, setErrors] = useState<QuoteFormErrors>({});
   const [searchParams] = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [failureRequestId, setFailureRequestId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const mailtoHref = useMemo(() => {
     const body = [
@@ -88,25 +73,37 @@ const NewSiteOnSiteQuote = () => {
     return nextErrors;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    saveSubmission({
-      type: 'on-site-quote',
-      submittedAt: new Date().toISOString(),
-      name: formState.name.trim(),
-      phone: formState.phone.trim(),
-      email: formState.email.trim(),
-      address: formState.address.trim(),
-      preferredTimes: formState.preferredTimes.trim(),
-      notes: formState.notes.trim(),
-    });
-    void sendWalkthroughRequested({ pathChoice: 'onsite_confirmation_first', contact: { name: formState.name.trim(), email: formState.email.trim(), phone: formState.phone.trim(), address: formState.address.trim() }, walkthrough: { requested: true, status: 'requested', preferredTimeWindow1: formState.preferredTimes.trim(), notes: formState.notes.trim() }, deal: { packageTier: searchParams.get('tier') || 'custom_fit', quoteRef: searchParams.get('quoteRef') || undefined } });
-    setSubmitted(true);
+    setSubmitError(null);
+    setFailureRequestId(null);
+    setIsSubmitting(true);
+    try {
+      const response = await sendLeadSignal({
+        event: 'qr_estimate_requested',
+        sourceFamily: 'NEWSITE',
+        source: 'on_site_quote_form',
+        landingRoute: '/newsite/on-site-quote',
+        vertical: 'home-security',
+        submittedAt: new Date().toISOString(),
+        contact: { fullName: formState.name.trim(), phone: formState.phone.trim(), email: formState.email.trim() || `onsite-${formState.phone.replace(/\D/g, '') || 'unknown'}@noemail.wnyhs.local`, address: { street: formState.address.trim() } },
+        request: { requestedHelp: 'on_site_quote', requestDetails: formState.notes.trim() || undefined, preferredContactMethod: 'Phone call', preferredEstimateDate: new Date().toISOString().slice(0, 10), preferredEstimateTimeSlot: formState.preferredTimes.trim() },
+        deal: { packageTier: searchParams.get('tier') || 'custom_fit', quoteRef: searchParams.get('quoteRef') || undefined },
+      });
+      setSubmitted(true);
+      setFailureRequestId(response?.requestId || null);
+    } catch (error) {
+      const cause = error instanceof Error ? (error.cause as Record<string, unknown> | undefined) : undefined;
+      setFailureRequestId(typeof cause?.requestId === 'string' ? cause.requestId : null);
+      setSubmitError('We could not submit your intake right now. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -253,12 +250,10 @@ const NewSiteOnSiteQuote = () => {
               placeholder="Share access details, pets, or priorities."
             />
           </label>
-          <p className="newsite-helper">
-            Prefer email? A mailto fallback is ready on the confirmation screen.
-          </p>
+          {submitError ? <p className="newsite-form-error">{submitError}{failureRequestId ? ` (${failureRequestId})` : ''}</p> : null}
           <div className="newsite-form-actions">
-            <button className="newsite-btn" type="submit">
-              Submit request
+            <button className="newsite-btn" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting…' : 'Submit request'}
             </button>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Back to contact hub
