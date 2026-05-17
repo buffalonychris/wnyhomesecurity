@@ -568,7 +568,175 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 ## Ready Tasks
 
-No READY tasks are currently promoted.
+### FUNNEL-FIX001
+- **Task ID:** FUNNEL-FIX001
+- **Task Name:** Main Funnel Stage-Consistent CTA and Link Progression Hardening
+- **Status:** READY
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Eliminate wrong-stage CTA/link progression risk in the classic funnel without changing runtime architecture.
+- **Allowed Scope:** Route/CTA target audit fixes and stage-accurate copy gating within existing funnel path.
+- **Forbidden Scope:** No new features; no scheduling closure; no Stripe behavior change; no HubSpot schema/pipeline edits; no SMS/reminders/install scheduling/dispatch/self-confirmation.
+- **Target Files:** `src/pages/**`, `src/routes/**`, `docs/audits/**`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Funnel navigation only.
+- **Documentation Updates Required:** Update audit evidence and register status lifecycle.
+- **Validation Required:** Build + route/CTA grep validation + no forbidden claim regressions.
+- **Exit Criteria:** All audited classic-funnel CTAs/links map to stage-correct next steps with no broken-stage destinations.
+- **Dependencies:** FUNNEL-OPS001 audit accepted.
+- **Operator Decision Required:** No.
+
+### QR-FIX001
+- **Task ID:** QR-FIX001
+- **Task Name:** QR/Newsite Stage-Safe Claim and Status Hardening
+- **Status:** READY
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Remove QR/newsite wording or status cues that imply confirmed scheduling/install readiness before owner confirmation.
+- **Allowed Scope:** Bounded QR/newsite status/claim hardening aligned with manual-owner-confirmed scheduling posture.
+- **Forbidden Scope:** No route changes; no scheduling automation; no Stripe logic change; no HubSpot schema change.
+- **Target Files:** `src/pages/QrLanding.tsx`, `src/newsite/pages/**`, `docs/audits/**`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Funnel messaging only.
+- **Documentation Updates Required:** Audit delta log and register lifecycle.
+- **Validation Required:** Build + forbidden-claims grep + payment/scheduling promise grep.
+- **Exit Criteria:** QR/newsite payment/scheduling claims remain pending-owner-safe and guardrail-compliant.
+- **Dependencies:** FUNNEL-OPS001 audit accepted.
+- **Operator Decision Required:** No.
+
+### COPY-FIX001
+- **Task ID:** COPY-FIX001
+- **Task Name:** Forbidden Claim Sweep and Approved Phrasing Matrix
+- **Status:** READY
+- **Category:** COPY
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Normalize prohibited claim handling and define approved replacements for future funnel copy updates.
+- **Allowed Scope:** Documentation-first claim matrix + bounded copy-risk inventory updates.
+- **Forbidden Scope:** No new customer promises; no architecture/runtime behavior changes.
+- **Target Files:** `docs/audits/**`, `docs/specs/**`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None (documentation/copy governance).
+- **Documentation Updates Required:** Add approved-phrasing matrix reference and update audit register links.
+- **Validation Required:** Claim-term grep scans + build.
+- **Exit Criteria:** Forbidden claims inventory resolved into approved phrasing matrix and actionable file-level remediation map.
+- **Dependencies:** FUNNEL-OPS001 audit accepted.
+- **Operator Decision Required:** Yes (final claim-language approvals).
+
+### CRM-FIX001
+- **Task ID:** CRM-FIX001
+- **Task Name:** Lead-Signal Parity and API Write Reliability Alignment
+- **Status:** READY
+- **Category:** CRM
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Ensure parity and reliability across lead-signal implementations while preserving REV03 API-layer-only write rules.
+- **Allowed Scope:** API-layer parity/remediation within existing `/api/lead-signal` ownership boundaries.
+- **Forbidden Scope:** No HubSpot schema/property/pipeline changes; no frontend direct HubSpot writes.
+- **Target Files:** `functions/api/lead-signal.ts`, `api/lead-signal.ts`, `docs/runtime/lead_signal_contract.md`, `docs/runtime/hubspot_sync_contract.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Lead intake + CRM sync orchestration.
+- **Documentation Updates Required:** Update runtime contracts with finalized parity ownership notes.
+- **Validation Required:** Build + API diff review + CRM-write-path grep.
+- **Exit Criteria:** Lead-signal paths are parity-audited with explicit owner path and no schema/pipeline drift.
+- **Dependencies:** FUNNEL-OPS001 audit accepted; HubSpot REV03 lock maintained.
+- **Operator Decision Required:** Yes (single-path consolidation vs dual-path parity policy).
+
+### LEAD-FIX001
+- **Task ID:** LEAD-FIX001
+- **Task Name:** Pending-Owner Status Visibility Normalization
+- **Status:** READY
+- **Category:** LEAD
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Normalize customer-visible pending-owner states and request lifecycle visibility across funnel variants.
+- **Allowed Scope:** State presentation/persistence refinement that preserves manual owner confirmation posture.
+- **Forbidden Scope:** No auto-booking; no customer self-confirmation; no install scheduling.
+- **Target Files:** `src/pages/**schedule**`, `src/newsite/pages/**schedule**`, `functions/api/lead-signal.ts`, `docs/runtime/scheduling_ownership.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Lead + scheduling handoff state visibility.
+- **Documentation Updates Required:** Scheduling ownership and requestId/lead contract deltas where affected.
+- **Validation Required:** Build + request status grep + no confirmed-booking claim grep.
+- **Exit Criteria:** Pending-owner lifecycle states are consistently represented without implying confirmed appointments.
+- **Dependencies:** CRM-FIX001 recommended first.
+- **Operator Decision Required:** No.
+
+### EMAIL-FIX001
+- **Task ID:** EMAIL-FIX001
+- **Task Name:** Customer and Operator Notification Timing Matrix Alignment
+- **Status:** READY
+- **Category:** EMAIL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Align outbound message timing/content to explicit runtime states for customer and operator notifications.
+- **Allowed Scope:** Template/state-mapping hardening within existing Resend outbound constraints.
+- **Forbidden Scope:** No inbound routing changes; no SMS/reminders automation.
+- **Target Files:** `functions/api/lead-signal.ts`, `functions/utils/emailTemplates.ts`, `docs/runtime/resend_runtime.md`, `docs/runtime/scheduling_ownership.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Resend outbound notifications.
+- **Documentation Updates Required:** Runtime state-to-notification matrix documentation updates.
+- **Validation Required:** Build + notification template grep + protected-claim grep.
+- **Exit Criteria:** Notification outputs map cleanly to pending-owner/confirmed states with no overstated scheduling promises.
+- **Dependencies:** LEAD-FIX001 recommended first.
+- **Operator Decision Required:** Yes (SLA/escalation policy thresholds).
+
+### PAYMENT-FIX001
+- **Task ID:** PAYMENT-FIX001
+- **Task Name:** Post-Deposit Handoff Language and State Clarity
+- **Status:** READY
+- **Category:** PAYMENT
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Ensure payment-success and post-deposit messaging do not imply automatic scheduling confirmation.
+- **Allowed Scope:** Copy/state framing hardening after verified payment success.
+- **Forbidden Scope:** No Stripe checkout/webhook/verification semantic changes.
+- **Target Files:** `src/pages/**payment**`, `src/newsite/pages/**payment**`, `docs/runtime/stripe_runtime.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Payment handoff messaging only.
+- **Documentation Updates Required:** Stripe runtime handoff note updates if messaging contracts are revised.
+- **Validation Required:** Build + payment-claim grep + verification-route integrity check.
+- **Exit Criteria:** Post-payment surfaces preserve verified payment success while clearly preserving pending-owner scheduling confirmation.
+- **Dependencies:** QR-FIX001 and COPY-FIX001 recommended first.
+- **Operator Decision Required:** No.
+
+### ARTIFACT-FIX001
+- **Task ID:** ARTIFACT-FIX001
+- **Task Name:** Quote/Agreement Artifact Lifecycle and Owed-Document Checklist
+- **Status:** READY
+- **Category:** ARTIFACT
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Normalize artifact lifecycle expectations and define customer owed-document checklist consistency.
+- **Allowed Scope:** Artifact handling documentation + bounded artifact flow consistency updates.
+- **Forbidden Scope:** No legal-term re-authoring outside approved docs; no route removals.
+- **Target Files:** `src/pages/**quote**`, `src/pages/**agreement**`, `src/newsite/pages/**quote**`, `src/newsite/pages/**agreement**`, `docs/audits/**`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Quote/agreement artifact generation and presentation.
+- **Documentation Updates Required:** Artifact lifecycle map updates and register lifecycle updates.
+- **Validation Required:** Build + artifact route/CTA checks + print/review flow verification.
+- **Exit Criteria:** Artifact lifecycle is consistent, traceable, and customer-owed-document expectations are explicit.
+- **Dependencies:** FUNNEL-FIX001 recommended first.
+- **Operator Decision Required:** No.
+
+### PIPELINE-FIX001
+- **Task ID:** PIPELINE-FIX001
+- **Task Name:** Intermediate Pipeline State Model Completion
+- **Status:** READY
+- **Category:** PIPELINE
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Define and align missing intermediate funnel/CRM/scheduling states identified by FUNNEL-OPS001.
+- **Allowed Scope:** State-model documentation and bounded transition-mapping updates.
+- **Forbidden Scope:** No HubSpot schema/pipeline mutations without explicit Step revision.
+- **Target Files:** `docs/runtime/hubspot_sync_contract.md`, `docs/runtime/scheduling_ownership.md`, `docs/audits/**`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Pipeline/state governance documentation.
+- **Documentation Updates Required:** Add state-transition map and ownership notes.
+- **Validation Required:** State keyword grep + build.
+- **Exit Criteria:** Missing states are documented with transition ownership and no schema mutations.
+- **Dependencies:** CRM-FIX001 and LEAD-FIX001 recommended first.
+- **Operator Decision Required:** Yes (future runtime exposure sequencing).
+
+### QA-FIX001
+- **Task ID:** QA-FIX001
+- **Task Name:** Funnel Journey Validator Expansion
+- **Status:** READY
+- **Category:** QA
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
+- **Purpose:** Add repeatable validation coverage for links/CTAs/forms/API mappings against the normalized queue outcomes.
+- **Allowed Scope:** QA script/checklist enhancement and audit validation documentation.
+- **Forbidden Scope:** No funnel architecture changes; no runtime feature additions.
+- **Target Files:** `docs/runtime/deployment_validation.md`, `docs/audits/**`, `package.json` (scripts only if needed), `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** QA validation process.
+- **Documentation Updates Required:** Deployment validation and audit playbook updates.
+- **Validation Required:** Build + QA command set execution evidence.
+- **Exit Criteria:** Deterministic validation procedure exists for customer journey integrity and stage-safe claims.
+- **Dependencies:** Completion of FUNNEL-FIX001 through PAYMENT-FIX001 recommended.
+- **Operator Decision Required:** No.
 
 ---
 

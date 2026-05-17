@@ -18,6 +18,12 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/`
 
+### `/docs/audits/funnel_ops001_next_task_sequence_rev01.md`
+- **File path:** `docs/audits/funnel_ops001_next_task_sequence_rev01.md`
+- **Purpose / likely role:** FUNNEL-OPS001 queue-normalization document defining bounded next-task sequencing and priority classes.
+- **Authority level:** **Audit planning artifact**
+- **Notes:** Planning/governance only; preserves open scheduling posture and avoids runtime behavior changes.
+
 ### `/docs/implementation-plan.md`
 - **File path:** `docs/implementation-plan.md`
 - **Purpose / likely role:** Project implementation planning reference.
@@ -213,7 +219,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## Summary Metrics
 
-- **Total Markdown files cataloged:** **23**
+- **Total Markdown files cataloged:** **24**
 - **Primary authoritative set recognized in this catalog:**
   - `AGENTS.md`
   - `docs/system/project.md`
