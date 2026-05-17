@@ -324,3 +324,12 @@ Internal status constants normalized for future drift prevention:
 - Canonical estimate appointment request creation now occurs server-side with `requestId` correlation and status `PENDING_OWNER_CONFIRMATION`.
 - Request creation remains request/pending-confirmation only; no confirmed booking state, no SMS/reminders, and no install scheduling automation are introduced.
 - Persistence boundary is currently an in-memory API-layer store (`functions/api/scheduling/appointmentRequestStore.ts`) as the smallest additive repository-consistent pattern, pending future durable storage revisions.
+
+## SCHED-IMPL004 Implementation Note (REV03)
+
+- `POST /api/scheduling/confirm` is now implemented as an owner/manual confirmation boundary that requires `requestId` + `confirmedBy`.
+- Appointment requests transition from `PENDING_OWNER_CONFIRMATION` to `CONFIRMED` only after owner action.
+- Confirmation audit fields are persisted on the appointment request record: `confirmedBy` and `confirmedAt`.
+- `requestId` remains the correlation key for read/update in the in-memory appointment request store.
+- No customer-facing auto-confirm behavior, no SMS/reminders/install scheduling automation, and no calendar-write behavior are introduced in this task.
+- Google Calendar event creation is deferred; current scheduling implementation keeps internal confirmation state only.

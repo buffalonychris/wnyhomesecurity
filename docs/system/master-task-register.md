@@ -143,7 +143,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### SCHED-IMPL004
 - **Task ID:** SCHED-IMPL004
 - **Task Name:** Owner Acceptance + Confirmation State
-- **Status:** ACTIVE
+- **Status:** COMPLETE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Implement owner/manual confirmation state transition for estimate appointments after customer request creation.
@@ -204,6 +204,12 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
   - `SCHED-IMPL002` complete if confirmation depends on calendar availability or calendar event creation
 - **Operator Decision Required:**
   - confirm whether `SCHED-IMPL004` should create a Google Calendar event after owner confirmation, or only update internal state first
+- **Completion Notes:**
+  - Owner confirmation endpoint/action implemented at `POST /api/scheduling/confirm`.
+  - `requestId`-keyed appointment requests now transition from `PENDING_OWNER_CONFIRMATION` to `CONFIRMED` only after owner/manual action.
+  - Audit fields `confirmedBy` and `confirmedAt` are persisted on confirmation.
+  - Invalid `requestId` handling and no-auto-confirm behavior are covered by tests.
+  - Google Calendar event creation intentionally deferred; no calendar writes introduced.
 
 ---
 
