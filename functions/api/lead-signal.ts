@@ -160,6 +160,33 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: any) => { /* unc
   return { ok: true as const };
 };
 
+const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any) => {
+  const to = payload.customerEmail?.trim?.();
+  const from = env.RESEND_FROM_EMAIL || env.MAIL_FROM || env.EMAIL_FROM;
+  const apiKey = env.RESEND_API_KEY;
+  if (!to || !from || !apiKey) return { ok: false as const, skipped: true, error: 'customer_ack_not_configured' };
+  const subject = `[WNYHS] Request received — ${payload.requestId}`;
+  const text = [
+    'Thanks — we received your request.',
+    `requestId: ${payload.requestId}`,
+    `name: ${payload.customerName || 'Not provided'}`,
+    `phone: ${payload.customerPhone || 'Not provided'}`,
+    `email: ${to}`,
+    `source route: ${payload.sourceRoute || 'api/lead-signal'}`,
+    `vertical: ${payload.vertical || 'home_security'}`,
+    `requested help: ${payload.requestedHelp || 'Not provided'}`,
+    `preferred estimate window: ${payload.preferredWindow || 'Not provided'}`,
+    '',
+    'An operator will review this request and follow up to confirm next steps.',
+  ].join('\n');
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({ from, to, subject, text, html: `<pre>${text}</pre>` }),
+  });
+  if (!response.ok) return { ok: false as const, skipped: false, error: await response.text() };
+  return { ok: true as const };
+};
+
 const hubspotRequest = async (env: LeadSignalEnv, method: 'GET' | 'POST' | 'PATCH' | 'PUT', url: string, body?: unknown) => {
   const token = env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN;
   if (!token) return { ok: false, skipped: true, error: 'hubspot_not_configured' };
@@ -230,6 +257,17 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary });
   const notificationStatus = emailResult.ok ? 'sent' : emailResult.skipped ? 'skipped' : 'failed';
+  const customerAckResult = await sendCustomerAcknowledgementEmail(env, {
+    requestId,
+    customerEmail: leadSummary.email || body.contact?.email || '',
+    customerName: leadSummary.fullName,
+    customerPhone: leadSummary.phone,
+    sourceRoute: body.route || 'api/lead-signal',
+    vertical: normalizedVerticalInterest,
+    requestedHelp: leadSummary.requestedHelp,
+    preferredWindow,
+  });
+  const customerAcknowledgementStatus = customerAckResult.ok ? 'sent' : customerAckResult.skipped ? 'skipped' : 'failed';
 
   const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
   const hubspot: any = { configured: hubspotConfigured, attempted: hubspotConfigured, status: 'failed', contact: 'skipped', deal: 'skipped', association: 'skipped', note: 'skipped', task: 'skipped', skippedProperties: [] };
@@ -467,7 +505,15 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     hubspot.status = 'failed';
   }
 
-  const responseBody: Record<string, unknown> = { ok: true, requestId, schedulingStatus: appointmentRequest.schedulingStatus, appointmentRequest, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, hubspot };
+  const responseBody: Record<string, unknown> = {
+    ok: true,
+    requestId,
+    schedulingStatus: appointmentRequest.schedulingStatus,
+    appointmentRequest,
+    notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' },
+    customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' },
+    hubspot,
+  };
   if (!isProduction(env)) responseBody.diagnostics = { event: body.event, route: body.route || 'api/lead-signal' };
   return json(responseBody, 200);
 };
