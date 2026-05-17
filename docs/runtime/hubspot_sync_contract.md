@@ -171,3 +171,6 @@ UNKNOWN / NEEDS VERIFICATION:
 - Branch/commit: NEEDS VERIFICATION (record at merge/release time)
 - Verified by: Codex execution for T-RUNTIME006-001
 - Evidence: Source/doc audit of lead-signal HubSpot sync stages and runtime governance docs.
+
+- Contact search normalizes email (trim+lowercase) before HubSpot search and only falls back to normalized phone when email is absent.
+- New estimate-deal stage writes require `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID`; when unset, runtime omits `dealstage` rather than sending a label.

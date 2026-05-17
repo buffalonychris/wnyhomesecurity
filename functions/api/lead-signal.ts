@@ -1,6 +1,7 @@
 import { extractSchedulingRequestSummary } from './scheduling/_boundary';
 import { createPendingOwnerConfirmationAppointmentRequest } from './scheduling/appointmentRequestStore';
-import { chooseContactSearchFilter, normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePathChoice, normalizePreferredContactMethod, normalizeVerticalInterest, normalizeWalkthroughInterest, stringifyHubSpotTextField } from './hubspotNormalization';
+import { normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePathChoice, normalizePreferredContactMethod, normalizeVerticalInterest, normalizeWalkthroughInterest, stringifyHubSpotTextField } from './hubspotNormalization';
+import { buildEstimateDealName, chooseHubSpotContactSearchFilters, getDealStageForCreate } from './hubspotSyncHelpers';
 
 type LeadSignalRequest = any;
 
@@ -16,6 +17,7 @@ type LeadSignalEnv = {
   MAIL_AUDIT_TO?: string;
   HUBSPOT_PRIVATE_APP_TOKEN?: string;
   HUBSPOT_ACCESS_TOKEN?: string;
+  HUBSPOT_ESTIMATE_INITIAL_STAGE_ID?: string;
   NODE_ENV?: string;
 };
 
@@ -274,8 +276,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
       return { ok: false, status: 400, data: { message: 'all_properties_removed' } };
     };
 
-    const contactFilter = chooseContactSearchFilter(body.contact?.email, body.contact?.phone);
-    if (!contactFilter) {
+    const contactFilters = chooseHubSpotContactSearchFilters(body.contact?.email, body.contact?.phone);
+    if (contactFilters.length === 0) {
       hubspot.contact = 'skipped';
       hubspot.status = 'partial';
       console.warn('[lead-signal] skipping HubSpot contact search: no email or phone', { requestId, sourceRoute: body.route || 'api/lead-signal' });
@@ -283,7 +285,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     }
 
     const search = await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts/search', {
-      filterGroups: [{ filters: [contactFilter] }],
+      filterGroups: [{ filters: contactFilters }],
       properties: ['email', 'phone', 'firstname', 'lastname'], limit: 1,
     });
 
@@ -331,6 +333,10 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         hubspot.contact = contactId ? 'updated' : 'created';
 
         const dealNameIdentity = `${(parsedName.firstName || '')} ${(parsedName.lastName || '')}`.trim() || body.contact?.email || 'Lead';
+          const isQrEstimate = body.event === 'qr_estimate_requested';
+          const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
+        const isQrEstimate = body.event === 'qr_estimate_requested';
+        const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
         let dealId = body?.deal?.dealId;
         if (!dealId && body?.deal?.quoteRef) {
           const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1 });
@@ -338,7 +344,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         }
 
         const dealProps = {
-          dealname: `WNYHS QR Estimate Request - ${dealNameIdentity} - ${requestId}`,
+          dealname: buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
           amount: body?.deal?.amount,
           wny_deal_vertical: 'home_security',
           wny_deal_path: normalizedDealPath,
@@ -358,6 +364,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           wny_install_status: 'requested',
           wny_quote_ref: body?.deal?.quoteRef || requestId,
           wny_quote_status: 'not_started',
+          dealstage: dealStageId,
         };
         const dealResult = await safeSet('deals', dealId, dealProps);
         if (dealResult.ok) {
@@ -410,13 +417,15 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           hubspot.skippedProperties = Array.from(new Set([...hubspot.skippedProperties, ...contactPropertyNames.filter((key) => !minimalPropertyNames.includes(key))]));
 
           const dealNameIdentity = `${(parsedName.firstName || '')} ${(parsedName.lastName || '')}`.trim() || body.contact?.email || 'Lead';
+        const isQrEstimate = body.event === 'qr_estimate_requested';
+        const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
           let dealId = body?.deal?.dealId;
           if (!dealId && body?.deal?.quoteRef) {
             const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1 });
             if (foundDeal.ok) dealId = (foundDeal as any)?.data?.results?.[0]?.id;
           }
           const dealProps = {
-            dealname: `WNYHS QR Estimate Request - ${dealNameIdentity} - ${requestId}`,
+            dealname: buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
             amount: body?.deal?.amount,
             wny_deal_vertical: 'home_security',
             wny_deal_path: normalizedDealPath,
@@ -436,6 +445,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             wny_install_status: 'requested',
             wny_quote_ref: body?.deal?.quoteRef || requestId,
             wny_quote_status: 'not_started',
+          dealstage: dealStageId,
           };
           const dealResult = await safeSet('deals', dealId, dealProps);
           if (dealResult.ok) {
