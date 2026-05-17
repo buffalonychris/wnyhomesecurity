@@ -143,7 +143,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### SCHED-IMPL004
 - **Task ID:** SCHED-IMPL004
 - **Task Name:** Owner Acceptance + Confirmation State
-- **Status:** READY
+- **Status:** ACTIVE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Implement owner/manual confirmation state transition for estimate appointments after customer request creation.
