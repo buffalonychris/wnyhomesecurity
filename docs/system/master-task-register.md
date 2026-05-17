@@ -60,6 +60,19 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
   - `rg -n "CRM-PIPELINE001|New Estimate Request|Operator Review Needed|Walkthrough Scheduled|Deposit Paid|HUBSPOT_ESTIMATE_INITIAL_STAGE_ID|PROTECTED_RUNTIME|Protected runtime" docs .`
 - **Completion Notes:** REV01 canonical pipeline architecture doc added; runtime protections restated; CRM-DEAL002B scope clarified and deferred.
 
+### PLANNER-GUARD001
+- **Task ID:** PLANNER-GUARD001
+- **Task Name:** System Planner preview labeling and non-authoritative guardrails
+- **Status:** DONE
+- **Category:** FUNNEL / COPY / GUARDRAIL
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Keep planner accessible while clearly non-authoritative for quote/agreement/scope/pricing/HubSpot/Stripe/scheduling state.
+- **Allowed Scope:** Planner label update to `System Planner (Preview)`; preview disclaimer copy; preserve route/behavior; docs + task register updates.
+- **Forbidden Scope:** No quote generation; no HubSpot/Stripe/scheduling integration changes; no `/api/lead-signal` or `requestId` lifecycle changes; no SMS/reminders.
+- **Target Files:** `src/content/wnyhsNavigation.ts`, `src/components/nav/WnyHomeSecurityNav.tsx`, `src/pages/HomeSecurityPlanner.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`, `docs/audits/planner_guard001_rev01.md`.
+- **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `git diff`/`rg` audits.
+- **Completion Notes:** Updated visible version to v1.0.53; renamed customer-facing Planner labels to `System Planner (Preview)`; added preview/non-authoritative disclaimer copy on planner page; preserved planner route access and existing planner behavior; protected runtime untouched.
+
 ### FUNNEL-OPS001
 - **Task ID:** FUNNEL-OPS001
 - **Task Name:** Main Funnel + QR Funnel Link/Form/CRM/Artifact/Customer Timing Audit
