@@ -88,7 +88,7 @@ const HomeSecurityPaymentSuccess = () => {
             description="Your Home Security deposit is confirmed."
             support="Next, we’ll coordinate your installation window and finalize on-site placement."
           />
-          <small style={{ color: '#c8c0aa' }}>
+          <small style={{ color: 'var(--color-text-secondary)' }}>
             {status === 'loading' && 'Confirming your deposit...'}
             {status === 'verified' && 'Deposit processing complete.'}
             {status === 'missing' && 'We did not detect a checkout session yet.'}
@@ -100,13 +100,13 @@ const HomeSecurityPaymentSuccess = () => {
         {status === 'verified' ? (
           <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
             <div className="badge">Next steps</div>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               We&apos;ll follow up to confirm your installation window. If you need anything immediately, reach out and we
               will help.
             </p>
             {tierLabel ? (
-              <p style={{ margin: 0, color: '#c8c0aa' }}>
-                Deposit received for the <strong style={{ color: '#fff7e6' }}>{tierLabel}</strong> tier.
+              <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
+                Deposit received for the <strong style={{ color: 'var(--color-text-primary)' }}>{tierLabel}</strong> tier.
               </p>
             ) : null}
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
@@ -124,7 +124,7 @@ const HomeSecurityPaymentSuccess = () => {
         ) : (
           <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
             <div className="badge">Need help?</div>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               If you do not see a confirmation yet, restart checkout or contact us and we&apos;ll verify your payment.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
