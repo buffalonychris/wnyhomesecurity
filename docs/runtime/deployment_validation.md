@@ -34,7 +34,7 @@ Governing docs:
 - `/docs/system/master-task-register.md`
 
 Controlling context/Step alignment:
-- `CTX-STEP102-QRLANDING-REV01` with GOV004 documentation-only runtime hardening authorization.
+- `CTX-SCHED-MVP-REV01` with Step-SCHED-MVP controls for scheduling MVP tasks (including SCHED-IMPL002).
 
 ## Deployment Validation Philosophy
 
@@ -128,6 +128,7 @@ No deployment/smoke automation is claimed in this SOP unless separately proven a
 | `/docs/runtime/hubspot_properties.md` | Property/enum + token naming verification | Yes | PARTIAL |
 | `/docs/runtime/hubspot_sync_contract.md` | CRM sync-stage visibility + partial failure diagnostics checks | Yes | PARTIAL |
 | `/docs/runtime/scheduling_ownership.md` | Requested-vs-confirmed boundary + operator ownership verification | Yes | PARTIAL |
+| `/docs/runtime/google_calendar_runtime.md` | Read-only availability config + safe fallback behavior checks | Yes | PARTIAL |
 
 ## Stripe Validation
 

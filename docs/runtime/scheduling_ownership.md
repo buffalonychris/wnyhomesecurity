@@ -86,7 +86,7 @@ Boundary rule:
 - Cloudflare Pages Functions runtime.
 - HubSpot CRM API (API-mediated only).
 - Resend outbound email service.
-- Google Calendar integration status: UNKNOWN / NEEDS VERIFICATION (Step102 references Google Business calendar request integration intent, but audited runtime docs report no server-side Google Calendar credentials/booking endpoint).
+- Google Calendar integration status: read-only availability lookup implemented for SCHED-IMPL002 via `GET /api/scheduling/availability`; no calendar writes or booking confirmation authority.
 
 ## Inbound Flow
 
@@ -161,7 +161,7 @@ Confirmed:
 - Runtime audit states no server-side Google Calendar credentials or booking endpoint discovered in audited files.
 
 Boundary:
-- Calendar integration is treated as unconfirmed/planned boundary, not proven active automation.
+- Calendar integration is an active read-only advisory boundary using Google FreeBusy; it must not create/update events and must not imply confirmation.
 
 UNKNOWN / NEEDS VERIFICATION:
 - Shared calendar ownership model.
