@@ -51,6 +51,10 @@ const normalizeDiscoveryContext = (value: any) => {
     entryPointCount: typeof value.entryPointCount === 'number' || typeof value.entryPointCount === 'string' ? String(value.entryPointCount) : 'unknown',
   };
 };
+const ACTIVE_PIPELINE_STAGE_IDS = [
+  '3680633583', '3680633584', '3680633585', '3680633586', '3680633587', '3680633588', '3680633589',
+  '3683126005', '3683126006', '3683126007', '3683126008', '3683126009', '3683126970', '3683126971',
+];
 const extractFailingProperty = (result: any) =>
   getHubspotString(result?.data?.errors?.[0]?.context?.propertyName) ||
   getHubspotString(result?.data?.errors?.[0]?.context?.properties?.[0]) ||
@@ -368,6 +372,11 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1 });
           if (foundDeal.ok) dealId = (foundDeal as any)?.data?.results?.[0]?.id;
         }
+        if (!dealId && resolvedContactId) {
+          const activeDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'pipeline', operator: 'EQ', value: '2282258169' }, { propertyName: 'dealstage', operator: 'IN', values: ACTIVE_PIPELINE_STAGE_IDS }, { propertyName: 'associations.contact', operator: 'EQ', value: String(resolvedContactId) }] }], sorts: [{ propertyName: 'hs_lastmodifieddate', direction: 'DESCENDING' }], limit: 1 });
+          if (activeDeal.ok) dealId = (activeDeal as any)?.data?.results?.[0]?.id;
+          else console.warn('[lead-signal] active deal dedupe search failed; proceeding without dedupe', { requestId, contactId: resolvedContactId });
+        }
 
         const dealProps = {
           dealname: buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
@@ -420,8 +429,12 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             if (etNow.getHours() < 19) due.setHours(etNow.getHours() + 2, 0, 0, 0);
             else due.setDate(due.getDate() + 1), due.setHours(10, 0, 0, 0);
             const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}`;
-            const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
-            hubspot.task = task.ok ? 'created' : 'failed';
+            const existingTask = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks/search', { filterGroups: [{ filters: [{ propertyName: 'associations.deal', operator: 'EQ', value: String(resolvedDealId) }, { propertyName: 'hs_task_subject', operator: 'EQ', value: 'Follow up on QR estimate request' }, { propertyName: 'hs_task_status', operator: 'IN', values: ['NOT_STARTED', 'IN_PROGRESS', 'WAITING'] }] }], limit: 1 });
+            if (existingTask.ok && ((existingTask as any)?.data?.results?.length || 0) > 0) hubspot.task = 'skipped_duplicate';
+            else {
+              const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
+              hubspot.task = task.ok ? 'created' : 'failed';
+            }
           }
         } else hubspot.deal = 'failed';
       } else {
@@ -451,6 +464,11 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           if (!dealId && body?.deal?.quoteRef) {
             const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1 });
             if (foundDeal.ok) dealId = (foundDeal as any)?.data?.results?.[0]?.id;
+          }
+          if (!dealId && resolvedContactId) {
+            const activeDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'pipeline', operator: 'EQ', value: '2282258169' }, { propertyName: 'dealstage', operator: 'IN', values: ACTIVE_PIPELINE_STAGE_IDS }, { propertyName: 'associations.contact', operator: 'EQ', value: String(resolvedContactId) }] }], sorts: [{ propertyName: 'hs_lastmodifieddate', direction: 'DESCENDING' }], limit: 1 });
+            if (activeDeal.ok) dealId = (activeDeal as any)?.data?.results?.[0]?.id;
+            else console.warn('[lead-signal] active deal dedupe search failed; proceeding without dedupe', { requestId, contactId: resolvedContactId });
           }
           const dealProps = {
             dealname: buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
@@ -501,8 +519,12 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               if (etNow.getHours() < 19) due.setHours(etNow.getHours() + 2, 0, 0, 0);
               else due.setDate(due.getDate() + 1), due.setHours(10, 0, 0, 0);
               const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}`;
-              const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
-              hubspot.task = task.ok ? 'created' : 'failed';
+              const existingTask = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks/search', { filterGroups: [{ filters: [{ propertyName: 'associations.deal', operator: 'EQ', value: String(resolvedDealId) }, { propertyName: 'hs_task_subject', operator: 'EQ', value: 'Follow up on QR estimate request' }, { propertyName: 'hs_task_status', operator: 'IN', values: ['NOT_STARTED', 'IN_PROGRESS', 'WAITING'] }] }], limit: 1 });
+              if (existingTask.ok && ((existingTask as any)?.data?.results?.length || 0) > 0) hubspot.task = 'skipped_duplicate';
+              else {
+                const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
+                hubspot.task = task.ok ? 'created' : 'failed';
+              }
             }
           } else hubspot.deal = 'failed';
         } else {
