@@ -3,7 +3,7 @@ import { confirmAppointmentRequestByRequestId } from './appointmentRequestStore'
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
-export const onRequest: PagesFunction = async ({ request }) => {
+export const onRequest: PagesFunction = async ({ request, env }) => {
   if (request.method !== 'POST') {
     return json({ ok: false, errorCode: 'METHOD_NOT_ALLOWED', userMessage: 'Unsupported request method.' }, 405);
   }
@@ -25,7 +25,7 @@ export const onRequest: PagesFunction = async ({ request }) => {
     return json({ ok: false, errorCode: 'MISSING_CONFIRMED_BY', userMessage: 'confirmedBy is required for owner confirmation.' }, 400);
   }
 
-  const appointmentRequest = confirmAppointmentRequestByRequestId({ requestId, confirmedBy });
+  const appointmentRequest = await confirmAppointmentRequestByRequestId({ requestId, confirmedBy, env });
   if (!appointmentRequest) {
     return json({ ok: false, errorCode: 'REQUEST_NOT_FOUND', userMessage: 'No appointment request exists for the provided requestId.' }, 404);
   }

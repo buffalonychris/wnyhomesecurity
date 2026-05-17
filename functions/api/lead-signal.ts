@@ -185,12 +185,13 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const submittedTimestamp = body.submittedAt || nowIso;
   const schedulingSummary = extractSchedulingRequestSummary(body?.request);
   const preferredWindow = schedulingSummary.preferredWindowText;
-  const appointmentRequest = createPendingOwnerConfirmationAppointmentRequest({
+  const appointmentRequest = await createPendingOwnerConfirmationAppointmentRequest({
     requestId,
     event: body.event,
     preferredEstimateDate: schedulingSummary.preferredEstimateDate,
     preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
     preferredWindowText: schedulingSummary.preferredWindowText,
+    env,
   });
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';
   const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);

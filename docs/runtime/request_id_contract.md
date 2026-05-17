@@ -59,6 +59,7 @@ UNKNOWN / NEEDS VERIFICATION:
 
 - Global uniqueness guarantees across concurrent/edge regions beyond current generation logic.
 - Whether any other endpoints generate/consume the same requestId format.
+- Scheduling request/confirm persistence lookup is now durable-ready through Cloudflare KV when configured.
 
 ## Environment Variables
 
@@ -68,6 +69,7 @@ UNKNOWN / NEEDS VERIFICATION:
 | `RESEND_API_KEY` | Conditional | Production (+ Preview if email tested) | Required for propagation of requestId into actual outbound emails. | `/docs/runtime/resend_runtime.md` | CONFIRMED IN SOURCE | If missing, notification becomes `skipped`. |
 | `HUBSPOT_ACCESS_TOKEN` | Conditional | Production (+ Preview if CRM-tested) | Required for propagation into HubSpot objects through sync path. | `/docs/crm/hubspot/hubspot_kb_rev03.md` | CONFIRMED IN SOURCE | Used via HubSpot request helper. |
 | `HUBSPOT_PRIVATE_APP_TOKEN` | Conditional | Production (+ Preview if CRM-tested) | Alternate/preferred HubSpot token alias. | `/docs/crm/hubspot/hubspot_kb_rev03.md` | CONFIRMED IN SOURCE | Alias normalization deferred to HubSpot contracts. |
+| `APPOINTMENT_REQUESTS_KV` | Conditional (required for durable production scheduling state) | Production + Preview | Durable scheduling appointment-request storage keyed by requestId. | `/docs/runtime/scheduling_ownership.md` | CONFIRMED IN SOURCE | Used by scheduling request/confirm APIs and lead-signal scheduling capture path. |
 
 ## External Services
 

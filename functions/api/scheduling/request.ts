@@ -3,7 +3,7 @@ import { createPendingOwnerConfirmationAppointmentRequest } from './appointmentR
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
-export const onRequest: PagesFunction = async ({ request }) => {
+export const onRequest: PagesFunction = async ({ request, env }) => {
   if (request.method !== 'POST') {
     return json({ ok: false, errorCode: 'METHOD_NOT_ALLOWED', userMessage: 'Unsupported request method.' }, 405);
   }
@@ -21,12 +21,13 @@ export const onRequest: PagesFunction = async ({ request }) => {
   }
 
   const schedulingSummary = extractSchedulingRequestSummary((body.request as Record<string, unknown>) ?? undefined);
-  const appointmentRequest = createPendingOwnerConfirmationAppointmentRequest({
+  const appointmentRequest = await createPendingOwnerConfirmationAppointmentRequest({
     requestId,
     event: typeof body.event === 'string' ? body.event : 'scheduling_request_created',
     preferredEstimateDate: schedulingSummary.preferredEstimateDate,
     preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
     preferredWindowText: schedulingSummary.preferredWindowText,
+    env,
   });
 
   return json({

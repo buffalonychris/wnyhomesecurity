@@ -80,6 +80,7 @@ Boundary rule:
 | `GOOGLE_SERVICE_ACCOUNT` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential Google API auth variable. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
 | `GOOGLE_CLIENT_EMAIL` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential Google API auth variable. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
 | `GOOGLE_PRIVATE_KEY` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential Google API auth variable. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
+| `APPOINTMENT_REQUESTS_KV` | Conditional (required for durable production scheduling state) | Production + Preview | Cloudflare KV namespace binding used by scheduling appointment request store for durable request/confirmation state by `requestId`. | `/docs/runtime/scheduling_ownership.md` | CONFIRMED IN SOURCE | Falls back to in-memory map only when KV binding is absent (local/test fallback only). |
 
 ## External Services
 
@@ -323,13 +324,13 @@ Internal status constants normalized for future drift prevention:
 
 - Canonical estimate appointment request creation now occurs server-side with `requestId` correlation and status `PENDING_OWNER_CONFIRMATION`.
 - Request creation remains request/pending-confirmation only; no confirmed booking state, no SMS/reminders, and no install scheduling automation are introduced.
-- Persistence boundary is currently an in-memory API-layer store (`functions/api/scheduling/appointmentRequestStore.ts`) as the smallest additive repository-consistent pattern, pending future durable storage revisions.
+- Persistence boundary now supports Cloudflare KV-backed durable storage in `functions/api/scheduling/appointmentRequestStore.ts` via `APPOINTMENT_REQUESTS_KV` binding. In-memory map remains local/test fallback only when KV binding is missing.
 
 ## SCHED-IMPL004 Implementation Note (REV03)
 
 - `POST /api/scheduling/confirm` is now implemented as an owner/manual confirmation boundary that requires `requestId` + `confirmedBy`.
 - Appointment requests transition from `PENDING_OWNER_CONFIRMATION` to `CONFIRMED` only after owner action.
 - Confirmation audit fields are persisted on the appointment request record: `confirmedBy` and `confirmedAt`.
-- `requestId` remains the correlation key for read/update in the in-memory appointment request store.
+- `requestId` remains the correlation key for create/read/update in the appointment request store; durable authority is KV when binding is configured.
 - No customer-facing auto-confirm behavior, no SMS/reminders/install scheduling automation, and no calendar-write behavior are introduced in this task.
 - Google Calendar event creation is deferred; current scheduling implementation keeps internal confirmation state only.
