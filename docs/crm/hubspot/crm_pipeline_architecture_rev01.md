@@ -333,3 +333,35 @@ Allowed future runtime changes are bounded to:
 ### Next Required Validation
 
 After deployment, submit one QR estimate request and confirm the created deal lands in **New Estimate Request** (`3680633583`).
+
+## GOV-HARDEN002 Canonical Internal ID Lock
+
+Canonical production pipeline identity:
+
+- Pipeline name: `WNYHS Sales Pipeline`
+- Pipeline internal ID: `2282258169`
+- Runtime env lock: `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID=3680633583`
+
+Canonical stage internal IDs (runtime-safe mapping):
+
+- `New Estimate Request` = `3680633583`
+- `Operator Review Needed` = `3680633584`
+- `Contact Attempted` = `3680633585`
+- `On-Site Walkthrough Requested` = `3680633586`
+- `Walkthrough Scheduled` = `3680633587`
+- `Quote Generated` = `3680633588`
+- `Walkthrough Completed` = `3680633589`
+- `Quote Sent` = `3683126005`
+- `Deposit Requested` = `3683126006`
+- `Deposit Paid / Owner Review` = `3683126007`
+- `Install Date Requested` = `3683126008`
+- `Install Scheduled` = `3683126009`
+- `Remainder Due Before Install` = `3683126970`
+- `Installed / Complete` = `3683126971`
+
+Enforcement:
+
+- Runtime integrations must use internal IDs, never labels.
+- Package/discovery context belongs in HubSpot notes under current contract.
+- No new HubSpot properties unless explicitly scoped.
+- HubSpot schema/pipeline changes require separate bounded task authorization.

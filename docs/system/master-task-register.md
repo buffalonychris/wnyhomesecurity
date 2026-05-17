@@ -974,3 +974,24 @@ No ARCHIVED tasks are currently recorded.
 
 
 - **Completion Notes:** LEAD-FIX001 implemented canonical sendLeadSignal funnelContext continuity capture from existing funnel/newsite storage and URL metadata without HubSpot schema changes; version bumped to v1.0.43; validation + build completed.
+
+### GOV-HARDEN002
+- **Task ID:** GOV-HARDEN002
+- **Task Name:** Protected Runtime + Funnel Contract Lock
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (documentation/governance hardening only)
+- **Purpose:** Lock known-good protected runtime systems, canonical funnel flow, context fields, and HubSpot pipeline/stage/env contracts to prevent drift.
+- **Scope:** Docs-only (`docs/`); no runtime/source changes.
+
+## GOV-HARDEN002 Status Normalization Snapshot
+
+- CRM-SCHEMA001 = DONE
+- HOTFIX-LEAD001 = DONE
+- CRM-DEAL002A = DONE / partial completion
+- CRM-PIPELINE001 = DONE
+- CRM-CONTRACT001 = DONE
+- FUNNEL-CLEANUP001 = DONE
+- FUNNEL-CLEANUP002 = DONE
+- FUNNEL-CLEANUP003 = DONE
+- GOV-HARDEN002 = DONE

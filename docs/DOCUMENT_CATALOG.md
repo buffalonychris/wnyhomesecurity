@@ -336,3 +336,27 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 
 - **CRM-CONTRACT001 Note:** `docs/crm/hubspot/crm_pipeline_architecture_rev01.md`, `docs/runtime/hubspot_sync_contract.md`, and `docs/runtime/hubspot_properties.md` now lock the live WNYHS Sales Pipeline ID/stage IDs and production `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID` runtime contract values.
+
+### `/docs/runtime/protected_runtime_contract.md`
+- **File path:** `docs/runtime/protected_runtime_contract.md`
+- **Purpose / likely role:** Canonical protected production runtime lock contract for lead intake, HubSpot sync, requestId, Stripe verification boundaries, scheduling authority boundaries, and mandatory QA gates.
+- **Authority level:** **Operational runtime governance contract**
+- **Notes:** Added by GOV-HARDEN002 to prevent drift/regression of known-good production runtime behavior.
+
+### `/docs/runtime/funnel_context_contract_rev01.md`
+- **File path:** `docs/runtime/funnel_context_contract_rev01.md`
+- **Purpose / likely role:** Canonical funnel context field contract locking approved keys, value domains, and discoveryContext shape.
+- **Authority level:** **Runtime/funnel context specification contract**
+- **Notes:** Added by GOV-HARDEN002 to prevent context alias drift.
+
+### `/docs/specs/main_funnel_contract_rev01.md`
+- **File path:** `docs/specs/main_funnel_contract_rev01.md`
+- **Purpose / likely role:** Canonical main funnel route flow and CTA hierarchy lock.
+- **Authority level:** **Funnel specification contract**
+- **Notes:** Added by GOV-HARDEN002; preserves Request Estimate language until owner-confirmed scheduling.
+
+### `/docs/system/chat_transfer_prompt_gov_harden002.md`
+- **File path:** `docs/system/chat_transfer_prompt_gov_harden002.md`
+- **Purpose / likely role:** Copy/paste transfer prompt for new chats with current protected runtime, funnel, context, task, and next-step governance.
+- **Authority level:** **System operations handoff artifact**
+- **Notes:** Added by GOV-HARDEN002 for continuity between sessions.
