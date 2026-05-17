@@ -13,6 +13,9 @@ const Contact = () => {
   const vertical = resolveVertical(searchParams.get('vertical'));
   const isHomeSecurityHost = typeof window !== 'undefined' && window.location.hostname.includes('wnyhomesecurity.com');
   const isHomeSecurity = vertical === 'home-security' || isHomeSecurityHost;
+  const tierParam = searchParams.get('tier')?.toLowerCase() ?? '';
+  const packageTier = tierParam === 'bronze' || tierParam === 'silver' || tierParam === 'gold' ? tierParam : undefined;
+  const packageTierLabel = packageTier ? `${packageTier.charAt(0).toUpperCase()}${packageTier.slice(1)}` : null;
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -78,6 +81,7 @@ const Contact = () => {
         submittedAt: new Date().toISOString(),
         contact: { fullName: name.trim(), phone: phone.trim(), email: email.trim(), address: { street: address.trim() } },
         request: { requestedHelp: needs.trim(), requestDetails: notes.trim() || undefined, preferredContactMethod: 'Phone call', preferredEstimateDate: new Date().toISOString().slice(0, 10), preferredEstimateTimeSlot: bestTime.trim() },
+        deal: packageTier ? { packageTier } : undefined,
       });
       setSubmitted(true);
       setFailureRequestId(response?.requestId || null);
@@ -107,6 +111,11 @@ const Contact = () => {
         </a>
       </div>
       <form className="form" aria-label="Intake form" onSubmit={handleSubmit}>
+        {packageTierLabel && (
+          <div>
+            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Selected package: {packageTierLabel}</p>
+          </div>
+        )}
         <div>
           <label htmlFor="name">Name</label>
           <input id="name" name="name" type="text" placeholder="Your name" value={name} onChange={(event) => setName(event.target.value)} required />

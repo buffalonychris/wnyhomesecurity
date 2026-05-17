@@ -873,6 +873,15 @@ No BLOCKED tasks are currently recorded.
 - **Purpose:** Reduce duplicate CTA competition, normalize CTA hierarchy, simplify package-card actions, and preserve package-aware context propagation.
 - **Completion Notes:** Implemented canonical `/home-security` CTA hierarchy, normalized discovery completion CTA labels, simplified package card actions to Select + View details, preserved `vertical=home-security` and `tier=bronze|silver|gold` routing, and added audit doc `docs/audits/funnel_cleanup001_rev01.md`.
 
+### FUNNEL-CLEANUP002
+- **Task ID:** FUNNEL-CLEANUP002
+- **Task Name:** Context Persistence + Intake Display
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (bounded funnel-context hardening)
+- **Purpose:** Display selected package tier on intake, preserve tier through lead submission, and propagate additive package context in existing email/HubSpot note paths.
+- **Completion Notes:** Implemented selected-tier intake display for `tier=bronze|silver|gold`, added `deal.packageTier` submission from contact route context, added additive package tier lines to operator/customer email content and HubSpot note/context summary, preserved protected runtime constraints, and added audit doc `docs/audits/funnel_cleanup002_rev01.md`.
+
 
 ### T-STEP103-QA-001
 - **Task ID:** T-STEP103-QA-001
