@@ -12,6 +12,54 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle.
 
 
+### FUNNEL-OPS001
+- **Task ID:** FUNNEL-OPS001
+- **Task Name:** Main Funnel + QR Funnel Link/Form/CRM/Artifact/Customer Timing Audit
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Controlling Context:** Current WNY Home Security funnel/runtime audit context
+- **Purpose:** Audit the full operational customer journey across the main WNYHomeSecurity.com funnel and QR landing funnel, from page entry through lead capture, CRM writes, scheduling handoffs, customer/operator notifications, generated artifacts, payment/deposit handoffs, timing expectations, and missing pipeline states.
+- **Allowed Scope:**
+  - documentation/task-register update only
+  - add FUNNEL-OPS001 as audit-first task
+  - preserve scheduling as open
+  - preserve completed scheduling implementation task statuses
+  - reference DESIGN-SKINNING as active under CTX-BRANDING-UX-REV01 without changing design scope
+  - define audit deliverables and validation expectations
+- **Forbidden Scope:**
+  - do not implement runtime features
+  - do not close scheduling
+  - do not downgrade scheduling
+  - do not add SMS
+  - do not add reminders
+  - do not add install scheduling
+  - do not add dispatch behavior
+  - do not add customer self-confirmation
+  - do not change Stripe behavior
+  - do not change HubSpot schema
+  - do not change customer-facing claims
+  - do not change routes
+  - do not change UI
+  - do not modify source runtime files
+- **Required Audit Deliverables:**
+  - full route/page inventory
+  - full link/CTA inventory
+  - full form/API inventory
+  - CRM write map
+  - scheduling handoff map
+  - customer notification map
+  - operator notification map
+  - artifact/document generation map
+  - customer timing/state map
+  - missing pipeline state list
+  - broken/mismatched behavior list
+  - forbidden claim/copy risk list
+  - exact next implementation queue
+- **Validation Required:**
+  - `git diff -- docs/system/master-task-register.md docs/system/step-current.md docs/DOCUMENT_CATALOG.md`
+  - `rg -n "FUNNEL-OPS001|SCHED-IMPL|SCHED-HARDEN|DESIGN-SKINNING|CTX-BRANDING-UX-REV01" docs/system docs/DOCUMENT_CATALOG.md docs/specs docs/runtime`
+  - confirm no source files changed
+
 ### DESIGN-SKINNING
 - **Task Family ID:** DESIGN-SKINNING
 - **Category:** DESIGN
