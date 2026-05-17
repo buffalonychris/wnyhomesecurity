@@ -830,7 +830,17 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ## Backlog Tasks
 
-- **NAV-BUG001** — Back/forward black screen + quote artifact render issue. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
+### NAV-BUG001
+- **Task ID:** NAV-BUG001
+- **Task Name:** Back/forward black screen + quote artifact render stability
+- **Status:** DONE
+- **Category:** FUNNEL / RUNTIME-STABILITY
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (post MAIN-FUNNEL-FIX003C bounded stability hardening)
+- **Scope:** Fix browser back/forward black-screen risk and add bounded quote/review missing-state fallbacks without adding quote-generation behavior.
+- **Forbidden Scope:** No HubSpot/Stripe/requestId/scheduling authority changes; no QUOTE-GEN001 or CRM-STAGEFLOW001 behavior; no `/api/lead-signal` modifications.
+- **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `rg`/`git diff` audits.
+- **Completion Notes:** Site version bumped to v1.0.52; removed duplicated hook-closure in `src/pages/QuoteReview.tsx` causing render instability risk; improved quote/review missing-data fallback messaging + recovery paths; protected runtime systems preserved; audit note added at `docs/audits/nav_bug001_rev01.md`.
+
 - **QUOTE-GEN001** — Quote generation, HubSpot quote-stage update, customer/operator quote email delivery. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
 - **CRM-STAGEFLOW001** — Deal pipeline advancement rules after quote/deposit/scheduling events. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
 

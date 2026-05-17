@@ -172,11 +172,11 @@ const QuoteReview = () => {
           <div className="badge">Quote review</div>
           <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We couldn’t find a saved quote on this device.</h1>
           <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
-            Start a new quote or contact support if you expected to see a saved quote here.
+            Your estimate request is not ready to review yet on this device. Start with the system recommendation or request an estimate, then return here.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
             <Link className="btn btn-primary" to="/quote">
-              Start a new quote
+              Start estimate request
             </Link>
             <a
               className="btn btn-secondary"
