@@ -55,7 +55,7 @@ const AccordionSection = ({ title, description, defaultOpen = false, children }:
         <span aria-hidden="true">{open ? '−' : '+'}</span>
       </button>
       {description && (
-        <small id={`${contentId}-desc`} style={{ color: '#c8c0aa' }}>
+        <small id={`${contentId}-desc`} style={{ color: 'var(--color-text-secondary)' }}>
           {description}
         </small>
       )}
@@ -170,8 +170,8 @@ const QuoteReview = () => {
       <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Quote review</div>
-          <h1 style={{ margin: 0, color: '#fff7e6' }}>We couldn’t find a saved quote on this device.</h1>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We couldn’t find a saved quote on this device.</h1>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Start a new quote or contact support if you expected to see a saved quote here.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
@@ -189,7 +189,7 @@ const QuoteReview = () => {
               Contact support
             </a>
           </div>
-          <small style={{ color: '#c8c0aa' }}>
+          <small style={{ color: 'var(--color-text-secondary)' }}>
             Or call us at <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>.
           </small>
         </div>
@@ -390,8 +390,8 @@ const QuoteReview = () => {
       <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Quote review</div>
-          <h1 style={{ margin: 0, color: '#fff7e6' }}>No stored quote found</h1>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>No stored quote found</h1>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Build a deterministic quote first, then return here to review and continue to the agreement.
           </p>
           <button type="button" className="btn btn-primary" onClick={() => navigate('/quote')}>
@@ -436,8 +436,8 @@ const QuoteReview = () => {
         <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {!isHomeSecurity && <div className="badge">Decision support</div>}
-            <h1 style={{ margin: '0.25rem 0', color: '#fff7e6' }}>Quote ready for review</h1>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <h1 style={{ margin: '0.25rem 0', color: 'var(--color-text-primary)' }}>Quote ready for review</h1>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Deterministic one-time estimate. No subscriptions. Save or share with family, then continue to agreement.
             </p>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.25rem' }}>
@@ -460,7 +460,7 @@ const QuoteReview = () => {
             </div>
             {isHomeSecurity && (
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                <span style={{ color: '#c8c0aa' }}>Want to see the dashboard?</span>
+                <span style={{ color: 'var(--color-text-secondary)' }}>Want to see the dashboard?</span>
                 <DemoDashboardLink variant="link" />
               </div>
             )}
@@ -477,10 +477,10 @@ const QuoteReview = () => {
       {isHomeSecurity && (
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <div className="badge">Quote help</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Need adjustments or have questions about your package? Email our quoting team and we&apos;ll respond quickly.
           </p>
-          <a href={quoteHelpMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+          <a href={quoteHelpMailto} style={{ color: 'var(--color-accent)', fontWeight: 700 }}>
             Email {wnyhsContact.emails.quotes}
           </a>
         </div>
@@ -494,21 +494,21 @@ const QuoteReview = () => {
               <TierBadge tierId={selectedPackage.id} vertical={vertical} />
               <h2 style={{ margin: 0 }}>{selectedPackage.name}</h2>
             </div>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>Ref: {reference} • Date: {quoteDate}</p>
-            {!isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Quote Version: {quoteVersion}</small>}
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>Ref: {reference} • Date: {quoteDate}</p>
+            {!isHomeSecurity && <small style={{ color: 'var(--color-text-secondary)' }}>Quote Version: {quoteVersion}</small>}
           </div>
             <div style={{ textAlign: 'right' }}>
-              <div style={{ color: '#c8c0aa', fontSize: '0.95rem' }}>One-time estimate</div>
+              <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>One-time estimate</div>
               <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--kaec-gold)' }}>
                 {formatCurrency(quote.pricing.total)}
               </div>
-              <small style={{ color: '#c8c0aa' }}>
+              <small style={{ color: 'var(--color-text-secondary)' }}>
                 {vertical === 'home-security'
                   ? 'Add-ons are quoted separately; no subscriptions sold.'
                   : 'No monthly subscriptions required.'}
               </small>
-              {isHomeSecurity && <small style={{ color: '#c8c0aa' }}>Purpose: Local-first security with professional install.</small>}
-              <div style={{ display: 'grid', gap: '0.25rem', marginTop: '0.5rem', color: '#c8c0aa' }}>
+              {isHomeSecurity && <small style={{ color: 'var(--color-text-secondary)' }}>Purpose: Local-first security with professional install.</small>}
+              <div style={{ display: 'grid', gap: '0.25rem', marginTop: '0.5rem', color: 'var(--color-text-secondary)' }}>
               <small>Deposit due today: {formatCurrency(depositDue)}</small>
               <small>Remaining balance on arrival: {formatCurrency(balanceDue)}</small>
               <small>Deposit due today: 50% of the system cost. Remaining balance due on installation day.</small>
@@ -516,7 +516,7 @@ const QuoteReview = () => {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gap: '0.35rem', color: '#e6ddc7' }}>
+        <div style={{ display: 'grid', gap: '0.35rem', color: 'var(--color-text-secondary)' }}>
           <strong>Property context</strong>
           <small>
             Home type: {quote.homeType?.replace('-', ' ') || 'Not provided'} • Size: {quote.homeSize || 'Not provided'} • Internet
@@ -531,7 +531,7 @@ const QuoteReview = () => {
           )}
         </div>
 
-        <div className="card" style={{ display: 'grid', gap: '0.5rem', background: '#0f0e0d' }}>
+        <div className="card" style={{ display: 'grid', gap: '0.5rem', background: 'var(--color-surface-alt)' }}>
           <strong>What’s included</strong>
           <ul className="list" style={{ marginTop: 0 }}>
             {quoteDeliverables.map((item) => (
@@ -544,7 +544,7 @@ const QuoteReview = () => {
         </div>
 
         {isHomeSecurity && (
-          <div className="card" style={{ display: 'grid', gap: '0.5rem', background: '#0f0e0d' }}>
+          <div className="card" style={{ display: 'grid', gap: '0.5rem', background: 'var(--color-surface-alt)' }}>
             <strong>Included hardware</strong>
             <ul className="list" style={{ marginTop: 0 }}>
               {getHomeSecurityHardwareList(quote.packageId.toLowerCase() as 'a1' | 'a2' | 'a3').map((item) => (
@@ -554,7 +554,7 @@ const QuoteReview = () => {
                 </li>
               ))}
             </ul>
-            <small style={{ color: '#c8c0aa' }}>{HOME_SECURITY_CLARITY_FOOTER}</small>
+            <small style={{ color: 'var(--color-text-secondary)' }}>{HOME_SECURITY_CLARITY_FOOTER}</small>
           </div>
         )}
 
@@ -597,7 +597,7 @@ const QuoteReview = () => {
                 </li>
               ))}
             </ul>
-            <small style={{ color: '#c8c0aa' }}>Final quantities may adjust after on-site confirmation.</small>
+            <small style={{ color: 'var(--color-text-secondary)' }}>Final quantities may adjust after on-site confirmation.</small>
           </div>
         )}
       </div>
@@ -607,7 +607,7 @@ const QuoteReview = () => {
       ) : (
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <div className="badge">Payment terms</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             A deposit reserves your install date. The remaining balance is due when we arrive, before installation begins. This
             avoids payment issues after work is complete and keeps your install day on schedule.
           </p>
@@ -627,8 +627,8 @@ const QuoteReview = () => {
         <div className="card" style={{ display: 'grid', gap: '0.75rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
           <div>
             <div className="badge">Share &amp; Save</div>
-            <h3 style={{ margin: '0.25rem 0', color: '#fff7e6' }}>Share this quote</h3>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <h3 style={{ margin: '0.25rem 0', color: 'var(--color-text-primary)' }}>Share this quote</h3>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Send the quote to yourself or trusted family members. The resume link keeps progress for caregivers or caseworkers.
             </p>
           </div>
@@ -649,8 +649,8 @@ const QuoteReview = () => {
                   padding: '0.75rem',
                   borderRadius: '10px',
                   border: '1px solid rgba(245,192,66,0.35)',
-                  background: '#0f0e0d',
-                  color: '#fff7e6',
+                  background: 'var(--color-surface-alt)',
+                  color: 'var(--color-text-primary)',
                 }}
               />
               <button
@@ -663,15 +663,15 @@ const QuoteReview = () => {
               </button>
             </div>
             {!isValidEmail(shareRecipient) && shareRecipient && (
-              <small style={{ color: '#f0b267' }}>Enter a valid email.</small>
+              <small style={{ color: 'var(--color-warning)' }}>Enter a valid email.</small>
             )}
-            <small style={{ color: '#c8c0aa' }}>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
               We email the legally binding tokenized copy through WNY Home Security servers without changing pricing or package content.
             </small>
           </label>
 
           {(emailBanner || quote.emailLastStatus) && (
-            <div style={{ color: emailStatus === 'failed' ? '#f0b267' : '#c8c0aa' }}>
+            <div style={{ color: emailStatus === 'failed' ? 'var(--color-warning)' : 'var(--color-text-secondary)' }}>
               <strong>
                 {emailBanner ||
                   (emailStatus === 'sent'
@@ -710,7 +710,7 @@ const QuoteReview = () => {
         {!isHomeSecurity && (
           <div className="card" style={{ display: 'grid', gap: '0.35rem' }}>
             <div className="badge">Validation &amp; Details</div>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Expand for hardware, coverage, and advisory narrative details. Internal-only logs stay hidden from customers.
             </p>
           </div>
@@ -788,8 +788,8 @@ const QuoteReview = () => {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <div>
                   <div className="badge">AI Explanation (Advisory)</div>
-                  <h3 style={{ margin: '0.25rem 0', color: '#fff7e6' }}>Deterministic narrative</h3>
-                  <p style={{ margin: 0, color: '#c8c0aa' }}>
+                  <h3 style={{ margin: '0.25rem 0', color: 'var(--color-text-primary)' }}>Deterministic narrative</h3>
+                  <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
                     Explains why this package and add-ons fit, what offline behavior to expect, and the next best step. No medical
                     advice; if there is an urgent safety issue, call 911.
                   </p>
@@ -802,7 +802,7 @@ const QuoteReview = () => {
                 {(narrativeLoading || !narrative) && (
                   <div className="card" style={{ border: '1px solid rgba(245, 192, 66, 0.35)' }}>
                     <strong>{narrativeLoading ? 'Building explanation…' : 'Click “Explain this quote” to view the narrative.'}</strong>
-                    <small style={{ color: '#c8c0aa' }}>
+                    <small style={{ color: 'var(--color-text-secondary)' }}>
                       Deterministic templates are used by default; no external AI is required.
                     </small>
                   </div>
@@ -814,7 +814,7 @@ const QuoteReview = () => {
                     style={{ display: 'grid', gap: '0.4rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}
                   >
                     <strong>{section.title}</strong>
-                    <p style={{ margin: 0, color: '#c8c0aa' }}>{section.body}</p>
+                    <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>{section.body}</p>
                   </div>
                 ))}
               </div>
@@ -868,7 +868,7 @@ const QuoteReview = () => {
         {isInternalView && !isHomeSecurity && (
           <AccordionSection title="Internal support log" description="Internal-only identifiers and delivery metadata." defaultOpen={false}>
             <div className="card" style={{ display: 'grid', gap: '0.35rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
-              <div style={{ display: 'grid', gap: '0.25rem', color: '#c8c0aa' }}>
+              <div style={{ display: 'grid', gap: '0.25rem', color: 'var(--color-text-secondary)' }}>
                 <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap' }}>
                   <span className="mono-text" title={quote.quoteHash || undefined}>Quote Hash: {displayedHash}</span>
                   {quote.quoteHash && (
@@ -890,10 +890,10 @@ const QuoteReview = () => {
               </div>
             </div>
             <AuthorityBlock meta={authorityMeta} />
-            <div className="card" style={{ display: 'grid', gap: '0.35rem', background: '#0f0e0d' }}>
+            <div className="card" style={{ display: 'grid', gap: '0.35rem', background: 'var(--color-surface-alt)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <strong>Email delivery</strong>
-                <small style={{ color: '#c8c0aa' }}>
+                <small style={{ color: 'var(--color-text-secondary)' }}>
                   {quote.emailLastStatus
                     ? `${quote.emailLastStatus.toUpperCase()} ${quote.emailIssuedAtISO ? `at ${quote.emailIssuedAtISO}` : ''}`
                     : 'Not sent'}
@@ -915,7 +915,7 @@ const QuoteReview = () => {
               </ul>
               {emailPayload?.links && (
                 <div style={{ display: 'grid', gap: '0.35rem' }}>
-                  <small style={{ color: '#c8c0aa' }}>Links included in the email payload:</small>
+                  <small style={{ color: 'var(--color-text-secondary)' }}>Links included in the email payload:</small>
                   <ul className="list" style={{ marginTop: 0 }}>
                     <li>
                       <span />

@@ -58,6 +58,15 @@
   --success: #4e7a57;
   --warning: var(--wny-gold-600);
 
+  --color-text-primary: var(--wny-text-primary);
+  --color-text-secondary: var(--wny-text-secondary);
+  --color-surface-alt: var(--wny-black-800);
+  --color-accent: var(--wny-gold-500);
+  --color-warning: var(--warning);
+  --color-border-accent-soft: color-mix(in srgb, var(--wny-gold-500) 35%, transparent);
+  --color-success-border: color-mix(in srgb, var(--success) 60%, transparent);
+  --color-destructive-border: color-mix(in srgb, var(--destructive) 62%, transparent);
+
   --kaec-font-heading: var(--wny-font-heading);
   --kaec-bg: #070b12;
   --kaec-surface: rgba(13, 19, 28, 0.9);

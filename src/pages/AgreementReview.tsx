@@ -450,7 +450,7 @@ const AgreementReview = () => {
         <WnyhsFunnelNotice message="Quote context is missing or invalid. Please return to Quote Review before accepting the agreement." />
       )}
       {bannerMessage && (
-        <div className="card" style={{ border: '1px solid rgba(84, 160, 82, 0.5)', color: '#c8c0aa' }}>
+        <div className="card" style={{ border: '1px solid rgba(84, 160, 82, 0.5)', color: 'var(--color-text-secondary)' }}>
           {bannerMessage}
         </div>
       )}
@@ -477,8 +477,8 @@ const AgreementReview = () => {
                 ) : (
                   <>
                     <div className="badge">Agreement review</div>
-                    <h1 style={{ marginTop: '0.25rem', color: '#fff7e6' }}>Agreement review</h1>
-                    <p style={{ margin: 0, color: '#c8c0aa' }}>
+                    <h1 style={{ marginTop: '0.25rem', color: 'var(--color-text-primary)' }}>Agreement review</h1>
+                    <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
                       Confirm the quote, acceptance details, and payment terms before moving to the next step.
                     </p>
                   </>
@@ -546,21 +546,21 @@ const AgreementReview = () => {
                 </div>
                 <div style={{ display: 'grid', gap: '0.5rem' }}>
                   <strong style={{ fontSize: '1.1rem' }}>One-time total: {formatCurrency(estimatedTotal)}</strong>
-                  <small style={{ color: '#c8c0aa' }}>Based on your selected tier and add-ons.</small>
+                  <small style={{ color: 'var(--color-text-secondary)' }}>Based on your selected tier and add-ons.</small>
                   {isHomeSecurity && (
-                    <small style={{ color: '#c8c0aa' }}>
+                    <small style={{ color: 'var(--color-text-secondary)' }}>
                       This agreement confirms your {selectedPackage.name} tier and reserves installation scheduling.
                     </small>
                   )}
                 </div>
                 {isHomeSecurity && (
-                  <div style={{ display: 'grid', gap: '0.25rem', color: '#c8c0aa' }}>
+                  <div style={{ display: 'grid', gap: '0.25rem', color: 'var(--color-text-secondary)' }}>
                     <small>Agreement ref: {agreementReference}</small>
                     <small>Quote ref: {quoteRef}</small>
                     <small>Date: {agreementDate}</small>
                   </div>
                 )}
-                <div style={{ display: 'grid', gap: '0.25rem', color: '#c8c0aa' }}>
+                <div style={{ display: 'grid', gap: '0.25rem', color: 'var(--color-text-secondary)' }}>
                   <small>Deposit due today: {formatCurrency(depositDue)}</small>
                   <small>Remaining balance on arrival: {formatCurrency(balanceDue)}</small>
                 </div>
@@ -605,7 +605,7 @@ const AgreementReview = () => {
                       ))}
                     </ul>
                   ) : (
-                    <small style={{ color: '#c8c0aa' }}>No add-ons selected.</small>
+                    <small style={{ color: 'var(--color-text-secondary)' }}>No add-ons selected.</small>
                   )}
                 </div>
                 {isHomeSecurity && (
@@ -627,7 +627,7 @@ const AgreementReview = () => {
 
       <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
         <div className="badge">Deposit &amp; payment terms</div>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+        <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
           Deposit due today: 50% of the system cost. Remaining balance due on installation day.
         </p>
       </div>
@@ -678,7 +678,7 @@ const AgreementReview = () => {
         <div>
           <div className="badge">Acceptance</div>
           <h2 style={{ margin: '0.25rem 0' }}>Confirm and proceed</h2>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             This confirmation is required so we can collect the deposit and schedule your install. Legal wording remains unchanged.
           </p>
         </div>
@@ -702,7 +702,7 @@ const AgreementReview = () => {
           />
           <span>I have reviewed and agree to the {brandSite} agreement</span>
         </label>
-        <small style={{ color: '#c8c0aa' }}>This is required so we can take your deposit and schedule your install.</small>
+        <small style={{ color: 'var(--color-text-secondary)' }}>This is required so we can take your deposit and schedule your install.</small>
         <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
           <label style={{ display: 'grid', gap: '0.35rem' }}>
             <span>Typed full name</span>
@@ -710,7 +710,7 @@ const AgreementReview = () => {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Full legal name"
-              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: 'var(--color-surface-alt)', color: 'var(--color-text-primary)' }}
             />
           </label>
           <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -719,7 +719,7 @@ const AgreementReview = () => {
               type="date"
               value={acceptanceDate}
               onChange={(e) => setAcceptanceDate(e.target.value)}
-              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: 'var(--color-surface-alt)', color: 'var(--color-text-primary)' }}
             />
           </label>
           <label style={{ display: 'grid', gap: '0.35rem' }}>
@@ -728,9 +728,9 @@ const AgreementReview = () => {
               value={email}
               onChange={(e) => handleUpdateEmail(e.target.value)}
               placeholder="care@kickassfamily.com"
-              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+              style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: 'var(--color-surface-alt)', color: 'var(--color-text-primary)' }}
             />
-            {!isValidEmail(email) && email && <small style={{ color: '#f0b267' }}>Enter a valid email to issue.</small>}
+            {!isValidEmail(email) && email && <small style={{ color: 'var(--color-warning)' }}>Enter a valid email to issue.</small>}
           </label>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -746,7 +746,7 @@ const AgreementReview = () => {
             Continue to Deposit
           </button>
           {storedAcceptance?.accepted && (
-            <small style={{ color: '#c8c0aa' }}>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
               Accepted by {storedAcceptance.fullName} on {storedAcceptance.acceptanceDate || 'date not provided'}.
             </small>
           )}
@@ -761,13 +761,13 @@ const AgreementReview = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ display: 'grid', gap: '0.25rem' }}>
             <div className="badge">Share & Save</div>
-            <strong style={{ color: '#fff7e6' }}>Email, print, or resume anytime</strong>
-            <small style={{ color: '#c8c0aa' }}>
+            <strong style={{ color: 'var(--color-text-primary)' }}>Email, print, or resume anytime</strong>
+            <small style={{ color: 'var(--color-text-secondary)' }}>
               Send the binding copy to yourself or another trusted contact. Resume link stays active.
             </small>
           </div>
           <div style={{ display: 'grid', gap: '0.35rem', textAlign: 'right' }}>
-            <small style={{ color: '#c8c0aa' }}>Resume link</small>
+            <small style={{ color: 'var(--color-text-secondary)' }}>Resume link</small>
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
               <a href={resumeUrl} style={{ fontWeight: 800 }}>
                 Continue your order
@@ -785,7 +785,7 @@ const AgreementReview = () => {
                 value={email}
                 onChange={(e) => handleUpdateEmail(e.target.value)}
                 placeholder="name@example.com"
-                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: '#0f0e0d', color: '#fff7e6' }}
+                style={{ padding: '0.75rem', borderRadius: '10px', border: '1px solid rgba(245,192,66,0.35)', background: 'var(--color-surface-alt)', color: 'var(--color-text-primary)' }}
               />
             </label>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -797,7 +797,7 @@ const AgreementReview = () => {
               >
                 {sending ? 'Sending…' : 'Email signed agreement'}
               </button>
-              {!acceptedRecord && <small style={{ color: '#c8c0aa' }}>Accept first to enable sending.</small>}
+              {!acceptedRecord && <small style={{ color: 'var(--color-text-secondary)' }}>Accept first to enable sending.</small>}
             </div>
           </div>
 
@@ -816,8 +816,8 @@ const AgreementReview = () => {
                     padding: '0.75rem',
                     borderRadius: '10px',
                     border: '1px solid rgba(245,192,66,0.35)',
-                    background: '#0f0e0d',
-                    color: '#fff7e6',
+                    background: 'var(--color-surface-alt)',
+                    color: 'var(--color-text-primary)',
                   }}
                 />
                 <button
@@ -830,11 +830,11 @@ const AgreementReview = () => {
                 </button>
               </div>
               {!isValidEmail(manualRecipient) && manualRecipient && (
-                <small style={{ color: '#f0b267' }}>Enter a valid email to send a copy.</small>
+                <small style={{ color: 'var(--color-warning)' }}>Enter a valid email to send a copy.</small>
               )}
             </label>
             {acceptedRecord?.emailRecipients?.length ? (
-              <small style={{ color: '#c8c0aa' }}>
+              <small style={{ color: 'var(--color-text-secondary)' }}>
                 Sent to: {acceptedRecord.emailRecipients.slice(0, 3).join(', ')}
               </small>
             ) : null}
@@ -842,7 +842,7 @@ const AgreementReview = () => {
         </div>
 
         {acceptedRecord ? (
-          <div className="card" style={{ display: 'grid', gap: '0.75rem', background: '#0f0e0d', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
+          <div className="card" style={{ display: 'grid', gap: '0.75rem', background: 'var(--color-surface-alt)', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
             {emailBanner || agreementEmailStatus !== 'not_sent' ? (
               <div
                 className="card"
@@ -853,7 +853,7 @@ const AgreementReview = () => {
                       : agreementEmailStatus === 'mock'
                       ? '1px solid rgba(245, 192, 66, 0.35)'
                       : '1px solid rgba(84, 160, 82, 0.5)',
-                  color: '#c8c0aa',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 <strong>
@@ -873,18 +873,18 @@ const AgreementReview = () => {
                   </div>
                 )}
                 {(emailError || acceptedRecord.emailLastError) && (
-                  <div style={{ marginTop: '0.25rem', color: '#f0b267' }}>
+                  <div style={{ marginTop: '0.25rem', color: 'var(--color-warning)' }}>
                     <small>Error: {emailError || acceptedRecord.emailLastError}</small>
                   </div>
                 )}
               </div>
             ) : (
-              <small style={{ color: '#c8c0aa' }}>Signed copy can be sent after acceptance.</small>
+              <small style={{ color: 'var(--color-text-secondary)' }}>Signed copy can be sent after acceptance.</small>
             )}
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
               <strong>Email status</strong>
-              <small style={{ color: '#c8c0aa' }}>
+              <small style={{ color: 'var(--color-text-secondary)' }}>
                 {acceptedRecord.emailLastStatus
                   ? `${formatEmailStatus(acceptedRecord.emailLastStatus)} ${acceptedRecord.emailIssuedAtISO ? `at ${acceptedRecord.emailIssuedAtISO}` : ''}`
                   : 'Not sent'}
@@ -892,8 +892,8 @@ const AgreementReview = () => {
             </div>
 
             {!isHomeSecurity && agreementEmailPayload?.links && (
-              <details style={{ color: '#c8c0aa' }}>
-                <summary style={{ cursor: 'pointer', color: '#fff7e6' }}>Email payload links</summary>
+              <details style={{ color: 'var(--color-text-secondary)' }}>
+                <summary style={{ cursor: 'pointer', color: 'var(--color-text-primary)' }}>Email payload links</summary>
                 <p style={{ marginTop: '0.5rem' }}>
                   Print, review, and resume links are included in the email delivery. Use the email copy to access them.
                 </p>
@@ -902,7 +902,7 @@ const AgreementReview = () => {
           </div>
         ) : null}
 
-        <small style={{ color: '#c8c0aa' }}>
+        <small style={{ color: 'var(--color-text-secondary)' }}>
           Payment unlocks after acceptance. Reach out anytime if you need help with the next step.
         </small>
       </div>
@@ -910,10 +910,10 @@ const AgreementReview = () => {
       {isHomeSecurity && (
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <div className="badge">Support</div>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Questions about the agreement or next steps? Email the support team for help.
           </p>
-          <a href={supportMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+          <a href={supportMailto} style={{ color: 'var(--color-accent)', fontWeight: 700 }}>
             Email {wnyhsContact.emails.support}
           </a>
         </div>
@@ -966,7 +966,7 @@ const AgreementReview = () => {
           <div>
             <div className="badge">Scope & Deliverables</div>
             <h2 style={{ margin: '0.25rem 0' }}>Included services</h2>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Deterministic commitments based on your selected package and add-ons. No monthly subscriptions are required.
             </p>
           </div>
@@ -1025,7 +1025,7 @@ const AgreementReview = () => {
                 <div style={{ display: 'grid', gap: '0.75rem', marginTop: '0.35rem' }}>
                   {hardwareGroups.map((group) => (
                     <div key={group.heading} style={{ display: 'grid', gap: '0.5rem' }}>
-                      <small style={{ color: '#c8c0aa' }}>{group.heading}</small>
+                      <small style={{ color: 'var(--color-text-secondary)' }}>{group.heading}</small>
                       <div className="card-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
                         {group.categories.map((category) => (
                           <div key={category.title} className="card" style={{ border: '1px solid rgba(245, 192, 66, 0.35)' }}>
@@ -1053,7 +1053,7 @@ const AgreementReview = () => {
                 <div style={{ display: 'grid', gap: '0.5rem', marginTop: '0.35rem' }}>
                   {featureGroups.map((group) => (
                     <div key={group.heading} style={{ display: 'grid', gap: '0.25rem' }}>
-                      <small style={{ color: '#c8c0aa' }}>{group.heading}</small>
+                      <small style={{ color: 'var(--color-text-secondary)' }}>{group.heading}</small>
                       <ul className="list" style={{ marginTop: 0 }}>
                         {group.categories.map((category) => (
                           <li key={category.title}>
@@ -1085,8 +1085,8 @@ const AgreementReview = () => {
     ) : (
       <div className="hero-card" style={{ display: 'grid', gap: '0.9rem' }}>
         <div className="badge">Agreement review</div>
-        <h1 style={{ margin: 0, color: '#fff7e6' }}>We need a quote to build your agreement</h1>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+        <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We need a quote to build your agreement</h1>
+        <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
           The agreement view never stays blank. If you already built a quote, rebuild it below. Otherwise, start a fresh quote so we
           can generate the agreement and proceed to acceptance.
         </p>
