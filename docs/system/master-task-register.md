@@ -830,9 +830,9 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ## Backlog Tasks
 
-- **NAV-BUG001** — Back/forward black screen + quote artifact render issue. (Deferred; not implemented in MAIN-FUNNEL-FIX003A.)
-- **QUOTE-GEN001** — Quote generation, HubSpot quote-stage update, customer/operator quote email delivery. (Deferred; not implemented in MAIN-FUNNEL-FIX003A.)
-- **CRM-STAGEFLOW001** — Deal pipeline advancement rules after quote/deposit/scheduling events. (Deferred; not implemented in MAIN-FUNNEL-FIX003A.)
+- **NAV-BUG001** — Back/forward black screen + quote artifact render issue. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
+- **QUOTE-GEN001** — Quote generation, HubSpot quote-stage update, customer/operator quote email delivery. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
+- **CRM-STAGEFLOW001** — Deal pipeline advancement rules after quote/deposit/scheduling events. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
 
 ---
 
@@ -893,6 +893,16 @@ No BLOCKED tasks are currently recorded.
 - **Purpose:** Preserve fit-check discovery context into contact intake payload and additive downstream operator email + HubSpot note context.
 - **Completion Notes:** Added deterministic recommendation context propagation from discovery completion into `/contact` route params, added compact contact intake discovery summary display, added canonical `discoveryContext` payload submission from contact flow, and added additive discovery-summary lines to existing operator/customer email and HubSpot note output paths in `/api/lead-signal`; protected runtime behavior preserved; audit doc added at `docs/audits/funnel_cleanup003_rev01.md`.
 
+
+
+### MAIN-FUNNEL-FIX003B
+- **Task ID:** MAIN-FUNNEL-FIX003B
+- **Task Name:** Recommendation-state clarity only
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (bounded main funnel UX clarity)
+- **Purpose:** Make recommendation the clear primary post-submit state while preserving existing runtime and route/query contracts.
+- **Completion Notes:** Added recommendation-state focus/scroll behavior, hid completed questionnaire by default after recommendation generation, added `Review my answers` toggle for reversible answer review, preserved recommendation logic and existing `Continue To Estimate Request` query propagation, and documented task in `docs/audits/main_funnel_fix003b_rev01.md`.
 
 ### T-STEP103-QA-001
 - **Task ID:** T-STEP103-QA-001

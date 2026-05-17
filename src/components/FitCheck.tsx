@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import type { FitCheckConfig, FitCheckTier } from '../content/fitCheckConfigs';
 import {
@@ -224,6 +224,8 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
   const [answers, setAnswers] = useState<FitCheckAnswers>(initialAnswers);
   const [result, setResult] = useState<FitCheckResult | null>(null);
   const [exteriorLimitWarning, setExteriorLimitWarning] = useState(false);
+  const [showCompletedAnswers, setShowCompletedAnswers] = useState(false);
+  const recommendationSectionRef = useRef<HTMLElement | null>(null);
 
   const canSubmit: boolean = isHomeSecurityFitCheckComplete(answers);
   const handlePlannerOpen = () => {
@@ -237,6 +239,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
     }
     if (stored?.fitCheckResult) {
       setResult(stored.fitCheckResult);
+      setShowCompletedAnswers(false);
     }
   }, []);
 
@@ -249,6 +252,14 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
     }
   }, [answers, canSubmit, searchParams, setSearchParams]);
 
+
+
+  useEffect(() => {
+    if (!result || typeof window === 'undefined') return;
+    setShowCompletedAnswers(false);
+    recommendationSectionRef.current?.focus();
+    recommendationSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [result]);
   const selectedSpecialRooms = useMemo(() => {
     return answers.specialRooms.filter((room) => room !== 'not_really');
   }, [answers.specialRooms]);
@@ -360,6 +371,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
   const handleReset = () => {
     setAnswers(initialAnswers);
     setResult(null);
+    setShowCompletedAnswers(false);
     setExteriorLimitWarning(false);
     updateRetailFlow({ homeSecurity: { fitCheckAnswers: initialAnswers, fitCheckResult: undefined } });
     const params = new URLSearchParams(searchParams);
@@ -420,6 +432,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
         </p>
       </header>
 
+      {!result || showCompletedAnswers ? (
       <section style={sectionSpacingStyle}>
         <div style={questionCardStyle}>
           <div style={{ display: 'grid', gap: '0.35rem' }}>
@@ -663,6 +676,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
           </div>
         </div>
       </section>
+      ) : null}
 
       <section style={{ ...questionCardStyle, display: 'grid', gap: '1rem' }}>
         <h2 style={{ margin: 0 }}>Ready for your recommendation?</h2>
@@ -671,8 +685,13 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <button type="button" className={recommendationClassName} disabled={!canSubmit} onClick={handleSubmit}>
-            See My Recommendation
+            {result ? 'Refresh Recommendation' : 'See My Recommendation'}
           </button>
+          {result ? (
+            <button type="button" className="btn btn-link" onClick={() => setShowCompletedAnswers((prev) => !prev)}>
+              {showCompletedAnswers ? 'Hide my answers' : 'Review my answers'}
+            </button>
+          ) : null}
           <button type="button" className="btn btn-secondary" onClick={handleReset}>
             Start over
           </button>
@@ -687,9 +706,9 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
       </section>
 
       {result ? (
-        <section style={{ ...questionCardStyle, display: 'grid', gap: '1.25rem' }}>
+        <section ref={recommendationSectionRef} tabIndex={-1} style={{ ...questionCardStyle, display: 'grid', gap: '1.25rem', outline: 'none' }}>
           <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Recommendation</span>
+            <span style={questionNumberStyle}>Step 2 of 3 • Recommendation</span>
             <h2 style={{ margin: 0 }}>Recommended tier: {result.tier}</h2>
             <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>{result.summary}</p>
           </div>
@@ -758,8 +777,8 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
                 Precision Planner (optional)
               </Link>
             )}
-            <button type="button" className="btn btn-secondary" onClick={() => setResult(null)}>
-              Edit answers
+            <button type="button" className="btn btn-secondary" onClick={() => setShowCompletedAnswers((prev) => !prev)}>
+              {showCompletedAnswers ? 'Hide my answers' : 'Edit answers'}
             </button>
           </div>
         </section>
