@@ -2,48 +2,81 @@
 
 ## Context ID
 
-- CTX-STEP102-QRLANDING-REV01
+- CTX-SCHED-MVP-REV01
+
+## Context Name
+
+- Estimate Scheduling MVP Implementation
+
+## Status
+
+- ACTIVE
 
 ## Controlling Step
 
-- Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01 (CONTROLLING)
+- Step-SCHED-MVP — Estimate Scheduling MVP Implementation Authority — REV01 (CONTROLLING)
+
+## Purpose
+
+- Authorize bounded implementation of estimate scheduling MVP tasks `SCHED-IMPL002` through `SCHED-IMPL004`.
+- Enforce implementation sequencing and controls derived from `SCHED-ARCH001` and `/docs/specs/scheduling_architecture_workflow_spec_rev01.md`.
+- Preserve current production-safe posture: estimate request/pending-confirmation only until explicitly advanced by authorized tasks.
+
+## Allowed Scope
+
+- Google Calendar read-only availability for estimate scheduling.
+- Estimate appointment request creation tied to `requestId` and lead intake.
+- Owner/manual confirmation state transitions.
+- Scheduling runtime contract updates and deployment validation updates.
+- Validation for request/pending-confirmation posture and forbidden-scope checks.
+
+## Forbidden Scope
+
+- Install scheduling.
+- SMS or reminder automation.
+- Automatic booking or customer self-confirmation.
+- Technician dispatch or route optimization.
+- Stripe/payment behavior changes.
+- New product/package behavior.
+- Customer-facing confirmed-booking claims before owner acceptance.
+
+## Primary Task Register
+
+- `/docs/system/master-task-register.md`
+
+## Controlling Runtime Systems
+
+- Scheduling ownership.
+- requestId lifecycle.
+- `/api/lead-signal` boundary.
+- HubSpot sync only where directly required.
+- Email notification only where directly required by pending-confirmation owner/customer flow.
+
+## Controlling Funnel / Route Scope
+
+- Estimate scheduling only.
+- Existing scheduling route/API topology established by `SCHED-IMPL001`.
+- `GET /api/scheduling/availability` as the `SCHED-IMPL002` target.
+
+## Required Validation
+
+- `npm run build`
+- `npm run lint` (if available)
+- `npm run test` (if available)
+- `npm run typecheck` (if available)
+- Route/API validation checks for authorized task scope.
+- Forbidden-scope/content searches.
+- No calendar-write verification for `SCHED-IMPL002`.
+- No SMS/reminder/install-scheduling verification for this context transition task.
 
 ## Historical Lineage (Reference Only)
 
-- Step103 — Full Funnel Validation — REV01 (completed validation reference)
-- Step101 — Home Security Funnel + Page Spec (REV01/REV02) (canonical funnel specification reference)
-- Step201 — Existing Active Step (unchanged isolated scope)
-
----
+- CTX-STEP102-QRLANDING-REV01 and Step102 remain preserved for QR funnel historical/supporting lineage.
+- SCHED001 and SCHED-ARCH001 remain supporting architecture/specification lineage.
+- Step103 and Step101 remain preserved reference lineage.
 
 ## Enforcement Rules
 
-- Exactly one controlling Step governs implementation at a time.
-- The controlling Step above is the active implementation authority.
-- Historical lineage Steps are preserved and referenceable, but not simultaneous implementation controllers.
-- Any implementation scope outside the controlling Step requires a Step/context revision before execution.
-
----
-
-## Runtime Documentation Hardening Authorization (GOV004)
-
-- Step102 QRLanding remains the current business/funnel context and controlling implementation authority.
-- Runtime documentation hardening is authorized as a **documentation-only operational hardening initiative** under this current context.
-- Runtime hardening authorization is limited to canonical docs under `/docs/runtime` plus related governance-index updates in `/docs/system/master-task-register.md`, `/docs/system/step-current.md`, and `/docs/DOCUMENT_CATALOG.md` when required.
-- Runtime hardening does **not** authorize source-code implementation, runtime behavior changes, UI changes, route changes, environment variable changes, secret exposure, Stripe implementation changes, or HubSpot implementation/schema changes.
-- Runtime hardening execution remains gated by the Master Task Register Active Tasks rule (only tasks listed ACTIVE are executable).
-
----
-
-## Notes
-
-- This context is focused on QR scan-code acquisition funnel implementation.
-- Full-funnel and prior Step artifacts remain preserved as lineage and validation history.
-- Runtime documentation hardening is an operational documentation adjunct and does not supersede Step102 funnel scope.
-
-
-## Collision Notice
-
-- A legacy document named `step_102_wnyhs_replication_readiness_hardening_rev_01.md` exists as historical lineage only.
-- It is ARCHIVED / SUPERSEDED and is not a controlling Step in this context.
-- Step102 controlling authority in this context refers only to `Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01`.
+- Exactly one controlling context governs implementation execution at a time.
+- Tasks must be ACTIVE in `/docs/system/master-task-register.md` before execution.
+- Any request outside this context requires a context/task-register revision before execution.

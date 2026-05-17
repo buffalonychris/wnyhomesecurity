@@ -1,8 +1,8 @@
 # Master Task Register
 
 Status: Active  
-Current Operational Context: CTX-STEP102-QRLANDING-REV01  
-Controlling Step: Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
+Current Operational Context: CTX-SCHED-MVP-REV01  
+Controlling Step: Step-SCHED-MVP — Estimate Scheduling MVP Implementation Authority — REV01
 
 ---
 
@@ -10,170 +10,204 @@ Controlling Step: Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
-### T-STEP102-QR-001
-- **Task ID:** T-STEP102-QR-001
-- **Task Name:** Implement additive /qrlanding route
-- **Status:** ACTIVE
-- **Category:** QR
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Add the QR landing route required by Step102 without disrupting existing flows.
-- **Allowed Scope:** Additive route and related QR landing implementation per Step102.
-- **Forbidden Scope:** Stripe logic changes, HubSpot schema/pipeline changes, unrelated route/funnel changes.
-- **Target Files:** `src/App.tsx`, `src/routes/*`, `src/pages/*` (as required by Step102).
-- **Runtime Systems Affected:** Router/UI, API calls for lead capture (through approved layer only).
-- **Documentation Updates Required:** Update task status in this register; update task notes as needed.
-- **Validation Required:** `npm run build` plus Step102 validation checks.
-- **Exit Criteria:** /qrlanding route is reachable, in-scope behavior works, existing protected flows preserved.
-- **Dependencies:** Step102 requirements; active context alignment.
-- **Operator Decision Required:** No.
-
-### T-STEP102-QR-002
-- **Task ID:** T-STEP102-QR-002
-- **Task Name:** Build mobile-first QR landing funnel experience
-- **Status:** ACTIVE
-- **Category:** QR
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Implement Step102 mobile-first QR funnel UX.
-- **Allowed Scope:** In-scope QR landing UX and copy implementation per approved Step.
-- **Forbidden Scope:** Claims outside approved copy guardrails; unrelated UI/route changes.
-- **Target Files:** QRLanding-related route/page/components in Step102 scope.
-- **Runtime Systems Affected:** Frontend funnel UX only.
-- **Documentation Updates Required:** Maintain task lifecycle updates in register.
-- **Validation Required:** `npm run build` and Step102 UX checks.
-- **Exit Criteria:** Mobile-first QR funnel experience matches Step102 requirements.
-- **Dependencies:** T-STEP102-QR-001.
-- **Operator Decision Required:** No.
-
-### T-STEP102-LEAD-001
-- **Task ID:** T-STEP102-LEAD-001
-- **Task Name:** Implement estimate-request intake form fields from Step102
-- **Status:** ACTIVE
-- **Category:** LEAD
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Capture required intake fields for estimate request flow.
-- **Allowed Scope:** Form field capture defined in Step102.
-- **Forbidden Scope:** Out-of-scope data collection; schema changes outside authorized API contracts.
-- **Target Files:** QR landing intake form files in Step102 scope.
-- **Runtime Systems Affected:** Lead intake frontend and approved API request payloads.
-- **Documentation Updates Required:** Update register status and validation notes.
-- **Validation Required:** `npm run build` and intake field validation checks.
-- **Exit Criteria:** Required fields captured and sent through approved flow.
-- **Dependencies:** T-STEP102-QR-001, T-STEP102-QR-002.
-- **Operator Decision Required:** No.
-
-### T-STEP102-CRM-001
-- **Task ID:** T-STEP102-CRM-001
-- **Task Name:** Capture QR attribution source family and default source
-- **Status:** ACTIVE
-- **Category:** CRM
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Preserve QR attribution metadata for downstream CRM onboarding.
-- **Allowed Scope:** Attribution fields and payload mapping through approved API layer.
-- **Forbidden Scope:** Direct frontend-to-HubSpot writes; HubSpot schema/pipeline/property changes.
-- **Target Files:** In-scope frontend payload mapping and server API adapters.
-- **Runtime Systems Affected:** Lead attribution data mapping, approved API integration.
-- **Documentation Updates Required:** Register task status updates.
-- **Validation Required:** `npm run build` and payload mapping verification.
-- **Exit Criteria:** Attribution source family/default source captured and delivered through approved API path.
-- **Dependencies:** T-STEP102-LEAD-001.
-- **Operator Decision Required:** No.
-
-### T-STEP102-CRM-002
-- **Task ID:** T-STEP102-CRM-002
-- **Task Name:** Integrate CRM onboarding through approved API layer
-- **Status:** ACTIVE
-- **Category:** CRM
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Ensure CRM onboarding follows locked integration architecture.
-- **Allowed Scope:** Writes through `/api/lead-signal` path only.
-- **Forbidden Scope:** Any direct HubSpot write, schema change, or pipeline/property mutation.
-- **Target Files:** API route and integration files within Step102 scope.
-- **Runtime Systems Affected:** Server API integration path for CRM onboarding.
-- **Documentation Updates Required:** Register lifecycle updates and notes.
-- **Validation Required:** `npm run build` and API path verification.
-- **Exit Criteria:** CRM onboarding path uses only approved API route.
-- **Dependencies:** T-STEP102-CRM-001; HubSpot REV03 constraints.
-- **Operator Decision Required:** No.
-
-### T-STEP102-SCHED-001
-- **Task ID:** T-STEP102-SCHED-001
-- **Task Name:** Implement scheduling request capture with graceful degradation
+### SCHED-IMPL002
+- **Task ID:** SCHED-IMPL002
+- **Task Name:** Shared Google Calendar Availability Read
 - **Status:** ACTIVE
 - **Category:** SCHED
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Collect scheduling request intent while preserving funnel resiliency.
-- **Allowed Scope:** Scheduling request capture in Step102-defined flow.
-- **Forbidden Scope:** Out-of-scope calendar architecture rewrites; payment or CRM contract violations.
-- **Target Files:** Scheduling capture files in Step102 scope.
-- **Runtime Systems Affected:** Scheduling request capture behavior.
-- **Documentation Updates Required:** Update task status and validation notes.
-- **Validation Required:** `npm run build` and scheduling degrade-path check.
-- **Exit Criteria:** Scheduling request capture works with graceful fallback.
-- **Dependencies:** T-STEP102-LEAD-001.
-- **Operator Decision Required:** No.
-
-### T-STEP102-QA-001
-- **Task ID:** T-STEP102-QA-001
-- **Task Name:** Validate /qrlanding funnel build and preserve existing flows
-- **Status:** ACTIVE
-- **Category:** QA
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01
-- **Purpose:** Verify new QR funnel behavior does not break protected chain.
-- **Allowed Scope:** Validation of Step102 funnel and regression checks for protected flows.
-- **Forbidden Scope:** Runtime behavior changes beyond fixes explicitly authorized by active scope.
-- **Target Files:** Validation artifacts and any minimal fixes explicitly authorized.
-- **Runtime Systems Affected:** QA verification only unless bounded fixes are approved.
-- **Documentation Updates Required:** Move completed tasks to DONE with evidence.
-- **Validation Required:** `npm run build` and required funnel/protected-flow checks.
-- **Exit Criteria:** Step102 acceptance checks pass and protected flows remain intact.
-- **Dependencies:** All other Step102 ACTIVE tasks.
-- **Operator Decision Required:** No.
-
----
-
-### T-RUNTIME002-001
-- **Task ID:** T-RUNTIME002-001
-- **Task Name:** RUNTIME002 — Cloudflare Runtime Contract
-- **Status:** DONE
-- **Category:** RUNTIME
-- **Controlling Context:** Current operational context defined by `/docs/system/step-current.md`; authorized by operator after GOV001–GOV003 and RUNTIME001 completion.
-- **Purpose:** Create the canonical Cloudflare runtime/environment contract for deployment model, Pages runtime assumptions, environment variable ownership, diagnostics, and validation.
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Implement read-only shared Google Calendar availability lookup through `GET /api/scheduling/availability` for estimate scheduling only.
 - **Allowed Scope:**
-  - Update `/docs/system/master-task-register.md` only for this task promotion.
-  - Promote only T-RUNTIME002-001 from BACKLOG to ACTIVE.
-  - Preserve all existing GOV001–GOV003 and RUNTIME001 governance semantics.
+  - implement Google Calendar read-only availability adapter
+  - complete `GET /api/scheduling/availability`
+  - normalize busy/free availability response
+  - handle timezone safely
+  - fail safely when Google Calendar config is missing or invalid
+  - document required Google Calendar runtime variables
+  - update scheduling runtime docs and deployment validation
 - **Forbidden Scope:**
-  - Do not modify source code.
-  - Do not change Cloudflare settings.
-  - Do not change environment variables.
-  - Do not modify Stripe, HubSpot, Resend, UI, routes, or runtime behavior.
-- **Target Files:** `/docs/runtime/cloudflare_env.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/DOCUMENT_CATALOG.md`, `/docs/system/master-task-register.md`
-- **Runtime Systems Affected:** Cloudflare documentation only; no runtime behavior affected.
-- **Documentation Updates Required:** Create/update runtime contract docs + task lifecycle note in register.
+  - no Google Calendar event creation
+  - no calendar writes
+  - no appointment confirmation
+  - no owner acceptance backend
+  - no SMS
+  - no reminders
+  - no install scheduling
+  - no technician dispatch
+  - no automatic booking
+  - no Stripe/payment changes
+  - no confirmed appointment claims
+- **Target Files:**
+  - existing scheduling API route/service files discovered from `SCHED-IMPL001`
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/runtime/google_calendar_runtime.md`, create if absent
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/system/master-task-register.md`
+  - `/docs/DOCUMENT_CATALOG.md`, only if new docs are created
+- **Runtime Systems Affected:**
+  - Scheduling
+  - Google Calendar read-only availability
+  - Deployment/runtime env documentation
+- **Documentation Updates Required:**
+  - scheduling ownership contract
+  - Google Calendar runtime contract
+  - deployment validation checklist
+  - document catalog only if new doc added
 - **Validation Required:**
-  - `git diff -- docs/system/master-task-register.md`
-  - `rg -n "T-RUNTIME002-001|RUNTIME002|Status: ACTIVE|Status: BACKLOG" docs/system/master-task-register.md`
+  - `npm run build`
+  - `npm run lint`, if available
+  - `npm run test`, if available
+  - `npm run typecheck`, if available
+  - `rg` searches proving no calendar writes, no booking claims, no SMS/reminders/install scheduling
 - **Exit Criteria:**
-  - T-RUNTIME002-001 appears under Active Tasks with Status: ACTIVE.
-  - T-RUNTIME002-001 no longer appears as executable BACKLOG work.
-  - No other tasks are promoted.
-  - No runtime contract docs are created.
-- **Dependencies:** GOV001 complete; GOV002 complete; GOV003 complete; RUNTIME001 complete.
-- **Operator Decision Required:** Operator explicitly authorized promotion in chat.
-
+  - `GET /api/scheduling/availability` returns normalized read-only availability response
+  - missing/invalid Google config fails safely
+  - no calendar write exists
+  - no appointment confirmation exists
+  - no customer-facing booking confirmation claim exists
+  - docs updated
+  - validation reported
+- **Dependencies:**
+  - `SCHED-IMPL001` complete
+  - scheduling architecture spec REV01 available
+  - Google Calendar credentials/config supplied out-of-band by operator before runtime validation
+- **Operator Decision Required:**
+  - provide actual Google Calendar ID and credentials in deployment environment only, never in repo
 
 ## Ready Tasks
 
-No READY tasks are currently promoted.
+### SCHED-IMPL003
+- **Task ID:** SCHED-IMPL003
+- **Task Name:** Estimate Appointment Request Creation
+- **Status:** READY
+- **Category:** SCHED
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Create canonical estimate appointment request creation behavior tied to requestId and lead intake, while preserving pending owner/manual confirmation posture.
+- **Allowed Scope:**
+  - create appointment request data model or persistence boundary
+  - connect estimate request submission to appointment request creation
+  - preserve requestId correlation
+  - set status to `PENDING_OWNER_CONFIRMATION`
+  - notify operator if already supported by existing email/lead notification infrastructure
+  - update HubSpot only if existing fields/supporting pattern already exists or documentation explicitly allows it
+- **Forbidden Scope:**
+  - no automatic booking
+  - no confirmed appointment claim
+  - no owner acceptance backend
+  - no SMS
+  - no reminders
+  - no install scheduling
+  - no technician dispatch
+  - no Stripe/payment changes
+  - no calendar event creation unless explicitly deferred to `SCHED-IMPL004` after owner confirmation
+- **Target Files:**
+  - existing estimate/lead/scheduling request handlers
+  - existing scheduling service/module files
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/runtime/request_id_contract.md`
+  - `/docs/runtime/lead_signal_contract.md`
+  - `/docs/runtime/hubspot_sync_contract.md`, only if directly affected
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/system/master-task-register.md`
+- **Runtime Systems Affected:**
+  - Scheduling
+  - requestId lifecycle
+  - lead signal
+  - HubSpot sync, if directly affected
+  - email notification, if directly affected
+- **Documentation Updates Required:**
+  - scheduling ownership contract
+  - requestId contract
+  - lead signal contract
+  - HubSpot sync contract only if behavior changes
+  - deployment validation checklist
+- **Validation Required:**
+  - build/lint/test/typecheck where available
+  - estimate request submission validation
+  - requestId propagation validation
+  - pending confirmation status validation
+  - no confirmed booking claim search
+- **Exit Criteria:**
+  - estimate requests create or record appointment request state
+  - appointment request is tied to requestId
+  - status is pending owner/manual confirmation
+  - no automatic booking exists
+  - docs updated
+  - validation reported
+- **Dependencies:**
+  - `SCHED-IMPL002` complete or explicitly not blocking
+  - `SCHED-IMPL001` complete
+- **Operator Decision Required:**
+  - choose final persistence location if multiple viable repo patterns exist
+
+### SCHED-IMPL004
+- **Task ID:** SCHED-IMPL004
+- **Task Name:** Owner Acceptance + Confirmation State
+- **Status:** READY
+- **Category:** SCHED
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Implement owner/manual confirmation state transition for estimate appointments after customer request creation.
+- **Allowed Scope:**
+  - create owner confirmation API/action
+  - transition appointment request from `PENDING_OWNER_CONFIRMATION` to `CONFIRMED`
+  - record `confirmedBy` and `confirmedAt`
+  - send confirmation email only after owner/manual confirmation
+  - optionally create Google Calendar event only after owner confirmation if scheduling architecture spec allows it and runtime docs define it
+  - update HubSpot status only if existing sync contract supports it
+- **Forbidden Scope:**
+  - no automatic booking
+  - no customer self-confirmation
+  - no install scheduling
+  - no SMS
+  - no reminders
+  - no technician dispatch
+  - no route optimization
+  - no Stripe/payment changes
+  - no owner bypass without audit fields
+- **Target Files:**
+  - existing scheduling API/service files
+  - existing email notification files, if directly required
+  - existing HubSpot sync files, if directly required
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/runtime/google_calendar_runtime.md`, if calendar event creation after owner confirmation is included
+  - `/docs/runtime/hubspot_sync_contract.md`, if directly affected
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/system/master-task-register.md`
+- **Runtime Systems Affected:**
+  - Scheduling
+  - Email notification
+  - Google Calendar only if post-confirmation event creation is included
+  - HubSpot sync only if directly affected
+- **Documentation Updates Required:**
+  - scheduling ownership contract
+  - deployment validation checklist
+  - Google Calendar runtime contract only if event creation after owner confirmation is included
+  - HubSpot sync contract only if behavior changes
+- **Validation Required:**
+  - build/lint/test/typecheck where available
+  - owner confirmation route/action validation
+  - state transition validation
+  - customer confirmation email validation, if implemented
+  - audit fields validation
+  - forbidden scope search
+- **Exit Criteria:**
+  - owner can confirm requested estimate appointment
+  - appointment state transitions only after owner action
+  - confirmation audit fields are stored
+  - customer confirmation is only sent after owner confirmation
+  - no automatic booking exists
+  - no SMS/reminder/install scheduling exists
+  - docs updated
+  - validation reported
+- **Dependencies:**
+  - `SCHED-IMPL003` complete
+  - `SCHED-IMPL002` complete if confirmation depends on calendar availability or calendar event creation
+- **Operator Decision Required:**
+  - confirm whether `SCHED-IMPL004` should create a Google Calendar event after owner confirmation, or only update internal state first
 
 ---
 
-## Backlog Tasks
-
-
-
----
-
+## Historical / Supporting Tasks and Records
 
 ### T-RUNTIME003-001
 - **Task ID:** T-RUNTIME003-001
