@@ -652,3 +652,12 @@ No ARCHIVED tasks are currently recorded.
 - Codex must not execute tasks in READY, BACKLOG, BLOCKED, DONE, or ARCHIVED states.
 - Active Tasks are the operational execution driver within the current context.
 - On completion, Codex must move finished work to DONE and preserve traceability.
+
+
+### SCHED-HARDEN001
+- **Task ID:** SCHED-HARDEN001
+- **Task Name:** Owner Confirmation Idempotency + Durable Customer Contact Fields
+- **Status:** DONE
+- **Category:** SCHED
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Completion Notes:** Added idempotency guards for repeated owner confirmation side effects, persisted durable customer contact fields at appointment request creation, and added calendar/email audit metadata persistence with focused tests.

@@ -15,6 +15,8 @@ describe('appointment request creation', () => {
       preferredEstimateDate: '2026-05-21',
       preferredEstimateTimeSlot: 'Morning',
       preferredWindowText: '2026-05-21 — Morning',
+      requestedDate: '2026-05-21',
+      requestedTimeWindow: 'Morning',
     });
 
     const stored = await getAppointmentRequestByRequestId(requestId);
@@ -22,6 +24,8 @@ describe('appointment request creation', () => {
     expect(stored?.requestId).toBe(requestId);
     expect(stored?.schedulingStatus).toBe(SCHEDULING_STATUSES.PENDING_OWNER_CONFIRMATION);
     expect(created.source).toBe('lead_signal');
+    expect(created.requestedDate).toBe('2026-05-21');
+    expect(created.requestedTimeWindow).toBe('Morning');
   });
 
   it('does not claim confirmed booking states', async () => {

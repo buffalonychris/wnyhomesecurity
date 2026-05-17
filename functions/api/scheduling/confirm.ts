@@ -1,5 +1,5 @@
 import { SCHEDULING_STATUSES, buildSchedulingBoundaryDiagnostics } from './_boundary';
-import { attachCalendarEventMetadataByRequestId, confirmAppointmentRequestByRequestId } from './appointmentRequestStore';
+import { attachCalendarEventMetadataByRequestId, confirmAppointmentRequestByRequestId, getAppointmentRequestByRequestId, setCalendarWriteAuditByRequestId, setConfirmationEmailAuditByRequestId } from './appointmentRequestStore';
 import { createGoogleCalendarEventAfterConfirmation } from './googleCalendarEvents';
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -108,10 +108,18 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     return json({ ok: false, errorCode: 'MISSING_CONFIRMED_BY', userMessage: 'confirmedBy is required for owner confirmation.' }, 400);
   }
 
+  const existing = await getAppointmentRequestByRequestId(requestId, env);
+  if (!existing) {
+    return json({ ok: false, errorCode: 'REQUEST_NOT_FOUND', userMessage: 'No appointment request exists for the provided requestId.' }, 404);
+  }
+
   const appointmentRequest = await confirmAppointmentRequestByRequestId({ requestId, confirmedBy, env });
   if (!appointmentRequest) {
     return json({ ok: false, errorCode: 'REQUEST_NOT_FOUND', userMessage: 'No appointment request exists for the provided requestId.' }, 404);
   }
+
+  const isCalendarAlreadyWritten = appointmentRequest.schedulingStatus === SCHEDULING_STATUSES.CONFIRMED && Boolean(existing.calendarEventId);
+  const isEmailAlreadySent = appointmentRequest.schedulingStatus === SCHEDULING_STATUSES.CONFIRMED && existing.confirmationEmailStatus === 'SENT';
 
   const timezone = 'America/New_York';
   const start = appointmentRequest.preferredEstimateDate
@@ -119,7 +127,9 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     : new Date().toISOString();
   const end = new Date(new Date(start).getTime() + 60 * 60 * 1000).toISOString();
 
-  const calendarWrite = await createGoogleCalendarEventAfterConfirmation({
+  const calendarWrite = isCalendarAlreadyWritten
+    ? { ok: true as const, idempotent: true as const, calendarEventId: existing.calendarEventId!, calendarEventHtmlLink: existing.calendarEventHtmlLink, calendarEventCreatedAt: existing.calendarEventCreatedAt || new Date().toISOString() }
+    : await createGoogleCalendarEventAfterConfirmation({
     env,
     requestId,
     summary: `WNYHS Estimate Request ${requestId}`,
@@ -131,10 +141,10 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     start,
     end,
     timezone,
-  });
+    });
 
   let updatedAppointmentRequest = appointmentRequest;
-  if (calendarWrite.ok) {
+  if (calendarWrite.ok && !isCalendarAlreadyWritten) {
     const storedWithCalendar = await attachCalendarEventMetadataByRequestId({
       requestId,
       calendarEventId: calendarWrite.calendarEventId,
@@ -142,8 +152,10 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
       calendarEventCreatedAt: calendarWrite.calendarEventCreatedAt,
       env,
     });
+    await setCalendarWriteAuditByRequestId({ requestId, calendarWriteStatus: 'SUCCEEDED', env });
     if (storedWithCalendar) updatedAppointmentRequest = storedWithCalendar;
-  } else {
+  } else if (!calendarWrite.ok) {
+    await setCalendarWriteAuditByRequestId({ requestId, calendarWriteStatus: 'FAILED', calendarWriteErrorCode: calendarWrite.errorCode, env });
     console.warn('[scheduling:confirm] calendar event creation failed after owner confirmation', {
       requestId,
       errorCode: calendarWrite.errorCode,
@@ -151,16 +163,32 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     });
   }
 
-  const emailWrite = await sendCustomerConfirmationEmail({
+  const durableCustomerName = appointmentRequest.customerName || customerName;
+  const durableCustomerEmail = appointmentRequest.customerEmail || customerEmail;
+
+  const emailWrite = isEmailAlreadySent
+    ? { ok: true as const, idempotent: true as const }
+    : await sendCustomerConfirmationEmail({
     env,
     requestId,
-    customerName,
-    customerEmail,
+    customerName: durableCustomerName,
+    customerEmail: durableCustomerEmail,
     confirmedBy,
     preferredWindowText: updatedAppointmentRequest.preferredWindowText,
     timezone,
     calendarEventHtmlLink: updatedAppointmentRequest.calendarEventHtmlLink,
-  });
+    });
+
+  if (!isEmailAlreadySent) {
+    await setConfirmationEmailAuditByRequestId({
+      requestId,
+      confirmationEmailRecipient: durableCustomerEmail,
+      confirmationEmailStatus: emailWrite.ok ? 'SENT' : emailWrite.skipped ? 'SKIPPED' : 'FAILED',
+      confirmationEmailErrorCode: emailWrite.ok ? undefined : emailWrite.errorCode,
+      confirmationEmailSentAt: emailWrite.ok ? new Date().toISOString() : undefined,
+      env,
+    });
+  }
 
   if (!emailWrite.ok && !emailWrite.skipped) {
     console.warn('[scheduling:confirm] customer confirmation email failed after owner confirmation', {
@@ -179,6 +207,10 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
       ? { ok: true, calendarEventId: calendarWrite.calendarEventId }
       : { ok: false, errorCode: calendarWrite.errorCode, message: calendarWrite.safeMessage, httpStatus: calendarWrite.httpStatus },
     emailWrite,
+    idempotency: {
+      calendarWriteReused: isCalendarAlreadyWritten,
+      emailWriteReused: isEmailAlreadySent,
+    },
     message: 'Estimate appointment request confirmed by owner action.',
     boundaries: buildSchedulingBoundaryDiagnostics(),
   });

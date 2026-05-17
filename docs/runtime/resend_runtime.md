@@ -188,3 +188,12 @@ UNKNOWN / NEEDS VERIFICATION:
 - Evidence:
   - Documentation audit of runtime/system/step/spec references in `docs/`.
   - Runtime-contract completion using `/docs/runtime/runtime_contract_template.md` structure.
+
+
+## SCHED-HARDEN001
+
+Confirmation email runtime now records scheduling email audit metadata per appointment request:
+- `confirmationEmailSentAt`
+- `confirmationEmailRecipient`
+- `confirmationEmailStatus`
+- `confirmationEmailErrorCode`

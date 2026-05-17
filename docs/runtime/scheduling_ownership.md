@@ -345,3 +345,11 @@ Internal status constants normalized for future drift prevention:
 - Customer confirmation email attempt occurs only after owner confirmation and after the calendar write attempt, and email failure does not roll back `CONFIRMED`.
 - `requestId` remains traceable across lead intake, scheduling request creation, confirm transitions, and confirmation-email payload content.
 - Duplicate confirm behavior remains idempotency-sensitive and should be tracked as follow-up hardening (risk: repeated confirm may trigger duplicate calendar/email attempts).
+
+
+## SCHED-HARDEN001 Addendum (REV03)
+
+- `POST /api/scheduling/confirm` is idempotent for post-confirmation side effects by `requestId`.
+- If `calendarEventId` already exists on a confirmed request, calendar write is not retried.
+- If `confirmationEmailStatus` is `SENT` on a confirmed request, customer email send is not retried.
+- Durable customer contact fields are stored on appointment request creation and reused during confirmation email delivery.

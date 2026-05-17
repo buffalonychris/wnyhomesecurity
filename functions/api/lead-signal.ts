@@ -191,6 +191,13 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     preferredEstimateDate: schedulingSummary.preferredEstimateDate,
     preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
     preferredWindowText: schedulingSummary.preferredWindowText,
+    customerName: leadSummary.fullName || undefined,
+    customerEmail: leadSummary.email || undefined,
+    customerPhone: leadSummary.phone || undefined,
+    requestedDate: schedulingSummary.preferredEstimateDate,
+    requestedTimeWindow: schedulingSummary.preferredEstimateTimeSlot,
+    timezone: 'America/New_York',
+    source: 'lead_signal',
     env,
   });
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';

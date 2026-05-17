@@ -196,3 +196,9 @@ No requestId generation behavior changed in this task:
 - `requestId` now correlates to a canonical appointment request record created at intake time in API runtime code.
 - The appointment request record stores `requestId`, preferred estimate window metadata, and `PENDING_OWNER_CONFIRMATION` scheduling status.
 - No change to requestId generation algorithm was introduced.
+
+
+## SCHED-HARDEN001
+
+- Confirmation endpoint now preserves original `confirmedBy`/`confirmedAt` on idempotent retries.
+- `requestId` remains the correlation key across request creation and idempotent confirmation responses.
