@@ -69,7 +69,7 @@ const HomeSecurityPackageTierPage = () => {
       <section className="newsite-section">
         <div className="newsite-surface">
           <h2>Next steps</h2>
-          <p>Connect with a security advisor or place your deposit to reserve installation.</p>
+          <p>Connect with a security advisor or place your deposit to continue to owner-confirmed scheduling review.</p>
           <div className="newsite-cta-row">
             <NavLink className="newsite-btn" to="/newsite/quote">
               Start online quote

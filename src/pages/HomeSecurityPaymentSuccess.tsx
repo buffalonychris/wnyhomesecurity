@@ -86,7 +86,7 @@ const HomeSecurityPaymentSuccess = () => {
             stepId="deposit"
             title="Deposit confirmed"
             description="Your Home Security deposit is confirmed."
-            support="Next, we’ll coordinate your installation window and finalize on-site placement."
+            support="Next step: submit your preferred window request and we will review and confirm by owner follow-up."
           />
           <small style={{ color: 'var(--color-text-secondary)' }}>
             {status === 'loading' && 'Confirming your deposit...'}
@@ -101,8 +101,7 @@ const HomeSecurityPaymentSuccess = () => {
           <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
             <div className="badge">Next steps</div>
             <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
-              We&apos;ll follow up to confirm your installation window. If you need anything immediately, reach out and we
-              will help.
+              Next step: request your preferred window and we will review and confirm by owner follow-up. If you need anything immediately, reach out and we will help.
             </p>
             {tierLabel ? (
               <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
