@@ -1,5 +1,6 @@
 import { useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
 import { NavLink } from 'react-router-dom';
+import { sendLeadSignal } from '../../lib/hubspotLeadSignal';
 
 type CallbackFormState = {
   name: string;
@@ -10,24 +11,6 @@ type CallbackFormState = {
 };
 
 type CallbackFormErrors = Partial<Record<keyof CallbackFormState, string>>;
-
-const storageKey = 'newsite-contact-submissions';
-
-const saveSubmission = (payload: Record<string, string>) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
-  try {
-    const existingRaw = window.localStorage.getItem(storageKey);
-    const existing = existingRaw ? JSON.parse(existingRaw) : [];
-    const next = Array.isArray(existing) ? existing : [];
-    next.push(payload);
-    window.localStorage.setItem(storageKey, JSON.stringify(next));
-  } catch {
-    // Ignore storage errors in private browsing or restricted environments.
-  }
-};
 
 const buildMailto = (subject: string, body: string) => {
   const params = new URLSearchParams({ subject, body });
@@ -44,6 +27,9 @@ const NewSiteCallback = () => {
   });
   const [errors, setErrors] = useState<CallbackFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [failureRequestId, setFailureRequestId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const mailtoHref = useMemo(() => {
     const body = [
@@ -79,23 +65,36 @@ const NewSiteCallback = () => {
     return nextErrors;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    saveSubmission({
-      type: 'callback',
-      submittedAt: new Date().toISOString(),
-      name: formState.name.trim(),
-      phone: formState.phone.trim(),
-      email: formState.email.trim(),
-      bestTime: formState.bestTime.trim(),
-      notes: formState.notes.trim(),
-    });
-    setSubmitted(true);
+    setSubmitError(null);
+    setFailureRequestId(null);
+    setIsSubmitting(true);
+    try {
+      const response = await sendLeadSignal({
+        event: 'qr_estimate_requested',
+        sourceFamily: 'NEWSITE',
+        source: 'callback_form',
+        landingRoute: '/newsite/callback',
+        vertical: 'home-security',
+        submittedAt: new Date().toISOString(),
+        contact: { fullName: formState.name.trim(), phone: formState.phone.trim(), email: formState.email.trim() || `callback-${formState.phone.replace(/\D/g, '') || 'unknown'}@noemail.wnyhs.local` },
+        request: { requestedHelp: 'callback_request', requestDetails: formState.notes.trim() || undefined, preferredContactMethod: 'Phone call', preferredEstimateDate: new Date().toISOString().slice(0, 10), preferredEstimateTimeSlot: formState.bestTime.trim() },
+      });
+      setSubmitted(true);
+      setFailureRequestId(response?.requestId || null);
+    } catch (error) {
+      const cause = error instanceof Error ? (error.cause as Record<string, unknown> | undefined) : undefined;
+      setFailureRequestId(typeof cause?.requestId === 'string' ? cause.requestId : null);
+      setSubmitError('We could not submit your intake right now. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -226,12 +225,10 @@ const NewSiteCallback = () => {
               placeholder="Tell us anything that will help us prepare."
             />
           </label>
-          <p className="newsite-helper">
-            Prefer email? A mailto fallback is ready on the confirmation screen.
-          </p>
+          {submitError ? <p className="newsite-form-error">{submitError}{failureRequestId ? ` (${failureRequestId})` : ''}</p> : null}
           <div className="newsite-form-actions">
-            <button className="newsite-btn" type="submit">
-              Submit request
+            <button className="newsite-btn" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting…' : 'Submit request'}
             </button>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
               Back to contact hub
