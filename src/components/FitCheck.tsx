@@ -693,7 +693,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
             </button>
           ) : null}
           <button type="button" className="btn btn-secondary" onClick={handleReset}>
-            Start over
+            Start Over
           </button>
         </div>
         {isHomeSecurity && (
