@@ -35,7 +35,7 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
     { id: 'packages', label: 'Packages', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
     { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
     { id: 'planner', label: 'Planner', href: HOME_SECURITY_ROUTES.planner, matchPath: '/home-security/planner' },
-    { id: 'schedule', label: 'Schedule', href: '/schedule?path=onsite', matchPath: '/schedule' },
+    { id: 'estimate', label: 'Estimate', href: '/contact?vertical=home-security', matchPath: '/contact' },
     { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
   ],
   more: [
@@ -101,7 +101,7 @@ export const getHomeSecurityFunnelSteps = (pathParam?: string | null): FunnelSte
   {
     id: 'schedule',
     label: 'Schedule',
-    helperText: 'Pick your installation window.',
+    helperText: 'Request your preferred installation window (owner confirmation required).',
     href: HOME_SECURITY_ROUTES.schedule,
     matchPath: '/schedule',
     stepNumber: 6,

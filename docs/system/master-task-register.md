@@ -571,7 +571,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### FUNNEL-FIX001
 - **Task ID:** FUNNEL-FIX001
 - **Task Name:** Main Funnel Stage-Consistent CTA and Link Progression Hardening
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-SCHED-MVP-REV01 (post-FUNNEL-OPS001 queue normalization)
 - **Purpose:** Eliminate wrong-stage CTA/link progression risk in the classic funnel without changing runtime architecture.
@@ -580,6 +580,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 - **Target Files:** `src/pages/**`, `src/routes/**`, `docs/audits/**`, `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** Funnel navigation only.
 - **Documentation Updates Required:** Update audit evidence and register status lifecycle.
+- **Completion Notes:** Implemented in `docs/audits/funnel_fix001_implementation_rev01.md` with stage-correct CTA and route normalization.
 - **Validation Required:** Build + route/CTA grep validation + no forbidden claim regressions.
 - **Exit Criteria:** All audited classic-funnel CTAs/links map to stage-correct next steps with no broken-stage destinations.
 - **Dependencies:** FUNNEL-OPS001 audit accepted.

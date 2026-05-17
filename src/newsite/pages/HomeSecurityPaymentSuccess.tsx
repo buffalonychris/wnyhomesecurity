@@ -83,7 +83,7 @@ const HomeSecurityPaymentSuccess = () => {
           </h1>
           {verifyState.status === 'verified' ? (
             <>
-              <p>Your Home Security deposit is verified and your install scheduling is ready.</p>
+              <p>Your Home Security deposit is verified. Next, send your preferred installation window request.</p>
               <p>Verified package tier: {formatTierLabel(verifyState.tier)}.</p>
             </>
           ) : (
@@ -102,7 +102,7 @@ const HomeSecurityPaymentSuccess = () => {
             <>
               <p>Your payment is confirmed.</p>
               <NavLink className="newsite-btn" to={scheduleTo}>
-                Schedule your install
+                Request scheduling
               </NavLink>
             </>
           ) : (

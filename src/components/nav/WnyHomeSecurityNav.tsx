@@ -79,15 +79,6 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
           <NavLink to="/home-security/planner?vertical=home-security" className={navLinkClass}>
             Precision Planner
           </NavLink>
-          <NavLink to="/agreementReview" className={navLinkClass}>
-            Agreement
-          </NavLink>
-          <NavLink to="/payment" className={navLinkClass}>
-            Payment
-          </NavLink>
-          <NavLink to="/schedule" className={navLinkClass}>
-            Scheduling
-          </NavLink>
         </nav>
         <div className="wny-hs-nav-secondary" aria-label="Home Security support navigation">
           <details className="wny-hs-nav-dropdown">
