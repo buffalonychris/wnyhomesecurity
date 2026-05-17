@@ -333,8 +333,6 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         hubspot.contact = contactId ? 'updated' : 'created';
 
         const dealNameIdentity = `${(parsedName.firstName || '')} ${(parsedName.lastName || '')}`.trim() || body.contact?.email || 'Lead';
-          const isQrEstimate = body.event === 'qr_estimate_requested';
-          const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
         const isQrEstimate = body.event === 'qr_estimate_requested';
         const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
         let dealId = body?.deal?.dealId;
@@ -417,8 +415,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           hubspot.skippedProperties = Array.from(new Set([...hubspot.skippedProperties, ...contactPropertyNames.filter((key) => !minimalPropertyNames.includes(key))]));
 
           const dealNameIdentity = `${(parsedName.firstName || '')} ${(parsedName.lastName || '')}`.trim() || body.contact?.email || 'Lead';
-        const isQrEstimate = body.event === 'qr_estimate_requested';
-        const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
+          const isQrEstimate = body.event === 'qr_estimate_requested';
+          const dealStageId = getDealStageForCreate(env.HUBSPOT_ESTIMATE_INITIAL_STAGE_ID);
           let dealId = body?.deal?.dealId;
           if (!dealId && body?.deal?.quoteRef) {
             const foundDeal = await hubspotRequest(env, 'POST', '/crm/v3/objects/deals/search', { filterGroups: [{ filters: [{ propertyName: 'wny_quote_ref', operator: 'EQ', value: body.deal.quoteRef }] }], limit: 1 });
