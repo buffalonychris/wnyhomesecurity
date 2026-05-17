@@ -60,15 +60,18 @@ const NewSiteHome = () => {
             design your protection plan, and preview the HA Gold dashboard in demo mode.
           </p>
         </div>
-        <div className="newsite-card">
+        <div className="newsite-card newsite-hero-panel">
           <strong>Next step: Design your system</strong>
           <p>Start the planning flow to match sensors, zones, and smart automations.</p>
-          <div>
-            <NavLink className="newsite-btn" to="/newsite/quote">
+          <div className="newsite-cta-row">
+            <NavLink className="newsite-btn newsite-btn-primary" to="/newsite/quote">
               Start online quote
             </NavLink>
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/demos">
               View demos
+            </NavLink>
+            <NavLink className="newsite-btn newsite-btn-tertiary" to="/newsite/packages">
+              Explore packages
             </NavLink>
           </div>
         </div>
