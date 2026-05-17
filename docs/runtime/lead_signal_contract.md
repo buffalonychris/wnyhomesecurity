@@ -140,6 +140,7 @@ Confirmed response fields:
 ## Downstream Integration Boundaries
 
 - Lead signal ownership: request validation, requestId generation, orchestration, and response envelope in `/api/lead-signal`.
+- Scheduling request capture side effect writes appointment-request state through scheduling storage boundary; durable authority is Cloudflare KV when `APPOINTMENT_REQUESTS_KV` binding is configured, with in-memory fallback for local/test only.
 - Resend ownership: outbound delivery/runtime account settings and provider health.
 - HubSpot ownership: schema and CRM constraints remain governed by REV03 and future RUNTIME006 docs.
 - Stripe/payment ownership: out of scope for lead signal contract; payment authority remains Stripe webhook/server flow.

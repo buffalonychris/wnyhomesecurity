@@ -97,6 +97,7 @@ Validate immediately after deployment:
 - HubSpot sync path reachable when token is configured.
 - Email notification path reachable when provider is configured.
 - Scheduling request flow remains request-capture (no false confirmation claims).
+- Scheduling durable storage binding `APPOINTMENT_REQUESTS_KV` is present in target runtime when production durability is required.
 - requestId appears in response diagnostics where applicable.
 - No fatal runtime errors observed in deployment/runtime logs.
 
@@ -245,6 +246,7 @@ Use these diagnostics surfaces during validation:
 - [ ] HubSpot sync validation performed.
 - [ ] Email outbound + inbound validation performed.
 - [ ] Scheduling request boundary validated (requested != confirmed).
+- [ ] `APPOINTMENT_REQUESTS_KV` binding configured for durable scheduling state in deployment target.
 - [ ] requestId/referenceId traceability validated.
 - [ ] Critical unknowns reviewed by operator.
 - [ ] Rollback/freeze posture reviewed.

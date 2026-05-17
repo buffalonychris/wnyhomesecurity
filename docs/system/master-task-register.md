@@ -215,7 +215,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### SCHED-IMPL005
 - **Task ID:** SCHED-IMPL005
 - **Task Name:** Durable Appointment Request Storage
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Replace or supplement the temporary in-memory appointment request store with a durable repo-approved persistence boundary for estimate appointment requests.
@@ -249,6 +249,12 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
   - confirmation audit fields persist
   - tests added/updated
   - docs updated
+- **Completion Notes:**
+  - Scheduling appointment-request storage now supports durable Cloudflare KV through `APPOINTMENT_REQUESTS_KV` with in-memory fallback limited to local/test scenarios.
+  - `/api/lead-signal`, `/api/scheduling/request`, and `/api/scheduling/confirm` now read/write through the durable-ready boundary while preserving `requestId` correlation and owner-confirmation gating.
+  - Confirmation metadata (`confirmedBy`, `confirmedAt`) and status transitions remain preserved with persisted updates.
+  - Added/updated tests cover request creation, lookup, confirmation persistence, invalid `requestId`, and no-auto-confirm posture.
+  - Runtime docs updated with required KV binding and deployment validation checklist updates.
 
 ### SCHED-IMPL006
 - **Task ID:** SCHED-IMPL006

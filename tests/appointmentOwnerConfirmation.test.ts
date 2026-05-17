@@ -19,7 +19,7 @@ describe('owner confirmation state transition', () => {
 
   it('transitions request from pending owner confirmation to confirmed only after owner action', async () => {
     const requestId = 'lead_confirm_001';
-    createPendingOwnerConfirmationAppointmentRequest({
+    await createPendingOwnerConfirmationAppointmentRequest({
       requestId,
       event: 'qr_estimate_requested',
       preferredWindowText: '2026-05-22 — Afternoon',
@@ -36,14 +36,14 @@ describe('owner confirmation state transition', () => {
 
   it('records confirmedBy and confirmedAt audit fields', async () => {
     const requestId = 'lead_confirm_002';
-    createPendingOwnerConfirmationAppointmentRequest({
+    await createPendingOwnerConfirmationAppointmentRequest({
       requestId,
       event: 'qr_estimate_requested',
       preferredWindowText: '2026-05-23 — Morning',
     });
 
     await callConfirmEndpoint({ requestId, confirmedBy: 'scheduler.owner@wnyhs.local' });
-    const stored = getAppointmentRequestByRequestId(requestId);
+    const stored = await getAppointmentRequestByRequestId(requestId);
 
     expect(stored?.confirmedBy).toBe('scheduler.owner@wnyhs.local');
     expect(stored?.confirmedAt).toBeDefined();
@@ -59,9 +59,9 @@ describe('owner confirmation state transition', () => {
     expect(payload.errorCode).toBe('REQUEST_NOT_FOUND');
   });
 
-  it('preserves no auto-confirm behavior before owner action', () => {
+  it('preserves no auto-confirm behavior before owner action', async () => {
     const requestId = 'lead_confirm_003';
-    const created = createPendingOwnerConfirmationAppointmentRequest({
+    const created = await createPendingOwnerConfirmationAppointmentRequest({
       requestId,
       event: 'qr_estimate_requested',
       preferredWindowText: '2026-05-24 — Midday',

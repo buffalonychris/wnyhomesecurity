@@ -7,9 +7,9 @@ describe('appointment request creation', () => {
     resetAppointmentRequestStoreForTests();
   });
 
-  it('creates appointment request tied to requestId in pending owner confirmation', () => {
+  it('creates appointment request tied to requestId in pending owner confirmation', async () => {
     const requestId = 'lead_test_123';
-    const created = createPendingOwnerConfirmationAppointmentRequest({
+    const created = await createPendingOwnerConfirmationAppointmentRequest({
       requestId,
       event: 'qr_estimate_requested',
       preferredEstimateDate: '2026-05-21',
@@ -17,15 +17,15 @@ describe('appointment request creation', () => {
       preferredWindowText: '2026-05-21 — Morning',
     });
 
-    const stored = getAppointmentRequestByRequestId(requestId);
+    const stored = await getAppointmentRequestByRequestId(requestId);
     expect(stored).toBeDefined();
     expect(stored?.requestId).toBe(requestId);
     expect(stored?.schedulingStatus).toBe(SCHEDULING_STATUSES.PENDING_OWNER_CONFIRMATION);
     expect(created.source).toBe('lead_signal');
   });
 
-  it('does not claim confirmed booking states', () => {
-    const created = createPendingOwnerConfirmationAppointmentRequest({
+  it('does not claim confirmed booking states', async () => {
+    const created = await createPendingOwnerConfirmationAppointmentRequest({
       requestId: 'lead_test_456',
       event: 'qr_estimate_requested',
       preferredWindowText: '',
