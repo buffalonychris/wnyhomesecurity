@@ -19,12 +19,15 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### FUNNEL-ARCH002
 - **Task ID:** FUNNEL-ARCH002
 - **Task Name:** Funnel architecture implementation cleanup
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** FUNNEL / UX-ARCHITECTURE
 - **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
 - **Purpose:** Implement approved nav/page-role cleanup from `docs/audits/funnel_arch001_rev01.md`.
 - **Allowed Scope:** remove/demote irrelevant links; align nav hierarchy; align page CTAs with final journey; keep System Planner (Preview) non-authoritative; preserve estimate/contact route behavior.
 - **Forbidden Scope:** no quote generation; no HubSpot changes; no Stripe changes; no scheduling changes; no protected runtime changes.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required diff/rg audits completed.
+- **Completion Notes:** Primary nav cleaned to funnel-first hierarchy (Home, Packages, Fit Check, Estimate), disruptive primary links demoted/removed, System Planner (Preview) retained as secondary utility access, Support retained, `/contact` intake behavior preserved, protected runtime untouched.
+- **Next Task Recommendation:** ESTIMATE-FLOW001
 
 ### CRM-CONTRACT001
 - **Task ID:** CRM-CONTRACT001
