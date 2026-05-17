@@ -127,7 +127,7 @@ const Contact = () => {
       const cause = submitError instanceof Error ? (submitError.cause as Record<string, unknown> | undefined) : undefined;
       const requestId = typeof cause?.requestId === 'string' ? cause.requestId : null;
       setFailureRequestId(requestId);
-      setError('We could not submit your intake right now. Please try again.');
+      setError('We could not send your estimate request right now. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -137,7 +137,7 @@ const Contact = () => {
     <>
       <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
       <p style={{ maxWidth: 640 }}>
-        Start the intake so we can route you to the right next step. We respond with a simple, one-time quote—no subscriptions.
+        Share a few details so we can prepare your estimate request and recommend the right next step.
       </p>
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <a className="btn btn-secondary" href={mailtoLink}>Email us</a>
@@ -148,15 +148,15 @@ const Contact = () => {
           Text {wnyhsContact.phone.display}
         </a>
       </div>
-      <form className="form" aria-label="Intake form" onSubmit={handleSubmit}>
+      <form className="form" aria-label="Estimate request form" onSubmit={handleSubmit}>
         {packageTierLabel && (
           <div>
-            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Selected package: {packageTierLabel}</p>
+            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>System you selected: {packageTierLabel}</p>
           </div>
         )}
         {discoveryContext && (
           <div>
-            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Recommended package: {discoveryContext.recommendedTier === 'unknown' ? 'Unknown' : `${discoveryContext.recommendedTier.charAt(0).toUpperCase()}${discoveryContext.recommendedTier.slice(1)}`}</p>
+            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Recommended system: {discoveryContext.recommendedTier === 'unknown' ? 'Unknown' : `${discoveryContext.recommendedTier.charAt(0).toUpperCase()}${discoveryContext.recommendedTier.slice(1)}`}</p>
             <p style={{ margin: '0 0 0.5rem' }}>Fit check: {discoveryContext.fitCheckCompleted ? 'Complete' : 'Not complete'}</p>
             <p style={{ margin: '0 0 0.5rem' }}>Property size: {discoveryContext.propertySize}</p>
             <p style={{ margin: '0 0 0.5rem' }}>Coverage need: {discoveryContext.coverageExpectation}</p>
@@ -207,7 +207,7 @@ const Contact = () => {
           />
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <button className="btn btn-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Submit intake'}</button>
+          <button className="btn btn-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Request My Estimate'}</button>
           {submitted && (
             <small style={{ color: 'var(--kaec-text-muted)' }}>
               Request received. Our team will follow up.

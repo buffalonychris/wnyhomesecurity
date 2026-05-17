@@ -830,7 +830,9 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ## Backlog Tasks
 
-No BACKLOG tasks are currently recorded for runtime hardening queue scope.
+- **NAV-BUG001** — Back/forward black screen + quote artifact render issue. (Deferred; not implemented in MAIN-FUNNEL-FIX003A.)
+- **QUOTE-GEN001** — Quote generation, HubSpot quote-stage update, customer/operator quote email delivery. (Deferred; not implemented in MAIN-FUNNEL-FIX003A.)
+- **CRM-STAGEFLOW001** — Deal pipeline advancement rules after quote/deposit/scheduling events. (Deferred; not implemented in MAIN-FUNNEL-FIX003A.)
 
 ---
 
