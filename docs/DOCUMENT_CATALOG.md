@@ -161,6 +161,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Added by RUNTIME006 REV01 and aligned to HubSpot REV03 API-layer-only write path constraints.
 
+
+### `/docs/runtime/google_calendar_runtime.md`
+- **File path:** `docs/runtime/google_calendar_runtime.md`
+- **Purpose / likely role:** Canonical Google Calendar read-only availability runtime contract for scheduling API behavior, env vars, and fallback posture.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by SCHED-IMPL002; advisory availability only (no booking authority, no writes).
+
 ### `/docs/runtime/deployment_validation.md`
 - **File path:** `docs/runtime/deployment_validation.md`
 - **Purpose / likely role:** Canonical deployment validation SOP defining pre-deployment, deployment, post-deployment, smoke-test, rollback/freeze, and release-readiness operational gates.

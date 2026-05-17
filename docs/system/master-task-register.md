@@ -13,7 +13,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### SCHED-IMPL002
 - **Task ID:** SCHED-IMPL002
 - **Task Name:** Shared Google Calendar Availability Read
-- **Status:** ACTIVE
+- **Status:** COMPLETE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Implement read-only shared Google Calendar availability lookup through `GET /api/scheduling/availability` for estimate scheduling only.
