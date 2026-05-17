@@ -163,3 +163,22 @@ UNKNOWN / NEEDS VERIFICATION:
 - Branch/commit: NEEDS VERIFICATION (record at merge/release time)
 - Verified by: Codex execution for T-RUNTIME006-001
 - Evidence: Source/doc audit of `functions/api/lead-signal.ts`, `api/_hubspot.ts`, and runtime governance docs.
+
+## CRM-SCHEMA001 Runtime Normalization Addendum (2026-05-17)
+
+- Added deal property usage: `wny_request_id` (single-line text/string) as canonical runtime correlation ID on deal writes.
+- Normalization mappings enforced before HubSpot submission:
+  - `onsite` -> `onsite_confirmation_first`
+  - `qr_scan` -> `direct`
+  - `qr_estimate_requested` -> `quote_generated`
+  - `Text` -> `sms`
+  - `Call` -> `phone`
+  - `Email` -> `email`
+  - `Any` -> `any`
+- Contact/deal enum enforcement now constrains writes to known values; unknown inputs resolve to `unknown`.
+- Blank contact search prevention rule:
+  - Search by email when present.
+  - Else search by phone when present.
+  - Else skip contact search and return controlled partial sync status.
+- Structured/text property serialization rule:
+  - Object/array values destined for HubSpot text fields must be serialized through JSON stringification before write.

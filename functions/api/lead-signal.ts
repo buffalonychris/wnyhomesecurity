@@ -1,5 +1,6 @@
 import { extractSchedulingRequestSummary } from './scheduling/_boundary';
 import { createPendingOwnerConfirmationAppointmentRequest } from './scheduling/appointmentRequestStore';
+import { chooseContactSearchFilter, normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePathChoice, normalizePreferredContactMethod, stringifyHubSpotTextField } from './hubspotNormalization';
 
 type LeadSignalRequest = any;
 
@@ -69,42 +70,6 @@ const timeSlotToBucket = (slot: string | undefined) => {
   if (s.includes('12') || s.includes('1:') || s.includes('2:') || s.includes('3:') || s.includes('4:')) return 'afternoon';
   return 'evening';
 };
-const normalizePreferredContactMethod = (value: unknown) => {
-  const normalized = getHubspotString(value)?.toLowerCase();
-  if (!normalized) return 'unknown';
-  if (normalized === 'text' || normalized === 'sms') return 'sms';
-  if (normalized === 'phone' || normalized === 'phone call') return 'phone';
-  if (normalized === 'email') return 'email';
-  if (normalized === 'any') return 'any';
-  return 'unknown';
-};
-const normalizeLeadSourcePlatform = (value: unknown) => {
-  const normalized = getHubspotString(value)?.toLowerCase();
-  if (!normalized) return 'unknown';
-  if (normalized.includes('referral')) return 'referral';
-  if (normalized.includes('google')) return 'organic_search';
-  if (normalized.includes('qr') || normalized.includes('placard') || normalized.includes('sticker') || normalized.includes('card') || normalized.includes('yard')) return 'manual';
-  return 'unknown';
-};
-const normalizeFunnelStage = (value: unknown) => {
-  const normalized = getHubspotString(value)?.toLowerCase();
-  if (!normalized) return 'unknown';
-  if (normalized === 'quote_generated') return 'quote_generated';
-  if (normalized.includes('qr estimate request') || normalized === 'qr_estimate_requested' || normalized.includes('submitted estimate request')) return 'landing_viewed';
-  return 'unknown';
-};
-const normalizeVerticalInterest = (value: unknown) => {
-  const normalized = getHubspotString(value)?.toLowerCase();
-  if (normalized === 'home security' || normalized === 'home_security') return 'home_security';
-  return 'unknown';
-};
-const normalizeWalkthroughInterest = (value: unknown) => {
-  const normalized = getHubspotString(value)?.toLowerCase();
-  if (!normalized) return 'unknown';
-  if (normalized === 'requested' || normalized === 'request estimate' || normalized === 'qr estimate request') return 'requested';
-  return 'unknown';
-};
-
 const buildQrLeadSummary = (body: LeadSignalRequest, timestampISO: string) => {
   const parsed = splitName(body?.contact);
   return {
@@ -231,6 +196,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);
   const normalizedLeadSourcePlatform = normalizeLeadSourcePlatform(body?.assetSource || body?.source || body?.whereDidYouSeeUs);
   const normalizedFunnelStage = normalizeFunnelStage(body?.event);
+  const normalizedDealPath = normalizeDealPath(body?.deal?.pathChoice || body?.pathChoice || 'onsite');
+  const normalizedPathChoice = normalizePathChoice(body?.deal?.pathChoice || body?.pathChoice || 'onsite');
   const normalizedVerticalInterest = normalizeVerticalInterest(body?.request?.verticalInterest || 'home_security');
   const normalizedWalkthroughInterest = normalizeWalkthroughInterest(body?.request?.walkthroughInterest || body?.request?.requestedHelp || body?.event);
   const consentSummary = `textConsent=${body?.textConsent ? 'yes' : 'no'}; emailConsent=${body?.emailConsent ? 'yes' : 'no'}; contactHoursAck=${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`;
@@ -307,9 +274,17 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
       return { ok: false, status: 400, data: { message: 'all_properties_removed' } };
     };
 
+    const contactFilter = chooseContactSearchFilter(body.contact?.email, body.contact?.phone);
+    if (!contactFilter) {
+      hubspot.contact = 'skipped';
+      hubspot.status = 'partial';
+      console.warn('[lead-signal] skipping HubSpot contact search: no email or phone', { requestId, sourceRoute: body.route || 'api/lead-signal' });
+      return json({ ok: true, requestId, schedulingStatus: appointmentRequest.schedulingStatus, appointmentRequest, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' }, hubspot }, 200);
+    }
+
     const search = await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts/search', {
-      filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: body.contact?.email }] }],
-      properties: ['email', 'firstname', 'lastname'], limit: 1,
+      filterGroups: [{ filters: [contactFilter] }],
+      properties: ['email', 'phone', 'firstname', 'lastname'], limit: 1,
     });
 
     if (search.ok) {
@@ -329,7 +304,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         lifecyclestage: 'lead', hs_lead_status: 'NEW',
         wny_preferred_contact_method: normalizedPreferredContactMethod,
         wny_best_time_to_contact: body?.request?.preferredEstimateTimeSlot,
-        wny_contact_notes: contactNotes,
+        wny_contact_notes: stringifyHubSpotTextField(contactNotes),
         wny_preferred_walkthrough_window: preferredWindow,
         wny_vertical_interest: normalizedVerticalInterest,
         wny_funnel_stage_current: normalizedFunnelStage,
@@ -340,7 +315,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         wny_last_touch_url: body?.currentUrl || body?.landingRoute || '/qrlanding',
         wny_first_touch_date: submittedTimestamp,
         wny_lead_source_platform: normalizedLeadSourcePlatform,
-        wny_lead_source_detail: qrDetailSummary,
+        wny_lead_source_detail: stringifyHubSpotTextField({ qrDetailSummary, sourceContext: { sourceFamily, source: body?.source, assetSource: body?.assetSource, whereDidYouSeeUs: body?.whereDidYouSeeUs } }),
         wny_utm_source: body?.utm?.source,
         wny_utm_medium: body?.utm?.medium,
         wny_utm_campaign: body?.utm?.campaign,
@@ -366,14 +341,15 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
           dealname: `WNYHS QR Estimate Request - ${dealNameIdentity} - ${requestId}`,
           amount: body?.deal?.amount,
           wny_deal_vertical: 'home_security',
-          wny_deal_path: 'onsite',
-          wny_path_choice: 'onsite',
+          wny_deal_path: normalizedDealPath,
+          wny_path_choice: normalizedPathChoice,
+          wny_request_id: requestId,
           wny_walkthrough_requested: true,
           wny_walkthrough_requested_at: submittedTimestamp,
           wny_walkthrough_status: 'requested',
           wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
           wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
-          wny_walkthrough_notes: qrDetailSummary,
+          wny_walkthrough_notes: stringifyHubSpotTextField({ qrDetailSummary, appointmentRequest, request: body?.request }),
           wny_onsite_quote_required: true,
           wny_install_address: body?.contact?.address?.street,
           wny_install_city: body?.contact?.address?.city,
@@ -443,14 +419,15 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             dealname: `WNYHS QR Estimate Request - ${dealNameIdentity} - ${requestId}`,
             amount: body?.deal?.amount,
             wny_deal_vertical: 'home_security',
-            wny_deal_path: 'onsite',
-            wny_path_choice: 'onsite',
+            wny_deal_path: normalizedDealPath,
+            wny_path_choice: normalizedPathChoice,
+            wny_request_id: requestId,
             wny_walkthrough_requested: true,
             wny_walkthrough_requested_at: submittedTimestamp,
             wny_walkthrough_status: 'requested',
             wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
             wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
-            wny_walkthrough_notes: qrDetailSummary,
+            wny_walkthrough_notes: stringifyHubSpotTextField({ qrDetailSummary, appointmentRequest, request: body?.request }),
             wny_onsite_quote_required: true,
             wny_install_address: body?.contact?.address?.street,
             wny_install_city: body?.contact?.address?.city,

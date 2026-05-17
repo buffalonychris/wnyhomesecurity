@@ -770,6 +770,16 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ---
 
+
+### CRM-SCHEMA001
+- **Task ID:** CRM-SCHEMA001
+- **Task Name:** HubSpot CRM Contract Repair
+- **Status:** COMPLETE
+- **Category:** CRM
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Forbidden Scope:** Stripe, SMS, reminders, install scheduling
+- **Validation:** `npm run lint`; `npm run test -- --run`; required `rg` mapping/contract checks.
+
 ## Backlog Tasks
 
 No BACKLOG tasks are currently recorded for runtime hardening queue scope.
