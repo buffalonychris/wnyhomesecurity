@@ -1,4 +1,5 @@
 import { extractSchedulingRequestSummary } from './scheduling/_boundary';
+import { createPendingOwnerConfirmationAppointmentRequest } from './scheduling/appointmentRequestStore';
 
 type LeadSignalRequest = any;
 
@@ -184,6 +185,13 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const submittedTimestamp = body.submittedAt || nowIso;
   const schedulingSummary = extractSchedulingRequestSummary(body?.request);
   const preferredWindow = schedulingSummary.preferredWindowText;
+  const appointmentRequest = createPendingOwnerConfirmationAppointmentRequest({
+    requestId,
+    event: body.event,
+    preferredEstimateDate: schedulingSummary.preferredEstimateDate,
+    preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
+    preferredWindowText: schedulingSummary.preferredWindowText,
+  });
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';
   const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);
   const normalizedLeadSourcePlatform = normalizeLeadSourcePlatform(body?.assetSource || body?.source || body?.whereDidYouSeeUs);
@@ -451,7 +459,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     hubspot.status = 'failed';
   }
 
-  const responseBody: Record<string, unknown> = { ok: true, requestId, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, hubspot };
+  const responseBody: Record<string, unknown> = { ok: true, requestId, schedulingStatus: appointmentRequest.schedulingStatus, appointmentRequest, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, hubspot };
   if (!isProduction(env)) responseBody.diagnostics = { event: body.event, route: body.route || 'api/lead-signal' };
   return json(responseBody, 200);
 };

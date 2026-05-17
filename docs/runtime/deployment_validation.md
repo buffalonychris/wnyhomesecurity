@@ -304,3 +304,12 @@ When validating scheduling topology after SCHED-IMPL001, include:
 - `POST /api/scheduling/confirm` returns bounded NOT_IMPLEMENTED placeholder response.
 
 These checks confirm namespace/boundary readiness without introducing premature calendar booking, owner acceptance automation, SMS, reminders, or install scheduling automation.
+
+
+## SCHED-IMPL003 Validation Addendum
+
+Add the following checks for scheduling MVP request creation:
+
+- Submit estimate intake and verify appointment request record is created with the same `requestId`.
+- Verify returned `schedulingStatus` equals `PENDING_OWNER_CONFIRMATION`.
+- Verify no runtime surface claims confirmed booking, no SMS/reminder automation, and no install scheduling automation.

@@ -227,3 +227,10 @@ Lead-signal scheduling-window extraction is now normalized through a dedicated s
 Behavior remains unchanged:
 - `/api/lead-signal` is still the only CRM write path.
 - Customer-facing posture remains request submitted + pending manual confirmation.
+
+
+## SCHED-IMPL003 Lead Intake Update
+
+- `/api/lead-signal` now creates an appointment request record as part of intake orchestration.
+- Response envelope now includes `schedulingStatus` and `appointmentRequest` for request-level traceability.
+- Confirmation posture remains manual-owner confirmation; no automatic booking claim is returned.
