@@ -1,6 +1,6 @@
 import { extractSchedulingRequestSummary } from './scheduling/_boundary';
 import { createPendingOwnerConfirmationAppointmentRequest } from './scheduling/appointmentRequestStore';
-import { chooseContactSearchFilter, normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePathChoice, normalizePreferredContactMethod, stringifyHubSpotTextField } from './hubspotNormalization';
+import { chooseContactSearchFilter, normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePathChoice, normalizePreferredContactMethod, normalizeVerticalInterest, normalizeWalkthroughInterest, stringifyHubSpotTextField } from './hubspotNormalization';
 
 type LeadSignalRequest = any;
 

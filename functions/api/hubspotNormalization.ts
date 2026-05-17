@@ -6,6 +6,9 @@ const FUNNEL_STAGES = new Set(['landing_viewed','fit_check_started','fit_check_c
 const DEAL_PATHS = new Set(['online_first','onsite_confirmation_first','contact_first','manual','unknown']);
 const PATH_CHOICES = new Set(['online_first','onsite_confirmation_first','contact_first','phone_first','unknown']);
 
+const VERTICAL_INTERESTS = new Set(['home_security','home_automation','elder_tech','business_security','business_elder_tech','man_cave','unknown']);
+const WALKTHROUGH_INTERESTS = new Set(['requested','not_requested','unknown']);
+
 export const stringifyHubSpotTextField = (value: unknown): string | undefined => {
   if (value == null || value === '') return undefined;
   if (typeof value === 'string') return value;
@@ -45,6 +48,21 @@ export const normalizePathChoice = (value: unknown) => {
   const v = getString(value)?.toLowerCase();
   const mapped = v === 'onsite' ? 'onsite_confirmation_first' : v;
   return mapped && PATH_CHOICES.has(mapped) ? mapped : 'unknown';
+};
+
+
+export const normalizeVerticalInterest = (value: unknown) => {
+  const normalized = getString(value)?.toLowerCase().replace(/\s+/g, '_');
+  if (!normalized) return 'unknown';
+  const mapped = normalized === 'home' || normalized === 'home_security_systems' ? 'home_security' : normalized;
+  return VERTICAL_INTERESTS.has(mapped) ? mapped : 'unknown';
+};
+
+export const normalizeWalkthroughInterest = (value: unknown) => {
+  const normalized = getString(value)?.toLowerCase().replace(/\s+/g, '_');
+  if (!normalized) return 'unknown';
+  const mapped = normalized in {'yes':1,'requested':1,'request':1,'qr_estimate_requested':1} ? 'requested' : normalized in {'no':1,'not_requested':1,'not_interested':1} ? 'not_requested' : normalized;
+  return WALKTHROUGH_INTERESTS.has(mapped) ? mapped : 'unknown';
 };
 
 export const chooseContactSearchFilter = (email: unknown, phone: unknown) => {
