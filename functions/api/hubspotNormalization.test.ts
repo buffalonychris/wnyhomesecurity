@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { chooseContactSearchFilter, normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePreferredContactMethod, stringifyHubSpotTextField } from './hubspotNormalization';
+import { chooseContactSearchFilter, normalizeDealPath, normalizeFunnelStage, normalizeLeadSourcePlatform, normalizePreferredContactMethod, normalizeVerticalInterest, stringifyHubSpotTextField } from './hubspotNormalization';
 
 describe('hubspot normalization', () => {
   it('maps onsite to onsite_confirmation_first', () => {
@@ -16,6 +16,14 @@ describe('hubspot normalization', () => {
 
   it('maps Text to sms', () => {
     expect(normalizePreferredContactMethod('Text')).toBe('sms');
+  });
+
+  it('normalizes vertical interest enum values', () => {
+    expect(normalizeVerticalInterest('home_security')).toBe('home_security');
+    expect(normalizeVerticalInterest('Home Security')).toBe('home_security');
+    expect(normalizeVerticalInterest(undefined)).toBe('unknown');
+    expect(normalizeVerticalInterest(null)).toBe('unknown');
+    expect(normalizeVerticalInterest('invalid')).toBe('unknown');
   });
 
   it('guards blank contact search values', () => {
