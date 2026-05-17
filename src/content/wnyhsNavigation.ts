@@ -34,9 +34,9 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
     { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/home-security' },
     { id: 'packages', label: 'Packages', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
     { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
-    { id: 'planner', label: 'Planner', href: HOME_SECURITY_ROUTES.planner, matchPath: '/home-security/planner' },
     { id: 'estimate', label: 'Estimate', href: '/contact?vertical=home-security', matchPath: '/contact' },
     { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
+    { id: 'planner', label: 'Planner (Optional)', href: HOME_SECURITY_ROUTES.planner, matchPath: '/home-security/planner' },
   ],
   more: [
     { id: 'about', label: 'About', href: '/about?vertical=home-security', matchPath: '/about' },
@@ -77,7 +77,7 @@ export const getHomeSecurityFunnelSteps = (pathParam?: string | null): FunnelSte
   {
     id: 'planner',
     label: 'Planner',
-    helperText: 'Optional precision layout details.',
+    helperText: 'Optional advanced layout details for later planning.',
     href: appendPathParam(HOME_SECURITY_ROUTES.planner, pathParam),
     matchPath: '/home-security/planner',
     stepNumber: 3,
