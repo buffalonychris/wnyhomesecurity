@@ -66,7 +66,7 @@ const HomeSecurityPaymentSuccess = () => {
 
   const scheduleTo =
     verifyState.status === 'verified'
-      ? `/newsite/schedule?tier=${encodeURIComponent(verifyState.tier)}&source=verified`
+      ? `/newsite/schedule?tier=${encodeURIComponent(verifyState.tier)}&source=payment_verified`
       : '/newsite/schedule';
 
   return (
@@ -100,7 +100,7 @@ const HomeSecurityPaymentSuccess = () => {
           <strong>Next steps</strong>
           {verifyState.status === 'verified' ? (
             <>
-              <p>Your payment is confirmed and your scheduling request is the next step.</p>
+              <p>Payment received. Next step: request scheduling so our owner can review and confirm.</p>
               <NavLink className="newsite-btn" to={scheduleTo}>
                 Request scheduling
               </NavLink>

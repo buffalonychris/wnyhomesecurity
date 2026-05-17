@@ -19,6 +19,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 ## `docs/`
 
 
+### `/docs/audits/payment_fix001_implementation_rev01.md`
+- **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
+- **Likely consumed by:** Codex operators, QA reviewers, and payment-flow governance follow-up tasks.
+
 ### `/docs/audits/email_fix001_implementation_rev01.md`
 - **File path:** `docs/audits/email_fix001_implementation_rev01.md`
 - **Purpose / likely role:** EMAIL-FIX001 implementation note covering customer/operator email trigger inventory, recipient routing verification, requestId context visibility, and bounded Resend-path hardening.
