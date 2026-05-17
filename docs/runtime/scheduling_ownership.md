@@ -297,3 +297,23 @@ UNKNOWN / NEEDS VERIFICATION:
 - Branch/commit: NEEDS VERIFICATION (record at merge/release time)
 - Verified by: Codex execution for T-RUNTIME007-001
 - Evidence: Runtime doc + source-reference audit focused on scheduling request-capture, confirmation boundaries, and cross-system ownership limits.
+
+## SCHED-IMPL001 Topology Baseline (REV01 Addendum)
+
+Implemented additive topology boundary in runtime source:
+- `GET /api/scheduling/availability` (placeholder boundary for SCHED-IMPL002)
+- `POST /api/scheduling/request` (placeholder boundary for SCHED-IMPL003)
+- `POST /api/scheduling/confirm` (placeholder boundary for SCHED-IMPL004)
+
+Current production-safe posture remains unchanged:
+- Estimate scheduling intent remains request-capture only.
+- Owner/manual confirmation is still required before any confirmed appointment claim.
+- No Google Calendar reads/writes are implemented in these boundaries.
+- No owner-acceptance workflow, reminders, SMS, or install self-scheduling automation is implemented.
+
+Internal status constants normalized for future drift prevention:
+- `REQUESTED`
+- `PENDING_OWNER_CONFIRMATION`
+- `CONFIRMED`
+- `DECLINED`
+- `CANCELLED`

@@ -294,3 +294,12 @@ A deployment is **NOT** production-ready unless all of the following are true:
   - Runtime contracts + governance docs audit.
   - Required QA001 documentation validation commands.
   - `npm run build` execution evidence.
+
+## SCHED-IMPL001 Validation Addendum
+
+When validating scheduling topology after SCHED-IMPL001, include:
+- `GET /api/scheduling/availability` returns bounded NOT_IMPLEMENTED placeholder response.
+- `POST /api/scheduling/request` returns bounded NOT_IMPLEMENTED placeholder response with pending-owner-confirmation posture.
+- `POST /api/scheduling/confirm` returns bounded NOT_IMPLEMENTED placeholder response.
+
+These checks confirm namespace/boundary readiness without introducing premature calendar booking, owner acceptance automation, SMS, reminders, or install scheduling automation.
