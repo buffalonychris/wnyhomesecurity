@@ -671,7 +671,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <button type="button" className={recommendationClassName} disabled={!canSubmit} onClick={handleSubmit}>
-            Show recommendation
+            See My Recommendation
           </button>
           <button type="button" className="btn btn-secondary" onClick={handleReset}>
             Start over
@@ -680,7 +680,7 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button type="button" className={submitClassName} disabled={!canSubmit} onClick={handleGenerateQuote}>
-              Generate Quote
+              View Recommended System
             </button>
           </div>
         )}
@@ -737,9 +737,9 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
             {config.tiers[result.tier].ctas.map((cta) => {
               const tierKey = result.tier.toLowerCase();
               const to =
-                cta.label === 'Continue With Recommendation' && discoveryContextParams
+                cta.label === 'Continue To Estimate Request' && discoveryContextParams
                   ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
-                  : cta.label === 'Request Estimate' && discoveryContextParams
+                  : cta.label === 'Request My Estimate' && discoveryContextParams
                     ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
                     : cta.href;
               return (
