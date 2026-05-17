@@ -882,6 +882,15 @@ No BLOCKED tasks are currently recorded.
 - **Purpose:** Display selected package tier on intake, preserve tier through lead submission, and propagate additive package context in existing email/HubSpot note paths.
 - **Completion Notes:** Implemented selected-tier intake display for `tier=bronze|silver|gold`, added `deal.packageTier` submission from contact route context, added additive package tier lines to operator/customer email content and HubSpot note/context summary, preserved protected runtime constraints, and added audit doc `docs/audits/funnel_cleanup002_rev01.md`.
 
+### FUNNEL-CLEANUP003
+- **Task ID:** FUNNEL-CLEANUP003
+- **Task Name:** Discovery Persistence + Recommendation Propagation
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (bounded funnel-context persistence)
+- **Purpose:** Preserve fit-check discovery context into contact intake payload and additive downstream operator email + HubSpot note context.
+- **Completion Notes:** Added deterministic recommendation context propagation from discovery completion into `/contact` route params, added compact contact intake discovery summary display, added canonical `discoveryContext` payload submission from contact flow, and added additive discovery-summary lines to existing operator/customer email and HubSpot note output paths in `/api/lead-signal`; protected runtime behavior preserved; audit doc added at `docs/audits/funnel_cleanup003_rev01.md`.
+
 
 ### T-STEP103-QA-001
 - **Task ID:** T-STEP103-QA-001

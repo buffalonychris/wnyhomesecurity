@@ -6,6 +6,18 @@ import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayou
 import { resolveVertical } from '../lib/verticals';
 import { buildSms, buildTalkToUsMailto, buildTel, wnyhsContact } from '../content/wnyhsContact';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
+import { loadRetailFlow } from '../lib/retailFlow';
+
+type DiscoveryContext = {
+  fitCheckCompleted: boolean;
+  recommendedTier: 'bronze' | 'silver' | 'gold' | 'unknown';
+  propertySize: 'small' | 'typical' | 'large' | 'unknown';
+  coverageExpectation: 'basic' | 'moderate' | 'comprehensive' | 'unknown';
+  recordingPreference: 'local' | 'cloud' | 'hybrid' | 'none' | 'unknown';
+  monitoringPreference: 'self_monitoring' | 'no_monthly' | 'professional_discussion' | 'unknown';
+  priorityConcerns: 'entry_monitoring' | 'driveway' | 'package_delivery' | 'kids_pets' | 'garage_shed' | 'unknown';
+  entryPointCount: string;
+};
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
@@ -16,6 +28,31 @@ const Contact = () => {
   const tierParam = searchParams.get('tier')?.toLowerCase() ?? '';
   const packageTier = tierParam === 'bronze' || tierParam === 'silver' || tierParam === 'gold' ? tierParam : undefined;
   const packageTierLabel = packageTier ? `${packageTier.charAt(0).toUpperCase()}${packageTier.slice(1)}` : null;
+  const discoveryContext = useMemo<DiscoveryContext | null>(() => {
+    const fitCheckCompleted = searchParams.get('fit') === 'complete';
+    const recommended = searchParams.get('recommended')?.toLowerCase();
+    const recommendedTier = recommended === 'bronze' || recommended === 'silver' || recommended === 'gold' ? recommended : 'unknown';
+    const fromQuery = {
+      propertySize: searchParams.get('propertySize') as DiscoveryContext['propertySize'] | null,
+      coverageExpectation: searchParams.get('coverageExpectation') as DiscoveryContext['coverageExpectation'] | null,
+      recordingPreference: searchParams.get('recordingPreference') as DiscoveryContext['recordingPreference'] | null,
+      monitoringPreference: searchParams.get('monitoringPreference') as DiscoveryContext['monitoringPreference'] | null,
+      priorityConcerns: searchParams.get('priorityConcerns') as DiscoveryContext['priorityConcerns'] | null,
+      entryPointCount: searchParams.get('entryPointCount') || 'unknown',
+    };
+    if (!fitCheckCompleted && recommendedTier === 'unknown') return null;
+    const flow = loadRetailFlow().homeSecurity?.fitCheckAnswers;
+    return {
+      fitCheckCompleted,
+      recommendedTier,
+      propertySize: fromQuery.propertySize || flow?.homeSize || 'unknown',
+      coverageExpectation: fromQuery.coverageExpectation || 'unknown',
+      recordingPreference: fromQuery.recordingPreference || 'unknown',
+      monitoringPreference: fromQuery.monitoringPreference || 'unknown',
+      priorityConcerns: fromQuery.priorityConcerns || 'unknown',
+      entryPointCount: fromQuery.entryPointCount,
+    };
+  }, [searchParams]);
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -82,6 +119,7 @@ const Contact = () => {
         contact: { fullName: name.trim(), phone: phone.trim(), email: email.trim(), address: { street: address.trim() } },
         request: { requestedHelp: needs.trim(), requestDetails: notes.trim() || undefined, preferredContactMethod: 'Phone call', preferredEstimateDate: new Date().toISOString().slice(0, 10), preferredEstimateTimeSlot: bestTime.trim() },
         deal: packageTier ? { packageTier } : undefined,
+        discoveryContext: discoveryContext || undefined,
       });
       setSubmitted(true);
       setFailureRequestId(response?.requestId || null);
@@ -114,6 +152,16 @@ const Contact = () => {
         {packageTierLabel && (
           <div>
             <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Selected package: {packageTierLabel}</p>
+          </div>
+        )}
+        {discoveryContext && (
+          <div>
+            <p style={{ margin: '0 0 0.5rem', fontWeight: 600 }}>Recommended package: {discoveryContext.recommendedTier === 'unknown' ? 'Unknown' : `${discoveryContext.recommendedTier.charAt(0).toUpperCase()}${discoveryContext.recommendedTier.slice(1)}`}</p>
+            <p style={{ margin: '0 0 0.5rem' }}>Fit check: {discoveryContext.fitCheckCompleted ? 'Complete' : 'Not complete'}</p>
+            <p style={{ margin: '0 0 0.5rem' }}>Property size: {discoveryContext.propertySize}</p>
+            <p style={{ margin: '0 0 0.5rem' }}>Coverage need: {discoveryContext.coverageExpectation}</p>
+            <p style={{ margin: '0 0 0.5rem' }}>Recording preference: {discoveryContext.recordingPreference}</p>
+            <p style={{ margin: '0 0 0.5rem' }}>Priority concern: {discoveryContext.priorityConcerns}</p>
           </div>
         )}
         <div>

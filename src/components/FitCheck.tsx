@@ -252,6 +252,19 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
   const selectedSpecialRooms = useMemo(() => {
     return answers.specialRooms.filter((room) => room !== 'not_really');
   }, [answers.specialRooms]);
+  const discoveryContextParams = useMemo(() => {
+    if (!result) return null;
+    const params = new URLSearchParams();
+    params.set('fit', 'complete');
+    params.set('recommended', result.tier.toLowerCase());
+    params.set('propertySize', answers.homeSize || 'unknown');
+    params.set('coverageExpectation', answers.preference === 'simple' ? 'basic' : answers.preference === 'balanced' ? 'moderate' : answers.preference === 'maximum' ? 'comprehensive' : 'unknown');
+    params.set('recordingPreference', answers.perimeterVideo === 'none' ? 'none' : answers.liveView === 'regularly' ? 'cloud' : answers.liveView === 'occasionally' ? 'hybrid' : 'local');
+    params.set('monitoringPreference', 'no_monthly');
+    params.set('priorityConcerns', answers.exteriorAreas.includes('driveway') ? 'driveway' : answers.specialRooms.includes('nursery') ? 'kids_pets' : 'entry_monitoring');
+    params.set('entryPointCount', answers.entryPoints === '1-2' ? '2' : answers.entryPoints === '3-4' ? '4' : answers.entryPoints === '5+' ? '5' : 'unknown');
+    return params;
+  }, [answers, result]);
 
   const updateAnswer = <K extends keyof FitCheckAnswers>(key: K, value: FitCheckAnswers[K]) => {
     setAnswers((prev) => ({
@@ -721,11 +734,20 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
           </div>
 
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            {config.tiers[result.tier].ctas.map((cta) => (
-              <Link key={cta.label} to={cta.href} className={buttonClassByVariant[cta.variant]}>
+            {config.tiers[result.tier].ctas.map((cta) => {
+              const tierKey = result.tier.toLowerCase();
+              const to =
+                cta.label === 'Continue With Recommendation' && discoveryContextParams
+                  ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
+                  : cta.label === 'Request Estimate' && discoveryContextParams
+                    ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
+                    : cta.href;
+              return (
+              <Link key={cta.label} to={to} className={buttonClassByVariant[cta.variant]}>
                 {cta.label}
               </Link>
-            ))}
+              );
+            })}
             {isHomeSecurity && (
               <Link to="/packages?vertical=home-security" className="btn btn-link">
                 Change package
