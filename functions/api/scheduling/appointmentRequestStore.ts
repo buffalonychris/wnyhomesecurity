@@ -10,6 +10,8 @@ export type AppointmentRequestRecord = {
   schedulingStatus: SchedulingStatus;
   createdAt: string;
   source: 'lead_signal';
+  confirmedBy?: string;
+  confirmedAt?: string;
 };
 
 const appointmentRequestStore = new Map<string, AppointmentRequestRecord>();
@@ -46,5 +48,26 @@ export const createPendingOwnerConfirmationAppointmentRequest = ({
 };
 
 export const getAppointmentRequestByRequestId = (requestId: string): AppointmentRequestRecord | undefined => appointmentRequestStore.get(requestId);
+
+export const confirmAppointmentRequestByRequestId = ({
+  requestId,
+  confirmedBy,
+}: {
+  requestId: string;
+  confirmedBy: string;
+}): AppointmentRequestRecord | undefined => {
+  const existing = appointmentRequestStore.get(requestId);
+  if (!existing) return undefined;
+
+  const confirmedRecord: AppointmentRequestRecord = {
+    ...existing,
+    schedulingStatus: SCHEDULING_STATUSES.CONFIRMED,
+    confirmedBy,
+    confirmedAt: new Date().toISOString(),
+  };
+
+  appointmentRequestStore.set(requestId, confirmedRecord);
+  return confirmedRecord;
+};
 
 export const resetAppointmentRequestStoreForTests = () => appointmentRequestStore.clear();

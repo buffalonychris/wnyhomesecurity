@@ -313,3 +313,15 @@ Add the following checks for scheduling MVP request creation:
 - Submit estimate intake and verify appointment request record is created with the same `requestId`.
 - Verify returned `schedulingStatus` equals `PENDING_OWNER_CONFIRMATION`.
 - Verify no runtime surface claims confirmed booking, no SMS/reminder automation, and no install scheduling automation.
+
+## SCHED-IMPL004 Validation Addendum
+
+Add the following checks for owner/manual confirmation behavior:
+
+- Create a scheduling appointment request and verify initial state is `PENDING_OWNER_CONFIRMATION`.
+- Submit `POST /api/scheduling/confirm` with valid `requestId` and `confirmedBy`.
+- Verify transition to `CONFIRMED` happens only after owner action.
+- Verify `confirmedBy` and `confirmedAt` are present after transition.
+- Verify invalid `requestId` returns not-found behavior.
+- Verify no automatic booking/customer self-confirm behavior is introduced.
+- Verify no Google Calendar write/event creation was added as part of this transition.
