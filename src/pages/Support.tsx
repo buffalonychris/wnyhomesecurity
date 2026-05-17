@@ -103,16 +103,37 @@ const Support = () => {
 const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [topic, setTopic] = useState('');
+  const [topic, setTopic] = useState('General support question');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus('sending');
-    const response = await fetch('/api/support', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, topic, message, pageRoute }) });
-    setStatus(response.ok ? 'success' : 'error');
+    setErrorMessage('');
+    try {
+      const response = await fetch('/api/support', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, topic, message, pageRoute }),
+      });
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => ({}))) as { userMessage?: string };
+        setErrorMessage(payload.userMessage || 'We could not send your request. Please try again.');
+        setStatus('error');
+        return;
+      }
+      setStatus('success');
+      setName('');
+      setEmail('');
+      setTopic('General support question');
+      setMessage('');
+    } catch {
+      setErrorMessage('Network error. Please try again, or call/text us for urgent support.');
+      setStatus('error');
+    }
   };
-  return <SpaceFrame><h2>Submit support request</h2><form className="form" onSubmit={onSubmit}><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required /><input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="Topic" required /><textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="How can we help?" rows={4} required /><button className="btn btn-primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send request'}</button>{status === 'success' && <p>Request received. We will follow up.</p>}{status === 'error' && <p>We could not send your request. Please try again.</p>}</form></SpaceFrame>;
+  return <SpaceFrame><h2>Submit support request</h2><form className="form" onSubmit={onSubmit}><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required /><input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="What do you need help with?" required /><textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="How can we help?" rows={4} required /><button className="btn btn-primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send request'}</button>{status === 'success' && <p>Support request received. We will follow up during normal business operations.</p>}{status === 'error' && <p>{errorMessage || 'We could not send your request. Please try again.'}</p>}</form></SpaceFrame>;
 };
 
 export default Support;
