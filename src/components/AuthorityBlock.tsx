@@ -87,7 +87,7 @@ const AuthorityBlock = ({ meta, resumeLabel, showInternal = true }: AuthorityBlo
           <div style={{ display: 'grid', gap: '0.35rem' }}>
             <strong>{resumeLabel || 'Resume order'}</strong>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <a href={meta.resumeUrl} style={{ color: 'var(--kaec-gold)', fontWeight: 700 }}>
+              <a href={meta.resumeUrl} style={{ color: 'var(--color-accent)', fontWeight: 700 }}>
                 Continue your order
               </a>
               <button type="button" className="btn btn-secondary" onClick={() => handleCopy(meta.resumeUrl, setResumeCopied)}>
@@ -99,7 +99,7 @@ const AuthorityBlock = ({ meta, resumeLabel, showInternal = true }: AuthorityBlo
           <div style={{ display: 'grid', gap: '0.35rem' }}>
             <strong>Verification</strong>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <a href={meta.verificationUrl} style={{ color: 'var(--kaec-gold)', fontWeight: 700 }}>
+              <a href={meta.verificationUrl} style={{ color: 'var(--color-accent)', fontWeight: 700 }}>
                 Open verification
               </a>
               <button

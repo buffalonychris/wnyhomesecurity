@@ -14,7 +14,7 @@ const HomeSecurityComparisonTable = () => {
               <th scope="col" key={tier.id}>
                 <div style={{ display: 'grid' }}>
                   <span style={{ fontWeight: 700 }}>{tier.name}</span>
-                  <small style={{ color: 'var(--kaec-gold)' }}>${tier.basePrice.toLocaleString()}</small>
+                  <small style={{ color: 'var(--color-accent)' }}>${tier.basePrice.toLocaleString()}</small>
                 </div>
               </th>
             ))}
@@ -31,7 +31,7 @@ const HomeSecurityComparisonTable = () => {
           ))}
         </tbody>
       </table>
-      <p style={{ margin: '0.75rem 0 0', color: 'var(--kaec-muted)' }}>
+      <p style={{ margin: '0.75rem 0 0', color: 'var(--color-text-secondary)' }}>
         Legend: ✅ included • — not included.
       </p>
     </div>

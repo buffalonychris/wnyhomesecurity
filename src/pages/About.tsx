@@ -25,15 +25,15 @@ const About = () => {
         <div className="badge">About</div>
         <h2 style={{ margin: 0 }}>{brandHomeSecurity}</h2>
       </div>
-      <p style={{ margin: 0, color: 'var(--kaec-muted)' }}>
+      <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
         {brandHomeSecurity} is operated by {brandLegal}. We focus on local-first home security systems with clear, one-time pricing and
         professional installation.
       </p>
       <div style={{ display: 'grid', gap: '0.35rem' }}>
         <strong>Service location</strong>
-        <span style={{ color: 'var(--kaec-muted)' }}>{brandServiceLocation}</span>
+        <span style={{ color: 'var(--color-text-secondary)' }}>{brandServiceLocation}</span>
         <strong>Phone</strong>
-        <span style={{ color: 'var(--kaec-muted)' }}>{brandPhonePrimary}</span>
+        <span style={{ color: 'var(--color-text-secondary)' }}>{brandPhonePrimary}</span>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
         <NavLink className="btn btn-primary" to="/contact?vertical=home-security">

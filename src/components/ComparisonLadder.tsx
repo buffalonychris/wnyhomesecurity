@@ -23,7 +23,7 @@ const ComparisonLadder = () => {
         <div>
           <p className="badge">Basic → Plus → Pro</p>
           <h2 style={{ margin: '0.25rem 0' }}>Compare Elder Tech tiers</h2>
-          <p style={{ margin: 0, color: 'var(--kaec-muted)' }}>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             See exactly what you gain as you move up. Pricing, package contents, and checkout flows remain
             unchanged.
           </p>
@@ -52,7 +52,7 @@ const ComparisonLadder = () => {
                   <div style={{ display: 'grid', gap: '0.35rem' }}>
                     <TierBadge tierId={tierId} />
                     <h3 style={{ margin: 0 }}>{pricing?.name}</h3>
-                    <p style={{ margin: 0, color: 'var(--kaec-muted)' }}>{pricing?.summary}</p>
+                    <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>{pricing?.summary}</p>
                   </div>
                   {tierId === 'A3' && <span className="ladder-highlight">Most Comprehensive</span>}
                 </div>
