@@ -12,6 +12,33 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle.
 
 
+
+### CRM-PIPELINE001
+- **Task ID:** CRM-PIPELINE001
+- **Task Name:** Canonical HubSpot Pipeline Architecture
+- **Status:** DONE
+- **Category:** CRM
+- **Controlling Context:** Documentation-only CRM architecture hardening
+- **Purpose:** Define canonical HubSpot deal pipeline stages, movement rules, operator workflow, dedupe guidance for CRM-DEAL002B, stage-ID/env guidance, and protected-runtime boundaries without runtime code changes.
+- **Allowed Scope:**
+  - create/update documentation under `docs/`
+  - define canonical stage lifecycle architecture
+  - define operator workflow and dedupe rules
+  - update task register status
+- **Forbidden Scope:**
+  - do not modify runtime/source code
+  - do not modify Stripe logic
+  - do not modify scheduling implementation
+  - do not modify HubSpot schema/properties/pipeline records directly from code
+- **Target Files:**
+  - `docs/crm/hubspot/crm_pipeline_architecture_rev01.md`
+  - `docs/system/master-task-register.md`
+  - `docs/DOCUMENT_CATALOG.md` (if catalog update needed)
+- **Validation Required:**
+  - `git diff -- docs`
+  - `rg -n "CRM-PIPELINE001|New Estimate Request|Operator Review Needed|Walkthrough Scheduled|Deposit Paid|HUBSPOT_ESTIMATE_INITIAL_STAGE_ID|PROTECTED_RUNTIME|Protected runtime" docs .`
+- **Completion Notes:** REV01 canonical pipeline architecture doc added; runtime protections restated; CRM-DEAL002B scope clarified and deferred.
+
 ### FUNNEL-OPS001
 - **Task ID:** FUNNEL-OPS001
 - **Task Name:** Main Funnel + QR Funnel Link/Form/CRM/Artifact/Customer Timing Audit
