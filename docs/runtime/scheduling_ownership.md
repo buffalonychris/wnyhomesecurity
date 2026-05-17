@@ -76,10 +76,10 @@ Boundary rule:
 | `HUBSPOT_ACCESS_TOKEN` | Conditional | Production (+ Preview if CRM-tested) | Alternate HubSpot token alias used in lead-signal path. | `/docs/runtime/hubspot_sync_contract.md` | CONFIRMED IN SOURCE | Naming normalization remains open. |
 | `RESEND_API_KEY` | Conditional | Production (+ Preview if email-tested) | Enables outbound notification sends that may include scheduling-request context. | `/docs/runtime/resend_runtime.md` | CONFIRMED IN SOURCE | Appointment-confirmation notification behavior is not confirmed. |
 | `LEAD_SIGNAL_TO_EMAIL` | Conditional | Production (+ Preview if email-tested) | Operator notification recipient for lead/scheduling-request intake. | `/docs/runtime/resend_runtime.md` | CONFIRMED IN SOURCE | Recipient policy/operator escalation path needs verification. |
-| `GOOGLE_CALENDAR_ID` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential calendar target identifier. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
-| `GOOGLE_SERVICE_ACCOUNT` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential Google API auth variable. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
-| `GOOGLE_CLIENT_EMAIL` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential Google API auth variable. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
-| `GOOGLE_PRIVATE_KEY` | UNKNOWN / NEEDS VERIFICATION | UNKNOWN / NEEDS VERIFICATION | Potential Google API auth variable. | `/docs/runtime/scheduling_ownership.md` | UNKNOWN / NEEDS VERIFICATION | No audited runtime evidence found. |
+| `GOOGLE_CALENDAR_ID` | Conditional | Production (+ Preview if calendar-tested) | Google Calendar target for availability read and post-owner-confirmation event create attempt. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Used by scheduling availability and scheduling confirm calendar write path. |
+| `GOOGLE_CLIENT_ID` | Conditional | Production (+ Preview if calendar-tested) | OAuth client id used for Google token exchange. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Required for both availability and post-confirmation event creation. |
+| `GOOGLE_CLIENT_SECRET` | Conditional | Production (+ Preview if calendar-tested) | OAuth client secret used for Google token exchange. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Server-side only. |
+| `GOOGLE_REFRESH_TOKEN` | Conditional | Production (+ Preview if calendar-tested) | OAuth refresh token used for Google token exchange. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Server-side only. |
 | `APPOINTMENT_REQUESTS_KV` | Conditional (required for durable production scheduling state) | Production + Preview | Cloudflare KV namespace binding used by scheduling appointment request store for durable request/confirmation state by `requestId`. | `/docs/runtime/scheduling_ownership.md` | CONFIRMED IN SOURCE | Falls back to in-memory map only when KV binding is absent (local/test fallback only). |
 
 ## External Services
@@ -159,7 +159,7 @@ UNKNOWN / NEEDS VERIFICATION:
 
 Confirmed:
 - Step102 contains planned/required intent language around Google Business calendar request integration and graceful degradation.
-- Runtime audit states no server-side Google Calendar credentials or booking endpoint discovered in audited files.
+- Runtime audit confirms server-side Google Calendar OAuth variable usage in scheduling availability and post-confirmation event-create modules.
 
 Boundary:
 - Availability endpoint remains read-only advisory (FreeBusy only).
@@ -314,7 +314,7 @@ Current production-safe posture remains unchanged:
 - Estimate scheduling intent remains request-capture only.
 - Owner/manual confirmation is still required before any confirmed appointment claim.
 - No Google Calendar reads/writes are implemented in these boundaries.
-- No owner-acceptance workflow, reminders, SMS, or install self-scheduling automation is implemented.
+- No reminders, SMS, or install self-scheduling automation is implemented.
 
 Internal status constants normalized for future drift prevention:
 - `REQUESTED`
@@ -336,5 +336,12 @@ Internal status constants normalized for future drift prevention:
 - Appointment requests transition from `PENDING_OWNER_CONFIRMATION` to `CONFIRMED` only after owner action.
 - Confirmation audit fields are persisted on the appointment request record: `confirmedBy` and `confirmedAt`.
 - `requestId` remains the correlation key for create/read/update in the appointment request store; durable authority is KV when binding is configured.
-- No customer-facing auto-confirm behavior, no SMS/reminders/install scheduling automation, and no calendar-write behavior are introduced in this task.
-- Google Calendar event creation is deferred; current scheduling implementation keeps internal confirmation state only.
+- No customer-facing auto-confirm behavior and no SMS/reminders/install scheduling automation are introduced in this task.
+
+## SCHED-IMPL008 Validation Note (REV04)
+
+- End-to-end scheduling MVP validation confirms implemented flow: availability lookup → appointment request creation (`PENDING_OWNER_CONFIRMATION`) → owner confirmation (`CONFIRMED`) → post-confirmation calendar write attempt → post-confirmation customer email attempt.
+- `POST /api/scheduling/confirm` attempts Google Calendar event creation only after owner-confirmed transition and does not roll back `CONFIRMED` when calendar write fails.
+- Customer confirmation email attempt occurs only after owner confirmation and after the calendar write attempt, and email failure does not roll back `CONFIRMED`.
+- `requestId` remains traceable across lead intake, scheduling request creation, confirm transitions, and confirmation-email payload content.
+- Duplicate confirm behavior remains idempotency-sensitive and should be tracked as follow-up hardening (risk: repeated confirm may trigger duplicate calendar/email attempts).
