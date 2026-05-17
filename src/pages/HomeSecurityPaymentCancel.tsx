@@ -31,7 +31,7 @@ const HomeSecurityPaymentCancel = () => {
         <div className="card" style={{ display: 'grid', gap: '0.75rem' }}>
           <div className="badge">Return to deposit</div>
           <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
-            If you still want to reserve your installation, head back to the deposit page to select a tier and pay the 50%
+            If you still want to continue, head back to the deposit page to select a tier and pay the 50%
             deposit.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>

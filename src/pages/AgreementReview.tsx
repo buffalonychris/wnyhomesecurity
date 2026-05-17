@@ -472,7 +472,7 @@ const AgreementReview = () => {
                   <WnyhsFunnelStepHeader
                     stepId="agreement"
                     title="Agreement"
-                    description="Calm, plain-language overview first. This locks in your quote so we can collect the deposit and schedule installation."
+                    description="Calm, plain-language overview first. This locks in your quote so we can collect the deposit and move to owner-confirmed scheduling."
                   />
                 ) : (
                   <>
@@ -500,7 +500,7 @@ const AgreementReview = () => {
                     </li>
                     <li>
                       <span />
-                      <span>Next step after acceptance: deposit, then scheduling.</span>
+                      <span>Next step after acceptance: deposit, then owner confirmation of scheduling.</span>
                     </li>
                     <li>
                       <span />
@@ -549,7 +549,7 @@ const AgreementReview = () => {
                   <small style={{ color: 'var(--color-text-secondary)' }}>Based on your selected tier and add-ons.</small>
                   {isHomeSecurity && (
                     <small style={{ color: 'var(--color-text-secondary)' }}>
-                      This agreement confirms your {selectedPackage.name} tier and reserves installation scheduling.
+                      This agreement confirms your {selectedPackage.name} tier and moves your request to owner scheduling review.
                     </small>
                   )}
                 </div>
@@ -637,7 +637,7 @@ const AgreementReview = () => {
         <ul className="list" style={{ marginTop: 0 }}>
           <li>
             <span />
-            <span>Installation is not scheduled until you select a date.</span>
+            <span>Installation is not confirmed until owner review is complete.</span>
           </li>
           <li>
             <span />
@@ -679,7 +679,7 @@ const AgreementReview = () => {
           <div className="badge">Acceptance</div>
           <h2 style={{ margin: '0.25rem 0' }}>Confirm and proceed</h2>
           <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
-            This confirmation is required so we can collect the deposit and schedule your install. Legal wording remains unchanged.
+            This confirmation is required so we can collect the deposit and continue to owner-confirmed scheduling. Legal wording remains unchanged.
           </p>
         </div>
         {vertical === 'home-security' && (
@@ -702,7 +702,7 @@ const AgreementReview = () => {
           />
           <span>I have reviewed and agree to the {brandSite} agreement</span>
         </label>
-        <small style={{ color: 'var(--color-text-secondary)' }}>This is required so we can take your deposit and schedule your install.</small>
+        <small style={{ color: 'var(--color-text-secondary)' }}>This is required so we can take your deposit and continue to owner-confirmed scheduling.</small>
         <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
           <label style={{ display: 'grid', gap: '0.35rem' }}>
             <span>Typed full name</span>
@@ -1076,7 +1076,7 @@ const AgreementReview = () => {
       {guidedMode && (
         <FlowGuidePanel
           currentStep="agreement"
-          nextDescription="Accept the agreement to unlock deposit/payment, then we schedule installation."
+          nextDescription="Accept the agreement to unlock deposit/payment, then request scheduling for owner confirmation."
           ctaLabel={storedAcceptance?.accepted ? 'Continue to Deposit' : 'Approve Agreement & Pay Deposit'}
           onCta={storedAcceptance?.accepted ? handleProceedToPayment : () => handleScrollToSection(acceptanceSectionRef)}
         />

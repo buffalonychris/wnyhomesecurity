@@ -39,8 +39,8 @@ const faq = [
     answer: 'After your request is reviewed, our team confirms the next available installation window with you directly.',
   },
   {
-    question: 'Is coverage supported 24/7?',
-    answer: 'Your system is self-monitored. If you want professional monitoring, you can add it directly with a third-party provider.',
+    question: 'How does after-hours coverage work?',
+    answer: 'Your system is self-managed. You handle alerts directly, and optional third-party services can be added by the homeowner if desired.',
   },
   {
     question: 'Can I add smart devices later?',

@@ -608,7 +608,7 @@ const QuoteReview = () => {
         <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
           <div className="badge">Payment terms</div>
           <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
-            A deposit reserves your install date. The remaining balance is due when we arrive, before installation begins. This
+            A deposit confirms intent and starts owner review for your requested visit window. The remaining balance is due when we arrive, before installation begins. This
             avoids payment issues after work is complete and keeps your install day on schedule.
           </p>
         </div>
