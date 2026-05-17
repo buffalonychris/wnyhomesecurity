@@ -1083,10 +1083,20 @@ const HomeSecurityPlanner = ({ layout = 'legacy', routeOverrides }: HomeSecurity
           <span style={advancedBadgeStyle}>Advanced</span>
           <WnyhsFunnelStepHeader
             stepId="planner"
-            title="Planner"
-            description="Precision Planner (optional) for customers who want surgical precision."
-            support="This does not change your package unless you choose to."
+            title="System Planner (Preview)"
+            description="Preview tool for exploring layout and coverage ideas."
+            support="Selections here do not create a finalized quote, agreement, or installation scope."
           />
+        </div>
+
+
+        <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
+          <p style={{ margin: 0, fontWeight: 600 }}>
+            The System Planner is currently a preview tool for exploring layout and coverage ideas.
+          </p>
+          <p style={{ margin: 0 }}>
+            Selections made here do not create a finalized quote, agreement, or installation scope.
+          </p>
         </div>
 
         <AccordionSection title="What the Precision Planner does" description="" defaultOpen={false}>

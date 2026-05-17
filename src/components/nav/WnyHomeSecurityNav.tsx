@@ -77,7 +77,7 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
             Fit Check
           </NavLink>
           <NavLink to="/home-security/planner?vertical=home-security" className={navLinkClass}>
-            Precision Planner
+            System Planner (Preview)
           </NavLink>
         </nav>
         <div className="wny-hs-nav-secondary" aria-label="Home Security support navigation">
