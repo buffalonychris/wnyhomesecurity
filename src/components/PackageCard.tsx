@@ -26,7 +26,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
   const tierId = pkg.id.toUpperCase() as PackageTierId;
   const verticalQuery = vertical === 'home-security' ? '?vertical=home-security' : '';
   const isMostPopular = vertical === 'home-security' && pkg.id === 'a2';
-  const contactLink = vertical === 'home-security' ? `/contact?vertical=home-security&package=${pkg.id}` : '/contact';
+  const contactLink = vertical === 'home-security' ? `/contact?vertical=home-security&package=${pkg.id}&estimateIntent=selected-package` : '/contact';
   const isHomeSecurity = vertical === 'home-security';
   const primaryLabel = isHomeSecurity ? `Select ${pkg.name}` : `View ${pkg.name}`;
   const tierQueryMap: Record<string, string> = {
@@ -36,7 +36,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
   };
   const tierParam = tierQueryMap[pkg.id] ?? pkg.name.toLowerCase();
     const primaryHref = isHomeSecurity
-    ? `/contact?vertical=home-security&tier=${encodeURIComponent(tierParam)}`
+    ? `/contact?vertical=home-security&tier=${encodeURIComponent(tierParam)}&estimateIntent=selected-package`
     : `/packages/${pkg.id}${verticalQuery}`;
   const featureList = isHomeSecurity ? pkg.features ?? [] : pkg.includes;
   const featurePreview = isHomeSecurity ? featureList.slice(0, 4) : featureList;

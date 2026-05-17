@@ -924,12 +924,15 @@ Rationale:
 ### ESTIMATE-FLOW001
 - **Task ID:** ESTIMATE-FLOW001
 - **Task Name:** Estimate/contact/QR intake consolidation
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL / LEAD
 - **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
 - **Purpose:** Consolidate estimate/contact/QR intake role and page structure after FUNNEL-ARCH002.
-- **Allowed Scope:** define/implement estimate page gateway behavior; support recommended system estimate request; support selected package estimate request; support onsite estimate request; preserve `/api/lead-signal` contract.
-- **Forbidden Scope:** no quote generation; no HubSpot schema changes unless separately authorized; no Stripe changes; no scheduling changes.
+- **Scope:** Clarify `/contact?vertical=home-security` as central estimate gateway; support contextual estimate entry for recommended system, selected package, on-site walkthrough intent, QR/flyer context; preserve existing estimate submit behavior and `/api/lead-signal` contract.
+- **Forbidden Scope:** no quote generation; no HubSpot schema/property/pipeline changes; no Stripe changes; no scheduling authority changes; no `/api/lead-signal` contract/runtime changes.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` and `rg` checks completed.
+- **Completion Notes:** Estimate page copy/layout reframed as estimate gateway; direct nav estimate visitors now see explicit options; selected package links pass estimate intent context; on-site walkthrough intent framing added; QR/flyer context preserved; protected runtime untouched.
+- **Next Task Recommendation:** QUOTE-GEN001 only after QA-LAUNCH001 passes.
 
 ### QUOTE-GEN001
 - **Task ID:** QUOTE-GEN001
