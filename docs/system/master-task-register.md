@@ -79,7 +79,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### SCHED-IMPL003
 - **Task ID:** SCHED-IMPL003
 - **Task Name:** Estimate Appointment Request Creation
-- **Status:** READY
+- **Status:** ACTIVE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Create canonical estimate appointment request creation behavior tied to requestId and lead intake, while preserving pending owner/manual confirmation posture.
