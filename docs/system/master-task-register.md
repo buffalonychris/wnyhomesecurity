@@ -298,7 +298,7 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 ### SCHED-IMPL007
 - **Task ID:** SCHED-IMPL007
 - **Task Name:** Customer Confirmation Email After Owner Acceptance
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Send customer confirmation email only after owner acceptance confirms the estimate appointment.
@@ -331,6 +331,12 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
   - requestId correlation is included
   - tests added/updated
   - docs updated
+- **Completion Notes:**
+  - `POST /api/scheduling/confirm` now performs customer confirmation email attempts only after owner confirmation succeeds and after the post-confirmation calendar write attempt completes.
+  - Email copy uses bounded owner-confirmed estimate language and includes `requestId`, confirmed window text, timezone, and company contact details.
+  - Calendar event link is included only when `calendarEventHtmlLink` is available; failure/no-link paths avoid false invite claims.
+  - Email delivery failures are logged with safe diagnostics and do not roll back `CONFIRMED` status or calendar metadata.
+  - Tests updated to cover sequencing, requestId inclusion, safe failure behavior, and invalid request handling without pre-confirmation email sends.
 
 ### SCHED-IMPL008
 - **Task ID:** SCHED-IMPL008

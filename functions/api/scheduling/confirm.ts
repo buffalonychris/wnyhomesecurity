@@ -4,6 +4,86 @@ import { createGoogleCalendarEventAfterConfirmation } from './googleCalendarEven
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
+const parseEmails = (value?: string) =>
+  (value || '')
+    .split(',')
+    .map((part) => part.trim())
+    .filter((part) => part.length > 0);
+
+const sendCustomerConfirmationEmail = async ({
+  env,
+  requestId,
+  customerName,
+  customerEmail,
+  confirmedBy,
+  preferredWindowText,
+  timezone,
+  calendarEventHtmlLink,
+}: {
+  env: Record<string, string | undefined>;
+  requestId: string;
+  customerName?: string;
+  customerEmail?: string;
+  confirmedBy: string;
+  preferredWindowText: string;
+  timezone: string;
+  calendarEventHtmlLink?: string;
+}) => {
+  const to = customerEmail ? [customerEmail] : [];
+  const from = env.RESEND_FROM_EMAIL || env.MAIL_FROM || env.EMAIL_FROM;
+  const apiKey = env.RESEND_API_KEY;
+  const audit = parseEmails(env.LEAD_SIGNAL_AUDIT_EMAIL || env.MAIL_AUDIT_TO);
+
+  if (to.length === 0 || !from || !apiKey) {
+    return { ok: false as const, skipped: true as const, errorCode: 'EMAIL_NOT_CONFIGURED', safeMessage: 'Customer confirmation email skipped due to missing email runtime configuration.' };
+  }
+
+  const safeName = customerName?.trim() || 'Customer';
+  const subject = 'Your estimate appointment has been confirmed';
+  const calendarLine = calendarEventHtmlLink
+    ? `Calendar event link: ${calendarEventHtmlLink}`
+    : 'Calendar event link: not available for this confirmation.';
+  const text = [
+    `Hi ${safeName},`,
+    '',
+    'Your estimate appointment has been confirmed.',
+    'A WNY Home Security representative confirmed your requested estimate appointment.',
+    `Confirmed time: ${preferredWindowText}`,
+    `Timezone: ${timezone}`,
+    `Request ID: ${requestId}`,
+    calendarLine,
+    '',
+    'If you need to reschedule, contact us at support@wnyhomesecurity.com or (716) 555-0199.',
+    '',
+    `Confirmed by: ${confirmedBy}`,
+  ].join('\n');
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      from,
+      to,
+      bcc: audit.length > 0 ? audit : undefined,
+      subject,
+      text,
+      html: `<pre>${text}</pre>`,
+    }),
+  });
+
+  if (!response.ok) {
+    return {
+      ok: false as const,
+      skipped: false as const,
+      errorCode: 'EMAIL_SEND_FAILED',
+      safeMessage: 'Customer confirmation email failed after owner confirmation.',
+      httpStatus: response.status,
+    };
+  }
+
+  return { ok: true as const };
+};
+
 export const onRequest: PagesFunction = async ({ request, env }) => {
   if (request.method !== 'POST') {
     return json({ ok: false, errorCode: 'METHOD_NOT_ALLOWED', userMessage: 'Unsupported request method.' }, 405);
@@ -17,6 +97,8 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
   }
 
   const requestId = typeof body.requestId === 'string' && body.requestId.trim().length > 0 ? body.requestId.trim() : undefined;
+  const customerName = typeof body.customerName === 'string' && body.customerName.trim().length > 0 ? body.customerName.trim() : undefined;
+  const customerEmail = typeof body.customerEmail === 'string' && body.customerEmail.trim().length > 0 ? body.customerEmail.trim() : undefined;
   if (!requestId) {
     return json({ ok: false, errorCode: 'MISSING_REQUEST_ID', userMessage: 'requestId is required.' }, 400);
   }
@@ -69,6 +151,25 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     });
   }
 
+  const emailWrite = await sendCustomerConfirmationEmail({
+    env,
+    requestId,
+    customerName,
+    customerEmail,
+    confirmedBy,
+    preferredWindowText: updatedAppointmentRequest.preferredWindowText,
+    timezone,
+    calendarEventHtmlLink: updatedAppointmentRequest.calendarEventHtmlLink,
+  });
+
+  if (!emailWrite.ok && !emailWrite.skipped) {
+    console.warn('[scheduling:confirm] customer confirmation email failed after owner confirmation', {
+      requestId,
+      errorCode: emailWrite.errorCode,
+      httpStatus: emailWrite.httpStatus,
+    });
+  }
+
   return json({
     ok: true,
     requestId,
@@ -77,6 +178,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     calendarWrite: calendarWrite.ok
       ? { ok: true, calendarEventId: calendarWrite.calendarEventId }
       : { ok: false, errorCode: calendarWrite.errorCode, message: calendarWrite.safeMessage, httpStatus: calendarWrite.httpStatus },
+    emailWrite,
     message: 'Estimate appointment request confirmed by owner action.',
     boundaries: buildSchedulingBoundaryDiagnostics(),
   });
