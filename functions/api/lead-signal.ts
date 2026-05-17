@@ -33,6 +33,11 @@ const parseEmails = (value?: string) =>
     .filter((item) => item.length > 0);
 
 const getHubspotString = (value: unknown) => (typeof value === 'string' && value.trim().length > 0 ? value.trim() : undefined);
+const normalizePackageTier = (value: unknown): 'bronze' | 'silver' | 'gold' | 'unknown' => {
+  const tier = typeof value === 'string' ? value.trim().toLowerCase() : '';
+  if (tier === 'bronze' || tier === 'silver' || tier === 'gold') return tier;
+  return 'unknown';
+};
 const extractFailingProperty = (result: any) =>
   getHubspotString(result?.data?.errors?.[0]?.context?.propertyName) ||
   getHubspotString(result?.data?.errors?.[0]?.context?.properties?.[0]) ||
@@ -117,6 +122,7 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: any) => { /* unc
     `email: ${payload.leadSummary.email || payload.customerEmail || 'Not provided'}`,
     `address: ${payload.leadSummary.address || 'Not provided'}`,
     `requested help: ${payload.leadSummary.requestedHelp || 'Not provided'}`,
+    `selected package: ${payload.packageTier || 'unknown'}`,
     `preferred contact method: ${payload.leadSummary.preferredContactMethod || 'Not provided'}`,
   ].join('\n');
   const response = await fetch('https://api.resend.com/emails', {
@@ -142,6 +148,7 @@ const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any
     `source route: ${payload.sourceRoute || 'api/lead-signal'}`,
     `vertical: ${payload.vertical || 'home_security'}`,
     `requested help: ${payload.requestedHelp || 'Not provided'}`,
+    `selected package: ${payload.packageTier || 'unknown'}`,
     `preferred estimate window: ${payload.preferredWindow || 'Not provided'}`,
     '',
     'An operator will review this request and follow up to confirm next steps.',
@@ -195,6 +202,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     env,
   });
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';
+  const packageTier = normalizePackageTier(body?.deal?.packageTier ?? body?.funnelContext?.packageTier ?? body?.funnelContext?.selectedPackage);
   const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);
   const normalizedLeadSourcePlatform = normalizeLeadSourcePlatform(body?.assetSource || body?.source || body?.whereDidYouSeeUs);
   const normalizedFunnelStage = normalizeFunnelStage(body?.event);
@@ -213,6 +221,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `requestDetails=${body?.request?.requestDetails || 'n/a'}`,
     `preferredEstimateDate=${schedulingSummary.preferredEstimateDate || 'n/a'}`,
     `preferredEstimateTimeSlot=${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`,
+    `selectedPackage=${packageTier}`,
     `consent=${consentSummary}`,
   ].join(' | ');
   const contactNotes = [
@@ -221,10 +230,11 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `textConsent: ${body?.textConsent ? 'yes' : 'no'}`,
     `emailConsent: ${body?.emailConsent ? 'yes' : 'no'}`,
     `contactHoursAck: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`,
+    `selectedPackage: ${packageTier}`,
     `requestId: ${requestId}`, qrDetailSummary,
   ].join(' | ');
 
-  const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary });
+  const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary, packageTier });
   const notificationStatus = emailResult.ok ? 'sent' : emailResult.skipped ? 'skipped' : 'failed';
   const customerAckResult = await sendCustomerAcknowledgementEmail(env, {
     requestId,
@@ -235,6 +245,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     vertical: normalizedVerticalInterest,
     requestedHelp: leadSummary.requestedHelp,
     preferredWindow,
+    packageTier,
   });
   const customerAcknowledgementStatus = customerAckResult.ok ? 'sent' : customerAckResult.skipped ? 'skipped' : 'failed';
 
@@ -380,6 +391,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
               `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
               `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
+              `selected package: ${packageTier}`,
               `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
             ].join('\n');
             const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
@@ -460,6 +472,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
                 `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
                 `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
                 `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
+                `selected package: ${packageTier}`,
                 `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
               ].join('\n');
               const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
