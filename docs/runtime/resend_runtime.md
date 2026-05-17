@@ -49,6 +49,8 @@ Confirmed in repo docs:
 - API layer supports provider selection using `EMAIL_PROVIDER`.
 - Lead-signal notifications can use Resend when provider selection is set accordingly.
 - Internal notification recipient and audit recipient are env-configurable in API inventory docs.
+- Scheduling owner-confirmation flow sends customer confirmation email through the same Resend API runtime path when `RESEND_API_KEY` and sender config are present.
+- Scheduling confirmation copy must use request/owner-confirmed language and must not imply automatic booking, dispatch, or reminder automation.
 
 UNKNOWN / NEEDS VERIFICATION:
 

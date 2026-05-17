@@ -164,6 +164,8 @@ Confirmed:
 Boundary:
 - Availability endpoint remains read-only advisory (FreeBusy only).
 - Calendar event creation is allowed only after owner confirmation transitions request status to `CONFIRMED`.
+- Customer confirmation email send attempts are allowed only after owner confirmation transitions request status to `CONFIRMED` and after the post-confirmation calendar write attempt completes.
+- Customer confirmation email failures must not roll back `CONFIRMED` status or remove persisted calendar metadata.
 - Calendar write failure cannot roll back confirmed state or audit fields.
 
 UNKNOWN / NEEDS VERIFICATION:

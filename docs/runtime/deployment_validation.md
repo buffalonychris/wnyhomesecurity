@@ -325,5 +325,8 @@ Add the following checks for owner/manual confirmation behavior:
 - Verify transition to `CONFIRMED` happens only after owner action.
 - Verify `confirmedBy` and `confirmedAt` are present after transition.
 - Verify invalid `requestId` returns not-found behavior.
+- Verify customer confirmation email attempt occurs only after owner confirmation and after post-confirmation calendar write attempt completion.
+- Verify email failure does not roll back `CONFIRMED` status and does not remove calendar metadata.
+- Verify confirmation email includes `requestId` and does not claim calendar invite attachment when `calendarEventHtmlLink` is unavailable.
 - Verify no automatic booking/customer self-confirm behavior is introduced.
-- Verify no Google Calendar write/event creation was added as part of this transition.
+- Verify no calendar write occurs before owner confirmation.
