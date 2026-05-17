@@ -9,12 +9,11 @@ import DemoDashboardLink from '../components/DemoDashboardLink';
 import { getPackages } from '../content/packages';
 import { HOME_SECURITY_TIER_MEDIA } from '../content/homeSecurityPackageData';
 import { brandSite } from '../lib/brand';
-import { track } from '../lib/analytics';
 import { loadRetailFlow, markFlowStep, updateRetailFlow } from '../lib/retailFlow';
 import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
-import { getHomeSecurityCtaLink, HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
+import { getHomeSecurityCtaLink } from '../content/wnyhsNavigation';
 
 const Packages = () => {
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ const Packages = () => {
   const packageList = getPackages(vertical);
   const isHomeSecurity = vertical === 'home-security';
   const homeSecurityTierMedia = isHomeSecurity ? HOME_SECURITY_TIER_MEDIA : null;
-  const plannerHref = HOME_SECURITY_ROUTES.planner;
   const discoveryLink = getHomeSecurityCtaLink(pathParam);
 
   useLayoutConfig({
@@ -53,10 +51,6 @@ const Packages = () => {
     setGuidedMode(false);
     updateRetailFlow({ guidedMode: false });
     navigate('/');
-  };
-
-  const handlePlannerOpen = () => {
-    track('hs_planner_opened', { source: 'packages' });
   };
 
   const content = (
@@ -107,34 +101,6 @@ const Packages = () => {
           </div>
         )}
       </div>
-      {isHomeSecurity && (
-        <div
-          className="card"
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: '1rem',
-          }}
-        >
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <strong>Optional Precision Planner</strong>
-            <span style={{ color: 'var(--kaec-muted)' }}>
-              Sketch your layout and place sensors, cameras, and leak protection before you build your quote.
-            </span>
-          </div>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <Link className="btn btn-secondary" to={plannerHref} onClick={handlePlannerOpen}>
-              Open Planner
-            </Link>
-            <Link className="btn btn-link" to="/home-security/quote?vertical=home-security">
-              Skip and Continue
-            </Link>
-          </div>
-        </div>
-      )}
       <div className="card-grid motion-stagger">
         {packageList.map((pkg) => {
           const tierMedia = homeSecurityTierMedia?.[pkg.id as keyof typeof HOME_SECURITY_TIER_MEDIA];
@@ -143,7 +109,6 @@ const Packages = () => {
               key={pkg.id}
               pkg={pkg}
               vertical={vertical}
-              pathParam={pathParam}
               imageCaption={tierMedia?.caption}
               image={tierMedia?.image}
             />

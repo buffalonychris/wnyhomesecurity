@@ -863,6 +863,17 @@ No BLOCKED tasks are currently recorded.
 
 ## Completed Tasks
 
+
+### FUNNEL-CLEANUP001
+- **Task ID:** FUNNEL-CLEANUP001
+- **Task Name:** Main Funnel CTA + Structure Consolidation
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-SCHED-MVP-REV01 (bounded frontend cleanup)
+- **Purpose:** Reduce duplicate CTA competition, normalize CTA hierarchy, simplify package-card actions, and preserve package-aware context propagation.
+- **Completion Notes:** Implemented canonical `/home-security` CTA hierarchy, normalized discovery completion CTA labels, simplified package card actions to Select + View details, preserved `vertical=home-security` and `tier=bronze|silver|gold` routing, and added audit doc `docs/audits/funnel_cleanup001_rev01.md`.
+
+
 ### T-STEP103-QA-001
 - **Task ID:** T-STEP103-QA-001
 - **Task Name:** Diagnose and fix Quote Review quote generation/display failure

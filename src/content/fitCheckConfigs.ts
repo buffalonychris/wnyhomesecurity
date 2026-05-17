@@ -62,15 +62,27 @@ export const fitCheckConfigs: Record<string, FitCheckConfig> = {
     tiers: {
       Bronze: {
         included: baseTierIncludes.Bronze,
-        ctas: [{ label: 'Continue to Your Quote', href: '/quote?vertical=home-security', variant: 'primary' }],
+        ctas: [
+          { label: 'Continue With Recommendation', href: '/quote?vertical=home-security', variant: 'primary' },
+          { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
+          { label: 'Request Estimate', href: '/contact?vertical=home-security', variant: 'ghost' },
+        ],
       },
       Silver: {
         included: baseTierIncludes.Silver,
-        ctas: [{ label: 'Continue to Your Quote', href: '/quote?vertical=home-security', variant: 'primary' }],
+        ctas: [
+          { label: 'Continue With Recommendation', href: '/quote?vertical=home-security', variant: 'primary' },
+          { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
+          { label: 'Request Estimate', href: '/contact?vertical=home-security', variant: 'ghost' },
+        ],
       },
       Gold: {
         included: baseTierIncludes.Gold,
-        ctas: [{ label: 'Continue to Your Quote', href: '/quote?vertical=home-security', variant: 'primary' }],
+        ctas: [
+          { label: 'Continue With Recommendation', href: '/quote?vertical=home-security', variant: 'primary' },
+          { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
+          { label: 'Request Estimate', href: '/contact?vertical=home-security', variant: 'ghost' },
+        ],
       },
     },
   },
