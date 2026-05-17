@@ -1,3 +1,5 @@
+import { chooseHubSpotContactSearchFilters } from './hubspotSyncHelpers';
+
 const getString = (value: unknown) => (typeof value === 'string' && value.trim().length > 0 ? value.trim() : undefined);
 
 const CONTACT_METHODS = new Set(['phone', 'sms', 'email', 'any', 'unknown']);
@@ -65,10 +67,4 @@ export const normalizeWalkthroughInterest = (value: unknown) => {
   return WALKTHROUGH_INTERESTS.has(mapped) ? mapped : 'unknown';
 };
 
-export const chooseContactSearchFilter = (email: unknown, phone: unknown) => {
-  const cleanEmail = getString(email);
-  const cleanPhone = getString(phone);
-  if (cleanEmail) return { propertyName: 'email', operator: 'EQ' as const, value: cleanEmail };
-  if (cleanPhone) return { propertyName: 'phone', operator: 'EQ' as const, value: cleanPhone };
-  return null;
-};
+export const chooseContactSearchFilter = (email: unknown, phone: unknown) => chooseHubSpotContactSearchFilters(email, phone)[0] ?? null;
