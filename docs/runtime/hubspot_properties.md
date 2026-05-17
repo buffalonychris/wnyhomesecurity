@@ -223,3 +223,13 @@ UNKNOWN / NEEDS VERIFICATION:
 ### Required Live Validation
 
 After deployment, submit one QR estimate request and confirm the deal lands in `New Estimate Request` (`3680633583`).
+
+## GOV-HARDEN002 Addendum — Schema/Pipeline Boundary Lock
+
+- Canonical pipeline: `WNYHS Sales Pipeline` (`2282258169`).
+- Canonical initial stage: `New Estimate Request` (`3680633583`).
+- Cloudflare env lock: `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID=3680633583`.
+- Runtime must use internal stage IDs; never labels.
+- Package/discovery context should remain in HubSpot notes under current contract.
+- No new HubSpot properties are authorized without explicit scoped task.
+- HubSpot schema/pipeline changes require a separate bounded task.

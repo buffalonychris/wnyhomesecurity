@@ -217,3 +217,14 @@ UNKNOWN / NEEDS VERIFICATION:
 ### Post-Deploy Validation Requirement
 
 Submit one QR estimate request after deployment and verify resulting deal stage is `New Estimate Request` (`3680633583`).
+
+## GOV-HARDEN002 Addendum — Pipeline/Stage/Env Enforcement
+
+- `WNYHS Sales Pipeline` is canonical for intake deal lifecycle.
+- Canonical pipeline internal ID: `2282258169`.
+- Canonical intake initial stage: `New Estimate Request` with internal ID `3680633583`.
+- Cloudflare env contract lock: `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID=3680633583`.
+- Runtime must use HubSpot internal IDs only; never stage labels as runtime identifiers.
+- Package/discovery context remains in HubSpot note content for now.
+- No new HubSpot properties unless explicitly scoped in a separate bounded task.
+- HubSpot schema/pipeline structural changes require separate bounded task authorization.
