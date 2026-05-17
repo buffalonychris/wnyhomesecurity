@@ -174,3 +174,46 @@ UNKNOWN / NEEDS VERIFICATION:
 
 - Contact search normalizes email (trim+lowercase) before HubSpot search and only falls back to normalized phone when email is absent.
 - New estimate-deal stage writes require `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID`; when unset, runtime omits `dealstage` rather than sending a label.
+
+
+## CRM-CONTRACT001 — Canonical Pipeline/Stage Runtime Contract Lock
+
+### Live HubSpot Pipeline
+
+- Pipeline name: `WNYHS Sales Pipeline`
+- Pipeline internal ID: `2282258169`
+
+### Canonical Stage Internal IDs
+
+| Stage label | Internal ID |
+|---|---:|
+| New Estimate Request | `3680633583` |
+| Operator Review Needed | `3680633584` |
+| Contact Attempted | `3680633585` |
+| On-Site Walkthrough Requested | `3680633586` |
+| Walkthrough Scheduled | `3680633587` |
+| Quote Generated | `3680633588` |
+| Walkthrough Completed | `3680633589` |
+| Quote Sent | `3683126005` |
+| Deposit Requested | `3683126006` |
+| Deposit Paid / Owner Review | `3683126007` |
+| Install Date Requested | `3683126008` |
+| Install Scheduled | `3683126009` |
+| Remainder Due Before Install | `3683126970` |
+| Installed / Complete | `3683126971` |
+
+### Production Env Var Lock
+
+- `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID=3680633583`
+- Runtime purpose: initial `dealstage` for new estimate intake.
+
+### Enforcement Rules
+
+- Runtime must use internal stage IDs, never stage labels.
+- Runtime must not guess pipeline/stage IDs.
+- If stage labels are renamed in HubSpot, verify internal ID stability before runtime changes.
+- Protected lead-intake runtime remains protected: writes only via `/api/lead-signal`.
+
+### Post-Deploy Validation Requirement
+
+Submit one QR estimate request after deployment and verify resulting deal stage is `New Estimate Request` (`3680633583`).
