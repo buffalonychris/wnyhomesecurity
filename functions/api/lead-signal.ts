@@ -38,6 +38,19 @@ const normalizePackageTier = (value: unknown): 'bronze' | 'silver' | 'gold' | 'u
   if (tier === 'bronze' || tier === 'silver' || tier === 'gold') return tier;
   return 'unknown';
 };
+const normalizeDiscoveryContext = (value: any) => {
+  if (!value || typeof value !== 'object') return null;
+  return {
+    fitCheckCompleted: value.fitCheckCompleted === true,
+    recommendedTier: normalizePackageTier(value.recommendedTier),
+    propertySize: ['small', 'typical', 'large'].includes(value.propertySize) ? value.propertySize : 'unknown',
+    coverageExpectation: ['basic', 'moderate', 'comprehensive'].includes(value.coverageExpectation) ? value.coverageExpectation : 'unknown',
+    recordingPreference: ['local', 'cloud', 'hybrid', 'none'].includes(value.recordingPreference) ? value.recordingPreference : 'unknown',
+    monitoringPreference: ['self_monitoring', 'no_monthly', 'professional_discussion'].includes(value.monitoringPreference) ? value.monitoringPreference : 'unknown',
+    priorityConcerns: ['entry_monitoring', 'driveway', 'package_delivery', 'kids_pets', 'garage_shed'].includes(value.priorityConcerns) ? value.priorityConcerns : 'unknown',
+    entryPointCount: typeof value.entryPointCount === 'number' || typeof value.entryPointCount === 'string' ? String(value.entryPointCount) : 'unknown',
+  };
+};
 const extractFailingProperty = (result: any) =>
   getHubspotString(result?.data?.errors?.[0]?.context?.propertyName) ||
   getHubspotString(result?.data?.errors?.[0]?.context?.properties?.[0]) ||
@@ -123,6 +136,7 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: any) => { /* unc
     `address: ${payload.leadSummary.address || 'Not provided'}`,
     `requested help: ${payload.leadSummary.requestedHelp || 'Not provided'}`,
     `selected package: ${payload.packageTier || 'unknown'}`,
+    ...(payload.discoveryContext ? ['Discovery Summary:', `- Recommended Tier: ${payload.discoveryContext.recommendedTier}`, `- Property Size: ${payload.discoveryContext.propertySize}`, `- Coverage Need: ${payload.discoveryContext.coverageExpectation}`, `- Recording Desired: ${payload.discoveryContext.recordingPreference}`, `- Priority Concern: ${payload.discoveryContext.priorityConcerns}`] : []),
     `preferred contact method: ${payload.leadSummary.preferredContactMethod || 'Not provided'}`,
   ].join('\n');
   const response = await fetch('https://api.resend.com/emails', {
@@ -149,6 +163,7 @@ const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any
     `vertical: ${payload.vertical || 'home_security'}`,
     `requested help: ${payload.requestedHelp || 'Not provided'}`,
     `selected package: ${payload.packageTier || 'unknown'}`,
+    ...(payload.discoveryContext ? [`fit check completed: ${payload.discoveryContext.fitCheckCompleted ? 'yes' : 'no'}`, `recommended package: ${payload.discoveryContext.recommendedTier}`] : []),
     `preferred estimate window: ${payload.preferredWindow || 'Not provided'}`,
     '',
     'An operator will review this request and follow up to confirm next steps.',
@@ -203,6 +218,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   });
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';
   const packageTier = normalizePackageTier(body?.deal?.packageTier ?? body?.funnelContext?.packageTier ?? body?.funnelContext?.selectedPackage);
+  const discoveryContext = normalizeDiscoveryContext(body?.discoveryContext);
   const normalizedPreferredContactMethod = normalizePreferredContactMethod(body?.request?.preferredContactMethod);
   const normalizedLeadSourcePlatform = normalizeLeadSourcePlatform(body?.assetSource || body?.source || body?.whereDidYouSeeUs);
   const normalizedFunnelStage = normalizeFunnelStage(body?.event);
@@ -234,7 +250,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `requestId: ${requestId}`, qrDetailSummary,
   ].join(' | ');
 
-  const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary, packageTier });
+  const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary, packageTier, discoveryContext });
   const notificationStatus = emailResult.ok ? 'sent' : emailResult.skipped ? 'skipped' : 'failed';
   const customerAckResult = await sendCustomerAcknowledgementEmail(env, {
     requestId,
@@ -246,6 +262,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     requestedHelp: leadSummary.requestedHelp,
     preferredWindow,
     packageTier,
+    discoveryContext,
   });
   const customerAcknowledgementStatus = customerAckResult.ok ? 'sent' : customerAckResult.skipped ? 'skipped' : 'failed';
 
@@ -392,6 +409,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
               `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
               `selected package: ${packageTier}`,
+              ...(discoveryContext ? [`Discovery Summary`, `- Recommended Tier: ${discoveryContext.recommendedTier}`, `- Property Size: ${discoveryContext.propertySize}`, `- Coverage Need: ${discoveryContext.coverageExpectation}`, `- Recording Desired: ${discoveryContext.recordingPreference}`, `- Priority Concern: ${discoveryContext.priorityConcerns}`, `- Entry Points: ${discoveryContext.entryPointCount}`] : []),
               `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
             ].join('\n');
             const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
@@ -473,6 +491,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
                 `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
                 `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
                 `selected package: ${packageTier}`,
+                ...(discoveryContext ? [`Discovery Summary`, `- Recommended Tier: ${discoveryContext.recommendedTier}`, `- Property Size: ${discoveryContext.propertySize}`, `- Coverage Need: ${discoveryContext.coverageExpectation}`, `- Recording Desired: ${discoveryContext.recordingPreference}`, `- Priority Concern: ${discoveryContext.priorityConcerns}`, `- Entry Points: ${discoveryContext.entryPointCount}`] : []),
                 `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
               ].join('\n');
               const note = await hubspotRequest(env, 'POST', '/crm/v3/objects/notes', { properties: { hs_note_body: noteBody, hs_timestamp: submittedTimestamp }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 214 }] }] });
