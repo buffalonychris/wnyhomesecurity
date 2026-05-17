@@ -17,16 +17,16 @@ const HomeSecurityLanding = ({ packages }: Props) => {
           <h1>Know what’s happening. Stay in control. No contracts required.</h1>
           <p className="hs-premium-hero-subhead">Local-first home security with cameras, sensors, and automations you own.</p>
           <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary hs-premium-primary-cta" to="/contact?vertical=home-security">
-              Schedule On-Site Estimate
+            <Link className="btn btn-primary hs-premium-primary-cta" to="/discovery?vertical=home-security">
+              Find The Right System
             </Link>
-            <Link className="btn btn-secondary" to="/discovery?vertical=home-security">
-              Check Fit First
+            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+              View Packages
+            </Link>
+            <Link className="btn btn-link" to="/contact?vertical=home-security">
+              Request On-Site Estimate
             </Link>
           </div>
-          <p>
-            Already know what you want? <Link to="/packages?vertical=home-security">View Packages</Link>
-          </p>
         </div>
       </section>
 
@@ -55,43 +55,6 @@ const HomeSecurityLanding = ({ packages }: Props) => {
           <p>Outcomes-first options with clear next steps.</p>
         </div>
         <PackageTierCards packages={packages} ctaLink="/contact?vertical=home-security" />
-      </section>
-
-      <section id="how-it-works" className="hs-premium-how">
-        <div className="hs-premium-how-intro">
-          <p className="hs-premium-eyebrow">How it works</p>
-          <ol className="hs-premium-steps">
-            <li>Choose a starting point: check fit online, browse packages, or schedule an on-site estimate.</li>
-            <li>Confirm the right system: we match your package to layout, entry points, cameras, and reliability needs.</li>
-            <li>Approve, deposit, and schedule: quote, agreement, deposit, and installation scheduling stay clear and documented.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section id="fit-check" className="hs-premium-cta">
-        <div>
-          <p className="hs-premium-eyebrow">Fit Check / Discovery</p>
-          <p>
-            Not sure where to start? Answer a few quick questions and we’ll recommend a package. If you already know
-            you want us to walk the home, schedule an on-site estimate instead.
-          </p>
-        </div>
-        <div className="hs-premium-cta-actions">
-          <Link className="btn btn-primary" to="/discovery?vertical=home-security">Get My Recommendation</Link>
-          <Link className="btn btn-secondary" to="/contact?vertical=home-security">Schedule On-Site Estimate</Link>
-        </div>
-      </section>
-
-      <section id="get-started" className="hs-premium-cta">
-        <div>
-          <p className="hs-premium-eyebrow">Next step</p>
-          <h2>Ready to design the right system for your home?</h2>
-        </div>
-        <div className="hs-premium-cta-actions">
-          <Link className="btn btn-primary" to="/contact?vertical=home-security">Schedule On-Site Estimate</Link>
-          <Link className="btn btn-secondary" to="/discovery?vertical=home-security">Check Fit First</Link>
-          <Link className="hs-premium-text-link" to="/packages?vertical=home-security">View Packages</Link>
-        </div>
       </section>
     </div>
   );
