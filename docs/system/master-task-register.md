@@ -9,11 +9,12 @@ Controlling Step: Step-SCHED-MVP — Estimate Scheduling MVP Implementation Auth
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle.
 
 ### SCHED-IMPL002
 - **Task ID:** SCHED-IMPL002
 - **Task Name:** Shared Google Calendar Availability Read
-- **Status:** COMPLETE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Implement read-only shared Google Calendar availability lookup through `GET /api/scheduling/availability` for estimate scheduling only.
@@ -74,12 +75,12 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:**
   - provide actual Google Calendar ID and credentials in deployment environment only, never in repo
 
-## Ready Tasks
+## Scheduling Queue (CTX-SCHED-MVP-REV01)
 
 ### SCHED-IMPL003
 - **Task ID:** SCHED-IMPL003
 - **Task Name:** Estimate Appointment Request Creation
-- **Status:** COMPLETE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Create canonical estimate appointment request creation behavior tied to requestId and lead intake, while preserving pending owner/manual confirmation posture.
@@ -143,7 +144,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### SCHED-IMPL004
 - **Task ID:** SCHED-IMPL004
 - **Task Name:** Owner Acceptance + Confirmation State
-- **Status:** COMPLETE
+- **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Purpose:** Implement owner/manual confirmation state transition for estimate appointments after customer request creation.
@@ -210,6 +211,155 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
   - Audit fields `confirmedBy` and `confirmedAt` are persisted on confirmation.
   - Invalid `requestId` handling and no-auto-confirm behavior are covered by tests.
   - Google Calendar event creation intentionally deferred; no calendar writes introduced.
+
+### SCHED-IMPL005
+- **Task ID:** SCHED-IMPL005
+- **Task Name:** Durable Appointment Request Storage
+- **Status:** ACTIVE
+- **Category:** SCHED
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Replace or supplement the temporary in-memory appointment request store with a durable repo-approved persistence boundary for estimate appointment requests.
+- **Allowed Scope:**
+  - evaluate existing repo storage patterns
+  - implement durable storage for appointment request records
+  - preserve requestId correlation
+  - preserve scheduling statuses
+  - preserve confirmedBy / confirmedAt audit fields
+  - migrate API usage from in-memory-only store to durable boundary
+  - maintain existing endpoint behavior
+- **Forbidden Scope:**
+  - no install scheduling
+  - no SMS
+  - no reminders
+  - no automatic booking
+  - no customer self-confirmation
+  - no Stripe changes
+  - no HubSpot schema changes unless explicitly required and separately documented
+  - no calendar writes unless already implemented elsewhere and explicitly authorized
+- **Target Files:**
+  - `functions/api/scheduling/appointmentRequestStore.ts`
+  - related scheduling API files
+  - tests
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/system/master-task-register.md`
+- **Exit Criteria:**
+  - appointment requests survive beyond single in-memory process scope using approved durable boundary
+  - requestId lookup works
+  - confirmation audit fields persist
+  - tests added/updated
+  - docs updated
+
+### SCHED-IMPL006
+- **Task ID:** SCHED-IMPL006
+- **Task Name:** Post-Owner-Confirmation Calendar Event Creation
+- **Status:** ACTIVE
+- **Category:** SCHED
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** After owner confirmation only, create a Google Calendar event for the confirmed estimate appointment.
+- **Allowed Scope:**
+  - add Google Calendar write behavior only after owner confirmation
+  - store calendarEventId on appointment request if supported
+  - preserve confirmedBy / confirmedAt audit fields
+  - fail safely if calendar write fails
+  - keep appointment state behavior explicit and documented
+- **Forbidden Scope:**
+  - no calendar write before owner confirmation
+  - no automatic booking
+  - no SMS
+  - no reminders
+  - no install scheduling
+  - no technician dispatch
+  - no Stripe changes
+  - no HubSpot schema changes unless explicitly required and separately documented
+- **Target Files:**
+  - `functions/api/scheduling/googleCalendarAvailability.ts` or new calendar write adapter
+  - `functions/api/scheduling/confirm.ts`
+  - `functions/api/scheduling/appointmentRequestStore.ts`
+  - tests
+  - `/docs/runtime/google_calendar_runtime.md`
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/system/master-task-register.md`
+- **Exit Criteria:**
+  - calendar event creation occurs only after owner confirmation
+  - calendarEventId is recorded if event creation succeeds
+  - failure is logged/safely returned without exposing secrets
+  - no pre-confirmation calendar writes exist
+  - tests added/updated
+  - docs updated
+
+### SCHED-IMPL007
+- **Task ID:** SCHED-IMPL007
+- **Task Name:** Customer Confirmation Email After Owner Acceptance
+- **Status:** ACTIVE
+- **Category:** SCHED
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Send customer confirmation email only after owner acceptance confirms the estimate appointment.
+- **Allowed Scope:**
+  - use existing email infrastructure
+  - send confirmation only after `POST /api/scheduling/confirm` succeeds
+  - include safe pending/confirmed language based on actual state
+  - preserve requestId correlation
+  - log/send failure safely
+- **Forbidden Scope:**
+  - no SMS
+  - no reminders
+  - no install scheduling
+  - no technician dispatch
+  - no automatic booking
+  - no payment/Stripe changes
+  - no marketing automation expansion
+  - no unsupported claims
+- **Target Files:**
+  - existing email/resend runtime files
+  - `functions/api/scheduling/confirm.ts`
+  - tests
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/runtime/resend_runtime.md`
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/system/master-task-register.md`
+- **Exit Criteria:**
+  - customer confirmation email is sent only after owner confirmation
+  - failure does not create false confirmation claims
+  - requestId correlation is included
+  - tests added/updated
+  - docs updated
+
+### SCHED-IMPL008
+- **Task ID:** SCHED-IMPL008
+- **Task Name:** Scheduling MVP End-to-End Validation Pass
+- **Status:** ACTIVE
+- **Category:** QA
+- **Controlling Context:** CTX-SCHED-MVP-REV01
+- **Purpose:** Validate the full estimate scheduling MVP path from lead intake through availability read, appointment request creation, owner confirmation, and allowed post-confirmation effects.
+- **Allowed Scope:**
+  - end-to-end validation only
+  - test coverage updates
+  - documentation corrections
+  - deployment checklist updates
+  - issue list for remaining defects
+- **Forbidden Scope:**
+  - no new features
+  - no SMS
+  - no reminders
+  - no install scheduling
+  - no dispatch
+  - no Stripe changes
+  - no HubSpot schema changes
+  - no copy expansion beyond correcting unsafe claims
+- **Target Files:**
+  - tests
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/runtime/scheduling_ownership.md`
+  - `/docs/system/master-task-register.md`
+  - `/docs/DOCUMENT_CATALOG.md` only if needed
+- **Exit Criteria:**
+  - scheduling MVP validation matrix is complete
+  - known baseline lint/test/typecheck failures are separated from task regressions
+  - request/pending/confirmed behavior is validated
+  - forbidden scope search passes
+  - docs updated
 
 ---
 
