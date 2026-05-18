@@ -4,7 +4,7 @@
 
 This source-only package creates reproducible WNY Home Security half-sheet campaign flyer PDFs for local print production while keeping generated binary outputs out of git and pull-request review.
 
-The current generator uses a premium dark WNYHS campaign composition: charcoal/black base fields, restrained gold separators, stronger headline hierarchy, a prominent canonical crest panel, and an intentional white QR scan box. `PoleFlyerMallFlyer.png` is the visual benchmark for poster/flyer composition, but the half-sheet system remains lighter and more practical than the full poster artwork.
+The current generator uses the PRINT-ASSET004C premium dark WNYHS campaign composition: quieter charcoal/black base fields, restrained gold separators, stronger headline hierarchy, an integrated dark crest treatment, a more premium QR frame, and improved footer breathing room. `PoleFlyerMallFlyer.png` remains the visual benchmark for poster/flyer composition, but the half-sheet system remains lighter and more practical than the full poster artwork.
 
 ## Files Included
 
@@ -60,7 +60,7 @@ These files are not approved for QR placards, yard signs, commercial identity ca
 - Do not shrink-to-fit if it changes layout.
 - Use matte/satin when possible.
 - Use standard text weight for bulk or heavier paper for professional handouts.
-- Color output uses the premium dark WNYHS flyer composition; proof it physically before bulk use.
+- Color output uses the polished premium dark WNYHS flyer composition with improved crest integration, QR framing, and footer spacing; proof it physically before bulk use.
 - Grayscale output is grayscale-safe, but still requires proofing for contrast on the selected paper stock.
 - Cut two-up sheets cleanly using the subtle horizontal guide.
 
@@ -70,6 +70,7 @@ Physical print proofing is required before production distribution.
 
 - QR scans from generated PDF on screen.
 - QR scans from first physical print.
+- QR remains readable inside its clean white scan box and quiet zone.
 - QR loads expected QR landing funnel.
 - Phone number readable.
 - URL readable.
