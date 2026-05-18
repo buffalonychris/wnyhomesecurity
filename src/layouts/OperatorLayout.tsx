@@ -125,11 +125,6 @@ const OperatorLayout = () => {
           </div>
         )}
       </header>
-      {!isHub && (
-        <div className="sitewide-notice" role="status">
-          No pricing, guarantees, or promises are given by the assistant.
-        </div>
-      )}
       <main>
         <Outlet />
       </main>

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { SITE_BUILD_LABEL } from '../../lib/siteVersion';
 import { wnyhsContact } from '../../content/wnyhsContact';
+import '../../styles/homeSecurityPremium.css';
 
 const WnyhsSiteFooter = () => {
   return (
