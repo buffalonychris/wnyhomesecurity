@@ -9,15 +9,16 @@ type Props = {
   ctaLink: string;
 };
 
-const HomeSecurityLanding = ({ packages }: Props) => {
+const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
   return (
     <div className="hs-premium-shell">
       <section className="hs-premium-hero">
         <div className="hs-premium-hero-content">
           <p className="hs-premium-eyebrow">Local-first home security</p>
-          <h1>Know what’s happening. Stay in control. No contracts required.</h1>
-          <p className="hs-premium-hero-subhead">Local-first home security with cameras, sensors, and automations you own.</p>
-          <div className="hs-premium-hero-brand-row">
+          <h1>Practical protection for Western New York homes and small businesses.</h1>
+          <p className="hs-premium-hero-subhead">Professionally designed cameras, alarms, and smart automation without mandatory monthly contracts.</p>
+          <div className="hs-premium-hero-brand-row" aria-hidden="true">
+            <img className="hs-premium-hero-crest" src={recommendedBrandAssets.footerCrest} alt="" />
             <img
               className="hs-premium-hero-brand"
               src={recommendedBrandAssets.primaryLogo}
@@ -25,7 +26,7 @@ const HomeSecurityLanding = ({ packages }: Props) => {
             />
           </div>
           <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary hs-premium-primary-cta" to="/discovery?vertical=home-security">
+            <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
               Find The Right System
             </Link>
             <Link className="btn btn-secondary" to="/packages?vertical=home-security">
