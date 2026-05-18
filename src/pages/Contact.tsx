@@ -61,6 +61,17 @@ const Contact = () => {
       entryPointCount: fromQuery.entryPointCount,
     };
   }, [searchParams]);
+  const reviewEstimateHref = useMemo(() => {
+    const params = new URLSearchParams();
+    params.set('vertical', 'home-security');
+    if (packageTier) params.set('tier', packageTier);
+    if (discoveryContext?.recommendedTier && discoveryContext.recommendedTier !== 'unknown') {
+      params.set('recommended', discoveryContext.recommendedTier);
+    }
+    if (discoveryContext?.fitCheckCompleted) params.set('fit', 'complete');
+    return `/quoteReview?${params.toString()}`;
+  }, [discoveryContext?.fitCheckCompleted, discoveryContext?.recommendedTier, packageTier]);
+  const canReviewEstimate = Boolean(packageTier || (discoveryContext && discoveryContext.recommendedTier !== 'unknown'));
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -232,6 +243,11 @@ const Contact = () => {
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <button className="btn btn-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Request My Estimate'}</button>
+          {canReviewEstimate && (
+            <Link className="btn btn-secondary" to={reviewEstimateHref}>
+              Review Estimate Summary
+            </Link>
+          )}
           {submitted && (
             <small style={{ color: 'var(--kaec-text-muted)' }}>
               Request received. Our team will follow up.

@@ -87,12 +87,21 @@ const isValidQuoteContext = (value: unknown): value is QuoteContext => {
   return true;
 };
 
+const queryTierToPackageId = (tier: string): 'A1' | 'A2' | 'A3' | null => {
+  if (tier === 'bronze') return 'A1';
+  if (tier === 'silver') return 'A2';
+  if (tier === 'gold') return 'A3';
+  return null;
+};
+
 const QuoteReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
   const token = searchParams.get('t') || '';
   const isInternalView = searchParams.get('internal') === '1';
+  const queryTier = searchParams.get('tier')?.toLowerCase() ?? '';
+  const queryRecommended = searchParams.get('recommended')?.toLowerCase() ?? '';
   const [quote, setQuote] = useState<QuoteContext | null>(null);
   const [narrative, setNarrative] = useState<NarrativeResponse | null>(null);
   const [narrativeLoading, setNarrativeLoading] = useState(false);
@@ -149,9 +158,26 @@ const QuoteReview = () => {
       if (stored?.quote && hydrateQuote(stored.quote)) {
         return;
       }
+      const fallbackTier = queryTierToPackageId(queryTier) ?? queryTierToPackageId(queryRecommended);
+      if (fallbackTier) {
+        const fallbackPackage = getPackagePricing('home-security').find((pkg) => pkg.id === fallbackTier);
+        if (fallbackPackage) {
+          hydrateQuote({
+            vertical: 'home-security',
+            packageId: fallbackTier,
+            selectedAddOns: [],
+            pricing: {
+              packagePrice: fallbackPackage.basePrice,
+              addOnTotal: 0,
+              total: fallbackPackage.basePrice,
+            },
+          });
+          return;
+        }
+      }
       setQuote(null);
     })();
-  }, [token]);
+  }, [queryRecommended, queryTier, token]);
 
   const vertical = quote?.vertical ?? 'elder-tech';
   const isHomeSecurity = vertical === 'home-security';
@@ -177,8 +203,14 @@ const QuoteReview = () => {
             Your estimate request is not ready to review yet on this device. Start with the system recommendation or request an estimate, then return here.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <Link className="btn btn-primary" to="/quote">
-              Start estimate request
+            <Link className="btn btn-primary" to="/discovery?vertical=home-security">
+              Find The Right System
+            </Link>
+            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+              Choose a Package
+            </Link>
+            <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+              Request Estimate
             </Link>
             <a
               className="btn btn-secondary"
