@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
-import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
 import { recommendedBrandAssets } from '../../data/brandAssets';
 
@@ -9,65 +8,108 @@ type Props = {
   ctaLink: string;
 };
 
-const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
+const packagePreview = [
+  { id: 'a1', name: 'Bronze', detail: 'Core cameras and entry sensors for practical first coverage.' },
+  { id: 'a2', name: 'Silver', detail: 'Balanced whole-home protection with expanded detection and alerts.' },
+  { id: 'a3', name: 'Gold', detail: 'Broader property coverage with advanced automation planning.' },
+] as const;
+
+const HomeSecurityLanding = ({ ctaLink }: Props) => {
   return (
-    <div className="hs-premium-shell">
-      <section className="hs-premium-hero">
+    <div className="hs-premium-shell hs-premium-shell--home-trust">
+      <section className="hs-premium-hero hs-premium-hero--trust">
         <div className="hs-premium-hero-content">
           <p className="hs-premium-eyebrow">Local-first home security</p>
-          <h1>Practical protection for Western New York homes and small businesses.</h1>
-          <p className="hs-premium-hero-subhead">Professionally designed cameras, alarms, and smart automation without mandatory monthly contracts.</p>
-          <p className="hs-premium-hero-trust">Local design consultation, practical system walkthroughs, and clearly scoped installation planning.</p>
+          <h1>Calm, practical protection for Western New York homes and small businesses.</h1>
+          <p className="hs-premium-hero-subhead">
+            We plan and install systems built around what you actually need: cameras, sensors, alarms, and smart automations.
+          </p>
+          <p className="hs-premium-hero-trust">No mandatory monthly contracts. One clear plan, one clear next step.</p>
           <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
-              Find The Right System
+              Start With Fit Check
             </Link>
-            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+            <Link className="btn btn-link hs-premium-text-link" to="/packages?vertical=home-security">
               View Packages
             </Link>
           </div>
-          <p className="hs-premium-hero-support-link">
-            Prefer an on-site walkthrough?{' '}
-            <Link className="btn btn-link" to="/contact?vertical=home-security">
-              Request On-Site Estimate
-            </Link>
-          </p>
           <div className="hs-premium-hero-brand-row" aria-hidden="true">
             <img className="hs-premium-hero-crest" src={recommendedBrandAssets.footerCrest} alt="" />
-            <img
-              className="hs-premium-hero-brand"
-              src={recommendedBrandAssets.primaryLogo}
-              alt="WNY Home Security brand logo"
-            />
+            <img className="hs-premium-hero-brand" src={recommendedBrandAssets.primaryLogo} alt="WNY Home Security brand logo" />
           </div>
         </div>
       </section>
 
-      <section className="hs-premium-how">
-        <div className="hs-premium-how-intro">
-          <p className="hs-premium-eyebrow">What this system does / does not do</p>
-          <p>
-            This is a locally-run home security platform that combines sensors, cameras, and automations. Core local
-            functions are designed to keep working on your home network when internet service is unavailable.
-          </p>
-          <ul className="hs-premium-steps">
-            <li>What it is not: a mandatory monitoring contract.</li>
-            <li>What it is not: a closed ecosystem.</li>
-            <li>What it is not: surveillance-first by default.</li>
-            <li>You own your equipment and data.</li>
-            <li>No subscriptions are sold by us.</li>
-            <li>Expandable later as your needs change.</li>
-          </ul>
+      <section className="hs-premium-how hs-premium-section-panel">
+        <p className="hs-premium-eyebrow">Trust-first approach</p>
+        <h2>Protection should feel planned, not pushed.</h2>
+        <p>
+          Every property is different. We start with your layout, entrances, routines, and priorities, then recommend coverage that fits real daily life.
+        </p>
+      </section>
+
+      <section className="hs-premium-section-panel">
+        <p className="hs-premium-eyebrow">System overview</p>
+        <h2>Built from practical components that work together.</h2>
+        <ul className="hs-premium-steps">
+          <li>Cameras for visibility in key areas.</li>
+          <li>Sensors for doors, windows, and movement.</li>
+          <li>Alarm options with clear local alerts.</li>
+          <li>Smart automations tailored to your routines.</li>
+          <li>Mobile alerts and locally controlled options.</li>
+        </ul>
+      </section>
+
+      <section className="hs-premium-section-panel">
+        <p className="hs-premium-eyebrow">How it works</p>
+        <h2>A simple path through the site.</h2>
+        <ol className="hs-premium-steps hs-premium-steps--ordered">
+          <li>Start with Fit Check to identify the right system direction.</li>
+          <li>Review package options and request your estimate.</li>
+          <li>Get a professionally planned install scope.</li>
+          <li>Use Support any time you need help after install.</li>
+        </ol>
+      </section>
+
+      <section id="packages" className="hs-premium-packages hs-premium-section-panel">
+        <div className="hs-premium-section-header">
+          <p className="hs-premium-eyebrow">Packages</p>
+          <h2>Packages are starting points, not one-size-fits-all plans.</h2>
+          <p>Compare details on the Packages page and choose the path that best matches your property.</p>
+        </div>
+        <div className="hs-premium-package-preview-grid">
+          {packagePreview.map((item) => (
+            <article key={item.id} className="hs-premium-package-preview-card">
+              <h3>{item.name}</h3>
+              <p>{item.detail}</p>
+              <Link className="hs-premium-text-link" to={`/packages/${item.id}?vertical=home-security`}>
+                Review {item.name} package
+              </Link>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section id="packages" className="hs-premium-packages">
-        <div className="hs-premium-section-header">
-          <p className="hs-premium-eyebrow">Packages</p>
-          <h2>Choose Bronze, Silver, or Gold</h2>
-          <p>Outcomes-first options with clear next steps.</p>
+      <section className="hs-premium-section-panel">
+        <p className="hs-premium-eyebrow">Our Work</p>
+        <h2>See how real installs are planned and finished.</h2>
+        <p>Explore selected project examples to understand coverage layout, equipment placement, and finish quality.</p>
+        <Link className="hs-premium-text-link" to="/our-work?vertical=home-security">
+          See Our Work
+        </Link>
+      </section>
+
+      <section className="hs-premium-cta hs-premium-cta--calm">
+        <h2>Ready for a clear recommendation?</h2>
+        <p>Start with Fit Check for a practical path, then review package detail at your own pace.</p>
+        <div className="hs-premium-cta-actions">
+          <Link className="btn btn-primary" to={ctaLink}>
+            Find the Right System
+          </Link>
+          <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+            View Packages
+          </Link>
         </div>
-        <PackageTierCards packages={packages} ctaLink="/contact?vertical=home-security" />
       </section>
     </div>
   );

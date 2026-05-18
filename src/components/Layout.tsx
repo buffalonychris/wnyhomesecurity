@@ -24,6 +24,7 @@ const Layout = () => {
     verticalParam === 'home-security' || storedVertical === 'home-security' || location.pathname.startsWith('/home-security');
   const isNewSite = location.pathname.startsWith('/newsite');
   const isHomeSecurityLanding = location.pathname === '/home-security';
+  const isHomeSecurityMarketingShell = location.pathname.startsWith('/home-security') && !isNewSite;
   const funnelStepRoutes = useMemo(
     () =>
       new Set([
@@ -70,7 +71,7 @@ const Layout = () => {
           </header>
         ) : null}
         <Outlet />
-        {!isNewSite && (
+        {!isNewSite && !isHomeSecurityMarketingShell && (
           <footer className={`footer hide-when-print${isHub ? ' footer-hub' : ''}${isFunnel ? ' footer-funnel' : ''}`}>
             {isFunnel ? (
               <div className="container footer-funnel-inner">
