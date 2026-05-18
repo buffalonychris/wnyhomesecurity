@@ -156,21 +156,35 @@ const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any
   const from = env.RESEND_FROM_EMAIL || env.MAIL_FROM || env.EMAIL_FROM;
   const apiKey = env.RESEND_API_KEY;
   if (!to || !from || !apiKey) return { ok: false as const, skipped: true, error: 'customer_ack_not_configured' };
-  const subject = `[WNYHS] Request received — ${payload.requestId}`;
+  const subject = 'We received your WNY Home Security estimate request';
+  const greetingName = payload.customerName?.trim?.() || 'there';
+  const contextLines = [
+    `Selected package: ${payload.packageTier || 'unknown'}`,
+    ...(payload.discoveryContext
+      ? [
+          `Fit check completed: ${payload.discoveryContext.fitCheckCompleted ? 'yes' : 'no'}`,
+          `Recommended package: ${payload.discoveryContext.recommendedTier}`,
+        ]
+      : []),
+  ];
   const text = [
-    'Thanks — we received your request.',
-    `requestId: ${payload.requestId}`,
-    `name: ${payload.customerName || 'Not provided'}`,
-    `phone: ${payload.customerPhone || 'Not provided'}`,
-    `email: ${to}`,
-    `source route: ${payload.sourceRoute || 'api/lead-signal'}`,
-    `vertical: ${payload.vertical || 'home_security'}`,
-    `requested help: ${payload.requestedHelp || 'Not provided'}`,
-    `selected package: ${payload.packageTier || 'unknown'}`,
-    ...(payload.discoveryContext ? [`fit check completed: ${payload.discoveryContext.fitCheckCompleted ? 'yes' : 'no'}`, `recommended package: ${payload.discoveryContext.recommendedTier}`] : []),
-    `preferred estimate window: ${payload.preferredWindow || 'Not provided'}`,
+    `Hi ${greetingName},`,
     '',
-    'An operator will review this request and follow up to confirm next steps.',
+    'Thank you for reaching out to WNY Home Security.',
+    'We received your estimate request and our local team will review the information you submitted.',
+    '',
+    ...contextLines,
+    `Requested help: ${payload.requestedHelp || 'Not provided'}`,
+    `Preferred estimate window: ${payload.preferredWindow || 'Not provided'}`,
+    '',
+    'Your selected package or recommendation is a starting point for review. Final equipment, installation scope, and pricing are confirmed directly with WNY Home Security before any work is scheduled.',
+    '',
+    'We’ll review your request and follow up as soon as we can.',
+    'If anything changes, you can reply to this email or call us at (716) 555-0199.',
+    '',
+    'WNY Home Security',
+    `Request ID: ${payload.requestId}`,
+    `Submitted from: ${payload.sourceRoute || 'api/lead-signal'}`,
   ].join('\n');
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },

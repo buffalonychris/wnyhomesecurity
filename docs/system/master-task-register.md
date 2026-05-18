@@ -1140,6 +1140,19 @@ Rationale:
 
 
 
+
+### ESTIMATE-EMAIL001
+- **Task ID:** ESTIMATE-EMAIL001
+- **Task Name:** Refine customer estimate-request acknowledgement email
+- **Status:** DONE
+- **Category:** EMAIL / CUSTOMER TRUST / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Refine customer acknowledgement subject/body/greeting/next-step language for estimate requests while preserving existing dynamic context, protected `/api/lead-signal` runtime behavior, operator notification path, and HubSpot sync behavior.
+- **Forbidden Scope:** No `/api/lead-signal` control-flow changes; no requestId lifecycle changes; no HubSpot schema/property/pipeline/stage logic changes; no Stripe/scheduling/SMS/support/quote runtime changes; no forbidden claims.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` and `rg` audits completed.
+- **Completion Notes:** Visible version bumped to `v1.0.81`; customer acknowledgement email subject refined to “We received your WNY Home Security estimate request”; greeting/next-step/disclaimer/response-expectation/contact footer language updated for local professional clarity and mobile readability; dynamic selected-package + discovery context preserved; operator notification path and HubSpot/requestId/runtime behavior untouched.
+- **Next Task Recommendation:** SCHED-GCAL001 only after ESTIMATE-EMAIL001 manual QA and launch-readiness review.
+
 ### QUOTE-SEND001
 - **Task ID:** QUOTE-SEND001
 - **Task Name:** Verify and harden send-quote runtime
