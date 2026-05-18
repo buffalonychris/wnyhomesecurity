@@ -3,3 +3,7 @@ dist
 npm-debug.log*
 yarn-error.log*
 .DS_Store
+
+# PRINT-ASSET002 generated outputs
+public/brand/print-assets/qr-placards/generated/*.pdf
+public/brand/print-assets/qr-placards/*.pdf
