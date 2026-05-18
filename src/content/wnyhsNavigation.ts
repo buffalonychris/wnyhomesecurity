@@ -39,6 +39,7 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
   ],
   more: [
     { id: 'about', label: 'About', href: '/about?vertical=home-security', matchPath: '/about' },
+    { id: 'our-work', label: 'Our Work', href: '/our-work?vertical=home-security', matchPath: '/our-work' },
     { id: 'contact', label: 'Contact', href: '/contact?vertical=home-security', matchPath: '/contact' },
     { id: 'privacy', label: 'Privacy', href: '/privacy?vertical=home-security', matchPath: '/privacy' },
     { id: 'terms', label: 'Terms', href: '/terms?vertical=home-security', matchPath: '/terms' },

@@ -862,6 +862,47 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### FINISH-LINE-PAGES001
+- **Task ID:** FINISH-LINE-PAGES001
+- **Task Name:** Customer-Facing Page Completion, Redesign, Additions, Gallery, and Visual Polish
+- **Status:** ACTIVE
+- **Category:** FUNNEL / COPY / QA / VISUAL
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Allowed Scope:**
+  - create or improve customer-facing public pages
+  - add `/our-work` gallery page
+  - improve existing public page design consistency
+  - improve homepage, QR funnel, main funnel, packages, contact, support, about, FAQ, trust, comparison, and related public pages
+  - add structured image/gallery metadata
+  - add reusable visual components if directly needed
+  - add navigation/footer links where appropriate
+  - improve copy clarity while obeying claims guardrails
+  - use uploaded/public assets already in repo
+  - improve responsive layout and customer-facing polish
+  - keep finish-line page/design categories active until operator explicitly closes them
+- **Forbidden Scope:**
+  - no Stripe logic changes
+  - no HubSpot schema or sync behavior changes
+  - no scheduling/backend behavior changes
+  - no lead API behavior changes
+  - no pricing logic changes
+  - no payment flow changes
+  - no secrets/env var changes
+  - no destructive deletes
+  - no route removals
+  - no claims implying guaranteed protection, crime prevention, police-grade, military-grade, hack-proof, or absolute safety
+- **Execution Rule:** This finish-line task category remains ACTIVE until explicitly closed by the operator.
+
+### VISUAL-OURWORK001
+- **Task ID:** VISUAL-OURWORK001
+- **Task Name:** Our Work gallery page implementation
+- **Status:** ACTIVE
+- **Category:** VISUAL / FUNNEL / COPY
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Parent Task:** FINISH-LINE-PAGES001
+- **Scope:** Implement and polish `/our-work` using repository-hosted assets in `/public/images/our-work/` with centralized gallery metadata and customer-facing responsive presentation.
+- **Forbidden Scope:** Inherits all FINISH-LINE-PAGES001 forbidden scope plus no image renaming/moves and no new package installs unless absolutely necessary.
+
 ### T-QA001-001
 - **Task ID:** T-QA001-001
 - **Task Name:** QA001 — Deployment Validation SOP

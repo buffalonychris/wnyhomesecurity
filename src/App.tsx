@@ -13,6 +13,7 @@ const HomeSecurityPlanner = lazy(() => import('./pages/HomeSecurityPlanner'));
 const HomeSecurityDashboard = lazy(() => import('./pages/HomeSecurityDashboard'));
 const HomeSecurityWhatsIncluded = lazy(() => import('./pages/HomeSecurityWhatsIncluded'));
 const About = lazy(() => import('./pages/About'));
+const OurWork = lazy(() => import('./pages/OurWork'));
 const Discovery = lazy(() => import('./pages/Discovery'));
 const HomeAutomation = lazy(() => import('./pages/HomeAutomation'));
 const ElderCareTech = lazy(() => import('./pages/ElderCare'));
@@ -128,6 +129,7 @@ const App = () => {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/our-work" element={<OurWork />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/recommend" element={<Recommendation />} />
