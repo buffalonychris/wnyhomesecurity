@@ -102,3 +102,6 @@ Deferred. Quote stage transitions require explicit safe deal-identity + idempote
 
 ## Last verified
 2026-05-17 (UTC)
+
+## Re-validation snapshot
+- Re-validated on 2026-05-17 (UTC): build still passes; lint/test failures remain pre-existing baseline (`eslint` repo-wide issues and `src/pages/__tests__/operatorNavbar.test.tsx`).
