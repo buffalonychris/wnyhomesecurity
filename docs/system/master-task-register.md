@@ -1486,6 +1486,48 @@ No ARCHIVED tasks are currently recorded.
 
 
 
+
+
+### PRINT-ASSET003
+- **Task ID:** PRINT-ASSET003
+- **Task Name:** Half-Sheet Flyer Production System
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** current physical brand / print execution context
+- **Purpose:** establish the half-sheet flyer production system after QR placard production system
+- **Allowed Scope:**
+  - `docs/brand/print_assets/half_sheet_flyer_system_rev01.md`
+  - `docs/DOCUMENT_CATALOG.md`
+  - `docs/system/master-task-register.md`
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - alternate AI logo versions
+  - generated PDFs
+  - generated PNGs
+  - binary print outputs
+  - production flyer files
+  - yard signs
+  - business cards
+  - car magnets
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - documentation diff
+  - asset path verification
+  - forbidden-claims scan
+  - source-only print asset workflow confirmed
+- **Exit Criteria:**
+  - half-sheet flyer system doc exists
+  - catalog updated
+  - task registered or updated
+  - no production flyer binaries created
+  - no runtime/source behavior changed
+
 ### PRINT-ASSET002
 - **Task ID:** PRINT-ASSET002
 - **Task Name:** QR Placard Production Files
