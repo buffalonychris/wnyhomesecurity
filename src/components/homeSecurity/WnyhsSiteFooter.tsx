@@ -12,6 +12,13 @@ const WnyhsSiteFooter = () => {
         <NavLink to="/terms?vertical=home-security">Terms</NavLink>
         <NavLink to="/support?vertical=home-security">Support</NavLink>
       </div>
+      <div className="wnyhs-marketing-footer-meta">
+        <span>WNY Home Security</span>
+        <span>Western New York</span>
+        <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>
+        <a href={`mailto:${wnyhsContact.emails.hello}`}>{wnyhsContact.emails.hello}</a>
+        <span>{SITE_BUILD_LABEL}</span>
+      </div>
       <div className="wnyhs-marketing-footer-brand">
         <img
           className="wnyhs-marketing-footer-crest"
@@ -19,13 +26,6 @@ const WnyhsSiteFooter = () => {
           alt="WNY Home Security crest"
           loading="lazy"
         />
-      </div>
-      <div className="wnyhs-marketing-footer-meta">
-        <span>WNY Home Security</span>
-        <span>Western New York</span>
-        <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>
-        <a href={`mailto:${wnyhsContact.emails.hello}`}>{wnyhsContact.emails.hello}</a>
-        <span>{SITE_BUILD_LABEL}</span>
       </div>
     </footer>
   );
