@@ -77,3 +77,12 @@ Recommended order on key pages:
 4. Trust/safety context
 5. Visual evidence
 6. Next-step action block
+
+
+## Related locked standards
+
+- `/docs/brand/brand_asset_standards_rev01.md`
+- `/docs/brand/page_layout_standards_rev01.md`
+- `/docs/brand/header_footer_standards_rev01.md`
+- `/docs/specs/qr_funnel_standards_rev01.md`
+- `/docs/specs/public_funnel_standards_rev01.md`

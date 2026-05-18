@@ -88,3 +88,13 @@
 - Exactly one controlling context governs implementation execution at a time.
 - Tasks must be `ACTIVE` in `/docs/system/master-task-register.md` before execution.
 - Any request outside this context requires a context/task-register revision before execution.
+
+
+## Locked Standards Documents (Required Load for Visual/Funnel Tasks)
+
+All future visual/funnel tasks must load and follow:
+- `/docs/brand/brand_asset_standards_rev01.md`
+- `/docs/brand/page_layout_standards_rev01.md`
+- `/docs/brand/header_footer_standards_rev01.md`
+- `/docs/specs/qr_funnel_standards_rev01.md`
+- `/docs/specs/public_funnel_standards_rev01.md`

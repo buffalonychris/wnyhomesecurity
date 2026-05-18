@@ -1285,3 +1285,29 @@ No ARCHIVED tasks are currently recorded.
 - FUNNEL-CLEANUP002 = DONE
 - FUNNEL-CLEANUP003 = DONE
 - GOV-HARDEN002 = DONE
+
+
+### STD-LOCK001
+- **Task ID:** STD-LOCK001
+- **Task Name:** WNYHS brand, layout, and funnel standards lock + task-register authorization
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Create locked standards docs and authorize QR-REDUX001 execution.
+- **Target Files:** `docs/brand/brand_asset_standards_rev01.md`, `docs/brand/page_layout_standards_rev01.md`, `docs/brand/header_footer_standards_rev01.md`, `docs/specs/qr_funnel_standards_rev01.md`, `docs/specs/public_funnel_standards_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/system/master-task-register.md`, `docs/system/step-current.md`, `docs/brand/visual_system_rev01.md`.
+- **Runtime Systems Affected:** none
+- **Validation Required:** docs grep checks only; build not required for docs-only scope unless separately demanded.
+- **Exit Criteria:** standards docs created, catalog updated, QR-REDUX001 registered.
+
+### QR-REDUX001
+- **Task ID:** QR-REDUX001
+- **Task Name:** QR Landing trust-first redesign (payload-safe)
+- **Status:** ACTIVE
+- **Category:** QR
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Redesign QR Landing as a WNYHS trust-first QR intake page.
+- **Allowed Scope:** `/qrlanding` visual/layout/copy redesign; use existing approved assets; simplified QR nav; progressive form layout only if payload preserved; remove SaaS/demo/assistant leakage; footer parity.
+- **Forbidden Scope:** no HubSpot changes; no lead API changes; no form payload changes; no field name changes; no source tracking changes; no consent logic changes; no Stripe/scheduling/backend changes.
+- **Target Files:** actual QR page files; layout/footer/style files only as needed; `siteVersion` when executed.
+- **Validation Required:** `npm run build`; bad-content scan; payload safety scan; footer scan; route/nav scan; forbidden claims scan.
+- **Exit Criteria:** QR page no longer appears SaaS/demo; existing intake behavior preserved; WNYHS footer/header standards followed.
