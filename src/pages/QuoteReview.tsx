@@ -72,6 +72,8 @@ const AccordionSection = ({ title, description, defaultOpen = false, children }:
 };
 
 const formatCurrency = (amount: number) => `$${amount.toLocaleString()}`;
+const ESTIMATE_REVIEW_DISCLAIMER =
+  'This estimate summary is for review only. Final pricing, installation scope, and agreement details are confirmed directly with WNY Home Security before any work is scheduled.';
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
 
@@ -440,6 +442,7 @@ const QuoteReview = () => {
             <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Deterministic one-time estimate. No subscriptions. Save or share with family, then continue to agreement.
             </p>
+            <small style={{ color: 'var(--color-text-secondary)' }}>{ESTIMATE_REVIEW_DISCLAIMER}</small>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.25rem' }}>
               <button type="button" className="btn btn-primary" onClick={handleContinueToAgreement}>
                 {isHomeSecurity ? 'Accept & Continue' : 'Continue to Agreement'}
