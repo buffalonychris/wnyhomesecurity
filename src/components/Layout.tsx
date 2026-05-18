@@ -36,6 +36,9 @@ const Layout = () => {
       '/our-work',
       '/qrlanding',
       '/qrlanding.htm',
+      '/about',
+      '/privacy',
+      '/terms',
     ]);
     return location.pathname.startsWith('/home-security') || (isHomeSecurityVertical && marketingRoutes.has(location.pathname));
   }, [isHomeSecurityVertical, location.pathname]);
