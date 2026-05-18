@@ -393,6 +393,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Added by STD-LOCK001 for visual/funnel execution consistency.
 
 
+
+### `/docs/brand/print_system_standards_rev01.md`
+- **File path:** `docs/brand/print_system_standards_rev01.md`
+- **Purpose / likely role:** Canonical vendor-safe print production standards for WNYHS physical brand materials.
+- **Authority level:** **Brand / print production authority**
+- **Status:** **Active / canonical**
+- **Notes:** Controls physical print production rules for readability, QR reliability, margins, substrate guidance, and claims-safe execution.
+
 ### `/docs/brand/brand_asset_authority_rev01.md`
 - **File path:** `docs/brand/brand_asset_authority_rev01.md`
 - **Purpose / likely role:** Canonical visual asset authority controlling approved WNYHS logo, QR, campaign image, and physical-brand asset usage.
