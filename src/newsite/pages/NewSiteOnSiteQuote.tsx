@@ -122,7 +122,7 @@ const NewSiteOnSiteQuote = () => {
               <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/contact">
                 Back to contact hub
               </NavLink>
-              <a className="newsite-btn newsite-btn-secondary" href="tel:17163912405">
+              <a className="newsite-btn newsite-btn-secondary" href="tel:+17165471378">
                 Call now
               </a>
             </div>
