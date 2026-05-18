@@ -24,7 +24,22 @@ const Layout = () => {
     verticalParam === 'home-security' || storedVertical === 'home-security' || location.pathname.startsWith('/home-security');
   const isNewSite = location.pathname.startsWith('/newsite');
   const isHomeSecurityLanding = location.pathname === '/home-security';
-  const isHomeSecurityMarketingShell = location.pathname.startsWith('/home-security') && !isNewSite;
+  const isHomeSecurityMarketingRoute = useMemo(() => {
+    const marketingRoutes = new Set([
+      '/home-security',
+      '/packages',
+      '/discovery',
+      '/fit-check',
+      '/contact',
+      '/estimate',
+      '/support',
+      '/our-work',
+      '/qrlanding',
+      '/qrlanding.htm',
+    ]);
+    return location.pathname.startsWith('/home-security') || (isHomeSecurityVertical && marketingRoutes.has(location.pathname));
+  }, [isHomeSecurityVertical, location.pathname]);
+  const isHomeSecurityMarketingShell = isHomeSecurityMarketingRoute && !isNewSite;
   const funnelStepRoutes = useMemo(
     () =>
       new Set([

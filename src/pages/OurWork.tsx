@@ -28,8 +28,8 @@ const featuredItems = ourWorkGallery.filter((item) => item.featured).sort(sortBy
 const OurWork = () => {
   useLayoutConfig({
     layoutVariant: 'funnel',
-    showBreadcrumbs: true,
-    breadcrumb: [{ label: 'Home Security', href: '/home-security' }, { label: 'Our Work' }],
+    showBreadcrumbs: false,
+    breadcrumb: [],
   });
 
   return (
