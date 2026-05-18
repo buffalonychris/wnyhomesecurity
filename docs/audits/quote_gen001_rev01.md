@@ -101,7 +101,13 @@ Deferred. Quote stage transitions require explicit safe deal-identity + idempote
 20. Confirm mobile quote/review screen is usable.
 
 ## Last verified
-2026-05-17 (UTC)
+2026-05-18 (UTC)
 
 ## Re-validation snapshot
-- Re-validated on 2026-05-17 (UTC): build still passes; lint/test failures remain pre-existing baseline (`eslint` repo-wide issues and `src/pages/__tests__/operatorNavbar.test.tsx`).
+- Re-validated on 2026-05-18 (UTC): QUOTE-GEN001 implementation completed beyond pre-flight-only validation.
+- Version bump applied: `v1.0.60` → `v1.0.61`.
+- Quote review now explicitly renders the required customer-safe estimate-review disclaimer directly in the quote-review header flow.
+- Existing safe fallback path for missing quote context remains active.
+- `/api/send-quote` remains the bounded quote email runtime for customer + operator/ownership estimate-summary delivery.
+- HubSpot quote logging deferred to `QUOTE-HUBSPOT001`; stage transition deferred to `QUOTE-STAGE001`.
+- Build still passes; lint/test failures remain pre-existing baseline (`eslint` repo-wide issues and `src/pages/__tests__/operatorNavbar.test.tsx`).
