@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
 import '../../styles/homeSecurityPremium.css';
-import { recommendedBrandAssets } from '../../data/brandAssets';
 
 type Props = {
   packages: PackageTier[];
@@ -40,7 +39,7 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
           </div>
         </div>
         <div className="hs-premium-hero-media" aria-hidden="true">
-          <img src="/images/home-security/hero-1536w.webp" alt="" loading="eager" />
+          <img src="/brand/heros/HomePageHero.png" alt="" loading="eager" />
         </div>
       </section>
 
@@ -133,7 +132,7 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
 
       <section className="hs-premium-cta hs-premium-cta--calm">
         <div className="hs-premium-cta-brand">
-          <img src={recommendedBrandAssets.footerCrest} alt="WNY Home Security crest" loading="lazy" />
+          <img src="/brand/crest-system/CrestLogo.png" alt="WNY Home Security crest" loading="lazy" />
         </div>
         <div className="hs-premium-cta-copy">
           <h2>Ready for a clear recommendation?</h2>

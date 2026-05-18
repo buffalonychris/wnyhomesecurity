@@ -34,10 +34,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
       <div className="wnyhs-top-nav-inner">
         <Link to="/home-security" className="wnyhs-top-nav-brand" aria-label={`${brandHomeSecurity} home`}>
           <span className="wnyhs-top-nav-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" role="img" focusable="false">
-              <path d="M12 2l7 3v6c0 5-3.2 9.3-7 11-3.8-1.7-7-6-7-11V5l7-3z" fill="none" stroke="currentColor" strokeWidth="1.6"/>
-              <path d="M9.2 12.5l2 2.1 3.7-4.2" fill="none" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
+            <img src="/brand/crest-system/IconizedLogo.png" alt="" loading="eager" />
           </span>
           <span>{brandHomeSecurity}</span>
         </Link>
