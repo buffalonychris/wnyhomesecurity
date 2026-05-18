@@ -1425,3 +1425,30 @@ No ARCHIVED tasks are currently recorded.
 - **Target Files:** actual QR page files; layout/footer/style files only as needed; `siteVersion` when executed.
 - **Validation Required:** `npm run build`; bad-content scan; payload safety scan; footer scan; route/nav scan; forbidden claims scan.
 - **Exit Criteria:** QR page no longer appears SaaS/demo; existing intake behavior preserved; WNYHS footer/header standards followed.
+
+
+### BRAND-AUTH001
+- **Task ID:** BRAND-AUTH001
+- **Task Name:** Brand Asset Authority Document
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Establish canonical visual asset authority for WNYHS physical and digital branding.
+- **Allowed Scope:**
+  - `docs/brand/brand_asset_authority_rev01.md`
+  - `docs/DOCUMENT_CATALOG.md`
+  - `docs/system/master-task-register.md` entry update only
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - routes
+  - Stripe
+  - HubSpot
+  - new logo generation
+- **Validation Required:**
+  - documentation diff
+  - asset path verification
+- **Exit Criteria:**
+  - brand authority doc exists
+  - catalog updated
+  - task registered or updated

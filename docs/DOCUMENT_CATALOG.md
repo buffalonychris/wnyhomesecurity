@@ -391,3 +391,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Purpose / likely role:** Locked public-funnel route roles, CTA discipline, claims guardrails, and allowed language posture.
 - **Authority level:** **Public funnel governance standard**
 - **Notes:** Added by STD-LOCK001 for visual/funnel execution consistency.
+
+
+### `/docs/brand/brand_asset_authority_rev01.md`
+- **File path:** `docs/brand/brand_asset_authority_rev01.md`
+- **Purpose / likely role:** Canonical visual asset authority controlling approved WNYHS logo, QR, campaign image, and physical-brand asset usage.
+- **Authority level:** **Brand authority**
+- **Status:** **Active / canonical**
+- **Notes:** Freezes visual identity to prevent drift across digital and physical materials.
