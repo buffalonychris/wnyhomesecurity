@@ -65,7 +65,7 @@ const OurWork = () => {
                   src={item.image}
                   alt={item.alt}
                   loading="lazy"
-                  style={{ width: '100%', borderRadius: '0.75rem', aspectRatio: '4 / 3', objectFit: 'cover' }}
+                  className="wnyhs-gallery-image"
                 />
                 <div className="wnyhs-gallery-card-body">
                   <span className={categoryStyles[item.category].className}>{categoryStyles[item.category].label}</span>
@@ -90,7 +90,7 @@ const OurWork = () => {
                       src={item.image}
                       alt={item.alt}
                       loading="lazy"
-                      style={{ width: '100%', borderRadius: '0.75rem', aspectRatio: '4 / 3', objectFit: 'cover' }}
+                      className="wnyhs-gallery-image"
                     />
                     <div className="wnyhs-gallery-card-body wnyhs-gallery-card-body--compact">
                       <span className={categoryStyles[item.category].className}>{categoryStyles[item.category].label}</span>
@@ -124,7 +124,7 @@ const OurWork = () => {
             src={recommendedBrandAssets.qrPlacardReference}
             alt="WNY Home Security QR placard sample"
             loading="lazy"
-            style={{ width: '100%', maxWidth: '240px', borderRadius: '0.75rem', border: '1px solid var(--color-border)' }}
+            className="wnyhs-gallery-image wnyhs-gallery-image--placard"
           />
         </section>
 
