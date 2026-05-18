@@ -997,6 +997,19 @@ Rationale:
 
 
 
+
+### QUOTE-SEND001
+- **Task ID:** QUOTE-SEND001
+- **Task Name:** Verify and harden send-quote runtime
+- **Status:** DONE
+- **Category:** FUNNEL / EMAIL / QUOTE
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Scope:** Inspect/harden `/api/send-quote` validation + QuoteReview send UX, preserve estimate-summary disclaimer language, preserve missing-context safety and protected runtimes.
+- **Forbidden Scope:** No QUOTE-HUBSPOT001, QUOTE-STAGE001, or CRM-STAGEFLOW001 implementation; no `/api/lead-signal` or `/api/support` behavior changes; no Stripe/scheduling/SMS/reminders/PDF/AI proposal changes.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` + `rg` audits completed.
+- **Completion Notes:** Visible version bumped to `v1.0.63`; `/api/send-quote` now rejects missing quote tier/review URL context and returns clearer delivery failure messaging; QuoteReview now exposes explicit home-security send action (`Send estimate summary`) with existing success/error banner flow; required estimate-summary disclaimer preserved in review + email path; HubSpot quote logging/stage automation remains deferred to `QUOTE-HUBSPOT001` / `QUOTE-STAGE001`.
+- **Next Task Recommendation:** QUOTE-HUBSPOT001 (only after manual end-to-end send QA confirms stable delivery).
+
 ### QUOTE-HUBSPOT001
 - **Task ID:** QUOTE-HUBSPOT001
 - **Task Name:** Quote HubSpot context logging hardening

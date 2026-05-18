@@ -38,7 +38,14 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
 
   const links = (body.links as Record<string, unknown> | undefined) ?? {};
   const context = (body.context as Record<string, unknown> | undefined) ?? {};
-  const quoteTier = typeof context.tier === 'string' ? context.tier : 'recommended system';
+  const quoteTier = typeof context.tier === 'string' && context.tier.trim() ? context.tier.trim() : '';
+  const reviewUrl = typeof links.reviewUrl === 'string' ? links.reviewUrl.trim() : '';
+  if (!quoteTier) {
+    return json({ ok: false, provider: 'resend', error: 'Quote tier/package context is required before sending.' }, 400);
+  }
+  if (!reviewUrl) {
+    return json({ ok: false, provider: 'resend', error: 'Quote review URL is required before sending.' }, 400);
+  }
   const customerName = typeof context.name === 'string' ? context.name : 'there';
 
   const reviewDisclaimer =
@@ -51,7 +58,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     reviewDisclaimer,
     '',
     `Recommended package: ${quoteTier}`,
-    typeof links.reviewUrl === 'string' ? `Review quote: ${links.reviewUrl}` : null,
+    `Review estimate summary: ${reviewUrl}`,
     typeof links.printUrl === 'string' ? `Print/save quote: ${links.printUrl}` : null,
     typeof links.resumeUrl === 'string' ? `Resume your progress: ${links.resumeUrl}` : null,
   ].filter(Boolean).join('\n');
@@ -61,7 +68,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     '',
     `Recipient: ${recipient}`,
     `Tier/package: ${quoteTier}`,
-    typeof links.reviewUrl === 'string' ? `Review URL: ${links.reviewUrl}` : null,
+    `Review estimate summary: ${reviewUrl}`,
     typeof links.resumeUrl === 'string' ? `Resume URL: ${links.resumeUrl}` : null,
     '',
     `Disclaimer shown: ${reviewDisclaimer}`,
@@ -95,7 +102,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
   ]);
 
   if (!customerResponse.ok || !operatorResponse.ok) {
-    return json({ ok: false, provider: 'resend', error: 'Quote email delivery failed.' }, 502);
+    return json({ ok: false, provider: 'resend', error: 'Quote email delivery failed for one or more recipients.' }, 502);
   }
 
   const responseBody = (await customerResponse.json().catch(() => null)) as { id?: string } | null;

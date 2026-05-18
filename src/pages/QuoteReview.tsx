@@ -658,11 +658,10 @@ const QuoteReview = () => {
         />
       )}
 
-      {!isHomeSecurity && (
-        <div className="card" style={{ display: 'grid', gap: '0.75rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
+      <div className="card" style={{ display: 'grid', gap: '0.75rem', border: '1px solid rgba(245, 192, 66, 0.35)' }}>
           <div>
             <div className="badge">Share &amp; Save</div>
-            <h3 style={{ margin: '0.25rem 0', color: 'var(--color-text-primary)' }}>Share this quote</h3>
+            <h3 style={{ margin: '0.25rem 0', color: 'var(--color-text-primary)' }}>{isHomeSecurity ? 'Send estimate summary' : 'Share this quote'}</h3>
             <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
               Send the quote to yourself or trusted family members. The resume link keeps progress for caregivers or caseworkers.
             </p>
@@ -694,7 +693,7 @@ const QuoteReview = () => {
                 onClick={() => handleSendEmail(shareRecipient, 'manual')}
                 disabled={!isValidEmail(shareRecipient) || sending || !emailPayload}
               >
-                {sending ? 'Sending…' : 'Send quote'}
+                {sending ? 'Sending…' : isHomeSecurity ? 'Send estimate summary' : 'Send quote'}
               </button>
             </div>
             {!isValidEmail(shareRecipient) && shareRecipient && (
@@ -739,7 +738,6 @@ const QuoteReview = () => {
             </div>
           )}
         </div>
-      )}
 
       <div style={{ display: 'grid', gap: '1rem' }}>
         {!isHomeSecurity && (
