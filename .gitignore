@@ -7,3 +7,7 @@ yarn-error.log*
 # PRINT-ASSET002 generated outputs
 public/brand/print-assets/qr-placards/generated/*.pdf
 public/brand/print-assets/qr-placards/*.pdf
+# PRINT-ASSET004 generated half-sheet flyer outputs
+/public/brand/print-assets/half-sheet-flyers/generated/
+/public/brand/print-assets/half-sheet-flyers/**/*.pdf
+/public/brand/print-assets/half-sheet-flyers/**/*.png

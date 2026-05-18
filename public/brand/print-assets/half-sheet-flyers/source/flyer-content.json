@@ -1,0 +1,69 @@
+{
+  "packageVersion": "PRINT-ASSET004-REV01",
+  "destinationIntent": "https://www.wnyhomesecurity.com/qrlanding?src=placard",
+  "common": {
+    "phone": "Call or text: (716) 547-1378",
+    "url": "wnyhomesecurity.com",
+    "qrAsset": "public/brand/forprint/QR QRLANDING  Home Page QR.png",
+    "logoAsset": "public/brand/forprint/wallpaper screensaver.png"
+  },
+  "variants": [
+    {
+      "id": "local-estimate",
+      "title": "Local Estimate Flyer",
+      "headline": "Practical Protection for WNY Homes & Businesses",
+      "support": "Cameras, alarms, and smart automation designed around your home or business.",
+      "bullets": [
+        "Smart cameras",
+        "Alarm system options",
+        "Local installation",
+        "No mandatory monthly contracts"
+      ],
+      "cta": "Scan for a Local Estimate",
+      "phone": "Call or text: (716) 547-1378",
+      "url": "wnyhomesecurity.com",
+      "qrAsset": "public/brand/forprint/QR QRLANDING  Home Page QR.png",
+      "logoAsset": "public/brand/forprint/wallpaper screensaver.png",
+      "outputColorFilename": "wnyhs-half-sheet-flyer-local-estimate-two-up-color.pdf",
+      "outputGrayscaleFilename": "wnyhs-half-sheet-flyer-local-estimate-two-up-grayscale.pdf"
+    },
+    {
+      "id": "home-business",
+      "title": "Home + Small Business Flyer",
+      "headline": "Smart Cameras, Alarms & Automation — Locally Installed",
+      "support": "Practical systems for homes, garages, storefronts, and small businesses.",
+      "bullets": [
+        "Home and small-business layouts",
+        "Door and window sensors",
+        "Motion detection",
+        "Smart alerts"
+      ],
+      "cta": "Start With a Quick Fit Check",
+      "phone": "Call or text: (716) 547-1378",
+      "url": "wnyhomesecurity.com",
+      "qrAsset": "public/brand/forprint/QR QRLANDING  Home Page QR.png",
+      "logoAsset": "public/brand/forprint/wallpaper screensaver.png",
+      "outputColorFilename": "wnyhs-half-sheet-flyer-home-business-two-up-color.pdf",
+      "outputGrayscaleFilename": "wnyhs-half-sheet-flyer-home-business-two-up-grayscale.pdf"
+    },
+    {
+      "id": "no-contracts",
+      "title": "No Mandatory Monthly Contracts Flyer",
+      "headline": "No Mandatory Monthly Contracts Required",
+      "support": "Security options designed around your property, not a one-size-fits-all package.",
+      "bullets": [
+        "Cameras and alarm options",
+        "Smart automation",
+        "Local installation",
+        "Estimate-first process"
+      ],
+      "cta": "See Practical Security Options",
+      "phone": "Call or text: (716) 547-1378",
+      "url": "wnyhomesecurity.com",
+      "qrAsset": "public/brand/forprint/QR QRLANDING  Home Page QR.png",
+      "logoAsset": "public/brand/forprint/wallpaper screensaver.png",
+      "outputColorFilename": "wnyhs-half-sheet-flyer-no-contracts-two-up-color.pdf",
+      "outputGrayscaleFilename": "wnyhs-half-sheet-flyer-no-contracts-two-up-grayscale.pdf"
+    }
+  ]
+}
