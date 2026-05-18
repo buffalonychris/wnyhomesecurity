@@ -53,14 +53,14 @@ const OurWork = () => {
           </div>
         </section>
 
-        <section className="card" aria-labelledby="featured-gallery-heading" style={{ display: 'grid', gap: '1rem' }}>
+        <section className="card wnyhs-gallery-section" aria-labelledby="featured-gallery-heading">
           <div>
             <p className="eyebrow" style={{ margin: 0 }}>Featured Projects</p>
             <h2 id="featured-gallery-heading" style={{ margin: '0.4rem 0 0' }}>High-Impact Local Install Highlights</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+          <div className="wnyhs-gallery-featured-grid">
             {featuredItems.map((item) => (
-              <article key={item.slug} className="card" style={{ margin: 0, padding: '0.75rem', display: 'grid', gap: '0.65rem' }}>
+              <article key={item.slug} className="card wnyhs-gallery-card">
                 <img
                   src={item.image}
                   alt={item.alt}
@@ -77,15 +77,15 @@ const OurWork = () => {
           </div>
         </section>
 
-        {categorySections.map((section) => {
+        {categorySections.slice(0, 4).map((section) => {
           const sectionItems = ourWorkGallery.filter((item) => section.categories.includes(item.category)).sort(sortByPriority);
 
           return (
-            <section key={section.heading} className="card" style={{ display: 'grid', gap: '1rem' }}>
+            <section key={section.heading} className="card wnyhs-gallery-section">
               <h2 style={{ margin: 0 }}>{section.heading}</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.9rem' }}>
+              <div className="wnyhs-gallery-grid">
                 {sectionItems.map((item) => (
-                  <article key={item.slug} className="card" style={{ margin: 0, padding: '0.7rem', display: 'grid', gap: '0.6rem' }}>
+                  <article key={item.slug} className="card wnyhs-gallery-card wnyhs-gallery-card--compact">
                     <img
                       src={item.image}
                       alt={item.alt}
@@ -113,7 +113,7 @@ const OurWork = () => {
           </p>
         </section>
 
-        <section className="card" style={{ display: 'grid', gap: '0.8rem', gridTemplateColumns: 'minmax(0, 1fr) auto', alignItems: 'center' }}>
+        <section className="card wnyhs-gallery-cta-panel">
           <div style={{ display: 'grid', gap: '0.35rem' }}>
             <h2 style={{ margin: 0 }}>Prefer a quick scan walkthrough?</h2>
             <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
@@ -128,7 +128,7 @@ const OurWork = () => {
           />
         </section>
 
-        <section className="card" style={{ display: 'grid', gap: '0.75rem', textAlign: 'center' }}>
+        <section className="card wnyhs-gallery-final-cta">
           <h2 style={{ margin: 0 }}>Want your home or business protected like this?</h2>
           <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
             Let&apos;s design a practical, professionally designed system for your property.
