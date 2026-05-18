@@ -1488,6 +1488,57 @@ No ARCHIVED tasks are currently recorded.
 
 
 
+
+### PRINT-ASSET004
+- **Task ID:** PRINT-ASSET004
+- **Task Name:** Half-Sheet Flyer Source Generator Package
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** current physical brand / print execution context
+- **Purpose:** create source-only reproducible half-sheet flyer generator package following the non-committed generated binary workflow
+- **Allowed Scope:**
+  - `/public/brand/print-assets/half-sheet-flyers/README.md`
+  - `/public/brand/print-assets/half-sheet-flyers/source/generate-half-sheet-flyers.mjs`
+  - `/public/brand/print-assets/half-sheet-flyers/source/flyer-content.json`
+  - `/.gitignore`
+  - `/docs/system/master-task-register.md`
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - alternate AI logo versions
+  - committed generated PDFs
+  - committed generated PNGs
+  - committed binary print outputs
+  - QR placards
+  - yard signs
+  - identity card source packages
+  - car magnets
+  - leave-behinds
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - generator runs locally
+  - generated outputs go only to ignored `generated/`
+  - generated PDFs are not tracked
+  - canonical QR Landing asset used
+  - main website QR not used
+  - forbidden-claims scan
+  - build check if repo standard requires it
+- **Exit Criteria:**
+  - source generator exists
+  - content config exists
+  - README/manifest exists
+  - `.gitignore` prevents generated flyer binaries from being committed
+  - generated outputs can be produced locally
+  - no generated binaries are committed
+  - task registered or updated
+  - no runtime/source behavior changed
+- **Completion Notes:** Source-controlled package uses generator, JSON content config, and manifest only; generated PDFs are reproducible local outputs written to `/public/brand/print-assets/half-sheet-flyers/generated/` and are intentionally not committed.
+
 ### PRINT-ASSET003
 - **Task ID:** PRINT-ASSET003
 - **Task Name:** Half-Sheet Flyer Production System
