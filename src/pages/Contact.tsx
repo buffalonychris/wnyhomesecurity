@@ -75,13 +75,8 @@ const Contact = () => {
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
-    showBreadcrumbs: isHomeSecurity,
-    breadcrumb: isHomeSecurity
-      ? [
-          { label: 'Home Security', href: '/home-security' },
-          { label: 'Request install' },
-        ]
-      : [],
+    showBreadcrumbs: false,
+    breadcrumb: [],
   });
 
   const [name, setName] = useState('');
