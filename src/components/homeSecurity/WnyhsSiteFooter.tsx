@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { SITE_BUILD_LABEL } from '../../lib/siteVersion';
 import { wnyhsContact } from '../../content/wnyhsContact';
-import { recommendedBrandAssets } from '../../data/brandAssets';
 
 const WnyhsSiteFooter = () => {
   return (
@@ -16,7 +15,7 @@ const WnyhsSiteFooter = () => {
       <div className="wnyhs-marketing-footer-brand">
         <img
           className="wnyhs-marketing-footer-crest"
-          src={recommendedBrandAssets.footerCrest}
+          src="/brand/crest-system/IconizedLogo.png"
           alt="WNY Home Security crest"
           loading="lazy"
         />
