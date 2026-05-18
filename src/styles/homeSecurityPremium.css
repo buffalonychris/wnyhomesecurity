@@ -667,13 +667,28 @@
   gap: 0.75rem;
 }
 
+
+.wnyhs-gallery-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.wnyhs-gallery-image--placard {
+  max-width: 240px;
+  border: 1px solid var(--hs-premium-border);
+}
+
 .wnyhs-gallery-card-body {
   display: grid;
   gap: 0.5rem;
 }
 
 .wnyhs-gallery-card-body--compact {
-  gap: 0.35rem;
+  gap: 0.42rem;
 }
 
 .wnyhs-gallery-card-title--compact {
@@ -688,6 +703,8 @@
 
 .wnyhs-gallery-body--compact {
   font-size: 0.95rem;
+  color: color-mix(in srgb, var(--foreground) 80%, var(--hs-premium-muted));
+  line-height: 1.42;
 }
 
 .wnyhs-gallery-body--wide {
@@ -729,6 +746,10 @@
 .wnyhs-gallery-card--compact {
   padding: 0.75rem;
   gap: 0.55rem;
+}
+
+.wnyhs-gallery-card--compact .badge {
+  color: color-mix(in srgb, var(--foreground) 84%, var(--hs-premium-accent));
 }
 
 .wnyhs-gallery-cta-panel {
