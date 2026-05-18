@@ -414,3 +414,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Brand / print asset production system**
 - **Status:** **Active / canonical**
 - **Notes:** Controls WNYHS QR placard production rules and approved placard variants.
+
+### `/docs/brand/print_assets/half_sheet_flyer_system_rev01.md`
+- **File path:** `docs/brand/print_assets/half_sheet_flyer_system_rev01.md`
+- **Purpose / likely role:** Canonical half-sheet flyer production system defining approved flyer sizes, variants, copy blocks, QR usage, and source-controlled print workflow boundaries.
+- **Authority level:** **Brand / print asset production system**
+- **Status:** **Active / canonical**
+- **Notes:** Controls WNYHS half-sheet flyer production rules and approved flyer variants.
