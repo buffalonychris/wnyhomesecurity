@@ -982,6 +982,19 @@ Rationale:
 - **Completion Notes:** Visible site version bumped to `v1.0.61`; quote review flow renders estimate-summary guidance from existing selected/recommended package context and retains safe missing-context fallback UI; `/api/send-quote` delivers estimate-summary copy to customer (when email exists) and operator/ownership with review-only disclaimer language; HubSpot quote logging and stage update deferred to bounded follow-up tasks (`QUOTE-HUBSPOT001`, `QUOTE-STAGE001`) pending safe API-layer contract path and idempotent stage-transition guardrails.
 - **Next Task Recommendation:** CRM-STAGEFLOW001 only after manual QA passes.
 
+### QUOTE-GEN001B
+- **Task ID:** QUOTE-GEN001B
+- **Task Name:** Quote flow completion + estimate-to-quote routing
+- **Status:** DONE
+- **Category:** FUNNEL / QUOTE
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Complete customer-facing route from estimate gateway context into quote review while preserving protected runtime boundaries.
+- **Scope:** Add estimate-gateway review CTA when selected/recommended context exists; ensure quote review can render from durable query/bootstrap context in addition to existing token/storage paths; provide safe missing-context recovery CTAs; preserve estimate-review disclaimer and existing quote send runtime path.
+- **Forbidden Scope:** No `/api/lead-signal` or `/api/support` changes; no Stripe/scheduling/SMS/reminders/autonomous booking; no HubSpot schema/property/pipeline changes; no CRM stage-flow automation.
+- **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` + `rg` audits completed.
+- **Completion Notes:** Version bumped to `v1.0.62`; `/contact` now conditionally shows “Review Estimate Summary” when selected-package or recommendation context exists and routes into `/quoteReview` with durable query context; `/quoteReview` now hydrates from token → saved quote → bounded query tier/recommendation fallback and shows required missing-context recovery CTAs (Find The Right System / Choose a Package / Request Estimate); send-quote path remained operational with existing customer-email validation and operator/ownership copy support.
+- **Next Task Recommendation:** CRM-STAGEFLOW001 after manual QA.
+
 
 
 ### QUOTE-HUBSPOT001
