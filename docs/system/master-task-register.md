@@ -45,8 +45,8 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 ### PRINT-ASSET005
 - **Task ID:** PRINT-ASSET005
 - **Task Name:** Full-Page Pole / Mall Flyer Source Package
-- **Status:** ACTIVE
-- **Category:** PRINT-ASSET
+- **Status:** DONE
+- **Category:** PRINT-ASSET / GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** create source-only reproducible 8.5 x 11 full-page pole/mall/community-board flyer package using the operator-approved PoleFlyerMallFlyer.png composition and replacing the embedded QR with the approved QR Landing / Campaign QR.
 - **Allowed Scope:**
@@ -81,9 +81,17 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
   - business-card QR not used
   - visible claims reviewed and caveated where needed
   - forbidden-claims scan
+  - build check if repo standard requires it
 - **Exit Criteria:**
-  - PRINT-ASSET005 is ACTIVE and executable
-  - no implementation performed in this governance task unless explicitly limited to register/context updates
+  - source generator exists
+  - config exists
+  - README/manifest exists
+  - `.gitignore` prevents generated binaries from being committed
+  - generated color and grayscale PDFs can be produced locally
+  - no generated binaries are committed
+  - task registered or updated
+  - no runtime/source behavior changed
+- **Completion Notes:** Source-only pole/mall flyer package created under `/public/brand/print-assets/pole-mall-flyer/`; generated PDFs are local-only under ignored `generated/`; canonical `PoleFlyerMallFlyer.png` is used as the full-page base/reference; exact on-disk QR Landing / Campaign QR asset `/public/brand/forprint/QR QRLANDING  Home Page QR.png` is overlaid; main website / business-card QR asset is documented as blocked and not used for output generation; claim caveats for “No Cloud Required” and “You Own. You Control.” are recorded for operator review before bulk production.
 
 
 ### SUPPORT-FLOW001
