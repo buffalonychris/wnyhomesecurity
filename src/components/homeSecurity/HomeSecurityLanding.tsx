@@ -17,14 +17,7 @@ const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
           <p className="hs-premium-eyebrow">Local-first home security</p>
           <h1>Practical protection for Western New York homes and small businesses.</h1>
           <p className="hs-premium-hero-subhead">Professionally designed cameras, alarms, and smart automation without mandatory monthly contracts.</p>
-          <div className="hs-premium-hero-brand-row" aria-hidden="true">
-            <img className="hs-premium-hero-crest" src={recommendedBrandAssets.footerCrest} alt="" />
-            <img
-              className="hs-premium-hero-brand"
-              src={recommendedBrandAssets.primaryLogo}
-              alt="WNY Home Security brand logo"
-            />
-          </div>
+          <p className="hs-premium-hero-trust">Local design consultation, practical system walkthroughs, and clearly scoped installation planning.</p>
           <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
               Find The Right System
@@ -32,9 +25,20 @@ const HomeSecurityLanding = ({ packages, ctaLink }: Props) => {
             <Link className="btn btn-secondary" to="/packages?vertical=home-security">
               View Packages
             </Link>
+          </div>
+          <p className="hs-premium-hero-support-link">
+            Prefer an on-site walkthrough?{' '}
             <Link className="btn btn-link" to="/contact?vertical=home-security">
               Request On-Site Estimate
             </Link>
+          </p>
+          <div className="hs-premium-hero-brand-row" aria-hidden="true">
+            <img className="hs-premium-hero-crest" src={recommendedBrandAssets.footerCrest} alt="" />
+            <img
+              className="hs-premium-hero-brand"
+              src={recommendedBrandAssets.primaryLogo}
+              alt="WNY Home Security brand logo"
+            />
           </div>
         </div>
       </section>
