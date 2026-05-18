@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { ourWorkGallery, type OurWorkGalleryCategory, type OurWorkGalleryItem } from '../data/ourWorkGallery';
-import { recommendedBrandAssets } from '../data/brandAssets';
 
 const categorySections: { heading: string; categories: OurWorkGalleryCategory[] }[] = [
   { heading: 'Home Perimeter Protection', categories: ['Residential Security', 'Outdoor Protection'] },
@@ -111,21 +110,6 @@ const OurWork = () => {
             live and work. We offer no mandatory monthly contracts and practical protection with camera, alarm, and
             automation systems, local recording options, smart alerts, and water/leak awareness where it matters.
           </p>
-        </section>
-
-        <section className="card wnyhs-gallery-cta-panel">
-          <div className="wnyhs-gallery-card-body wnyhs-gallery-card-body--compact">
-            <h2 className="wnyhs-gallery-text-reset">Prefer a quick scan walkthrough?</h2>
-            <p className="wnyhs-gallery-body">
-              We can use branded QR cards and placards for quick on-site handoff and next-step estimate access.
-            </p>
-          </div>
-          <img
-            src={recommendedBrandAssets.qrPlacardReference}
-            alt="WNY Home Security QR placard sample"
-            loading="lazy"
-            className="wnyhs-gallery-image wnyhs-gallery-image--placard"
-          />
         </section>
 
         <section className="card wnyhs-gallery-final-cta">

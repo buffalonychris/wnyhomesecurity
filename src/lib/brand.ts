@@ -2,6 +2,6 @@ export const brandShort = 'KAI';
 export const brandLegal = 'Kick Ass Inc.';
 export const brandSite = 'WNY Home Security';
 export const brandServiceLocation = 'West Seneca, NY 14224';
-export const brandPhonePrimary = '716-391-2405';
+export const brandPhonePrimary = '(716) 547-1378';
 export const brandPhoneSecondary = '716.308.9097';
 export const brandHomeSecurity = 'WNY Home Security';

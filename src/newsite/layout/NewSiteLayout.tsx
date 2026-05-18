@@ -25,8 +25,8 @@ const NewSiteLayout = () => {
               <span>WNY Home Security</span>
             </NavLink>
             <div className="newsite-nav-actions">
-              <a className="newsite-call-cta" href="tel:17163912405">
-                (716) 391-2405
+              <a className="newsite-call-cta" href="tel:+17165471378">
+                (716) 547-1378
               </a>
               <button
                 type="button"

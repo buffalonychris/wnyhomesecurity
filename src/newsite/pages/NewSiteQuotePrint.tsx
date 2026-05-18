@@ -29,7 +29,7 @@ const NewSiteQuotePrint = () => {
         <div>
           <strong>WNY Home Security</strong>
           <p>Western New York</p>
-          <p>(716) 391-2405</p>
+          <p>(716) 547-1378</p>
         </div>
       </header>
 
