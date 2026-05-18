@@ -1483,3 +1483,40 @@ No ARCHIVED tasks are currently recorded.
   - catalog updated
   - task registered or updated
   - no runtime/source behavior changed
+
+### PRINT-ASSET001
+- **Task ID:** PRINT-ASSET001
+- **Task Name:** QR Placard Production System
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** current physical brand / print execution context
+- **Purpose:** establish the first deployable physical marketing asset system for QR placards
+- **Allowed Scope:**
+  - `docs/brand/print_assets/qr_placard_system_rev01.md`
+  - `docs/DOCUMENT_CATALOG.md`
+  - `docs/system/master-task-register.md`
+  - optionally `public/brand/print-assets/qr-placards/` only if safe production source/output stubs are created
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - unrelated print assets
+  - yard signs
+  - business cards
+  - car magnets
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - documentation diff
+  - asset path verification
+  - forbidden-claims scan
+  - QR destination/usage rule verification
+- **Exit Criteria:**
+  - QR placard system doc exists
+  - catalog updated
+  - task registered or updated
+  - QR Landing QR is the only approved QR for placards
+  - no runtime/source behavior changed

@@ -407,3 +407,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Brand authority**
 - **Status:** **Active / canonical**
 - **Notes:** Freezes visual identity to prevent drift across digital and physical materials.
+
+### `/docs/brand/print_assets/qr_placard_system_rev01.md`
+- **File path:** `docs/brand/print_assets/qr_placard_system_rev01.md`
+- **Purpose / likely role:** Canonical QR placard production system for WNYHS local physical scan marketing, including approved placard sizes, layout variants, QR usage rules, copy-safe constraints, placement guidance, and print export/testing requirements.
+- **Authority level:** **Brand / print asset production system**
+- **Status:** **Active / canonical**
+- **Notes:** Controls WNYHS QR placard production rules and approved placard variants.
