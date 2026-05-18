@@ -360,3 +360,34 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Purpose / likely role:** Copy/paste transfer prompt for new chats with current protected runtime, funnel, context, task, and next-step governance.
 - **Authority level:** **System operations handoff artifact**
 - **Notes:** Added by GOV-HARDEN002 for continuity between sessions.
+
+
+### `/docs/brand/brand_asset_standards_rev01.md`
+- **File path:** `docs/brand/brand_asset_standards_rev01.md`
+- **Purpose / likely role:** Locked WNYHS brand asset locations, usage, prohibited behavior, and tone requirements.
+- **Authority level:** **Brand governance standard**
+- **Notes:** Added by STD-LOCK001 to prevent brand asset drift.
+
+### `/docs/brand/page_layout_standards_rev01.md`
+- **File path:** `docs/brand/page_layout_standards_rev01.md`
+- **Purpose / likely role:** Locked WNYHS page layout order, rhythm, typography, and site-consistency rules.
+- **Authority level:** **Layout governance standard**
+- **Notes:** Added by STD-LOCK001 for public page consistency.
+
+### `/docs/brand/header_footer_standards_rev01.md`
+- **File path:** `docs/brand/header_footer_standards_rev01.md`
+- **Purpose / likely role:** Locked WNYHS header/nav order, QR nav exception, and footer composition rules.
+- **Authority level:** **Navigation/footer governance standard**
+- **Notes:** Added by STD-LOCK001 to enforce footer/header parity.
+
+### `/docs/specs/qr_funnel_standards_rev01.md`
+- **File path:** `docs/specs/qr_funnel_standards_rev01.md`
+- **Purpose / likely role:** Locked QR funnel purpose, nav, copy cleanup, and payload-preservation boundaries.
+- **Authority level:** **QR funnel governance standard**
+- **Notes:** Added by STD-LOCK001; protects HubSpot/lead API/payload behavior.
+
+### `/docs/specs/public_funnel_standards_rev01.md`
+- **File path:** `docs/specs/public_funnel_standards_rev01.md`
+- **Purpose / likely role:** Locked public-funnel route roles, CTA discipline, claims guardrails, and allowed language posture.
+- **Authority level:** **Public funnel governance standard**
+- **Notes:** Added by STD-LOCK001 for visual/funnel execution consistency.
