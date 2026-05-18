@@ -1,5 +1,5 @@
 {
-  "packageVersion": "PRINT-ASSET004-REV01",
+  "packageVersion": "PRINT-ASSET004B-REV01",
   "destinationIntent": "https://www.wnyhomesecurity.com/qrlanding?src=placard",
   "common": {
     "phone": "Call or text: (716) 547-1378",
@@ -65,5 +65,6 @@
       "outputColorFilename": "wnyhs-half-sheet-flyer-no-contracts-two-up-color.pdf",
       "outputGrayscaleFilename": "wnyhs-half-sheet-flyer-no-contracts-two-up-grayscale.pdf"
     }
-  ]
+  ],
+  "visualBenchmarkAsset": "public/brand/forprint/PoleFlyerMallFlyer.png"
 }

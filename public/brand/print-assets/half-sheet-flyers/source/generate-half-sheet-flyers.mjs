@@ -11,6 +11,12 @@ const outputDir = path.join(repoRoot, 'public/brand/print-assets/half-sheet-flye
 
 const content = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
 const destinationIntent = 'https://www.wnyhomesecurity.com/qrlanding?src=placard';
+const businessIdentityQr = 'QR WNY Home Security Home Page QR.png';
+const expectedTitles = [
+  'Local Estimate Flyer',
+  'Home + Small Business Flyer',
+  'No Mandatory Monthly Contracts Flyer',
+];
 
 function readPngData(assetPath) {
   const absolutePath = path.join(repoRoot, assetPath);
@@ -26,111 +32,187 @@ function assertApprovedContent() {
     throw new Error(`Unexpected destination intent in flyer-content.json: ${content.destinationIntent}`);
   }
 
+  if (content.visualBenchmarkAsset !== 'public/brand/forprint/PoleFlyerMallFlyer.png') {
+    throw new Error('PoleFlyerMallFlyer.png must remain the visual benchmark for this flyer system.');
+  }
+
   if (!Array.isArray(content.variants) || content.variants.length !== 3) {
     throw new Error('flyer-content.json must define exactly three flyer variants.');
   }
 
-  for (const variant of content.variants) {
+  for (const [index, variant] of content.variants.entries()) {
+    if (variant.title !== expectedTitles[index]) {
+      throw new Error(`Unexpected flyer variant at index ${index}: ${variant.title}`);
+    }
+
     if (!variant.qrAsset.includes('QRLANDING')) {
       throw new Error(`Unexpected non-campaign QR asset configured for ${variant.id}.`);
     }
+
+    if (variant.qrAsset.includes(businessIdentityQr)) {
+      throw new Error(`Business-card identity QR is not allowed for ${variant.id}.`);
+    }
+
+    if (variant.logoAsset !== 'public/brand/forprint/wallpaper screensaver.png') {
+      throw new Error(`Unexpected primary crest asset configured for ${variant.id}.`);
+    }
   }
+}
+
+function drawImageContain(doc, imageData, x, y, maxW, maxH, options = {}) {
+  const props = doc.getImageProperties(imageData);
+  const imageRatio = props.width / props.height;
+  const boxRatio = maxW / maxH;
+  const w = imageRatio > boxRatio ? maxW : maxH * imageRatio;
+  const h = imageRatio > boxRatio ? maxW / imageRatio : maxH;
+  const drawX = x + (maxW - w) / 2;
+  const drawY = y + (maxH - h) / 2;
+  doc.addImage(imageData, 'PNG', drawX, drawY, w, h, undefined, 'FAST', 0, options);
+}
+
+function drawPremiumBackground(doc, yOffset, grayscale) {
+  const pageW = 8.5;
+  const flyerH = 5.5;
+  const base = grayscale ? [18, 18, 18] : [8, 10, 14];
+  const panel = grayscale ? [34, 34, 34] : [17, 22, 31];
+  const panelTwo = grayscale ? [48, 48, 48] : [24, 24, 25];
+
+  doc.setFillColor(...base);
+  doc.rect(0, yOffset, pageW, flyerH, 'F');
+
+  doc.setFillColor(...panel);
+  doc.rect(0, yOffset, pageW, 1.18, 'F');
+
+  doc.setFillColor(...panelTwo);
+  doc.triangle(5.1, yOffset, pageW, yOffset, pageW, yOffset + flyerH, 'F');
+
+  doc.setFillColor(...(grayscale ? [25, 25, 25] : [12, 15, 20]));
+  doc.triangle(0, yOffset + flyerH, 3.25, yOffset + flyerH, 0, yOffset + 2.65, 'F');
 }
 
 function drawFlyer(doc, variant, assets, yOffset, grayscale = false) {
   const pageW = 8.5;
   const flyerH = 5.5;
-  const outerMargin = 0.22;
-  const cardX = outerMargin;
-  const cardY = yOffset + outerMargin;
-  const cardW = pageW - outerMargin * 2;
-  const cardH = flyerH - outerMargin * 2;
-  const accent = grayscale ? [44, 44, 44] : [138, 102, 48];
-  const dark = grayscale ? [24, 24, 24] : [14, 20, 30];
-  const muted = [80, 80, 80];
+  const safe = 0.26;
+  const accent = grayscale ? [198, 198, 198] : [190, 146, 70];
+  const accentDark = grayscale ? [93, 93, 93] : [103, 75, 34];
+  const text = [248, 248, 246];
+  const muted = grayscale ? [214, 214, 214] : [211, 204, 192];
+  const soft = grayscale ? [174, 174, 174] : [171, 153, 123];
 
-  doc.setFillColor(...(grayscale ? [244, 244, 244] : [14, 20, 30]));
-  doc.rect(0, yOffset, pageW, flyerH, 'F');
+  drawPremiumBackground(doc, yOffset, grayscale);
 
-  doc.setFillColor(255, 255, 255);
-  doc.roundedRect(cardX, cardY, cardW, cardH, 0.08, 0.08, 'F');
+  // Premium poster-inspired frame: dark field with restrained gold/gray edges.
+  doc.setDrawColor(...accent);
+  doc.setLineWidth(0.018);
+  doc.roundedRect(safe, yOffset + safe, pageW - safe * 2, flyerH - safe * 2, 0.08, 0.08, 'S');
+
+  doc.setDrawColor(...accentDark);
+  doc.setLineWidth(0.006);
+  doc.roundedRect(safe + 0.08, yOffset + safe + 0.08, pageW - (safe + 0.08) * 2, flyerH - (safe + 0.08) * 2, 0.06, 0.06, 'S');
+
+  const leftX = 0.48;
+  const rightX = 5.86;
+  const topY = yOffset + 0.43;
+  const textMaxW = 4.95;
 
   doc.setFillColor(...accent);
-  doc.rect(cardX, cardY, cardW, 0.07, 'F');
-
-  doc.addImage(assets.logo, 'PNG', cardX + 0.22, cardY + 0.18, 1.0, 0.63);
+  doc.rect(leftX, topY, 0.62, 0.05, 'F');
+  doc.setFillColor(...accentDark);
+  doc.rect(leftX + 0.68, topY, 1.1, 0.05, 'F');
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(8.5);
+  doc.setFontSize(9);
   doc.setTextColor(...accent);
-  doc.text('WNY HOME SECURITY', cardX + 1.36, cardY + 0.42);
+  doc.text('WNY HOME SECURITY', leftX, topY + 0.31);
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(7.5);
-  doc.setTextColor(...muted);
-  doc.text(variant.title, cardX + 1.36, cardY + 0.63);
-
-  const leftX = cardX + 0.3;
-  const rightPanelX = cardX + cardW - 2.05;
-  const textMaxW = rightPanelX - leftX - 0.28;
+  doc.setFontSize(7.7);
+  doc.setTextColor(...soft);
+  doc.text(variant.title.toUpperCase(), leftX, topY + 0.53);
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(20);
-  doc.setTextColor(...dark);
+  doc.setFontSize(24);
+  doc.setTextColor(...text);
   const headlineLines = doc.splitTextToSize(variant.headline, textMaxW);
-  doc.text(headlineLines, leftX, cardY + 1.25, { lineHeightFactor: 1.02 });
+  doc.text(headlineLines, leftX, yOffset + 1.45, { lineHeightFactor: 0.94 });
 
-  const headlineHeight = headlineLines.length * 0.3;
+  const headlineHeight = headlineLines.length * 0.34;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(10.8);
-  doc.setTextColor(45, 45, 45);
-  const supportLines = doc.splitTextToSize(variant.support, textMaxW);
-  doc.text(supportLines, leftX, cardY + 1.48 + headlineHeight, { lineHeightFactor: 1.16 });
+  doc.setTextColor(...muted);
+  const supportLines = doc.splitTextToSize(variant.support, textMaxW - 0.18);
+  doc.text(supportLines, leftX, yOffset + 1.78 + headlineHeight, { lineHeightFactor: 1.16 });
 
-  let bulletY = cardY + 2.25 + headlineHeight + (supportLines.length - 1) * 0.16;
+  let bulletY = yOffset + 2.54 + headlineHeight + (supportLines.length - 1) * 0.14;
+  const bulletMaxY = yOffset + 4.12;
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.9);
-  doc.setTextColor(...dark);
-  for (const bullet of variant.bullets) {
+  doc.setFontSize(9.7);
+  doc.setTextColor(...text);
+  for (const bullet of variant.bullets.slice(0, 4)) {
+    if (bulletY > bulletMaxY) break;
     doc.setFillColor(...accent);
-    doc.circle(leftX + 0.04, bulletY - 0.035, 0.035, 'F');
-    doc.text(bullet, leftX + 0.16, bulletY);
-    bulletY += 0.28;
+    doc.circle(leftX + 0.05, bulletY - 0.035, 0.034, 'F');
+    doc.text(bullet, leftX + 0.17, bulletY);
+    bulletY += 0.3;
   }
 
-  const ctaY = Math.min(cardY + cardH - 0.88, bulletY + 0.12);
-  doc.setFillColor(...(grayscale ? [235, 235, 235] : [248, 244, 236]));
-  doc.roundedRect(leftX, ctaY - 0.22, textMaxW, 0.42, 0.04, 0.04, 'F');
+  const ctaY = yOffset + 4.5;
+  doc.setFillColor(...(grayscale ? [238, 238, 238] : [238, 229, 207]));
+  doc.roundedRect(leftX, ctaY - 0.28, 4.75, 0.48, 0.055, 0.055, 'F');
+  doc.setFillColor(...accentDark);
+  doc.rect(leftX, ctaY - 0.28, 0.08, 0.48, 'F');
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10.8);
-  doc.setTextColor(...accent);
-  doc.text(variant.cta, leftX + 0.16, ctaY + 0.04);
+  doc.setFontSize(11.2);
+  doc.setTextColor(...(grayscale ? [21, 21, 21] : [39, 29, 17]));
+  doc.text(variant.cta, leftX + 0.22, ctaY + 0.03);
 
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9.2);
-  doc.setTextColor(30, 30, 30);
-  doc.text(variant.phone, leftX, cardY + cardH - 0.43);
-  doc.text(variant.url, leftX, cardY + cardH - 0.2);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9.7);
+  doc.setTextColor(...text);
+  doc.text(variant.phone, leftX, yOffset + 5.04);
+  doc.setTextColor(...accent);
+  doc.text(variant.url, leftX, yOffset + 5.25);
+
+  // Crest is intentionally prominent and contained; proportions are preserved.
+  doc.setFillColor(...(grayscale ? [231, 231, 231] : [245, 240, 230]));
+  doc.roundedRect(rightX - 0.12, yOffset + 0.48, 1.92, 1.62, 0.08, 0.08, 'F');
+  doc.setDrawColor(...accent);
+  doc.setLineWidth(0.012);
+  doc.roundedRect(rightX - 0.12, yOffset + 0.48, 1.92, 1.62, 0.08, 0.08, 'S');
+  drawImageContain(doc, assets.logo, rightX + 0.03, yOffset + 0.57, 1.62, 1.42);
 
   const qrSize = 1.55;
-  const qrX = cardX + cardW - qrSize - 0.34;
-  const qrY = cardY + 1.55;
-  doc.setFillColor(255, 255, 255);
-  doc.setDrawColor(70, 70, 70);
-  doc.setLineWidth(0.01);
-  doc.rect(qrX - 0.12, qrY - 0.12, qrSize + 0.24, qrSize + 0.24, 'FD');
-  doc.addImage(assets.qr, 'PNG', qrX, qrY, qrSize, qrSize);
+  const qrFramePad = 0.14;
+  const qrX = rightX + 0.07;
+  const qrY = yOffset + 2.46;
+
+  doc.setFillColor(...(grayscale ? [64, 64, 64] : [34, 28, 21]));
+  doc.roundedRect(qrX - 0.26, qrY - 0.45, qrSize + 0.52, qrSize + 1.22, 0.08, 0.08, 'F');
+  doc.setDrawColor(...accent);
+  doc.setLineWidth(0.012);
+  doc.roundedRect(qrX - 0.26, qrY - 0.45, qrSize + 0.52, qrSize + 1.22, 0.08, 0.08, 'S');
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(8.8);
-  doc.setTextColor(...dark);
-  doc.text('Scan to start', qrX + qrSize / 2, qrY + qrSize + 0.28, { align: 'center' });
+  doc.setFontSize(9.5);
+  doc.setTextColor(...accent);
+  doc.text('SCAN TO START', qrX + qrSize / 2, qrY - 0.17, { align: 'center' });
+
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(255, 255, 255);
+  doc.setLineWidth(0.01);
+  doc.rect(qrX - qrFramePad, qrY - qrFramePad, qrSize + qrFramePad * 2, qrSize + qrFramePad * 2, 'FD');
+  doc.addImage(assets.qr, 'PNG', qrX, qrY, qrSize, qrSize);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(6.7);
   doc.setTextColor(...muted);
-  const intentLines = doc.splitTextToSize('QR opens the campaign landing page.', 1.72);
-  doc.text(intentLines, qrX + qrSize / 2, qrY + qrSize + 0.48, { align: 'center', lineHeightFactor: 1.12 });
+  const intentLines = doc.splitTextToSize('Opens the campaign landing page.', 1.7);
+  doc.text(intentLines, qrX + qrSize / 2, qrY + qrSize + 0.34, { align: 'center', lineHeightFactor: 1.12 });
+
+  doc.setDrawColor(...accentDark);
+  doc.setLineWidth(0.01);
+  doc.line(rightX - 0.32, yOffset + 0.44, rightX - 0.32, yOffset + 5.08);
 }
 
 function makeTwoUpPdf(variant, grayscale = false) {
@@ -138,6 +220,7 @@ function makeTwoUpPdf(variant, grayscale = false) {
   const assets = {
     logo: readPngData(variant.logoAsset),
     qr: readPngData(variant.qrAsset),
+    visualBenchmark: readPngData(content.visualBenchmarkAsset),
   };
 
   drawFlyer(doc, variant, assets, 0, grayscale);
