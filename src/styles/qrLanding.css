@@ -34,3 +34,5 @@
   .qr-cta { width: 100%; text-align: center; }
   .qr-radio-row { grid-template-columns: 1fr; }
 }
+
+.qr-success-card { max-width: 640px; margin: 0 auto 1rem; text-align: center; }

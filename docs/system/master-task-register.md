@@ -123,6 +123,107 @@ Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution
 - **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `git diff`/`rg` audits.
 - **Completion Notes:** Updated visible version to v1.0.53; renamed customer-facing Planner labels to `System Planner (Preview)`; added preview/non-authoritative disclaimer copy on planner page; preserved planner route access and existing planner behavior; protected runtime untouched.
 
+
+### FINISH-LINE-PAGES002
+- **Task ID:** FINISH-LINE-PAGES002
+- **Task Name:** Public funnel page QA cleanup and standards enforcement
+- **Status:** ACTIVE
+- **Category:** FUNNEL / QA / COPY / QR
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Purpose:** Authorize bounded finish-line cleanup across public WNYHS pages until operator explicitly closes the category.
+- **Allowed Scope:**
+  - Visual/page-shell cleanup
+  - Header/footer consistency
+  - QR funnel hardening
+  - Legal/about/support copy cleanup
+  - Public page layout consistency
+  - Removal of SaaS/demo/assistant leakage
+  - Standards enforcement using locked standards docs
+  - Version bumps for visible deploy confirmation
+- **Forbidden Scope:**
+  - No Stripe/payment changes
+  - No HubSpot schema/pipeline changes
+  - No lead API behavior changes
+  - No form payload changes
+  - No field name/state key/payload key changes
+  - No source tracking changes
+  - No scheduling backend changes
+  - No backend architecture changes
+  - No pricing logic changes
+  - No route behavior changes unless explicitly scoped
+  - No asset renaming/moving/deleting
+  - No unrelated lint cleanup
+- **Target Files:**
+  - Public page components
+  - WNYHS layout/shell components
+  - WNYHS styles
+  - siteVersion.ts
+  - standards docs only when needed
+- **Runtime Systems Affected:** none unless explicitly approved
+- **Validation Required:**
+  - `npm run build`
+  - page-specific bad-content scans
+  - forbidden-claims scan
+  - route/CTA scan
+  - protected payload scan when forms are touched
+- **Exit Criteria:**
+  - Public funnel pages match locked standards
+  - No SaaS/demo/operator leakage remains
+  - Header/footer behavior is consistent
+  - Protected systems untouched
+- **Operator Decision Required:**
+  - Category remains ACTIVE until operator explicitly closes it
+
+### QR-HARDEN001
+- **Task ID:** QR-HARDEN001
+- **Task Name:** QR Landing shell hardening and SaaS contamination removal
+- **Status:** ACTIVE
+- **Category:** QR
+- **Controlling Context:** CTX-WNYHS-FINISH-LINE-REV01
+- **Parent Task:** FINISH-LINE-PAGES002
+- **Purpose:** Remove remaining SaaS/operator/assistant shell leakage from QR Landing after QR-REDUX001.
+- **Allowed Scope:**
+  - remove assistant disclaimer banner
+  - suppress legacy SaaS/operator footer
+  - suppress duplicate footer wrappers
+  - enforce WNYHS footer only
+  - normalize QR success-state layout
+  - preserve QR nav
+  - preserve WNYHS assets
+  - version bump
+- **Forbidden Scope:**
+  - no HubSpot changes
+  - no lead API changes
+  - no form payload changes
+  - no field name changes
+  - no consent logic changes
+  - no source tracking changes
+  - no Stripe changes
+  - no scheduling backend changes
+  - no route changes
+  - no backend/API changes
+- **Target Files:**
+  - src/pages/QrLanding.tsx
+  - src/components/Layout.tsx
+  - src/components/homeSecurity/WnyhsSiteFooter.tsx
+  - src/styles/qrLanding.css
+  - src/styles/homeSecurityPremium.css
+  - src/lib/siteVersion.ts
+- **Validation Required:**
+  - `npm run build`
+  - bad-content scan
+  - footer scan
+  - protected-payload scan
+  - QR nav scan
+  - forbidden-claims scan
+- **Exit Criteria:**
+  - QR routes use pure WNYHS shell only
+  - assistant banner gone
+  - SaaS footer gone
+  - duplicate footer/meta gone
+  - success state normalized
+  - protected form behavior preserved
+
 ### FUNNEL-OPS001
 - **Task ID:** FUNNEL-OPS001
 - **Task Name:** Main Funnel + QR Funnel Link/Form/CRM/Artifact/Customer Timing Audit
