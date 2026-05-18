@@ -11,3 +11,8 @@ public/brand/print-assets/qr-placards/*.pdf
 /public/brand/print-assets/half-sheet-flyers/generated/
 /public/brand/print-assets/half-sheet-flyers/**/*.pdf
 /public/brand/print-assets/half-sheet-flyers/**/*.png
+
+# PRINT-ASSET005 generated pole / mall flyer outputs
+/public/brand/print-assets/pole-mall-flyer/generated/
+/public/brand/print-assets/pole-mall-flyer/**/*.pdf
+/public/brand/print-assets/pole-mall-flyer/**/*.png
