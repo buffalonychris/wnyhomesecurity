@@ -1452,3 +1452,34 @@ No ARCHIVED tasks are currently recorded.
   - brand authority doc exists
   - catalog updated
   - task registered or updated
+
+
+### PRINTSYSTEM001
+- **Task ID:** PRINTSYSTEM001
+- **Task Name:** Print Production Standards
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** current physical brand / print execution context
+- **Purpose:** establish canonical physical print production standards after brand asset authority was created
+- **Allowed Scope:**
+  - `docs/brand/print_system_standards_rev01.md`
+  - `docs/DOCUMENT_CATALOG.md`
+  - `docs/system/master-task-register.md`
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - production layout creation
+  - vendor purchasing
+- **Validation Required:**
+  - documentation diff
+  - related doc references verified
+  - forbidden-claims scan
+- **Exit Criteria:**
+  - print standards doc exists
+  - catalog updated
+  - task registered or updated
+  - no runtime/source behavior changed
