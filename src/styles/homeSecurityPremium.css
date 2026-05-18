@@ -1269,7 +1269,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   }
 
   .wnyhs-top-nav-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .wnyhs-top-nav-links {
@@ -1337,7 +1337,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 .wnyhs-marketing-footer {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.75rem 1.25rem;
   padding: 1rem 1.25rem;
@@ -1366,7 +1366,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .wnyhs-marketing-footer-meta {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .wnyhs-marketing-footer-crest {
