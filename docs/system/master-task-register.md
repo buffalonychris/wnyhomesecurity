@@ -1,21 +1,89 @@
 # Master Task Register
 
 Status: Active  
-Current Operational Context: CTX-WNYHS-FINISH-LINE-REV01  
-Controlling Step: Step-WNYHS-FINISH-LINE — Bounded Finish-Line Execution Authority — REV01
+Current Operational Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+Controlling Step: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Development Execution Unblock — REV01
 
 ---
 
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
-Multiple ACTIVE tasks under CTX-SCHED-MVP-REV01 are pre-authorized for execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle.
+Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized for bounded final-hour execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle. Hard guardrails for claims, Stripe, HubSpot, runtime/routes/UI, secrets, historical docs, and generated binary print files remain enforced.
 
+### FINAL-HOUR-BUSDEV001
+- **Task ID:** FINAL-HOUR-BUSDEV001
+- **Task Name:** Final-Hour Business Development Execution Lane
+- **Status:** ACTIVE
+- **Category:** GOV / OPS
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** keep business development, physical marketing, print asset, QR campaign, local acquisition, and deployment-support categories open for bounded execution without repeated activation blockers.
+- **Allowed Scope:**
+  - creating bounded task entries under active final-hour categories
+  - print asset source packages
+  - local marketing docs/assets
+  - QR campaign materials
+  - business development materials
+  - deployment-support documentation
+  - task-register updates
+- **Forbidden Scope:**
+  - unsupported product claims
+  - runtime changes without explicit bounded task
+  - Stripe/payment changes without explicit bounded task
+  - HubSpot changes without explicit bounded task
+  - route/UI changes without explicit bounded task
+  - generated binary PDF/PNG commits unless explicitly authorized
+  - secrets
+- **Validation Required:**
+  - task entries must remain bounded
+  - hard guardrails preserved
+  - generated binary rules preserved
+- **Exit Criteria:**
+  - final-hour business-development execution lane exists and is ACTIVE
+  - bounded task execution no longer blocked solely because the category was not pre-opened
 
-
-
-
-
+### PRINT-ASSET005
+- **Task ID:** PRINT-ASSET005
+- **Task Name:** Full-Page Pole / Mall Flyer Source Package
+- **Status:** ACTIVE
+- **Category:** PRINT-ASSET
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** create source-only reproducible 8.5 x 11 full-page pole/mall/community-board flyer package using the operator-approved PoleFlyerMallFlyer.png composition and replacing the embedded QR with the approved QR Landing / Campaign QR.
+- **Allowed Scope:**
+  - `/public/brand/print-assets/pole-mall-flyer/README.md`
+  - `/public/brand/print-assets/pole-mall-flyer/source/generate-pole-mall-flyer.mjs`
+  - `/public/brand/print-assets/pole-mall-flyer/source/pole-mall-flyer-config.json`
+  - `/.gitignore`
+  - `/docs/system/master-task-register.md`
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - alternate AI logo versions
+  - committed generated PDFs
+  - committed generated PNGs
+  - committed binary print outputs
+  - yard signs
+  - business cards
+  - car magnets
+  - leave-behinds
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - generator runs locally
+  - generated outputs go only to ignored `generated/`
+  - generated PDFs/PNGs are not tracked
+  - PoleFlyerMallFlyer.png used as base/reference
+  - QR Landing / Campaign QR used
+  - business-card QR not used
+  - visible claims reviewed and caveated where needed
+  - forbidden-claims scan
+- **Exit Criteria:**
+  - PRINT-ASSET005 is ACTIVE and executable
+  - no implementation performed in this governance task unless explicitly limited to register/context updates
 
 
 ### SUPPORT-FLOW001
