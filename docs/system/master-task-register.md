@@ -1536,6 +1536,61 @@ No ARCHIVED tasks are currently recorded.
 - **Completion Notes:** Refined the generator from a plain white card layout to a premium dark WNYHS campaign composition using `PoleFlyerMallFlyer.png` as the visual benchmark, preserving the source-only generated-output workflow and the three approved half-sheet flyer variants.
 
 
+### PRINT-ASSET004C
+- **Task ID:** PRINT-ASSET004C
+- **Task Name:** Flyer Composition Polish
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** current physical brand / print execution context
+- **Purpose:** polish the half-sheet flyer generator after PRINT-ASSET004B by reducing visual noise, improving focal hierarchy, integrating the crest better, elevating the QR block, tightening typography, and improving footer spacing while preserving the source-only workflow
+- **Allowed Scope:**
+  - `/public/brand/print-assets/half-sheet-flyers/README.md`
+  - `/public/brand/print-assets/half-sheet-flyers/source/generate-half-sheet-flyers.mjs`
+  - `/public/brand/print-assets/half-sheet-flyers/source/flyer-content.json`
+  - `/docs/system/master-task-register.md`
+  - `/.gitignore` only if strictly necessary
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - alternate AI logo versions
+  - committed generated PDFs
+  - committed generated PNGs
+  - committed binary print outputs
+  - new flyer variants
+  - QR placards
+  - yard signs
+  - business cards
+  - car magnets
+  - leave-behinds
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - generator runs locally
+  - generated outputs go only to ignored `generated/`
+  - generated PDFs are not tracked
+  - flyer composition is visually polished, not rebuilt
+  - crest integration improved
+  - QR block improved
+  - footer spacing improved
+  - grayscale outputs remain readable
+  - canonical QR Landing asset used
+  - business-card QR not used
+  - forbidden-claims scan
+  - build check if repo standard requires it
+- **Exit Criteria:**
+  - half-sheet flyer generator polished
+  - exactly three flyer variants preserved
+  - README updated if needed
+  - task registered or updated
+  - generated outputs are local/ignored only
+  - no generated binaries are committed
+  - no runtime/source behavior changed
+- **Completion Notes:** Polished the PRINT-ASSET004B flyer composition without rebuilding the system: reduced background density, integrated the crest in a restrained dark/gold treatment, elevated the QR block with a campaign CTA, tightened typography, improved footer breathing room, preserved exactly three approved variants, and kept generated outputs local/ignored only.
+
 
 
 

@@ -74,20 +74,20 @@ function drawPremiumBackground(doc, yOffset, grayscale) {
   const pageW = 8.5;
   const flyerH = 5.5;
   const base = grayscale ? [18, 18, 18] : [8, 10, 14];
-  const panel = grayscale ? [34, 34, 34] : [17, 22, 31];
-  const panelTwo = grayscale ? [48, 48, 48] : [24, 24, 25];
+  const panel = grayscale ? [30, 30, 30] : [15, 19, 27];
+  const panelTwo = grayscale ? [39, 39, 39] : [18, 19, 22];
 
   doc.setFillColor(...base);
   doc.rect(0, yOffset, pageW, flyerH, 'F');
 
   doc.setFillColor(...panel);
-  doc.rect(0, yOffset, pageW, 1.18, 'F');
+  doc.rect(0, yOffset, pageW, 1.05, 'F');
 
   doc.setFillColor(...panelTwo);
-  doc.triangle(5.1, yOffset, pageW, yOffset, pageW, yOffset + flyerH, 'F');
+  doc.triangle(5.45, yOffset, pageW, yOffset, pageW, yOffset + flyerH, 'F');
 
-  doc.setFillColor(...(grayscale ? [25, 25, 25] : [12, 15, 20]));
-  doc.triangle(0, yOffset + flyerH, 3.25, yOffset + flyerH, 0, yOffset + 2.65, 'F');
+  doc.setFillColor(...(grayscale ? [23, 23, 23] : [11, 14, 19]));
+  doc.triangle(0, yOffset + flyerH, 2.85, yOffset + flyerH, 0, yOffset + 3.05, 'F');
 }
 
 function drawFlyer(doc, variant, assets, yOffset, grayscale = false) {
@@ -114,7 +114,7 @@ function drawFlyer(doc, variant, assets, yOffset, grayscale = false) {
   const leftX = 0.48;
   const rightX = 5.86;
   const topY = yOffset + 0.43;
-  const textMaxW = 4.95;
+  const textMaxW = 4.9;
 
   doc.setFillColor(...accent);
   doc.rect(leftX, topY, 0.62, 0.05, 'F');
@@ -127,27 +127,27 @@ function drawFlyer(doc, variant, assets, yOffset, grayscale = false) {
   doc.text('WNY HOME SECURITY', leftX, topY + 0.31);
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(7.7);
+  doc.setFontSize(6.9);
   doc.setTextColor(...soft);
-  doc.text(variant.title.toUpperCase(), leftX, topY + 0.53);
+  doc.text(variant.title.toUpperCase(), leftX, topY + 0.5);
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(24);
+  doc.setFontSize(25);
   doc.setTextColor(...text);
   const headlineLines = doc.splitTextToSize(variant.headline, textMaxW);
   doc.text(headlineLines, leftX, yOffset + 1.45, { lineHeightFactor: 0.94 });
 
-  const headlineHeight = headlineLines.length * 0.34;
+  const headlineHeight = headlineLines.length * 0.35;
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10.8);
+  doc.setFontSize(10.4);
   doc.setTextColor(...muted);
   const supportLines = doc.splitTextToSize(variant.support, textMaxW - 0.18);
   doc.text(supportLines, leftX, yOffset + 1.78 + headlineHeight, { lineHeightFactor: 1.16 });
 
-  let bulletY = yOffset + 2.54 + headlineHeight + (supportLines.length - 1) * 0.14;
-  const bulletMaxY = yOffset + 4.12;
+  let bulletY = yOffset + 2.5 + headlineHeight + (supportLines.length - 1) * 0.14;
+  const bulletMaxY = yOffset + 4.03;
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.7);
+  doc.setFontSize(9.5);
   doc.setTextColor(...text);
   for (const bullet of variant.bullets.slice(0, 4)) {
     if (bulletY > bulletMaxY) break;
@@ -157,62 +157,69 @@ function drawFlyer(doc, variant, assets, yOffset, grayscale = false) {
     bulletY += 0.3;
   }
 
-  const ctaY = yOffset + 4.5;
-  doc.setFillColor(...(grayscale ? [238, 238, 238] : [238, 229, 207]));
-  doc.roundedRect(leftX, ctaY - 0.28, 4.75, 0.48, 0.055, 0.055, 'F');
+  const ctaY = yOffset + 4.38;
+  doc.setFillColor(...(grayscale ? [226, 226, 226] : [224, 208, 171]));
+  doc.roundedRect(leftX, ctaY - 0.24, 4.55, 0.42, 0.05, 0.05, 'F');
   doc.setFillColor(...accentDark);
-  doc.rect(leftX, ctaY - 0.28, 0.08, 0.48, 'F');
+  doc.rect(leftX, ctaY - 0.24, 0.06, 0.42, 'F');
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(11.2);
-  doc.setTextColor(...(grayscale ? [21, 21, 21] : [39, 29, 17]));
-  doc.text(variant.cta, leftX + 0.22, ctaY + 0.03);
+  doc.setFontSize(10.7);
+  doc.setTextColor(...(grayscale ? [21, 21, 21] : [34, 25, 16]));
+  doc.text(variant.cta, leftX + 0.19, ctaY + 0.02);
 
+  const footerY = yOffset + 4.92;
+  doc.setDrawColor(...accentDark);
+  doc.setLineWidth(0.006);
+  doc.line(leftX, footerY - 0.18, leftX + 4.55, footerY - 0.18);
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.7);
+  doc.setFontSize(9.8);
   doc.setTextColor(...text);
-  doc.text(variant.phone, leftX, yOffset + 5.04);
+  doc.text(variant.phone, leftX, footerY);
+  doc.setFontSize(9.3);
   doc.setTextColor(...accent);
-  doc.text(variant.url, leftX, yOffset + 5.25);
+  doc.text(variant.url, leftX, footerY + 0.22);
 
-  // Crest is intentionally prominent and contained; proportions are preserved.
-  doc.setFillColor(...(grayscale ? [231, 231, 231] : [245, 240, 230]));
-  doc.roundedRect(rightX - 0.12, yOffset + 0.48, 1.92, 1.62, 0.08, 0.08, 'F');
+  // Crest uses a restrained dark inset so the primary asset feels integrated, not pasted on.
+  doc.setFillColor(...(grayscale ? [32, 32, 32] : [14, 17, 22]));
+  doc.roundedRect(rightX - 0.1, yOffset + 0.46, 1.92, 1.7, 0.1, 0.1, 'F');
   doc.setDrawColor(...accent);
-  doc.setLineWidth(0.012);
-  doc.roundedRect(rightX - 0.12, yOffset + 0.48, 1.92, 1.62, 0.08, 0.08, 'S');
-  drawImageContain(doc, assets.logo, rightX + 0.03, yOffset + 0.57, 1.62, 1.42);
+  doc.setLineWidth(0.009);
+  doc.roundedRect(rightX - 0.07, yOffset + 0.49, 1.86, 1.64, 0.085, 0.085, 'S');
+  doc.setDrawColor(...accentDark);
+  doc.setLineWidth(0.005);
+  doc.roundedRect(rightX + 0.01, yOffset + 0.57, 1.7, 1.48, 0.065, 0.065, 'S');
+  drawImageContain(doc, assets.logo, rightX + 0.13, yOffset + 0.64, 1.46, 1.34);
 
-  const qrSize = 1.55;
-  const qrFramePad = 0.14;
-  const qrX = rightX + 0.07;
-  const qrY = yOffset + 2.46;
+  const qrSize = 1.5;
+  const qrFramePad = 0.16;
+  const qrX = rightX + 0.1;
+  const qrY = yOffset + 2.62;
 
-  doc.setFillColor(...(grayscale ? [64, 64, 64] : [34, 28, 21]));
-  doc.roundedRect(qrX - 0.26, qrY - 0.45, qrSize + 0.52, qrSize + 1.22, 0.08, 0.08, 'F');
-  doc.setDrawColor(...accent);
-  doc.setLineWidth(0.012);
-  doc.roundedRect(qrX - 0.26, qrY - 0.45, qrSize + 0.52, qrSize + 1.22, 0.08, 0.08, 'S');
+  doc.setFillColor(...(grayscale ? [42, 42, 42] : [24, 21, 18]));
+  doc.roundedRect(qrX - 0.28, qrY - 0.5, qrSize + 0.56, qrSize + 1.02, 0.09, 0.09, 'F');
+  doc.setDrawColor(...accentDark);
+  doc.setLineWidth(0.006);
+  doc.roundedRect(qrX - 0.22, qrY - 0.44, qrSize + 0.44, qrSize + 0.9, 0.07, 0.07, 'S');
 
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
+  doc.setFontSize(8.9);
   doc.setTextColor(...accent);
-  doc.text('SCAN TO START', qrX + qrSize / 2, qrY - 0.17, { align: 'center' });
+  doc.text('SCAN FOR LOCAL ESTIMATE', qrX + qrSize / 2, qrY - 0.19, { align: 'center' });
 
   doc.setFillColor(255, 255, 255);
-  doc.setDrawColor(255, 255, 255);
-  doc.setLineWidth(0.01);
-  doc.rect(qrX - qrFramePad, qrY - qrFramePad, qrSize + qrFramePad * 2, qrSize + qrFramePad * 2, 'FD');
+  doc.setDrawColor(...(grayscale ? [245, 245, 245] : [248, 246, 239]));
+  doc.setLineWidth(0.018);
+  doc.roundedRect(qrX - qrFramePad, qrY - qrFramePad, qrSize + qrFramePad * 2, qrSize + qrFramePad * 2, 0.035, 0.035, 'FD');
   doc.addImage(assets.qr, 'PNG', qrX, qrY, qrSize, qrSize);
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(6.7);
+  doc.setFontSize(6.4);
   doc.setTextColor(...muted);
-  const intentLines = doc.splitTextToSize('Opens the campaign landing page.', 1.7);
-  doc.text(intentLines, qrX + qrSize / 2, qrY + qrSize + 0.34, { align: 'center', lineHeightFactor: 1.12 });
+  doc.text('Quick fit check online', qrX + qrSize / 2, qrY + qrSize + 0.28, { align: 'center' });
 
   doc.setDrawColor(...accentDark);
   doc.setLineWidth(0.01);
-  doc.line(rightX - 0.32, yOffset + 0.44, rightX - 0.32, yOffset + 5.08);
+  doc.line(rightX - 0.36, yOffset + 0.52, rightX - 0.36, yOffset + 4.92);
 }
 
 function makeTwoUpPdf(variant, grayscale = false) {
