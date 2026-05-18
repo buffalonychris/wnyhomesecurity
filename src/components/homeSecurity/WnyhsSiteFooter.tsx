@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { SITE_BUILD_LABEL } from '../../lib/siteVersion';
 import { wnyhsContact } from '../../content/wnyhsContact';
+import { recommendedBrandAssets } from '../../data/brandAssets';
 
 const WnyhsSiteFooter = () => {
   return (
@@ -11,6 +12,14 @@ const WnyhsSiteFooter = () => {
         <NavLink to="/privacy?vertical=home-security">Privacy</NavLink>
         <NavLink to="/terms?vertical=home-security">Terms</NavLink>
         <NavLink to="/support?vertical=home-security">Support</NavLink>
+      </div>
+      <div className="wnyhs-marketing-footer-brand">
+        <img
+          className="wnyhs-marketing-footer-crest"
+          src={recommendedBrandAssets.footerCrest}
+          alt="WNY Home Security crest"
+          loading="lazy"
+        />
       </div>
       <div className="wnyhs-marketing-footer-meta">
         <span>WNY Home Security</span>

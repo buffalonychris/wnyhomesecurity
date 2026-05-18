@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
 import PackageTierCards from './PackageTierCards';
 import '../../styles/homeSecurityPremium.css';
+import { recommendedBrandAssets } from '../../data/brandAssets';
 
 type Props = {
   packages: PackageTier[];
@@ -16,6 +17,13 @@ const HomeSecurityLanding = ({ packages }: Props) => {
           <p className="hs-premium-eyebrow">Local-first home security</p>
           <h1>Know what’s happening. Stay in control. No contracts required.</h1>
           <p className="hs-premium-hero-subhead">Local-first home security with cameras, sensors, and automations you own.</p>
+          <div className="hs-premium-hero-brand-row">
+            <img
+              className="hs-premium-hero-brand"
+              src={recommendedBrandAssets.primaryLogo}
+              alt="WNY Home Security brand logo"
+            />
+          </div>
           <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary hs-premium-primary-cta" to="/discovery?vertical=home-security">
               Find The Right System

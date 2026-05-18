@@ -593,6 +593,19 @@
   font-size: 0.9rem;
 }
 
+
+.hs-premium-hero-brand-row {
+  margin-top: 0.75rem;
+}
+
+.hs-premium-hero-brand {
+  display: block;
+  width: min(100%, 360px);
+  height: auto;
+  border-radius: 0.6rem;
+  border: 1px solid var(--hs-premium-border);
+}
+
 .hs-premium-hero-actions {
   display: flex;
   gap: 1rem;
@@ -1183,6 +1196,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .wnyhs-marketing-footer-links,
+.wnyhs-marketing-footer-brand,
 .wnyhs-marketing-footer-meta {
   display: flex;
   flex-wrap: wrap;
@@ -1195,8 +1209,19 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   justify-content: center;
 }
 
+.wnyhs-marketing-footer-brand {
+  justify-content: center;
+}
+
 .wnyhs-marketing-footer-meta {
   justify-content: flex-end;
+}
+
+.wnyhs-marketing-footer-crest {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--hs-premium-border);
 }
 
 .wnyhs-marketing-footer a {
