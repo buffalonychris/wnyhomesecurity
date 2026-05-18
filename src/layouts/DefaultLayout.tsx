@@ -9,11 +9,6 @@ const DefaultLayout = () => {
 
   return (
     <>
-      {!isHub && layoutConfig.layoutVariant !== 'funnel' && (
-        <div className="sitewide-notice" role="status">
-          No pricing, guarantees, or promises are given by the assistant.
-        </div>
-      )}
       <main>
         {shouldShowBreadcrumbs && layoutConfig.breadcrumb && layoutConfig.breadcrumb.length > 0 && (
           <nav className="breadcrumb" aria-label="Breadcrumb">
