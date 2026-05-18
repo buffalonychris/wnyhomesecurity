@@ -1484,6 +1484,50 @@ No ARCHIVED tasks are currently recorded.
   - task registered or updated
   - no runtime/source behavior changed
 
+
+
+### PRINT-ASSET002
+- **Task ID:** PRINT-ASSET002
+- **Task Name:** QR Placard Production Files
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** current physical brand / print execution context
+- **Purpose:** generate first production-ready QR placard files for local campaign deployment
+- **Allowed Scope:**
+  - `/public/brand/print-assets/qr-placards/`
+  - `/docs/system/master-task-register.md`
+  - optionally `/docs/DOCUMENT_CATALOG.md` only if catalog conventions require listing print packages
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - unrelated print assets
+  - yard signs
+  - business cards
+  - car magnets
+  - leave-behinds
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - production files exist
+  - PDFs open/build successfully
+  - canonical QR Landing asset used
+  - business-card QR not used
+  - forbidden-claims scan
+  - build check if repo standard requires it
+- **Exit Criteria:**
+  - color two-up PDF exists
+  - color full-page PDF exists
+  - grayscale two-up PDF exists
+  - grayscale full-page PDF exists
+  - README exists
+  - task registered or updated
+  - no runtime/source behavior changed
+- **Completion Notes:** Source-controlled package uses generator + manifest only; production PDFs are reproducible local outputs written to `/public/brand/print-assets/qr-placards/generated/` and are intentionally not committed.
+
 ### PRINT-ASSET001
 - **Task ID:** PRINT-ASSET001
 - **Task Name:** QR Placard Production System
