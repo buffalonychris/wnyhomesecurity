@@ -51,9 +51,15 @@ Note: the canonical QR Landing / Campaign QR filename in this repository contain
 - full brochure systems
 - paid ad creative without separate review
 
+## PRINT-ASSET005B QR Integration Polish
+
+PRINT-ASSET005B refines the lower-center QR overlay so it sits more naturally within the approved pole / mall flyer composition without rebuilding the flyer. The QR overlay is smaller, moved slightly upward, framed with a thinner restrained dark-gold treatment, and integrated on a subtle dark backing plate so the white scan field is limited to the preserved quiet-zone area instead of reading as a large floating patch.
+
+The generator still uses the approved QR Landing / Campaign QR only. QR scan reliability remains mandatory: test the generated PDF and the first physical print before any bulk production. Generated PDFs and preview exports remain local-only under `generated/` and must not be committed.
+
 ## QR Replacement Note
 
-The source image contains an embedded QR region in the lower-center portion of the flyer. The generator covers that embedded QR region with a clean white quiet-zone patch and overlays the approved QR Landing / Campaign QR.
+The source image contains an embedded QR region in the lower-center portion of the flyer. The generator covers that embedded QR region with a restrained dark backing plate, a clean white quiet-zone field, and the approved QR Landing / Campaign QR.
 
 QR reliability takes priority over perfect visual blending. The QR must be tested from the generated PDF and from the first physical print before any bulk production.
 

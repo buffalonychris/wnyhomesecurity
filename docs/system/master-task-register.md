@@ -94,6 +94,59 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Completion Notes:** Source-only pole/mall flyer package created under `/public/brand/print-assets/pole-mall-flyer/`; generated PDFs are local-only under ignored `generated/`; canonical `PoleFlyerMallFlyer.png` is used as the full-page base/reference; exact on-disk QR Landing / Campaign QR asset `/public/brand/forprint/QR QRLANDING  Home Page QR.png` is overlaid; main website / business-card QR asset is documented as blocked and not used for output generation; claim caveats for “No Cloud Required” and “You Own. You Control.” are recorded for operator review before bulk production.
 
 
+### PRINT-ASSET005B
+- **Task ID:** PRINT-ASSET005B
+- **Task Name:** Pole / Mall Flyer QR Integration Polish
+- **Status:** DONE
+- **Category:** PRINT-ASSET
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** polish the full-page pole/mall flyer QR overlay so it blends into the approved flyer composition while preserving QR scan reliability and source-only generated-output workflow.
+- **Allowed Scope:**
+  - `/public/brand/print-assets/pole-mall-flyer/README.md`
+  - `/public/brand/print-assets/pole-mall-flyer/source/generate-pole-mall-flyer.mjs`
+  - `/public/brand/print-assets/pole-mall-flyer/source/pole-mall-flyer-config.json`
+  - `/docs/system/master-task-register.md`
+  - `/.gitignore` only if strictly necessary
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - alternate AI logo versions
+  - committed generated PDFs
+  - committed generated PNGs
+  - committed binary print outputs
+  - yard signs
+  - business cards
+  - car magnets
+  - leave-behinds
+  - apparel
+  - vendor purchasing
+  - changes to canonical source image assets
+- **Validation Required:**
+  - generator runs locally
+  - generated outputs go only to ignored `generated/`
+  - generated PDFs are not tracked
+  - QR Landing / Campaign QR used
+  - business-card QR not used
+  - QR overlay visually refined
+  - QR remains scannable
+  - grayscale output remains readable
+  - forbidden-claims scan
+  - build check if repo standard requires it
+- **Exit Criteria:**
+  - QR overlay is smaller/better integrated
+  - border/shadow is less intrusive
+  - vertical alignment avoids visual collision with the banner
+  - lower-center composition feels intentional
+  - generated outputs remain local/ignored only
+  - no generated binaries are committed
+  - no runtime/source behavior changed
+- **Completion Notes:** Refined the PRINT-ASSET005 pole/mall flyer QR overlay only: reduced QR visual bulk, moved it slightly upward, replaced the heavy floating white patch with a smaller white quiet-zone field on a restrained dark backing plate, thinned the frame treatment, removed heavy shadow styling, preserved the approved QR Landing / Campaign QR, and kept generated PDFs local/ignored only.
+
+
 ### SUPPORT-FLOW001
 - **Task ID:** SUPPORT-FLOW001
 - **Task Name:** Support page intake wiring / support request handling

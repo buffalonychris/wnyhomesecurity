@@ -207,22 +207,66 @@ function makeGrayscalePngDataUrl(assetPath) {
   return `data:image/png;base64,${output.toString('base64')}`;
 }
 
+function hexToRgb(hexColor) {
+  const match = /^#?([0-9a-f]{6})$/i.exec(hexColor);
+  if (!match) {
+    throw new Error(`Expected 6-digit hex color, received: ${hexColor}`);
+  }
+
+  const value = match[1];
+  return [
+    Number.parseInt(value.slice(0, 2), 16),
+    Number.parseInt(value.slice(2, 4), 16),
+    Number.parseInt(value.slice(4, 6), 16),
+  ];
+}
+
+function grayscaleRgb(rgb) {
+  const gray = Math.round(rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114);
+  return [gray, gray, gray];
+}
+
+function outputColor(hexColor, grayscale) {
+  const rgb = hexToRgb(hexColor);
+  return grayscale ? grayscaleRgb(rgb) : rgb;
+}
+
 function drawQrReplacement(doc, qrDataUrl, grayscale) {
-  const { xInches, yInches, qrSizeInches, quietZoneInches, borderRadiusInches } = config.qrReplacement;
-  const patchX = xInches - quietZoneInches;
-  const patchY = yInches - quietZoneInches;
-  const patchSize = qrSizeInches + quietZoneInches * 2;
+  const {
+    qrOverlayX,
+    qrOverlayY,
+    qrOverlayWidth,
+    qrQuietZonePadding,
+    qrFrameBorderWidth,
+    qrFrameColor,
+    useQrBackingPlate,
+    qrBackingPlateColor,
+    qrBackingPlatePadding,
+    qrBackingPlateRadius,
+    qrWhiteFieldBorderWidth,
+    qrWhiteFieldBorderColor,
+  } = config.qrReplacement;
+  const whiteFieldX = qrOverlayX - qrQuietZonePadding;
+  const whiteFieldY = qrOverlayY - qrQuietZonePadding;
+  const whiteFieldSize = qrOverlayWidth + qrQuietZonePadding * 2;
+
+  if (useQrBackingPlate) {
+    const backingX = whiteFieldX - qrBackingPlatePadding;
+    const backingY = whiteFieldY - qrBackingPlatePadding;
+    const backingSize = whiteFieldSize + qrBackingPlatePadding * 2;
+
+    doc.setFillColor(...outputColor(qrBackingPlateColor, grayscale));
+    doc.setDrawColor(...outputColor(qrFrameColor, grayscale));
+    doc.setLineWidth(qrFrameBorderWidth);
+    doc.roundedRect(backingX, backingY, backingSize, backingSize, qrBackingPlateRadius, qrBackingPlateRadius, 'FD');
+  }
 
   doc.setFillColor(255, 255, 255);
-  doc.setDrawColor(...(grayscale ? [72, 72, 72] : [201, 148, 42]));
-  doc.setLineWidth(0.018);
-  doc.roundedRect(patchX, patchY, patchSize, patchSize, borderRadiusInches, borderRadiusInches, 'FD');
+  doc.setDrawColor(...outputColor(qrWhiteFieldBorderColor, grayscale));
+  doc.setLineWidth(qrWhiteFieldBorderWidth);
+  doc.rect(whiteFieldX, whiteFieldY, whiteFieldSize, whiteFieldSize, 'FD');
 
-  doc.setDrawColor(...(grayscale ? [20, 20, 20] : [18, 18, 18]));
-  doc.setLineWidth(0.006);
-  doc.roundedRect(patchX + 0.025, patchY + 0.025, patchSize - 0.05, patchSize - 0.05, borderRadiusInches, borderRadiusInches, 'S');
-
-  doc.addImage(qrDataUrl, 'PNG', xInches, yInches, qrSizeInches, qrSizeInches, 'approved-qr', 'NONE');
+  doc.addImage(qrDataUrl, 'PNG', qrOverlayX, qrOverlayY, qrOverlayWidth, qrOverlayWidth, 'approved-qr', 'NONE');
 }
 
 function makePdf({ grayscale = false } = {}) {
