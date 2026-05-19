@@ -1,5 +1,5 @@
 {
-  "packageVersion": "PRINT-ASSET005-REV01",
+  "packageVersion": "PRINT-ASSET005B-REV01",
   "baseVisualAsset": "/public/brand/forprint/PoleFlyerMallFlyer.png",
   "qrAsset": "/public/brand/forprint/QR QRLANDING  Home Page QR.png",
   "blockedQrAsset": "/public/brand/forprint/QR WNY Home Security Home Page QR.png",
@@ -13,12 +13,22 @@
     "heightInches": 11
   },
   "qrReplacement": {
-    "method": "cover-existing-lower-center-embedded-qr-with-white-quiet-zone-patch-and-approved-campaign-qr-overlay",
-    "xInches": 3.555,
-    "yInches": 8.74,
-    "qrSizeInches": 1.39,
-    "quietZoneInches": 0.12,
-    "borderRadiusInches": 0.035
+    "method": "integrate-approved-campaign-qr-with-subtle-dark-backing-plate-thin-gold-frame-and-preserved-white-quiet-zone",
+    "qrOverlayX": 3.615,
+    "qrOverlayY": 8.55,
+    "qrOverlayWidth": 1.27,
+    "qrQuietZonePadding": 0.085,
+    "qrFrameBorderWidth": 0.006,
+    "qrFrameColor": "#9E7A2D",
+    "qrFrameStyle": "thin-dark-gold",
+    "useQrBackingPlate": true,
+    "qrBackingPlateColor": "#17130D",
+    "qrBackingPlatePadding": 0.05,
+    "qrBackingPlateRadius": 0.045,
+    "qrWhiteFieldBorderWidth": 0.003,
+    "qrWhiteFieldBorderColor": "#D8CFB5",
+    "qrShadowOpacity": 0,
+    "legacyEmbeddedQrCoverNote": "Backing plate intentionally remains just large enough to cover the embedded lower-center QR area while reducing the visible white field."
   },
   "approvedUse": [
     "telephone pole flyer where permitted",
