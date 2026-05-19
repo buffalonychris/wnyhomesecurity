@@ -93,6 +93,61 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
   - no runtime/source behavior changed
 - **Completion Notes:** Source-only pole/mall flyer package created under `/public/brand/print-assets/pole-mall-flyer/`; generated PDFs are local-only under ignored `generated/`; canonical `PoleFlyerMallFlyer.png` is used as the full-page base/reference; exact on-disk QR Landing / Campaign QR asset `/public/brand/forprint/QR QRLANDING  Home Page QR.png` is overlaid; main website / business-card QR asset is documented as blocked and not used for output generation; claim caveats for “No Cloud Required” and “You Own. You Control.” are recorded for operator review before bulk production.
 
+### PRINT-ASSET002B
+- **Task ID:** PRINT-ASSET002B
+- **Task Name:** QR Placard Visual System Refinement
+- **Status:** DONE
+- **Category:** PRINT-ASSET
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** refine the existing QR placard generator so placards visually align with the operator-approved premium pole/mall flyer system while remaining scan-first, simple, QR-reliable, and source-only
+- **Allowed Scope:**
+  - `/public/brand/print-assets/qr-placards/README.md`
+  - `/public/brand/print-assets/qr-placards/source/generate-placards.mjs`
+  - `/docs/system/master-task-register.md`
+  - `/.gitignore` only if strictly necessary
+- **Forbidden Scope:**
+  - runtime code
+  - UI behavior
+  - route changes
+  - Stripe
+  - HubSpot
+  - new logo generation
+  - alternate AI logo versions
+  - committed generated PDFs
+  - committed generated PNGs
+  - committed binary print outputs
+  - half-sheet flyer changes
+  - pole/mall flyer changes
+  - yard signs
+  - business cards
+  - car magnets
+  - leave-behinds
+  - apparel
+  - vendor purchasing
+- **Validation Required:**
+  - generator runs locally
+  - generated outputs go only to ignored `generated/`
+  - generated PDFs are not tracked
+  - PoleFlyerMallFlyer.png used as visual benchmark
+  - QR Landing / Campaign QR used
+  - business-card QR not used
+  - color outputs use dark premium WNYHS placard composition
+  - grayscale outputs remain readable
+  - QR remains scannable
+  - forbidden-claims scan
+  - build check if repo standard requires it
+- **Exit Criteria:**
+  - QR placard generator visually refined
+  - placards are dark/premium, not white-card style
+  - crest presence improved
+  - QR block integrated better
+  - placards remain scan-first and simpler than flyers
+  - README updated
+  - task registered or updated
+  - generated outputs remain local/ignored only
+  - no generated binaries committed
+  - no runtime/source behavior changed
+- **Completion Notes:** Refined the existing QR placard generator into a dark premium WNYHS composition benchmarked against `/public/brand/forprint/PoleFlyerMallFlyer.png`; strengthened crest presence, integrated the black-on-white QR into a restrained dark/gold scan module, preserved the QR Landing / Campaign QR only, kept copy scan-first with three approved bullets, updated README source-only guidance, and left generated PDFs local/ignored only.
 
 ### PRINT-ASSET005B
 - **Task ID:** PRINT-ASSET005B
