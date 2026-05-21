@@ -4,8 +4,8 @@ export type TimeWindow = { start: string; end: string };
 
 export type AvailabilitySuccessResponse = {
   ok: true;
-  source: 'google_calendar';
-  calendarIdConfigured: true;
+  source: 'google_calendar_ical';
+  calendarFeedConfigured: true;
   timezone: string;
   date: string;
   busy: TimeWindow[];
@@ -15,8 +15,8 @@ export type AvailabilitySuccessResponse = {
 
 export type AvailabilityFailureResponse = {
   ok: false;
-  source: 'google_calendar';
-  calendarIdConfigured: boolean;
+  source: 'google_calendar_ical';
+  calendarFeedConfigured: boolean;
   availabilityUnavailable: true;
   message: string;
   requestId?: string;
@@ -24,10 +24,10 @@ export type AvailabilityFailureResponse = {
 
 export type AvailabilityResponse = AvailabilitySuccessResponse | AvailabilityFailureResponse;
 
-export const buildAvailabilityUnavailable = (calendarIdConfigured: boolean, requestId?: string): AvailabilityFailureResponse => ({
+export const buildAvailabilityUnavailable = (calendarFeedConfigured: boolean, requestId?: string): AvailabilityFailureResponse => ({
   ok: false,
-  source: 'google_calendar',
-  calendarIdConfigured,
+  source: 'google_calendar_ical',
+  calendarFeedConfigured,
   availabilityUnavailable: true,
   message: AVAILABILITY_UNAVAILABLE_MESSAGE,
   ...(requestId ? { requestId } : {}),
@@ -66,24 +66,67 @@ export const buildAvailableWindows = (busy: TimeWindow[], range: TimeWindow, dur
   });
 };
 
-const getGoogleToken = async (env: Record<string, string>): Promise<string> => {
-  const body = new URLSearchParams({
-    client_id: env.GOOGLE_CLIENT_ID,
-    client_secret: env.GOOGLE_CLIENT_SECRET,
-    refresh_token: env.GOOGLE_REFRESH_TOKEN,
-    grant_type: 'refresh_token',
-  });
+const unfoldIcalLines = (raw: string): string[] => {
+  const lines = raw.replace(/\r\n/g, '\n').split('\n');
+  const unfolded: string[] = [];
+  for (const line of lines) {
+    if ((line.startsWith(' ') || line.startsWith('\t')) && unfolded.length > 0) {
+      unfolded[unfolded.length - 1] += line.slice(1);
+    } else {
+      unfolded.push(line);
+    }
+  }
+  return unfolded;
+};
 
-  const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body,
-  });
+const parseIcalDateValue = (value: string): string | undefined => {
+  const trimmed = value.trim();
+  if (/^\d{8}$/.test(trimmed)) {
+    return `${trimmed.slice(0, 4)}-${trimmed.slice(4, 6)}-${trimmed.slice(6, 8)}T00:00:00.000Z`;
+  }
+  if (/^\d{8}T\d{6}Z$/.test(trimmed)) {
+    return `${trimmed.slice(0, 4)}-${trimmed.slice(4, 6)}-${trimmed.slice(6, 8)}T${trimmed.slice(9, 11)}:${trimmed.slice(11, 13)}:${trimmed.slice(13, 15)}.000Z`;
+  }
 
-  if (!tokenResponse.ok) throw new Error(`google_oauth_token_error_${tokenResponse.status}`);
-  const tokenJson = (await tokenResponse.json()) as { access_token?: string };
-  if (!tokenJson.access_token) throw new Error('google_oauth_missing_access_token');
-  return tokenJson.access_token;
+  const parsed = new Date(trimmed);
+  if (Number.isNaN(parsed.getTime())) return undefined;
+  return parsed.toISOString();
+};
+
+const parseBusyWindowsFromIcal = (ical: string, range: TimeWindow): TimeWindow[] => {
+  const lines = unfoldIcalLines(ical);
+  const busy: TimeWindow[] = [];
+  let currentStart: string | undefined;
+  let currentEnd: string | undefined;
+  let inEvent = false;
+
+  for (const line of lines) {
+    if (line === 'BEGIN:VEVENT') {
+      inEvent = true;
+      currentStart = undefined;
+      currentEnd = undefined;
+      continue;
+    }
+    if (line === 'END:VEVENT') {
+      if (inEvent && currentStart && currentEnd) {
+        const window = { start: currentStart, end: currentEnd };
+        if (overlaps(window, range)) busy.push(window);
+      }
+      inEvent = false;
+      continue;
+    }
+    if (!inEvent) continue;
+
+    if (line.startsWith('DTSTART')) {
+      const startValue = line.split(':').slice(1).join(':');
+      currentStart = parseIcalDateValue(startValue);
+    } else if (line.startsWith('DTEND')) {
+      const endValue = line.split(':').slice(1).join(':');
+      currentEnd = parseIcalDateValue(endValue);
+    }
+  }
+
+  return busy;
 };
 
 export const readGoogleCalendarAvailability = async ({
@@ -99,36 +142,24 @@ export const readGoogleCalendarAvailability = async ({
   durationMinutes: number;
   requestId?: string;
 }): Promise<AvailabilityResponse> => {
-  const required = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'GOOGLE_REFRESH_TOKEN', 'GOOGLE_CALENDAR_ID'] as const;
-  const hasRequired = required.every((key) => Boolean(env[key]));
-  const calendarIdConfigured = Boolean(env.GOOGLE_CALENDAR_ID);
-
-  if (!hasRequired) return buildAvailabilityUnavailable(calendarIdConfigured, requestId);
+  const feedUrl = env.GOOGLE_CALENDAR_ICAL_SECRET;
+  const calendarFeedConfigured = Boolean(feedUrl);
+  if (!feedUrl) return buildAvailabilityUnavailable(false, requestId);
 
   try {
-    const token = await getGoogleToken(env as Record<string, string>);
     const range = buildUtcWindowForDate(date, timezone);
-    const freeBusyResponse = await fetch('https://www.googleapis.com/calendar/v3/freeBusy', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        timeMin: range.start,
-        timeMax: range.end,
-        timeZone: timezone,
-        items: [{ id: env.GOOGLE_CALENDAR_ID }],
-      }),
-    });
+    const response = await fetch(feedUrl, { method: 'GET' });
+    if (!response.ok) throw new Error(`google_ical_fetch_error_${response.status}`);
 
-    if (!freeBusyResponse.ok) throw new Error(`google_freebusy_error_${freeBusyResponse.status}`);
-    const freeBusyJson = (await freeBusyResponse.json()) as { calendars?: Record<string, { busy?: TimeWindow[] }> };
-    const busyRaw = freeBusyJson.calendars?.[env.GOOGLE_CALENDAR_ID as string]?.busy ?? [];
-    const busy = busyRaw.filter((w) => overlaps(w, range)).map((w) => ({ start: w.start, end: w.end }));
+    const ical = await response.text();
+    const busy = parseBusyWindowsFromIcal(ical, range)
+      .sort((a, b) => a.start.localeCompare(b.start));
     const availableWindows = buildAvailableWindows(busy, range, durationMinutes);
 
     return {
       ok: true,
-      source: 'google_calendar',
-      calendarIdConfigured: true,
+      source: 'google_calendar_ical',
+      calendarFeedConfigured,
       timezone,
       date,
       busy,
@@ -136,10 +167,10 @@ export const readGoogleCalendarAvailability = async ({
       ...(requestId ? { requestId } : {}),
     };
   } catch (error) {
-    console.warn('[scheduling:availability] google calendar availability lookup failed', {
+    console.warn('[scheduling:availability] google calendar iCal availability lookup failed', {
       requestId,
       error: error instanceof Error ? error.message : 'unknown_error',
     });
-    return buildAvailabilityUnavailable(calendarIdConfigured, requestId);
+    return buildAvailabilityUnavailable(calendarFeedConfigured, requestId);
   }
 };

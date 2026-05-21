@@ -76,6 +76,7 @@ Boundary rule:
 | `HUBSPOT_ACCESS_TOKEN` | Conditional | Production (+ Preview if CRM-tested) | Alternate HubSpot token alias used in lead-signal path. | `/docs/runtime/hubspot_sync_contract.md` | CONFIRMED IN SOURCE | Naming normalization remains open. |
 | `RESEND_API_KEY` | Conditional | Production (+ Preview if email-tested) | Enables outbound notification sends that may include scheduling-request context. | `/docs/runtime/resend_runtime.md` | CONFIRMED IN SOURCE | Appointment-confirmation notification behavior is not confirmed. |
 | `LEAD_SIGNAL_TO_EMAIL` | Conditional | Production (+ Preview if email-tested) | Operator notification recipient for lead/scheduling-request intake. | `/docs/runtime/resend_runtime.md` | CONFIRMED IN SOURCE | Recipient policy/operator escalation path needs verification. |
+| `GOOGLE_CALENDAR_ICAL_SECRET` | Conditional | Production (+ Preview if calendar-tested) | Private Google Calendar iCal URL used for read-only availability lookup. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Used only by `GET /api/scheduling/availability`; server-side only. |
 | `GOOGLE_CALENDAR_ID` | Conditional | Production (+ Preview if calendar-tested) | Google Calendar target for availability read and post-owner-confirmation event create attempt. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Used by scheduling availability and scheduling confirm calendar write path. |
 | `GOOGLE_CLIENT_ID` | Conditional | Production (+ Preview if calendar-tested) | OAuth client id used for Google token exchange. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Required for both availability and post-confirmation event creation. |
 | `GOOGLE_CLIENT_SECRET` | Conditional | Production (+ Preview if calendar-tested) | OAuth client secret used for Google token exchange. | `/docs/runtime/google_calendar_runtime.md` | CONFIRMED IN SOURCE | Server-side only. |
@@ -87,7 +88,7 @@ Boundary rule:
 - Cloudflare Pages Functions runtime.
 - HubSpot CRM API (API-mediated only).
 - Resend outbound email service.
-- Google Calendar integration status: read-only availability for `GET /api/scheduling/availability` plus post-owner-confirmation event creation in `POST /api/scheduling/confirm` only; no automatic booking authority.
+- Google Calendar integration status: read-only iCal availability for `GET /api/scheduling/availability` plus post-owner-confirmation event creation in `POST /api/scheduling/confirm` only; no automatic booking authority.
 
 ## Inbound Flow
 
