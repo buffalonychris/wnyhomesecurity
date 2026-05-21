@@ -12,8 +12,8 @@ const NewSiteContact = () => (
         </p>
         <p>If you’d rather not decide alone, we can walk you through it.</p>
         <div className="newsite-cta-row">
-          <a className="newsite-btn" href="tel:+17165471378">
-            Call now (716) 547-1378
+          <a className="newsite-btn" href="tel:+17162010364">
+            Call now 716-201-0364
           </a>
           <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/callback">
             Request a callback
@@ -41,8 +41,8 @@ const NewSiteContact = () => (
           <span className="newsite-badge">Immediate</span>
           <strong>Call now</strong>
           <p>Tap to connect instantly with a concierge advisor.</p>
-          <a className="newsite-btn newsite-btn-secondary" href="tel:+17165471378">
-            Call (716) 547-1378
+          <a className="newsite-btn newsite-btn-secondary" href="tel:+17162010364">
+            Call 716-201-0364
           </a>
         </div>
         <div className="newsite-card">

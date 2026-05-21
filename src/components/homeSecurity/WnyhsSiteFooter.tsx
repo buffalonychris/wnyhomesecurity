@@ -19,6 +19,7 @@ const WnyhsSiteFooter = () => {
         <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>
         <a href={`mailto:${wnyhsContact.emails.hello}`}>{wnyhsContact.emails.hello}</a>
         <span>{SITE_BUILD_LABEL}</span>
+        <span>WNY Home Security is operated by JDL Communications.</span>
       </div>
       <div className="wnyhs-marketing-footer-brand">
         <img

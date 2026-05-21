@@ -108,8 +108,8 @@ const HomeSecurityPaymentSuccess = () => {
           ) : (
             <>
               <p>We&apos;ll help verify your payment and collect your scheduling request directly.</p>
-              <a className="newsite-btn" href="tel:+17165471378">
-                Call (716) 547-1378
+              <a className="newsite-btn" href="tel:+17162010364">
+                Call 716-201-0364
               </a>
             </>
           )}

@@ -18,9 +18,9 @@ export type FunnelStepDefinition = {
   stepNumber: number;
 };
 
-export const PUBLIC_PHONE_DISPLAY = '(716) 547-1378';
-export const PUBLIC_PHONE_TEL = '+17165471378';
-export const PUBLIC_PHONE_SMS = '+17165471378';
+export const PUBLIC_PHONE_DISPLAY = '716-201-0364';
+export const PUBLIC_PHONE_TEL = '+17162010364';
+export const PUBLIC_PHONE_SMS = '+17162010364';
 
 export const EMAILS = {
   hello: 'hello@wnyhomesecurity.com',

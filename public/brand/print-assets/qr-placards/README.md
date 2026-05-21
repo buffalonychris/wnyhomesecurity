@@ -60,5 +60,5 @@ Not approved for business cards, yard signs, car magnets, apparel, or full flyer
 - Grayscale version readable.
 
 ## Contact
-Call or text: (716) 547-1378  
+Call or text: 716-201-0364
 wnyhomesecurity.com
