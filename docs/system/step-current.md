@@ -42,6 +42,7 @@
 
 - Runtime protection remains enforced.
 - Each implementation task still requires its own bounded `ACTIVE` task-register entry before execution.
+- Finish-line publication readiness work is permitted only through bounded `ACTIVE` task-register entries (e.g., publication umbrella + explicitly scoped child tasks), not open-ended implementation.
 - `FINAL-HOUR-BUSDEV001` keeps the listed final-hour categories open for bounded task creation and execution support; it does not authorize bundling or unbounded implementation.
 - No task may silently expand into another task.
 - Categories are not considered closed until operator explicitly confirms closure.

@@ -11,6 +11,66 @@ Controlling Step: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Deve
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized for bounded final-hour execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle. Hard guardrails for claims, Stripe, HubSpot, runtime/routes/UI, secrets, historical docs, and generated binary print files remain enforced.
 
+
+### FINISH-LINE-PUBLICATION001
+- **Task ID:** FINISH-LINE-PUBLICATION001
+- **Task Name:** Final publication readiness for QR placards and WNYHS public site
+- **Status:** ACTIVE
+- **Category:** GOV / OPS / PUBLICATION
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Authorize tightly bounded final-hour publication tasks needed before QR placards/flyers and public site updates go live.
+- **Allowed Scope:**
+  - governance/task-register coordination for final-hour publication readiness
+  - bounded readiness tasks explicitly promoted to ACTIVE
+  - release-readiness checks and sequencing notes
+- **Forbidden Scope:**
+  - no Stripe logic changes
+  - no HubSpot schema/pipeline changes
+  - no scheduling implementation changes
+  - no route changes unless explicitly activated by a separate bounded task
+  - no unbounded bundling of unrelated implementation
+
+### CONTACT-PHONE001
+- **Task ID:** CONTACT-PHONE001
+- **Task Name:** Canonical public phone number replacement across WNYHS site and QR Landing site
+- **Status:** ACTIVE
+- **Category:** COPY / FUNNEL / QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Parent Task:** FINISH-LINE-PUBLICATION001
+- **Purpose:** Replace all customer-facing phone references across QR Landing and main WNYHS site with the canonical public Google Voice business number.
+- **Canonical Number:**
+  - Display: `716-201-0364`
+  - E.164: `+1 716-201-0364`
+  - Tel href: `tel:+17162010364`
+- **Allowed Scope:**
+  - update customer-facing phone references
+  - update tel links
+  - update QR Landing phone references
+  - update main site phone references
+  - update public metadata/structured data phone references
+  - update relevant public contact docs/config
+  - include visible site version bump
+- **Forbidden Scope:**
+  - no Stripe logic changes
+  - no HubSpot schema changes
+  - no scheduling logic changes
+  - no Google Calendar logic changes
+  - no Resend behavior changes
+  - no routes changed
+  - no new features
+  - no redesign
+  - no claims/copy expansion
+  - no personal numbers published
+
+### SCHED-AVAIL001
+- **Task ID:** SCHED-AVAIL001
+- **Task Name:** Server-side Google Calendar iCal availability read integration
+- **Status:** DONE
+- **Category:** SCHED
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Track server-side availability read integration using `GOOGLE_CALENDAR_ICAL_SECRET`.
+- **Status Basis:** Marked DONE because server-side availability integration and tests already exist in repository history/source (`functions/api/scheduling/availability.ts`, `functions/api/scheduling/googleCalendarAvailability.ts`, `tests/googleCalendarAvailability.test.ts`).
+
 ### FINAL-HOUR-BUSDEV001
 - **Task ID:** FINAL-HOUR-BUSDEV001
 - **Task Name:** Final-Hour Business Development Execution Lane
