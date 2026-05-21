@@ -101,7 +101,7 @@ const termsSections: TermsSection[] = [
   },
   {
     title: 'Contact',
-    body: ['WNY Home Security', 'Western New York', 'Phone: (716) 547-1378', 'Email: hello@wnyhomesecurity.com'],
+    body: ['WNY Home Security', 'Western New York', 'Phone: 716-201-0364', 'Email: hello@wnyhomesecurity.com'],
   },
 ];
 

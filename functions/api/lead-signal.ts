@@ -180,7 +180,7 @@ const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any
     'Your selected package or recommendation is a starting point for review. Final equipment, installation scope, and pricing are confirmed directly with WNY Home Security before any work is scheduled.',
     '',
     'We’ll review your request and follow up as soon as we can.',
-    'If anything changes, you can reply to this email or call us at (716) 555-0199.',
+    'If anything changes, you can reply to this email or call us at 716-201-0364.',
     '',
     'WNY Home Security',
     `Request ID: ${payload.requestId}`,

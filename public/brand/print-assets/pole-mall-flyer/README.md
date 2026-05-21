@@ -87,6 +87,6 @@ Visible claims are inherited from the operator-approved `PoleFlyerMallFlyer.png`
 
 ## Contact
 
-Call or text: (716) 547-1378
+Call or text: 716-201-0364
 
 wnyhomesecurity.com

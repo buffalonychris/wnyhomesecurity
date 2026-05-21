@@ -78,8 +78,8 @@ const HomeSecurityPackages = () => {
             <NavLink className="newsite-btn newsite-btn-secondary" to="/newsite/on-site-quote">
               Request on-site quote
             </NavLink>
-            <a className="newsite-btn newsite-btn-secondary" href="tel:+17165471378">
-              Call now (716) 547-1378
+            <a className="newsite-btn newsite-btn-secondary" href="tel:+17162010364">
+              Call now 716-201-0364
             </a>
           </div>
         </div>

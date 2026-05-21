@@ -37,7 +37,7 @@ const NewSiteAgreementPrint = () => {
         <div>
           <strong>WNY Home Security</strong>
           <p>Western New York</p>
-          <p>(716) 547-1378</p>
+          <p>716-201-0364</p>
         </div>
       </header>
 

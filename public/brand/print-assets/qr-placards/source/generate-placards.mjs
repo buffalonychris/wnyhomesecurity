@@ -26,7 +26,7 @@ const bullets = [
   'Alarm system options',
   'Local installation',
 ];
-const phone = 'Call or text: (716) 547-1378';
+const phone = 'Call or text: 716-201-0364';
 const url = 'wnyhomesecurity.com';
 
 const palette = {

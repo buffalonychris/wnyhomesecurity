@@ -163,7 +163,7 @@ CTA lines:
 
 Contact / fallback:
 
-- Call or text: (716) 547-1378
+- Call or text: 716-201-0364
 - wnyhomesecurity.com
 
 Forbidden copy:
@@ -187,7 +187,7 @@ Forbidden copy:
 Each half-sheet flyer must include:
 
 - QR Landing / Campaign QR
-- phone number: (716) 547-1378
+- phone number: 716-201-0364
 - fallback URL: wnyhomesecurity.com
 - local service identity: WNY Home Security
 

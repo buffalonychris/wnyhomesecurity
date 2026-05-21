@@ -98,8 +98,8 @@ const NewSiteSchedule = () => {
           <div className="newsite-card">
             <strong>Call now</strong>
             <p>Speak directly with our team to submit your preferred time window.</p>
-            <a className="newsite-btn newsite-btn-secondary" href="tel:+17165471378">
-              Call (716) 547-1378
+            <a className="newsite-btn newsite-btn-secondary" href="tel:+17162010364">
+              Call 716-201-0364
             </a>
           </div>
           <div className="newsite-card">

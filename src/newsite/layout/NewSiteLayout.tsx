@@ -25,8 +25,8 @@ const NewSiteLayout = () => {
               <span>WNY Home Security</span>
             </NavLink>
             <div className="newsite-nav-actions">
-              <a className="newsite-call-cta" href="tel:+17165471378">
-                (716) 547-1378
+              <a className="newsite-call-cta" href="tel:+17162010364">
+                716-201-0364
               </a>
               <button
                 type="button"
@@ -89,6 +89,7 @@ const NewSiteLayout = () => {
             <div className="newsite-footer-meta">
               Premium security experiences tailored for Western New York households.
             </div>
+            <div className="newsite-footer-meta">WNY Home Security is operated by JDL Communications.</div>
           </div>
         </footer>
       ) : null}

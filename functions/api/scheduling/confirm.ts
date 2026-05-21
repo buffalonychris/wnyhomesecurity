@@ -53,7 +53,7 @@ const sendCustomerConfirmationEmail = async ({
     `Request ID: ${requestId}`,
     calendarLine,
     '',
-    'If you need to reschedule, contact us at support@wnyhomesecurity.com or (716) 555-0199.',
+    'If you need to reschedule, contact us at support@wnyhomesecurity.com or 716-201-0364.',
     '',
     `Confirmed by: ${confirmedBy}`,
   ].join('\n');
