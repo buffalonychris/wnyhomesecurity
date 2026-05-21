@@ -5,7 +5,7 @@ const json = (body: unknown, status = 200) => new Response(JSON.stringify(body),
 
 const isValidDate = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value);
 
-export const onRequest: PagesFunction<{ GOOGLE_CLIENT_ID?: string; GOOGLE_CLIENT_SECRET?: string; GOOGLE_REFRESH_TOKEN?: string; GOOGLE_CALENDAR_ID?: string }> = async ({ request, env }) => {
+export const onRequest: PagesFunction<{ GOOGLE_CALENDAR_ICAL_SECRET?: string }> = async ({ request, env }) => {
   if (request.method !== 'GET') {
     return json({ ok: false, errorCode: 'METHOD_NOT_ALLOWED', userMessage: 'Unsupported request method.' }, 405);
   }

@@ -5,14 +5,15 @@ Read-only availability lookup for estimate scheduling via `GET /api/scheduling/a
 
 ## Scope
 - Advisory availability only (no booking authority).
-- Shared calendar read only using Google FreeBusy API.
+- Shared calendar read only using private Google Calendar iCal feed.
 - Manual owner confirmation remains required.
 
 ## Required Environment Variables
-- `GOOGLE_CLIENT_ID`
-- `GOOGLE_CLIENT_SECRET`
-- `GOOGLE_REFRESH_TOKEN`
-- `GOOGLE_CALENDAR_ID`
+- `GOOGLE_CALENDAR_ICAL_SECRET` (for availability read path)
+- `GOOGLE_CLIENT_ID` (confirm write path only)
+- `GOOGLE_CLIENT_SECRET` (confirm write path only)
+- `GOOGLE_REFRESH_TOKEN` (confirm write path only)
+- `GOOGLE_CALENDAR_ID` (confirm write path only)
 
 ## Behavior
 - When configured and healthy: returns normalized busy windows and computed available windows.
@@ -29,7 +30,7 @@ Read-only availability lookup for estimate scheduling via `GET /api/scheduling/a
 
 Success:
 - `ok: true`
-- `source: google_calendar`
+- `source: google_calendar_ical`
 - `busy[]`
 - `availableWindows[]`
 

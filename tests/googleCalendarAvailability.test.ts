@@ -15,14 +15,20 @@ describe('googleCalendarAvailability', () => {
     expect(res).toEqual(buildAvailabilityUnavailable(false));
   });
 
-  it('returns normalized availability when freebusy succeeds', async () => {
-    const fetchMock = vi.fn()
-      .mockResolvedValueOnce(new Response(JSON.stringify({ access_token: 'token' }), { status: 200 }))
-      .mockResolvedValueOnce(new Response(JSON.stringify({ calendars: { cal: { busy: [{ start: '2026-05-20T14:00:00.000Z', end: '2026-05-20T15:00:00.000Z' }] } } }), { status: 200 }));
-    vi.stubGlobal('fetch', fetchMock);
+  it('returns normalized availability when iCal fetch succeeds', async () => {
+    const ical = [
+      'BEGIN:VCALENDAR',
+      'BEGIN:VEVENT',
+      'DTSTART:20260520T140000Z',
+      'DTEND:20260520T150000Z',
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(ical, { status: 200 })));
 
     const res = await readGoogleCalendarAvailability({
-      env: { GOOGLE_CLIENT_ID: 'id', GOOGLE_CLIENT_SECRET: 'secret', GOOGLE_REFRESH_TOKEN: 'refresh', GOOGLE_CALENDAR_ID: 'cal' },
+      env: { GOOGLE_CALENDAR_ICAL_SECRET: 'https://example.com/private.ics' },
       date: '2026-05-20',
       timezone: 'America/New_York',
       durationMinutes: 30,
@@ -31,17 +37,17 @@ describe('googleCalendarAvailability', () => {
 
     expect(res.ok).toBe(true);
     if (res.ok) {
-      expect(res.source).toBe('google_calendar');
+      expect(res.source).toBe('google_calendar_ical');
       expect(res.requestId).toBe('req-1');
       expect(res.busy.length).toBe(1);
       expect(res.availableWindows.length).toBeGreaterThan(0);
     }
   });
 
-  it('returns safe unavailable response when google api fails', async () => {
+  it('returns safe unavailable response when iCal fetch fails', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('nope', { status: 500 })));
     const res = await readGoogleCalendarAvailability({
-      env: { GOOGLE_CLIENT_ID: 'id', GOOGLE_CLIENT_SECRET: 'secret', GOOGLE_REFRESH_TOKEN: 'refresh', GOOGLE_CALENDAR_ID: 'cal' },
+      env: { GOOGLE_CALENDAR_ICAL_SECRET: 'https://example.com/private.ics' },
       date: '2026-05-20',
       timezone: 'America/New_York',
       durationMinutes: 60,
