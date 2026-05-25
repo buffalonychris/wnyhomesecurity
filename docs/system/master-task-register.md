@@ -6,6 +6,84 @@ Controlling Step: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Deve
 
 ---
 
+## Master Task Register Governance Standard (GOV002)
+
+- This register is the **operational execution driver** for bounded Codex task execution.
+- This register does **not** override higher governance documents in `/docs/system/project.md`, `/docs/system/guardrails.md`, `/docs/system/agent.md`, `/docs/system/plan.md`, or `/docs/system/step-current.md`.
+- This register operates under the single controlling context declared in `/docs/system/step-current.md`.
+- Codex may execute only:
+  - tasks in **Active Tasks** with `Status: ACTIVE`, or
+  - explicitly bounded prompt-created tasks when allowed by higher-governance execution gates.
+- No task may silently expand scope beyond its declared Allowed Scope and controlling context.
+
+### Allowed Task Statuses
+
+- BACKLOG
+- READY
+- ACTIVE
+- BLOCKED
+- DONE
+- ARCHIVED
+
+### Required Task Fields (Actionable Task Schema)
+
+Every actionable task record must include:
+
+- Task ID
+- Task Name
+- Status
+- Category
+- Controlling Context
+- Purpose
+- Allowed Scope
+- Forbidden Scope
+- Target Files
+- Runtime Systems Affected
+- Documentation Updates Required
+- Validation Required
+- Exit Criteria
+- Dependencies
+- Operator Decision Required
+
+### Task Category Taxonomy (Allowed Values)
+
+- GOV
+- RUNTIME
+- CRM
+- PAYMENT
+- EMAIL
+- LEAD
+- QR
+- SCHED
+- QA
+- COPY
+- FUNNEL
+- HIST
+
+### Task Lifecycle and Activation Rules
+
+- BACKLOG and READY are non-executable preparation states.
+- ACTIVE is the only executable status.
+- BLOCKED requires a documented unblock condition.
+- DONE requires required validation plus exit-criteria satisfaction.
+- ARCHIVED preserves historical traceability and is non-executable.
+- Activation to ACTIVE requires controlling-context alignment and complete required task fields.
+
+### Current Context ↔ Task Record ↔ Codex Execution Relationship
+
+- `step-current.md` defines the single active operational context.
+- The Master Task Register defines bounded execution tasks within that context.
+- Prompt-created bounded tasks are allowed only when higher-authority governance explicitly permits them.
+- If request scope conflicts with the context or task schema, Codex must stop and request revision.
+
+### Legacy/Historical Record Handling
+
+- Historical task records are preserved for lineage and audit traceability.
+- Legacy entries that predate GOV002 schema standardization are retained unless safe, bounded normalization is possible.
+- No destructive rewrite of historical records is required for GOV002.
+
+---
+
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
@@ -41,6 +119,43 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
   - historical Steps are lineage/reference unless promoted
   - Master Task Register is explicitly the operational task driver
   - document catalog authority labels/classifications are aligned
+
+### GOV002
+- **Task ID:** GOV002
+- **Task Name:** Master Task Register Promotion / Standardization
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Standardize the Master Task Register as the operational execution driver with explicit status taxonomy, required task fields, lifecycle rules, activation rules, and Codex execution relationship.
+- **Allowed Scope:**
+  - docs-only governance updates in `/docs/system/master-task-register.md`
+  - alignment updates in `/docs/codex/CODEX_TASK_REGISTER_RULES.md` and `/docs/codex/CODEX_TASK_TEMPLATE.md`
+  - optional catalog classification wording alignment in `/docs/DOCUMENT_CATALOG.md`
+  - safe normalization metadata for current/recent task records without destructive historical rewrites
+- **Forbidden Scope:**
+  - no runtime/source/frontend/API changes
+  - no route/UI behavior changes
+  - no Stripe/payment logic changes
+  - no HubSpot schema/workflow/write-path changes
+  - no deletion of historical documentation
+- **Target Files:** `docs/system/master-task-register.md`, `docs/codex/CODEX_TASK_REGISTER_RULES.md`, `docs/codex/CODEX_TASK_TEMPLATE.md`, `docs/DOCUMENT_CATALOG.md` (if needed)
+- **Runtime Systems Affected:** None (docs-only governance change)
+- **Documentation Updates Required:** Governance intro and execution-driver language, required schema fields, status/category taxonomy, lifecycle/activation rules, legacy handling guidance, and GOV002 task lifecycle record update.
+- **Validation Required:**
+  - `git diff -- docs/system/master-task-register.md docs/codex docs/DOCUMENT_CATALOG.md docs/system/plan.md docs/system/agent.md`
+  - `rg -n "BACKLOG|READY|ACTIVE|BLOCKED|DONE|ARCHIVED|Task ID|Allowed Scope|Forbidden Scope|Validation Required|Exit Criteria|Operator Decision Required|Master Task Register|operational execution driver" docs/system/master-task-register.md docs/codex`
+  - `rg -n "TODO|placeholder|TBD|implement|implementation" docs/system/master-task-register.md docs/codex`
+  - `npm run build` (or explicit docs-only skip note)
+- **Exit Criteria:**
+  - Master Task Register explicitly defines execution-driver behavior under controlling context
+  - allowed statuses and category taxonomy are explicit
+  - required task field schema is explicit
+  - lifecycle/activation/validation/exit discipline is explicit
+  - current/recent task records are normalized where safe and legacy handling is explicit
+  - no runtime behavior changes introduced
+- **Dependencies:** GOV001 = DONE
+- **Operator Decision Required:** No
+- **Completion Notes:** GOV002 standardized governance/task-register schema and lifecycle language in MTR and synchronized Codex rules/template docs without runtime changes.
 
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
@@ -1402,7 +1517,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### CRM-SCHEMA001
 - **Task ID:** CRM-SCHEMA001
 - **Task Name:** HubSpot CRM Contract Repair
-- **Status:** COMPLETE
+- **Status:** DONE
 - **Category:** CRM
 - **Controlling Context:** CTX-SCHED-MVP-REV01
 - **Forbidden Scope:** Stripe, SMS, reminders, install scheduling

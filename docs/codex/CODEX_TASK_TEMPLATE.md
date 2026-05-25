@@ -26,6 +26,7 @@ Use this template for any new task entry intended for `/docs/system/master-task-
 - **Exit Criteria:**
 - **Dependencies:**
 - **Operator Decision Required:**
+- **Legacy/Historical Handling Note:** (optional; required when normalizing historical task records)
 
 ---
 
@@ -39,6 +40,7 @@ Use this template for any new task entry intended for `/docs/system/master-task-
 - Do **NOT** modify Stripe/payment logic unless explicitly authorized.
 - Do **NOT** introduce forbidden claims.
 - Do **NOT** break funnel routing/order.
+- No silent scope expansion beyond Allowed Scope.
 - Use semantic token system only for UI styling changes.
 
 ---

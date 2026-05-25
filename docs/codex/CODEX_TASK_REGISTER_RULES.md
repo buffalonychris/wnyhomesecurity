@@ -10,7 +10,7 @@ Status: Active
 
 Codex execution authority requires **all** of the following:
 
-1. Task is listed under **Active Tasks** in the Master Task Register.
+1. Task is listed under **Active Tasks** in the Master Task Register, or is an explicitly bounded prompt-created task allowed by higher governance docs.
 2. Task is authorized by the current operational context in `/docs/system/step-current.md`.
 3. Task does not violate `/docs/system/guardrails.md` or root `AGENTS.md` constraints.
 
@@ -91,6 +91,7 @@ Lifecycle guidance:
 - READY tasks are not executable until promoted to ACTIVE.
 - BACKLOG, BLOCKED, DONE, and ARCHIVED are non-executable states.
 - Multi-active execution is allowed only when each ACTIVE task is explicitly listed and does not conflict with the single controlling context in `/docs/system/step-current.md`.
+- No ACTIVE task may silently expand scope beyond its declared Allowed Scope.
 
 ---
 
