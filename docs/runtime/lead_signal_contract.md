@@ -249,3 +249,18 @@ Behavior remains unchanged:
 - Implemented metadata fields: `eventName`, `requestId` (client runtime attribution id), `timestamp`, and `entryRoute` (`/qrlanding`).
 - `estimate_form_submitted` is represented as `eventName` metadata on the existing `qr_estimate_requested` submission event to preserve lead-signal runtime compatibility.
 - No changes were made to HubSpot schema/pipeline behavior or Stripe/payment runtime logic.
+
+
+## RUNTIME010 QR Attribution Schema Validation Addendum
+
+For QR attribution metadata associated with lead-signal events, future validation behavior should follow this contract:
+
+- Accept canonical `eventName` values: `qrlanding_view`, `estimate_form_started`, `estimate_form_submitted`.
+- Reject or ignore unknown attribution `eventName` values.
+- Require attribution payload keys `eventName`, `requestId`, `timestamp`, and `entryRoute` for QR attribution events.
+- Require `entryRoute` value `/qrlanding` for QR placard attribution context.
+- Preserve request-correlation context when metadata is valid, while keeping submitted lead handling authoritative at `/api/lead-signal`.
+- Do not block lead submissions solely because optional attribution metadata is absent.
+- Prefer bounded diagnostics/logging for malformed attribution metadata instead of silent ambiguity.
+
+This addendum is governance documentation only and introduces no runtime implementation changes.
