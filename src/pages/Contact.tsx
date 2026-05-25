@@ -16,6 +16,10 @@ const Contact = () => {
   const packageTier = tierParam === 'bronze' || tierParam === 'silver' || tierParam === 'gold' ? tierParam : undefined;
   const recommended = searchParams.get('recommended')?.toLowerCase() ?? '';
   const fit = searchParams.get('fit') ?? '';
+  const estimateIntent = searchParams.get('estimateIntent') ?? '';
+  const propertySize = searchParams.get('propertySize') ?? '';
+  const coverageExpectation = searchParams.get('coverageExpectation') ?? '';
+  const packageId = searchParams.get('package') ?? '';
 
   useLayoutConfig({ layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide', showBreadcrumbs: false, breadcrumb: [] });
 
@@ -24,6 +28,10 @@ const Contact = () => {
   if (packageTier) params.set('tier', packageTier);
   if (recommended) params.set('recommended', recommended);
   if (fit) params.set('fit', fit);
+  if (estimateIntent) params.set('estimateIntent', estimateIntent);
+  if (propertySize) params.set('propertySize', propertySize);
+  if (coverageExpectation) params.set('coverageExpectation', coverageExpectation);
+  if (packageId) params.set('package', packageId);
 
   const content = <>
     <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
@@ -35,7 +43,23 @@ const Contact = () => {
     </div>
     <section className="qr-panel" id="estimate-form">
       <h3>Request My Estimate</h3>
-      <CanonicalEstimateRequestForm sourceFamily="MAIN_SITE" source="contact_page" landingRoute={`${location.pathname}${location.search}`} context={{ vertical, deal: packageTier ? { packageTier } : undefined }} />
+      <CanonicalEstimateRequestForm
+        sourceFamily="MAIN_SITE"
+        source={estimateIntent === 'selected-package' ? 'contact_page_package_selected' : 'contact_page'}
+        landingRoute={`${location.pathname}${location.search}`}
+        requestId={undefined}
+        entryRoute={location.pathname}
+        context={{
+          vertical,
+          estimateIntent: estimateIntent || undefined,
+          deal: packageTier ? { packageTier } : undefined,
+          package: packageId || undefined,
+          fit: fit || undefined,
+          recommended: recommended || undefined,
+          propertySize: propertySize || undefined,
+          coverageExpectation: coverageExpectation || undefined,
+        }}
+      />
     </section>
   </>;
 
