@@ -1039,6 +1039,26 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Dependencies:** RUNTIME005 and RUNTIME007 runtime documentation lineage.
 - **Operator Decision Required:** No.
 
+
+### T-RUNTIME009-001
+- **Task ID:** T-RUNTIME009-001
+- **Task Name:** RUNTIME009 — QRLanding Event Instrumentation
+- **Status:** DONE
+- **Category:** QR / RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement bounded QRLanding attribution instrumentation for `qrlanding_view`, `estimate_form_started`, and `estimate_form_submitted` while preserving `/api/lead-signal` write-path protections.
+- **Allowed Scope:** Existing `/qrlanding` instrumentation wiring, requestId session persistence for QR attribution events, bounded runtime contract doc updates, and task register evidence updates.
+- **Forbidden Scope:** No Stripe/payment logic changes; no HubSpot schema/pipeline/workflow changes; no route changes; no UI redesign; no new analytics vendors/SDKs.
+- **Target Files:** `src/pages/QrLanding.tsx`, `/docs/runtime/qrlanding_runtime.md`, `/docs/runtime/request_id_contract.md`, `/docs/runtime/lead_signal_contract.md`, `/docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** QRLanding client event submission through existing `/api/lead-signal` path only.
+- **Documentation Updates Required:** Reflect implemented event payload shape and requestId persistence behavior for QRLanding runtime events.
+- **Completion Notes:** Added one-time `qrlanding_view` tracking on `/qrlanding` load, first-interaction `estimate_form_started` tracking, and submit-time `estimate_form_submitted` metadata on lead submission payload; preserved existing lead submission and protected runtime boundaries.
+- **Validation Required:** `npm run build`; `rg -n "qrlanding_view|estimate_form_started|estimate_form_submitted|entryRoute|requestId" src docs`; `git diff -- src docs/runtime docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md`.
+- **Exit Criteria:** All three QRLanding attribution events are emitted with `eventName`, `requestId`, `timestamp`, and `entryRoute=/qrlanding` via existing lead-signal path; build passes; protected systems untouched.
+- **Dependencies:** RUNTIME008 documentation lineage.
+- **Operator Decision Required:** No.
+
+
 ## Ready Tasks
 
 ### FUNNEL-FIX001

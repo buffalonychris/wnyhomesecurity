@@ -242,3 +242,10 @@ Behavior remains unchanged:
 - Campaign analytics should interpret Cloudflare request metrics as directional top-of-funnel signal and not as direct lead totals.
 - Attribution joins should use submission-level `requestId` plus route context where available; no direct HubSpot write bypass is authorized.
 - This addendum is documentation-only and does not change API behavior.
+
+## RUNTIME009 QRLanding Attribution Metadata Addendum
+
+- QRLanding now submits bounded attribution metadata through existing `/api/lead-signal` requests for early-funnel events.
+- Implemented metadata fields: `eventName`, `requestId` (client runtime attribution id), `timestamp`, and `entryRoute` (`/qrlanding`).
+- `estimate_form_submitted` is represented as `eventName` metadata on the existing `qr_estimate_requested` submission event to preserve lead-signal runtime compatibility.
+- No changes were made to HubSpot schema/pipeline behavior or Stripe/payment runtime logic.
