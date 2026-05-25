@@ -235,3 +235,10 @@ Behavior remains unchanged:
 - `/api/lead-signal` now creates an appointment request record as part of intake orchestration.
 - Response envelope now includes `schedulingStatus` and `appointmentRequest` for request-level traceability.
 - Confirmation posture remains manual-owner confirmation; no automatic booking claim is returned.
+
+## RUNTIME008 Analytics Alignment Addendum
+
+- `/api/lead-signal` remains the canonical submission boundary for QRLanding estimate leads and campaign conversion measurement.
+- Campaign analytics should interpret Cloudflare request metrics as directional top-of-funnel signal and not as direct lead totals.
+- Attribution joins should use submission-level `requestId` plus route context where available; no direct HubSpot write bypass is authorized.
+- This addendum is documentation-only and does not change API behavior.

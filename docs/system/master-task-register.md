@@ -1022,6 +1022,23 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Dependencies:** RUNTIME006 documentation recommended first.
 - **Operator Decision Required:** No.
 
+### T-RUNTIME008-001
+- **Task ID:** T-RUNTIME008-001
+- **Task Name:** RUNTIME008 — QR Attribution + Funnel Analytics Runtime Documentation
+- **Status:** DONE
+- **Category:** QR / RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Author documentation-only runtime governance for QR placard attribution assumptions, requestId lifecycle expectations, Cloudflare analytics interpretation, and campaign KPI ladder model.
+- **Allowed Scope:** Runtime/governance documentation updates only.
+- **Forbidden Scope:** No runtime implementation changes; no route/UI updates; no Stripe logic changes; no HubSpot schema/pipeline changes; no analytics SDK implementation.
+- **Target Files:** `/docs/runtime/qrlanding_runtime.md`, `/docs/runtime/request_id_contract.md`, `/docs/runtime/lead_signal_contract.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** Documentation only.
+- **Documentation Updates Required:** QR attribution model, requestId lifecycle expectations, Cloudflare interpretation guidance, KPI model, ownership-map status updates.
+- **Validation Required:** `git diff -- docs/runtime docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md`, targeted `rg` scans, and `npm run build`.
+- **Exit Criteria:** Required runtime docs updated with bounded attribution governance and no production logic changes.
+- **Dependencies:** RUNTIME005 and RUNTIME007 runtime documentation lineage.
+- **Operator Decision Required:** No.
+
 ## Ready Tasks
 
 ### FUNNEL-FIX001
