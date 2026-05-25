@@ -1,128 +1,99 @@
-# QA CHECKLIST (ENFORCED)
+# QA CHECKLIST — QA001 REV02 (DEPLOYMENT VALIDATION)
 
-## BUILD
+Use this checklist before publishing and before expanding QR placard traffic.
 
-- Build passes (`npm run build`)
-- No console errors in key pages
+## 1) Pre-Deploy Governance Gate
 
----
+- [ ] Active bounded task is authorized in `/docs/system/master-task-register.md`.
+- [ ] Scope is bounded and matches task authorization.
+- [ ] Protected systems are identified (Stripe, HubSpot, routes, claims/copy).
 
-## VERSION
+## 2) Build Health
 
-- Version incremented in `src/lib/siteVersion.ts`
-- New version visible in footer/homepage
+- [ ] `npm run build` passes.
+- [ ] Any failing checks are documented as pre-existing vs introduced.
 
----
+## 3) Route Availability Smoke
 
-## NAV & LAYOUT
+- [ ] `/` loads.
+- [ ] `/qrlanding` loads.
+- [ ] Any release-relevant funnel routes load.
 
-- Sticky top nav appears on all pages
-- Active nav state highlights correctly
-- No duplicate headers or breadcrumbs
-- Footer is present and consistent across pages
+## 4) QRLanding Attribution Validation
 
----
+- [ ] `/qrlanding` load confirmed in target environment.
+- [ ] `qrlanding_view` fires once per session entry/load as contracted.
+- [ ] `estimate_form_started` fires once on first interaction.
+- [ ] `estimate_form_submitted` appears in submission metadata.
+- [ ] `eventName` values match runtime contract naming.
+- [ ] `entryRoute` equals `/qrlanding` for QR sessions.
+- [ ] submitted lead is treated as conversion boundary.
 
-## FUNNEL INTEGRITY
+## 5) Lead Signal Validation
 
-Verify core flow loads without errors:
+- [ ] submission path goes through `/api/lead-signal`.
+- [ ] response envelope includes expected success/failure structure.
+- [ ] submission metadata includes QR attribution context when applicable.
 
-- `/` (landing)
-- `/packages`
-- `/discovery` (Fit Check)
-- `/quoteReview`
-- `/agreementReview`
-- `/payment`
-- `/schedule`
+## 6) requestId / Correlation Validation
 
-- Funnel order is NOT broken
-- Back navigation behaves correctly
+- [ ] requestId is returned for submitted lead requests.
+- [ ] requestId persists across QRLanding submission lifecycle.
+- [ ] requestId correlation evidence is captured for logs/notifications/CRM trace.
 
----
+## 7) Protected-System Checks (Required)
 
-## PAGE-SPECIFIC VALIDATION (IF APPLICABLE)
+### Stripe
+- [ ] no Stripe code changed unless explicitly authorized.
+- [ ] no client-side payment confirmation authority introduced.
+- [ ] webhook/server-side verification remains authoritative.
 
-- No stray top-of-page elements (breadcrumbs, duplicate nav rows)
-- No layout drift between pages (spacing, width, alignment)
-- Planner loads without errors (if touched)
+### HubSpot
+- [ ] no HubSpot schema/workflow changes unless explicitly authorized.
+- [ ] no direct frontend/client HubSpot writes.
+- [ ] CRM writes remain API-mediated via `/api/lead-signal`.
 
----
+### Routes + Claims
+- [ ] no route changes unless explicitly authorized.
+- [ ] no forbidden claims/copy were introduced.
 
-## CRM / HUBSPOT (CRITICAL)
+## 8) Email / Operator Notification Checks
 
-- HubSpot files NOT modified
-- No direct CRM writes added
-- Uses `/api/lead-signal` only
-- No schema or pipeline changes
+- [ ] operator notification path validated with representative lead test.
+- [ ] notification status captured (delivered/skipped/failed).
+- [ ] no secret values exposed in logs/evidence artifacts.
 
----
+## 9) Scheduling Ownership Checks
 
-## STRIPE (CRITICAL)
+- [ ] scheduling remains request-capture unless separately authorized.
+- [ ] no false appointment confirmation behavior/copy introduced.
+- [ ] operator confirmation remains appointment truth boundary.
 
-- Stripe logic NOT modified
-- No client-side payment confirmation added
-- Payment flow unchanged
+## 10) Cloudflare Deployment Checks
 
----
+- [ ] build succeeded for deployed revision.
+- [ ] deployment URL recorded.
+- [ ] production URL recorded when applicable.
+- [ ] environment variables validated only against documented runtime contracts.
+- [ ] Cloudflare analytics treated as directional telemetry, not sole source of truth.
 
-## COPY & CLAIMS
+## 11) Evidence Capture (Required)
 
-No forbidden claims:
+For each validation run capture:
+- [ ] date/time (UTC)
+- [ ] branch + commit
+- [ ] environment
+- [ ] commands run
+- [ ] routes checked
+- [ ] event names observed
+- [ ] requestId evidence
+- [ ] lead submission evidence
+- [ ] operator notification evidence
+- [ ] known failures/unknowns
+- [ ] final recommendation (`GO`, `GO WITH RISKS`, `NO-GO`)
 
-- monitoring / monitored
-- dispatch / dispatcher
-- “we respond”
-- police / authorities
-- guarantee / guaranteed
-- central station
+## 12) Rollback / Escalation Trigger
 
----
-
-## FINAL CHECK
-
-- Changes are minimal and scoped to task
-- No unrelated files modified
-
----
-
-## RESULT
-
-If ANY item fails:
-
-❌ DO NOT MERGE  
-Fix issues → re-run QA
-
-
-## QRLANDING PRE-CANVASSING READINESS (STEP102)
-
-- Cloudflare deployment succeeded
-- Version badge shows `v1.0.24`
-- `/qrlanding` loads
-- `/qrlanding?src=placard` loads
-- Live-safe test lead submitted
-- `requestId` captured from API response/logs
-- Notification + CRM path reviewed from `/api/lead-signal` output
-- Success copy does NOT claim appointment confirmation
-- Mobile QA passed (CTA visibility, no overflow, date/time usability)
-- QR code destination points to the intended production URL
-- QR codes point to `/qrlanding` or `/qrlanding?src=asset-type`
-- Printed assets use `https://www.wnyhomesecurity.com/qrlanding` (or approved `?src=` variant)
-- QR scans are tested from a phone before bulk printing
-- Phone number remains secondary on QR landing experience unless explicitly approved otherwise
-
-
-## QRLANDING PRODUCTION INTEGRATION VALIDATION
-
-- v1.0.24 visible after deploy
-- /qrlanding loads
-- test lead submitted
-- /api/lead-signal returns ok true
-- notification.status checked
-- hubspot.status checked
-- Resend email received
-- HubSpot contact found
-- HubSpot deal found
-- QR source populated
-- estimate date/time populated
-- consent fields populated
-- no fake appointment confirmation
+- [ ] Any blocking failure sets recommendation to `NO-GO`.
+- [ ] Rollback/escalation owner identified.
+- [ ] Follow-up bounded task created before remediation changes.
