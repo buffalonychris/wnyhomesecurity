@@ -219,44 +219,6 @@ const QuoteReview = () => {
   );
   const balanceDue = useMemo(() => Math.max((quote?.pricing.total ?? 0) - depositDue, 0), [depositDue, quote?.pricing.total]);
 
-  if (!quote) {
-    return (
-      <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
-        <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <div className="badge">Quote review</div>
-          <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We couldn’t find a saved quote on this device.</h1>
-          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
-            Your estimate request is not ready to review yet on this device. Start with the system recommendation or request an estimate, then return here.
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <Link className="btn btn-primary" to="/discovery?vertical=home-security">
-              Find The Right System
-            </Link>
-            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
-              Choose a Package
-            </Link>
-            <Link className="btn btn-secondary" to="/contact?vertical=home-security">
-              Request Estimate
-            </Link>
-            <a
-              className="btn btn-secondary"
-              href={buildSupportMailto({
-                pageRoute: '/quoteReview',
-                issue: 'Quote missing or could not be loaded',
-                contactMethod: wnyhsContact.phone.display,
-              })}
-            >
-              Contact support
-            </a>
-          </div>
-          <small style={{ color: 'var(--color-text-secondary)' }}>
-            Or call us at <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>.
-          </small>
-        </div>
-      </div>
-    );
-  }
-
   useEffect(() => {
     let isMounted = true;
     const run = async () => {
@@ -294,6 +256,45 @@ const QuoteReview = () => {
   useEffect(() => {
     setShareRecipient(email);
   }, [email]);
+
+
+  if (!quote) {
+    return (
+      <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
+        <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <div className="badge">Quote review</div>
+          <h1 style={{ margin: 0, color: 'var(--color-text-primary)' }}>We couldn’t find a saved quote on this device.</h1>
+          <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
+            Your estimate request is not ready to review yet on this device. Start with the system recommendation or request an estimate, then return here.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <Link className="btn btn-primary" to="/discovery?vertical=home-security">
+              Find The Right System
+            </Link>
+            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+              Choose a Package
+            </Link>
+            <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+              Request Estimate
+            </Link>
+            <a
+              className="btn btn-secondary"
+              href={buildSupportMailto({
+                pageRoute: '/quoteReview',
+                issue: 'Quote missing or could not be loaded',
+                contactMethod: wnyhsContact.phone.display,
+              })}
+            >
+              Contact support
+            </a>
+          </div>
+          <small style={{ color: 'var(--color-text-secondary)' }}>
+            Or call us at <a href={`tel:${wnyhsContact.phone.tel}`}>{wnyhsContact.phone.display}</a>.
+          </small>
+        </div>
+      </div>
+    );
+  }
 
   const handleExplainQuote = async () => {
     if (!quote) return;
