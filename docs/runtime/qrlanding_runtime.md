@@ -124,6 +124,8 @@ Expected event chain for QR funnel attribution:
 - Use anomaly checks for sudden request surges without matching lead signals.
 
 ## Campaign KPI Model (Current Governance)
+Cross-reference: weekly operator review SOP in `/docs/runtime/qr_attribution_reporting.md`.
+
 
 Primary KPI ladder:
 

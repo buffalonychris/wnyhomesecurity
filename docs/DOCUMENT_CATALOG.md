@@ -199,6 +199,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Added by RUNTIME008 REV01 as documentation-only attribution governance; does not implement runtime analytics SDK behavior.
 
+
+
+### `/docs/runtime/qr_attribution_reporting.md`
+- **File path:** `docs/runtime/qr_attribution_reporting.md`
+- **Purpose / likely role:** Canonical weekly QR attribution reporting/review SOP for placard performance, KPI ladder interpretation, directional conversion calculations, decision logging, and evidence capture.
+- **Authority level:** **Operational runtime SOP contract**
+- **Notes:** Added by RUNTIME011 REV01 as docs-only governance; no runtime behavior or analytics implementation authority.
+
 ### `/docs/runtime/request_id_contract.md`
 - **File path:** `docs/runtime/request_id_contract.md`
 - **Purpose / likely role:** Canonical requestId lifecycle and correlation contract spanning API response, logs, email, and HubSpot propagation boundaries.
