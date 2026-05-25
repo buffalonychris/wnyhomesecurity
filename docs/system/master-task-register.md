@@ -2024,3 +2024,31 @@ No ARCHIVED tasks are currently recorded.
   - task registered or updated
   - QR Landing QR is the only approved QR for placards
   - no runtime/source behavior changed
+
+### ARCH001
+- **Task ID:** ARCH001
+- **Task Name:** Document Home Assistant + Node-RED automation architecture direction
+- **Status:** READY
+- **Category:** GOV / DOCS / ARCH
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Capture approved future local-first automation/orchestration direction without implementing runtime changes.
+- **Allowed Scope:**
+  - docs-only updates describing Home Assistant as customer-facing control layer
+  - docs-only updates describing Node-RED as future advanced operator-facing orchestration layer
+  - phased-adoption guidance and bounded follow-up task candidates
+  - document-catalog updates if authority/status metadata changes
+- **Forbidden Scope:**
+  - no runtime/source code changes
+  - no Home Assistant/Node-RED/MQTT/Frigate/AI configuration changes
+  - no Stripe/HubSpot/Cloudflare/email behavior changes
+  - no route/UI changes
+- **Validation Required:**
+  - `git diff -- docs`
+  - `rg -n "Node-RED|Node RED|Home Assistant|MQTT|Frigate|automation orchestration" docs`
+  - `rg -n "monitoring|guarantee|guaranteed|prevent|prevents" docs`
+- **Exit Criteria:**
+  - architecture direction documented as future-state only
+  - Home Assistant remains primary customer-facing control layer in documentation
+  - Node-RED documented as operator-facing advanced layer only
+  - follow-up work captured as bounded future tasks only
+
