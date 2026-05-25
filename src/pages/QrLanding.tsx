@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import WnyhsSiteFooter from '../components/homeSecurity/WnyhsSiteFooter';
@@ -30,6 +30,18 @@ type QrLandingFormState = {
 
 type QrLandingErrors = Partial<Record<keyof QrLandingFormState | 'consentSelection', string>>;
 const todayIsoDate = new Date().toISOString().slice(0, 10);
+
+const REQUEST_ID_STORAGE_KEY = 'qrlanding_request_id_v1';
+const createQrRuntimeRequestId = () => `qrlanding_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+const getOrCreateQrRuntimeRequestId = () => {
+  if (typeof window === 'undefined') return createQrRuntimeRequestId();
+  const existing = window.sessionStorage.getItem(REQUEST_ID_STORAGE_KEY);
+  if (existing) return existing;
+  const next = createQrRuntimeRequestId();
+  window.sessionStorage.setItem(REQUEST_ID_STORAGE_KEY, next);
+  return next;
+};
+
 const initialState: QrLandingFormState = { firstName: '', lastName: '', mobilePhone: '', email: '', streetAddress: '', city: '', state: '', zip: '', propertyType: '', requestedHelp: '', requestDetails: '', preferredContactMethod: '', preferredEstimateDate: todayIsoDate, preferredEstimateTimeSlot: '', textConsent: false, emailConsent: false, phoneConsent: false, contactTimeAcknowledgement: false, whereDidYouSeeUs: '' };
 const allowedSrcValues = new Set(['placard', 'card', 'sticker', 'vehicle', 'yard-sign', 'referral']);
 const formatTo12Hour = (hour: number) => hour === 0 ? '12:00 AM' : hour < 12 ? `${hour}:00 AM` : hour === 12 ? '12:00 PM' : `${hour - 12}:00 PM`;
@@ -54,14 +66,46 @@ const QrLanding = () => {
   const [searchParams] = useSearchParams();
   const fieldRefs = useRef<Partial<Record<keyof QrLandingFormState, HTMLElement | null>>>({});
   const todayIso = useMemo(() => todayIsoDate, []);
+  const qrRuntimeRequestId = useMemo(() => getOrCreateQrRuntimeRequestId(), []);
+  const hasTrackedStartRef = useRef(false);
   const normalizedSource = useMemo(() => {
     const src = (searchParams.get('src') || '').toLowerCase().trim();
     return allowedSrcValues.has(src) ? src : 'QR_SCAN_GENERAL';
   }, [searchParams]);
 
+
+  useEffect(() => {
+    const timestamp = new Date().toISOString();
+    void sendLeadSignal({
+      event: 'qrlanding_view',
+      eventName: 'qrlanding_view',
+      requestId: qrRuntimeRequestId,
+      timestamp,
+      submittedAt: timestamp,
+      entryRoute: '/qrlanding',
+      landingRoute: '/qrlanding',
+    }).catch(() => undefined);
+  }, [qrRuntimeRequestId]);
+
+  const trackEstimateFormStarted = () => {
+    if (hasTrackedStartRef.current) return;
+    hasTrackedStartRef.current = true;
+    const timestamp = new Date().toISOString();
+    void sendLeadSignal({
+      event: 'estimate_form_started',
+      eventName: 'estimate_form_started',
+      requestId: qrRuntimeRequestId,
+      timestamp,
+      submittedAt: timestamp,
+      entryRoute: '/qrlanding',
+      landingRoute: '/qrlanding',
+    }).catch(() => undefined);
+  };
+
   const handleChange = (field: keyof QrLandingFormState) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const nextValue = event.target.value;
     const checked = 'checked' in event.target ? event.target.checked : false;
+    trackEstimateFormStarted();
     setFormState((prev) => {
       if (field === 'textConsent' || field === 'emailConsent' || field === 'contactTimeAcknowledgement' || field === 'phoneConsent') return { ...prev, [field]: checked };
       if (field === 'preferredEstimateDate') return { ...prev, preferredEstimateDate: nextValue, preferredEstimateTimeSlot: '' };
@@ -96,7 +140,8 @@ const QrLanding = () => {
     if (Object.keys(next).length > 0) return;
     setIsSubmitting(true); setApiFailure(null); setFailureRequestId(null);
     try {
-      const response = await sendLeadSignal({ event: 'qr_estimate_requested', sourceFamily: 'QR_SCAN', source: normalizedSource, landingRoute: '/qrlanding', campaignFamily: 'physical_canvassing', assetSource: searchParams.get('src') || undefined, whereDidYouSeeUs: formState.whereDidYouSeeUs || undefined, scheduleStatus: 'requested_pending_confirmation', calendarProvider: 'google_business_pending_confirmation', submittedAt: new Date().toISOString(), textConsent: formState.textConsent, emailConsent: formState.emailConsent, contactTimeAcknowledgement: formState.contactTimeAcknowledgement, consentTimestamp: new Date().toISOString(), communicationUseScope: 'quote_estimate_scheduling_service_only', contactHours: '8am_9pm_7_days', contact: { firstName: formState.firstName.trim(), lastName: formState.lastName.trim(), phone: formState.mobilePhone.trim(), email: formState.email.trim(), address: { street: formState.streetAddress.trim(), city: formState.city.trim(), state: formState.state.trim(), zip: formState.zip.trim(), propertyType: formState.propertyType.trim() } }, request: { requestedHelp: formState.requestedHelp.trim(), requestDetails: formState.requestDetails.trim() || undefined, preferredContactMethod: formState.preferredContactMethod.trim(), preferredEstimateDate: formState.preferredEstimateDate.trim(), preferredEstimateTimeSlot: formState.preferredEstimateTimeSlot.trim(), followUpAllowedMethods: [formState.textConsent ? 'Text Messages' : null, formState.phoneConsent ? 'Phone Calls' : null, formState.emailConsent ? 'Emails' : null].filter(Boolean) } });
+      const submitTimestamp = new Date().toISOString();
+      const response = await sendLeadSignal({ event: 'qr_estimate_requested', eventName: 'estimate_form_submitted', requestId: qrRuntimeRequestId, timestamp: submitTimestamp, entryRoute: '/qrlanding', sourceFamily: 'QR_SCAN', source: normalizedSource, landingRoute: '/qrlanding', campaignFamily: 'physical_canvassing', assetSource: searchParams.get('src') || undefined, whereDidYouSeeUs: formState.whereDidYouSeeUs || undefined, scheduleStatus: 'requested_pending_confirmation', calendarProvider: 'google_business_pending_confirmation', submittedAt: submitTimestamp, textConsent: formState.textConsent, emailConsent: formState.emailConsent, contactTimeAcknowledgement: formState.contactTimeAcknowledgement, consentTimestamp: new Date().toISOString(), communicationUseScope: 'quote_estimate_scheduling_service_only', contactHours: '8am_9pm_7_days', contact: { firstName: formState.firstName.trim(), lastName: formState.lastName.trim(), phone: formState.mobilePhone.trim(), email: formState.email.trim(), address: { street: formState.streetAddress.trim(), city: formState.city.trim(), state: formState.state.trim(), zip: formState.zip.trim(), propertyType: formState.propertyType.trim() } }, request: { requestedHelp: formState.requestedHelp.trim(), requestDetails: formState.requestDetails.trim() || undefined, preferredContactMethod: formState.preferredContactMethod.trim(), preferredEstimateDate: formState.preferredEstimateDate.trim(), preferredEstimateTimeSlot: formState.preferredEstimateTimeSlot.trim(), followUpAllowedMethods: [formState.textConsent ? 'Text Messages' : null, formState.phoneConsent ? 'Phone Calls' : null, formState.emailConsent ? 'Emails' : null].filter(Boolean) } });
       setSubmitted(true); setFailureRequestId(response?.requestId || null);
     } catch (error) {
       const cause = error instanceof Error ? error.cause as Record<string, unknown> | undefined : undefined;

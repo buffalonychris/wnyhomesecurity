@@ -166,3 +166,20 @@ Governance posture:
 - Date (UTC): 2026-05-25
 - Branch/commit: NEEDS VERIFICATION (record at merge/release time)
 - Verified by: Codex execution for RUNTIME008
+
+## RUNTIME009 Instrumentation Implementation Addendum (2026-05-25)
+
+Implemented bounded QRLanding attribution instrumentation using the existing `/api/lead-signal` path:
+
+- `qrlanding_view` is submitted once on `/qrlanding` page load.
+- `estimate_form_started` is submitted once on first estimate form interaction.
+- `estimate_form_submitted` is included as event metadata when the lead submission event (`qr_estimate_requested`) is sent.
+
+Implemented attribution payload fields for all three events:
+
+- `eventName`
+- `requestId` (QRLanding session-scoped runtime request identifier)
+- `timestamp` (ISO string)
+- `entryRoute` (locked value `/qrlanding`)
+
+This addendum does not change Stripe logic, HubSpot schema/workflow behavior, route topology, or `/api/lead-signal` write-path authority.
