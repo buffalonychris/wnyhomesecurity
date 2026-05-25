@@ -193,6 +193,12 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Added by RUNTIME005 REV01 with confirmed source-backed behavior plus explicit UNKNOWN / NEEDS VERIFICATION markers.
 
+### `/docs/runtime/qrlanding_runtime.md`
+- **File path:** `docs/runtime/qrlanding_runtime.md`
+- **Purpose / likely role:** Canonical QRLanding runtime attribution contract defining placard-route assumptions, requestId lifecycle expectations, Cloudflare analytics interpretation rules, and campaign KPI ladder governance.
+- **Authority level:** **Operational runtime contract**
+- **Notes:** Added by RUNTIME008 REV01 as documentation-only attribution governance; does not implement runtime analytics SDK behavior.
+
 ### `/docs/runtime/request_id_contract.md`
 - **File path:** `docs/runtime/request_id_contract.md`
 - **Purpose / likely role:** Canonical requestId lifecycle and correlation contract spanning API response, logs, email, and HubSpot propagation boundaries.
