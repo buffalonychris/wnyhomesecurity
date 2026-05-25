@@ -185,6 +185,20 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Exit Criteria:** package-selected contact submission uses canonical `/api/lead-signal` path with preserved contextual query metadata; package-selected `/quoteReview` never blank-screens when Fit Check-only parameters are absent; QR attribution remains scoped to QR sessions only.
 - **Completion Notes:** Contact page now forwards package/funnel query context (`estimateIntent`, `recommended`, `fit`, `propertySize`, `coverageExpectation`, `tier`, `package`) into quote-review routing and lead-signal payload context, while keeping non-QR entry route values local to actual path. QuoteReview blank render fixed by eliminating conditional-hook ordering risk during null quote fallback rendering. Canonical estimate form kept shared while tightening staged grouping/spacing in the common component.
 
+
+### FUNNEL003
+- **Task ID:** FUNNEL003
+- **Task Name:** Package Flow Hotfix: CRM Verification + QuoteReview Blank Screen
+- **Status:** DONE
+- **Category:** FUNNEL / CRM / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Verify package-selected estimate submissions remain HubSpot-compatible through `/api/lead-signal` while preserving non-QR attribution and repair `/quoteReview` blank-screen behavior for package query URLs.
+- **Allowed Scope:** package/contact lead-signal payload verification against QRLanding baseline, bounded package-flow parity fixes if required, `/quoteReview` defensive fallback rendering for query-only package review paths, bounded register updates.
+- **Forbidden Scope:** no Stripe/payment changes; no HubSpot schema/pipeline/workflow changes; no pricing logic changes; no unrelated route or UI redesign.
+- **Validation Required:** `npm run build`; `rg -n "quoteReview|QuoteReview|Review Estimate Summary|selected-package|estimateIntent|CanonicalEstimateRequestForm|sendLeadSignal|lead-signal|HubSpot|sourceFamily|qrlanding|estimate_form_submitted|entryRoute|requestId|dedupe|dedup" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`.
+- **Exit Criteria:** package-selected submissions use the canonical `/api/lead-signal` path with non-QR context preserved and without QR-only attribution leakage; `/quoteReview` query-only package URLs render visible fallback/summary and never blank-screen; QRLanding and Fit Check flows remain intact.
+- **Completion Notes:** Verified QRLanding and package/contact flows both submit through `sendLeadSignal` → `/api/lead-signal` with shared canonical contact/request contract; package flow intentionally keeps non-QR `sourceFamily=MAIN_SITE`, non-QR source strings, and `estimateIntent=selected-package` context. HubSpot behavior aligns with expected contact dedupe/append when reused identities are submitted. `/quoteReview` black-screen root cause was conditional hook ordering (early return before later hooks), repaired by ensuring hooks execute in stable order before null-quote fallback rendering.
+
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
 - **Task Name:** Final publication readiness for QR placards and WNYHS public site
