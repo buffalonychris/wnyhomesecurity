@@ -157,6 +157,21 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Operator Decision Required:** No
 - **Completion Notes:** GOV002 standardized governance/task-register schema and lifecycle language in MTR and synchronized Codex rules/template docs without runtime changes.
 
+
+
+### FUNNEL001
+- **Task ID:** FUNNEL001
+- **Task Name:** Canonical Estimate Request Form + Quote Review Route Repair
+- **Status:** DONE
+- **Category:** FUNNEL / RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Repair `/quoteReview` non-render path from Fit Check recommendation/contact flow and enforce one canonical estimate request form based on QRLanding pattern.
+- **Allowed Scope:** `/quoteReview` defensive rendering repair, canonical estimate form reuse/extraction, Fit Check/contact estimate form replacement, bounded funnel/runtime docs/register updates.
+- **Forbidden Scope:** no Stripe/payment logic changes; no HubSpot schema/workflow changes; no pricing logic changes; no unrelated route/UI redesign.
+- **Validation Required:** `npm run build`; `rg -n "quoteReview|Review Estimate Summary|Request My Estimate|Start My Estimate|qrlanding|estimate_form_started|estimate_form_submitted|entryRoute|requestId" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`.
+- **Exit Criteria:** quote review no longer blank-screens from Fit Check review action; canonical estimate form reused across QRLanding and Fit Check/contact flow; QR attribution preserved only for QR entry.
+- **Completion Notes:** Completed in commit `c5d7bbf` and follow-up revision `FUNNEL001` hardening. `/quoteReview` blank render path fixed via null-safe add-on lookup; canonical form reuse in `/qrlanding` and `/contact` retained; previously removed intake fields (`requestedHelp`, `requestDetails`, `whereDidYouSeeUs`) restored in the canonical component while preserving `/api/lead-signal` submission path and QR attribution behavior.
+
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
 - **Task Name:** Final publication readiness for QR placards and WNYHS public site
@@ -2280,4 +2295,3 @@ No ARCHIVED tasks are currently recorded.
   - Home Assistant remains primary customer-facing control layer in documentation
   - Node-RED documented as operator-facing advanced layer only
   - follow-up work captured as bounded future tasks only
-

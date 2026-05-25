@@ -236,7 +236,7 @@ const QuoteReview = () => {
   );
 
   const selectedAddOns = useMemo(
-    () => getAddOns(vertical).filter((addOn) => quote?.selectedAddOns.includes(addOn.id)),
+    () => getAddOns(vertical).filter((addOn) => quote?.selectedAddOns?.includes(addOn.id)),
     [quote, vertical]
   );
 
