@@ -8,7 +8,7 @@ Status: Active
 
 The repo executes through one **current operational context** defined in `/docs/system/step-current.md`, with tasks driven by `/docs/system/master-task-register.md`.
 
-Historical Steps are preserved lineage and reference material only unless explicitly elevated as the controlling Step in the current context.
+Historical Steps are preserved lineage and reference material only unless explicitly promoted into the current operational context in `step-current.md`.
 
 ---
 
@@ -16,8 +16,8 @@ Historical Steps are preserved lineage and reference material only unless explic
 
 Execution authority is determined by both documents together:
 
-- `step-current.md`: defines current context and controlling Step
-- `master-task-register.md`: defines executable Active Tasks
+- `step-current.md`: defines the single current operational context
+- `master-task-register.md`: defines the operational execution queue (Active Tasks)
 
 Codex must stop when requested work is not present in Active Tasks or falls outside the current context.
 
@@ -99,9 +99,26 @@ git grep -nI "RESEND_API_KEY" src public
 
 A task is complete when:
 
-- It stays within active Step scope
+- It stays within the current operational context and active bounded task scope
 - It avoids protected-system changes
 - It builds successfully or reports pre-existing failures clearly
 - It preserves funnel integrity
 - It preserves quote/agreement/payment/schedule chain
 
+
+
+## 8. Authority Hierarchy
+
+Execution precedence for planning/implementation decisions:
+
+1. `/docs/system/project.md`
+2. `/docs/system/guardrails.md`
+3. `/docs/system/agent.md`
+4. `/docs/system/plan.md`
+5. `/docs/system/step-current.md`
+6. `/docs/system/master-task-register.md`
+7. active bounded task definition
+8. locked specs / runtime contracts
+9. historical Step docs
+10. project-source artifacts / visual references
+11. chat-derived context after promotion into repo docs

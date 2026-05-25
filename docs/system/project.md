@@ -10,12 +10,17 @@ Repository: buffalonychris/wnyhomesecurity
 
 When working in this repository, follow this authority chain:
 
-1. Repository governance files in `/docs/system/`
-2. Current operational context in `/docs/system/step-current.md`
-3. Active Tasks in `/docs/system/master-task-register.md`
-4. Supporting specs in `/docs/specs/`
-5. User task prompt
-6. Existing implementation patterns in the codebase
+1. `/docs/system/project.md`
+2. `/docs/system/guardrails.md`
+3. `/docs/system/agent.md`
+4. `/docs/system/plan.md`
+5. `/docs/system/step-current.md`
+6. `/docs/system/master-task-register.md`
+7. Active bounded task definition (register task or explicitly bounded prompt task)
+8. Locked specs / runtime contracts (`/docs/specs/`, `/docs/runtime/`, locked CRM contracts)
+9. Historical Step docs (lineage/reference only unless promoted in `step-current.md`)
+10. Project-source artifacts / visual references
+11. Chat-derived context only after promotion into repository docs
 
 If a lower authority conflicts with a higher authority, the higher authority wins.
 
@@ -32,7 +37,7 @@ The site must remain:
 - Clean and single-purpose
 - Home-security focused
 - Free of hub/other-vertical junk
-- On-spec with the active Step documents
+- On-spec with the current operational context and active bounded task definitions
 - Ready for Cloudflare Pages deployment
 
 ---
@@ -140,3 +145,13 @@ Stop when:
 - The requested work would change Stripe/payment verification without authorization
 - The requested work would delete protected routes/components during an additive step
 
+
+
+## 10. Task Execution Gate
+
+Codex execution is allowed only when one of these is true:
+
+- the task is listed in `/docs/system/master-task-register.md` with `Status: ACTIVE`, or
+- the task is explicitly created in the current prompt with bounded scope that does not conflict with higher authorities.
+
+If neither condition is met, stop and request a task-register/context update.
