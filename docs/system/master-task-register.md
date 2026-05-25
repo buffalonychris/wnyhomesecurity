@@ -1307,20 +1307,41 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ### T-QA001-001
 - **Task ID:** T-QA001-001
-- **Task Name:** QA001 — Deployment Validation SOP
+- **Task Name:** QA001 — Deployment Validation SOP + QA Checklist
 - **Status:** DONE
-- **Category:** QA
-- **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
-- **Purpose:** Prepare deployment validation SOP runtime documentation task for safe activation after core runtime contracts are complete.
-- **Allowed Scope:** Documentation-only updates for deployment validation SOP once promoted to ACTIVE.
-- **Forbidden Scope:** Source code edits; runtime behavior changes; environment variable changes; secret exposure; Stripe logic changes except documentation-only notes; HubSpot logic/schema changes except documentation-only notes; UI changes; route changes; product claims; deletion of docs.
-- **Target Files:** `/docs/runtime/deployment_validation.md`, `/docs/runtime/runtime_ownership_map.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md` (if catalog entries must be updated).
-- **Runtime Systems Affected:** QA/deployment documentation only; no runtime behavior impact.
-- **Documentation Updates Required:** Task promoted by operator authorization and completed with SOP creation, ownership-map update, and catalog/register lifecycle updates.
-- **Validation Required:** `git diff -- docs/system/master-task-register.md docs/runtime/runtime_ownership_map.md docs/DOCUMENT_CATALOG.md` and `npm run build`.
-- **Exit Criteria:** Deployment validation SOP exists with required sections, ownership-map status updated, catalog entry added, and no runtime/source behavior changes.
-- **Dependencies:** RUNTIME004, RUNTIME005, RUNTIME003, RUNTIME006, RUNTIME007 documentation complete.
-- **Operator Decision Required:** Satisfied via operator authorization in chat; task completed.
+- **Category:** QA / GOV / OPS
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Parent Task:** FINISH-LINE-PUBLICATION001
+- **Purpose:** Maintain a repeatable pre-release/post-deploy validation SOP and checklist before publishing and before QR placard traffic expansion.
+- **Allowed Scope:**
+  - documentation-only updates to deployment validation SOP
+  - documentation-only updates to QA checklist
+  - bounded task-register lifecycle/status updates for QA001
+  - document-catalog update only if canonical authority changes
+- **Forbidden Scope:**
+  - no source code edits
+  - no runtime behavior changes
+  - no frontend/API/route changes
+  - no Stripe logic changes
+  - no HubSpot schema/workflow changes
+  - no secrets exposure
+  - no historical document deletion
+- **Target Files:**
+  - `/docs/runtime/deployment_validation.md`
+  - `/docs/codex/QA_CHECKLIST.md`
+  - `/docs/system/master-task-register.md`
+  - `/docs/DOCUMENT_CATALOG.md` (only if required by authority/catalog changes)
+- **Validation Required:**
+  - `npm run build`
+  - `git diff -- docs/runtime docs/codex docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md`
+  - `rg -n "QA001|deployment validation|QRLanding|qrlanding_view|estimate_form_started|estimate_form_submitted|requestId|Stripe|HubSpot|Cloudflare|lead signal|rollback|evidence" docs/runtime docs/codex docs/system docs/DOCUMENT_CATALOG.md`
+  - `rg -n "TODO|placeholder|TBD|implement|implementation" docs/runtime/deployment_validation.md docs/codex/QA_CHECKLIST.md docs/system/master-task-register.md`
+- **Exit Criteria:**
+  - deployment validation SOP documents build/route/event/lead/requestId/Cloudflare/protected-system checks
+  - QA checklist includes QRLanding attribution, protected-system, and evidence-capture requirements
+  - rollback/escalation guidance is documented
+  - task remains docs-only with no runtime behavior changes
+- **Completion Notes:** Updated QA001 governance docs to REV02 with explicit QRLanding attribution checks (`qrlanding_view`, `estimate_form_started`, `estimate_form_submitted`), requestId correlation, Cloudflare deployment expectations, protected Stripe/HubSpot/route/claims safeguards, required evidence template, and rollback/escalation guidance; no source/runtime behavior changes performed.
 
 ---
 
