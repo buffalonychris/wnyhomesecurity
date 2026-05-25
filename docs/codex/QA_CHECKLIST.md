@@ -1,4 +1,6 @@
 # QA CHECKLIST — QA001 REV02 (DEPLOYMENT VALIDATION)
+Cross-reference for weekly QR campaign performance review: `/docs/runtime/qr_attribution_reporting.md`.
+
 
 Use this checklist before publishing and before expanding QR placard traffic.
 

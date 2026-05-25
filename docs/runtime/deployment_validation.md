@@ -84,6 +84,8 @@ For each route record:
 - whether behavior matches expected flow boundaries
 
 ## QRLanding Attribution Validation
+For weekly operational campaign review cadence/evidence beyond deploy gating, use `/docs/runtime/qr_attribution_reporting.md`.
+
 
 Required checks:
 1. `/qrlanding` loads successfully.

@@ -1079,6 +1079,29 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Dependencies:** RUNTIME009 completion evidence.
 - **Operator Decision Required:** No.
 
+
+
+### T-RUNTIME011-001
+- **Task ID:** T-RUNTIME011-001
+- **Task Name:** RUNTIME011 — QR Attribution Reporting / Review SOP
+- **Status:** DONE
+- **Category:** QR / OPS / GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Parent Task:** FINISH-LINE-PUBLICATION001
+- **Purpose:** Create canonical, repeatable weekly QR attribution reporting/review SOP covering placard inventory, `/qrlanding` traffic, event ladder progression, lead/call/quote/job outcomes, directional conversion ratios, and operator decisions.
+- **Allowed Scope:** Documentation-only reporting SOP updates; bounded cross-reference updates in runtime/QA docs; task lifecycle/register updates; document catalog update for new canonical doc.
+- **Forbidden Scope:** No source code/runtime changes; no frontend/API changes; no Stripe changes; no HubSpot schema/workflow changes; no route/UI copy changes; no dashboard/SDK implementation.
+- **Target Files:** `/docs/runtime/qr_attribution_reporting.md`, `/docs/system/master-task-register.md`, `/docs/DOCUMENT_CATALOG.md`, optional bounded references in `/docs/runtime/qrlanding_runtime.md`, `/docs/runtime/deployment_validation.md`, `/docs/codex/QA_CHECKLIST.md`.
+- **Validation Required:**
+  - `git diff -- docs/runtime docs/codex docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md`
+  - `rg -n "RUNTIME011|QR attribution reporting|placard|qrlanding_view|estimate_form_started|estimate_form_submitted|Cloudflare|KPI|closed jobs|booked quotes|evidence|weekly" docs/runtime docs/codex docs/system docs/DOCUMENT_CATALOG.md`
+  - `rg -n "TODO|placeholder|TBD|implement|implementation" docs/runtime docs/codex docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md`
+  - `npm run build`
+- **Exit Criteria:** QR attribution reporting SOP exists with weekly cadence, required inputs, KPI ladder, directional conversion formulas, interpretation rules, decision rules, evidence format, and bounded governance notes; no runtime behavior changes.
+- **Completion Notes:** Added canonical RUNTIME011 REV01 reporting/review SOP at `/docs/runtime/qr_attribution_reporting.md`; documented weekly cadence, KPI ladder, directional conversion calculations, Cloudflare/requestId interpretation boundaries, operator decision rules, and required evidence template; preserved docs-only scope and protected runtime boundaries.
+- **Dependencies:** RUNTIME008, RUNTIME009, RUNTIME010, QA001 documentation lineage.
+- **Operator Decision Required:** No.
+
 ## Ready Tasks
 
 ### FUNNEL-FIX001
