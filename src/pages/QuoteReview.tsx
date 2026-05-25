@@ -193,6 +193,32 @@ const QuoteReview = () => {
       : [],
   });
 
+  const selectedPackage = useMemo(
+    () => getPackagePricing(vertical).find((pkg) => pkg.id === quote?.packageId) ?? getPackagePricing(vertical)[0],
+    [quote, vertical]
+  );
+
+  const selectedAddOns = useMemo(
+    () => getAddOns(vertical).filter((addOn) => quote?.selectedAddOns?.includes(addOn.id)),
+    [quote, vertical]
+  );
+
+  const hardwareGroups = useMemo(
+    () => (quote && vertical !== 'home-security' ? getHardwareGroups(quote.packageId, quote.selectedAddOns) : []),
+    [quote, vertical]
+  );
+  const featureGroups = useMemo(
+    () => (quote && vertical !== 'home-security' ? getFeatureGroups(quote.packageId, quote.selectedAddOns) : []),
+    [quote, vertical]
+  );
+
+  const resumeUrl = useMemo(() => (quote ? buildResumeUrl(quote, 'agreement') : ''), [quote]);
+  const depositDue = useMemo(
+    () => calculateDepositDue(quote?.pricing.total ?? 0, siteConfig.depositPolicy),
+    [quote?.pricing.total],
+  );
+  const balanceDue = useMemo(() => Math.max((quote?.pricing.total ?? 0) - depositDue, 0), [depositDue, quote?.pricing.total]);
+
   if (!quote) {
     return (
       <div className="container" style={{ padding: '3rem 0', display: 'grid', gap: '1.5rem' }}>
@@ -230,31 +256,6 @@ const QuoteReview = () => {
       </div>
     );
   }
-  const selectedPackage = useMemo(
-    () => getPackagePricing(vertical).find((pkg) => pkg.id === quote?.packageId) ?? getPackagePricing(vertical)[0],
-    [quote, vertical]
-  );
-
-  const selectedAddOns = useMemo(
-    () => getAddOns(vertical).filter((addOn) => quote?.selectedAddOns?.includes(addOn.id)),
-    [quote, vertical]
-  );
-
-  const hardwareGroups = useMemo(
-    () => (quote && vertical !== 'home-security' ? getHardwareGroups(quote.packageId, quote.selectedAddOns) : []),
-    [quote, vertical]
-  );
-  const featureGroups = useMemo(
-    () => (quote && vertical !== 'home-security' ? getFeatureGroups(quote.packageId, quote.selectedAddOns) : []),
-    [quote, vertical]
-  );
-
-  const resumeUrl = useMemo(() => (quote ? buildResumeUrl(quote, 'agreement') : ''), [quote]);
-  const depositDue = useMemo(
-    () => calculateDepositDue(quote?.pricing.total ?? 0, siteConfig.depositPolicy),
-    [quote?.pricing.total],
-  );
-  const balanceDue = useMemo(() => Math.max((quote?.pricing.total ?? 0) - depositDue, 0), [depositDue, quote?.pricing.total]);
 
   useEffect(() => {
     let isMounted = true;

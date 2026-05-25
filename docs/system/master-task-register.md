@@ -172,6 +172,19 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Exit Criteria:** quote review no longer blank-screens from Fit Check review action; canonical estimate form reused across QRLanding and Fit Check/contact flow; QR attribution preserved only for QR entry.
 - **Completion Notes:** Completed in commit `c5d7bbf` and follow-up revision `FUNNEL001` hardening. `/quoteReview` blank render path fixed via null-safe add-on lookup; canonical form reuse in `/qrlanding` and `/contact` retained; previously removed intake fields (`requestedHelp`, `requestDetails`, `whereDidYouSeeUs`) restored in the canonical component while preserving `/api/lead-signal` submission path and QR attribution behavior.
 
+### FUNNEL002
+- **Task ID:** FUNNEL002
+- **Task Name:** Package Estimate Flow Repair
+- **Status:** DONE
+- **Category:** FUNNEL / RUNTIME / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Repair package-selected estimate request submission and package-selected `/quoteReview` rendering while preserving working Fit Check and QRLanding behavior.
+- **Allowed Scope:** package-selected contact flow submit repair, package-selected `/quoteReview` defensive rendering repair, query/context preservation, canonical estimate form staged/card formatting cleanup, bounded register update.
+- **Forbidden Scope:** no Stripe/payment logic changes; no HubSpot schema/workflow changes; no pricing logic changes; no unrelated routes/features.
+- **Validation Required:** `npm run build`; `rg -n "quoteReview|Review Estimate Summary|selected-package|estimateIntent|CanonicalEstimateRequestForm|sendLeadSignal|qrlanding|estimate_form_started|estimate_form_submitted|entryRoute|requestId" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`.
+- **Exit Criteria:** package-selected contact submission uses canonical `/api/lead-signal` path with preserved contextual query metadata; package-selected `/quoteReview` never blank-screens when Fit Check-only parameters are absent; QR attribution remains scoped to QR sessions only.
+- **Completion Notes:** Contact page now forwards package/funnel query context (`estimateIntent`, `recommended`, `fit`, `propertySize`, `coverageExpectation`, `tier`, `package`) into quote-review routing and lead-signal payload context, while keeping non-QR entry route values local to actual path. QuoteReview blank render fixed by eliminating conditional-hook ordering risk during null quote fallback rendering. Canonical estimate form kept shared while tightening staged grouping/spacing in the common component.
+
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
 - **Task Name:** Final publication readiness for QR placards and WNYHS public site
