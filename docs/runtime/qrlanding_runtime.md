@@ -183,3 +183,53 @@ Implemented attribution payload fields for all three events:
 - `entryRoute` (locked value `/qrlanding`)
 
 This addendum does not change Stripe logic, HubSpot schema/workflow behavior, route topology, or `/api/lead-signal` write-path authority.
+
+
+## RUNTIME010 QR Attribution Event Schema Validation Contract (2026-05-25)
+
+Canonical QR attribution event names are locked to:
+
+- `qrlanding_view`
+- `estimate_form_started`
+- `estimate_form_submitted`
+
+Required payload fields for QR attribution events:
+
+- `eventName`
+- `requestId`
+- `timestamp`
+- `entryRoute`
+
+Required field validation rules (documentation contract for future implementation):
+
+- `eventName` must match one of the canonical names above.
+- `requestId` must be present and non-empty.
+- `timestamp` must be present and parseable as a timestamp value.
+- `entryRoute` must equal `/qrlanding` for QR placard attribution events.
+
+Optional metadata guidance (non-blocking for lead submission):
+
+- `assetSource`
+- `source`
+- `sourceFamily`
+- `whereDidYouSeeUs`
+- bounded session context fields when already available
+
+Validation and failure expectations:
+
+- Accept known canonical QR attribution event names.
+- Unknown `eventName` values should be rejected or ignored by attribution handling paths.
+- Preserve `requestId` correlation across the attribution chain when events are accepted.
+- Missing optional metadata must not block lead submission behavior.
+- Malformed attribution payloads should be diagnosable via bounded logs/diagnostics in future implementation work.
+
+Reporting and join assumptions:
+
+- Event chain is directional: `qrlanding_view` → `estimate_form_started` → `estimate_form_submitted`.
+- `requestId`/session correlation is directional attribution context, not final CRM identity.
+- Submitted lead remains the conversion boundary.
+- Cloudflare analytics remains directional traffic telemetry and must not be treated as canonical conversion counts.
+
+Implementation boundary reminder:
+
+- This contract is documentation-only for RUNTIME010 and does not implement runtime schema validation behavior in this task.

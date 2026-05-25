@@ -1059,6 +1059,26 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Operator Decision Required:** No.
 
 
+
+
+### T-RUNTIME010-001
+- **Task ID:** T-RUNTIME010-001
+- **Task Name:** RUNTIME010 — QR Attribution Event Schema Validation Contract
+- **Status:** DONE
+- **Category:** QR / RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define strict documentation contract for QR attribution event payload naming, required fields, validation expectations, failure handling, and reporting/join assumptions introduced after RUNTIME009.
+- **Allowed Scope:** Runtime documentation/governance updates only across QR attribution, requestId contract clarification, and lead-signal contract clarification.
+- **Forbidden Scope:** No runtime implementation code; no frontend/API logic changes; no Stripe changes; no HubSpot schema/pipeline/workflow changes; no route/UI copy changes.
+- **Target Files:** `/docs/runtime/qrlanding_runtime.md`, `/docs/runtime/request_id_contract.md`, `/docs/runtime/lead_signal_contract.md`, `/docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Documentation-only schema contract; no runtime behavior changes.
+- **Documentation Updates Required:** Canonical event-name list, required payload field rules, optional metadata guidance, requestId authority distinction, future validation expectations, and reporting/join assumptions.
+- **Completion Notes:** Added RUNTIME010 documentation contract sections across runtime docs; clarified client attribution requestId vs server authoritative requestId; documented reject/ignore behavior for unknown event names and non-blocking posture for optional metadata.
+- **Validation Required:** `git diff -- docs/runtime docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md docs/codex/QA_CHECKLIST.md`; `rg -n "qrlanding_view|estimate_form_started|estimate_form_submitted|eventName|entryRoute|requestId|schema|validation" docs/runtime docs/system`; `rg -n "TODO|placeholder|implement|implementation" docs/runtime docs/system/master-task-register.md`; `npm run build`.
+- **Exit Criteria:** RUNTIME010 schema validation contract is fully documented with bounded ownership and zero runtime implementation changes.
+- **Dependencies:** RUNTIME009 completion evidence.
+- **Operator Decision Required:** No.
+
 ## Ready Tasks
 
 ### FUNNEL-FIX001
