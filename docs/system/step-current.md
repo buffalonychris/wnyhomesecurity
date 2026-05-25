@@ -116,3 +116,10 @@ All future visual/funnel tasks must load and follow:
 - `/docs/brand/header_footer_standards_rev01.md`
 - `/docs/specs/qr_funnel_standards_rev01.md`
 - `/docs/specs/public_funnel_standards_rev01.md`
+
+
+## Operational Authority Clarification
+
+- This file is the single current operational context document for execution control.
+- Historical Step documents are lineage/reference only unless explicitly promoted here.
+- The Master Task Register is the operational task driver; tasks still require bounded `ACTIVE` entries (or explicit bounded prompt creation when allowed by higher governance docs).

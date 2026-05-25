@@ -104,7 +104,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **File path:** `docs/system/step-current.md`
 - **Purpose / likely role:** Current operational context document naming the single controlling Step and preserved Step lineage.
 - **Authority level:** **System governance**
-- **Notes:** Time-sensitive control file; defines one execution controller at a time and should be checked before every implementation task.
+- **Notes:** Single current operational context authority; historical Steps are lineage/reference only unless promoted here; always check before execution.
+
+### `/docs/system/master-task-register.md`
+- **File path:** `docs/system/master-task-register.md`
+- **Purpose / likely role:** Operational task driver and executable task queue; only `ACTIVE` tasks are executable unless a bounded prompt task is explicitly created.
+- **Authority level:** **System governance (execution driver)**
+- **Notes:** Works with `step-current.md`; ACTIVE authorizes bounded execution but does not authorize task bundling.
+
 
 
 ### `/docs/specs/visual-brand-system-rev01.md`

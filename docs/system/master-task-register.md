@@ -12,6 +12,36 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized for bounded final-hour execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle. Hard guardrails for claims, Stripe, HubSpot, runtime/routes/UI, secrets, historical docs, and generated binary print files remain enforced.
 
 
+
+### GOV001
+- **Task ID:** GOV001
+- **Task Name:** Governance Precedence Reconciliation
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reconcile governance precedence to a single current-context + Master Task Register execution model and remove multi-active-Step ambiguity.
+- **Allowed Scope:**
+  - docs-only governance reconciliation in `/docs/system/` and `/docs/DOCUMENT_CATALOG.md`
+  - authority hierarchy clarification
+  - current operational context clarification
+  - historical Step lineage-role clarification
+  - task-register role clarification and GOV001 lifecycle updates
+- **Forbidden Scope:**
+  - no runtime/source/frontend/API/route changes
+  - no Stripe logic/payment verification changes
+  - no HubSpot schema/workflow/write-path changes
+  - no deletion of historical docs
+- **Validation Required:**
+  - `git diff -- docs/system docs/DOCUMENT_CATALOG.md docs/codex`
+  - `rg -n "active step|active Step|controlling step|controlling Step|multi-active|multiple active|Step101|Step102|Step201|current operational context|Master Task Register|authority hierarchy|precedence" docs/system docs/DOCUMENT_CATALOG.md docs/codex`
+  - `rg -n "Vercel|vercel" docs`
+- **Exit Criteria:**
+  - authority hierarchy is explicit and unambiguous
+  - `step-current.md` is explicitly single-current-context authority
+  - historical Steps are lineage/reference unless promoted
+  - Master Task Register is explicitly the operational task driver
+  - document catalog authority labels/classifications are aligned
+
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
 - **Task Name:** Final publication readiness for QR placards and WNYHS public site

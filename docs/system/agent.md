@@ -28,12 +28,14 @@ If the repo is wrong, stop.
 
 `step-current.md` defines one current operational context at a time.
 
-The agent must treat the controlling Step in that context as the only execution controller for implementation authority.
+The agent must treat the current operational context in `step-current.md` as the single implementation controller.
+
+Historical Step docs are lineage/reference unless explicitly promoted into `step-current.md`.
 
 A task may proceed only when:
 
 - the task is listed under **Active Tasks** in `/docs/system/master-task-register.md`, and
-- the task is authorized by the current operational context/controlling Step, and
+- the task is authorized by the current operational context, and
 - the task does not violate guardrails.
 
 Historical Steps may be read for lineage/reference but do not authorize implementation by themselves.
@@ -50,7 +52,7 @@ Allowed:
 - Add endpoints
 - Add shared helpers
 - Add routing wrappers
-- Replace public-facing copy only when within active Step scope
+- Replace public-facing copy only when within active task/context scope
 - Remove confirmed leftover junk only when explicitly authorized
 
 Avoid:
@@ -64,7 +66,7 @@ Avoid:
 
 ## 4. Destructive Changes
 
-Destructive changes require explicit authorization in the active Step or prompt.
+Destructive changes require explicit authorization in the active bounded task definition or prompt.
 
 Destructive examples:
 
@@ -95,7 +97,7 @@ Do not modify:
 - Deposit amount calculation
 - Payment success/cancel semantics
 
-unless an active Step explicitly authorizes Stripe/payment work.
+unless an active bounded task explicitly authorizes Stripe/payment work.
 
 ---
 
