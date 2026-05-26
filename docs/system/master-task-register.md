@@ -87,6 +87,22 @@ Every actionable task record must include:
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+
+- **Task ID:** FUNNEL004
+- **Task Name:** Replace Public Package Pricing With Guided Protection Styles + Build Your System Direction
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Replace rigid public Bronze/Silver/Gold package pricing emphasis with consultative protection-style guidance and modular Build Your System direction while preserving estimate flows and protected runtime systems.
+- **Allowed Scope:** Home-security package/protection copy/layout updates, CTA text shifts toward estimate/walkthrough actions, modular Build Your System guidance sections, and bounded register updates.
+- **Forbidden Scope:** Stripe/payment flow changes, HubSpot schema/workflow changes, lead-signal transport/runtime contract changes, QR attribution contract changes, autoresponder changes, quote review CTA reintroduction, and route architecture rewrites.
+- **Target Files:** `src/pages/Packages.tsx`, `src/pages/PackageDetail.tsx`, `src/components/homeSecurity/PackageTierCards.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** Public funnel presentation only (no runtime behavior changes).
+- **Documentation Updates Required:** Task register entry only.
+- **Validation Required:** `npm run build`; `rg -n "Bronze|Silver|Gold|1799|2499|3499|Build Your System|Request Free Estimate|CanonicalEstimateRequestForm|sendLeadSignal|lead-signal|quoteReview" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`
+- **Exit Criteria:** Public home-security package/protection surfaces avoid hard public package pricing; consultative protection-style + Build Your System direction is visible; estimate capture flows and protected systems remain unchanged.
+- **Dependencies:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance and existing FUNNEL hardening tasks.
+- **Operator Decision Required:** Approve merge after QA validation.
 Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized for bounded final-hour execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle. Hard guardrails for claims, Stripe, HubSpot, runtime/routes/UI, secrets, historical docs, and generated binary print files remain enforced.
 
 
@@ -1511,6 +1527,22 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+
+- **Task ID:** FUNNEL004
+- **Task Name:** Replace Public Package Pricing With Guided Protection Styles + Build Your System Direction
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Replace rigid public Bronze/Silver/Gold package pricing emphasis with consultative protection-style guidance and modular Build Your System direction while preserving estimate flows and protected runtime systems.
+- **Allowed Scope:** Home-security package/protection copy/layout updates, CTA text shifts toward estimate/walkthrough actions, modular Build Your System guidance sections, and bounded register updates.
+- **Forbidden Scope:** Stripe/payment flow changes, HubSpot schema/workflow changes, lead-signal transport/runtime contract changes, QR attribution contract changes, autoresponder changes, quote review CTA reintroduction, and route architecture rewrites.
+- **Target Files:** `src/pages/Packages.tsx`, `src/pages/PackageDetail.tsx`, `src/components/homeSecurity/PackageTierCards.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** Public funnel presentation only (no runtime behavior changes).
+- **Documentation Updates Required:** Task register entry only.
+- **Validation Required:** `npm run build`; `rg -n "Bronze|Silver|Gold|1799|2499|3499|Build Your System|Request Free Estimate|CanonicalEstimateRequestForm|sendLeadSignal|lead-signal|quoteReview" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`
+- **Exit Criteria:** Public home-security package/protection surfaces avoid hard public package pricing; consultative protection-style + Build Your System direction is visible; estimate capture flows and protected systems remain unchanged.
+- **Dependencies:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance and existing FUNNEL hardening tasks.
+- **Operator Decision Required:** Approve merge after QA validation.
 
 ### FINISH-LINE-PAGES001
 - **Task ID:** FINISH-LINE-PAGES001

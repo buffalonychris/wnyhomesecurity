@@ -28,7 +28,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
         const highlights = features.slice(0, 2);
         const handleSelect = () => updateRetailFlow({ homeSecurity: { selectedPackageId: tierId } });
         return (
-          <article key={pkg.id} className="hs-premium-package-card" aria-label={`${pkg.name} package`}>
+          <article key={pkg.id} className="hs-premium-package-card" aria-label={`${pkg.name} protection style`}>
             {image ? (
               <div className="hs-premium-package-media">
                 <picture>
@@ -53,7 +53,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
                   <p className="hs-premium-package-for">For: {pkg.idealFor}</p>
                   <h3>{pkg.tagline}</h3>
                 </div>
-                <div className="hs-premium-package-price">{pkg.price}</div>
+                <div className="hs-premium-package-price">Walkthrough estimate</div>
               </div>
               <p className="hs-premium-package-summary">{pkg.oneLiner}</p>
               {highlights.length ? (
@@ -65,7 +65,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
               ) : null}
               {features.length ? (
                 <details className="hs-premium-package-accordion">
-                  <summary>What’s included</summary>
+                  <summary>Example modules</summary>
                   <ul className="hs-premium-package-list">
                     {features.map((item) => (
                       <li key={item}>{item}</li>
@@ -75,12 +75,12 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
               ) : null}
               <div className="hs-premium-package-actions">
                 <Link className="btn btn-primary" to={tierCtaLink} onClick={handleSelect}>
-                  Get Estimate
+                  Build Your System
                 </Link>
               </div>
               <div className="hs-premium-package-meta">
                 <Link className="hs-premium-package-link" to={`/packages/${pkg.id}?vertical=home-security`}>
-                  View Details
+                  Explore Protection Options
                 </Link>
               </div>
             </div>
