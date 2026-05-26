@@ -192,16 +192,20 @@ export const homeSecurityPackages: PackageTier[] = [
     name: 'Bronze',
     badge: 'Bronze tier',
     price: '$1,699 one-time',
-    tagline: 'Starter Security & Awareness',
+    tagline: 'A good starting point for basic visibility.',
     oneLiner:
-      'Entry awareness with a doorbell, one indoor camera, and local-first alerts.',
+      'For front-door visibility, package awareness, and smaller homes.',
     bio:
-      'Bronze delivers starter security coverage with local-first alerts, essential sensors, and local recording for apartments or small homes.',
+      'Essential Awareness is designed for simple, practical visibility around key entry points.',
     idealFor:
-      'Apartments and small homes that need reliable entry awareness and local control.',
+      'For front-door visibility, package awareness, and smaller homes.',
     typicalCoverage: getHomeSecurityPackageSpec('a1').coverage,
     includes: getHomeSecurityPackageSpec('a1').capabilities,
-    features: getHomeSecurityPackageSpec('a1').capabilities,
+    features: [
+      'See what is happening near key entry points.',
+      'Add practical alerts without a required monitoring contract.',
+      'Keep the system simple and locally installed.',
+    ],
     hardware: getHomeSecurityHardwareItems('a1'),
     billOfMaterials: [],
     automationFlows: [
@@ -235,16 +239,20 @@ export const homeSecurityPackages: PackageTier[] = [
     name: 'Silver',
     badge: 'Silver tier',
     price: '$2,599 one-time',
-    tagline: 'Whole-Home Coverage (Recommended)',
+    tagline: 'A strong fit for many Western New York homes.',
     oneLiner:
-      'Balanced coverage focused on front entry visibility, driveway monitoring, and side access coverage.',
+      'For families who want front entry, driveway, and side-access awareness.',
     bio:
-      'Silver delivers balanced whole-home coverage with practical visibility across key entry and activity zones.',
+      'Balanced Home Coverage keeps planning focused on the areas households use most.',
     idealFor:
-      'Most homeowners who want balanced coverage across main and secondary entries.',
+      'For families who want front entry, driveway, and side-access awareness.',
     typicalCoverage: getHomeSecurityPackageSpec('a2').coverage,
     includes: getHomeSecurityPackageSpec('a2').capabilities,
-    features: getHomeSecurityPackageSpec('a2').capabilities,
+    features: [
+      'Cover the areas people use most around your home.',
+      'Balance cameras, sensors, and alerts around your layout.',
+      'Plan remote viewing and recording options during walkthrough.',
+    ],
     hardware: getHomeSecurityHardwareItems('a2'),
     billOfMaterials: [],
     automationFlows: [
@@ -278,16 +286,20 @@ export const homeSecurityPackages: PackageTier[] = [
     name: 'Gold',
     badge: 'Gold tier',
     price: '$3,499 one-time',
-    tagline: 'Local Recording + Highest Coverage',
+    tagline: 'Best for homes that need wider coverage planning.',
     oneLiner:
-      'Expanded property coverage with longer local recording retention and broader awareness zones.',
+      'For larger homes, detached garages, and broader outdoor awareness.',
     bio:
-      'Gold delivers expanded property coverage with broader visibility, detached garage coverage options, and longer local recording retention.',
+      'Expanded Property Coverage supports broader planning across larger lots and access points.',
     idealFor:
-      'Larger homes and households with higher risk tolerance or maximum coverage needs.',
+      'For larger homes, detached garages, and broader outdoor awareness.',
     typicalCoverage: getHomeSecurityPackageSpec('a3').coverage,
     includes: getHomeSecurityPackageSpec('a3').capabilities,
-    features: getHomeSecurityPackageSpec('a3').capabilities,
+    features: [
+      'Improve visibility across more of the property.',
+      'Plan longer recording and stronger deterrence options.',
+      'Build around your layout, access points, and priorities.',
+    ],
     hardware: getHomeSecurityHardwareItems('a3'),
     billOfMaterials: [],
     automationFlows: [

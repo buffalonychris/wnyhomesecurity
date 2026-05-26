@@ -2429,3 +2429,12 @@ No ARCHIVED tasks are currently recorded.
   - Home Assistant remains primary customer-facing control layer in documentation
   - Node-RED documented as operator-facing advanced layer only
   - follow-up work captured as bounded future tasks only
+
+
+### HOTFIX004
+- **Task ID:** HOTFIX004
+- **Task Name:** Simplify Package Tile Content
+- **Status:** DONE
+- **Category:** COPY
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Completion Notes:** Simplified the three home-security package tiles to homeowner-facing protection copy, removed tier-heavy/technical/accordion clutter from tile bodies, preserved routes/forms/integrations, and bumped site version for deploy visibility.
