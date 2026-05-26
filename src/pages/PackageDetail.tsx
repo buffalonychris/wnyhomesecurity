@@ -121,14 +121,6 @@ const PackageDetail = () => {
           </div>
         </section>
 
-        <div className="pdp-sticky-cta" aria-label="Quick actions">
-          <div className="pdp-sticky-inner">
-            <Link className="btn btn-primary" to={primaryActionLink}>
-              {primaryActionLabel}
-            </Link>
-          </div>
-        </div>
-
         <section id="what-you-get" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
             <h2>Starting-point equipment examples</h2>

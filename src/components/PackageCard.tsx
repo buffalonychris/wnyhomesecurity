@@ -78,7 +78,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
           {isMostPopular ? <div className="package-card-ribbon">Recommended</div> : null}
         </div>
       ) : null}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="package-card-header">
         <div style={{ display: 'grid', gap: '0.35rem' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
             <TierBadge tierId={tierId} labelOverride={pkg.badge ?? undefined} vertical={vertical} />
@@ -87,10 +87,8 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
           <h3 style={{ margin: 0, color: '#fff7e6' }}>{styleLabel}</h3>
           <div style={{ color: 'var(--kaec-muted)' }}>{pkg.tagline}</div>
         </div>
-        <div style={{ textAlign: 'right' }}>
+        <div className="package-card-context">
           <small style={{ color: 'var(--kaec-muted)' }}>Customized after walkthrough review</small>
-          <br />
-          <small style={{ color: 'var(--kaec-muted)' }}>Starting point only</small>
         </div>
       </div>
       <p style={{ marginTop: '1rem', color: '#e6ddc7' }}>{pkg.oneLiner}</p>
