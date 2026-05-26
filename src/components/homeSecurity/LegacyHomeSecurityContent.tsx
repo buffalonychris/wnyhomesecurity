@@ -135,7 +135,6 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
                 key={pkg.id}
                 pkg={pkg}
                 vertical="home-security"
-                imageCaption={tierMedia?.caption}
                 image={tierMedia?.image}
               />
             );
