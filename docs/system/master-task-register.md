@@ -103,6 +103,25 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Exit Criteria:** Public package/protection surfaces avoid hard pricing anchors and rigid package-purchase language; walkthrough-led protection planning and Build Your System direction are visible; estimate capture flows and protected systems remain unchanged.
 - **Dependencies:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance and existing FUNNEL hardening tasks.
 - **Operator Decision Required:** Approve merge after QA validation.
+
+
+### FUNNEL006
+- **Task ID:** FUNNEL006
+- **Task Name:** Polish Protection Styles + Build Your System Positioning
+- **Status:** DONE
+- **Category:** FUNNEL / COPY / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Refine package surfaces so protection-style planning and local walkthrough positioning are primary, while preserving all protected lead, CRM, and payment systems.
+- **Allowed Scope:** Packages and package-detail copy/layout polish, consultative CTA labeling, Build Around Your Property section prominence, visible site version bump, bounded task-register update.
+- **Forbidden Scope:** no form submit logic changes; no `/api/lead-signal` transport/runtime changes; no HubSpot schema/workflow changes; no autoresponder changes; no Stripe/payment changes; no quoteReview CTA reintroduction; no image creation/replacement.
+- **Target Files:** `src/pages/Packages.tsx`, `src/components/PackageCard.tsx`, `src/components/homeSecurity/PackageTierCards.tsx`, `src/content/homeSecurityPackageData.ts`, `src/content/packages.ts`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** None (public funnel presentation/copy only).
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `npm run build`; `rg -n "Bronze tier|Silver tier|Gold tier|Walkthrough estimate|No subscriptions sold by us|Use As Starting Point|two indoor|PoE|NVR included|Home Assistant with LAN|Build Around Your Property|Review Estimate Summary|quoteReview|guarantee|guaranteed" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`
+- **Exit Criteria:** Protection-style names are primary on package cards; pricing-like walkthrough block removed/softened; Build Around Your Property is a distinct major section; risky subscription phrasing replaced; no protected runtime system behavior changed.
+- **Dependencies:** FUNNEL005 framing preserved.
+- **Operator Decision Required:** Yes (merge approval).
+- **Completion Notes:** Completed by making protection-style names the dominant visible headings, replacing large walkthrough-estimate visual emphasis with supportive review copy, reducing technical density in package copy, upgrading CTA language to consultative walkthrough wording, promoting Build Around Your Property with module chips and local walkthrough guidance, and bumping visible site version. Build and scope-grep validations passed with no form/lead/HubSpot/Stripe/runtime behavior edits.
 Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized for bounded final-hour execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle. Hard guardrails for claims, Stripe, HubSpot, runtime/routes/UI, secrets, historical docs, and generated binary print files remain enforced.
 
 
