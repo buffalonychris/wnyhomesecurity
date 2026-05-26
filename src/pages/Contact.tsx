@@ -1,4 +1,4 @@
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import { brandHomeSecurity, brandSite } from '../lib/brand';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
@@ -23,15 +23,6 @@ const Contact = () => {
 
   useLayoutConfig({ layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide', showBreadcrumbs: false, breadcrumb: [] });
 
-  const params = new URLSearchParams(location.search);
-  params.set('vertical', 'home-security');
-  if (packageTier) params.set('tier', packageTier);
-  if (recommended) params.set('recommended', recommended);
-  if (fit) params.set('fit', fit);
-  if (estimateIntent) params.set('estimateIntent', estimateIntent);
-  if (propertySize) params.set('propertySize', propertySize);
-  if (coverageExpectation) params.set('coverageExpectation', coverageExpectation);
-  if (packageId) params.set('package', packageId);
 
   const content = <>
     <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
@@ -39,7 +30,6 @@ const Contact = () => {
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
       <a className="btn btn-link" href={buildTel()}>Call {wnyhsContact.phone.display}</a>
       <a className="btn btn-link" href={buildSms('Hi! I’d like to talk about Home Security. Please call me back.')}>Text {wnyhsContact.phone.display}</a>
-      <Link className="btn btn-secondary" to={`/quoteReview?${params.toString()}`}>Review Estimate Summary</Link>
     </div>
     <section className="qr-panel" id="estimate-form">
       <h3>Request My Estimate</h3>

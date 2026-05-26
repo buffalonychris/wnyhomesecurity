@@ -199,6 +199,25 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Exit Criteria:** package-selected submissions use the canonical `/api/lead-signal` path with non-QR context preserved and without QR-only attribution leakage; `/quoteReview` query-only package URLs render visible fallback/summary and never blank-screen; QRLanding and Fit Check flows remain intact.
 - **Completion Notes:** Verified QRLanding and package/contact flows both submit through `sendLeadSignal` → `/api/lead-signal` with shared canonical contact/request contract; package flow intentionally keeps non-QR `sourceFamily=MAIN_SITE`, non-QR source strings, and `estimateIntent=selected-package` context. HubSpot behavior aligns with expected contact dedupe/append when reused identities are submitted. `/quoteReview` black-screen root cause was conditional hook ordering (early return before later hooks), repaired by ensuring hooks execute in stable order before null-quote fallback rendering.
 
+
+### HOTFIX002
+- **Task ID:** HOTFIX002
+- **Task Name:** Remove Public Review Summary CTAs + Preserve Estimate Form Styling
+- **Status:** DONE
+- **Category:** FUNNEL / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Remove public-facing Review Summary CTAs that route to `/quoteReview` while keeping `/quoteReview` route/component dormant and preserving canonical estimate submit behavior.
+- **Allowed Scope:** remove/hide customer-facing `/quoteReview` CTA links; keep `/quoteReview` route/component intact; preserve canonical estimate request form submit logic and QR/package/Fit Check behavior; update bounded task register record.
+- **Forbidden Scope:** no Stripe/payment changes; no HubSpot schema/workflow changes; no lead-signal payload contract changes; no pricing changes; no route deletion.
+- **Target Files:** `src/pages/Contact.tsx`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** Contact-page UI CTA visibility only.
+- **Documentation Updates Required:** Add HOTFIX002 completion record with scope and validation evidence.
+- **Validation Required:** `npm run build`; `rg -n "Review Estimate Summary|Review Request Summary|Review my estimate|Review my answers|quoteReview" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`
+- **Exit Criteria:** No public Review Summary CTA routes users to `/quoteReview`; `/quoteReview` route/component remains present; canonical estimate submission flows remain unchanged.
+- **Dependencies:** FUNNEL001/FUNNEL002/FUNNEL003 history retained.
+- **Operator Decision Required:** No
+- **Completion Notes:** Removed the contact-page public `Review Estimate Summary` button that linked to `/quoteReview` while preserving call/text CTAs and canonical estimate request form wiring. Kept `/quoteReview` route/component untouched and retained canonical submit path via `sendLeadSignal` to `/api/lead-signal`.
+
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
 - **Task Name:** Final publication readiness for QR placards and WNYHS public site
