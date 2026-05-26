@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../content/packages';
-import TierBadge from './TierBadge';
 import { PackageTierId } from '../data/pricing';
 import { VerticalKey } from '../lib/verticals';
 import { updateRetailFlow } from '../lib/retailFlow';
-import AccordionSection from './AccordionSection';
 
 type Props = {
   pkg: PackageTier;
@@ -24,9 +22,6 @@ type Props = {
 
 const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
   const tierId = pkg.id.toUpperCase() as PackageTierId;
-  const verticalQuery = vertical === 'home-security' ? '?vertical=home-security' : '';
-  const isMostPopular = vertical === 'home-security' && pkg.id === 'a2';
-  const contactLink = vertical === 'home-security' ? `/contact?vertical=home-security&package=${pkg.id}&estimateIntent=selected-package` : '/contact';
   const isHomeSecurity = vertical === 'home-security';
   const styleLabelMap: Record<string, string> = {
     a1: 'Essential Awareness',
@@ -41,99 +36,57 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
     a3: 'gold',
   };
   const tierParam = tierQueryMap[pkg.id] ?? pkg.name.toLowerCase();
-    const primaryHref = isHomeSecurity
+  const primaryHref = isHomeSecurity
     ? `/contact?vertical=home-security&tier=${encodeURIComponent(tierParam)}&estimateIntent=selected-package`
-    : `/packages/${pkg.id}${verticalQuery}`;
+    : `/packages/${pkg.id}`;
   const featureList = isHomeSecurity ? pkg.features ?? [] : pkg.includes;
-  const featurePreview = isHomeSecurity ? featureList.slice(0, 4) : featureList;
-  const hardwareList = isHomeSecurity ? pkg.hardware ?? [] : [];
+
   const handleSelect = () => {
-    if (vertical !== 'home-security') return;
+    if (!isHomeSecurity) return;
     updateRetailFlow({ homeSecurity: { selectedPackageId: tierId } });
   };
+
   return (
-    <div
-      className={`card package-card${isMostPopular ? ' card-popular package-card--featured' : ''}${
-        isHomeSecurity ? ' package-card--home-security' : ''
-      }`}
-      data-tier={isHomeSecurity ? pkg.id : undefined}
-      aria-label={`${styleLabel} protection style`}
-    >
+    <div className={`card package-card${isHomeSecurity ? ' package-card--home-security' : ''}`} data-tier={isHomeSecurity ? pkg.id : undefined} aria-label={`${styleLabel} protection style`}>
       {image ? (
         <div className="package-card-media">
           <picture>
             {image.sources?.map((source) => (
               <source key={source.type} type={source.type} srcSet={source.srcSet} />
             ))}
-            <img
-              src={image.src}
-              srcSet={image.srcSet}
-              sizes={image.sizes}
-              alt={image.alt}
-              loading="lazy"
-            />
+            <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={image.alt} loading="lazy" />
           </picture>
           <div className="package-card-media-overlay" aria-hidden="true" />
           {imageCaption ? <div className="package-card-caption">{imageCaption}</div> : null}
-          {isMostPopular ? <div className="package-card-ribbon">Recommended</div> : null}
         </div>
       ) : null}
       <div className="package-card-header">
         <div style={{ display: 'grid', gap: '0.35rem' }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
-            <TierBadge tierId={tierId} labelOverride={pkg.badge ?? undefined} vertical={vertical} />
-            {isMostPopular && <span className="popular-pill">Recommended</span>}
-          </div>
           <h3 style={{ margin: 0, color: '#fff7e6' }}>{styleLabel}</h3>
-          <div style={{ color: 'var(--kaec-muted)' }}>{pkg.tagline}</div>
+          <div style={{ color: 'var(--kaec-muted)' }}>{pkg.oneLiner}</div>
         </div>
-        <div className="package-card-context">
-          <small style={{ color: 'var(--kaec-muted)' }}>Customized after walkthrough review</small>
-        </div>
+        {isHomeSecurity ? (
+          <div className="package-card-context">
+            <small style={{ color: 'var(--kaec-muted)' }}>{pkg.tagline}</small>
+          </div>
+        ) : null}
       </div>
-      <p style={{ marginTop: '1rem', color: '#e6ddc7' }}>{pkg.oneLiner}</p>
       <ul className="list" aria-label="Included features">
-        {featurePreview.map((item) => (
+        {featureList.map((item) => (
           <li key={item}>
             <span />
             <span>{item}</span>
           </li>
         ))}
       </ul>
-      {isHomeSecurity && (
-        <AccordionSection title="Typical configurations may include" description="Starting-point equipment examples. Final recommendations are confirmed in writing after review.">
-          <ul className="list" aria-label="Full hardware list" style={{ marginTop: 0 }}>
-            {hardwareList.map((item) => (
-              <li key={item.label}>
-                <span />
-                <span>
-                  {item.label} ({item.qty})
-                </span>
-              </li>
-            ))}
-          </ul>
-        </AccordionSection>
-      )}
       <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-        <Link
-          className={`btn btn-primary${isHomeSecurity ? ' package-cta' : ''}`}
-          to={primaryHref}
-          aria-label={primaryLabel}
-          onClick={handleSelect}
-        >
+        <Link className={`btn btn-primary${isHomeSecurity ? ' package-cta' : ''}`} to={primaryHref} aria-label={primaryLabel} onClick={handleSelect}>
           {primaryLabel}
         </Link>
       </div>
-      {isHomeSecurity && (
-        <div className="package-card-links">
-          <Link className="package-card-link" to={`/packages/${pkg.id}${verticalQuery}`}>
-            Explore This Protection Style
-          </Link>
-        </div>
-      )}
       {!isHomeSecurity && (
         <div className="package-card-links">
-          <Link className="package-card-link" to={contactLink} aria-label="Talk to us about this package">
+          <Link className="package-card-link" to={'/contact'} aria-label="Talk to us about this package">
             Talk to us
           </Link>
         </div>
