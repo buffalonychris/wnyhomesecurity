@@ -53,7 +53,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
                   <p className="hs-premium-package-for">For: {pkg.idealFor}</p>
                   <h3>{pkg.tagline}</h3>
                 </div>
-                <div className="hs-premium-package-price">Walkthrough estimate</div>
+                <div className="hs-premium-package-price">Final scope confirmed after review</div>
               </div>
               <p className="hs-premium-package-summary">{pkg.oneLiner}</p>
               {highlights.length ? (
@@ -75,7 +75,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
               ) : null}
               <div className="hs-premium-package-actions">
                 <Link className="btn btn-primary" to={tierCtaLink} onClick={handleSelect}>
-                  Build Your System
+                  Request Walkthrough
                 </Link>
               </div>
               <div className="hs-premium-package-meta">

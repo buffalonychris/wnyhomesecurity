@@ -237,9 +237,9 @@ export const homeSecurityPackages: PackageTier[] = [
     price: '$2,599 one-time',
     tagline: 'Whole-Home Coverage (Recommended)',
     oneLiner:
-      'Two indoor views, two PoE outdoor cameras, plus a doorbell for most homeowners.',
+      'Balanced coverage focused on front entry visibility, driveway monitoring, and side access coverage.',
     bio:
-      'Silver delivers whole-home coverage with more sensors, two indoor views, and reliable outdoor PoE visibility.',
+      'Silver delivers balanced whole-home coverage with practical visibility across key entry and activity zones.',
     idealFor:
       'Most homeowners who want balanced coverage across main and secondary entries.',
     typicalCoverage: getHomeSecurityPackageSpec('a2').coverage,
@@ -280,9 +280,9 @@ export const homeSecurityPackages: PackageTier[] = [
     price: '$3,499 one-time',
     tagline: 'Local Recording + Highest Coverage',
     oneLiner:
-      'Dedicated NVR recording, three indoor cameras, and the highest sensor coverage.',
+      'Expanded property coverage with longer local recording retention and broader awareness zones.',
     bio:
-      'Gold delivers the highest coverage with dedicated local recording, multiple PoE outdoor angles, and expanded interior awareness.',
+      'Gold delivers expanded property coverage with broader visibility, detached garage coverage options, and longer local recording retention.',
     idealFor:
       'Larger homes and households with higher risk tolerance or maximum coverage needs.',
     typicalCoverage: getHomeSecurityPackageSpec('a3').coverage,

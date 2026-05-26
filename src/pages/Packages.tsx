@@ -123,18 +123,23 @@ const Packages = () => {
       )}
       {vertical === 'home-security' && (
         <p style={{ marginTop: '1rem', color: 'var(--kaec-muted)' }}>
-          No required monthly monitoring contracts. Locally installed and locally supported, with equipment options you can own.
+          No required monthly monitoring contracts. Many Western New York customers choose local-first systems that are locally installed and supported without recurring monitoring contracts.
         </p>
       )}
       {vertical === 'home-security' && (
         <section className="card motion-fade-up" style={{ marginTop: '1rem' }}>
-          <h2 style={{ marginTop: 0 }}>Build Your System</h2>
+          <h2 style={{ marginTop: 0 }}>Build Around Your Property</h2>
           <p style={{ color: 'var(--kaec-muted)' }}>
-            Plan around indoor and outdoor cameras, video doorbells, garage coverage/control, smart locks, door/window sensors, motion sensors, floodlight or spotlight cameras, local recording, remote access, smart automations, and Home Assistant integration.
+            Choose from planning modules like Indoor Cameras, Outdoor Cameras, Video Doorbells, Garage Coverage, Smart Locks, Door/Window Sensors, Motion Sensors, Floodlights, Remote Access, Local Recording, and Smart Automations.
           </p>
           <p style={{ color: 'var(--kaec-muted)', marginBottom: 0 }}>
-            We’ll tell you if a system is overbuilt or missing an important concern. Final scope and pricing are confirmed in writing after review.
+            We’ll help determine what actually makes sense for your layout and priorities. Every plan is customized during your local walkthrough and confirmed in writing after review.
           </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem' }}>
+            {['Indoor Cameras','Outdoor Cameras','Video Doorbells','Garage Coverage','Smart Locks','Door/Window Sensors','Motion Sensors','Floodlights','Remote Access','Local Recording','Smart Automations'].map((item) => (
+              <span key={item} style={{ border: '1px solid var(--kaec-border)', padding: '0.35rem 0.6rem', borderRadius: '999px', color: '#fff7e6', fontSize: '0.9rem' }}>{item}</span>
+            ))}
+          </div>
         </section>
       )}
 

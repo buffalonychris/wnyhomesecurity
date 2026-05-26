@@ -63,10 +63,10 @@ export const HOME_SECURITY_PACKAGE_SPECS: Record<HomeSecurityTierId, HomeSecurit
       nvrIncluded: false,
     },
     capabilities: [
-      'Local-first control in Home Assistant with LAN reliability.',
-      'Optional remote viewing with active internet access.',
+      'Local-first systems designed around your home network.',
+      'Remote viewing options can be discussed during planning.',
       'Local recording host sized to the package (no NVR in Bronze).',
-      'No subscriptions sold by us; equipment stays owned by you.',
+      'No required monthly monitoring contracts; equipment stays owned by you.',
     ],
   },
   a2: {
@@ -88,9 +88,9 @@ export const HOME_SECURITY_PACKAGE_SPECS: Record<HomeSecurityTierId, HomeSecurit
     },
     capabilities: [
       'Local-first control with expanded indoor + outdoor coverage.',
-      'Optional remote viewing with active internet access.',
-      'NVR included and sized to the Silver tier.',
-      'No subscriptions sold by us; equipment stays owned by you.',
+      'Remote viewing options can be discussed during planning.',
+      'Expanded local recording options for longer footage retention.',
+      'No required monthly monitoring contracts; equipment stays owned by you.',
     ],
   },
   a3: {
@@ -112,9 +112,9 @@ export const HOME_SECURITY_PACKAGE_SPECS: Record<HomeSecurityTierId, HomeSecurit
     },
     capabilities: [
       'Local-first control with the highest camera and sensor coverage.',
-      'Optional remote viewing with active internet access.',
-      'NVR included and sized to the Gold tier.',
-      'No subscriptions sold by us; equipment stays owned by you.',
+      'Remote viewing options can be discussed during planning.',
+      'Expanded local recording options for longer footage retention.',
+      'No required monthly monitoring contracts; equipment stays owned by you.',
     ],
   },
 };

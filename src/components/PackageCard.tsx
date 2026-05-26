@@ -34,7 +34,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
     a3: 'Expanded Property Coverage',
   };
   const styleLabel = isHomeSecurity ? styleLabelMap[pkg.id] ?? pkg.name : pkg.name;
-  const primaryLabel = isHomeSecurity ? 'Use As Starting Point' : `View ${pkg.name}`;
+  const primaryLabel = isHomeSecurity ? 'Request Walkthrough' : `View ${pkg.name}`;
   const tierQueryMap: Record<string, string> = {
     a1: 'bronze',
     a2: 'silver',
@@ -88,10 +88,9 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
           <div style={{ color: 'var(--kaec-muted)' }}>{pkg.tagline}</div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--kaec-gold)' }}>
-            Walkthrough estimate
-          </div>
-          <small style={{ color: 'var(--kaec-muted)' }}>Customized after walkthrough</small>
+          <small style={{ color: 'var(--kaec-muted)' }}>Customized after walkthrough review</small>
+          <br />
+          <small style={{ color: 'var(--kaec-muted)' }}>Starting point only</small>
         </div>
       </div>
       <p style={{ marginTop: '1rem', color: '#e6ddc7' }}>{pkg.oneLiner}</p>
