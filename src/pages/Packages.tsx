@@ -109,7 +109,6 @@ const Packages = () => {
               key={pkg.id}
               pkg={pkg}
               vertical={vertical}
-              imageCaption={tierMedia?.caption}
               image={tierMedia?.image}
             />
           );

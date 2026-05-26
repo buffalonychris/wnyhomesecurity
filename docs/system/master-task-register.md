@@ -2438,3 +2438,16 @@ No ARCHIVED tasks are currently recorded.
 - **Category:** COPY
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Completion Notes:** Simplified the three home-security package tiles to homeowner-facing protection copy, removed tier-heavy/technical/accordion clutter from tile bodies, preserved routes/forms/integrations, and bumped site version for deploy visibility.
+
+### HOTFIX006
+- **Task ID:** HOTFIX006
+- **Task Name:** Replace Package Card Images + Remove Image Overlay Labels
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Replace package tile images with newly uploaded package visuals and remove image-area overlay clutter while preserving HOTFIX004 tile body copy and Request Walkthrough CTA behavior.
+- **Allowed Scope:** `src/content/homeSecurityPackageData.ts`, `src/components/PackageCard.tsx`, `src/pages/Packages.tsx`, `src/components/homeSecurity/LegacyHomeSecurityContent.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Forbidden Scope:** No route changes; no form changes; no lead-signal/HubSpot/autoresponder changes; no Stripe/payment changes; no QRLanding changes; no package body-copy rewrites.
+- **Validation Required:** `ls -la public/images/home-security`; `npm run build`; `rg -n "essential-awareness|balanced-home-coverage|expanded-property-coverage|Essential indoor visibility|Balanced indoor|Maximum coverage|View Details|Talk to Us|Request Walkthrough" src public docs`; `git diff -- src public docs/system/master-task-register.md`.
+- **Exit Criteria:** Three new package card images are wired from `/public/images/home-security`; image overlay labels/buttons are removed from card media area; HOTFIX004 body copy and Request Walkthrough CTA remain intact; protected systems untouched.
+- **Completion Notes:** Wired package cards to uploaded PNG assets (`essential-awareness-card.png`, `balanced_home_coverage_card_v01.png`, `expanded_property_coverage_card_v1.png`) because `.webp` filenames requested in prompt were not present; removed media overlay layer + image caption rendering from package cards; preserved tile body copy and Request Walkthrough CTA; bumped visible site version to `v1.0.88`; build passed.

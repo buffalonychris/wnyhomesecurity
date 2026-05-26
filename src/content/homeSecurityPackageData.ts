@@ -121,54 +121,24 @@ export const HOME_SECURITY_PACKAGE_SPECS: Record<HomeSecurityTierId, HomeSecurit
 
 export const HOME_SECURITY_TIER_MEDIA: Record<HomeSecurityTierId, HomeSecurityTierMedia> = {
   a1: {
-    caption: 'Essential indoor visibility',
+    caption: '',
     image: {
-      alt: 'Apartment entry with discreet doorbell and indoor camera',
-      src: '/images/home-security/tier-bronze-960w.png',
-      srcSet:
-        '/images/home-security/tier-bronze-512w.png 512w, /images/home-security/tier-bronze-640w.png 640w, /images/home-security/tier-bronze-960w.png 960w',
-      sizes: '(max-width: 720px) 100vw, 360px',
-      sources: [
-        {
-          type: 'image/webp',
-          srcSet:
-            '/images/home-security/tier-bronze-512w.webp 512w, /images/home-security/tier-bronze-640w.webp 640w, /images/home-security/tier-bronze-960w.webp 960w',
-        },
-      ],
+      alt: 'Essential Awareness package coverage image',
+      src: '/images/home-security/essential-awareness-card.png',
     },
   },
   a2: {
-    caption: 'Balanced indoor + outdoor',
+    caption: '',
     image: {
-      alt: 'Suburban home exterior with outdoor camera coverage',
-      src: '/images/home-security/tier-silver-960w.png',
-      srcSet:
-        '/images/home-security/tier-silver-512w.png 512w, /images/home-security/tier-silver-640w.png 640w, /images/home-security/tier-silver-960w.png 960w',
-      sizes: '(max-width: 720px) 100vw, 360px',
-      sources: [
-        {
-          type: 'image/webp',
-          srcSet:
-            '/images/home-security/tier-silver-512w.webp 512w, /images/home-security/tier-silver-640w.webp 640w, /images/home-security/tier-silver-960w.webp 960w',
-        },
-      ],
+      alt: 'Balanced Home Coverage package coverage image',
+      src: '/images/home-security/balanced_home_coverage_card_v01.png',
     },
   },
   a3: {
-    caption: 'Maximum coverage + deterrence',
+    caption: '',
     image: {
-      alt: 'Large home exterior with multi-angle camera coverage',
-      src: '/images/home-security/tier-gold-960w.png',
-      srcSet:
-        '/images/home-security/tier-gold-512w.png 512w, /images/home-security/tier-gold-640w.png 640w, /images/home-security/tier-gold-960w.png 960w',
-      sizes: '(max-width: 720px) 100vw, 360px',
-      sources: [
-        {
-          type: 'image/webp',
-          srcSet:
-            '/images/home-security/tier-gold-512w.webp 512w, /images/home-security/tier-gold-640w.webp 640w, /images/home-security/tier-gold-960w.webp 960w',
-        },
-      ],
+      alt: 'Expanded Property Coverage package coverage image',
+      src: '/images/home-security/expanded_property_coverage_card_v1.png',
     },
   },
 };

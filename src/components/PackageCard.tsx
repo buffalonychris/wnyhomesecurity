@@ -7,7 +7,6 @@ import { updateRetailFlow } from '../lib/retailFlow';
 type Props = {
   pkg: PackageTier;
   vertical?: VerticalKey;
-  imageCaption?: string;
   image?: {
     alt: string;
     src: string;
@@ -20,7 +19,7 @@ type Props = {
   };
 };
 
-const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
+const PackageCard = ({ pkg, vertical, image }: Props) => {
   const tierId = pkg.id.toUpperCase() as PackageTierId;
   const isHomeSecurity = vertical === 'home-security';
   const styleLabelMap: Record<string, string> = {
@@ -56,8 +55,6 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
             ))}
             <img src={image.src} srcSet={image.srcSet} sizes={image.sizes} alt={image.alt} loading="lazy" />
           </picture>
-          <div className="package-card-media-overlay" aria-hidden="true" />
-          {imageCaption ? <div className="package-card-caption">{imageCaption}</div> : null}
         </div>
       ) : null}
       <div className="package-card-header">
