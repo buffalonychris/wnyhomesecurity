@@ -42,7 +42,7 @@ const PackageDetail = () => {
         : '/contact?vertical=home-security'
       : '/contact';
   const homeSecurityTierLabel = pkg?.name ?? 'Package';
-  const primaryActionLabel = isHomeSecurityPdp ? `Continue with ${homeSecurityTierLabel}` : 'Request install';
+  const primaryActionLabel = isHomeSecurityPdp ? `Request Free Estimate` : 'Request install';
   const primaryActionLink = isHomeSecurityPdp ? '/discovery?vertical=home-security' : contactLink;
   const tierLabel = pkg?.name ?? 'Package';
   const selectedTierId = pkg ? (pkg.id.toUpperCase() as PackageTierId) : undefined;
@@ -104,8 +104,8 @@ const PackageDetail = () => {
               <p className="pdp-tagline">{packageContent.heroOneLiner}</p>
             </div>
             <div className="pdp-price">
-              <div className="pdp-price-value">{pkg.price}</div>
-              <small>One-time upfront cost</small>
+              <div className="pdp-price-value">Customized walkthrough pricing</div>
+              <small>Typical systems vary based on layout and coverage goals.</small>
             </div>
           </div>
             <div className="pdp-hero-actions">
@@ -125,8 +125,8 @@ const PackageDetail = () => {
 
         <section id="what-you-get" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
-            <h2>What you get</h2>
-            <p>Hardware included in this tier.</p>
+            <h2>Style example components</h2>
+            <p>These are common modules for this protection style, not a rigid SKU.</p>
           </div>
           <ul className="list">
             {getHomeSecurityHardwareList(pkg.id as 'a1' | 'a2' | 'a3').map((item) => (
@@ -140,8 +140,8 @@ const PackageDetail = () => {
 
         <section id="typical-coverage" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
-            <h2>Typical coverage</h2>
-            <p>Typical footprint and entry assumptions for this tier.</p>
+            <h2>Typical property fit</h2>
+            <p>Directional footprint guidance. Final scope is confirmed during walkthrough.</p>
           </div>
           <ul className="list">
             <li>
@@ -161,8 +161,8 @@ const PackageDetail = () => {
 
         <section id="capabilities" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
-            <h2>Capabilities</h2>
-            <p>What this tier can do on day one.</p>
+            <h2>Build Your System options</h2>
+            <p>Common capabilities we can combine into a custom recommendation.</p>
           </div>
           <ul className="list">
             {tierSpec.capabilities.map((item) => (
@@ -176,8 +176,8 @@ const PackageDetail = () => {
 
         <section id="clarity-footer" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
-            <h2>Clarity</h2>
-            <p>{HOME_SECURITY_CLARITY_FOOTER}</p>
+            <h2>Estimate clarity</h2>
+            <p>Most systems are customized after walkthrough. Request an onsite estimate for accurate recommendations and practical install planning.</p>
           </div>
         </section>
       </div>

@@ -82,11 +82,11 @@ const Packages = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
         <div style={{ display: 'grid', gap: '0.5rem' }}>
           <h1 style={{ margin: 0 }}>
-            {vertical === 'home-security' ? 'Choose a Home Security package' : `Choose the ${brandSite} package that fits`}
+            {vertical === 'home-security' ? 'Explore protection styles for your home' : `Choose the ${brandSite} package that fits`}
           </h1>
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
-              ? 'One-time pricing, local-first control, and optional pro install.'
+              ? 'Explore common protection approaches, then request an onsite walkthrough for a property-specific estimate.'
               : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
           </p>
         </div>
@@ -123,15 +123,15 @@ const Packages = () => {
       )}
       {vertical === 'home-security' && (
         <p style={{ marginTop: '1rem', color: 'var(--kaec-muted)' }}>
-          All packages are expandable later. You can add cameras, sensors, or coverage areas as your needs change.
+          Typical systems vary by layout and coverage goals. Most setups are customized after an onsite walkthrough.
         </p>
       )}
 
       {vertical === 'home-security' && (
         <div className="section">
           <AccordionSection
-            title="Compare Home Security tiers"
-            description="One dashboard for everything. Remote access needs internet, but local control still works on your home network."
+            title="Compare protection styles"
+            description="Use this as directional guidance only. Your final recommendation is built around your property, entry points, and goals."
             defaultOpen={false}
           >
             <HomeSecurityComparisonTable />
