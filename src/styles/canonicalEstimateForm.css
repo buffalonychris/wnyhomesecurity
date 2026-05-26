@@ -1,0 +1,60 @@
+.estimate-form-shell {
+  display: grid;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.estimate-form-shell .qr-section.estimate-form-stage {
+  background: color-mix(in oklab, var(--card), black 12%);
+  border-color: color-mix(in oklab, var(--border), white 8%);
+  padding: 1.1rem;
+}
+
+.estimate-field {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.estimate-field span {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--muted-foreground);
+}
+
+.estimate-field input,
+.estimate-field textarea,
+.estimate-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.72rem;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--border), white 6%);
+  background: color-mix(in oklab, var(--secondary), black 10%);
+  color: var(--foreground);
+}
+
+.estimate-field textarea { min-height: 112px; resize: vertical; }
+.estimate-field input:focus,
+.estimate-field textarea:focus,
+.estimate-field select:focus {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primary), white 15%);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary), transparent 78%);
+}
+
+.estimate-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.estimate-choice { background: color-mix(in oklab, var(--secondary), black 10%); }
+.estimate-submit { width: 100%; text-align: center; min-height: 48px; }
+
+@media (max-width: 760px) {
+  .estimate-form-grid-2,
+  .estimate-form-shell .qr-form-grid,
+  .estimate-form-shell .qr-radio-row { grid-template-columns: 1fr; }
+}

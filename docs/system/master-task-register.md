@@ -218,6 +218,25 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Operator Decision Required:** No
 - **Completion Notes:** Removed the contact-page public `Review Estimate Summary` button that linked to `/quoteReview` while preserving call/text CTAs and canonical estimate request form wiring. Kept `/quoteReview` route/component untouched and retained canonical submit path via `sendLeadSignal` to `/api/lead-signal`.
 
+
+
+### UIHOTFIX003
+- **Task ID:** UIHOTFIX003
+- **Task Name:** Standardize Estimate Form Visual Styling
+- **Status:** DONE
+- **Category:** FUNNEL / QA / VISUAL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Standardize customer-facing estimate/request quote form presentation to the cleaner staged QRLanding-style layout while preserving all runtime behavior.
+- **Allowed Scope:** shared estimate form class/layout styling updates, staged card spacing/grouping improvements, mobile-safe field grid refinement, bounded task register update.
+- **Forbidden Scope:** no submit logic changes; no payload shape changes; no lead-signal changes; no HubSpot schema/workflow changes; no Stripe/payment changes; no QR attribution contract changes; no Review Summary CTA reintroduction.
+- **Target Files:** `src/components/CanonicalEstimateRequestForm.tsx`, `src/styles/canonicalEstimateForm.css`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** None (presentation-only hotfix).
+- **Documentation Updates Required:** Add UIHOTFIX003 completion record with scope and validation evidence.
+- **Validation Required:** `npm run build`; `rg -n "CanonicalEstimateRequestForm|Review Estimate Summary|Review Request Summary|quoteReview|sendLeadSignal|lead-signal|entryRoute|estimate_form_submitted|requestId" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`.
+- **Exit Criteria:** customer-facing estimate forms share staged card form presentation quality; QR attribution contract preserved for QR entry only; non-QR flows remain non-QR attributed; no Review Summary CTA reintroduced.
+- **Dependencies:** HOTFIX002 completion preserved.
+- **Operator Decision Required:** No
+- **Completion Notes:** Canonical form markup/classes were updated to use shared staged-card presentation styles across QRLanding and non-QR surfaces, including improved field grouping, spacing, dark input styling, mobile responsiveness, and full-width submit button; submit handlers, payload keys, `/api/lead-signal` path, and QR/non-QR attribution behavior remained unchanged.
 ### FINISH-LINE-PUBLICATION001
 - **Task ID:** FINISH-LINE-PUBLICATION001
 - **Task Name:** Final publication readiness for QR placards and WNYHS public site
