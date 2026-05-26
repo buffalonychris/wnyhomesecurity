@@ -28,7 +28,13 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
   const isMostPopular = vertical === 'home-security' && pkg.id === 'a2';
   const contactLink = vertical === 'home-security' ? `/contact?vertical=home-security&package=${pkg.id}&estimateIntent=selected-package` : '/contact';
   const isHomeSecurity = vertical === 'home-security';
-  const primaryLabel = isHomeSecurity ? `Select ${pkg.name}` : `View ${pkg.name}`;
+  const styleLabelMap: Record<string, string> = {
+    a1: 'Essential Awareness',
+    a2: 'Balanced Home Coverage',
+    a3: 'Expanded Property Coverage',
+  };
+  const styleLabel = isHomeSecurity ? styleLabelMap[pkg.id] ?? pkg.name : pkg.name;
+  const primaryLabel = isHomeSecurity ? 'Use As Starting Point' : `View ${pkg.name}`;
   const tierQueryMap: Record<string, string> = {
     a1: 'bronze',
     a2: 'silver',
@@ -51,7 +57,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
         isHomeSecurity ? ' package-card--home-security' : ''
       }`}
       data-tier={isHomeSecurity ? pkg.id : undefined}
-      aria-label={`${pkg.name} package`}
+      aria-label={`${styleLabel} protection style`}
     >
       {image ? (
         <div className="package-card-media">
@@ -78,14 +84,14 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
             <TierBadge tierId={tierId} labelOverride={pkg.badge ?? undefined} vertical={vertical} />
             {isMostPopular && <span className="popular-pill">Recommended</span>}
           </div>
-          <h3 style={{ margin: 0, color: '#fff7e6' }}>{pkg.name}</h3>
+          <h3 style={{ margin: 0, color: '#fff7e6' }}>{styleLabel}</h3>
           <div style={{ color: 'var(--kaec-muted)' }}>{pkg.tagline}</div>
         </div>
         <div style={{ textAlign: 'right' }}>
           <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--kaec-gold)' }}>
-            {pkg.price}
+            Walkthrough estimate
           </div>
-          <small style={{ color: 'var(--kaec-muted)' }}>One-time upfront</small>
+          <small style={{ color: 'var(--kaec-muted)' }}>Customized after walkthrough</small>
         </div>
       </div>
       <p style={{ marginTop: '1rem', color: '#e6ddc7' }}>{pkg.oneLiner}</p>
@@ -98,7 +104,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
         ))}
       </ul>
       {isHomeSecurity && (
-        <AccordionSection title="What’s included" description="Full hardware counts for this tier.">
+        <AccordionSection title="Typical configurations may include" description="Starting-point equipment examples. Final recommendations are confirmed in writing after review.">
           <ul className="list" aria-label="Full hardware list" style={{ marginTop: 0 }}>
             {hardwareList.map((item) => (
               <li key={item.label}>
@@ -124,7 +130,7 @@ const PackageCard = ({ pkg, vertical, imageCaption, image }: Props) => {
       {isHomeSecurity && (
         <div className="package-card-links">
           <Link className="package-card-link" to={`/packages/${pkg.id}${verticalQuery}`}>
-            View details
+            Explore This Protection Style
           </Link>
         </div>
       )}

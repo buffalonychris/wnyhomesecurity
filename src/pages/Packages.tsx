@@ -86,7 +86,7 @@ const Packages = () => {
           </h1>
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
-              ? 'Explore common protection approaches, then request an onsite walkthrough for a property-specific estimate.'
+              ? 'Use these protection styles as starting points before your walkthrough estimate. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
               : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
           </p>
         </div>
@@ -123,8 +123,19 @@ const Packages = () => {
       )}
       {vertical === 'home-security' && (
         <p style={{ marginTop: '1rem', color: 'var(--kaec-muted)' }}>
-          Typical systems vary by layout and coverage goals. Most setups are customized after an onsite walkthrough.
+          No required monthly monitoring contracts. Locally installed and locally supported, with equipment options you can own.
         </p>
+      )}
+      {vertical === 'home-security' && (
+        <section className="card motion-fade-up" style={{ marginTop: '1rem' }}>
+          <h2 style={{ marginTop: 0 }}>Build Your System</h2>
+          <p style={{ color: 'var(--kaec-muted)' }}>
+            Plan around indoor and outdoor cameras, video doorbells, garage coverage/control, smart locks, door/window sensors, motion sensors, floodlight or spotlight cameras, local recording, remote access, smart automations, and Home Assistant integration.
+          </p>
+          <p style={{ color: 'var(--kaec-muted)', marginBottom: 0 }}>
+            We’ll tell you if a system is overbuilt or missing an important concern. Final scope and pricing are confirmed in writing after review.
+          </p>
+        </section>
       )}
 
       {vertical === 'home-security' && (

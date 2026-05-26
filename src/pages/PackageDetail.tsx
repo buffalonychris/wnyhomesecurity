@@ -42,7 +42,13 @@ const PackageDetail = () => {
         : '/contact?vertical=home-security'
       : '/contact';
   const homeSecurityTierLabel = pkg?.name ?? 'Package';
-  const primaryActionLabel = isHomeSecurityPdp ? `Request Free Estimate` : 'Request install';
+  const styleLabelMap: Record<string, string> = {
+    a1: 'Essential Awareness',
+    a2: 'Balanced Home Coverage',
+    a3: 'Expanded Property Coverage',
+  };
+  const styleLabel = isHomeSecurityPdp && pkg ? styleLabelMap[pkg.id] ?? pkg.name : pkg?.name ?? 'Package';
+  const primaryActionLabel = isHomeSecurityPdp ? `Request Walkthrough Estimate` : 'Request install';
   const primaryActionLink = isHomeSecurityPdp ? '/discovery?vertical=home-security' : contactLink;
   const tierLabel = pkg?.name ?? 'Package';
   const selectedTierId = pkg ? (pkg.id.toUpperCase() as PackageTierId) : undefined;
@@ -100,7 +106,7 @@ const PackageDetail = () => {
                 />
                 {isMostPopular && <span className="popular-pill">Recommended</span>}
               </div>
-              <h1 className="pdp-title">{pkg.name}</h1>
+              <h1 className="pdp-title">{styleLabel}</h1>
               <p className="pdp-tagline">{packageContent.heroOneLiner}</p>
             </div>
             <div className="pdp-price">
@@ -125,7 +131,7 @@ const PackageDetail = () => {
 
         <section id="what-you-get" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
-            <h2>Style example components</h2>
+            <h2>Starting-point equipment examples</h2>
             <p>These are common modules for this protection style, not a rigid SKU.</p>
           </div>
           <ul className="list">
@@ -141,7 +147,7 @@ const PackageDetail = () => {
         <section id="typical-coverage" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
             <h2>Typical property fit</h2>
-            <p>Directional footprint guidance. Final scope is confirmed during walkthrough.</p>
+            <p>Directional footprint guidance. Final scope is confirmed in writing after walkthrough review.</p>
           </div>
           <ul className="list">
             <li>
@@ -177,7 +183,7 @@ const PackageDetail = () => {
         <section id="clarity-footer" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
             <h2>Estimate clarity</h2>
-            <p>Most systems are customized after walkthrough. Request an onsite estimate for accurate recommendations and practical install planning.</p>
+            <p>No required monthly monitoring contracts. Most systems are customized after walkthrough, and final recommendations are built around your layout, entry points, and coverage goals.</p>
           </div>
         </section>
       </div>
