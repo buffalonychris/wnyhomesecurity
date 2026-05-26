@@ -909,7 +909,7 @@
   background: rgba(15, 20, 24, 0.8);
   padding: 0.35rem 0.6rem;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--hs-premium-muted);
 }
 
@@ -928,15 +928,15 @@
 
 .hs-premium-package-tier {
   text-transform: uppercase;
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   letter-spacing: 0.08em;
-  color: var(--hs-premium-accent);
+  color: color-mix(in srgb, var(--hs-premium-accent) 65%, #9ca3af 35%);
   margin: 0 0 0.35rem;
 }
 
 .hs-premium-package-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
 }
 
 .hs-premium-package-price {

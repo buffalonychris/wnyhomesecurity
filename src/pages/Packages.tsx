@@ -79,14 +79,14 @@ const Packages = () => {
           </button>
         </div>
       )}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-        <div style={{ display: 'grid', gap: '0.5rem' }}>
+      <section className="packages-hero">
+        <div style={{ display: 'grid', gap: '0.65rem', maxWidth: 760 }}>
           <h1 style={{ margin: 0 }}>
             {vertical === 'home-security' ? 'Explore protection styles for your home' : `Choose the ${brandSite} package that fits`}
           </h1>
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
-              ? 'Use these protection styles as starting points before your walkthrough estimate. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
+              ? 'Use these protection styles as planning examples before your walkthrough estimate. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
               : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
           </p>
         </div>
@@ -100,7 +100,7 @@ const Packages = () => {
             </small>
           </div>
         )}
-      </div>
+      </section>
       <div className="card-grid motion-stagger">
         {packageList.map((pkg) => {
           const tierMedia = homeSecurityTierMedia?.[pkg.id as keyof typeof HOME_SECURITY_TIER_MEDIA];

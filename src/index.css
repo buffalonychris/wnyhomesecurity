@@ -479,7 +479,7 @@ header.hide-when-print {
 .package-card-media-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(8, 14, 24, 0.5), rgba(8, 14, 24, 0.1)),
+  background: linear-gradient(120deg, rgba(8, 14, 24, 0.35), rgba(8, 14, 24, 0.08)),
     radial-gradient(circle at 20% 10%, rgba(56, 189, 248, 0.18), transparent 50%);
   pointer-events: none;
 }
@@ -490,7 +490,7 @@ header.hide-when-print {
   bottom: 1rem;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #f8fafc;
   background: rgba(15, 23, 42, 0.72);
@@ -505,13 +505,36 @@ header.hide-when-print {
   right: 0.85rem;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #0f172a;
   background: linear-gradient(120deg, rgba(250, 204, 21, 0.95), rgba(255, 231, 168, 0.9));
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+}
+
+.package-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.package-card-context {
+  text-align: right;
+  font-size: 0.8rem;
+  max-width: 180px;
+}
+
+.packages-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
 }
 
 .package-card:hover .package-card-media {

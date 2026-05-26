@@ -122,6 +122,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Dependencies:** FUNNEL005 framing preserved.
 - **Operator Decision Required:** Yes (merge approval).
 - **Completion Notes:** Completed by making protection-style names the dominant visible headings, replacing large walkthrough-estimate visual emphasis with supportive review copy, reducing technical density in package copy, upgrading CTA language to consultative walkthrough wording, promoting Build Around Your Property with module chips and local walkthrough guidance, and bumping visible site version. Build and scope-grep validations passed with no form/lead/HubSpot/Stripe/runtime behavior edits.
+
+### FUNNEL007
+- **Task ID:** FUNNEL007
+- **Task Name:** Package Page Visual Cleanup + Duplicate CTA Removal
+- **Status:** DONE
+- **Category:** FUNNEL / COPY / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Clean up post-FUNNEL006 package/pdp visual hierarchy, remove duplicate package-detail CTA block, and keep consultative protection-style presentation while preserving all protected runtime systems.
+- **Allowed Scope:** packages top-section visual cleanup, package-detail duplicate CTA removal, protection-style-first hierarchy refinement, overlay/card clutter reduction, visible site version bump, bounded task-register update.
+- **Forbidden Scope:** no form submit changes; no lead-signal runtime/transport changes; no HubSpot schema/workflow changes; no autoresponder changes; no Stripe/payment changes; no quoteReview CTA reintroduction; no image creation/replacement.
+- **Target Files:** `src/pages/Packages.tsx`, `src/pages/PackageDetail.tsx`, `src/components/PackageCard.tsx`, `src/components/homeSecurity/PackageTierCards.tsx`, `src/index.css`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** None (presentation-only package and package-detail cleanup).
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `npm run build`; `rg -n "Request Walkthrough Estimate|Bronze tier|Silver tier|Gold tier|Review Estimate Summary|quoteReview|guarantee|guaranteed|CanonicalEstimateRequestForm|sendLeadSignal" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`
+- **Exit Criteria:** package detail pages show one primary walkthrough CTA; package-card hierarchy emphasizes protection-style names with reduced tier-label dominance; package-page top section reads cleaner with less cramped headers/overlays; protected routes/forms/lead/payment systems unchanged.
+- **Dependencies:** FUNNEL006 completion.
+- **Operator Decision Required:** Yes (merge approval).
+- **Completion Notes:** Removed the redundant sticky duplicate walkthrough CTA from package detail pages, tightened package-page hero spacing and wording, reduced overlay/ribbon/caption visual noise, and promoted protection-style naming on package cards while de-emphasizing bronze/silver/gold labels as secondary context. Version bumped for deployment visibility. Build and scope grep validations passed with no form, lead-signal, HubSpot, Stripe, autoresponder, or route logic edits.
 Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized for bounded final-hour execution, but Codex may only execute the single task explicitly named in the current prompt. ACTIVE is authorization, not permission to bundle. Hard guardrails for claims, Stripe, HubSpot, runtime/routes/UI, secrets, historical docs, and generated binary print files remain enforced.
 
 

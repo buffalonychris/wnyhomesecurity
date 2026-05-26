@@ -11,6 +11,11 @@ type Props = {
 };
 
 const PackageTierCards = ({ packages, ctaLink }: Props) => {
+  const styleLabelMap: Record<string, string> = {
+    a1: 'Essential Awareness',
+    a2: 'Balanced Home Coverage',
+    a3: 'Expanded Property Coverage',
+  };
   const tierQueryMap: Record<string, string> = {
     a1: 'bronze',
     a2: 'silver',
@@ -24,6 +29,7 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
         const tierId = pkg.id.toUpperCase() as PackageTierId;
         const tierParam = tierQueryMap[pkg.id] ?? pkg.name.toLowerCase();
         const tierCtaLink = appendQueryParam(ctaLink, 'tier', tierParam);
+        const styleLabel = styleLabelMap[pkg.id] ?? pkg.name;
         const features = pkg.features ?? pkg.includes ?? [];
         const highlights = features.slice(0, 2);
         const handleSelect = () => updateRetailFlow({ homeSecurity: { selectedPackageId: tierId } });
@@ -50,8 +56,8 @@ const PackageTierCards = ({ packages, ctaLink }: Props) => {
               <div className="hs-premium-package-header">
                 <div>
                   <p className="hs-premium-package-tier">{pkg.name}</p>
-                  <p className="hs-premium-package-for">For: {pkg.idealFor}</p>
-                  <h3>{pkg.tagline}</h3>
+                  <h3>{styleLabel}</h3>
+                  <p className="hs-premium-package-for">Best for: {pkg.idealFor}</p>
                 </div>
                 <div className="hs-premium-package-price">Final scope confirmed after review</div>
               </div>
