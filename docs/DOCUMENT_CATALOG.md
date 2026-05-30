@@ -74,6 +74,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Reference / historical**
 - **Notes:** Should be treated as reference unless explicitly aligned with active system governance and Step control.
 
+
+## `docs/catalogs/`
+
+### `/docs/catalogs/wnyhs_capability_catalog_rev02.md`
+- **File path:** `docs/catalogs/wnyhs_capability_catalog_rev02.md`
+- **Purpose / likely role:** WNYHS Capability Catalog REV02 baseline defining the internal control-plane capability universe for future Home Assistant validation, local-only viability research, BOM development, solution-package planning, WNYHS Core page planning, installation standards, and approved hardware standards.
+- **Authority level:** **Planning / catalog / source-of-truth candidate**
+- **Customer-facing:** No.
+- **Pricing-approved:** No.
+- **Notes:** Used for future BOM and solution package work only; it is not a final hardware commitment document and does not authorize runtime, HubSpot, Stripe, scheduling, route, or UI changes.
+
 ## `docs/system/`
 
 ### `/docs/system/project.md`

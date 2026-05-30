@@ -1698,6 +1698,75 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ## Backlog Tasks
 
+### CATALOG002
+- **Task ID:** CATALOG002
+- **Task Name:** Expand/Validate Missing Feature Categories
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Review the REV02 capability catalog for missing categories, duplicate context rows, naming consistency, and category boundaries before REV03.
+- **Allowed Scope:** Documentation-only catalog review and proposed category/feature changes.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, pricing, customer-facing package commitments, and final hardware commitments.
+- **Target Files:** `docs/catalogs/wnyhs_capability_catalog_rev02.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if a new revision is created.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Update catalog revision notes and register status if activated.
+- **Validation Required:** Catalog diff review and targeted prohibited-claims scans.
+- **Exit Criteria:** Category and feature coverage gaps are documented or corrected in a future catalog revision.
+- **Dependencies:** CATALOG001.
+- **Operator Decision Required:** Confirm whether expansion proceeds as REV03 or a separate addendum.
+
+### CATALOG003
+- **Task ID:** CATALOG003
+- **Task Name:** Research HA Integration / Local-Only Viability / Complexity / Market Interest
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Replace REV02 placeholder values with evidence-backed Home Assistant integration paths, local-only viability notes, complexity estimates, and market-interest assumptions.
+- **Allowed Scope:** Documentation-only research, evidence notes, and catalog revision work.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, pricing, customer-facing package commitments, final hardware commitments, and vendor-cloud claims without evidence.
+- **Target Files:** `docs/catalogs/wnyhs_capability_catalog_rev02.md` or successor revision, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if a new revision is created.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Document evidence sources and unresolved validation items in the successor catalog revision.
+- **Validation Required:** Catalog diff review, prohibited-claims scan, and competitor-name scan.
+- **Exit Criteria:** Candidate rows have documented research status and remaining unknowns are explicit.
+- **Dependencies:** CATALOG001 and CATALOG002 if category expansion is needed first.
+- **Operator Decision Required:** Approve research source standards and priority order.
+
+### BOM001
+- **Task ID:** BOM001
+- **Task Name:** Build BOMs For Top 10 Priority Capabilities
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Build internal BOMs for the top 10 immediate capability priorities after integration and local-only viability research is sufficient.
+- **Allowed Scope:** Internal documentation-only BOM research and validation notes for priority capabilities.
+- **Forbidden Scope:** Public pricing, customer-facing package commitments, final hardware commitments before validation, runtime code, UI components, routes, Stripe, HubSpot, scheduling, and analytics.
+- **Target Files:** Future internal BOM documents under `docs/` as approved, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if new docs are created.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add BOM docs and catalog cross-references if activated.
+- **Validation Required:** BOM diff review, no-public-pricing scan, and protected-runtime scope audit.
+- **Exit Criteria:** Top 10 priority capabilities have internal minimum/recommended BOM candidates and unresolved validation risks documented.
+- **Dependencies:** CATALOG001 and CATALOG003.
+- **Operator Decision Required:** Approve BOM document format and vendor-research boundaries.
+
+### PACKAGE001
+- **Task ID:** PACKAGE001
+- **Task Name:** Create Solution Packages From Validated Capabilities
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Group validated capabilities into solution-package concepts only after feature feasibility and BOM work are complete enough to avoid arbitrary package design.
+- **Allowed Scope:** Internal documentation-only package planning from validated capabilities and BOM evidence.
+- **Forbidden Scope:** Public pricing, customer-facing package commitments without approval, runtime code, UI components, routes, Stripe, HubSpot, scheduling, analytics, and final hardware commitments without validation.
+- **Target Files:** Future internal package-planning documents under `docs/` as approved, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if new docs are created.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add package-planning docs and catalog/BOM cross-references if activated.
+- **Validation Required:** Package-planning diff review, no-public-pricing scan, and protected-runtime scope audit.
+- **Exit Criteria:** Solution packages are derived from validated capabilities and BOM evidence, with unresolved assumptions documented.
+- **Dependencies:** CATALOG001, CATALOG003, and BOM001.
+- **Operator Decision Required:** Approve transition from internal package concepts to any future customer-facing copy task.
+
+
 ### NAV-BUG001
 - **Task ID:** NAV-BUG001
 - **Task Name:** Back/forward black screen + quote artifact render stability
@@ -1859,6 +1928,24 @@ No BLOCKED tasks are currently recorded.
 ---
 
 ## Completed Tasks
+
+### CATALOG001
+- **Task ID:** CATALOG001
+- **Task Name:** Add WNYHS Capability Catalog REV02 Baseline
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add an internal planning catalog that defines the WNYHS control-plane capability universe for future validation, BOM, package, website, installation-standard, and hardware-standard work.
+- **Allowed Scope:** Create `/docs/catalogs/wnyhs_capability_catalog_rev02.md`; update `/docs/DOCUMENT_CATALOG.md`; add bounded follow-up task records in this register.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, analytics, customer-facing package commitments, public pricing, final hardware commitments, competitor attack language, and deletion of historical docs.
+- **Target Files:** `docs/catalogs/wnyhs_capability_catalog_rev02.md`, `docs/DOCUMENT_CATALOG.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None; documentation/catalog governance only.
+- **Documentation Updates Required:** Add catalog entry and task-register records for catalog validation, BOM research, and package-design follow-up work.
+- **Validation Required:** `npm run build`; `git diff -- docs/catalogs docs/DOCUMENT_CATALOG.md docs/system`; targeted forbidden-pricing and competitor-name scans against the new catalog.
+- **Exit Criteria:** REV02 catalog exists with required sections, required table columns, required categories, currently identified features, immediate BOM priority list, REV03 research path, and explicit no-public-pricing warning.
+- **Dependencies:** Prompt-created bounded governance task; current operational context and protected runtime locks remain in force.
+- **Operator Decision Required:** Approve REV02 as planning baseline and decide when to activate CATALOG002, CATALOG003, BOM001, and PACKAGE001.
+
 
 
 ### FUNNEL-CLEANUP001
