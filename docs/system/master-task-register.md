@@ -2591,19 +2591,122 @@ No ARCHIVED tasks are currently recorded.
 ### LEADFLOW001
 - **Task ID:** LEADFLOW001
 - **Task Name:** Lead Intake, Referral Attribution, and Quote-Aware CRM Workflow Runtime Contract
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV / LEAD / CRM / QR
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Create the lead intake, referral attribution, named QR source attribution, and quote-aware CRM workflow runtime contract before any implementation work.
-- **Allowed Scope:** Documentation-only runtime contract drafting, review-set use, source attribution model definition, referral-awareness boundaries, HubSpot mapping proposal, and follow-up task definition.
+- **Allowed Scope:** Documentation-only runtime contract drafting, review-set use, source attribution model definition, referral-awareness boundaries, HubSpot mapping proposal, document catalog update, markdown manifest addendum, task-register update, and follow-up task definition.
 - **Forbidden Scope:** Runtime code changes, UI changes, route changes, HubSpot schema/property creation, HubSpot workflow implementation, Stripe changes, scheduling behavior changes, referral payout automation, request estimate behavior changes, and direct CRM writes.
-- **Target Files:** Future scoped documentation only.
-- **Runtime Systems Affected:** None until a later implementation task is explicitly authorized.
-- **Documentation Updates Required:** New runtime contract and related catalog/register updates when activated.
-- **Validation Required:** Documentation diff, protected-system grep, and review against DOCSTATUS001 required review set.
-- **Exit Criteria:** Runtime contract exists and clearly separates documentation decisions from implementation.
+- **Target Files:** `docs/runtime/leadflow_referral_attribution_runtime.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** New runtime contract, document catalog entry, markdown manifest addendum, and task-register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/runtime/leadflow_referral_attribution_runtime.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted contract grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Runtime contract exists, includes all required sections, keeps manual referral and source attribution separate, defines future implementation gates, and clearly separates documentation decisions from implementation.
 - **Dependencies:** DOCSTATUS001.
 - **Operator Decision Required:** Approve scope and HubSpot/referral boundaries before activation.
+- **Completion Notes:** Created `docs/runtime/leadflow_referral_attribution_runtime.md` as a documentation-only runtime contract for future leadflow/referral/source/quote-awareness work. No runtime behavior, API payload behavior, HubSpot schema, named QR implementation, payout automation, quote automation, Stripe behavior, Scheduling behavior, route, UI, or form changes were made.
+
+### LEADFLOW002
+- **Task ID:** LEADFLOW002
+- **Task Name:** Lead Intake + Referral Attribution Implementation
+- **Status:** BACKLOG
+- **Category:** LEAD / CRM / QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement approved lead intake modernization, referral capture, and named source attribution only after LEADFLOW001, HubSpot mapping, attribution schema, quote-awareness, referral SOP, and QA plans are approved.
+- **Allowed Scope:** Future implementation scope to be defined when activated.
+- **Forbidden Scope:** Any implementation before required contracts and mappings are approved; direct frontend HubSpot writes; Stripe changes; Scheduling authority changes; route/funnel changes outside explicit scope; payout automation without approval.
+- **Target Files:** Future scoped files only.
+- **Runtime Systems Affected:** Future lead intake runtime if activated.
+- **Documentation Updates Required:** Update runtime contracts and task register when activated.
+- **Validation Required:** Future scoped validation plus QA-LEADFLOW001.
+- **Exit Criteria:** To be defined when activated.
+- **Dependencies:** LEADFLOW001, HUBSPOT-REFERRAL001, ATTRIBUTION001, QUOTE-REFERRAL001, REFERRAL-SOP001, QA-LEADFLOW001.
+- **Operator Decision Required:** Approve implementation scope.
+
+### HUBSPOT-REFERRAL001
+- **Task ID:** HUBSPOT-REFERRAL001
+- **Task Name:** HubSpot Referral Property Mapping
+- **Status:** BACKLOG
+- **Category:** CRM
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define exact HubSpot contact/deal/note/task mapping for referral and source attribution fields before any property creation or runtime writes.
+- **Allowed Scope:** Documentation-only HubSpot mapping proposal and property approval gate.
+- **Forbidden Scope:** HubSpot property creation, schema changes, pipeline changes, workflow changes, direct CRM writes, and runtime implementation.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None until a later approved implementation.
+- **Documentation Updates Required:** Update HubSpot property/sync contracts if approved.
+- **Validation Required:** Review against HubSpot REV03 and runtime HubSpot contracts.
+- **Exit Criteria:** Exact property mapping and approval posture are documented.
+- **Dependencies:** LEADFLOW001.
+- **Operator Decision Required:** Approve or reject proposed HubSpot properties.
+
+### ATTRIBUTION001
+- **Task ID:** ATTRIBUTION001
+- **Task Name:** Named QR Source Attribution Schema
+- **Status:** BACKLOG
+- **Category:** QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define controlled named QR source IDs, source registry ownership, source field schema, and QR asset documentation requirements before implementation.
+- **Allowed Scope:** Documentation-only attribution schema and governance.
+- **Forbidden Scope:** QRLanding implementation changes, source parser implementation, route changes, unmanaged source creation, HubSpot writes, and UI changes.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None until a later approved implementation.
+- **Documentation Updates Required:** Update QR runtime/reporting docs if approved.
+- **Validation Required:** Review against QRLanding runtime, QR attribution reporting, QR funnel standards, and brand print asset docs.
+- **Exit Criteria:** Named source schema and source governance are documented.
+- **Dependencies:** LEADFLOW001.
+- **Operator Decision Required:** Approve source ID governance model.
+
+### QUOTE-REFERRAL001
+- **Task ID:** QUOTE-REFERRAL001
+- **Task Name:** Quote-Visible Referral Awareness Spec
+- **Status:** BACKLOG
+- **Category:** GOV / CRM / LEAD
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define internal-only quote visibility for referral source, percentage, payout estimate, and cost-awareness before any quote UI or quote workflow implementation.
+- **Allowed Scope:** Documentation-only internal quote-awareness specification.
+- **Forbidden Scope:** Quote UI changes, quote automation, automatic discounting, customer-facing referral terms, pricing changes, package changes, and payout automation.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None until a later approved implementation.
+- **Documentation Updates Required:** Update quote/leadflow docs if approved.
+- **Validation Required:** Review against LEADFLOW001, public funnel standards, and claims/pricing guardrails.
+- **Exit Criteria:** Internal-only quote visibility boundaries are documented.
+- **Dependencies:** LEADFLOW001 and HUBSPOT-REFERRAL001 if CRM fields are involved.
+- **Operator Decision Required:** Approve internal visibility boundaries.
+
+### REFERRAL-SOP001
+- **Task ID:** REFERRAL-SOP001
+- **Task Name:** Manual Referral Payout Review SOP
+- **Status:** BACKLOG
+- **Category:** GOV / CRM / OPS
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define manual referral review, eligibility, approval, declined, disputed, and paid status procedures without payout automation.
+- **Allowed Scope:** Documentation-only manual SOP.
+- **Forbidden Scope:** Automatic payouts, Stripe payout behavior, customer-facing referral program page, quote automation, and HubSpot workflow automation.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Update leadflow/referral docs if approved.
+- **Validation Required:** Review against LEADFLOW001 and operator approval rules.
+- **Exit Criteria:** Manual referral payout review process is documented.
+- **Dependencies:** LEADFLOW001.
+- **Operator Decision Required:** Approve referral payout policy and manual workflow.
+
+### QA-LEADFLOW001
+- **Task ID:** QA-LEADFLOW001
+- **Task Name:** Leadflow Referral End-to-End QA Plan
+- **Status:** BACKLOG
+- **Category:** QA / LEAD / CRM / QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define end-to-end validation for callback lead path, estimate path, referral capture, named source attribution, requestId correlation, HubSpot sync, quote visibility, and no-regression protected systems.
+- **Allowed Scope:** Documentation-only QA plan.
+- **Forbidden Scope:** Runtime implementation, UI changes, route changes, HubSpot schema changes, Stripe changes, Scheduling changes, and payout automation.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None until implementation QA is activated.
+- **Documentation Updates Required:** QA checklist/runtime contract updates if approved.
+- **Validation Required:** Future implementation-specific commands and protected-system regression checks.
+- **Exit Criteria:** QA plan is documented and ready to run against future implementation.
+- **Dependencies:** LEADFLOW001, HUBSPOT-REFERRAL001, ATTRIBUTION001, QUOTE-REFERRAL001, REFERRAL-SOP001.
+- **Operator Decision Required:** Approve QA coverage before implementation release.
 
 ### DOCSYNC001
 - **Task ID:** DOCSYNC001
