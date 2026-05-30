@@ -16,6 +16,8 @@ ATTRIBUTION001 addendum: `docs/runtime/named_qr_source_attribution_schema_rev01.
 
 REFERRAL-SOP001 addendum: `docs/ops/referral_payout_review_sop_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is required review material before referral payout handling implementation.
 
+QUOTE-REFERRAL001 addendum: `docs/specs/quote_referral_awareness_spec_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is required review material before quote-visible referral awareness implementation.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
