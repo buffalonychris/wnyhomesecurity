@@ -2731,19 +2731,20 @@ No ARCHIVED tasks are currently recorded.
 ### REFERRAL-SOP001
 - **Task ID:** REFERRAL-SOP001
 - **Task Name:** Manual Referral Payout Review SOP
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV / CRM / OPS
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Define manual referral review, eligibility, approval, declined, disputed, and paid status procedures without payout automation.
-- **Allowed Scope:** Documentation-only manual SOP.
-- **Forbidden Scope:** Automatic payouts, Stripe payout behavior, customer-facing referral program page, quote automation, and HubSpot workflow automation.
-- **Target Files:** Future scoped documentation only.
+- **Purpose:** Define manual referral review, eligibility, approval, decline, dispute, and paid-status procedures without payout automation.
+- **Allowed Scope:** Documentation-only internal operations SOP; create `docs/ops/referral_payout_review_sop_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register only.
+- **Forbidden Scope:** No code, HubSpot changes, Stripe changes, payout automation, quote automation, form changes, API payload changes, QRLanding changes, customer-facing copy, automatic payouts, customer-facing referral program page, or HubSpot workflow automation.
+- **Target Files:** `docs/ops/referral_payout_review_sop_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Update leadflow/referral docs if approved.
-- **Validation Required:** Review against LEADFLOW001 and operator approval rules.
-- **Exit Criteria:** Manual referral payout review process is documented.
-- **Dependencies:** LEADFLOW001.
+- **Documentation Updates Required:** Add internal SOP, document catalog entry, markdown manifest addendum, and register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/ops/referral_payout_review_sop_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted SOP grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Manual referral payout review process is documented with required statuses, payout timing, evidence, HubSpot recording expectations, quote/Stripe/customer-facing boundaries, future gates, validation, and no implementation or forbidden file changes.
+- **Dependencies:** LEADFLOW001, HUBSPOT-REFERRAL001, ATTRIBUTION001.
 - **Operator Decision Required:** Approve referral payout policy and manual workflow.
+- **Completion Notes:** Created `docs/ops/referral_payout_review_sop_rev01.md` as a docs-only internal operations SOP for manual referral payout review. No code, HubSpot schema/write behavior, Stripe behavior, payout automation, quote automation, form/API payload behavior, QRLanding behavior, or customer-facing copy was changed.
 
 ### QA-LEADFLOW001
 - **Task ID:** QA-LEADFLOW001
