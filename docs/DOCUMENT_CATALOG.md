@@ -401,6 +401,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Lineage status:** Derived from SCHED001 runtime docs/audit; does not override current production manual-confirmation posture.
 - **Notes:** Documentation-only architecture/workflow authority for future bounded SCHED-IMPL tasks.
 
+### `/docs/specs/quote_referral_awareness_spec_rev01.md`
+- **File path:** `docs/specs/quote_referral_awareness_spec_rev01.md`
+- **Purpose / likely role:** Internal quote/referral specification defining how referral and named-source attribution may be visible to operators during future quote preparation.
+- **Authority level:** **Internal quote/referral specification**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required before quote-visible referral awareness implementation; does not authorize quote UI changes, quote automation, pricing changes, discounts, payout automation, HubSpot schema/sync changes, Stripe changes, or customer-facing referral copy.
+
 - `docs/audits/lead_fix001_implementation_rev01.md` — LEAD-FIX001 continuity hardening implementation record.
 
 

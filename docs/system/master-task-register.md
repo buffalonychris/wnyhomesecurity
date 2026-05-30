@@ -2713,20 +2713,21 @@ No ARCHIVED tasks are currently recorded.
 
 ### QUOTE-REFERRAL001
 - **Task ID:** QUOTE-REFERRAL001
-- **Task Name:** Quote-Visible Referral Awareness Spec
-- **Status:** BACKLOG
+- **Task Name:** Internal Quote-Visible Referral Awareness Spec
+- **Status:** DONE
 - **Category:** GOV / CRM / LEAD
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Define internal-only quote visibility for referral source, percentage, payout estimate, and cost-awareness before any quote UI or quote workflow implementation.
-- **Allowed Scope:** Documentation-only internal quote-awareness specification.
-- **Forbidden Scope:** Quote UI changes, quote automation, automatic discounting, customer-facing referral terms, pricing changes, package changes, and payout automation.
-- **Target Files:** Future scoped documentation only.
-- **Runtime Systems Affected:** None until a later approved implementation.
-- **Documentation Updates Required:** Update quote/leadflow docs if approved.
-- **Validation Required:** Review against LEADFLOW001, public funnel standards, and claims/pricing guardrails.
-- **Exit Criteria:** Internal-only quote visibility boundaries are documented.
-- **Dependencies:** LEADFLOW001 and HUBSPOT-REFERRAL001 if CRM fields are involved.
+- **Purpose:** Define how referral and named-source attribution may become visible to operators during future quote preparation without customer-facing referral language, automatic discounting, payout automation, quote automation, Stripe changes, or HubSpot runtime changes.
+- **Allowed Scope:** Documentation-only internal quote/referral awareness specification; create `docs/specs/quote_referral_awareness_spec_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register only.
+- **Forbidden Scope:** No runtime implementation, source code, functions, public files, quote UI changes, quote automation, pricing changes, discounts, payout automation, HubSpot properties, HubSpot sync changes, HubSpot runtime code, Stripe/payment behavior, Scheduling code, lead-signal implementation, QRLanding implementation, tests, customer-facing copy, package/pricing copy, or request estimate behavior changes.
+- **Target Files:** `docs/specs/quote_referral_awareness_spec_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add internal quote/referral spec, document catalog entry, markdown manifest addendum, and register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/specs/quote_referral_awareness_spec_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted quote-awareness spec grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Internal-only quote visibility boundaries are documented; referral/source context, requestId/HubSpot correlation, operator review rules, customer-facing restrictions, pricing/discount restrictions, Stripe/HubSpot boundaries, payout SOP relationship, future gates, and validation requirements are defined; no implementation or forbidden file changes occur.
+- **Dependencies:** LEADFLOW001, HUBSPOT-REFERRAL001, ATTRIBUTION001, REFERRAL-SOP001.
 - **Operator Decision Required:** Approve internal visibility boundaries.
+- **Completion Notes:** Created `docs/specs/quote_referral_awareness_spec_rev01.md` as a docs-only internal quote/referral specification. No quote UI, quote automation, pricing, discounts, customer-facing copy, HubSpot schema/sync/runtime behavior, Stripe behavior, payout automation, lead-signal implementation, QRLanding implementation, route, form, public file, or test changes were made.
 
 ### REFERRAL-SOP001
 - **Task ID:** REFERRAL-SOP001
