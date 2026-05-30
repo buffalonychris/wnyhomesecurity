@@ -18,6 +18,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/`
 
+### `/docs/MARKDOWN_MANIFEST.md`
+- **File path:** `docs/MARKDOWN_MANIFEST.md`
+- **Purpose / likely role:** Repo-wide markdown manifest inventorying every `.md` file and mapping high-risk review sets for lead intake, HubSpot, request/estimate, QR/source attribution, runtime contracts, catalogs, Stripe, scheduling, and governance work.
+- **Authority level:** **Internal governance / repo inventory / documentation manifest**
+- **Customer-facing:** No.
+- **Notes:** Supports future Codex planning and is a required review aid before high-risk workflow changes; it does not replace higher-authority governance, runtime contracts, HubSpot REV03, or task-specific instructions.
+
 
 ### `/docs/audits/payment_fix001_implementation_rev01.md`
 - **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
