@@ -2747,6 +2747,41 @@ No ARCHIVED tasks are currently recorded.
 - **Operator Decision Required:** Approve referral payout policy and manual workflow.
 - **Completion Notes:** Created `docs/ops/referral_payout_review_sop_rev01.md` as a docs-only internal operations SOP for manual referral payout review. No code, HubSpot schema/write behavior, Stripe behavior, payout automation, quote automation, form/API payload behavior, QRLanding behavior, or customer-facing copy was changed.
 
+### REFERRAL-POLICY001
+- **Task ID:** REFERRAL-POLICY001
+- **Task Name:** Referral Compensation + Payee Documentation Policy
+- **Status:** DONE
+- **Category:** OPS
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only internal policy defining referral compensation models, default customer referral rate, partner/referrer override rules, documentation thresholds, tax/payee documentation hold rules, purchased hot-lead/vendor lead handling, and installer/contractor separation.
+- **Allowed Scope:** Documentation-only internal operations policy; create `docs/ops/referral_compensation_policy_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register only.
+- **Forbidden Scope:** No code, runtime changes, HubSpot changes, Stripe changes, scheduling changes, form changes, API payload changes, quote behavior changes, payout automation, customer-facing copy, legal/tax filing implementation, document deletion, document renaming, or document consolidation.
+- **Target Files:** `docs/ops/referral_compensation_policy_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add internal operations policy, document catalog entry, markdown manifest addendum, task-register completion record, and future contractor onboarding placeholder if absent.
+- **Validation Required:** `git status`; `git diff -- docs/ops/referral_compensation_policy_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted policy grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Referral compensation relationship types, model types, default 10% customer referral policy, custom partner rules, purchased hot-lead/vendor lead rules, payment timing, documentation threshold holds, annual payment tracking, cash acknowledgement, tax/1099 governance boundary, installer/contractor separation, future gates, and open questions are documented; no implementation or forbidden file changes occur.
+- **Dependencies:** LEADFLOW001, HUBSPOT-REFERRAL001, ATTRIBUTION001, REFERRAL-SOP001, QUOTE-REFERRAL001.
+- **Operator Decision Required:** Approve policy before referral payout implementation, LEADFLOW002, or contractor/referrer payment tracking.
+- **Completion Notes:** Created `docs/ops/referral_compensation_policy_rev01.md` as a docs-only internal operations policy. No code, runtime behavior, HubSpot schema/write behavior, Stripe behavior, scheduling behavior, form/API payload behavior, quote behavior, payout automation, customer-facing copy, or tax/legal filing implementation was changed.
+
+### CONTRACTOR-ONBOARDING001
+- **Task ID:** CONTRACTOR-ONBOARDING001
+- **Task Name:** Contractor / Installer Payee Onboarding Policy
+- **Status:** BACKLOG
+- **Category:** OPS
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define contractor/installer onboarding, payee documentation, relationship separation, and payment-readiness rules before assigning work or issuing installer/contractor payments.
+- **Allowed Scope:** Future documentation-only policy scope to be defined when activated.
+- **Forbidden Scope:** Runtime changes, HubSpot changes, Stripe changes, scheduling changes, form changes, API payload changes, quote behavior changes, payout automation, customer-facing copy, legal/tax filing implementation, and contractor payment implementation unless explicitly authorized by a future bounded task.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None until a future approved implementation.
+- **Documentation Updates Required:** Update ops policy, catalog, manifest, and task register when activated.
+- **Validation Required:** Future scoped documentation validation plus no-forbidden-file checks.
+- **Exit Criteria:** To be defined when activated.
+- **Dependencies:** REFERRAL-POLICY001.
+- **Operator Decision Required:** Approve contractor/installer onboarding policy and documentation requirements before implementation.
+
 ### QA-LEADFLOW001
 - **Task ID:** QA-LEADFLOW001
 - **Task Name:** Leadflow Referral End-to-End QA Plan

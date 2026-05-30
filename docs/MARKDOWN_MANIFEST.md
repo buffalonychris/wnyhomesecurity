@@ -18,6 +18,8 @@ REFERRAL-SOP001 addendum: `docs/ops/referral_payout_review_sop_rev01.md` was cre
 
 QUOTE-REFERRAL001 addendum: `docs/specs/quote_referral_awareness_spec_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is required review material before quote-visible referral awareness implementation.
 
+REFERRAL-POLICY001 addendum: `docs/ops/referral_compensation_policy_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is an internal operations policy required before referral payout implementation, LEADFLOW002, and contractor/referrer payment tracking.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
