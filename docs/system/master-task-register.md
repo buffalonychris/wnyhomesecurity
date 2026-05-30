@@ -2661,20 +2661,55 @@ No ARCHIVED tasks are currently recorded.
 
 ### ATTRIBUTION001
 - **Task ID:** ATTRIBUTION001
-- **Task Name:** Named QR Source Attribution Schema
+- **Task Name:** Named QR Source Attribution Schema Contract
+- **Status:** DONE
+- **Category:** QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only attribution schema contract defining how future partner-specific, location-specific, campaign-specific, and print-asset-specific QR sources should be named, registered, validated, preserved, reviewed, and mapped through future leadflow/HubSpot/reporting work.
+- **Allowed Scope:** Documentation-only named QR source attribution schema contract, document catalog entry, markdown manifest addendum, register completion record, and future placeholder task records for ATTRIBUTION002 and ATTRIBUTION003.
+- **Forbidden Scope:** No runtime code, UI, routes, form components, public files, QR codes, print assets, URL parsing implementation, QRLanding implementation, lead-signal implementation, HubSpot properties, HubSpot writes, HubSpot runtime code, Stripe code, Scheduling code, tests, referral capture, payout logic, quote behavior changes, or customer-facing copy changes.
+- **Target Files:** `docs/runtime/named_qr_source_attribution_schema_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add runtime schema contract, catalog entry, manifest addendum, register completion record, and future placeholders.
+- **Validation Required:** `git status`; `git diff -- docs/runtime/named_qr_source_attribution_schema_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted schema-contract grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Named source ID rules, source taxonomy, registry field model, URL parameter contract, fallback rules, QR asset registration rules, HubSpot relationship, reporting rules, and future gates are documented; no implementation or forbidden file changes occur.
+- **Dependencies:** LEADFLOW001.
+- **Operator Decision Required:** Approve registry location, source owner process, partner QR creation process, URL parameter acceptance posture, and HubSpot mapping before implementation.
+- **Completion Notes:** Created `docs/runtime/named_qr_source_attribution_schema_rev01.md` as a docs-only internal runtime schema contract. No QR codes, print assets, URL parsing, QRLanding changes, lead-signal changes, HubSpot properties, HubSpot writes, quote changes, payout automation, public files, or runtime behavior changes were made.
+
+### ATTRIBUTION002
+- **Task ID:** ATTRIBUTION002
+- **Task Name:** Named QR Source Registry
 - **Status:** BACKLOG
 - **Category:** QR
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Define controlled named QR source IDs, source registry ownership, source field schema, and QR asset documentation requirements before implementation.
-- **Allowed Scope:** Documentation-only attribution schema and governance.
-- **Forbidden Scope:** QRLanding implementation changes, source parser implementation, route changes, unmanaged source creation, HubSpot writes, and UI changes.
-- **Target Files:** Future scoped documentation only.
+- **Purpose:** Create the approved named QR source registry only after ATTRIBUTION001 and operator approval define registry location, ownership, required fields, and source approval process.
+- **Allowed Scope:** Future documentation/configuration scope to be defined when activated.
+- **Forbidden Scope:** QR code creation, print asset creation, URL parsing implementation, QRLanding changes, lead-signal changes, HubSpot property creation, HubSpot writes, payout logic, quote behavior changes, customer-facing copy changes, and runtime implementation unless explicitly authorized.
+- **Target Files:** Future scoped files only.
 - **Runtime Systems Affected:** None until a later approved implementation.
-- **Documentation Updates Required:** Update QR runtime/reporting docs if approved.
-- **Validation Required:** Review against QRLanding runtime, QR attribution reporting, QR funnel standards, and brand print asset docs.
-- **Exit Criteria:** Named source schema and source governance are documented.
-- **Dependencies:** LEADFLOW001.
-- **Operator Decision Required:** Approve source ID governance model.
+- **Documentation Updates Required:** Update named QR source attribution schema, catalog, manifest, and task register when activated.
+- **Validation Required:** Future scoped validation plus no-forbidden-file checks.
+- **Exit Criteria:** To be defined when activated.
+- **Dependencies:** ATTRIBUTION001.
+- **Operator Decision Required:** Approve registry storage location and initial source records.
+
+### ATTRIBUTION003
+- **Task ID:** ATTRIBUTION003
+- **Task Name:** Source Parameter Validation Implementation
+- **Status:** BACKLOG
+- **Category:** QR / RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement approved source parameter validation and preservation only after ATTRIBUTION001 schema and ATTRIBUTION002 registry are approved.
+- **Allowed Scope:** Future implementation scope to be defined when activated.
+- **Forbidden Scope:** Unmanaged source creation, arbitrary URL parameter trust, HubSpot schema creation, direct HubSpot writes, payout automation, quote behavior changes, Scheduling changes, Stripe changes, and customer-facing copy changes unless explicitly authorized.
+- **Target Files:** Future scoped files only.
+- **Runtime Systems Affected:** Future QRLanding/lead-signal attribution behavior if activated.
+- **Documentation Updates Required:** Update runtime contracts, HubSpot mapping docs, QA plan, catalog/manifest, and task register when activated.
+- **Validation Required:** Future scoped validation plus QRLanding, lead-signal, requestId, HubSpot partial-failure, and no-regression checks.
+- **Exit Criteria:** To be defined when activated.
+- **Dependencies:** ATTRIBUTION001, ATTRIBUTION002, HUBSPOT-REFERRAL001, LEADFLOW002 or explicit lead-signal attribution implementation authorization, QA-LEADFLOW001.
+- **Operator Decision Required:** Approve implementation scope and rollout plan.
 
 ### QUOTE-REFERRAL001
 - **Task ID:** QUOTE-REFERRAL001

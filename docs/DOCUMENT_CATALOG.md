@@ -249,6 +249,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Customer-facing:** No.
 - **Notes:** Required before leadflow/referral implementation, HubSpot referral mapping, named QR attribution, quote-visible referral work, or referral SOP work; does not create runtime behavior, HubSpot properties, payout automation, pricing, route changes, UI changes, Stripe changes, or Scheduling changes.
 
+### `/docs/runtime/named_qr_source_attribution_schema_rev01.md`
+- **File path:** `docs/runtime/named_qr_source_attribution_schema_rev01.md`
+- **Purpose / likely role:** Internal runtime schema contract defining sourceId naming, source type taxonomy, registry fields, URL parameter rules, validation/fallback posture, QR asset registration rules, HubSpot mapping relationship, and reporting gates for named QR source attribution.
+- **Authority level:** **Internal runtime schema contract**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required before named QR source implementation, partner QR creation, and source-aware HubSpot mapping; does not create QR codes, print assets, URL parsing, HubSpot properties, or runtime behavior.
+
 ### `/docs/runtime/qrlanding_runtime.md`
 - **File path:** `docs/runtime/qrlanding_runtime.md`
 - **Purpose / likely role:** Canonical QRLanding runtime attribution contract defining placard-route assumptions, requestId lifecycle expectations, Cloudflare analytics interpretation rules, and campaign KPI ladder governance.
