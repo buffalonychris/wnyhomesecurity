@@ -438,6 +438,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Required before referral payout handling implementation; does not authorize payout automation, Stripe changes, HubSpot schema changes, quote automation, API payload changes, or customer-facing referral copy.
 
+### `/docs/ops/referral_compensation_policy_rev01.md`
+- **File path:** `docs/ops/referral_compensation_policy_rev01.md`
+- **Purpose / likely role:** Internal operations policy defining referral compensation models, default customer referral rate, partner/referrer override rules, payee documentation thresholds, documentation holds, hot-lead/vendor lead handling, cash payout acknowledgement, annual payment tracking, and installer/contractor separation.
+- **Authority level:** **Internal operations policy**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required before referral payout implementation, LEADFLOW002, and contractor/referrer payment tracking; does not authorize payout automation, HubSpot changes, Stripe changes, quote behavior changes, tax/legal filing implementation, API payload changes, or customer-facing referral copy.
+
 
 - **CRM-CONTRACT001 Note:** `docs/crm/hubspot/crm_pipeline_architecture_rev01.md`, `docs/runtime/hubspot_sync_contract.md`, and `docs/runtime/hubspot_properties.md` now lock the live WNYHS Sales Pipeline ID/stage IDs and production `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID` runtime contract values.
 
