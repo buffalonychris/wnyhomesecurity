@@ -26,19 +26,20 @@ const Contact = () => {
 
   const content = <>
     <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
-    <p style={{ maxWidth: 640 }}>Request your estimate here. Share a few details so we can recommend the right next step.</p>
+    <p style={{ maxWidth: 640 }}>Choose a quick call request or send the fuller on-site estimate details.</p>
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
       <a className="btn btn-link" href={buildTel()}>Call {wnyhsContact.phone.display}</a>
       <a className="btn btn-link" href={buildSms('Hi! I’d like to talk about Home Security. Please call me back.')}>Text {wnyhsContact.phone.display}</a>
     </div>
     <section className="qr-panel" id="estimate-form">
-      <h3>Request My Estimate</h3>
+      <h3>Request a Call or On-Site Estimate</h3>
       <CanonicalEstimateRequestForm
         sourceFamily="MAIN_SITE"
         source={estimateIntent === 'selected-package' ? 'contact_page_package_selected' : 'contact_page'}
         landingRoute={`${location.pathname}${location.search}`}
         requestId={undefined}
         entryRoute={location.pathname}
+        enableIntakeSplit
         context={{
           vertical,
           estimateIntent: estimateIntent || undefined,
