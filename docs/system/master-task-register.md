@@ -2624,6 +2624,24 @@ No ARCHIVED tasks are currently recorded.
 - **Operator Decision Required:** Approve scope and HubSpot/referral boundaries before activation.
 - **Completion Notes:** Created `docs/runtime/leadflow_referral_attribution_runtime.md` as a documentation-only runtime contract for future leadflow/referral/source/quote-awareness work. No runtime behavior, API payload behavior, HubSpot schema, named QR implementation, payout automation, quote automation, Stripe behavior, Scheduling behavior, route, UI, or form changes were made.
 
+### LEADFLOW002A
+- **Task ID:** LEADFLOW002A
+- **Task Name:** Estimate Intake Conversion Split + Callback Request Path
+- **Status:** DONE
+- **Category:** LEAD / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Improve estimate-intake conversion by splitting the contact-page intake experience into Request a Call and Request On-Site Estimate paths while preserving protected lead-signal, requestId, HubSpot, QRLanding, Scheduling, Stripe, and referral payout boundaries.
+- **Allowed Scope:** Existing lead intake/form/page components, existing lead-signal callback handling through `/api/lead-signal`, safe operator/customer notification wording, optional referral context in existing request/note context only, visible site version bump, and task-register completion record.
+- **Forbidden Scope:** No replacement or bypass of `/api/lead-signal`, no direct frontend HubSpot writes, no HubSpot property/schema/pipeline/stage changes, no Stripe changes, no payment behavior changes, no named QR source parsing, no `/qrlanding?src=` implementation, no QRLanding attribution event changes, no referral payout logic/status/percentage/amount, no customer-authoritative booking, no quote approval automation, no automatic discounts, no installer/contractor onboarding, no broad redesign, and no deletion of existing estimate fields.
+- **Target Files:** `src/components/CanonicalEstimateRequestForm.tsx`, `src/pages/Contact.tsx`, `src/styles/canonicalEstimateForm.css`, `src/lib/siteVersion.ts`, `functions/api/lead-signal.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Additive lead intake behavior through existing `/api/lead-signal`; no new CRM write path or protected-system replacement.
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `git status`; `git diff --name-only`; `git diff -- src docs`; `git ls-files --deleted`; targeted lead-signal/HubSpot/requestId/QR/referral/safety grep; targeted HubSpot property/pipeline grep; `npm run build`; scoped tests where available.
+- **Exit Criteria:** Contact page offers Request a Call and Request On-Site Estimate; existing canonical estimate submission remains available and preserves supported fields; callback path requires only name and phone with optional email, notes, and `referredByName`; submissions use `/api/lead-signal`; HubSpot sync remains API-mediated with no new properties; QRLanding attribution events remain unchanged; Scheduling remains request/pending owner confirmation; no Stripe or payout logic changes occur.
+- **Dependencies:** LEADFLOW001, HUBSPOT-REFERRAL001, ATTRIBUTION001, REFERRAL-SOP001, QUOTE-REFERRAL001, scheduling runtime contracts, protected runtime contract.
+- **Operator Decision Required:** Approve PR after validation and protected-flow review.
+- **Completion Notes:** Added a contact-page intake split, callback request event handling through existing `/api/lead-signal`, optional `referredByName` in request/note/operator context only, callback-safe acknowledgement text, and a visible site version bump. Existing estimate submissions, HubSpot API-mediated sync, server requestId behavior, QRLanding attribution events, Scheduling confirmation boundary, Stripe behavior, and referral payout boundary were preserved.
+
 ### LEADFLOW002
 - **Task ID:** LEADFLOW002
 - **Task Name:** Lead Intake + Referral Attribution Implementation

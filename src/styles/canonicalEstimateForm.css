@@ -53,7 +53,42 @@
 .estimate-choice { background: color-mix(in oklab, var(--secondary), black 10%); }
 .estimate-submit { width: 100%; text-align: center; min-height: 48px; }
 
+.intake-path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.intake-path-option {
+  display: grid;
+  gap: 0.35rem;
+  min-height: 116px;
+  padding: 1rem;
+  border: 1px solid color-mix(in oklab, var(--border), white 8%);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--secondary), black 12%);
+  color: var(--foreground);
+  text-align: left;
+  cursor: pointer;
+}
+
+.intake-path-option span {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.intake-path-option small {
+  color: var(--muted-foreground);
+  line-height: 1.45;
+}
+
+.intake-path-option.is-active {
+  border-color: color-mix(in oklab, var(--primary), white 14%);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary), transparent 78%);
+}
+
 @media (max-width: 760px) {
+  .intake-path-grid,
   .estimate-form-grid-2,
   .estimate-form-shell .qr-form-grid,
   .estimate-form-shell .qr-radio-row { grid-template-columns: 1fr; }

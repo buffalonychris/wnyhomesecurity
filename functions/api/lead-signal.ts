@@ -102,6 +102,8 @@ const buildQrLeadSummary = (body: LeadSignalRequest, timestampISO: string) => {
     email: body?.contact?.email?.trim?.() || '',
     address: [body?.contact?.address?.street, body?.contact?.address?.city, body?.contact?.address?.state, body?.contact?.address?.zip].filter(Boolean).join(', '),
     requestedHelp: body?.request?.requestedHelp || '',
+    requestDetails: body?.request?.requestDetails || '',
+    referredByName: body?.request?.referredByName || '',
     preferredContactMethod: body?.request?.preferredContactMethod || '',
     preferredEstimateDate: body?.request?.preferredEstimateDate || '',
     preferredEstimateTimeSlot: body?.request?.preferredEstimateTimeSlot || '',
@@ -118,6 +120,10 @@ const validateRequest = (body: LeadSignalRequest) => {
   if (body.event === 'qr_estimate_requested') {
     const required = [body?.contact?.phone, body?.contact?.email, body?.request?.preferredEstimateDate, body?.request?.preferredEstimateTimeSlot];
     if (required.some((value) => !isString(value))) return 'qr_estimate_requested is missing required contact/request fields';
+  }
+  if (body.event === 'callback_requested') {
+    const hasName = isString(body?.contact?.fullName) || isString(body?.contact?.firstName) || isString(body?.contact?.lastName);
+    if (!hasName || !isString(body?.contact?.phone)) return 'callback_requested is missing required contact fields';
   }
   return null;
 };
@@ -139,6 +145,8 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: any) => { /* unc
     `email: ${payload.leadSummary.email || payload.customerEmail || 'Not provided'}`,
     `address: ${payload.leadSummary.address || 'Not provided'}`,
     `requested help: ${payload.leadSummary.requestedHelp || 'Not provided'}`,
+    `request details: ${payload.leadSummary.requestDetails || 'Not provided'}`,
+    `referred by: ${payload.leadSummary.referredByName || 'Not provided'}`,
     `selected package: ${payload.packageTier || 'unknown'}`,
     ...(payload.discoveryContext ? ['Discovery Summary:', `- Recommended Tier: ${payload.discoveryContext.recommendedTier}`, `- Property Size: ${payload.discoveryContext.propertySize}`, `- Coverage Need: ${payload.discoveryContext.coverageExpectation}`, `- Recording Desired: ${payload.discoveryContext.recordingPreference}`, `- Priority Concern: ${payload.discoveryContext.priorityConcerns}`] : []),
     `preferred contact method: ${payload.leadSummary.preferredContactMethod || 'Not provided'}`,
@@ -156,7 +164,8 @@ const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any
   const from = env.RESEND_FROM_EMAIL || env.MAIL_FROM || env.EMAIL_FROM;
   const apiKey = env.RESEND_API_KEY;
   if (!to || !from || !apiKey) return { ok: false as const, skipped: true, error: 'customer_ack_not_configured' };
-  const subject = 'We received your WNY Home Security estimate request';
+  const isCallbackRequest = payload.event === 'callback_requested';
+  const subject = isCallbackRequest ? 'We received your WNY Home Security call request' : 'We received your WNY Home Security estimate request';
   const greetingName = payload.customerName?.trim?.() || 'there';
   const contextLines = [
     `Selected package: ${payload.packageTier || 'unknown'}`,
@@ -171,13 +180,13 @@ const sendCustomerAcknowledgementEmail = async (env: LeadSignalEnv, payload: any
     `Hi ${greetingName},`,
     '',
     'Thank you for reaching out to WNY Home Security.',
-    'We received your estimate request and our local team will review the information you submitted.',
+    isCallbackRequest ? 'We received your request for a call and our local team will review the information you submitted.' : 'We received your estimate request and our local team will review the information you submitted.',
     '',
     ...contextLines,
     `Requested help: ${payload.requestedHelp || 'Not provided'}`,
-    `Preferred estimate window: ${payload.preferredWindow || 'Not provided'}`,
+    ...(isCallbackRequest ? [] : [`Preferred estimate window: ${payload.preferredWindow || 'Not provided'}`]),
     '',
-    'Your selected package or recommendation is a starting point for review. Final equipment, installation scope, and pricing are confirmed directly with WNY Home Security before any work is scheduled.',
+    isCallbackRequest ? 'This call request is not an appointment, quote, payment, or scheduling confirmation.' : 'Your selected package or recommendation is a starting point for review. Final equipment, installation scope, and pricing are confirmed directly with WNY Home Security before any work is scheduled.',
     '',
     'We’ll review your request and follow up as soon as we can.',
     'If anything changes, you can reply to this email or call us at 716-201-0364.',
@@ -214,12 +223,13 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const nowIso = new Date().toISOString();
   const now = new Date();
+  const isCallbackRequest = body.event === 'callback_requested';
   const leadSummary = buildQrLeadSummary(body, nowIso);
   const parsedName = splitName(body.contact);
   const submittedTimestamp = body.submittedAt || nowIso;
   const schedulingSummary = extractSchedulingRequestSummary(body?.request);
   const preferredWindow = schedulingSummary.preferredWindowText;
-  const appointmentRequest = await createPendingOwnerConfirmationAppointmentRequest({
+  const appointmentRequest = isCallbackRequest ? null : await createPendingOwnerConfirmationAppointmentRequest({
     requestId,
     event: body.event,
     preferredEstimateDate: schedulingSummary.preferredEstimateDate,
@@ -253,6 +263,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `whereDidYouSeeUs=${body?.whereDidYouSeeUs || 'n/a'}`,
     `requestedHelp=${body?.request?.requestedHelp || 'n/a'}`,
     `requestDetails=${body?.request?.requestDetails || 'n/a'}`,
+    `referredByName=${body?.request?.referredByName || 'n/a'}`,
     `preferredEstimateDate=${schedulingSummary.preferredEstimateDate || 'n/a'}`,
     `preferredEstimateTimeSlot=${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`,
     `selectedPackage=${packageTier}`,
@@ -261,6 +272,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const contactNotes = [
     `requestedHelp: ${body?.request?.requestedHelp || 'n/a'}`,
     `whereDidYouSeeUs: ${body?.whereDidYouSeeUs || 'n/a'}`,
+    `referredByName: ${body?.request?.referredByName || 'n/a'}`,
     `textConsent: ${body?.textConsent ? 'yes' : 'no'}`,
     `emailConsent: ${body?.emailConsent ? 'yes' : 'no'}`,
     `contactHoursAck: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`,
@@ -276,6 +288,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     customerName: leadSummary.fullName,
     customerPhone: leadSummary.phone,
     sourceRoute: body.route || 'api/lead-signal',
+    event: body.event,
     vertical: normalizedVerticalInterest,
     requestedHelp: leadSummary.requestedHelp,
     preferredWindow,
@@ -286,6 +299,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
   const hubspot: any = { configured: hubspotConfigured, attempted: hubspotConfigured, status: 'failed', contact: 'skipped', deal: 'skipped', association: 'skipped', note: 'skipped', task: 'skipped', skippedProperties: [] };
+  const followUpTaskSubject = isCallbackRequest ? 'Follow up on callback request' : 'Follow up on QR estimate request';
   const setContactFailure = (stage: 'contact_search' | 'contact_create' | 'contact_update', result: any, fallbackErrorCode: string, attemptedPropertyNames: string[] = []) => {
     const detail = summarizeHubspotDetails(result, fallbackErrorCode);
     hubspot.stage = stage;
@@ -327,7 +341,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
       hubspot.contact = 'skipped';
       hubspot.status = 'partial';
       console.warn('[lead-signal] skipping HubSpot contact search: no email or phone', { requestId, sourceRoute: body.route || 'api/lead-signal' });
-      return json({ ok: true, requestId, schedulingStatus: appointmentRequest.schedulingStatus, appointmentRequest, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' }, hubspot }, 200);
+      return json({ ok: true, requestId, schedulingStatus: appointmentRequest?.schedulingStatus, appointmentRequest: appointmentRequest || undefined, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' }, hubspot }, 200);
     }
 
     const search = await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts/search', {
@@ -393,24 +407,24 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
         }
 
         const dealProps = {
-          dealname: buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
+          dealname: isCallbackRequest ? `WNYHS Callback Request - ${dealNameIdentity} - ${requestId}` : buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
           amount: body?.deal?.amount,
           wny_deal_vertical: 'home_security',
           wny_deal_path: normalizedDealPath,
           wny_path_choice: normalizedPathChoice,
           wny_request_id: requestId,
-          wny_walkthrough_requested: true,
-          wny_walkthrough_requested_at: submittedTimestamp,
-          wny_walkthrough_status: 'requested',
-          wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
-          wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
+          wny_walkthrough_requested: isCallbackRequest ? undefined : true,
+          wny_walkthrough_requested_at: isCallbackRequest ? undefined : submittedTimestamp,
+          wny_walkthrough_status: isCallbackRequest ? undefined : 'requested',
+          wny_walkthrough_preferred_date_1: isCallbackRequest ? undefined : body?.request?.preferredEstimateDate,
+          wny_walkthrough_preferred_time_window_1: isCallbackRequest ? undefined : timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
           wny_walkthrough_notes: stringifyHubSpotTextField({ qrDetailSummary, appointmentRequest, request: body?.request }),
-          wny_onsite_quote_required: true,
+          wny_onsite_quote_required: isCallbackRequest ? undefined : true,
           wny_install_address: body?.contact?.address?.street,
           wny_install_city: body?.contact?.address?.city,
           wny_install_state: body?.contact?.address?.state,
           wny_install_zip: body?.contact?.address?.zip,
-          wny_install_status: 'requested',
+          wny_install_status: isCallbackRequest ? undefined : 'requested',
           wny_quote_ref: body?.deal?.quoteRef || requestId,
           wny_quote_status: 'not_started',
           dealstage: dealStageId,
@@ -424,13 +438,13 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             hubspot.association = assoc.ok ? 'created' : 'failed';
 
             const noteBody = [
-              'QR estimate request received', `requestId: ${requestId}`, `customer name: ${leadSummary.fullName || 'n/a'}`,
+              isCallbackRequest ? 'Callback request received' : 'QR estimate request received', `requestId: ${requestId}`, `customer name: ${leadSummary.fullName || 'n/a'}`,
               `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
               `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
               `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
               `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
               `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
-              `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
+              `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `referred by: ${body?.request?.referredByName || 'n/a'}`, `consent summary: ${consentSummary}`,
               `selected package: ${packageTier}`,
               ...(discoveryContext ? [`Discovery Summary`, `- Recommended Tier: ${discoveryContext.recommendedTier}`, `- Property Size: ${discoveryContext.propertySize}`, `- Coverage Need: ${discoveryContext.coverageExpectation}`, `- Recording Desired: ${discoveryContext.recordingPreference}`, `- Priority Concern: ${discoveryContext.priorityConcerns}`, `- Entry Points: ${discoveryContext.entryPointCount}`] : []),
               `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
@@ -442,11 +456,11 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             const due = new Date(etNow);
             if (etNow.getHours() < 19) due.setHours(etNow.getHours() + 2, 0, 0, 0);
             else due.setDate(due.getDate() + 1), due.setHours(10, 0, 0, 0);
-            const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}`;
-            const existingTask = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks/search', { filterGroups: [{ filters: [{ propertyName: 'associations.deal', operator: 'EQ', value: String(resolvedDealId) }, { propertyName: 'hs_task_subject', operator: 'EQ', value: 'Follow up on QR estimate request' }, { propertyName: 'hs_task_status', operator: 'IN', values: ['NOT_STARTED', 'IN_PROGRESS', 'WAITING'] }] }], limit: 1 });
+            const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}\nreferred by: ${body?.request?.referredByName || 'n/a'}`;
+            const existingTask = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks/search', { filterGroups: [{ filters: [{ propertyName: 'associations.deal', operator: 'EQ', value: String(resolvedDealId) }, { propertyName: 'hs_task_subject', operator: 'EQ', value: followUpTaskSubject }, { propertyName: 'hs_task_status', operator: 'IN', values: ['NOT_STARTED', 'IN_PROGRESS', 'WAITING'] }] }], limit: 1 });
             if (existingTask.ok && ((existingTask as any)?.data?.results?.length || 0) > 0) hubspot.task = 'skipped_duplicate';
             else {
-              const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
+              const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: followUpTaskSubject, hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
               hubspot.task = task.ok ? 'created' : 'failed';
             }
           }
@@ -485,27 +499,27 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
             else console.warn('[lead-signal] active deal dedupe search failed; proceeding without dedupe', { requestId, contactId: resolvedContactId });
           }
           const dealProps = {
-            dealname: buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
+            dealname: isCallbackRequest ? `WNYHS Callback Request - ${dealNameIdentity} - ${requestId}` : buildEstimateDealName({ isQr: isQrEstimate, customerName: dealNameIdentity, requestId }),
             amount: body?.deal?.amount,
             wny_deal_vertical: 'home_security',
             wny_deal_path: normalizedDealPath,
             wny_path_choice: normalizedPathChoice,
             wny_request_id: requestId,
-            wny_walkthrough_requested: true,
-            wny_walkthrough_requested_at: submittedTimestamp,
-            wny_walkthrough_status: 'requested',
-            wny_walkthrough_preferred_date_1: body?.request?.preferredEstimateDate,
-            wny_walkthrough_preferred_time_window_1: timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
+            wny_walkthrough_requested: isCallbackRequest ? undefined : true,
+            wny_walkthrough_requested_at: isCallbackRequest ? undefined : submittedTimestamp,
+            wny_walkthrough_status: isCallbackRequest ? undefined : 'requested',
+            wny_walkthrough_preferred_date_1: isCallbackRequest ? undefined : body?.request?.preferredEstimateDate,
+            wny_walkthrough_preferred_time_window_1: isCallbackRequest ? undefined : timeSlotToBucket(body?.request?.preferredEstimateTimeSlot),
             wny_walkthrough_notes: stringifyHubSpotTextField({ qrDetailSummary, appointmentRequest, request: body?.request }),
-            wny_onsite_quote_required: true,
+            wny_onsite_quote_required: isCallbackRequest ? undefined : true,
             wny_install_address: body?.contact?.address?.street,
             wny_install_city: body?.contact?.address?.city,
             wny_install_state: body?.contact?.address?.state,
             wny_install_zip: body?.contact?.address?.zip,
-            wny_install_status: 'requested',
+            wny_install_status: isCallbackRequest ? undefined : 'requested',
             wny_quote_ref: body?.deal?.quoteRef || requestId,
             wny_quote_status: 'not_started',
-          dealstage: dealStageId,
+            dealstage: dealStageId,
           };
           const dealResult = await safeSet('deals', dealId, dealProps);
           if (dealResult.ok) {
@@ -515,13 +529,13 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               const assoc = await hubspotRequest(env, 'PUT', `/crm/v3/objects/deals/${resolvedDealId}/associations/contacts/${resolvedContactId}/deal_to_contact`);
               hubspot.association = assoc.ok ? 'created' : 'failed';
               const noteBody = [
-                'QR estimate request received', `requestId: ${requestId}`, `customer name: ${leadSummary.fullName || 'n/a'}`,
+                isCallbackRequest ? 'Callback request received' : 'QR estimate request received', `requestId: ${requestId}`, `customer name: ${leadSummary.fullName || 'n/a'}`,
                 `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
                 `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
                 `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
                 `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
                 `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
-                `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `consent summary: ${consentSummary}`,
+                `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `referred by: ${body?.request?.referredByName || 'n/a'}`, `consent summary: ${consentSummary}`,
                 `selected package: ${packageTier}`,
                 ...(discoveryContext ? [`Discovery Summary`, `- Recommended Tier: ${discoveryContext.recommendedTier}`, `- Property Size: ${discoveryContext.propertySize}`, `- Coverage Need: ${discoveryContext.coverageExpectation}`, `- Recording Desired: ${discoveryContext.recordingPreference}`, `- Priority Concern: ${discoveryContext.priorityConcerns}`, `- Entry Points: ${discoveryContext.entryPointCount}`] : []),
                 `where customer saw us: ${body?.whereDidYouSeeUs || 'n/a'}`, `submitted timestamp: ${submittedTimestamp}`,
@@ -532,11 +546,11 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               const due = new Date(etNow);
               if (etNow.getHours() < 19) due.setHours(etNow.getHours() + 2, 0, 0, 0);
               else due.setDate(due.getDate() + 1), due.setHours(10, 0, 0, 0);
-              const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}`;
-              const existingTask = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks/search', { filterGroups: [{ filters: [{ propertyName: 'associations.deal', operator: 'EQ', value: String(resolvedDealId) }, { propertyName: 'hs_task_subject', operator: 'EQ', value: 'Follow up on QR estimate request' }, { propertyName: 'hs_task_status', operator: 'IN', values: ['NOT_STARTED', 'IN_PROGRESS', 'WAITING'] }] }], limit: 1 });
+              const taskBody = `requestId: ${requestId}\nwindow: ${preferredWindow || 'n/a'}\nphone: ${leadSummary.phone || 'n/a'}\nemail: ${leadSummary.email || 'n/a'}\nrequested help: ${body?.request?.requestedHelp || 'n/a'}\nreferred by: ${body?.request?.referredByName || 'n/a'}`;
+              const existingTask = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks/search', { filterGroups: [{ filters: [{ propertyName: 'associations.deal', operator: 'EQ', value: String(resolvedDealId) }, { propertyName: 'hs_task_subject', operator: 'EQ', value: followUpTaskSubject }, { propertyName: 'hs_task_status', operator: 'IN', values: ['NOT_STARTED', 'IN_PROGRESS', 'WAITING'] }] }], limit: 1 });
               if (existingTask.ok && ((existingTask as any)?.data?.results?.length || 0) > 0) hubspot.task = 'skipped_duplicate';
               else {
-                const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: 'Follow up on QR estimate request', hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
+                const task = await hubspotRequest(env, 'POST', '/crm/v3/objects/tasks', { properties: { hs_task_subject: followUpTaskSubject, hs_task_body: taskBody, hs_task_status: 'NOT_STARTED', hs_timestamp: due.toISOString() }, associations: [{ to: { id: resolvedContactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }] }, { to: { id: resolvedDealId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }] }] });
                 hubspot.task = task.ok ? 'created' : 'failed';
               }
             }
@@ -561,8 +575,8 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const responseBody: Record<string, unknown> = {
     ok: true,
     requestId,
-    schedulingStatus: appointmentRequest.schedulingStatus,
-    appointmentRequest,
+    schedulingStatus: appointmentRequest?.schedulingStatus,
+    appointmentRequest: appointmentRequest || undefined,
     notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' },
     customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' },
     hubspot,
