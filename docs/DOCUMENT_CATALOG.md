@@ -103,6 +103,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/system/`
 
+### `/docs/system/document_status_reconciliation_rev01.md`
+- **File path:** `docs/system/document_status_reconciliation_rev01.md`
+- **Purpose / likely role:** Internal governance document reconciliation and status map identifying authoritative docs, historical/supporting docs, superseded candidates, unknown review targets, focused LEADFLOW001 review set, implementation review sets, and documentation gaps.
+- **Authority level:** **Internal governance / document reconciliation / status map**
+- **Customer-facing:** No.
+- **Notes:** Required review aid before LEADFLOW001 and other high-risk implementation work; does not authorize runtime, HubSpot, Stripe, scheduling, route, UI, referral, request-estimate, BOM, package, or pricing changes.
+
 ### `/docs/system/project.md`
 - **File path:** `docs/system/project.md`
 - **Purpose / likely role:** Top-level project authority and policy hierarchy.

@@ -2570,6 +2570,75 @@ No ARCHIVED tasks are currently recorded.
 - **Operator Decision Required:** No.
 - **Completion Notes:** Created `docs/MARKDOWN_MANIFEST.md` with 107 markdown files inventoried and explicit review sets for LEADFLOW001, HubSpot, QR/source attribution, BOM/package, Stripe, and scheduling work. No implementation tasks were completed.
 
+### DOCSTATUS001
+- **Task ID:** DOCSTATUS001
+- **Task Name:** Documentation Reconciliation + Status Classification
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Perform a docs-only reconciliation pass using the markdown manifest so future implementation work does not break existing HubSpot, request estimate, QR attribution, scheduling, Stripe, runtime, catalog, or funnel systems.
+- **Allowed Scope:** Documentation-only reconciliation document creation, document catalog update, markdown manifest addendum, and task-register completion record.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe code, HubSpot integration code, scheduling code, LEADFLOW001 implementation, referral logic, request estimate behavior changes, document deletion, document renaming, document consolidation, historical document rewrite, public pricing, and customer-facing claims.
+- **Target Files:** `docs/system/document_status_reconciliation_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add the reconciliation document, add document catalog entry, add markdown manifest addendum, and mark DOCSTATUS001 complete in this register.
+- **Validation Required:** `git status`; `git diff -- docs/system/document_status_reconciliation_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; targeted reconciliation grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Reconciliation document exists, high-risk review sets are present, LEADFLOW001 review set is focused and practical, documentation gaps and future tasks are identified, and no runtime/source behavior changes are introduced.
+- **Dependencies:** DOC001, CATALOG003, current governance context, runtime contracts, HubSpot REV03, funnel standards, Scheduling contracts, Stripe runtime contract, and Capability Catalog REV03.
+- **Operator Decision Required:** Review DOCSYNC001 and LEADFLOW001 ordering before implementation work.
+- **Completion Notes:** Created `docs/system/document_status_reconciliation_rev01.md`, classified authoritative/supporting/historical/superseded/unknown docs, captured current HubSpot/QR/Scheduling/Stripe/catalog realities, listed known documentation gaps, and preserved protected runtime systems.
+
+### LEADFLOW001
+- **Task ID:** LEADFLOW001
+- **Task Name:** Lead Intake, Referral Attribution, and Quote-Aware CRM Workflow Runtime Contract
+- **Status:** BACKLOG
+- **Category:** GOV / LEAD / CRM / QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the lead intake, referral attribution, named QR source attribution, and quote-aware CRM workflow runtime contract before any implementation work.
+- **Allowed Scope:** Documentation-only runtime contract drafting, review-set use, source attribution model definition, referral-awareness boundaries, HubSpot mapping proposal, and follow-up task definition.
+- **Forbidden Scope:** Runtime code changes, UI changes, route changes, HubSpot schema/property creation, HubSpot workflow implementation, Stripe changes, scheduling behavior changes, referral payout automation, request estimate behavior changes, and direct CRM writes.
+- **Target Files:** Future scoped documentation only.
+- **Runtime Systems Affected:** None until a later implementation task is explicitly authorized.
+- **Documentation Updates Required:** New runtime contract and related catalog/register updates when activated.
+- **Validation Required:** Documentation diff, protected-system grep, and review against DOCSTATUS001 required review set.
+- **Exit Criteria:** Runtime contract exists and clearly separates documentation decisions from implementation.
+- **Dependencies:** DOCSTATUS001.
+- **Operator Decision Required:** Approve scope and HubSpot/referral boundaries before activation.
+
+### DOCSYNC001
+- **Task ID:** DOCSYNC001
+- **Task Name:** Decide DOCUMENT_CATALOG vs MARKDOWN_MANIFEST Relationship
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define whether `docs/DOCUMENT_CATALOG.md` is a curated authority catalog and `docs/MARKDOWN_MANIFEST.md` is the exhaustive inventory, including update rules for each.
+- **Allowed Scope:** Documentation-only governance clarification and bounded catalog/manifest updates.
+- **Forbidden Scope:** Runtime code, UI, routes, HubSpot, Stripe, scheduling, document deletion, document renaming, and document consolidation.
+- **Target Files:** `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Relationship rule and update responsibility notes.
+- **Validation Required:** Documentation diff and targeted grep for catalog/manifest relationship language.
+- **Exit Criteria:** Future tasks can determine which index must be updated for new, renamed, superseded, or promoted docs.
+- **Dependencies:** DOC001 and DOCSTATUS001.
+- **Operator Decision Required:** Approve preferred catalog/manifest ownership model.
+
+### DOCSTATUS002
+- **Task ID:** DOCSTATUS002
+- **Task Name:** Stale / Superseded Document Promotion Review
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Review documents classified as superseded candidates or unknown/needs-review and decide whether to promote, relabel, or leave unchanged.
+- **Allowed Scope:** Documentation-only status review, metadata notes, and register/catalog updates.
+- **Forbidden Scope:** Document deletion, document renaming, document consolidation, historical audit rewrites, runtime code, UI, routes, HubSpot, Stripe, scheduling, referral implementation, and request estimate behavior changes.
+- **Target Files:** Documentation files only, to be scoped when activated.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Updated status notes for reviewed documents.
+- **Validation Required:** Documentation diff, no-delete/no-rename verification, and targeted status-label grep.
+- **Exit Criteria:** Superseded candidates and unknown/needs-review documents have explicit operator-reviewed status without destructive cleanup.
+- **Dependencies:** DOCSTATUS001 and DOCSYNC001 if catalog/manifest ownership affects status labels.
+- **Operator Decision Required:** Approve status actions before activation.
+
 
 ### HOTFIX004
 - **Task ID:** HOTFIX004
