@@ -6,6 +6,8 @@ Total markdown files inventoried: 107
 
 DOCSTATUS001 addendum: `docs/system/document_status_reconciliation_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration.
 
+LEADFLOW001 addendum: `docs/runtime/leadflow_referral_attribution_runtime.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is required review material before LEADFLOW001 implementation, HubSpot referral mapping, named QR attribution, quote-visible referral work, and referral SOP work.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 

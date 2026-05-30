@@ -234,6 +234,13 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Added by RUNTIME005 REV01 with confirmed source-backed behavior plus explicit UNKNOWN / NEEDS VERIFICATION markers.
 
+### `/docs/runtime/leadflow_referral_attribution_runtime.md`
+- **File path:** `docs/runtime/leadflow_referral_attribution_runtime.md`
+- **Purpose / likely role:** Internal runtime contract defining future-safe lead intake modernization, manual referral capture, named QR source attribution, HubSpot referral mapping requirements, quote-visible referral awareness boundaries, and referral payout review posture.
+- **Authority level:** **Internal runtime contract / documentation-only / no implementation authority**
+- **Customer-facing:** No.
+- **Notes:** Required before leadflow/referral implementation, HubSpot referral mapping, named QR attribution, quote-visible referral work, or referral SOP work; does not create runtime behavior, HubSpot properties, payout automation, pricing, route changes, UI changes, Stripe changes, or Scheduling changes.
+
 ### `/docs/runtime/qrlanding_runtime.md`
 - **File path:** `docs/runtime/qrlanding_runtime.md`
 - **Purpose / likely role:** Canonical QRLanding runtime attribution contract defining placard-route assumptions, requestId lifecycle expectations, Cloudflare analytics interpretation rules, and campaign KPI ladder governance.
