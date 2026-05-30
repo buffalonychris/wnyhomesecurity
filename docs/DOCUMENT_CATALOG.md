@@ -156,6 +156,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/codex/`
 
+### `/docs/codex/CODEX_RUN_CONTRACT.md`
+- **File path:** `docs/codex/CODEX_RUN_CONTRACT.md`
+- **Purpose / likely role:** Reusable standard Codex run contract defining always-on governance, protected-system, validation, branch/PR, and output rules for future Codex tasks.
+- **Authority level:** **Active Codex governance contract**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required review/load document for future Codex tasks; does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
+
 ### `/docs/codex/CODEX_TASK_TEMPLATE.md`
 - **File path:** `docs/codex/CODEX_TASK_TEMPLATE.md`
 - **Purpose / likely role:** Required Codex run template including version bump, validation, and output format.

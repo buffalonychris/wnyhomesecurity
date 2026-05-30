@@ -210,6 +210,24 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Operator Decision Required:** No
 - **Completion Notes:** GOV002 standardized governance/task-register schema and lifecycle language in MTR and synchronized Codex rules/template docs without runtime changes.
 
+### CODEX-CONTRACT001
+- **Task ID:** CODEX-CONTRACT001
+- **Task Name:** Standard Codex Run Contract
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a reusable standard Codex run contract so future Codex prompts can reference one stable governance document instead of repeating base governance, protected-system, review, validation, and output rules.
+- **Allowed Scope:** Documentation/governance only; create `docs/codex/CODEX_RUN_CONTRACT.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register only.
+- **Forbidden Scope:** No runtime code, UI components, routes, form components, HubSpot code/schema/workflows, Stripe code/webhooks/payment verification, scheduling code/calendar writes, lead-signal implementation, QRLanding implementation, LEADFLOW002 implementation, referral logic, named QR logic, request estimate behavior changes, document deletion, document renaming, or document consolidation.
+- **Target Files:** `docs/codex/CODEX_RUN_CONTRACT.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** New Codex run contract, document catalog entry, markdown manifest addendum, and task-register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/codex/CODEX_RUN_CONTRACT.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted contract grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Contract exists with required metadata and sections, catalog and manifest reference it, register records CODEX-CONTRACT001 as complete, validation passes, and no implementation or forbidden file changes occur.
+- **Dependencies:** Current governance context, GOV002, DOC001, DOCSTATUS001.
+- **Operator Decision Required:** No.
+- **Completion Notes:** Created `docs/codex/CODEX_RUN_CONTRACT.md` as active Codex governance contract REV01 and updated the catalog, manifest addendum, and register only. No runtime/source behavior, UI, routes, forms, HubSpot, Stripe, scheduling, lead-signal, QRLanding, referral, named QR, or request estimate changes were made.
+
 
 
 ### FUNNEL001
