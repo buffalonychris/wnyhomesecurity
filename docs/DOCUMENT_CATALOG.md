@@ -85,6 +85,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Pricing-approved:** No.
 - **Notes:** Used for future BOM and solution package work only; it is not a final hardware commitment document and does not authorize runtime, HubSpot, Stripe, scheduling, route, or UI changes.
 
+### `/docs/catalogs/wnyhs_capability_catalog_rev03.md`
+- **File path:** `docs/catalogs/wnyhs_capability_catalog_rev03.md`
+- **Purpose / likely role:** WNYHS Capability Catalog REV03 applying Deep Research validation findings to the REV02 feature universe with governed validation fields for HA integration, local-only viability, launch suitability, BOM priority, and unresolved research notes.
+- **Authority level:** **Internal planning / catalog / validation artifact; source-of-truth candidate for capability validation**
+- **Customer-facing:** No.
+- **Pricing-approved:** No.
+- **BOM-approved:** No.
+- **Notes:** Used to guide `BOM001` and `PACKAGE001`; does not authorize public pricing, final hardware commitments, runtime, HubSpot, Stripe, scheduling, route, or UI changes.
+
 ## `docs/system/`
 
 ### `/docs/system/project.md`
@@ -289,7 +298,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## Summary Metrics
 
-- **Total Markdown files cataloged:** **24**
+- **Total Markdown files cataloged:** **25**
 - **Primary authoritative set recognized in this catalog:**
   - `AGENTS.md`
   - `docs/system/project.md`
