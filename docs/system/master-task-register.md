@@ -2517,6 +2517,24 @@ No ARCHIVED tasks are currently recorded.
   - Node-RED documented as operator-facing advanced layer only
   - follow-up work captured as bounded future tasks only
 
+### DOC001
+- **Task ID:** DOC001
+- **Task Name:** Repository Markdown Manifest
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a repo-wide markdown manifest so future Codex tasks can identify source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, catalog docs, and stale/duplicate documentation before making changes.
+- **Allowed Scope:** Documentation-only manifest creation, document catalog update, and task-register completion record.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot integration code, scheduling code, referral implementation, estimate behavior changes, document deletion, document renaming, document consolidation, public pricing, and customer-facing claims.
+- **Target Files:** `docs/MARKDOWN_MANIFEST.md`, `docs/DOCUMENT_CATALOG.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add manifest entry to `docs/DOCUMENT_CATALOG.md` and mark DOC001 complete in this register.
+- **Validation Required:** `git status`; `git diff -- docs/MARKDOWN_MANIFEST.md docs/DOCUMENT_CATALOG.md docs/system/master-task-register.md`; `git diff --name-only`; markdown file scan excluding `.git` and `node_modules`; targeted manifest review-set grep.
+- **Exit Criteria:** Manifest inventories every scanned markdown file, high-risk review sets exist, LEADFLOW001/HubSpot/QR/BOM-package review sets exist, and no runtime/source behavior changes are introduced.
+- **Dependencies:** Current governance context and existing documentation corpus.
+- **Operator Decision Required:** No.
+- **Completion Notes:** Created `docs/MARKDOWN_MANIFEST.md` with 107 markdown files inventoried and explicit review sets for LEADFLOW001, HubSpot, QR/source attribution, BOM/package, Stripe, and scheduling work. No implementation tasks were completed.
+
 
 ### HOTFIX004
 - **Task ID:** HOTFIX004
