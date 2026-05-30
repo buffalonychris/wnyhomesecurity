@@ -1718,7 +1718,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### CATALOG003
 - **Task ID:** CATALOG003
 - **Task Name:** Research HA Integration / Local-Only Viability / Complexity / Market Interest
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Replace REV02 placeholder values with evidence-backed Home Assistant integration paths, local-only viability notes, complexity estimates, and market-interest assumptions.
@@ -1731,6 +1731,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Exit Criteria:** Candidate rows have documented research status and remaining unknowns are explicit.
 - **Dependencies:** CATALOG001 and CATALOG002 if category expansion is needed first.
 - **Operator Decision Required:** Approve research source standards and priority order.
+- **Completion Notes:** Created `docs/catalogs/wnyhs_capability_catalog_rev03.md` as a governed internal validation artifact using REV02 as the authoritative 187-row feature universe and `docs/catalogs/deep-research-report.md` as the validation source. REV03 keeps researcher-suggested additions separate, avoids pricing/BOM approval, and preserves protected runtime boundaries.
+
+### BENCH001
+- **Task ID:** BENCH001
+- **Task Name:** Bench Validation Matrix For High-Risk / Validation-Required Features
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only bench-validation matrix for REV03 rows marked Validation Required, Research Required, Custom Quote Only, or Research Only before BOM/package work.
+- **Allowed Scope:** Internal validation planning notes, acceptance criteria, evidence fields, risk flags, and unresolved dependency tracking.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, pricing, customer-facing package commitments, final hardware commitments, and live device deployment.
+- **Target Files:** Future internal validation documents under `docs/`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if new docs are created.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add validation matrix and catalog cross-references if activated.
+- **Validation Required:** Documentation diff review, protected-runtime scope audit, prohibited-claims scan.
+- **Exit Criteria:** High-risk and validation-required REV03 rows have documented bench tests, pass/fail criteria, and unresolved risks.
+- **Dependencies:** CATALOG003.
+- **Operator Decision Required:** Approve validation matrix format and priority order.
 
 ### BOM001
 - **Task ID:** BOM001
@@ -1765,6 +1783,23 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Exit Criteria:** Solution packages are derived from validated capabilities and BOM evidence, with unresolved assumptions documented.
 - **Dependencies:** CATALOG001, CATALOG003, and BOM001.
 - **Operator Decision Required:** Approve transition from internal package concepts to any future customer-facing copy task.
+
+### CLAIMS001
+- **Task ID:** CLAIMS001
+- **Task Name:** Claims Boundary Notes For Life Safety / Health / Security / Savings Features
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create internal claims-boundary notes for REV03 rows with elevated life-safety, health, security, weather, caregiver, or savings-language risk.
+- **Allowed Scope:** Internal documentation-only claims notes, restricted terminology, review flags, and future approval requirements.
+- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, public copy, public pricing, package commitments, and legal conclusions.
+- **Target Files:** Future internal claims-boundary documents under `docs/`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if new docs are created.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add claims-boundary notes and catalog cross-references if activated.
+- **Validation Required:** Documentation diff review, forbidden-claims scan, protected-runtime scope audit.
+- **Exit Criteria:** Elevated-risk capability rows have conservative internal wording boundaries before any future customer-facing copy task.
+- **Dependencies:** CATALOG003.
+- **Operator Decision Required:** Approve claims review standard and any required external review path.
 
 
 ### NAV-BUG001
