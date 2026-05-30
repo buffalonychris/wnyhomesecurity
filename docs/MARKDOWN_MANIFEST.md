@@ -10,6 +10,8 @@ LEADFLOW001 addendum: `docs/runtime/leadflow_referral_attribution_runtime.md` wa
 
 CODEX-CONTRACT001 addendum: `docs/codex/CODEX_RUN_CONTRACT.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is required review/load material for all future Codex tasks.
 
+HUBSPOT-REFERRAL001 addendum: `docs/crm/hubspot/hubspot_referral_property_mapping_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is required review material before LEADFLOW002, ATTRIBUTION001, QUOTE-REFERRAL001, and referral-aware HubSpot sync changes.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
