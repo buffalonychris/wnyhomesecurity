@@ -2643,20 +2643,21 @@ No ARCHIVED tasks are currently recorded.
 
 ### HUBSPOT-REFERRAL001
 - **Task ID:** HUBSPOT-REFERRAL001
-- **Task Name:** HubSpot Referral Property Mapping
-- **Status:** BACKLOG
+- **Task Name:** HubSpot Referral Property Mapping Contract
+- **Status:** DONE
 - **Category:** CRM
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Define exact HubSpot contact/deal/note/task mapping for referral and source attribution fields before any property creation or runtime writes.
-- **Allowed Scope:** Documentation-only HubSpot mapping proposal and property approval gate.
-- **Forbidden Scope:** HubSpot property creation, schema changes, pipeline changes, workflow changes, direct CRM writes, and runtime implementation.
-- **Target Files:** Future scoped documentation only.
-- **Runtime Systems Affected:** None until a later approved implementation.
-- **Documentation Updates Required:** Update HubSpot property/sync contracts if approved.
-- **Validation Required:** Review against HubSpot REV03 and runtime HubSpot contracts.
-- **Exit Criteria:** Exact property mapping and approval posture are documented.
+- **Purpose:** Define proposed HubSpot contact/deal/note/task field placement, internal property names, field types, enum values, ownership, approval gates, and sync rules for referral attribution, named QR source attribution, lead entry path, and referral payout review before LEADFLOW002 implementation.
+- **Allowed Scope:** Documentation-only HubSpot mapping contract creation, document catalog entry, markdown manifest addendum, and task-register completion record.
+- **Forbidden Scope:** No runtime code, UI, routes, form components, HubSpot implementation code, HubSpot property creation, HubSpot writes, API payload changes, lead-signal implementation changes, QRLanding implementation changes, Stripe code, Scheduling code, tests, quote behavior changes, payout automation, named QR implementation, or customer-facing copy changes.
+- **Target Files:** `docs/crm/hubspot/hubspot_referral_property_mapping_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add CRM mapping contract, catalog entry, manifest addendum, and register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/crm/hubspot/hubspot_referral_property_mapping_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; targeted mapping-contract grep; targeted catalog/manifest/register grep; `npm run build`.
+- **Exit Criteria:** Proposed field mapping and approval posture are documented; no HubSpot properties are created; no runtime/source behavior changes occur; LEADFLOW002 remains incomplete.
 - **Dependencies:** LEADFLOW001.
-- **Operator Decision Required:** Approve or reject proposed HubSpot properties.
+- **Operator Decision Required:** Approve or revise proposed HubSpot property names, enum values, object placement, privacy posture, payout policy, and source registry model before implementation.
+- **Completion Notes:** Created `docs/crm/hubspot/hubspot_referral_property_mapping_rev01.md` as a docs-only internal CRM mapping contract. No HubSpot properties were created, no HubSpot records were written, and no runtime code, API payload, lead-signal, QRLanding, quote, payout, Stripe, Scheduling, route, form, UI, or customer-facing copy behavior changed.
 
 ### ATTRIBUTION001
 - **Task ID:** ATTRIBUTION001

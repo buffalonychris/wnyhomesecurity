@@ -404,6 +404,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **CRM architecture contract**
 - **Notes:** Added by CRM-PIPELINE001 as documentation-only governance prior to CRM-DEAL002B runtime hardening.
 
+### `/docs/crm/hubspot/hubspot_referral_property_mapping_rev01.md`
+- **File path:** `docs/crm/hubspot/hubspot_referral_property_mapping_rev01.md`
+- **Purpose / likely role:** Internal CRM mapping contract defining proposed HubSpot contact/deal/note/task placement, internal property names, field types, enum values, sync rules, and approval gates for referral attribution, named QR source attribution, lead entry path, and referral payout review.
+- **Authority level:** **Internal CRM mapping contract**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required before LEADFLOW002, ATTRIBUTION001, QUOTE-REFERRAL001, and referral-aware HubSpot sync changes; does not create HubSpot properties, write to HubSpot, change API payloads, or authorize payout automation.
+
 
 - **CRM-CONTRACT001 Note:** `docs/crm/hubspot/crm_pipeline_architecture_rev01.md`, `docs/runtime/hubspot_sync_contract.md`, and `docs/runtime/hubspot_properties.md` now lock the live WNYHS Sales Pipeline ID/stage IDs and production `HUBSPOT_ESTIMATE_INITIAL_STAGE_ID` runtime contract values.
 
