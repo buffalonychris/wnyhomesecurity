@@ -623,6 +623,22 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Exit Criteria:** Discovery/Fit Check customer-facing CTA no longer exposes legacy Get Started routing, quote routing, or planner next-step routing; modern intake CTA routes to `/contact?vertical=home-security`; Fit Check logic and protected systems are unchanged.
 - **Completion Notes:** Updated the Discovery/Fit Check top-right CTA from `Get Started` to `Request a Call or On-Site Estimate` and routed it to `/contact?vertical=home-security`; removed the optional planner link from Fit Check results to avoid sending Discovery/Fit Check users into planning from this path; bumped visible site version to `v1.0.93`. No Fit Check questions, scoring, recommendations, Discovery redesign, Quote page, Contact intake, QRLanding, lead-signal, HubSpot, Stripe, scheduling, or legacy route files were changed.
 
+### BUILD001
+- **Task ID:** BUILD001
+- **Task Name:** Fix FloorplanFurnishings Build Blocker
+- **Status:** DONE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Restore clean build validation by fixing the floorplan furnishings casing/default-export mismatch.
+- **Allowed Scope:** Floorplan furnishings import/export casing fix, visible site version bump, and bounded task-register completion note.
+- **Forbidden Scope:** No funnel behavior changes, Contact, QRLanding, Fit Check, Discovery, Quote, Agreement, Deposit, Schedule, HubSpot, Stripe, Scheduling, lead-signal, requestId, customer-facing copy, pricing, or package changes.
+- **Target Files:** `src/components/floorplan/FloorplanFurnishings.tsx`, `src/components/floorplan/floorplanFurnishingRules.ts`, `src/components/floorplan/floorplanFurnishings.ts`, `src/components/floorplan/__tests__/floorplanFurnishings.test.ts`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** None; build-only floorplan module casing repair.
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `git status`; `git diff --name-only`; `git diff -- src docs`; `git ls-files --deleted`; `git diff --check`; targeted floorplan furnishings grep; `npm run build`.
+- **Exit Criteria:** `npm run build` passes without the FloorplanFurnishings casing/default-export blocker; floorplan runtime behavior is preserved; protected funnel/runtime systems remain untouched.
+- **Completion Notes:** Renamed the lower-case furnishings helper module to `floorplanFurnishingRules.ts` and updated the component/test imports so the default-export `FloorplanFurnishings.tsx` component no longer collides with a same-basename helper on case-insensitive filesystems. Bumped visible site version to `v1.0.94`. No funnel behavior, Contact, QRLanding, Fit Check, Discovery, Quote, HubSpot, Stripe, Scheduling, lead-signal, requestId, customer-facing copy, pricing, or package changes were made.
+
 ### FUNNEL-ARCH002
 - **Task ID:** FUNNEL-ARCH002
 - **Task Name:** Funnel architecture implementation cleanup
