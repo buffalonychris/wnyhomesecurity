@@ -5,9 +5,10 @@ import { getAllHomeSecurityNavItems, homeSecurityMarketingNav } from '../../cont
 
 type WnyhsTopNavProps = {
   ctaLink: string;
+  ctaLabel?: string;
 };
 
-const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
+const WnyhsTopNav = ({ ctaLink, ctaLabel = 'Get Started' }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
@@ -62,7 +63,7 @@ const WnyhsTopNav = ({ ctaLink }: WnyhsTopNavProps) => {
             {menuOpen ? 'Close' : 'Menu'}
           </button>
           <Link className="btn btn-primary wnyhs-top-nav-cta" to={ctaLink}>
-            Get Started
+            {ctaLabel}
           </Link>
         </div>
       </div>

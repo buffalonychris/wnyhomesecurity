@@ -52,7 +52,11 @@ const Discovery = () => {
   });
 
   return (
-    <WnyhsFunnelLayout showStepRail={false}>
+    <WnyhsFunnelLayout
+      showStepRail={false}
+      ctaLink="/contact?vertical=home-security"
+      ctaLabel="Request a Call or On-Site Estimate"
+    >
       <div className="wnyhs-funnel-stack">
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
