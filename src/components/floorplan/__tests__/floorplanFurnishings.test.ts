@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { FloorplanRoom } from '../../../lib/homeSecurityFunnel';
-import { getRoomFurnishings } from '../floorplanFurnishings';
+import { getRoomFurnishings } from '../floorplanFurnishingRules';
 
 const baseRoom = (overrides: Partial<FloorplanRoom>): FloorplanRoom => ({
   id: 'room-1',

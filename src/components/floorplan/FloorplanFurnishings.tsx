@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { FloorplanFloor } from '../../lib/homeSecurityFunnel';
-import { getRoomFurnishings } from './floorplanFurnishings';
+import { getRoomFurnishings } from './floorplanFurnishingRules';
 
 const roomLayerStyles: CSSProperties = {
   position: 'absolute',
