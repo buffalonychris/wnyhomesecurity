@@ -24,15 +24,16 @@ const Contact = () => {
   useLayoutConfig({ layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide', showBreadcrumbs: false, breadcrumb: [] });
 
 
-  const content = <>
-    <h2 style={{ marginTop: 0 }}>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
-    <p style={{ maxWidth: 640 }}>Choose a quick call request or send the fuller on-site estimate details.</p>
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+  const content = <div className="contact-intake-shell">
+    <div className="contact-intake-header">
+      <h2>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
+      <p>Choose a quick call request or send on-site estimate details. We'll review your request before anything is scheduled.</p>
+    </div>
+    <div className="contact-intake-actions">
       <a className="btn btn-link" href={buildTel()}>Call {wnyhsContact.phone.display}</a>
       <a className="btn btn-link" href={buildSms('Hi! I’d like to talk about Home Security. Please call me back.')}>Text {wnyhsContact.phone.display}</a>
     </div>
-    <section className="qr-panel" id="estimate-form">
-      <h3>Request a Call or On-Site Estimate</h3>
+    <section className="contact-intake-panel qr-panel" id="estimate-form">
       <CanonicalEstimateRequestForm
         sourceFamily="MAIN_SITE"
         source={estimateIntent === 'selected-package' ? 'contact_page_package_selected' : 'contact_page'}
@@ -40,6 +41,8 @@ const Contact = () => {
         requestId={undefined}
         entryRoute={location.pathname}
         enableIntakeSplit
+        requirePathSelection
+        compactEstimate
         context={{
           vertical,
           estimateIntent: estimateIntent || undefined,
@@ -52,7 +55,7 @@ const Contact = () => {
         }}
       />
     </section>
-  </>;
+  </div>;
 
   return isHomeSecurity ? <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security"><div className="wnyhs-marketing-stack">{content}</div></WnyhsMarketingLayout> : <div className="container section">{content}</div>;
 };

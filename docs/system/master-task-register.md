@@ -2659,6 +2659,23 @@ No ARCHIVED tasks are currently recorded.
 - **Operator Decision Required:** Approve PR after validation and protected-flow review.
 - **Completion Notes:** QRLanding now uses the shared intake split with deferred path selection, compact QR-specific estimate requirements, multi-select communication preferences, and a mandatory permission acknowledgement. The hero was tightened into a two-column conversion layout. `/api/lead-signal` remains the submission boundary; QR estimate validation was relaxed so optional email/date/window fields do not block submission. No HubSpot properties, direct frontend HubSpot writes, Stripe changes, scheduling automation, named QR parsing, or referral payout logic were added.
 
+### LEADFLOW002C
+- **Task ID:** LEADFLOW002C
+- **Task Name:** Main Contact Intake Styling Parity + Estimate Entry Cleanup
+- **Status:** DONE
+- **Category:** LEAD / FUNNEL / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Bring the main `/contact?vertical=home-security` intake styling into parity with the polished QRLanding shared intake experience while preserving protected lead-signal, requestId, HubSpot, Scheduling, QR attribution, Stripe, and referral payout boundaries.
+- **Allowed Scope:** `src/pages/Contact.tsx`, `src/components/CanonicalEstimateRequestForm.tsx`, `src/styles/canonicalEstimateForm.css`, `src/lib/siteVersion.ts`, and this task-register completion record.
+- **Forbidden Scope:** No Stripe changes, no payment behavior changes, no HubSpot properties/schema/pipeline/stage changes, no direct frontend HubSpot writes, no `/api/lead-signal` behavior changes, no named QR source parsing, no source registry logic, no referral payout logic/status/amount/percentage, no scheduling automation, no calendar event creation, no customer-authoritative booking, no quote automation, no Fit Check changes, no Quote page changes, no Agreement/Deposit/Schedule/System Planner legacy route changes, and no broad site redesign.
+- **Runtime Systems Affected:** Contact-page intake presentation only through the existing shared form; protected runtime behavior remains unchanged.
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `git status`; `git diff --name-only`; `git diff -- src docs`; `git ls-files --deleted`; `git diff --check`; targeted Contact/intake/lead-signal/HubSpot/requestId/referral/safety/Fit Check/Quote grep; scoped lead-signal/HubSpot tests; `npm run build`.
+- **Exit Criteria:** Contact page uses the same deferred Request a Call / Request On-Site Estimate path-selection posture as QRLanding; shared intake controls render as polished cards/permission sections instead of browser-default controls; submit buttons use premium CTA styling and path-specific labels; excess whitespace above path selection is tightened; callback path remains low-friction; non-essential fields remain optional where safe; `/api/lead-signal`, requestId, HubSpot API-mediated sync, Scheduling request-only posture, QR attribution, Stripe, Fit Check, and Quote pages remain preserved.
+- **Dependencies:** LEADFLOW002A, LEADFLOW002B, LEADFLOW001, protected runtime contracts, HubSpot REV03, public/main funnel standards.
+- **Operator Decision Required:** Approve PR after validation and protected-flow review.
+- **Completion Notes:** Contact now uses the deferred compact shared intake variant and the shared form CSS owns the polished path cards, communication method cards, mandatory permission box, and premium submit button styling. Visible site version bumped. No backend, HubSpot, Stripe, Scheduling, QR source parsing, Fit Check, Quote, or legacy transaction route changes were made.
+
 ### LEADFLOW002
 - **Task ID:** LEADFLOW002
 - **Task Name:** Lead Intake + Referral Attribution Implementation
