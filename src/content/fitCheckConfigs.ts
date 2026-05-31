@@ -50,7 +50,7 @@ const buildNewsiteCtas = (tier: FitCheckTier): FitCheckCta[] => [
     href: `/newsite/home-security/packages/${tier.toLowerCase()}`,
     variant: 'primary',
   },
-  { label: 'Start online quote', href: '/newsite/quote', variant: 'secondary' },
+  { label: 'Request a Call or On-Site Estimate', href: '/contact?vertical=home-security', variant: 'secondary' },
   { label: 'Talk to an advisor', href: '/newsite/contact', variant: 'ghost' },
 ];
 
@@ -63,21 +63,21 @@ export const fitCheckConfigs: Record<string, FitCheckConfig> = {
       Bronze: {
         included: baseTierIncludes.Bronze,
         ctas: [
-          { label: 'Continue To Estimate Request', href: '/quote?vertical=home-security', variant: 'primary' },
+          { label: 'Request a Call or On-Site Estimate', href: '/contact?vertical=home-security', variant: 'primary' },
           { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
         ],
       },
       Silver: {
         included: baseTierIncludes.Silver,
         ctas: [
-          { label: 'Continue To Estimate Request', href: '/quote?vertical=home-security', variant: 'primary' },
+          { label: 'Request a Call or On-Site Estimate', href: '/contact?vertical=home-security', variant: 'primary' },
           { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
         ],
       },
       Gold: {
         included: baseTierIncludes.Gold,
         ctas: [
-          { label: 'Continue To Estimate Request', href: '/quote?vertical=home-security', variant: 'primary' },
+          { label: 'Request a Call or On-Site Estimate', href: '/contact?vertical=home-security', variant: 'primary' },
           { label: 'Compare Packages', href: '/packages?vertical=home-security', variant: 'secondary' },
         ],
       },
