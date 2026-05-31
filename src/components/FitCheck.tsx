@@ -1,208 +1,43 @@
 import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import type { FitCheckConfig, FitCheckTier } from '../content/fitCheckConfigs';
-import {
-  HomeSecurityFitCheckAnswers,
-  HomeSecurityFitCheckResult,
-  defaultHomeSecurityFitCheckAnswers,
-  entrySummaryLabels,
-  indoorSummaryLabels,
-  perimeterSummaryLabels,
-  buildAssumedCoverage,
-  isHomeSecurityFitCheckComplete,
-  tierToPackageId,
-  PerimeterVideo,
-  LiveView,
-  EntryPoints,
-  ExteriorArea,
-  IndoorAreas,
-  SpecialRoom,
-  HomeSize,
-  Preference,
-} from '../lib/homeSecurityFunnel';
-import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
-import { sendFitCheckCompleted } from '../lib/hubspotLeadSignal';
+import { Link, useSearchParams } from 'react-router-dom';
+import type { FitCheckConfig } from '../content/fitCheckConfigs';
 
-type FitCheckAnswers = HomeSecurityFitCheckAnswers;
-type FitCheckResult = HomeSecurityFitCheckResult;
+const CONTACT_INTAKE_PATH = '/contact?vertical=home-security';
+const MAX_FOLLOW_UPS = 3;
 
-const optionCardStyle: CSSProperties = {
-  display: 'grid',
-  gap: '0.4rem',
-  alignItems: 'start',
-  padding: '0.85rem 1rem',
-  borderRadius: '12px',
-  border: '1px solid rgba(90, 210, 255, 0.2)',
-  background: 'rgba(4, 18, 30, 0.7)',
-  cursor: 'pointer',
+type Situation =
+  | 'packages'
+  | 'away_property'
+  | 'aging_family'
+  | 'forget_doors_lights'
+  | 'second_property'
+  | 'household_damage'
+  | 'easier_management'
+  | 'none';
+
+type AwayHelp = 'who_came_by' | 'deliveries' | 'something_wrong' | 'family_member' | 'pets' | 'see_whats_happening' | 'nothing';
+
+type PropertySituation = 'owner_occupied' | 'rent' | 'family_care' | 'multiple_properties' | 'small_business' | 'other';
+
+type FollowUpId = 'family' | 'deliveries' | 'visibility' | 'damage' | 'convenience' | 'remote_property';
+
+type DiscoveryAnswers = {
+  situations: Situation[];
+  awayHelp: AwayHelp[];
+  propertySituation?: PropertySituation;
+  followUps: Partial<Record<FollowUpId, string[]>>;
 };
 
-const questionCardStyle: CSSProperties = {
-  borderRadius: '16px',
-  border: '1px solid rgba(90, 210, 255, 0.15)',
-  background: 'rgba(6, 18, 32, 0.75)',
-  padding: '1.5rem',
-  boxShadow: '0 16px 40px rgba(4, 12, 24, 0.35)',
+type Recommendation = {
+  category: string;
+  why: string;
 };
 
-const sectionSpacingStyle: CSSProperties = {
-  display: 'grid',
-  gap: '1.25rem',
-};
-
-const initialAnswers: FitCheckAnswers = defaultHomeSecurityFitCheckAnswers;
-
-const perimeterOptions: Array<{ value: PerimeterVideo; label: string; helper: string }> = [
-  { value: 'none', label: 'No exterior video yet', helper: 'Focus on entry sensors first' },
-  { value: 'couple', label: 'A couple of cameras', helper: 'Front door + driveway or back patio' },
-  { value: 'full', label: 'Full perimeter coverage', helper: 'Front, sides, and backyard' },
-];
-
-const liveViewOptions: Array<{ value: LiveView; label: string; helper: string }> = [
-  { value: 'no', label: 'Rarely', helper: 'I just want alerts' },
-  { value: 'occasionally', label: 'Occasionally', helper: 'A few times a week' },
-  { value: 'regularly', label: 'Regularly', helper: 'Daily check-ins' },
-];
-
-const entryPointOptions: Array<{ value: EntryPoints; label: string; helper: string }> = [
-  { value: '1-2', label: '1–2 entry points', helper: 'Front door + one additional entry' },
-  { value: '3-4', label: '3–4 entry points', helper: 'Multiple doors and main windows' },
-  { value: '5+', label: '5+ entry points', helper: 'Larger footprint with many openings' },
-];
-
-const exteriorAreaOptions: Array<{ value: ExteriorArea; label: string; helper: string }> = [
-  { value: 'front', label: 'Front entry', helper: 'Front door and street side' },
-  { value: 'driveway', label: 'Driveway', helper: 'Vehicle and garage line of sight' },
-  { value: 'back', label: 'Backyard', helper: 'Patio, deck, or pool' },
-  { value: 'side', label: 'Side yards', helper: 'Side gates and walkways' },
-  { value: 'garage', label: 'Garage interior', helper: 'Interior garage access' },
-];
-
-const indoorAreaOptions: Array<{ value: IndoorAreas; label: string; helper: string }> = [
-  { value: 'none', label: 'No indoor coverage', helper: 'Just doors and windows' },
-  { value: '1-2', label: '1–2 rooms', helper: 'Main living areas' },
-  { value: '3+', label: '3+ rooms', helper: 'Multiple floors or zones' },
-];
-
-const specialRoomOptions: Array<{ value: SpecialRoom; label: string; helper: string }> = [
-  { value: 'office', label: 'Home office', helper: 'Workstations or equipment' },
-  { value: 'safe_room', label: 'Safe room', helper: 'Dedicated secure space' },
-  { value: 'mancave', label: 'Media / hobby room', helper: 'Entertainment gear' },
-  { value: 'nursery', label: 'Nursery', helper: 'Child or infant room' },
-  { value: 'not_really', label: 'Not really', helper: 'No special rooms' },
-];
-
-const homeSizeOptions: Array<{ value: HomeSize; label: string; helper: string }> = [
-  { value: 'small', label: 'Small', helper: 'Condo, ADU, or small footprint' },
-  { value: 'typical', label: 'Typical', helper: 'Average single-family home' },
-  { value: 'large', label: 'Large', helper: 'Large or multi-level layout' },
-];
-
-const preferenceOptions: Array<{ value: Preference; label: string; helper: string }> = [
-  { value: 'simple', label: 'Keep it simple', helper: 'Cover the basics' },
-  { value: 'balanced', label: 'Balanced coverage', helper: 'Everyday + key upgrades' },
-  { value: 'maximum', label: 'Maximum coverage', helper: 'Full scope coverage' },
-];
-
-const scopeExteriorAreas: FitCheckAnswers['exteriorAreas'] = ['driveway', 'back', 'side'];
-const scopeSpecialRooms: FitCheckAnswers['specialRooms'] = ['office', 'safe_room', 'mancave', 'nursery'];
-
-const getRecommendationTier = (answers: FitCheckAnswers): FitCheckTier => {
-  const isBronze =
-    answers.perimeterVideo === 'none' && answers.entryPoints === '1-2' && answers.indoorAreas === 'none';
-
-  if (isBronze) {
-    return 'Bronze';
-  }
-
-  const scopeExteriorCount = answers.exteriorAreas.filter((area) => scopeExteriorAreas.includes(area)).length;
-  const hasSpecialScope = answers.specialRooms.some((room) => scopeSpecialRooms.includes(room));
-
-  const isGold =
-    (answers.perimeterVideo === 'full' && (answers.entryPoints === '3-4' || answers.entryPoints === '5+')) ||
-    answers.entryPoints === '5+' ||
-    answers.indoorAreas === '3+' ||
-    (answers.homeSize === 'large' && answers.liveView === 'regularly') ||
-    (hasSpecialScope && scopeExteriorCount >= 2);
-
-  if (isGold) {
-    return 'Gold';
-  }
-
-  return 'Silver';
-};
-
-const buildSummary = (answers: FitCheckAnswers): string => {
-  const parts = [
-    answers.perimeterVideo ? `Video: ${perimeterSummaryLabels[answers.perimeterVideo]}` : null,
-    answers.entryPoints ? `Entry points: ${entrySummaryLabels[answers.entryPoints]}` : null,
-    answers.indoorAreas ? `Indoor coverage: ${indoorSummaryLabels[answers.indoorAreas]}` : null,
-  ].filter((part): part is string => Boolean(part));
-
-  return parts.slice(0, 3).join(' • ');
-};
-
-const buildReasons = (answers: FitCheckAnswers): string[] => {
-  const reasons: string[] = [];
-
-  if (answers.entryPoints === '5+') {
-    reasons.push('Five or more entry points benefit from expanded sensor coverage and faster response routing.');
-  }
-
-  if (answers.perimeterVideo === 'full') {
-    reasons.push('Full-perimeter video coverage calls for higher-capacity recording and camera counts.');
-  }
-
-  if (answers.indoorAreas === '3+') {
-    reasons.push('Three or more indoor areas require broader motion, door, and alert coverage.');
-  }
-
-  if (answers.homeSize === 'large') {
-    reasons.push('Large homes need more devices to close coverage gaps across floors and wings.');
-  }
-
-  if (answers.liveView === 'regularly') {
-    reasons.push('Regular live viewing benefits from higher-quality video and dedicated viewing workflows.');
-  }
-
-  if (answers.exteriorAreas.length > 1) {
-    reasons.push('Multiple exterior zones benefit from coordinated lighting and camera angles.');
-  }
-
-  if (answers.specialRooms.length > 0 && !answers.specialRooms.includes('not_really')) {
-    reasons.push('Special rooms deserve dedicated sensors and stricter entry protections.');
-  }
-
-  if (answers.perimeterVideo === 'none') {
-    reasons.push('Minimal video coverage keeps the system focused on core entry sensors.');
-  }
-
-  if (answers.entryPoints === '1-2') {
-    reasons.push('A small number of entry points keeps the system lean and efficient.');
-  }
-
-  if (answers.indoorAreas === 'none') {
-    reasons.push('Skipping indoor coverage keeps the install focused on perimeter alerts.');
-  }
-
-  const fallbackReasons = [
-    'Balanced coverage ensures you can grow the system without rewiring later.',
-    'Local-first controls keep core protections running even during outages.',
-    'A guided install keeps sensors, lighting, and alerts tuned to your layout.',
-  ];
-
-  while (reasons.length < 3) {
-    const nextReason = fallbackReasons.shift();
-    if (nextReason) reasons.push(nextReason);
-  }
-
-  return reasons.slice(0, 3);
-};
-
-const buttonClassByVariant: Record<FitCheckConfig['tiers'][FitCheckTier]['ctas'][number]['variant'], string> = {
-  primary: 'btn btn-primary',
-  secondary: 'btn btn-secondary',
-  ghost: 'btn',
+type FollowUpDefinition = {
+  id: FollowUpId;
+  title: string;
+  options: Array<{ value: string; label: string }>;
+  applies: (answers: DiscoveryAnswers) => boolean;
 };
 
 type FitCheckProps = {
@@ -211,194 +46,407 @@ type FitCheckProps = {
   className?: string;
 };
 
+const initialAnswers: DiscoveryAnswers = {
+  situations: [],
+  awayHelp: [],
+  propertySituation: undefined,
+  followUps: {},
+};
+
+const situationOptions: Array<{ value: Situation; label: string }> = [
+  { value: 'packages', label: 'Packages are sometimes left outside when nobody is home.' },
+  { value: 'away_property', label: "I wish I knew what was happening around my property when I'm away." },
+  { value: 'aging_family', label: 'I worry about an aging parent or family member.' },
+  { value: 'forget_doors_lights', label: 'I sometimes forget things like lights, doors, or garage doors.' },
+  { value: 'second_property', label: "I'd like to keep an eye on a second property, cabin, rental, or outbuilding." },
+  { value: 'household_damage', label: 'I worry about water leaks, frozen pipes, sump pump issues, or household damage.' },
+  { value: 'easier_management', label: 'I want my home to be easier to manage.' },
+  { value: 'none', label: 'None of these really fit.' },
+];
+
+const awayHelpOptions: Array<{ value: AwayHelp; label: string }> = [
+  { value: 'who_came_by', label: 'Knowing who came by.' },
+  { value: 'deliveries', label: 'Knowing when deliveries arrive.' },
+  { value: 'something_wrong', label: 'Knowing if something went wrong.' },
+  { value: 'family_member', label: 'Checking on a family member.' },
+  { value: 'pets', label: 'Keeping an eye on pets.' },
+  { value: 'see_whats_happening', label: 'Being able to see what is happening.' },
+  { value: 'nothing', label: 'Nothing specific.' },
+];
+
+const propertySituationOptions: Array<{ value: PropertySituation; label: string }> = [
+  { value: 'owner_occupied', label: 'I own and live in my home.' },
+  { value: 'rent', label: 'I rent.' },
+  { value: 'family_care', label: 'I help care for a family member.' },
+  { value: 'multiple_properties', label: 'I manage multiple properties.' },
+  { value: 'small_business', label: 'I own or manage a small business.' },
+  { value: 'other', label: 'Other.' },
+];
+
+const followUpDefinitions: FollowUpDefinition[] = [
+  {
+    id: 'family',
+    title: 'Which would help most?',
+    options: [
+      { value: 'okay', label: 'Knowing they are okay.' },
+      { value: 'emergency_awareness', label: 'Emergency awareness.' },
+      { value: 'communication', label: 'Easier communication.' },
+      { value: 'independence', label: 'Help staying independent.' },
+      { value: 'peace', label: 'General peace of mind.' },
+    ],
+    applies: (answers) =>
+      answers.situations.includes('aging_family') ||
+      answers.awayHelp.includes('family_member') ||
+      answers.propertySituation === 'family_care',
+  },
+  {
+    id: 'deliveries',
+    title: 'What is most frustrating?',
+    options: [
+      { value: 'theft', label: 'Package theft.' },
+      { value: 'missed', label: 'Missed deliveries.' },
+      { value: 'arrival_unknown', label: 'Not knowing when packages arrive.' },
+      { value: 'visitors', label: 'Visitors when nobody is home.' },
+      { value: 'door_talk', label: 'Wanting to see and speak to people at the door.' },
+    ],
+    applies: (answers) =>
+      answers.situations.includes('packages') ||
+      answers.awayHelp.includes('deliveries') ||
+      answers.awayHelp.includes('who_came_by'),
+  },
+  {
+    id: 'visibility',
+    title: 'Where would visibility help most?',
+    options: [
+      { value: 'front_door', label: 'Front door.' },
+      { value: 'driveway', label: 'Driveway.' },
+      { value: 'backyard', label: 'Backyard.' },
+      { value: 'garage_side', label: 'Garage or side entrance.' },
+      { value: 'whole_property', label: 'Whole property.' },
+    ],
+    applies: (answers) =>
+      answers.situations.includes('away_property') ||
+      answers.awayHelp.includes('see_whats_happening') ||
+      answers.awayHelp.includes('pets'),
+  },
+  {
+    id: 'damage',
+    title: 'Which problems are you most concerned about?',
+    options: [
+      { value: 'water_leaks', label: 'Water leaks.' },
+      { value: 'frozen_pipes', label: 'Frozen pipes.' },
+      { value: 'sump_pump', label: 'Sump pump issues.' },
+      { value: 'smoke_fire', label: 'Smoke or fire events.' },
+      { value: 'utility_basement', label: 'Utility room or basement issues.' },
+    ],
+    applies: (answers) => answers.situations.includes('household_damage') || answers.awayHelp.includes('something_wrong'),
+  },
+  {
+    id: 'convenience',
+    title: 'What would make daily life easier?',
+    options: [
+      { value: 'lighting', label: 'Smart lighting.' },
+      { value: 'door_lock_reminders', label: 'Door or lock reminders.' },
+      { value: 'garage', label: 'Garage door awareness.' },
+      { value: 'routines', label: 'Simple routines.' },
+      { value: 'one_place', label: 'One place to control everything.' },
+    ],
+    applies: (answers) => answers.situations.includes('forget_doors_lights') || answers.situations.includes('easier_management'),
+  },
+  {
+    id: 'remote_property',
+    title: 'What would be most useful?',
+    options: [
+      { value: 'remote_awareness', label: 'Remote property awareness.' },
+      { value: 'camera_coverage', label: 'Camera coverage.' },
+      { value: 'environmental_alerts', label: 'Environmental alerts.' },
+      { value: 'entry_awareness', label: 'Entry/door awareness.' },
+      { value: 'maintenance_alerts', label: 'Maintenance issue alerts.' },
+    ],
+    applies: (answers) =>
+      answers.situations.includes('second_property') ||
+      answers.propertySituation === 'multiple_properties' ||
+      answers.propertySituation === 'small_business',
+  },
+];
+
+const sectionSpacingStyle: CSSProperties = {
+  display: 'grid',
+  gap: '1.25rem',
+};
+
+const questionCardStyle: CSSProperties = {
+  display: 'grid',
+  gap: '1rem',
+};
+
+const optionGridStyle: CSSProperties = {
+  display: 'grid',
+  gap: '0.75rem',
+};
+
+const optionCardStyle: CSSProperties = {
+  display: 'flex',
+  gap: '0.65rem',
+  alignItems: 'flex-start',
+  padding: '0.85rem 1rem',
+};
+
+const addUniqueRecommendation = (items: Recommendation[], category: string, why: string) => {
+  if (items.some((item) => item.category === category)) return;
+  items.push({ category, why });
+};
+
+const selectedFollowUps = (answers: DiscoveryAnswers) => {
+  return followUpDefinitions.filter((definition) => definition.applies(answers)).slice(0, MAX_FOLLOW_UPS);
+};
+
+const hasAnyPrimaryAnswer = (answers: DiscoveryAnswers) => {
+  return answers.situations.length > 0 && answers.awayHelp.length > 0 && Boolean(answers.propertySituation);
+};
+
+const isComplete = (answers: DiscoveryAnswers, followUps: FollowUpDefinition[]) => {
+  return hasAnyPrimaryAnswer(answers) && followUps.every((followUp) => (answers.followUps[followUp.id] ?? []).length > 0);
+};
+
+const buildRecommendations = (answers: DiscoveryAnswers): Recommendation[] => {
+  const recommendations: Recommendation[] = [];
+  const followUps = answers.followUps;
+  const deliveryFollowUps = followUps.deliveries ?? [];
+  const visibilityFollowUps = followUps.visibility ?? [];
+  const convenienceFollowUps = followUps.convenience ?? [];
+  const damageFollowUps = followUps.damage ?? [];
+  const remoteFollowUps = followUps.remote_property ?? [];
+
+  if (
+    answers.situations.includes('packages') ||
+    answers.awayHelp.includes('deliveries') ||
+    deliveryFollowUps.some((value) => ['theft', 'missed', 'arrival_unknown'].includes(value))
+  ) {
+    addUniqueRecommendation(
+      recommendations,
+      'Package Protection',
+      'If deliveries are a concern, package-focused alerts and front-entry visibility may help you know when something arrives and whether it stays put.',
+    );
+  }
+
+  if (
+    answers.awayHelp.includes('who_came_by') ||
+    deliveryFollowUps.includes('door_talk') ||
+    deliveryFollowUps.includes('visitors') ||
+    visibilityFollowUps.includes('front_door')
+  ) {
+    addUniqueRecommendation(
+      recommendations,
+      'Video Doorbell Solutions',
+      'If visitors, deliveries, or front-door activity came up in your answers, a doorbell-focused setup may help you see who came by.',
+    );
+  }
+
+  if (visibilityFollowUps.includes('driveway')) {
+    addUniqueRecommendation(
+      recommendations,
+      'Driveway / Visitor Awareness',
+      'Driveway-focused visibility can help when vehicles, visitors, or the garage approach matter most.',
+    );
+  }
+
+  if (
+    answers.situations.includes('away_property') ||
+    answers.awayHelp.includes('see_whats_happening') ||
+    visibilityFollowUps.some((value) => ['backyard', 'garage_side'].includes(value))
+  ) {
+    addUniqueRecommendation(
+      recommendations,
+      'Property Awareness Cameras',
+      'Because you want a clearer picture of what is happening around the property, camera placement may be useful in the areas you named.',
+    );
+  }
+
+  if (visibilityFollowUps.includes('whole_property')) {
+    addUniqueRecommendation(
+      recommendations,
+      'Whole-Property Awareness',
+      'A broader layout review may make sense if you want visibility across multiple outdoor areas instead of one doorway or zone.',
+    );
+  }
+
+  if (
+    answers.situations.includes('aging_family') ||
+    answers.awayHelp.includes('family_member') ||
+    answers.propertySituation === 'family_care'
+  ) {
+    addUniqueRecommendation(
+      recommendations,
+      'Senior Safety / Family Awareness',
+      'Family-focused awareness can help when the goal is checking in, supporting independence, or feeling more comfortable about a loved one at home.',
+    );
+  }
+
+  if (damageFollowUps.length > 0 || answers.situations.includes('household_damage')) {
+    addUniqueRecommendation(
+      recommendations,
+      'Leak & Environmental Alerts',
+      'Water, temperature, sump pump, and utility-area alerts may help catch household damage risks earlier.',
+    );
+  }
+
+  if (answers.situations.includes('forget_doors_lights') || convenienceFollowUps.includes('door_lock_reminders')) {
+    addUniqueRecommendation(
+      recommendations,
+      'Smart Entry Controls',
+      'Door, lock, and garage awareness may help when you want reminders or easier control over common entry points.',
+    );
+  }
+
+  if (
+    answers.situations.includes('easier_management') ||
+    convenienceFollowUps.some((value) => ['lighting', 'routines', 'one_place'].includes(value))
+  ) {
+    addUniqueRecommendation(
+      recommendations,
+      'Smart Home Convenience',
+      'Simple routines, lighting control, and one-place management may help the home feel easier to manage day to day.',
+    );
+  }
+
+  if (
+    answers.situations.includes('second_property') ||
+    answers.propertySituation === 'multiple_properties' ||
+    remoteFollowUps.length > 0
+  ) {
+    addUniqueRecommendation(
+      recommendations,
+      'Second Property / Rental Awareness',
+      'If you manage a cabin, rental, outbuilding, or second property, remote awareness and entry alerts may help you stay informed between visits.',
+    );
+  }
+
+  if (answers.awayHelp.includes('pets')) {
+    addUniqueRecommendation(
+      recommendations,
+      'Indoor / Pet Awareness',
+      'If pets are part of the concern, a light-touch indoor view or alert strategy may help without overcomplicating the system.',
+    );
+  }
+
+  if (recommendations.length === 0) {
+    addUniqueRecommendation(
+      recommendations,
+      'Whole-Property Awareness',
+      'Your answers do not point to one obvious category yet, so a short conversation may help identify what would actually be useful.',
+    );
+  }
+
+  return recommendations.slice(0, 6);
+};
+
+const buildAnswerSummary = (answers: DiscoveryAnswers) => {
+  const situationLabels = situationOptions
+    .filter((option) => answers.situations.includes(option.value))
+    .map((option) => option.label);
+  const awayLabels = awayHelpOptions.filter((option) => answers.awayHelp.includes(option.value)).map((option) => option.label);
+  const propertyLabel = propertySituationOptions.find((option) => option.value === answers.propertySituation)?.label;
+
+  return {
+    situations: situationLabels,
+    awayHelp: awayLabels,
+    propertySituation: propertyLabel,
+  };
+};
+
 const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) => {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const isHomeSecurity = searchParams.get('vertical') === 'home-security';
-  const [answers, setAnswers] = useState<FitCheckAnswers>(initialAnswers);
-  const [result, setResult] = useState<FitCheckResult | null>(null);
-  const [exteriorLimitWarning, setExteriorLimitWarning] = useState(false);
+  const [answers, setAnswers] = useState<DiscoveryAnswers>(initialAnswers);
+  const [recommendations, setRecommendations] = useState<Recommendation[] | null>(null);
   const [showCompletedAnswers, setShowCompletedAnswers] = useState(false);
   const recommendationSectionRef = useRef<HTMLElement | null>(null);
+  const isHomeSecurity = searchParams.get('vertical') === 'home-security';
 
-  const canSubmit: boolean = isHomeSecurityFitCheckComplete(answers);
-
-  useEffect(() => {
-    const stored = loadRetailFlow().homeSecurity;
-    if (stored?.fitCheckAnswers) {
-      setAnswers({ ...initialAnswers, ...stored.fitCheckAnswers });
-    }
-    if (stored?.fitCheckResult) {
-      setResult(stored.fitCheckResult);
-      setShowCompletedAnswers(false);
-    }
-  }, []);
+  const activeFollowUps = useMemo(() => {
+    return hasAnyPrimaryAnswer(answers) ? selectedFollowUps(answers) : [];
+  }, [answers]);
+  const canSubmit = isComplete(answers, activeFollowUps);
+  const answerSummary = useMemo(() => buildAnswerSummary(answers), [answers]);
 
   useEffect(() => {
-    updateRetailFlow({ homeSecurity: { fitCheckAnswers: answers } });
-    if (canSubmit) {
-      const params = new URLSearchParams(searchParams);
-      params.set('fit', 'complete');
-      setSearchParams(params, { replace: true });
-    }
-  }, [answers, canSubmit, searchParams, setSearchParams]);
-
-
-
-  useEffect(() => {
-    if (!result || typeof window === 'undefined') return;
-    setShowCompletedAnswers(false);
+    if (!recommendations || typeof window === 'undefined') return;
     recommendationSectionRef.current?.focus();
     recommendationSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [result]);
-  const selectedSpecialRooms = useMemo(() => {
-    return answers.specialRooms.filter((room) => room !== 'not_really');
-  }, [answers.specialRooms]);
-  const discoveryContextParams = useMemo(() => {
-    if (!result) return null;
-    const params = new URLSearchParams();
-    params.set('fit', 'complete');
-    params.set('recommended', result.tier.toLowerCase());
-    params.set('propertySize', answers.homeSize || 'unknown');
-    params.set('coverageExpectation', answers.preference === 'simple' ? 'basic' : answers.preference === 'balanced' ? 'moderate' : answers.preference === 'maximum' ? 'comprehensive' : 'unknown');
-    params.set('recordingPreference', answers.perimeterVideo === 'none' ? 'none' : answers.liveView === 'regularly' ? 'cloud' : answers.liveView === 'occasionally' ? 'hybrid' : 'local');
-    params.set('monitoringPreference', 'no_monthly');
-    params.set('priorityConcerns', answers.exteriorAreas.includes('driveway') ? 'driveway' : answers.specialRooms.includes('nursery') ? 'kids_pets' : 'entry_monitoring');
-    params.set('entryPointCount', answers.entryPoints === '1-2' ? '2' : answers.entryPoints === '3-4' ? '4' : answers.entryPoints === '5+' ? '5' : 'unknown');
-    return params;
-  }, [answers, result]);
+  }, [recommendations]);
 
-  const updateAnswer = <K extends keyof FitCheckAnswers>(key: K, value: FitCheckAnswers[K]) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
-
-  const toggleExteriorArea = (area: FitCheckAnswers['exteriorAreas'][number]) => {
+  const toggleSituation = (value: Situation) => {
     setAnswers((prev) => {
-      const isSelected = prev.exteriorAreas.includes(area);
-      if (isSelected) {
-        setExteriorLimitWarning(false);
-        return { ...prev, exteriorAreas: prev.exteriorAreas.filter((item) => item !== area) };
-      }
-      if (prev.exteriorAreas.length >= 2) {
-        setExteriorLimitWarning(true);
-        return prev;
-      }
-      setExteriorLimitWarning(false);
-      return { ...prev, exteriorAreas: [...prev.exteriorAreas, area] };
+      const nextSelected = value === 'none'
+        ? ['none' as Situation]
+        : prev.situations.includes(value)
+          ? prev.situations.filter((item) => item !== value)
+          : [...prev.situations.filter((item) => item !== 'none'), value];
+      return { ...prev, situations: nextSelected, followUps: {} };
     });
+    setRecommendations(null);
   };
 
-  const toggleSpecialRoom = (room: FitCheckAnswers['specialRooms'][number]) => {
+  const toggleAwayHelp = (value: AwayHelp) => {
     setAnswers((prev) => {
-      const isSelected = prev.specialRooms.includes(room);
-      if (isSelected) {
-        return { ...prev, specialRooms: prev.specialRooms.filter((item) => item !== room) };
-      }
-      return { ...prev, specialRooms: [...prev.specialRooms, room] };
+      const nextSelected = value === 'nothing'
+        ? ['nothing' as AwayHelp]
+        : prev.awayHelp.includes(value)
+          ? prev.awayHelp.filter((item) => item !== value)
+          : [...prev.awayHelp.filter((item) => item !== 'nothing'), value];
+      return { ...prev, awayHelp: nextSelected, followUps: {} };
     });
+    setRecommendations(null);
   };
 
-  const buildNextResult = () => {
-    const tier = getRecommendationTier(answers);
-    return {
-      tier,
-      nextResult: {
-        tier,
-        summary: buildSummary(answers),
-        reasons: buildReasons(answers),
-        assumedCoverage: buildAssumedCoverage(answers),
-      },
-    };
+  const setPropertySituation = (value: PropertySituation) => {
+    setAnswers((prev) => ({ ...prev, propertySituation: value, followUps: {} }));
+    setRecommendations(null);
   };
 
-  const submitFitCheck = () => {
-    if (!canSubmit) return null;
-    const { tier, nextResult } = buildNextResult();
-    setResult(nextResult);
-    updateRetailFlow({
-      homeSecurity: {
-        fitCheckResult: nextResult,
-        selectedPackageId: tierToPackageId(tier),
-      },
+  const toggleFollowUp = (followUpId: FollowUpId, value: string) => {
+    setAnswers((prev) => {
+      const current = prev.followUps[followUpId] ?? [];
+      const next = current.includes(value) ? current.filter((item) => item !== value) : [...current, value];
+      return { ...prev, followUps: { ...prev.followUps, [followUpId]: next } };
     });
+    setRecommendations(null);
+  };
+
+  const handleSubmit = () => {
+    if (!canSubmit) return;
+    const nextRecommendations = buildRecommendations(answers);
+    setRecommendations(nextRecommendations);
+    setShowCompletedAnswers(false);
+
     const params = new URLSearchParams(searchParams);
-    params.set('fitTier', tier);
-    params.set('package', tierToPackageId(tier));
+    params.set('fit', 'complete');
+    params.delete('fitTier');
+    params.delete('package');
     setSearchParams(params, { replace: true });
-    void sendFitCheckCompleted({
-      pathChoice: searchParams.get('path') === 'onsite' ? 'onsite_confirmation_first' : 'online_first',
-      deal: { packageTier: tier.toLowerCase(), packageId: tierToPackageId(tier), plannerSummary: buildSummary(answers) },
-      fitCheck: { recommendedTier: tier, answers, assumedCoverage: nextResult.assumedCoverage },
-    });
+
     void fetch('/api/fit-check', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        recommendedTier: tier,
-        plannerSummary: buildSummary(answers),
+        recommendedTier: 'consultative-discovery',
+        recommendationCategories: nextRecommendations.map((item) => item.category),
         answers,
         pageRoute: typeof window !== 'undefined' ? window.location.pathname : undefined,
       }),
     });
-    return tier;
-  };
-
-  const handleSubmit = () => {
-    submitFitCheck();
-  };
-
-  const handleEstimateRequest = () => {
-    const tier = submitFitCheck();
-    if (!tier) return;
-    navigate('/contact?vertical=home-security');
   };
 
   const handleReset = () => {
     setAnswers(initialAnswers);
-    setResult(null);
+    setRecommendations(null);
     setShowCompletedAnswers(false);
-    setExteriorLimitWarning(false);
-    updateRetailFlow({ homeSecurity: { fitCheckAnswers: initialAnswers, fitCheckResult: undefined } });
     const params = new URLSearchParams(searchParams);
-    params.delete('fitTier');
     params.delete('fit');
+    params.delete('fitTier');
+    params.delete('package');
     setSearchParams(params, { replace: true });
   };
-
-  const questionNumberStyle: CSSProperties = {
-    fontSize: '0.85rem',
-    color: 'rgba(139, 211, 255, 0.8)',
-    textTransform: 'uppercase',
-    letterSpacing: '0.08em',
-  };
-
-  const gridStyle: CSSProperties = {
-    display: 'grid',
-    gap: '0.75rem',
-    marginTop: '0.9rem',
-  };
-
-  const helperStyle: CSSProperties = {
-    margin: 0,
-    color: 'rgba(173, 226, 255, 0.7)',
-    fontSize: '0.9rem',
-  };
-
-  const labelStyle: CSSProperties = {
-    fontWeight: 600,
-    color: '#f5fbff',
-  };
-
-  const sectionTitleStyle: CSSProperties = {
-    fontSize: '1.8rem',
-    marginBottom: '0.25rem',
-  };
-
-  const submitClassName = `btn btn-primary${canSubmit ? '' : ' disabled'}`;
-  const recommendationClassName = isHomeSecurity ? `btn btn-secondary${canSubmit ? '' : ' disabled'}` : submitClassName;
 
   const content = (
     <div
@@ -406,276 +454,106 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
       style={{ display: 'grid', gap: '2rem' }}
     >
       <header style={{ display: 'grid', gap: '0.75rem' }}>
-        <h1
-          className={isHomeSecurity ? 'wnyhs-funnel-title' : undefined}
-          style={!isHomeSecurity ? { marginBottom: 0 } : undefined}
-        >
-          {config.heroTitle}
-        </h1>
-        <p
-          className={isHomeSecurity ? 'wnyhs-funnel-subtitle' : undefined}
-          style={!isHomeSecurity ? { margin: 0, maxWidth: '54rem', color: 'rgba(214, 233, 248, 0.88)' } : undefined}
-        >
-          {config.heroSubtitle}
-        </p>
+        <h1 className={isHomeSecurity ? 'wnyhs-funnel-title' : undefined}>{config.heroTitle}</h1>
+        <p className={isHomeSecurity ? 'wnyhs-funnel-subtitle' : undefined}>{config.heroSubtitle}</p>
       </header>
 
-      {!result || showCompletedAnswers ? (
-      <section style={sectionSpacingStyle}>
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 1</span>
-            <h2 style={sectionTitleStyle}>How much exterior video do you want?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              This tells us whether to prioritize basic entry sensors or full perimeter visibility (and how comfortable you are with cameras).
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {perimeterOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                  <input
-                    type="radio"
-                    name="perimeterVideo"
-                    value={option.value}
-                    checked={answers.perimeterVideo === option.value}
-                    onChange={() => updateAnswer('perimeterVideo', option.value)}
-                  />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 2</span>
-            <h2 style={sectionTitleStyle}>How often do you check live video?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              More frequent viewing suggests more cameras and easier access views.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {liveViewOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                  <input
-                    type="radio"
-                    name="liveView"
-                    value={option.value}
-                    checked={answers.liveView === option.value}
-                    onChange={() => updateAnswer('liveView', option.value)}
-                  />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 3</span>
-            <h2 style={sectionTitleStyle}>How many entry points need coverage?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              Entry points guide door/window sensor counts and alert tuning.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {entryPointOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                  <input
-                    type="radio"
-                    name="entryPoints"
-                    value={option.value}
-                    checked={answers.entryPoints === option.value}
-                    onChange={() => updateAnswer('entryPoints', option.value)}
-                  />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 4</span>
-            <h2 style={sectionTitleStyle}>Which exterior areas are the most important?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              Select up to two areas so we can prioritize camera placement.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {exteriorAreaOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
+      {!recommendations || showCompletedAnswers ? (
+        <section style={sectionSpacingStyle}>
+          <article className="card" style={questionCardStyle}>
+            <div>
+              <span className="badge">Question 1</span>
+              <h2>Which of these situations sound familiar?</h2>
+              <p>Check all that truly apply.</p>
+            </div>
+            <div style={optionGridStyle}>
+              {situationOptions.map((option) => (
+                <label key={option.value} style={optionCardStyle}>
                   <input
                     type="checkbox"
-                    name="exteriorAreas"
-                    value={option.value}
-                    checked={answers.exteriorAreas.includes(option.value)}
-                    onChange={() => toggleExteriorArea(option.value)}
+                    checked={answers.situations.includes(option.value)}
+                    onChange={() => toggleSituation(option.value)}
                   />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-          {exteriorLimitWarning ? (
-            <p style={{ marginTop: '0.75rem', color: 'rgba(255, 205, 92, 0.9)' }}>
-              You can select up to two exterior areas.
-            </p>
-          ) : null}
-        </div>
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </div>
+          </article>
 
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 5</span>
-            <h2 style={sectionTitleStyle}>How much indoor coverage do you want?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              Indoor coverage informs motion sensor and alert placement.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {indoorAreaOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                  <input
-                    type="radio"
-                    name="indoorAreas"
-                    value={option.value}
-                    checked={answers.indoorAreas === option.value}
-                    onChange={() => updateAnswer('indoorAreas', option.value)}
-                  />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 6</span>
-            <h2 style={sectionTitleStyle}>Any special rooms that need extra attention?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              Optional: choose any spaces that should be prioritized.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {specialRoomOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
+          <article className="card" style={questionCardStyle}>
+            <div>
+              <span className="badge">Question 2</span>
+              <h2>When you are away from your property, what would help most?</h2>
+              <p>Check all that truly apply.</p>
+            </div>
+            <div style={optionGridStyle}>
+              {awayHelpOptions.map((option) => (
+                <label key={option.value} style={optionCardStyle}>
                   <input
                     type="checkbox"
-                    name="specialRooms"
-                    value={option.value}
-                    checked={answers.specialRooms.includes(option.value)}
-                    onChange={() => toggleSpecialRoom(option.value)}
+                    checked={answers.awayHelp.includes(option.value)}
+                    onChange={() => toggleAwayHelp(option.value)}
                   />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-          {selectedSpecialRooms.length > 0 ? (
-            <p style={{ marginTop: '0.75rem', color: 'rgba(165, 216, 247, 0.8)' }}>
-              Selected: {selectedSpecialRooms.join(', ').replaceAll('_', ' ')}
-            </p>
-          ) : null}
-        </div>
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </div>
+          </article>
 
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 7</span>
-            <h2 style={sectionTitleStyle}>How would you describe your home size?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              Home size helps us set expectations for device counts and coverage zones.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {homeSizeOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
+          <article className="card" style={questionCardStyle}>
+            <div>
+              <span className="badge">Question 3</span>
+              <h2>Which best describes your situation?</h2>
+            </div>
+            <div style={optionGridStyle}>
+              {propertySituationOptions.map((option) => (
+                <label key={option.value} style={optionCardStyle}>
                   <input
                     type="radio"
-                    name="homeSize"
-                    value={option.value}
-                    checked={answers.homeSize === option.value}
-                    onChange={() => updateAnswer('homeSize', option.value)}
+                    name="propertySituation"
+                    checked={answers.propertySituation === option.value}
+                    onChange={() => setPropertySituation(option.value)}
                   />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </div>
+          </article>
 
-        <div style={questionCardStyle}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Question 8</span>
-            <h2 style={sectionTitleStyle}>What coverage style feels right?</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              This helps us balance simplicity and future-proofing.
-            </p>
-          </div>
-          <div style={gridStyle}>
-            {preferenceOptions.map((option) => (
-              <label key={option.value} style={optionCardStyle}>
-                <span style={{ display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                  <input
-                    type="radio"
-                    name="preference"
-                    value={option.value}
-                    checked={answers.preference === option.value}
-                    onChange={() => updateAnswer('preference', option.value)}
-                  />
-                  <span>
-                    <span style={labelStyle}>{option.label}</span>
-                    <p style={helperStyle}>{option.helper}</p>
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-      </section>
+          {activeFollowUps.map((followUp, index) => (
+            <article key={followUp.id} className="card" style={questionCardStyle}>
+              <div>
+                <span className="badge">Follow-up {index + 1}</span>
+                <h2>{followUp.title}</h2>
+                <p>Choose any that apply.</p>
+              </div>
+              <div style={optionGridStyle}>
+                {followUp.options.map((option) => (
+                  <label key={option.value} style={optionCardStyle}>
+                    <input
+                      type="checkbox"
+                      checked={(answers.followUps[followUp.id] ?? []).includes(option.value)}
+                      onChange={() => toggleFollowUp(followUp.id, option.value)}
+                    />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+            </article>
+          ))}
+        </section>
       ) : null}
 
-      <section style={{ ...questionCardStyle, display: 'grid', gap: '1rem' }}>
-        <h2 style={{ margin: 0 }}>Ready for your recommendation?</h2>
-        <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-          Answer all required questions and we’ll suggest the best-fit tier instantly.
+      <section className="card" style={{ display: 'grid', gap: '1rem' }}>
+        <h2>Ready to see possible next steps?</h2>
+        <p>
+          Fit Check is a starting point. It helps identify useful solution categories before a real property review.
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <button type="button" className={recommendationClassName} disabled={!canSubmit} onClick={handleSubmit}>
-            {result ? 'Refresh Recommendation' : 'See My Recommendation'}
+          <button type="button" className="btn btn-primary" disabled={!canSubmit} onClick={handleSubmit}>
+            {recommendations ? 'Refresh Results' : 'See Possible Solutions'}
           </button>
-          {result ? (
+          {recommendations ? (
             <button type="button" className="btn btn-link" onClick={() => setShowCompletedAnswers((prev) => !prev)}>
               {showCompletedAnswers ? 'Hide my answers' : 'Review my answers'}
             </button>
@@ -684,89 +562,48 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
             Start Over
           </button>
         </div>
-        {isHomeSecurity && (
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <button type="button" className={submitClassName} disabled={!canSubmit} onClick={handleEstimateRequest}>
-              Request a Call or On-Site Estimate
-            </button>
-          </div>
-        )}
       </section>
 
-      {result ? (
-        <section ref={recommendationSectionRef} tabIndex={-1} style={{ ...questionCardStyle, display: 'grid', gap: '1.25rem', outline: 'none' }}>
-          <div style={{ display: 'grid', gap: '0.35rem' }}>
-            <span style={questionNumberStyle}>Step 2 of 3 • Recommendation</span>
-            <h2 style={{ margin: 0 }}>Recommended tier: {result.tier}</h2>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>{result.summary}</p>
-          </div>
-
+      {recommendations ? (
+        <section
+          ref={recommendationSectionRef}
+          tabIndex={-1}
+          className="card"
+          style={{ display: 'grid', gap: '1.25rem', outline: 'none' }}
+        >
           <div>
-            <h3 style={{ marginBottom: '0.5rem' }}>Why this fits</h3>
-            <ul className="operator-list">
-              {result.reasons.map((reason) => (
-                <li key={reason}>{reason}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: '0.5rem' }}>Assumed coverage (based on your answers)</h3>
-            <ul className="operator-list">
-              {result.assumedCoverage.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <small style={{ color: 'rgba(214, 233, 248, 0.8)' }}>
-              Final quantities may adjust after the walkthrough and layout confirmation.
-            </small>
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: '0.5rem' }}>Included in {result.tier}</h3>
-            <ul className="operator-list">
-              {config.tiers[result.tier].included.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div style={{ display: 'grid', gap: '0.5rem' }}>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              You can change your answers or package at any time before installation.
-            </p>
-            <p style={{ margin: 0, color: 'rgba(214, 233, 248, 0.85)' }}>
-              If exterior equipment installation is restricted by an HOA or property manager, the system will be designed for interior-only coverage.
+            <span className="badge">Fit Check Results</span>
+            <h2>Based on your answers, you may benefit from</h2>
+            <p>
+              This is a starting point. A final recommendation depends on your property layout, goals, and onsite review.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gap: '0.75rem' }}>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              {config.tiers[result.tier].ctas.map((cta) => {
-                const to =
-                  cta.label === 'Request a Call or On-Site Estimate' && discoveryContextParams
-                    ? '/contact?vertical=home-security'
-                    : cta.href;
-                return (
-                  <Link key={cta.label} to={to} className={buttonClassByVariant[cta.variant]}>
-                    {cta.label}
-                  </Link>
-                );
-              })}
-            </div>
+          <div style={{ display: 'grid', gap: '0.85rem' }}>
+            {recommendations.map((item) => (
+              <article key={item.category}>
+                <h3>{item.category}</h3>
+                <p>{item.why}</p>
+              </article>
+            ))}
+          </div>
 
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              {isHomeSecurity && (
-                <Link to="/packages?vertical=home-security" className="btn btn-link">
-                  Change package
-                </Link>
-              )}
-              <button type="button" className="btn btn-link" onClick={() => setShowCompletedAnswers((prev) => !prev)}>
-                {showCompletedAnswers ? 'Hide my answers' : 'Review my answers'}
-              </button>
-              <button type="button" className="btn btn-link" onClick={handleReset}>
-                Start Over
-              </button>
+          <div>
+            <h3>Your answer snapshot</h3>
+            <ul className="operator-list">
+              {answerSummary.situations.length ? <li>Situations: {answerSummary.situations.join(' ')}</li> : null}
+              {answerSummary.awayHelp.length ? <li>Away from property: {answerSummary.awayHelp.join(' ')}</li> : null}
+              {answerSummary.propertySituation ? <li>Context: {answerSummary.propertySituation}</li> : null}
+            </ul>
+          </div>
+
+          <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+            <h3>Request a Call or On-Site Estimate</h3>
+            <p>We&apos;ll review your answers and help determine what makes sense for your property.</p>
+            <div>
+              <Link className="btn btn-primary" to={CONTACT_INTAKE_PATH}>
+                Request a Call or On-Site Estimate
+              </Link>
             </div>
           </div>
         </section>
