@@ -20,7 +20,6 @@ import {
   HomeSize,
   Preference,
 } from '../lib/homeSecurityFunnel';
-import { track } from '../lib/analytics';
 import { loadRetailFlow, updateRetailFlow } from '../lib/retailFlow';
 import { sendFitCheckCompleted } from '../lib/hubspotLeadSignal';
 
@@ -216,11 +215,6 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isHomeSecurity = searchParams.get('vertical') === 'home-security';
-  const plannerParams = new URLSearchParams(searchParams);
-  if (!plannerParams.get('vertical')) {
-    plannerParams.set('vertical', 'home-security');
-  }
-  const plannerHref = `/home-security/planner?${plannerParams.toString()}`;
   const [answers, setAnswers] = useState<FitCheckAnswers>(initialAnswers);
   const [result, setResult] = useState<FitCheckResult | null>(null);
   const [exteriorLimitWarning, setExteriorLimitWarning] = useState(false);
@@ -228,9 +222,6 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
   const recommendationSectionRef = useRef<HTMLElement | null>(null);
 
   const canSubmit: boolean = isHomeSecurityFitCheckComplete(answers);
-  const handlePlannerOpen = () => {
-    track('hs_planner_opened', { source: 'fit_check' });
-  };
 
   useEffect(() => {
     const stored = loadRetailFlow().homeSecurity;
@@ -768,11 +759,6 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
               {isHomeSecurity && (
                 <Link to="/packages?vertical=home-security" className="btn btn-link">
                   Change package
-                </Link>
-              )}
-              {isHomeSecurity && (
-                <Link to={plannerHref} className="btn btn-link" onClick={handlePlannerOpen}>
-                  System Planner (Preview, optional)
                 </Link>
               )}
               <button type="button" className="btn btn-link" onClick={() => setShowCompletedAnswers((prev) => !prev)}>

@@ -7,13 +7,20 @@ import '../../styles/homeSecurityPremium.css';
 
 type WnyhsFunnelLayoutProps = {
   showStepRail?: boolean;
+  ctaLink?: string;
+  ctaLabel?: string;
   children: ReactNode;
 };
 
-const WnyhsFunnelLayout = ({ showStepRail = true, children }: WnyhsFunnelLayoutProps) => {
+const WnyhsFunnelLayout = ({
+  showStepRail = true,
+  ctaLink = getHomeSecurityCtaLink(),
+  ctaLabel,
+  children,
+}: WnyhsFunnelLayoutProps) => {
   return (
     <div className="wnyhs-page-layout wnyhs-page-layout--funnel">
-      <WnyhsTopNav ctaLink={getHomeSecurityCtaLink()} />
+      <WnyhsTopNav ctaLink={ctaLink} ctaLabel={ctaLabel} />
       {showStepRail ? (
         <div className="wnyhs-funnel-rail">
           <FunnelStepRail />
