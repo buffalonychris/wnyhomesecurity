@@ -2,7 +2,7 @@ import { useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'rea
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import '../styles/canonicalEstimateForm.css';
 
-type PreferredContactMethod = 'Text' | 'Phone call' | 'Email';
+type PreferredContactMethod = 'Text' | 'Phone call' | 'Email' | 'Any';
 type IntakeMode = 'call' | 'estimate';
 
 type FormState = {
@@ -19,7 +19,6 @@ type FormState = {
   requestedHelp: string;
   requestDetails: string;
   referredByName: string;
-  preferredContactMethod: PreferredContactMethod | '';
   textConsent: boolean;
   emailConsent: boolean;
   phoneConsent: boolean;
@@ -39,6 +38,8 @@ type Props = {
   submitEventName?: string;
   context?: Record<string, unknown>;
   enableIntakeSplit?: boolean;
+  requirePathSelection?: boolean;
+  compactEstimate?: boolean;
 };
 
 const todayIsoDate = new Date().toISOString().slice(0, 10);
@@ -50,13 +51,12 @@ const initialState: FormState = {
   email: '',
   streetAddress: '',
   city: '',
-  state: '',
+  state: 'NY',
   zip: '',
   propertyType: '',
   requestedHelp: '',
   requestDetails: '',
   referredByName: '',
-  preferredContactMethod: '',
   preferredEstimateDate: todayIsoDate,
   preferredEstimateTimeSlot: '',
   textConsent: false,
@@ -82,9 +82,12 @@ const CanonicalEstimateRequestForm = ({
   submitEventName,
   context,
   enableIntakeSplit = false,
+  requirePathSelection = false,
+  compactEstimate = false,
 }: Props) => {
+  const initialMode = enableIntakeSplit ? (requirePathSelection ? null : 'call') : 'estimate';
   const [formState, setFormState] = useState<FormState>(initialState);
-  const [intakeMode, setIntakeMode] = useState<IntakeMode>(enableIntakeSplit ? 'call' : 'estimate');
+  const [intakeMode, setIntakeMode] = useState<IntakeMode | null>(initialMode);
   const [submitted, setSubmitted] = useState(false);
   const [submittedMode, setSubmittedMode] = useState<IntakeMode>('estimate');
   const [apiFailure, setApiFailure] = useState<string | null>(null);
@@ -130,6 +133,30 @@ const CanonicalEstimateRequestForm = ({
     });
   };
 
+  const selectedContactMethods = () => [
+    formState.textConsent ? 'Text message' : null,
+    formState.phoneConsent ? 'Phone call' : null,
+    formState.emailConsent ? 'Email' : null,
+  ].filter(Boolean) as string[];
+
+  const preferredContactMethod = (): PreferredContactMethod => {
+    const selected = selectedContactMethods();
+    if (selected.length !== 1) return 'Any';
+    return selected[0] === 'Text message' ? 'Text' : selected[0] as PreferredContactMethod;
+  };
+
+  const validateCommunicationPermission = () => {
+    if (selectedContactMethods().length === 0) {
+      setApiFailure('Please choose at least one contact method we can use for this request.');
+      return false;
+    }
+    if (!formState.contactTimeAcknowledgement) {
+      setApiFailure('Please authorize us to contact you about this request.');
+      return false;
+    }
+    return true;
+  };
+
   const buildReferralContext = () => {
     const referredByName = formState.referredByName.trim();
     return referredByName ? { referredByName } : {};
@@ -141,6 +168,7 @@ const CanonicalEstimateRequestForm = ({
       setApiFailure('Please enter your name and phone number so we can call you back.');
       return null;
     }
+    if (!validateCommunicationPermission()) return null;
     const parsed = splitFullName(fullName);
     return sendLeadSignal({
       event: 'callback_requested',
@@ -152,9 +180,10 @@ const CanonicalEstimateRequestForm = ({
       source: `${source}_callback`,
       landingRoute,
       submittedAt: submitTimestamp,
-      textConsent: false,
-      emailConsent: Boolean(formState.email.trim()),
-      contactTimeAcknowledgement: false,
+      textConsent: formState.textConsent,
+      emailConsent: formState.emailConsent,
+      phoneConsent: formState.phoneConsent,
+      contactTimeAcknowledgement: formState.contactTimeAcknowledgement,
       consentTimestamp: submitTimestamp,
       contactHours: '8am_9pm_7_days',
       contact: {
@@ -167,7 +196,8 @@ const CanonicalEstimateRequestForm = ({
       request: {
         requestedHelp: 'callback_request',
         requestDetails: formState.requestDetails.trim() || undefined,
-        preferredContactMethod: 'Phone call',
+        preferredContactMethod: preferredContactMethod(),
+        followUpAllowedMethods: selectedContactMethods(),
         leadEntryPath: 'REQUEST_A_CALL',
         ...buildReferralContext(),
       },
@@ -176,49 +206,65 @@ const CanonicalEstimateRequestForm = ({
     });
   };
 
-  const submitEstimateRequest = async (submitTimestamp: string) => sendLeadSignal({
-    event: 'qr_estimate_requested',
-    eventName: submitEventName,
-    requestId,
-    timestamp: submitTimestamp,
-    entryRoute,
-    sourceFamily,
-    source,
-    landingRoute,
-    submittedAt: submitTimestamp,
-    textConsent: formState.textConsent,
-    emailConsent: formState.emailConsent,
-    contactTimeAcknowledgement: formState.contactTimeAcknowledgement,
-    consentTimestamp: new Date().toISOString(),
-    contactHours: '8am_9pm_7_days',
-    contact: {
-      firstName: formState.firstName.trim(),
-      lastName: formState.lastName.trim(),
-      phone: formState.mobilePhone.trim(),
-      email: formState.email.trim(),
-      address: {
-        street: formState.streetAddress.trim(),
-        city: formState.city.trim(),
-        state: formState.state.trim(),
-        zip: formState.zip.trim(),
-        propertyType: formState.propertyType.trim(),
+  const submitEstimateRequest = async (submitTimestamp: string) => {
+    const parsed = splitFullName(formState.fullName);
+    const firstName = compactEstimate ? parsed.firstName : formState.firstName.trim();
+    const lastName = compactEstimate ? parsed.lastName : formState.lastName.trim();
+    if (compactEstimate && (!formState.fullName.trim() || !formState.mobilePhone.trim() || !formState.streetAddress.trim())) {
+      setApiFailure('Please enter your name, phone number, and service address.');
+      return null;
+    }
+    if (!validateCommunicationPermission()) return null;
+    return sendLeadSignal({
+      event: 'qr_estimate_requested',
+      eventName: submitEventName,
+      requestId,
+      timestamp: submitTimestamp,
+      entryRoute,
+      sourceFamily,
+      source,
+      landingRoute,
+      submittedAt: submitTimestamp,
+      textConsent: formState.textConsent,
+      emailConsent: formState.emailConsent,
+      phoneConsent: formState.phoneConsent,
+      contactTimeAcknowledgement: formState.contactTimeAcknowledgement,
+      consentTimestamp: new Date().toISOString(),
+      contactHours: '8am_9pm_7_days',
+      contact: {
+        fullName: compactEstimate ? formState.fullName.trim() : undefined,
+        firstName,
+        lastName,
+        phone: formState.mobilePhone.trim(),
+        email: formState.email.trim(),
+        address: {
+          street: formState.streetAddress.trim(),
+          city: formState.city.trim(),
+          state: formState.state.trim(),
+          zip: formState.zip.trim(),
+          propertyType: formState.propertyType.trim(),
+        },
       },
-    },
-    request: {
-      requestedHelp: formState.requestedHelp.trim(),
-      requestDetails: formState.requestDetails.trim() || undefined,
-      preferredContactMethod: formState.preferredContactMethod.trim(),
-      preferredEstimateDate: formState.preferredEstimateDate.trim(),
-      preferredEstimateTimeSlot: formState.preferredEstimateTimeSlot.trim(),
-      followUpAllowedMethods: [formState.textConsent ? 'Text Messages' : null, formState.phoneConsent ? 'Phone Calls' : null, formState.emailConsent ? 'Emails' : null].filter(Boolean),
-      leadEntryPath: 'REQUEST_ON_SITE_ESTIMATE',
-      ...buildReferralContext(),
-    },
-    ...context,
-  });
+      request: {
+        requestedHelp: formState.requestedHelp.trim() || undefined,
+        requestDetails: formState.requestDetails.trim() || undefined,
+        preferredContactMethod: preferredContactMethod(),
+        preferredEstimateDate: formState.preferredEstimateDate.trim() || undefined,
+        preferredEstimateTimeSlot: formState.preferredEstimateTimeSlot.trim() || undefined,
+        followUpAllowedMethods: selectedContactMethods(),
+        leadEntryPath: 'REQUEST_ON_SITE_ESTIMATE',
+        ...buildReferralContext(),
+      },
+      ...context,
+    });
+  };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!intakeMode) {
+      setApiFailure('Please choose how you would like to get started.');
+      return;
+    }
     setIsSubmitting(true);
     setApiFailure(null);
     setFailureRequestId(null);
@@ -240,6 +286,46 @@ const CanonicalEstimateRequestForm = ({
     }
   };
 
+  const renderPathSelection = () => (
+    <fieldset className="qr-section estimate-form-stage intake-path-stage">
+      <legend>Choose how you'd like to get started</legend>
+      <p className="estimate-stage-note">Pick the quickest next step. We'll review your request and confirm availability before anything is scheduled.</p>
+      <div className="intake-path-grid">
+        <button type="button" className={`intake-path-option${intakeMode === 'call' ? ' is-active' : ''}`} onClick={() => handleModeChange('call')} aria-pressed={intakeMode === 'call'}>
+          <span>Request a Call</span>
+          <small>Send your name and phone number. We'll call you back before asking for more detail.</small>
+        </button>
+        <button type="button" className={`intake-path-option${intakeMode === 'estimate' ? ' is-active' : ''}`} onClick={() => handleModeChange('estimate')} aria-pressed={intakeMode === 'estimate'}>
+          <span>Request On-Site Estimate</span>
+          <small>Share the service location and any helpful preferences. We'll review the request before anything is scheduled.</small>
+        </button>
+      </div>
+    </fieldset>
+  );
+
+  const renderCommunicationSections = () => (
+    <>
+      <fieldset className="qr-section estimate-form-stage communication-preference-stage">
+        <legend>Preferred communication</legend>
+        <p className="estimate-stage-note">Choose any methods we can use for updates about your request, appointment coordination, reminders, arrival updates, and service follow-up.</p>
+        <div className="qr-checkbox-list communication-method-list">
+          <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.textConsent} onChange={handleChange('textConsent')} /><span>Text message</span></label>
+          <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.phoneConsent} onChange={handleChange('phoneConsent')} /><span>Phone call</span></label>
+          <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.emailConsent} onChange={handleChange('emailConsent')} /><span>Email</span></label>
+        </div>
+      </fieldset>
+      <fieldset className="qr-section estimate-form-stage communication-permission-stage">
+        <legend>Communication permission</legend>
+        <label className="qr-choice estimate-choice permission-choice">
+          <input type="checkbox" checked={formState.contactTimeAcknowledgement} onChange={handleChange('contactTimeAcknowledgement')} required />
+          <span>By submitting this request, you authorize WNY Home Security to contact you using the selected methods about this request, scheduling, appointment reminders, arrival updates, and related service follow-up.</span>
+        </label>
+        <p className="estimate-stage-note">We do not sell your information or use this permission for unrelated marketing.</p>
+        <p className="estimate-stage-note">You may revoke permission at any time by contacting us and telling us which method you want removed.</p>
+      </fieldset>
+    </>
+  );
+
   if (submitted) {
     return (
       <section className="qr-panel qr-success-card">
@@ -251,64 +337,78 @@ const CanonicalEstimateRequestForm = ({
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="estimate-form-shell">
-      {enableIntakeSplit ? (
-        <fieldset className="qr-section estimate-form-stage intake-path-stage">
-          <legend>Choose a path</legend>
-          <div className="intake-path-grid">
-            <button type="button" className={`intake-path-option${intakeMode === 'call' ? ' is-active' : ''}`} onClick={() => handleModeChange('call')} aria-pressed={intakeMode === 'call'}>
-              <span>Request a Call</span>
-              <small>Not ready to fill everything out? Send your name and phone number and we'll call you back.</small>
-            </button>
-            <button type="button" className={`intake-path-option${intakeMode === 'estimate' ? ' is-active' : ''}`} onClick={() => handleModeChange('estimate')} aria-pressed={intakeMode === 'estimate'}>
-              <span>Request On-Site Estimate</span>
-              <small>Tell us what you're looking for and request a preferred time. We'll review the request and confirm availability before anything is scheduled.</small>
-            </button>
-          </div>
-        </fieldset>
+    <form onSubmit={onSubmit} noValidate className={`estimate-form-shell${requirePathSelection ? ' estimate-form-shell--deferred' : ''}`}>
+      {enableIntakeSplit ? renderPathSelection() : null}
+
+      {intakeMode === null ? (
+        <>
+          {apiFailure && <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference ID: ${failureRequestId}.` : ''}</p>}
+        </>
       ) : null}
 
       {intakeMode === 'call' ? (
-        <fieldset className="qr-section estimate-form-stage">
-          <legend>Request a Call</legend>
-          <div className="qr-form-grid">
-            <label className="estimate-field">
-              <span>Name</span>
-              <input ref={(e) => { fieldRefs.current.fullName = e; }} type="text" value={formState.fullName} onChange={handleChange('fullName')} required />
-            </label>
-            <label className="estimate-field">
-              <span>Phone</span>
-              <input ref={(e) => { fieldRefs.current.mobilePhone = e; }} type="tel" value={formState.mobilePhone} onChange={handleChange('mobilePhone')} required />
-            </label>
-            <label className="estimate-field">
-              <span>Email (optional)</span>
-              <input type="email" value={formState.email} onChange={handleChange('email')} />
-            </label>
-            <label className="estimate-field">
-              <span>Referred by (optional)</span>
-              <input type="text" value={formState.referredByName} onChange={handleChange('referredByName')} />
-            </label>
-          </div>
-          <label className="estimate-field">
-            <span>Notes / what you want help with (optional)</span>
-            <textarea value={formState.requestDetails} onChange={handleChange('requestDetails')} />
-          </label>
-        </fieldset>
-      ) : (
         <>
           <fieldset className="qr-section estimate-form-stage">
-            <legend>Stage 1 - Start Here</legend>
+            <legend>Request a Call</legend>
             <div className="qr-form-grid">
-              {([['firstName', 'First name'], ['lastName', 'Last name'], ['mobilePhone', 'Mobile phone'], ['email', 'Email']] as const).map(([f, l]) => (
-                <label key={f} className="estimate-field">
-                  <span>{l}</span>
-                  <input ref={(e) => { fieldRefs.current[f] = e; }} type={f === 'email' ? 'email' : f === 'mobilePhone' ? 'tel' : 'text'} value={formState[f]} onChange={handleChange(f)} required />
-                </label>
-              ))}
+              <label className="estimate-field">
+                <span>Name</span>
+                <input ref={(e) => { fieldRefs.current.fullName = e; }} type="text" value={formState.fullName} onChange={handleChange('fullName')} required />
+              </label>
+              <label className="estimate-field">
+                <span>Phone</span>
+                <input ref={(e) => { fieldRefs.current.mobilePhone = e; }} type="tel" value={formState.mobilePhone} onChange={handleChange('mobilePhone')} required />
+              </label>
+              <label className="estimate-field">
+                <span>Email (optional)</span>
+                <input type="email" value={formState.email} onChange={handleChange('email')} />
+              </label>
+              <label className="estimate-field">
+                <span>Referred by (optional)</span>
+                <input type="text" value={formState.referredByName} onChange={handleChange('referredByName')} />
+              </label>
             </div>
             <label className="estimate-field">
-              <span>What do you need help with?</span>
-              <select value={formState.requestedHelp} onChange={handleChange('requestedHelp')} required>
+              <span>Notes / what you want help with (optional)</span>
+              <textarea value={formState.requestDetails} onChange={handleChange('requestDetails')} />
+            </label>
+          </fieldset>
+          {renderCommunicationSections()}
+        </>
+      ) : null}
+
+      {intakeMode === 'estimate' ? (
+        <>
+          <fieldset className="qr-section estimate-form-stage">
+            <legend>{compactEstimate ? 'Estimate request basics' : 'Stage 1 - Start Here'}</legend>
+            <div className="qr-form-grid">
+              {compactEstimate ? (
+                <>
+                  <label className="estimate-field">
+                    <span>Name</span>
+                    <input ref={(e) => { fieldRefs.current.fullName = e; }} type="text" value={formState.fullName} onChange={handleChange('fullName')} required />
+                  </label>
+                  <label className="estimate-field">
+                    <span>Phone</span>
+                    <input ref={(e) => { fieldRefs.current.mobilePhone = e; }} type="tel" value={formState.mobilePhone} onChange={handleChange('mobilePhone')} required />
+                  </label>
+                  <label className="estimate-field">
+                    <span>Email (optional)</span>
+                    <input type="email" value={formState.email} onChange={handleChange('email')} />
+                  </label>
+                </>
+              ) : (
+                ([['firstName', 'First name'], ['lastName', 'Last name'], ['mobilePhone', 'Mobile phone'], ['email', 'Email']] as const).map(([f, l]) => (
+                  <label key={f} className="estimate-field">
+                    <span>{l}</span>
+                    <input ref={(e) => { fieldRefs.current[f] = e; }} type={f === 'email' ? 'email' : f === 'mobilePhone' ? 'tel' : 'text'} value={formState[f]} onChange={handleChange(f)} required />
+                  </label>
+                ))
+              )}
+            </div>
+            <label className="estimate-field">
+              <span>What do you need help with? (optional)</span>
+              <select value={formState.requestedHelp} onChange={handleChange('requestedHelp')}>
                 <option value="">Select a service</option>
                 <option value="Complete Security System">Complete Security System</option>
                 <option value="Cameras Only">Cameras Only</option>
@@ -319,7 +419,7 @@ const CanonicalEstimateRequestForm = ({
               </select>
             </label>
             <label className="estimate-field">
-              <span>Additional details / what you want protected</span>
+              <span>Additional details / what you want protected (optional)</span>
               <textarea value={formState.requestDetails} onChange={handleChange('requestDetails')} />
             </label>
             <label className="estimate-field">
@@ -328,18 +428,28 @@ const CanonicalEstimateRequestForm = ({
             </label>
           </fieldset>
           <fieldset className="qr-section estimate-form-stage">
-            <legend>Stage 2 - Property Details</legend>
+            <legend>{compactEstimate ? 'Service location' : 'Stage 2 - Property Details'}</legend>
             <div className="qr-form-grid">
-              {([['streetAddress', 'Street address'], ['city', 'City'], ['state', 'State'], ['zip', 'ZIP']] as const).map(([f, l]) => (
-                <label key={f} className="estimate-field">
-                  <span>{l}</span>
-                  <input ref={(e) => { fieldRefs.current[f] = e; }} value={formState[f]} onChange={handleChange(f)} required />
-                </label>
-              ))}
+              <label className="estimate-field">
+                <span>Street address</span>
+                <input ref={(e) => { fieldRefs.current.streetAddress = e; }} value={formState.streetAddress} onChange={handleChange('streetAddress')} required />
+              </label>
+              <label className="estimate-field">
+                <span>City (optional)</span>
+                <input ref={(e) => { fieldRefs.current.city = e; }} value={formState.city} onChange={handleChange('city')} />
+              </label>
+              <label className="estimate-field">
+                <span>State (optional)</span>
+                <input ref={(e) => { fieldRefs.current.state = e; }} value={formState.state} onChange={handleChange('state')} />
+              </label>
+              <label className="estimate-field">
+                <span>ZIP (optional)</span>
+                <input ref={(e) => { fieldRefs.current.zip = e; }} value={formState.zip} onChange={handleChange('zip')} />
+              </label>
             </div>
             <label className="estimate-field">
-              <span>Property type</span>
-              <select value={formState.propertyType} onChange={handleChange('propertyType')} required>
+              <span>Property type (optional)</span>
+              <select value={formState.propertyType} onChange={handleChange('propertyType')}>
                 <option value="">Select property type</option>
                 <option value="Home">Home</option>
                 <option value="Apartment / Condo">Apartment / Condo</option>
@@ -347,55 +457,43 @@ const CanonicalEstimateRequestForm = ({
                 <option value="Other">Other</option>
               </select>
             </label>
-            <label className="estimate-field">
-              <span>Where did you hear about us</span>
-              <select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}>
-                <option value="">Select one</option>
-                <option value="QR Placard">QR Placard</option>
-                <option value="Yard Sign">Yard Sign</option>
-                <option value="Google">Google</option>
-                <option value="Referral">Referral</option>
-                <option value="Other">Other</option>
-              </select>
-            </label>
+            {!compactEstimate ? (
+              <label className="estimate-field">
+                <span>Where did you hear about us (optional)</span>
+                <select value={formState.whereDidYouSeeUs} onChange={handleChange('whereDidYouSeeUs')}>
+                  <option value="">Select one</option>
+                  <option value="QR Placard">QR Placard</option>
+                  <option value="Yard Sign">Yard Sign</option>
+                  <option value="Google">Google</option>
+                  <option value="Referral">Referral</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
+            ) : null}
           </fieldset>
           <fieldset className="qr-section estimate-form-stage">
-            <legend>Stage 3 - Estimate Window</legend>
+            <legend>{compactEstimate ? 'Preferred estimate window (optional)' : 'Stage 3 - Estimate Window'}</legend>
+            <p className="estimate-stage-note">This is a request only. We'll review availability before anything is scheduled.</p>
             <div className="estimate-form-grid-2">
               <label className="estimate-field">
-                <span>Preferred estimate date</span>
-                <input type="date" min={todayIsoDate} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} required />
+                <span>Preferred estimate date (optional)</span>
+                <input type="date" min={todayIsoDate} value={formState.preferredEstimateDate} onChange={handleChange('preferredEstimateDate')} />
               </label>
               <label className="estimate-field">
-                <span>Preferred 1-hour estimate window</span>
-                <select value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')} required>
+                <span>Preferred 1-hour estimate window (optional)</span>
+                <select value={formState.preferredEstimateTimeSlot} onChange={handleChange('preferredEstimateTimeSlot')}>
                   <option value="">Select a 1-hour window</option>
                   {timeSlotOptions.map((slot) => <option key={slot} value={slot}>{slot}</option>)}
                 </select>
               </label>
             </div>
           </fieldset>
-          <fieldset className="qr-section estimate-form-stage">
-            <legend>Stage 4 - Contact Permissions</legend>
-            <div className="qr-radio-row">
-              {(['Text', 'Phone call', 'Email'] as PreferredContactMethod[]).map((m) => (
-                <label key={m} className="qr-choice estimate-choice">
-                  <input type="radio" name="preferredContactMethod" value={m} checked={formState.preferredContactMethod === m} onChange={handleChange('preferredContactMethod')} required />
-                  <span>{m}</span>
-                </label>
-              ))}
-            </div>
-            <div className="qr-checkbox-list">
-              <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.textConsent} onChange={handleChange('textConsent')} /><span>Text Messages</span></label>
-              <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.phoneConsent} onChange={handleChange('phoneConsent')} /><span>Phone Calls</span></label>
-              <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.emailConsent} onChange={handleChange('emailConsent')} /><span>Emails</span></label>
-              <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.contactTimeAcknowledgement} onChange={handleChange('contactTimeAcknowledgement')} required /><span>I understand contact hours are 8am-9pm, 7 days/week.</span></label>
-            </div>
-          </fieldset>
+          {renderCommunicationSections()}
         </>
-      )}
-      {apiFailure && <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference ID: ${failureRequestId}.` : ''}</p>}
-      <button type="submit" className="qr-cta estimate-submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : intakeMode === 'call' ? 'Request a Call' : 'Request On-Site Estimate'}</button>
+      ) : null}
+
+      {apiFailure && intakeMode !== null ? <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference ID: ${failureRequestId}.` : ''}</p> : null}
+      {intakeMode !== null ? <button type="submit" className="qr-cta estimate-submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : intakeMode === 'call' ? 'Request a Call' : 'Request On-Site Estimate'}</button> : null}
     </form>
   );
 };
