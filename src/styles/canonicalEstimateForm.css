@@ -5,6 +5,10 @@
   margin: 0 auto;
 }
 
+.estimate-form-shell--deferred {
+  max-width: 840px;
+}
+
 .estimate-form-shell .qr-section.estimate-form-stage {
   background: color-mix(in oklab, var(--card), black 12%);
   border-color: color-mix(in oklab, var(--border), white 8%);
@@ -53,6 +57,12 @@
 .estimate-choice { background: color-mix(in oklab, var(--secondary), black 10%); }
 .estimate-submit { width: 100%; text-align: center; min-height: 48px; }
 
+.estimate-stage-note {
+  color: var(--muted-foreground);
+  line-height: 1.45;
+  margin: 0 0 0.85rem;
+}
+
 .intake-path-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -87,8 +97,21 @@
   box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary), transparent 78%);
 }
 
+.communication-method-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.permission-choice {
+  align-items: flex-start;
+}
+
+.permission-choice span {
+  line-height: 1.45;
+}
+
 @media (max-width: 760px) {
   .intake-path-grid,
+  .communication-method-list,
   .estimate-form-grid-2,
   .estimate-form-shell .qr-form-grid,
   .estimate-form-shell .qr-radio-row { grid-template-columns: 1fr; }

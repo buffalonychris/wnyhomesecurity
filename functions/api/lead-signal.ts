@@ -105,6 +105,7 @@ const buildQrLeadSummary = (body: LeadSignalRequest, timestampISO: string) => {
     requestDetails: body?.request?.requestDetails || '',
     referredByName: body?.request?.referredByName || '',
     preferredContactMethod: body?.request?.preferredContactMethod || '',
+    followUpAllowedMethods: Array.isArray(body?.request?.followUpAllowedMethods) ? body.request.followUpAllowedMethods.join(', ') : '',
     preferredEstimateDate: body?.request?.preferredEstimateDate || '',
     preferredEstimateTimeSlot: body?.request?.preferredEstimateTimeSlot || '',
     sourceFamily: body?.sourceFamily || '',
@@ -118,8 +119,8 @@ const validateRequest = (body: LeadSignalRequest) => {
   if (!body || typeof body !== 'object') return 'Request body must be a JSON object';
   if (!isString(body.event)) return 'event is required';
   if (body.event === 'qr_estimate_requested') {
-    const required = [body?.contact?.phone, body?.contact?.email, body?.request?.preferredEstimateDate, body?.request?.preferredEstimateTimeSlot];
-    if (required.some((value) => !isString(value))) return 'qr_estimate_requested is missing required contact/request fields';
+    const hasName = isString(body?.contact?.fullName) || isString(body?.contact?.firstName) || isString(body?.contact?.lastName);
+    if (!hasName || !isString(body?.contact?.phone)) return 'qr_estimate_requested is missing required contact fields';
   }
   if (body.event === 'callback_requested') {
     const hasName = isString(body?.contact?.fullName) || isString(body?.contact?.firstName) || isString(body?.contact?.lastName);
@@ -150,6 +151,7 @@ const sendLeadSignalEmail = async (env: LeadSignalEnv, payload: any) => { /* unc
     `selected package: ${payload.packageTier || 'unknown'}`,
     ...(payload.discoveryContext ? ['Discovery Summary:', `- Recommended Tier: ${payload.discoveryContext.recommendedTier}`, `- Property Size: ${payload.discoveryContext.propertySize}`, `- Coverage Need: ${payload.discoveryContext.coverageExpectation}`, `- Recording Desired: ${payload.discoveryContext.recordingPreference}`, `- Priority Concern: ${payload.discoveryContext.priorityConcerns}`] : []),
     `preferred contact method: ${payload.leadSummary.preferredContactMethod || 'Not provided'}`,
+    `allowed contact methods: ${payload.leadSummary.followUpAllowedMethods || 'Not provided'}`,
   ].join('\n');
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
@@ -254,7 +256,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
   const normalizedPathChoice = normalizePathChoice(body?.deal?.pathChoice || body?.pathChoice || 'onsite');
   const normalizedVerticalInterest = normalizeVerticalInterest(body?.request?.verticalInterest || 'home_security');
   const normalizedWalkthroughInterest = normalizeWalkthroughInterest(body?.request?.walkthroughInterest || body?.request?.requestedHelp || body?.event);
-  const consentSummary = `textConsent=${body?.textConsent ? 'yes' : 'no'}; emailConsent=${body?.emailConsent ? 'yes' : 'no'}; contactHoursAck=${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`;
+  const consentSummary = `textConsent=${body?.textConsent ? 'yes' : 'no'}; phoneConsent=${body?.phoneConsent ? 'yes' : 'no'}; emailConsent=${body?.emailConsent ? 'yes' : 'no'}; contactPermissionAck=${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`;
   const qrDetailSummary = [
     `requestId=${requestId}`,
     `sourceFamily=${sourceFamily}`,
@@ -275,7 +277,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `referredByName: ${body?.request?.referredByName || 'n/a'}`,
     `textConsent: ${body?.textConsent ? 'yes' : 'no'}`,
     `emailConsent: ${body?.emailConsent ? 'yes' : 'no'}`,
-    `contactHoursAck: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`,
+    `communicationPermissionAck: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`,
     `selectedPackage: ${packageTier}`,
     `requestId: ${requestId}`, qrDetailSummary,
   ].join(' | ');
@@ -442,7 +444,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
               `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
               `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
               `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
-              `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
+              `communication permission acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
               `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
               `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `referred by: ${body?.request?.referredByName || 'n/a'}`, `consent summary: ${consentSummary}`,
               `selected package: ${packageTier}`,
@@ -533,7 +535,7 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
                 `phone: ${leadSummary.phone || 'n/a'}`, `email: ${leadSummary.email || 'n/a'}`, `address: ${leadSummary.address || 'n/a'}`,
                 `requested help: ${body?.request?.requestedHelp || 'n/a'}`, `preferred contact method: ${body?.request?.preferredContactMethod || 'n/a'}`,
                 `text consent: ${body?.textConsent ? 'yes' : 'no'}`, `email consent: ${body?.emailConsent ? 'yes' : 'no'}`,
-                `contact-hours acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
+                `communication permission acknowledgement: ${body?.contactTimeAcknowledgement ? 'yes' : 'no'}`, `preferred estimate date: ${schedulingSummary.preferredEstimateDate || 'n/a'}`,
                 `preferred estimate time slot: ${schedulingSummary.preferredEstimateTimeSlot || 'n/a'}`, `source family: ${sourceFamily}`, `QR source: ${body?.source || 'n/a'}`,
                 `asset source: ${body?.assetSource || 'n/a'}`, `request details: ${body?.request?.requestDetails || 'n/a'}`, `referred by: ${body?.request?.referredByName || 'n/a'}`, `consent summary: ${consentSummary}`,
                 `selected package: ${packageTier}`,

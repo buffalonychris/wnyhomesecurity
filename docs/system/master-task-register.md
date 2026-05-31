@@ -2642,6 +2642,23 @@ No ARCHIVED tasks are currently recorded.
 - **Operator Decision Required:** Approve PR after validation and protected-flow review.
 - **Completion Notes:** Added a contact-page intake split, callback request event handling through existing `/api/lead-signal`, optional `referredByName` in request/note/operator context only, callback-safe acknowledgement text, and a visible site version bump. Existing estimate submissions, HubSpot API-mediated sync, server requestId behavior, QRLanding attribution events, Scheduling confirmation boundary, Stripe behavior, and referral payout boundary were preserved.
 
+### LEADFLOW002B
+- **Task ID:** LEADFLOW002B
+- **Task Name:** QRLanding Conversion Fix + Intake Parity
+- **Status:** DONE
+- **Category:** QR / LEAD / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Improve QRLanding conversion by tightening the hero footprint, moving the Request a Call / Request On-Site Estimate choice higher, hiding forms until path selection, reducing non-essential QR estimate requirements, and preserving protected lead-signal, requestId, HubSpot, QR attribution, Scheduling, Stripe, and referral payout boundaries.
+- **Allowed Scope:** `src/pages/QrLanding.tsx`, `src/components/CanonicalEstimateRequestForm.tsx`, `src/styles/qrLanding.css`, `src/styles/canonicalEstimateForm.css`, `src/lib/siteVersion.ts`, bounded `/api/lead-signal` validation relaxation for optional QR estimate fields, and this task-register completion record.
+- **Forbidden Scope:** No Stripe changes, no payment behavior changes, no HubSpot properties/schema/pipeline/stage changes, no direct frontend HubSpot writes, no named QR source parsing, no source registry logic, no referral payout logic/status/amount/percentage, no scheduling automation, no calendar event creation, no customer-authoritative booking, no referral discount/customer-facing payout language, no quote automation, no contractor onboarding, no revoke-permission feature, no broad site redesign, no QR attribution event rename/removal, and no deletion of supported estimate fields without optional access.
+- **Runtime Systems Affected:** QRLanding form UX and bounded lead-signal validation only; existing `/api/lead-signal` endpoint, server requestId generation, API-mediated HubSpot sync, operator/customer notification paths, QR attribution event names, Scheduling confirmation boundary, and Stripe behavior remain preserved.
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `git status`; `git diff --name-only`; `git diff -- src functions docs`; `git ls-files --deleted`; `git diff --check`; targeted QR/lead-signal/HubSpot/requestId/referral/safety grep; targeted HubSpot property/pipeline grep; scoped lead-signal/HubSpot tests; `npm run build`.
+- **Exit Criteria:** QRLanding presents Request a Call / Request On-Site Estimate choice before showing either form; hero footprint is reduced; callback form remains low-friction; QR estimate path uses optional non-essential fields where safe; where-did-you-hear-about-us is removed from the QR required flow; preferred communication supports multiple selections; final communication permission is visually separate and mandatory; duplicate communication controls are removed; `/qrlanding?src=placard`, QR attribution event names, `/api/lead-signal`, HubSpot API-mediated sync, requestId behavior, Scheduling request-only posture, Stripe boundary, named QR boundary, and referral payout boundary are preserved.
+- **Dependencies:** LEADFLOW002A, LEADFLOW001, QRLanding runtime contract, lead-signal/requestId/HubSpot/Scheduling/Resend protected runtime contracts, HubSpot REV03.
+- **Operator Decision Required:** Approve PR after validation and protected-flow review.
+- **Completion Notes:** QRLanding now uses the shared intake split with deferred path selection, compact QR-specific estimate requirements, multi-select communication preferences, and a mandatory permission acknowledgement. The hero was tightened into a two-column conversion layout. `/api/lead-signal` remains the submission boundary; QR estimate validation was relaxed so optional email/date/window fields do not block submission. No HubSpot properties, direct frontend HubSpot writes, Stripe changes, scheduling automation, named QR parsing, or referral payout logic were added.
+
 ### LEADFLOW002
 - **Task ID:** LEADFLOW002
 - **Task Name:** Lead Intake + Referral Attribution Implementation
