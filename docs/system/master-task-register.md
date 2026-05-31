@@ -591,6 +591,22 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Completion Notes:** Removed duplicate estimate CTA (`Request My Estimate`), retained primary/secondary hierarchy, moved utility actions to low-emphasis link treatment, preserved `/contact` query propagation for fit/discovery context, version bumped to `v1.0.58`, protected runtime untouched.
 - **Next Task Recommendation:** SUPPORT-FLOW001
 
+### FITCHECK001
+- **Task ID:** FITCHECK001
+- **Task Name:** Remove Legacy Quote Routing + Route Fit Check To Modern Intake
+- **Status:** DONE
+- **Category:** FUNNEL / COPY
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Prevent customer-facing Fit Check next-step CTAs from sending users into the legacy `/quote` workflow and route them to the modern contact intake instead.
+- **Allowed Scope:** Fit Check CTA route/copy updates, Fit Check CTA config updates, visible site version bump, and bounded task-register completion note.
+- **Forbidden Scope:** No Fit Check rebuild, question/scoring/recommendation changes, Quote page changes, legacy route deletion, Contact intake changes, QRLanding changes, `/api/lead-signal` changes, HubSpot changes, Stripe changes, scheduling changes, referral logic, payout logic, pricing claims, instant quote language, or confirmed appointment language.
+- **Target Files:** `src/components/FitCheck.tsx`, `src/content/fitCheckConfigs.ts`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** Public Fit Check CTA routing only; protected runtime systems untouched.
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `git status`; `git diff --name-only`; `git diff -- src docs`; `git ls-files --deleted`; `git diff --check`; task grep; `npm run build`.
+- **Exit Criteria:** Customer-facing Fit Check next-step CTAs route to `/contact?vertical=home-security`; CTA copy uses consultation-first intake language; Fit Check logic and protected systems are unchanged.
+- **Completion Notes:** Updated Fit Check primary next-step actions from legacy quote routing to `/contact?vertical=home-security`, replaced quote-oriented CTA language with `Request a Call or On-Site Estimate`, and bumped visible site version to `v1.0.92`. No Quote page, route deletion, Contact intake, QRLanding, lead-signal, HubSpot, Stripe, scheduling, scoring, question, or recommendation logic changes were made.
+
 ### FUNNEL-ARCH002
 - **Task ID:** FUNNEL-ARCH002
 - **Task Name:** Funnel architecture implementation cleanup

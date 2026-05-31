@@ -359,13 +359,10 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
     submitFitCheck();
   };
 
-  const handleGenerateQuote = () => {
+  const handleEstimateRequest = () => {
     const tier = submitFitCheck();
     if (!tier) return;
-    const params = new URLSearchParams(searchParams);
-    params.set('vertical', 'home-security');
-    params.set('package', tierToPackageId(tier));
-    navigate(`/quote?${params.toString()}`);
+    navigate('/contact?vertical=home-security');
   };
 
   const handleReset = () => {
@@ -698,8 +695,8 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
         </div>
         {isHomeSecurity && (
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <button type="button" className={submitClassName} disabled={!canSubmit} onClick={handleGenerateQuote}>
-              Continue To Estimate Request
+            <button type="button" className={submitClassName} disabled={!canSubmit} onClick={handleEstimateRequest}>
+              Request a Call or On-Site Estimate
             </button>
           </div>
         )}
@@ -755,10 +752,9 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
           <div style={{ display: 'grid', gap: '0.75rem' }}>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               {config.tiers[result.tier].ctas.map((cta) => {
-                const tierKey = result.tier.toLowerCase();
                 const to =
-                  cta.label === 'Continue To Estimate Request' && discoveryContextParams
-                    ? `/contact?vertical=home-security&tier=${tierKey}&${discoveryContextParams.toString()}`
+                  cta.label === 'Request a Call or On-Site Estimate' && discoveryContextParams
+                    ? '/contact?vertical=home-security'
                     : cta.href;
                 return (
                   <Link key={cta.label} to={to} className={buttonClassByVariant[cta.variant]}>
