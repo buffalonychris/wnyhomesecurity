@@ -639,6 +639,22 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Exit Criteria:** `npm run build` passes without the FloorplanFurnishings casing/default-export blocker; floorplan runtime behavior is preserved; protected funnel/runtime systems remain untouched.
 - **Completion Notes:** Renamed the lower-case furnishings helper module to `floorplanFurnishingRules.ts` and updated the component/test imports so the default-export `FloorplanFurnishings.tsx` component no longer collides with a same-basename helper on case-insensitive filesystems. Bumped visible site version to `v1.0.94`. No funnel behavior, Contact, QRLanding, Fit Check, Discovery, Quote, HubSpot, Stripe, Scheduling, lead-signal, requestId, customer-facing copy, pricing, or package changes were made.
 
+### FITCHECK002
+- **Task ID:** FITCHECK002
+- **Task Name:** Rebuild Fit Check As Consultative Discovery Tool
+- **Status:** DONE
+- **Category:** FUNNEL / COPY
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Rebuild Fit Check from legacy package/tier selection into a situation-based consultative discovery tool that routes to modern intake.
+- **Allowed Scope:** Fit Check questions, adaptive follow-ups, solution-category recommendation output, Fit Check copy/config, visible site version bump, and bounded task-register completion note.
+- **Forbidden Scope:** No Quote page changes, legacy route deletion, Agreement/Deposit/Schedule/System Planner deletion, Contact intake changes, QRLanding changes, `/api/lead-signal` changes, HubSpot changes, Stripe changes, scheduling/calendar changes, requestId changes, referral/payout/named-QR logic, package pricing, instant quote language, confirmed appointment language, or package checkout behavior.
+- **Target Files:** `src/components/FitCheck.tsx`, `src/content/fitCheckConfigs.ts`, `src/newsite/pages/NewSiteFitCheck.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** Public Fit Check presentation/routing only; protected runtime systems untouched.
+- **Documentation Updates Required:** Task register completion record only.
+- **Validation Required:** `git status`; `git diff --name-only`; `git diff -- src docs`; `git ls-files --deleted`; `git diff --check`; task grep; `npm run build`.
+- **Exit Criteria:** Fit Check uses no more than three primary situation-based questions, no more than three relevant adaptive follow-ups, category-based recommendations framed as a starting point, and final CTA routing to `/contact?vertical=home-security` without quote/package checkout exposure.
+- **Completion Notes:** Rebuilt Fit Check around homeowner situations, away-from-property concerns, and property context; added priority-limited adaptive follow-ups; replaced tier/package output with solution-category recommendations and careful starting-point framing; routed the final CTA to `/contact?vertical=home-security`; bumped visible site version to `v1.0.95`. No Quote page, legacy route deletion, Contact intake, QRLanding, `/api/lead-signal`, HubSpot, Stripe, scheduling, requestId, pricing, or package checkout changes were made.
+
 ### FUNNEL-ARCH002
 - **Task ID:** FUNNEL-ARCH002
 - **Task Name:** Funnel architecture implementation cleanup
