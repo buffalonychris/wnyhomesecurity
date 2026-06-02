@@ -1586,6 +1586,34 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   font-size: 1.05rem;
 }
 
+.hs-premium-trust-panel {
+  gap: 1rem;
+}
+
+.hs-premium-trust-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.hs-premium-trust-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--hs-premium-border);
+  background: color-mix(in srgb, var(--card) 78%, transparent);
+}
+
+.hs-premium-trust-card h3,
+.hs-premium-trust-card p {
+  margin: 0;
+}
+
+.hs-premium-trust-card p {
+  color: var(--hs-premium-muted);
+}
+
 .hs-premium-process-timeline {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1740,6 +1768,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   .hs-premium-hero--split,
   .hs-premium-our-work-strip,
   .hs-premium-trust-strip,
+  .hs-premium-trust-card-grid,
   .hs-premium-process-timeline {
     grid-template-columns: 1fr;
   }

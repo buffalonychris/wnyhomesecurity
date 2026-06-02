@@ -62,27 +62,37 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </div>
       </section>
 
-      <section className="hs-premium-trust-strip" aria-label="Trust pillars">
-        <article className="hs-premium-strip-item hs-premium-strip-item--stacked">
-          <span className="hs-premium-strip-icon" aria-hidden="true">◆</span>
-          <h3>Local &amp; Independent</h3>
-          <p>Western New York based and operated.</p>
-        </article>
-        <article className="hs-premium-strip-item hs-premium-strip-item--stacked">
-          <span className="hs-premium-strip-icon" aria-hidden="true">◆</span>
-          <h3>No Monthly Contracts</h3>
-          <p>Clear pricing. No mandatory monthly fees.</p>
-        </article>
-        <article className="hs-premium-strip-item hs-premium-strip-item--stacked">
-          <span className="hs-premium-strip-icon" aria-hidden="true">◆</span>
-          <h3>Right-Sized Solutions</h3>
-          <p>Recommendations based on your property and priorities.</p>
-        </article>
-        <article className="hs-premium-strip-item hs-premium-strip-item--stacked">
-          <span className="hs-premium-strip-icon" aria-hidden="true">◆</span>
-          <h3>Installation You Can Trust</h3>
-          <p>Professional installs. Clean. Respectful. Local.</p>
-        </article>
+      <section className="hs-premium-section-panel hs-premium-trust-panel" aria-labelledby="home-trust-heading">
+        <div className="hs-premium-section-header">
+          <h2 id="home-trust-heading">Why Homeowners Choose WNY Home Security</h2>
+        </div>
+        <div className="hs-premium-trust-card-grid">
+          <article className="hs-premium-trust-card">
+            <h3>Built To Grow</h3>
+            <p>
+              Your first solution includes the system foundation. After that, you can add as much or as little as you
+              need without having to upgrade or replace anything.
+            </p>
+          </article>
+          <article className="hs-premium-trust-card">
+            <h3>Only What You Need</h3>
+            <p>We recommend solutions based on your property and goals, not extra equipment you do not need.</p>
+          </article>
+          <article className="hs-premium-trust-card">
+            <h3>Your Home Stays Private</h3>
+            <p>
+              Your cameras, alerts, and activity are for you and your family. We believe what happens inside your home
+              should stay inside your home.
+            </p>
+          </article>
+          <article className="hs-premium-trust-card">
+            <h3>Works When You Need It</h3>
+            <p>
+              Your home should continue doing its job even when the internet is having a bad day. We build solutions
+              designed to keep working when you need them most.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section className="hs-premium-section-panel hs-premium-process">
