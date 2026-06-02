@@ -55,7 +55,7 @@ const Discovery = () => {
     <WnyhsFunnelLayout
       showStepRail={false}
       ctaLink="/contact?vertical=home-security"
-      ctaLabel="Request a Call or On-Site Estimate"
+      ctaLabel="Request a Free Estimate"
     >
       <div className="wnyhs-funnel-stack">
         {isHomeSecurity && (
@@ -87,11 +87,16 @@ const Discovery = () => {
           <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
             <div className="badge">Talk to us</div>
             <p style={{ margin: 0, color: '#c8c0aa' }}>
-              Prefer to talk with a coordinator? Email us and we&apos;ll follow up with the next best step.
+              Prefer to talk first? Call, text, or email and we&apos;ll help with the next best step.
             </p>
-            <a href={talkToUsMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
-              Email {wnyhsContact.emails.hello}
-            </a>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <a href={`tel:${wnyhsContact.phone.tel}`} style={{ color: '#f5c042', fontWeight: 700 }}>
+                Call/Text {wnyhsContact.phone.display}
+              </a>
+              <a href={talkToUsMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+                Email {wnyhsContact.emails.hello}
+              </a>
+            </div>
           </div>
         )}
       </div>

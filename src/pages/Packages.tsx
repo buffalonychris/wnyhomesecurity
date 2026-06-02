@@ -14,6 +14,7 @@ import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { getHomeSecurityCtaLink } from '../content/wnyhsNavigation';
+import { buildTel, wnyhsContact } from '../content/wnyhsContact';
 
 const Packages = () => {
   const navigate = useNavigate();
@@ -86,9 +87,19 @@ const Packages = () => {
           </h1>
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
-              ? 'Use these protection styles as planning examples before your walkthrough estimate. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
+              ? 'Compare starting points for cameras, video doorbells, package theft protection, and smart home security. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
               : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
           </p>
+          {isHomeSecurity && (
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
+              <Link className="btn btn-primary" to={discoveryLink}>
+                Request a Free Estimate
+              </Link>
+              <a className="btn btn-secondary" href={buildTel()}>
+                Call/Text {wnyhsContact.phone.display}
+              </a>
+            </div>
+          )}
         </div>
         {!isHomeSecurity && (
           <div style={{ display: 'grid', gap: '0.35rem', justifyItems: 'start' }}>
@@ -122,7 +133,7 @@ const Packages = () => {
       )}
       {vertical === 'home-security' && (
         <p style={{ marginTop: '1rem', color: 'var(--kaec-muted)' }}>
-          No required monthly monitoring contracts. Many Western New York customers choose local-first systems that are locally installed and supported without recurring monitoring contracts.
+          No required monthly contracts. Many Western New York customers choose local-first systems that are locally installed and supported without recurring service contracts.
         </p>
       )}
       {vertical === 'home-security' && (

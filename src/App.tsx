@@ -123,6 +123,8 @@ const App = () => {
             <Route path="/halo-splash" element={<Home />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/packages/:id" element={<PackageDetail />} />
+            <Route path="/fit-check" element={<Navigate to="/discovery?vertical=home-security" replace />} />
+            <Route path="/estimate" element={<Navigate to="/contact?vertical=home-security" replace />} />
             <Route path="/comparison" element={<Comparison />} />
             <Route path="/funding" element={<Funding />} />
             <Route path="/reliability" element={<Reliability />} />

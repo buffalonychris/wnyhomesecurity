@@ -20,7 +20,6 @@ type LegacyHomeSecurityContentProps = {
 };
 
 const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityContentProps) => {
-  const normalizedPathParam = pathParam.replace(/^&path=/, '') || null;
   return (
     <>
       <section className="vertical-hero vertical-hero--media vertical-hero--campaign">
@@ -65,7 +64,7 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
               <path d="M12 7v6l4 2" fill="none" stroke="currentColor" strokeWidth="1.6" />
             </svg>
           </span>
-          24/7 Intrusion Monitoring
+          Door and Motion Awareness
         </div>
         <div className="hs-premium-strip-item">
           <span className="hs-premium-strip-icon" aria-hidden="true">
@@ -124,7 +123,7 @@ const LegacyHomeSecurityContent = ({ packages, pathParam }: LegacyHomeSecurityCo
           <div className="badge">Packages</div>
           <h2 style={{ margin: 0 }}>Choose a Home Security package</h2>
           <p style={{ margin: 0, color: 'var(--kaec-muted)' }}>
-            Bronze, Silver (recommended), and Gold tiers are professionally installed and keep Home Assistant as your single dashboard.
+            Bronze, Silver (recommended), and Gold tiers are professionally installed starting points for cameras, sensors, and smart controls.
           </p>
         </div>
         <div className="card-grid motion-stagger">

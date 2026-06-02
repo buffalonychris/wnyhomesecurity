@@ -3,7 +3,6 @@ import { FormEvent, useState } from 'react';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import SectionHeader from '../components/operator/SectionHeader';
 import SpaceFrame from '../components/operator/SpaceFrame';
-import OwnershipOfflineGuarantee from '../components/OwnershipOfflineGuarantee';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { resolveVertical } from '../lib/verticals';
 import { buildSms, buildSupportMailto, buildTel, wnyhsContact } from '../content/wnyhsContact';
@@ -25,22 +24,22 @@ const Support = () => {
     <>
       <SectionHeader
         kicker="Support"
-        title="FAQ & Support"
-        subtitle="Quick answers, plus a direct way to reach the team."
+        title="WNY Home Security Support"
+        subtitle="Call, text, email, or send a support request for your camera, video doorbell, smart lock, or security system."
       />
 
-      <OwnershipOfflineGuarantee
-        variant="frame"
-        title="Ownership & Offline Guarantee"
-        intro="These rules apply across Home Security, Home Automation, and Elder Tech — you stay in control, and the system keeps working locally."
-        items={[
-          'You own the equipment, automations, and your data.',
-          'We don’t sell monthly subscriptions. Optional third-party services are between you and them.',
-          'Key features keep working on your home network even if the internet goes out.',
-          'Remote access is optional and requires internet.',
-          'Home Assistant is the main dashboard across our installs.',
-        ]}
-      />
+      <SpaceFrame>
+        <h2>Fastest way to reach us</h2>
+        <p>For existing customers and estimate questions, call or text the WNY Home Security team.</p>
+        <p style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <a href={buildTel()} style={{ color: 'var(--color-accent)' }}>
+            Call {wnyhsContact.phone.display}
+          </a>
+          <a href={buildSms('Hi! I need help with my WNY Home Security system.')} style={{ color: 'var(--color-accent)' }}>
+            Text {wnyhsContact.phone.display}
+          </a>
+        </p>
+      </SpaceFrame>
 
       <SpaceFrame>
         <h2>Email</h2>
@@ -62,7 +61,7 @@ const Support = () => {
       <SupportRequestForm pageRoute={`${location.pathname}${location.search}`} />
       <SpaceFrame>
         <h2>Phone or text</h2>
-        <p>Call or text the WNY Home Security team for urgent support.</p>
+        <p>Call or text the WNY Home Security team for support.</p>
         <p style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <a href={buildTel()} style={{ color: 'var(--color-accent)' }}>
             Call {wnyhsContact.phone.display}
@@ -75,10 +74,7 @@ const Support = () => {
 
       <SpaceFrame>
         <h2>Response expectations</h2>
-        <p>
-          We reply within 1–2 business days. If it’s urgent, put URGENT in the subject line and tell us your best
-          callback window.
-        </p>
+        <p>We reply within 1-2 business days. For time-sensitive help, call or text {wnyhsContact.phone.display}.</p>
       </SpaceFrame>
     </>
   );
@@ -119,7 +115,7 @@ const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
       });
       if (!response.ok) {
         const payload = (await response.json().catch(() => ({}))) as { userMessage?: string };
-        setErrorMessage(payload.userMessage || 'We could not send your request. Please try again.');
+        setErrorMessage(payload.userMessage || 'We could not send your request through the form. Please call or text 716-201-0364, or email support@wnyhomesecurity.com.');
         setStatus('error');
         return;
       }
@@ -129,11 +125,11 @@ const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
       setTopic('General support question');
       setMessage('');
     } catch {
-      setErrorMessage('Network error. Please try again, or call/text us for urgent support.');
+      setErrorMessage('The form is not available right now. Please call or text 716-201-0364, or email support@wnyhomesecurity.com.');
       setStatus('error');
     }
   };
-  return <SpaceFrame><h2>Submit support request</h2><form className="form" onSubmit={onSubmit}><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required /><input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="What do you need help with?" required /><textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="How can we help?" rows={4} required /><button className="btn btn-primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send request'}</button>{status === 'success' && <p>Support request received. We will follow up during normal business operations.</p>}{status === 'error' && <p>{errorMessage || 'We could not send your request. Please try again.'}</p>}</form></SpaceFrame>;
+  return <SpaceFrame><h2>Submit support request</h2><form className="form" onSubmit={onSubmit}><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required /><input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="What do you need help with?" required /><textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="How can we help?" rows={4} required /><button className="btn btn-primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send request'}</button>{status === 'success' && <p>Support request received. We will follow up during normal business operations.</p>}{status === 'error' && <p>{errorMessage || 'Please call or text 716-201-0364, or email support@wnyhomesecurity.com.'}</p>}</form></SpaceFrame>;
 };
 
 export default Support;

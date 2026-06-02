@@ -1,6 +1,6 @@
-# ReliableElderCare — Home Security Image Pack
+# WNY Home Security Image Pack
 
-This ZIP contains individually-cropped assets generated from the two composite images:
+This folder contains individually-cropped WNY Home Security assets:
 - package "What's Included" card images (4)
 - Home Security section images (hero + architecture + coverage + badges)
 

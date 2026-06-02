@@ -24,7 +24,7 @@ describe('Operator navbar routing', () => {
     expect(
       await screen.findByRole('heading', {
         level: 1,
-        name: /home security that works even when the internet doesn’t/i,
+        name: /practical protection for western new york homes and small businesses/i,
       }),
     ).toBeInTheDocument();
 

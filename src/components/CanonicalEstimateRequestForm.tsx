@@ -280,7 +280,11 @@ const CanonicalEstimateRequestForm = ({
     } catch (error) {
       const cause = error instanceof Error ? error.cause as Record<string, unknown> | undefined : undefined;
       setFailureRequestId(typeof cause?.requestId === 'string' ? cause.requestId : null);
-      setApiFailure(typeof cause?.userMessage === 'string' ? cause.userMessage : 'We could not submit your request. Please try again.');
+      setApiFailure(
+        typeof cause?.userMessage === 'string'
+          ? cause.userMessage
+          : 'We could not submit your request through the form. Please call or text 716-201-0364, or email hello@wnyhomesecurity.com.'
+      );
     } finally {
       setIsSubmitting(false);
     }

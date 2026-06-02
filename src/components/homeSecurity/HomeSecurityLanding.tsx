@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
+import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 import '../../styles/homeSecurityPremium.css';
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 };
 
 const packagePreview = [
-  { id: 'a1', name: 'Bronze', detail: 'Core cameras and entry sensors for practical first coverage.' },
+  { id: 'a1', name: 'Bronze', detail: 'Cameras and entry sensors for practical first coverage.' },
   { id: 'a2', name: 'Silver', detail: 'Balanced coverage with expanded alerts and visibility where it matters most.' },
   { id: 'a3', name: 'Gold', detail: 'Broader property coverage with automation planning for larger layouts.' },
 ] as const;
@@ -27,12 +28,16 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
           <p className="hs-premium-eyebrow">LOCAL-FIRST. PLAN FIRST. PROTECT WHAT MATTERS.</p>
           <h1>Practical protection for Western New York homes and small businesses.</h1>
           <p className="hs-premium-hero-subhead">
-            We design and install systems built around your property, your routines, and your goals — using proven equipment and smart planning.
+            We design and install security cameras, video doorbells, package theft protection, and smart home security
+            systems built around your property, routines, and goals.
           </p>
           <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
-              Start With Fit Check
+              Request a Free Estimate
             </Link>
+            <a className="btn btn-secondary" href={buildTel()}>
+              Call/Text {wnyhsContact.phone.display}
+            </a>
             <Link className="btn btn-link hs-premium-text-link" to="/packages?vertical=home-security">
               View Packages
             </Link>
@@ -136,12 +141,15 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </div>
         <div className="hs-premium-cta-copy">
           <h2>Ready for a clear recommendation?</h2>
-          <p>Start with Fit Check for a practical path, then review package detail at your own pace.</p>
+          <p>Request a free estimate or start with Fit Check to see what fits your home.</p>
         </div>
         <div className="hs-premium-cta-actions hs-premium-cta-actions--compact">
           <Link className="btn btn-primary" to={ctaLink}>
-            Find the Right System
+            Request a Free Estimate
           </Link>
+          <a className="btn btn-secondary" href={buildTel()}>
+            Call/Text
+          </a>
           <Link className="btn btn-secondary" to="/packages?vertical=home-security">
             View Packages
           </Link>
