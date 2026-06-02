@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
-import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
+import { buildTel } from '../../content/wnyhsContact';
 import '../../styles/homeSecurityPremium.css';
 
 type Props = {
@@ -28,20 +28,10 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
           <p className="hs-premium-eyebrow">LOCAL-FIRST. PLAN FIRST. PROTECT WHAT MATTERS.</p>
           <h1>Practical protection for Western New York homes and small businesses.</h1>
           <p className="hs-premium-hero-subhead">
-            We design and install security cameras, video doorbells, package theft protection, and smart home security
-            systems built around your property, routines, and goals.
+            Whether you're trying to stop package theft, keep an eye on your property, check in on loved ones, or make
+            your home easier to manage, we design practical security and smart property solutions built around your
+            goals.
           </p>
-          <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary hs-premium-primary-cta" to={ctaLink}>
-              Request a Free Estimate
-            </Link>
-            <a className="btn btn-secondary" href={buildTel()}>
-              Call/Text {wnyhsContact.phone.display}
-            </a>
-            <Link className="btn btn-link hs-premium-text-link" to="/packages?vertical=home-security">
-              View Packages
-            </Link>
-          </div>
         </div>
         <div className="hs-premium-hero-media" aria-hidden="true">
           <img src="/brand/heros/HomePageHero.png" alt="" loading="eager" />
@@ -61,7 +51,7 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </article>
         <article className="hs-premium-strip-item hs-premium-strip-item--stacked">
           <span className="hs-premium-strip-icon" aria-hidden="true">◆</span>
-          <h3>Right-Sized Systems</h3>
+          <h3>Right-Sized Solutions</h3>
           <p>Recommendations based on your property and priorities.</p>
         </article>
         <article className="hs-premium-strip-item hs-premium-strip-item--stacked">
