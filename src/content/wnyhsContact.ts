@@ -203,7 +203,7 @@ export const HOME_SECURITY_ROUTES = {
 export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: MarketingNavItem[] } = {
   primary: [
     { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/home-security' },
-    { id: 'packages', label: 'Packages', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
+    { id: 'packages', label: 'Solutions', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
     { id: 'comparison', label: 'Comparison', href: HOME_SECURITY_ROUTES.comparison, matchPath: '/comparison' },
     {
       id: 'whats-included',

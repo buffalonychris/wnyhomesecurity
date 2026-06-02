@@ -5,11 +5,11 @@ import { getAllHomeSecurityNavItems, homeSecurityMarketingNav } from '../../cont
 import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 
 type WnyhsTopNavProps = {
-  ctaLink: string;
+  ctaLink?: string;
   ctaLabel?: string;
 };
 
-const WnyhsTopNav = ({ ctaLink, ctaLabel = 'Get Started' }: WnyhsTopNavProps) => {
+const WnyhsTopNav = (_props: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
@@ -66,9 +66,6 @@ const WnyhsTopNav = ({ ctaLink, ctaLabel = 'Get Started' }: WnyhsTopNavProps) =>
           >
             {menuOpen ? 'Close' : 'Menu'}
           </button>
-          <Link className="btn btn-primary wnyhs-top-nav-cta" to={ctaLink}>
-            {ctaLabel}
-          </Link>
         </div>
       </div>
 

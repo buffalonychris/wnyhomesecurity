@@ -49,7 +49,7 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
     <div className="hs-premium-shell hs-premium-shell--home-trust">
       <section className="hs-premium-hero hs-premium-hero--split">
         <div className="hs-premium-hero-content">
-          <p className="hs-premium-eyebrow">LOCAL-FIRST. PLAN FIRST. PROTECT WHAT MATTERS.</p>
+          <p className="hs-premium-eyebrow">Protect What Matters</p>
           <h1>Practical protection for Western New York homes and small businesses.</h1>
           <p className="hs-premium-hero-subhead">
             Whether you're trying to stop package theft, keep an eye on your property, check in on loved ones, or make
@@ -123,15 +123,9 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
       </section>
 
       <section id="packages" className="hs-premium-packages hs-premium-section-panel">
-        <div className="hs-premium-section-header hs-premium-section-header--row">
-          <div>
-            <p className="hs-premium-eyebrow">Solutions</p>
-            <h2>Solutions</h2>
-            <p>Common solution starting points based on your goals, concerns, and property type.</p>
-          </div>
-          <Link className="hs-premium-text-link" to="/packages?vertical=home-security">
-            View More Solutions
-          </Link>
+        <div className="hs-premium-section-header">
+          <h2>Solutions</h2>
+          <p>Common solution starting points based on your goals, concerns, and property type.</p>
         </div>
         <div className="hs-premium-package-preview-grid">
           {solutionsPreview.map((item) => (
@@ -141,6 +135,9 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
             </article>
           ))}
         </div>
+        <Link className="hs-premium-text-link" to="/packages?vertical=home-security">
+          View More Solutions
+        </Link>
       </section>
 
       <section className="hs-premium-section-panel hs-premium-our-work">
@@ -165,6 +162,39 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </Link>
       </section>
 
+      <section className="hs-premium-section-panel hs-premium-trust-panel" aria-labelledby="home-trust-heading">
+        <div className="hs-premium-section-header">
+          <h2 id="home-trust-heading">Why Homeowners Choose WNY Home Security</h2>
+        </div>
+        <div className="hs-premium-trust-card-grid">
+          <article className="hs-premium-trust-card">
+            <h3>Built To Grow</h3>
+            <p>
+              Your first solution includes the system foundation. After that, you can add as much or as little as you
+              need without having to upgrade or replace anything.
+            </p>
+          </article>
+          <article className="hs-premium-trust-card">
+            <h3>Only What You Need</h3>
+            <p>We recommend solutions based on your property and goals, not extra equipment you do not need.</p>
+          </article>
+          <article className="hs-premium-trust-card">
+            <h3>Your Home Stays Private</h3>
+            <p>
+              Your cameras, alerts, and activity are for you and your family. We believe what happens inside your home
+              should stay inside your home.
+            </p>
+          </article>
+          <article className="hs-premium-trust-card">
+            <h3>Works When You Need It</h3>
+            <p>
+              Your home should continue doing its job even when the internet is having a bad day. We build solutions
+              designed to keep working when you need them most.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section className="hs-premium-section-panel hs-premium-final-cta-panel">
         <div className="hs-premium-final-cta-copy">
           <h2>Ready To Talk Through Your Property?</h2>
@@ -177,6 +207,7 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
           <Link className="btn btn-primary" to={ctaLink}>
             Request a Callback
           </Link>
+          <span className="hs-premium-final-cta-or">OR</span>
           <a className="btn btn-secondary" href={buildTel()}>
             Call/Text 716-201-0364
           </a>
