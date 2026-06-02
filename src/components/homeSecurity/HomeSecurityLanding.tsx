@@ -8,10 +8,22 @@ type Props = {
   ctaLink: string;
 };
 
-const packagePreview = [
-  { id: 'a1', name: 'Bronze', detail: 'Cameras and entry sensors for practical first coverage.' },
-  { id: 'a2', name: 'Silver', detail: 'Balanced coverage with expanded alerts and visibility where it matters most.' },
-  { id: 'a3', name: 'Gold', detail: 'Broader property coverage with automation planning for larger layouts.' },
+const solutionsPreview = [
+  {
+    id: 'a1',
+    name: 'Package Protection',
+    detail: 'Know when deliveries arrive, see who approaches your door, and reduce the risk of package theft.',
+  },
+  {
+    id: 'a2',
+    name: 'Garage & Property Awareness',
+    detail: 'Know if the garage was left open, receive activity alerts, and stay connected to key areas around your property.',
+  },
+  {
+    id: 'a3',
+    name: 'Smart Home Security',
+    detail: 'Bring cameras, alerts, automation, and awareness together into one practical solution.',
+  },
 ] as const;
 
 const workPreview = [
@@ -91,16 +103,16 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
       <section id="packages" className="hs-premium-packages hs-premium-section-panel">
         <div className="hs-premium-section-header hs-premium-section-header--row">
           <div>
-            <p className="hs-premium-eyebrow">Packages</p>
-            <h2>Packages</h2>
-            <p>Starting points, not one-size-fits-all plans.</p>
+            <p className="hs-premium-eyebrow">Solutions</p>
+            <h2>Solutions</h2>
+            <p>Common solution starting points based on your goals, concerns, and property type.</p>
           </div>
           <Link className="hs-premium-text-link" to="/packages?vertical=home-security">
-            View all packages
+            View More Solutions
           </Link>
         </div>
         <div className="hs-premium-package-preview-grid">
-          {packagePreview.map((item) => (
+          {solutionsPreview.map((item) => (
             <article key={item.id} className="hs-premium-package-preview-card">
               <h3>{item.name}</h3>
               <p>{item.detail}</p>
