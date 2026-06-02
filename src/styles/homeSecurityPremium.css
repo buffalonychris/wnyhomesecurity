@@ -1670,6 +1670,34 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   color: var(--hs-premium-muted);
 }
 
+.hs-premium-final-cta-panel {
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.hs-premium-final-cta-copy {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 680px;
+}
+
+.hs-premium-final-cta-copy h2,
+.hs-premium-final-cta-copy p {
+  margin: 0;
+}
+
+.hs-premium-final-cta-copy p {
+  color: var(--hs-premium-muted);
+}
+
+.hs-premium-final-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
 .hs-premium-cta--calm {
   grid-template-columns: auto 1fr auto;
   align-items: center;

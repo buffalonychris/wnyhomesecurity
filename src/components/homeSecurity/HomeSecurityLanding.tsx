@@ -155,24 +155,21 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </Link>
       </section>
 
-      <section className="hs-premium-cta hs-premium-cta--calm">
-        <div className="hs-premium-cta-brand">
-          <img src="/brand/crest-system/CrestLogo.png" alt="WNY Home Security crest" loading="lazy" />
+      <section className="hs-premium-section-panel hs-premium-final-cta-panel">
+        <div className="hs-premium-final-cta-copy">
+          <h2>Ready To Talk Through Your Property?</h2>
+          <p>
+            Start with a quick callback. We'll learn about your property, answer questions, and help determine whether
+            an on-site estimate makes sense.
+          </p>
         </div>
-        <div className="hs-premium-cta-copy">
-          <h2>Ready for a clear recommendation?</h2>
-          <p>Request a free estimate or start with Fit Check to see what fits your home.</p>
-        </div>
-        <div className="hs-premium-cta-actions hs-premium-cta-actions--compact">
+        <div className="hs-premium-final-cta-actions">
           <Link className="btn btn-primary" to={ctaLink}>
-            Request a Free Estimate
+            Request a Callback
           </Link>
           <a className="btn btn-secondary" href={buildTel()}>
-            Call/Text
+            Call/Text 716-201-0364
           </a>
-          <Link className="btn btn-secondary" to="/packages?vertical=home-security">
-            View Packages
-          </Link>
         </div>
       </section>
     </div>
