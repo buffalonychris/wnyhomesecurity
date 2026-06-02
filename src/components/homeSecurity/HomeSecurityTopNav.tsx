@@ -19,7 +19,7 @@ const HomeSecurityTopNav = ({ ctaLink }: Props) => {
             <path d="M9.2 12.5l2 2.1 3.7-4.2" fill="none" stroke="currentColor" strokeWidth="1.6" />
           </svg>
         </span>
-        <span>Reliable Home Security</span>
+        <span>WNY Home Security</span>
       </div>
       <nav className="hs-premium-nav-links" aria-label="Home security navigation">
         <a href="#how-it-works">How it Works</a>
@@ -28,7 +28,7 @@ const HomeSecurityTopNav = ({ ctaLink }: Props) => {
       </nav>
       <div className="hs-premium-nav-cta">
         <Link className="btn btn-primary" to={ctaLink}>
-          Get Started
+          Request Estimate
         </Link>
       </div>
     </div>

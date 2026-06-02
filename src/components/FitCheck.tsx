@@ -37,7 +37,8 @@ type FollowUpDefinition = {
   id: FollowUpId;
   title: string;
   options: Array<{ value: string; label: string }>;
-  applies: (answers: DiscoveryAnswers) => boolean;
+  // eslint-disable-next-line no-unused-vars
+  applies(answers: DiscoveryAnswers): boolean;
 };
 
 type FitCheckProps = {
@@ -598,11 +599,11 @@ const FitCheck = ({ config, layout = 'standalone', className }: FitCheckProps) =
           </div>
 
           <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
-            <h3>Request a Call or On-Site Estimate</h3>
+            <h3>Request a Free Estimate</h3>
             <p>We&apos;ll review your answers and help determine what makes sense for your property.</p>
             <div>
               <Link className="btn btn-primary" to={CONTACT_INTAKE_PATH}>
-                Request a Call or On-Site Estimate
+                Request a Free Estimate
               </Link>
             </div>
           </div>

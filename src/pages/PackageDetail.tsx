@@ -10,10 +10,10 @@ import { useLayoutConfig } from '../components/LayoutConfig';
 import { updateRetailFlow } from '../lib/retailFlow';
 import HomeSecurityFunnelSteps from '../components/HomeSecurityFunnelSteps';
 import {
-  HOME_SECURITY_CLARITY_FOOTER,
   getHomeSecurityHardwareList,
   getHomeSecurityPackageSpec,
 } from '../content/homeSecurityPackageData';
+import { buildTel, wnyhsContact } from '../content/wnyhsContact';
 
 const PackageDetail = () => {
   const { id } = useParams();
@@ -41,14 +41,13 @@ const PackageDetail = () => {
         ? `/contact?vertical=home-security&package=${pkg.id}&estimateIntent=selected-package`
         : '/contact?vertical=home-security'
       : '/contact';
-  const homeSecurityTierLabel = pkg?.name ?? 'Package';
   const styleLabelMap: Record<string, string> = {
     a1: 'Essential Awareness',
     a2: 'Balanced Home Coverage',
     a3: 'Expanded Property Coverage',
   };
   const styleLabel = isHomeSecurityPdp && pkg ? styleLabelMap[pkg.id] ?? pkg.name : pkg?.name ?? 'Package';
-  const primaryActionLabel = isHomeSecurityPdp ? `Request Walkthrough Estimate` : 'Request install';
+  const primaryActionLabel = isHomeSecurityPdp ? `Request a Free Estimate` : 'Request install';
   const primaryActionLink = isHomeSecurityPdp ? '/discovery?vertical=home-security' : contactLink;
   const tierLabel = pkg?.name ?? 'Package';
   const selectedTierId = pkg ? (pkg.id.toUpperCase() as PackageTierId) : undefined;
@@ -118,6 +117,9 @@ const PackageDetail = () => {
               <Link className="btn btn-primary" to={primaryActionLink}>
                 {primaryActionLabel}
               </Link>
+              <a className="btn btn-secondary" href={buildTel()}>
+                Call/Text {wnyhsContact.phone.display}
+              </a>
           </div>
         </section>
 
@@ -175,7 +177,7 @@ const PackageDetail = () => {
         <section id="clarity-footer" className="card pdp-section motion-fade-up">
           <div className="pdp-section-header">
             <h2>Estimate clarity</h2>
-            <p>No required monthly monitoring contracts. Most systems are customized after walkthrough, and final recommendations are built around your layout, entry points, and coverage goals.</p>
+            <p>No required monthly contracts. Most systems are customized after walkthrough, and final recommendations are built around your layout, entry points, and coverage goals.</p>
           </div>
         </section>
       </div>

@@ -118,7 +118,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
                 <path d="M12 7v5l3 2" fill="none" stroke="currentColor" strokeWidth="1.6" />
               </svg>
             </div>
-            <h3>24/7 Monitoring</h3>
+            <h3>Optional Third-Party Services</h3>
             <p>
               Professional monitoring is optional and, if selected, is provided directly through third-party monitoring services
               chosen by the customer.
@@ -152,7 +152,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
         <div className="hs-premium-section-header">
           <p className="hs-premium-eyebrow">Packages</p>
           <h2>Home Security Packages for Every Need</h2>
-          <p>Bronze, Silver, and Gold tiers are professionally installed and keep Home Assistant as your single dashboard.</p>
+          <p>Bronze, Silver, and Gold tiers are professionally installed starting points for cameras, sensors, and smart controls.</p>
         </div>
         <PackageTierCards packages={packages} ctaLink={ctaLink} />
       </section>
@@ -186,7 +186,7 @@ const PremiumHomeSecurityLanding = ({ packages, ctaLink }: Props) => {
         </div>
         <div className="hs-premium-cta-actions">
           <Link className="hs-premium-text-link" to={ctaLink}>
-            Get Started
+            Request Estimate
           </Link>
         </div>
       </section>

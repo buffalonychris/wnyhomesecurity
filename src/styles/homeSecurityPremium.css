@@ -260,6 +260,18 @@
   white-space: nowrap;
 }
 
+.wnyhs-top-nav-phone {
+  color: var(--hs-premium-muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.wnyhs-top-nav-phone:hover {
+  color: var(--foreground);
+}
+
 .wnyhs-top-nav-strip {
   display: none;
   flex-wrap: wrap;
@@ -1292,6 +1304,10 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
     width: 100%;
     justify-content: flex-end;
     gap: 0.5rem;
+  }
+
+  .wnyhs-top-nav-phone {
+    display: none;
   }
 
   .wnyhs-top-nav-cta {

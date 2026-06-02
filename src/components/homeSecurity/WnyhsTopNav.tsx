@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
 import { getAllHomeSecurityNavItems, homeSecurityMarketingNav } from '../../content/wnyhsNavigation';
+import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 
 type WnyhsTopNavProps = {
   ctaLink: string;
@@ -53,6 +54,9 @@ const WnyhsTopNav = ({ ctaLink, ctaLabel = 'Get Started' }: WnyhsTopNavProps) =>
         </nav>
 
         <div className="wnyhs-top-nav-actions">
+          <a className="wnyhs-top-nav-phone" href={buildTel()}>
+            Call/Text {wnyhsContact.phone.display}
+          </a>
           <button
             type="button"
             className="wnyhs-top-nav-toggle"
@@ -73,6 +77,9 @@ const WnyhsTopNav = ({ ctaLink, ctaLabel = 'Get Started' }: WnyhsTopNavProps) =>
           <div className="wnyhs-top-nav-drawer-group">
             <p className="wnyhs-top-nav-drawer-title">Menu</p>
             <div className="wnyhs-top-nav-drawer-links">
+              <a className="wnyhs-top-nav-link" href={buildTel()} onClick={() => setMenuOpen(false)}>
+                Call/Text {wnyhsContact.phone.display}
+              </a>
               {drawerItems.map((item) => {
                 const active = isActiveLink(item);
                 const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');

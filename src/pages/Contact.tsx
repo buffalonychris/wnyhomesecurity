@@ -26,8 +26,8 @@ const Contact = () => {
 
   const content = <div className="contact-intake-shell">
     <div className="contact-intake-header">
-      <h2>Talk with {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
-      <p>Choose a quick call request or send on-site estimate details. We'll review your request before anything is scheduled.</p>
+      <h2>Request a Free Estimate from {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
+      <p>Tell us about your home security goals, or call/text now for cameras, video doorbells, package theft protection, and smart home security planning.</p>
     </div>
     <div className="contact-intake-actions">
       <a className="btn btn-link" href={buildTel()}>Call {wnyhsContact.phone.display}</a>
