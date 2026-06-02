@@ -12,17 +12,20 @@ const solutionsPreview = [
   {
     id: 'a1',
     name: 'Package Protection',
-    detail: 'Know when deliveries arrive, see who approaches your door, and reduce the risk of package theft.',
+    detail: 'Know when deliveries arrive, see who comes to your door, and reduce the risk of package theft.',
+    purchaseLine: 'Available As A Standalone Or Add-On Solution',
   },
   {
     id: 'a2',
     name: 'Garage & Property Awareness',
-    detail: 'Know if the garage was left open, receive activity alerts, and stay connected to key areas around your property.',
+    detail: "Know if the garage was left open, see activity around your property, and stay connected while you're away.",
+    purchaseLine: 'Available As A Standalone Or Add-On Solution',
   },
   {
     id: 'a3',
     name: 'Smart Home Security',
-    detail: 'Bring cameras, alerts, automation, and awareness together into one practical solution.',
+    detail: 'Bring cameras, alerts, automations, and awareness together into a single security and automation solution.',
+    purchaseLine: 'Available As A Standalone Or Add-On Solution',
   },
 ] as const;
 
@@ -59,39 +62,6 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </div>
         <div className="hs-premium-hero-media" aria-hidden="true">
           <img src="/brand/heros/HomePageHero.png" alt="" loading="eager" />
-        </div>
-      </section>
-
-      <section className="hs-premium-section-panel hs-premium-trust-panel" aria-labelledby="home-trust-heading">
-        <div className="hs-premium-section-header">
-          <h2 id="home-trust-heading">Why Homeowners Choose WNY Home Security</h2>
-        </div>
-        <div className="hs-premium-trust-card-grid">
-          <article className="hs-premium-trust-card">
-            <h3>Built To Grow</h3>
-            <p>
-              Your first solution includes the system foundation. After that, you can add as much or as little as you
-              need without having to upgrade or replace anything.
-            </p>
-          </article>
-          <article className="hs-premium-trust-card">
-            <h3>Only What You Need</h3>
-            <p>We recommend solutions based on your property and goals, not extra equipment you do not need.</p>
-          </article>
-          <article className="hs-premium-trust-card">
-            <h3>Your Home Stays Private</h3>
-            <p>
-              Your cameras, alerts, and activity are for you and your family. We believe what happens inside your home
-              should stay inside your home.
-            </p>
-          </article>
-          <article className="hs-premium-trust-card">
-            <h3>Works When You Need It</h3>
-            <p>
-              Your home should continue doing its job even when the internet is having a bad day. We build solutions
-              designed to keep working when you need them most.
-            </p>
-          </article>
         </div>
       </section>
 
@@ -132,6 +102,7 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
             <article key={item.id} className="hs-premium-package-preview-card">
               <h3>{item.name}</h3>
               <p>{item.detail}</p>
+              <p className="hs-premium-package-preview-status">{item.purchaseLine}</p>
             </article>
           ))}
         </div>
