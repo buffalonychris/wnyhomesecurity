@@ -3,14 +3,14 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
 
 type WnyHomeSecurityNavProps = {
-  ctaLink: string;
+  ctaLink?: string;
   pathParam?: string;
 };
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   ['wny-hs-nav-link', isActive ? 'is-active' : null].filter(Boolean).join(' ');
 
-const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps) => {
+const WnyHomeSecurityNav = ({ pathParam = '' }: WnyHomeSecurityNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -47,9 +47,6 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
           >
             {menuOpen ? 'Close' : 'Menu'}
           </button>
-          <NavLink className="btn btn-primary wny-hs-nav-cta" to={ctaLink}>
-            Get Started
-          </NavLink>
         </div>
       </div>
       <div id="wny-hs-nav-menu" className={`wny-hs-nav-menu${menuOpen ? ' is-open' : ''}`}>
@@ -58,7 +55,7 @@ const WnyHomeSecurityNav = ({ ctaLink, pathParam = '' }: WnyHomeSecurityNavProps
             Home
           </NavLink>
           <NavLink to="/packages?vertical=home-security" className={navLinkClass}>
-            Packages
+            Solutions
           </NavLink>
           <NavLink to={fitCheckLink} className={navLinkClass}>
             Fit Check
