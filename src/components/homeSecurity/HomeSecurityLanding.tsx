@@ -63,29 +63,27 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
 
       <section className="hs-premium-section-panel hs-premium-process">
         <div className="hs-premium-section-header">
-          <p className="hs-premium-eyebrow">How it works</p>
-          <h2>How it works</h2>
+          <h2>How It Works</h2>
         </div>
         <ol className="hs-premium-process-timeline">
           <li>
-            <span>01</span>
-            <h3>Fit Check</h3>
-            <p>Answer a few questions about your property and your goals.</p>
+            <h3>Step 1 - Fit Check</h3>
+            <p>Answer a few quick questions about your property, concerns, and goals.</p>
           </li>
           <li>
-            <span>02</span>
-            <h3>Review &amp; Estimate</h3>
-            <p>We review your needs and provide clear options and pricing.</p>
+            <h3>Step 2 - Talk To Us</h3>
+            <p>
+              Request a callback so we can discuss your situation, answer questions, and determine the best next steps
+              for your property.
+            </p>
           </li>
           <li>
-            <span>03</span>
-            <h3>Planned Installation</h3>
-            <p>Professional installation scheduled at a time that works for you.</p>
+            <h3>Step 3 - Plan Installation</h3>
+            <p>Once you're comfortable with the recommendation, we'll schedule installation at a time and date that works for you.</p>
           </li>
           <li>
-            <span>04</span>
-            <h3>Support</h3>
-            <p>We’re here after install for questions, adjustments, and future needs.</p>
+            <h3>Step 4 - Enjoy</h3>
+            <p>Enjoy greater awareness, convenience, and peace of mind knowing your property is better protected.</p>
           </li>
         </ol>
       </section>
