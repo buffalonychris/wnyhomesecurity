@@ -1485,8 +1485,8 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   gap: 0.5rem;
   padding: 1rem;
   border-radius: 14px;
-  border: 1px solid var(--hs-premium-border);
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid color-mix(in srgb, var(--hs-premium-border) 80%, var(--foreground) 20%);
+  background: color-mix(in srgb, var(--background) 64%, var(--card) 36%);
 }
 
 .hs-premium-package-preview-card h3,
@@ -1496,6 +1496,18 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 .hs-premium-package-preview-card p {
   color: var(--hs-premium-muted);
+}
+
+.hs-premium-package-preview-status {
+  align-self: end;
+  margin-top: 0.35rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--hs-premium-border);
+  color: color-mix(in srgb, var(--hs-premium-accent) 72%, var(--foreground) 28%);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .hs-premium-cta--calm {
