@@ -26,10 +26,22 @@ const solutionsPreview = [
   },
 ] as const;
 
-const workPreview = [
-  '/images/our-work/Winter night at a suburban home.png',
-  '/images/our-work/Suburban night with cars and security camera.png',
-  '/images/our-work/Cozy family night with smart home security.png',
+const exampleProjects = [
+  {
+    title: 'Front Entry Protection',
+    image: '/images/home-security/hs_card_video-door-chime.webp',
+    body: 'Video doorbells, package awareness, and entry notifications.',
+  },
+  {
+    title: 'Garage & Property Awareness',
+    image: '/images/home-security/hs_card_indoor-outdoor-coverage.webp',
+    body: 'Know when access points are opened and stay connected to key areas around your property.',
+  },
+  {
+    title: 'Smart Home Control',
+    image: '/images/home-security/hs_card_core-platform.webp',
+    body: 'Security, automation, and notifications working together.',
+  },
 ] as const;
 
 const HomeSecurityLanding = ({ ctaLink }: Props) => {
@@ -122,16 +134,24 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
       </section>
 
       <section className="hs-premium-section-panel hs-premium-our-work">
-        <p className="hs-premium-eyebrow">Our work</p>
-        <h2>Our work</h2>
-        <p>Real installs. Real homes. Real results.</p>
-        <div className="hs-premium-our-work-strip" aria-hidden="true">
-          {workPreview.map((src) => (
-            <img key={src} src={src} alt="" loading="lazy" />
+        <h2>Example Projects</h2>
+        <p>
+          A few examples of the kinds of protection, awareness, and smart-property projects we install throughout
+          Western New York.
+        </p>
+        <div className="hs-premium-example-project-grid">
+          {exampleProjects.map((project) => (
+            <article key={project.title} className="hs-premium-example-project-card">
+              <img src={project.image} alt="" loading="lazy" />
+              <div>
+                <h3>{project.title}</h3>
+                <p>{project.body}</p>
+              </div>
+            </article>
           ))}
         </div>
         <Link className="hs-premium-text-link" to="/our-work?vertical=home-security">
-          See more of our projects
+          See More Projects
         </Link>
       </section>
 

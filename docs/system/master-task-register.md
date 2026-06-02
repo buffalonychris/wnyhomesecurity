@@ -88,6 +88,24 @@ Every actionable task record must include:
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### HOMEPAGE-EXAMPLE-PROJECTS-MAIN-001
+- **Task ID:** HOMEPAGE-EXAMPLE-PROJECTS-MAIN-001
+- **Task Name:** Replace Main Homepage Our Work Panel With Example Projects Panel
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Secondary Category:** COPY
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Replace only the main `/home-security` homepage Our Work panel with the approved Example Projects panel while preserving homepage order and protected runtime systems.
+- **Allowed Scope:** Update only the main `/home-security` homepage Our Work panel; replace it with the approved Example Projects panel; use only existing repo images listed in the task; update site version.
+- **Forbidden Scope:** Do not modify hero; do not modify How It Works; do not modify trust row; do not modify Solutions panel; do not modify final CTA; do not modify QR Landing; do not modify Fit Check logic; do not modify estimate/contact forms; do not modify HubSpot; do not modify Stripe; do not modify routes.
+- **Target Files:** `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** None. Public homepage presentation/copy only.
+- **Documentation Updates Required:** Add or activate this bounded task-register entry.
+- **Validation Required:** `npm run build`; `rg -n "OUR WORK|Our work|Real installs\. Real homes\. Real results\.|See more of our projects" src/components/homeSecurity/HomeSecurityLanding.tsx`.
+- **Exit Criteria:** Example Projects panel appears on `/home-security`; old Our Work wording is gone from that panel; PR targets `main`; no merge performed.
+- **Dependencies:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance and revised task image paths supplied by operator.
+- **Operator Decision Required:** Approve merge after QA validation.
+
 - **Task ID:** FUNNEL005
 - **Task Name:** Reframe Package Page From Pricing Packages To Protection Planning
 - **Status:** ACTIVE
