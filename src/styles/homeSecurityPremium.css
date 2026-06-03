@@ -1491,11 +1491,22 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 .hs-premium-package-preview-card {
   display: grid;
-  gap: 0.5rem;
-  padding: 1rem;
+  overflow: hidden;
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--hs-premium-border) 80%, var(--foreground) 20%);
   background: color-mix(in srgb, var(--background) 64%, var(--card) 36%);
+}
+
+.hs-premium-package-preview-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.hs-premium-package-preview-card-copy {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
 .hs-premium-package-preview-card h3,
@@ -1507,9 +1518,16 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   color: var(--hs-premium-muted);
 }
 
+.hs-premium-package-preview-price {
+  margin-top: 0.2rem;
+  color: var(--hs-premium-accent);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
 .hs-premium-package-preview-status {
   align-self: end;
-  margin-top: 0.35rem;
+  margin-top: 0.15rem;
   padding-top: 0.65rem;
   border-top: 1px solid var(--hs-premium-border);
   color: color-mix(in srgb, var(--hs-premium-accent) 72%, var(--foreground) 28%);
@@ -1682,41 +1700,6 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   object-fit: cover;
   border-radius: 12px;
   border: 1px solid var(--hs-premium-border);
-}
-
-.hs-premium-example-project-grid {
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.hs-premium-example-project-card {
-  display: grid;
-  overflow: hidden;
-  border: 1px solid var(--hs-premium-border);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--card) 80%, transparent);
-}
-
-.hs-premium-example-project-card img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-
-.hs-premium-example-project-card div {
-  display: grid;
-  gap: 0.45rem;
-  padding: 0.95rem;
-}
-
-.hs-premium-example-project-card h3,
-.hs-premium-example-project-card p {
-  margin: 0;
-}
-
-.hs-premium-example-project-card p {
-  color: var(--hs-premium-muted);
 }
 
 .hs-premium-trust-panel {
