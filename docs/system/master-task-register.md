@@ -88,6 +88,24 @@ Every actionable task record must include:
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
+- **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
+- **Task Name:** Homepage Solutions Card Layout Polish
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Secondary Category:** COPY
+- **Controlling Context:** Current emergency customer-facing homepage/live conversion cleanup effort
+- **Purpose:** Polish the `/home-security` Solutions cards so each card has a clearer premium sales-card layout: large image zone, strong title zone, short description zone, and a bottom value row with starting price and base/add-on availability.
+- **Allowed Scope:** Modify `/home-security` homepage Solutions card layout only; modify CSS required for the Solutions card layout only; update the three approved solution descriptions; keep the existing three solution images; keep the existing three solution titles; keep the existing three starting prices; keep the existing base/add-on availability concept; bump visible site version once.
+- **Forbidden Scope:** Do not modify Stripe; do not modify HubSpot; do not modify forms; do not modify routes; do not modify QR Landing; do not modify Support; do not modify final CTA; do not modify Trust panel; do not re-add Example Projects; do not modify image files; do not hardcode colors; do not introduce new claims; do not change backend/runtime behavior.
+- **Target Files:** `docs/system/master-task-register.md`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`.
+- **Runtime Systems Affected:** None. Public homepage presentation/copy only.
+- **Documentation Updates Required:** Add this bounded task-register entry as `ACTIVE`.
+- **Validation Required:** `npm run build`; grep validation for new solution copy/pricing; grep validation that Example Projects remains removed; confirm one `SITE_VERSION` export; confirm protected systems untouched.
+- **Exit Criteria:** Each solution card uses the approved 4-zone card layout; images are visually larger and more prominent; price and availability are presented in a dedicated bottom value row; card heights align cleanly; build passes; PR opens against `main`; no merge performed.
+- **Dependencies:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance and merged HOMEPAGE-SOLUTIONS-CATALOG-MAIN-001.
+- **Operator Decision Required:** Approve merge after QA validation.
+
 ### HOMEPAGE-SOLUTIONS-CATALOG-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CATALOG-MAIN-001
 - **Task Name:** Homepage Solutions Catalog Upgrade + Example Projects Removal

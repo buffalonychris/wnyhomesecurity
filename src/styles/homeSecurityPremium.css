@@ -1486,11 +1486,13 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 .hs-premium-package-preview-grid {
   display: grid;
   gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .hs-premium-package-preview-card {
   display: grid;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--hs-premium-border) 80%, var(--foreground) 20%);
@@ -1499,13 +1501,14 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 .hs-premium-package-preview-card img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
 .hs-premium-package-preview-card-copy {
   display: grid;
-  gap: 0.5rem;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.65rem;
   padding: 1rem;
 }
 
@@ -1518,23 +1521,62 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   color: var(--hs-premium-muted);
 }
 
+.hs-premium-package-preview-value-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  margin-top: 0.15rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hs-premium-border);
+}
+
 .hs-premium-package-preview-price {
-  margin-top: 0.2rem;
+  display: grid;
+  gap: 0.08rem;
+  align-content: center;
+  padding-right: 0.7rem;
+}
+
+.hs-premium-package-preview-price span,
+.hs-premium-package-preview-status span {
+  display: block;
+}
+
+.hs-premium-package-preview-price span {
+  color: var(--hs-premium-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hs-premium-package-preview-price strong {
   color: var(--hs-premium-accent);
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 1.55rem;
+  line-height: 1;
 }
 
 .hs-premium-package-preview-status {
-  align-self: end;
-  margin-top: 0.15rem;
-  padding-top: 0.65rem;
-  border-top: 1px solid var(--hs-premium-border);
+  display: grid;
+  align-content: center;
+  gap: 0.08rem;
+  padding-left: 0.7rem;
+  border-left: 1px solid var(--hs-premium-border);
   color: color-mix(in srgb, var(--hs-premium-accent) 72%, var(--foreground) 28%);
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .hs-premium-package-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hs-premium-package-preview-card img {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .hs-premium-cta--calm {
