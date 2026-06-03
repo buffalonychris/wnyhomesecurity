@@ -13,25 +13,27 @@ const solutionsPreview = [
     id: 'front-door-package-protection',
     name: 'Front Door & Package Protection',
     image: '/images/solutions/front-door-package-protection.png',
-    detail: 'See who comes to your door, know when deliveries arrive, and check on your front entry from anywhere.',
+    detail: "See who's at the door, know when packages arrive, and get alerts when activity happens at your front entry.",
     priceLine: 'Starting At $399 Installed',
+    priceAmount: '$399',
     availabilityLine: 'Available As A Base Or Add-On Solution',
   },
   {
     id: 'smart-home-security',
     name: 'Smart Home Security',
     image: '/images/solutions/smart-home-security.png',
-    detail: 'Bring cameras, alerts, and smart automations together into a single security and automation solution.',
+    detail: 'Cameras, alerts, smart automations, and property protection working together in one system.',
     priceLine: 'Starting At $899 Installed',
+    priceAmount: '$899',
     availabilityLine: 'Available As A Base Or Add-On Solution',
   },
   {
     id: 'connected-garage-workshop',
     name: 'Connected Garage / Workshop',
     image: '/images/solutions/connected-garage-workshop.png',
-    detail:
-      'Know if the garage was left open, open or close it from anywhere, and make arriving home easier with smart garage and lighting controls.',
+    detail: 'Know if the garage was left open, control it from anywhere, and automate lighting when you arrive home.',
     priceLine: 'Starting At $349 Installed',
+    priceAmount: '$349',
     availabilityLine: 'Available As A Base Or Add-On Solution',
   },
 ] as const;
@@ -93,8 +95,18 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
               <div className="hs-premium-package-preview-card-copy">
                 <h3>{item.name}</h3>
                 <p>{item.detail}</p>
-                <p className="hs-premium-package-preview-price">{item.priceLine}</p>
-                <p className="hs-premium-package-preview-status">{item.availabilityLine}</p>
+                <div className="hs-premium-package-preview-value-row" aria-label={item.priceLine}>
+                  <div className="hs-premium-package-preview-price">
+                    <span>Starting At</span>
+                    <strong>{item.priceAmount}</strong>
+                    <span>Installed</span>
+                  </div>
+                  <div className="hs-premium-package-preview-status" aria-label={item.availabilityLine}>
+                    <span>Available As A</span>
+                    <span>Base Or Add-On</span>
+                    <span>Solution</span>
+                  </div>
+                </div>
               </div>
             </article>
           ))}
