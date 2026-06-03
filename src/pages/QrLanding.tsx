@@ -1,45 +1,93 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import WnyhsSiteFooter from '../components/homeSecurity/WnyhsSiteFooter';
-import CanonicalEstimateRequestForm from '../components/CanonicalEstimateRequestForm';
+import { buildTel } from '../content/wnyhsContact';
 import '../styles/qrLanding.css';
 
 const REQUEST_ID_STORAGE_KEY = 'qrlanding_request_id_v1';
-const createQrRuntimeRequestId = () => `qrlanding_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-const getOrCreateQrRuntimeRequestId = () => {
-  if (typeof window === 'undefined') return createQrRuntimeRequestId();
+const createQrRequestId = () => `qrlanding_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+const getOrCreateQrRequestId = () => {
+  if (typeof window === 'undefined') return createQrRequestId();
   const existing = window.sessionStorage.getItem(REQUEST_ID_STORAGE_KEY);
   if (existing) return existing;
-  const next = createQrRuntimeRequestId(); window.sessionStorage.setItem(REQUEST_ID_STORAGE_KEY, next); return next;
+  const next = createQrRequestId(); window.sessionStorage.setItem(REQUEST_ID_STORAGE_KEY, next); return next;
 };
 const allowedSrcValues = new Set(['placard', 'card', 'sticker', 'vehicle', 'yard-sign', 'referral']);
 
 const QrLanding = () => {
   const [searchParams] = useSearchParams();
-  const qrRuntimeRequestId = useMemo(() => getOrCreateQrRuntimeRequestId(), []);
-  const hasTrackedStartRef = useRef(false);
+  const qrRequestId = useMemo(() => getOrCreateQrRequestId(), []);
   const normalizedSource = useMemo(() => {
     const src = (searchParams.get('src') || '').toLowerCase().trim();
     return allowedSrcValues.has(src) ? src : 'QR_SCAN_GENERAL';
   }, [searchParams]);
+  const callbackHref = `/contact?vertical=home-security&source=${encodeURIComponent(normalizedSource)}`;
 
   useEffect(() => {
     const timestamp = new Date().toISOString();
-    void sendLeadSignal({ event: 'qrlanding_view', eventName: 'qrlanding_view', requestId: qrRuntimeRequestId, timestamp, submittedAt: timestamp, entryRoute: '/qrlanding', landingRoute: '/qrlanding' }).catch(() => undefined);
-  }, [qrRuntimeRequestId]);
+    void sendLeadSignal({ event: 'qrlanding_view', eventName: 'qrlanding_view', requestId: qrRequestId, timestamp, submittedAt: timestamp, entryRoute: '/qrlanding', landingRoute: '/qrlanding' }).catch(() => undefined);
+  }, [qrRequestId]);
 
-  const trackEstimateFormStarted = () => {
-    if (hasTrackedStartRef.current) return;
-    hasTrackedStartRef.current = true;
-    const timestamp = new Date().toISOString();
-    void sendLeadSignal({ event: 'estimate_form_started', eventName: 'estimate_form_started', requestId: qrRuntimeRequestId, timestamp, submittedAt: timestamp, entryRoute: '/qrlanding', landingRoute: '/qrlanding' }).catch(() => undefined);
-  };
+  return (
+    <div className="qr-page-shell">
+      <header className="qr-topbar">
+        <a href="/qrlanding" className="qr-brand">
+          <img src="/brand/crest-system/IconizedLogo.png" alt="WNY Home Security" />
+          <span>WNY Home Security</span>
+        </a>
+        <nav>
+          <a href="/packages?vertical=home-security">View Solutions</a>
+          <a href="/our-work?vertical=home-security">See Our Work</a>
+          <a href={buildTel()}>Call/Text 716-201-0364</a>
+          <a href={callbackHref}>Request a Callback</a>
+        </nav>
+      </header>
+      <main className="qr-landing">
+        <section className="qr-panel qr-hero">
+          <div className="qr-hero-copy">
+            <p className="qr-kicker">Protect What Matters</p>
+            <h1>Cameras, Video Doorbells, and Package Theft Protection</h1>
+            <p>
+              Scanned a WNY Home Security sign? You're in the right place. We install practical security and
+              smart-property solutions for homes and small businesses throughout Western New York.
+            </p>
+            <div className="qr-hero-actions">
+              <a className="btn btn-primary" href={callbackHref}>
+                Request a Callback
+              </a>
+              <span className="qr-cta-or">OR</span>
+              <a className="btn btn-secondary" href={buildTel()}>
+                Call/Text 716-201-0364
+              </a>
+            </div>
+          </div>
+          <img src="/brand/heros/HomePageHero.png" alt="Home security installation" className="qr-hero-image" />
+        </section>
 
-  return (<div className="qr-page-shell"><header className="qr-topbar"><a href="/qrlanding" className="qr-brand"><img src="/brand/crest-system/IconizedLogo.png" alt="WNY Home Security" /><span>WNY Home Security</span></a><nav><a href="/packages?vertical=home-security">View Packages</a><a href="/our-work?vertical=home-security">See Our Work</a><a href="tel:+17162010364">Call/Text</a><a href="#qr-estimate-form">Request Estimate</a></nav></header><main className="qr-landing">
-    <section className="qr-panel qr-hero"><div className="qr-hero-copy"><p className="qr-kicker">Local home security planning</p><h1>Cameras, Video Doorbells, and Package Theft Protection</h1><p>Start with a quick call or request an on-site estimate for practical home security in Western New York. We'll review your request and help you choose a practical next step.</p><a className="qr-cta qr-hero-cta" href="#qr-estimate-form">Request a Free Estimate</a></div><img src="/brand/heros/HomePageHero.png" alt="Home security installation" className="qr-hero-image"/></section>
-    <section className="qr-panel qr-intake-panel" id="qr-estimate-form"><h2>Choose how you'd like to get started</h2><p className="qr-sub">Fast callback or on-site estimate request. This form starts a request; scheduling is reviewed before anything is set.</p><CanonicalEstimateRequestForm entryRoute="/qrlanding" sourceFamily="QR_SCAN" source={normalizedSource} landingRoute="/qrlanding" requestId={qrRuntimeRequestId} submitEventName="estimate_form_submitted" onFirstInteraction={trackEstimateFormStarted} enableIntakeSplit requirePathSelection compactEstimate context={{ campaignFamily: 'physical_canvassing', assetSource: searchParams.get('src') || undefined }} /></section>
-  </main><WnyhsSiteFooter /></div>);
+        <section className="qr-panel qr-next-panel" aria-labelledby="qr-next-heading">
+          <div className="qr-section-header">
+            <h2 id="qr-next-heading">What Happens Next</h2>
+          </div>
+          <div className="qr-next-card-grid">
+            <article className="qr-next-card">
+              <h3>Request a Callback</h3>
+              <p>Tell us what you're looking to protect and the best way to reach you.</p>
+            </article>
+            <article className="qr-next-card">
+              <h3>Talk Through Your Property</h3>
+              <p>We'll ask a few questions and help determine the best next step for your property.</p>
+            </article>
+            <article className="qr-next-card">
+              <h3>Schedule If It Makes Sense</h3>
+              <p>If an on-site estimate is needed, we'll confirm the date and time before anything is scheduled.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+      <WnyhsSiteFooter />
+    </div>
+  );
 };
 
 export const QrLandingAlias = () => <Navigate to="/qrlanding" replace />;
