@@ -88,6 +88,24 @@ Every actionable task record must include:
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### HOMEPAGE-SOLUTIONS-CATALOG-MAIN-001
+- **Task ID:** HOMEPAGE-SOLUTIONS-CATALOG-MAIN-001
+- **Task Name:** Homepage Solutions Catalog Upgrade + Example Projects Removal
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Secondary Category:** COPY
+- **Controlling Context:** Current emergency customer-facing homepage/live conversion cleanup effort
+- **Purpose:** Upgrade the `/home-security` homepage Solutions section so it reads as purchasable customer solutions with images, homeowner-friendly copy, starting installed prices, and base/add-on language. Remove the duplicative Example Projects section.
+- **Allowed Scope:** Modify `/home-security` homepage Solutions section only; add/use the three solution images from `public/images/solutions`; update solution card titles, body copy, pricing lines, and availability lines; remove the Example Projects section from `/home-security`; update styling needed for solution images, price line, and availability line using semantic tokens only; bump visible site version once.
+- **Forbidden Scope:** Do not modify Stripe; do not modify HubSpot; do not modify forms; do not modify routes; do not modify QR Landing; do not modify Support; do not modify final CTA; do not modify Trust panel; do not hardcode colors; do not introduce new claims; do not change backend/runtime behavior.
+- **Target Files:** `docs/system/master-task-register.md`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `public/images/solutions/front-door-package-protection.png`, `public/images/solutions/smart-home-security.png`, `public/images/solutions/connected-garage-workshop.png`.
+- **Runtime Systems Affected:** None. Public homepage presentation/copy only.
+- **Documentation Updates Required:** Add this bounded task-register entry as `ACTIVE`.
+- **Validation Required:** `npm run build`; grep validation for new solution copy/pricing; grep validation that Example Projects homepage copy is removed; confirm one `SITE_VERSION` export; confirm protected systems untouched.
+- **Exit Criteria:** Homepage Solutions section uses the approved three-card purchasable solution layout; Example Projects section is removed; images are included in the PR; build passes; PR opens against `main`; no merge performed.
+- **Dependencies:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance and operator-supplied image assets.
+- **Operator Decision Required:** Approve merge after QA validation.
+
 ### HOMEPAGE-EXAMPLE-PROJECTS-MAIN-001
 - **Task ID:** HOMEPAGE-EXAMPLE-PROJECTS-MAIN-001
 - **Task Name:** Replace Main Homepage Our Work Panel With Example Projects Panel

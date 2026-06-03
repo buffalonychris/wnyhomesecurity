@@ -10,40 +10,29 @@ type Props = {
 
 const solutionsPreview = [
   {
-    id: 'a1',
-    name: 'Package Protection',
-    detail: 'Know when deliveries arrive, see who comes to your door, and reduce the risk of package theft.',
-    purchaseLine: 'Available As A Standalone Or Add-On Solution',
+    id: 'front-door-package-protection',
+    name: 'Front Door & Package Protection',
+    image: '/images/solutions/front-door-package-protection.png',
+    detail: 'See who comes to your door, know when deliveries arrive, and check on your front entry from anywhere.',
+    priceLine: 'Starting At $399 Installed',
+    availabilityLine: 'Available As A Base Or Add-On Solution',
   },
   {
-    id: 'a2',
-    name: 'Garage & Property Awareness',
-    detail: "Know if the garage was left open, see activity around your property, and stay connected while you're away.",
-    purchaseLine: 'Available As A Standalone Or Add-On Solution',
-  },
-  {
-    id: 'a3',
+    id: 'smart-home-security',
     name: 'Smart Home Security',
-    detail: 'Bring cameras, alerts, automations, and awareness together into a single security and automation solution.',
-    purchaseLine: 'Available As A Standalone Or Add-On Solution',
-  },
-] as const;
-
-const exampleProjects = [
-  {
-    title: 'Front Entry Protection',
-    image: '/images/home-security/hs_card_video-door-chime.webp',
-    body: 'Video doorbells, package awareness, and entry notifications.',
+    image: '/images/solutions/smart-home-security.png',
+    detail: 'Bring cameras, alerts, and smart automations together into a single security and automation solution.',
+    priceLine: 'Starting At $899 Installed',
+    availabilityLine: 'Available As A Base Or Add-On Solution',
   },
   {
-    title: 'Garage & Property Awareness',
-    image: '/images/home-security/hs_card_indoor-outdoor-coverage.webp',
-    body: 'Know when access points are opened and stay connected to key areas around your property.',
-  },
-  {
-    title: 'Smart Home Control',
-    image: '/images/home-security/hs_card_core-platform.webp',
-    body: 'Security, automation, and notifications working together.',
+    id: 'connected-garage-workshop',
+    name: 'Connected Garage / Workshop',
+    image: '/images/solutions/connected-garage-workshop.png',
+    detail:
+      'Know if the garage was left open, open or close it from anywhere, and make arriving home easier with smart garage and lighting controls.',
+    priceLine: 'Starting At $349 Installed',
+    availabilityLine: 'Available As A Base Or Add-On Solution',
   },
 ] as const;
 
@@ -100,36 +89,18 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         <div className="hs-premium-package-preview-grid">
           {solutionsPreview.map((item) => (
             <article key={item.id} className="hs-premium-package-preview-card">
-              <h3>{item.name}</h3>
-              <p>{item.detail}</p>
-              <p className="hs-premium-package-preview-status">{item.purchaseLine}</p>
+              <img src={item.image} alt="" loading="lazy" />
+              <div className="hs-premium-package-preview-card-copy">
+                <h3>{item.name}</h3>
+                <p>{item.detail}</p>
+                <p className="hs-premium-package-preview-price">{item.priceLine}</p>
+                <p className="hs-premium-package-preview-status">{item.availabilityLine}</p>
+              </div>
             </article>
           ))}
         </div>
         <Link className="hs-premium-text-link" to="/packages?vertical=home-security">
           View More Solutions
-        </Link>
-      </section>
-
-      <section className="hs-premium-section-panel hs-premium-our-work">
-        <h2>Example Projects</h2>
-        <p>
-          A few examples of the kinds of protection, awareness, and smart-property projects we install throughout
-          Western New York.
-        </p>
-        <div className="hs-premium-example-project-grid">
-          {exampleProjects.map((project) => (
-            <article key={project.title} className="hs-premium-example-project-card">
-              <img src={project.image} alt="" loading="lazy" />
-              <div>
-                <h3>{project.title}</h3>
-                <p>{project.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <Link className="hs-premium-text-link" to="/our-work?vertical=home-security">
-          See More Projects
         </Link>
       </section>
 
