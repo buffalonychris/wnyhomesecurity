@@ -20,6 +20,8 @@ QUOTE-REFERRAL001 addendum: `docs/specs/quote_referral_awareness_spec_rev01.md` 
 
 REFERRAL-POLICY001 addendum: `docs/ops/referral_compensation_policy_rev01.md` was created after this manifest scan and should be included in the next full manifest regeneration. It is an internal operations policy required before referral payout implementation, LEADFLOW002, and contractor/referrer payment tracking.
 
+CONTENT001 addendum: `docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md` and `docs/content-remediation/CONTENT001_FINDING_TO_REMEDIATION_MATRIX_REV01.md` were added after this manifest scan and should be included in the next full manifest regeneration. They are governance-only remediation planning and traceability sources required before CONTENT001-B/C/D/E activation; they do not authorize runtime, route, UI, HubSpot, Stripe, Scheduling, Email, environment, or public copy changes by themselves.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
