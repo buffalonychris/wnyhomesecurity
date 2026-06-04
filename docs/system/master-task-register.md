@@ -1954,6 +1954,114 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ---
 
+### CONTENT001
+- **Task ID:** CONTENT001
+- **Task Name:** Website Content Remediation Initiative
+- **Status:** BACKLOG
+- **Category:** GOV / COPY / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Establish the audit-driven website content remediation initiative and preserve traceability from the live website audit, remediation instructions, and finding-to-remediation matrix into bounded future implementation work.
+- **Allowed Scope:** Governance tracking, task sequencing, remediation traceability, and future bounded implementation-task preparation for Homepage, QR Landing, Packages, Support, Our Work, and approved opportunity pages.
+- **Forbidden Scope:** No public website page edits, no route creation, no UI creation, no runtime logic changes, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no environment variable changes, no secrets, no public-facing copy changes, and no implementation bundling.
+- **Target Files:** `docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md`, `docs/content-remediation/CONTENT001_FINDING_TO_REMEDIATION_MATRIX_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Governance and task tracking only.
+- **Documentation Updates Required:** Maintain source remediation docs, catalog/manifest references, parent initiative status, and child implementation-track status.
+- **Validation Required:** Documentation diff; targeted `CONTENT001`/traceability grep; no-forbidden-file drift check; `npm run build` as repo-standard validation.
+- **Exit Criteria:** CONTENT001 source docs are tracked; parent initiative and bounded child tasks exist; traceability is preserved for missing social proof, missing hero CTA, missing no-required-monthly-fees positioning, missing customer-owned-equipment positioning, hardware-first messaging, missing local trust signals, missing QR context alignment, missing FAQ/self-service support, missing case-study storytelling, and future opportunity pages; no implementation occurs.
+- **Dependencies:** CONTENT001-A completion and operator approval to activate any child implementation track.
+- **Operator Decision Required:** Approve activation of each child task individually before implementation.
+- **Operator Approval Requirements:** Implementation may begin only after the specific child task is promoted to `ACTIVE` or explicitly authorized by a future bounded prompt under the controlling context.
+
+### CONTENT001-B
+- **Task ID:** CONTENT001-B
+- **Task Name:** Sprint 1 Conversion Leak Fixes
+- **Status:** BACKLOG
+- **Category:** COPY / FUNNEL / QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Remediate highest-priority conversion leaks on the Homepage and QR Landing page while preserving route, runtime, and protected-system boundaries.
+- **Allowed Scope:** Future bounded implementation for Homepage and QR Landing only; hero CTA clarity; verified social proof placement or missing-content documentation; no-required-monthly-fees positioning; customer-owned-equipment positioning when claim-safe; homeowner-problem-first messaging; local WNY trust signals; QR placard-scan context alignment; QR perceived-load investigation only within page/component scope.
+- **Forbidden Scope:** No Packages page edits, no Support page edits, no Our Work page edits, no new routes, no broad redesign, no fabricated testimonials/reviews, no unsupported neighbor claims, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no environment variable changes, no secrets, no runtime contract changes, and no implementation outside Homepage + QR Landing.
+- **Target Files:** Future activation must discover exact Homepage, QR Landing, shared content/component, style, and site-version files before editing.
+- **Runtime Systems Affected:** Public page presentation only if activated; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and document missing verified social-proof/content requirements if implementation cannot safely add them.
+- **Validation Required:** Future activation must run `npm run build`, page-scope grep for required traceability items, forbidden-claims scan, protected-system diff check, and desktop/mobile render verification where tooling is available.
+- **Exit Criteria:** Homepage has a clear above-fold CTA; Homepage and QR Landing surface no-required-monthly-fees positioning; customer-owned-equipment positioning appears where claim-safe; QR Landing matches placard-scan context; social proof is verified or documented as missing; no unsupported claims or protected-system changes occur.
+- **Dependencies:** CONTENT001, tracked CONTENT001 remediation docs, operator approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-B.
+- **Operator Approval Requirements:** Requires separate implementation approval before any Homepage or QR Landing edits.
+
+### CONTENT001-C
+- **Task ID:** CONTENT001-C
+- **Task Name:** Solutions / Packages Remediation
+- **Status:** BACKLOG
+- **Category:** COPY / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reframe the Packages page around homeowner outcomes and clear package guidance while preserving pricing/business rules and existing funnel behavior.
+- **Allowed Scope:** Future bounded implementation for the Packages page only; outcome/problem-based package framing; "best for" homeowner mapping; no-required-monthly-fees positioning; customer-owned-equipment positioning when claim-safe; verified package-related social proof or missing-content documentation; pricing visibility only from approved/current source data when separately authorized.
+- **Forbidden Scope:** No Homepage edits, no QR Landing edits, no Support edits, no Our Work edits, no route creation, no package architecture rename unless explicitly approved, no invented pricing, no pricing/business-rule drift, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no runtime contract changes, no environment variable changes, and no secrets.
+- **Target Files:** Future activation must discover exact Packages page, package content/config, shared package-card, style, and site-version files before editing.
+- **Runtime Systems Affected:** Public Packages presentation only if activated; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and document pricing/social-proof/content gaps if blocked by missing approved source material.
+- **Validation Required:** Future activation must run `npm run build`, page-scope grep for outcome framing/no-required-monthly-fees/customer-owned-equipment/pricing-source handling, forbidden-claims scan, pricing/business-rule drift check, and protected-system diff check.
+- **Exit Criteria:** Packages page reads as homeowner outcome guidance rather than a hardware menu; each package has clear use-case mapping; differentiators are visible; pricing visibility is either sourced and authorized or documented as a gap; CTAs and protected systems remain unchanged.
+- **Dependencies:** CONTENT001, CONTENT001-B preferred completion/review, approved pricing/source material for any pricing changes, operator approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve exact implementation scope, pricing-source posture, and activation of CONTENT001-C.
+- **Operator Approval Requirements:** Requires separate implementation approval before any Packages page edits.
+
+### CONTENT001-D
+- **Task ID:** CONTENT001-D
+- **Task Name:** Trust & Authority Pages
+- **Status:** BACKLOG
+- **Category:** COPY / FUNNEL / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Improve Support and Our Work as trust/authority pages through local support positioning, self-service support structure, and customer-outcome storytelling.
+- **Allowed Scope:** Future bounded implementation for Support and Our Work only; Support FAQ/self-service structure; realistic local support expectations; local WNY support positioning; Our Work problem-solution-outcome case-study framing; verified story/photo/quote usage or missing-content documentation; safe customer-owned-equipment positioning where appropriate.
+- **Forbidden Scope:** No Homepage edits, no QR Landing edits, no Packages edits, no new routes, no fabricated locations, no fabricated customer quotes, no misleading imagery claims, no response-time promises unsupported by operations, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no runtime contract changes, no environment variable changes, and no secrets.
+- **Target Files:** Future activation must discover exact Support, Our Work, shared content/component, style, and site-version files before editing.
+- **Runtime Systems Affected:** Public Support and Our Work presentation only if activated; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and document missing verified project/story/review/FAQ content if unavailable.
+- **Validation Required:** Future activation must run `npm run build`, page-scope grep for FAQ/self-service and case-study traceability, forbidden-claims scan, fabricated-proof guard check, and protected-system diff check.
+- **Exit Criteria:** Support clearly communicates local support paths and self-service help without overpromising; Our Work reads as customer outcome stories rather than a hardware gallery; verified proof is used only when available; no protected-system changes occur.
+- **Dependencies:** CONTENT001, CONTENT001-B and CONTENT001-C preferred review, verified support/story/photo/quote content where needed, operator approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-D.
+- **Operator Approval Requirements:** Requires separate implementation approval before any Support or Our Work edits.
+
+### CONTENT001-E
+- **Task ID:** CONTENT001-E
+- **Task Name:** Opportunity Expansion Pages
+- **Status:** BACKLOG
+- **Category:** COPY / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Queue future opportunity-page work for high-value homeowner problem areas identified by the audit without creating routes or pages in the governance task.
+- **Allowed Scope:** Future bounded implementation planning or explicitly approved page creation for Senior Safety, Water Protection, Family Awareness, and Vacation Home Monitoring only after core remediation review; demand/priority validation; safe claims review; route/content design within future activated scope.
+- **Forbidden Scope:** No route creation in CONTENT001-A; no public page creation until separately authorized; no medical/fall-detection guarantees; no emergency-response claims; no monitoring/dispatch claims; no fabricated demand proof; no Stripe changes; no HubSpot changes; no Scheduling changes; no Email changes; no runtime contract changes; no environment variable changes; and no secrets.
+- **Target Files:** Future activation must define exact route, page, navigation, content, style, and site-version files before editing.
+- **Runtime Systems Affected:** None until future activation; potential public page presentation only if separately authorized.
+- **Documentation Updates Required:** Update task status/completion notes and create any needed page-specific governance specs before implementation if scope is broad.
+- **Validation Required:** Future activation must run `npm run build`, route/nav grep, forbidden-claims scan, protected-system diff check, and desktop/mobile render verification where tooling is available.
+- **Exit Criteria:** Opportunity pages remain queued until operator approval; when activated, each page is bounded by problem area, claim-safe copy, route approval, and validation; no silent route/page creation occurs.
+- **Dependencies:** CONTENT001, completion/review of CONTENT001-B/C/D or explicit operator override, route approval, copy/claims approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve whether and when each opportunity page should be created.
+- **Operator Approval Requirements:** Requires separate implementation approval before any new route or page creation.
+
+### CONTENT001-A
+- **Task ID:** CONTENT001-A
+- **Task Name:** Website Content Remediation Backlog / Governance Entry
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reconcile CONTENT001 audit findings with the repository governance model and create the bounded task structure for future implementation.
+- **Allowed Scope:** Documentation/governance only: CONTENT001 source docs, Master Task Register entries, Document Catalog entry, and Markdown Manifest addendum.
+- **Forbidden Scope:** No website page edits, no route changes, no UI creation, no runtime logic changes, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no environment variable changes, no secrets, no public-facing copy changes, and no implementation work.
+- **Target Files:** `docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md`, `docs/content-remediation/CONTENT001_FINDING_TO_REMEDIATION_MATRIX_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add parent initiative, child implementation tracks, catalog entries, and manifest addendum.
+- **Validation Required:** `git diff -- docs/content-remediation docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md`; targeted `CONTENT001` grep; no-forbidden-file drift check; `npm run build`.
+- **Exit Criteria:** CONTENT001 parent and child tasks exist, implementation child tracks remain bounded/non-active, traceability to audit findings is preserved, and no implementation occurs.
+- **Dependencies:** Operator-provided CONTENT001 remediation instructions and matrix.
+- **Operator Decision Required:** Approve future activation of child implementation tasks individually.
+- **Operator Approval Requirements:** No implementation approval is granted by CONTENT001-A.
+
 ## Runtime Hardening Queue (GOV004)
 
 Runtime documentation hardening is authorized as documentation-only work under the current Step102 context. The following recommended execution order is approved to avoid repeated one-by-one promotion stops while preserving ACTIVE-task gating:

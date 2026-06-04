@@ -26,6 +26,25 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Supports future Codex planning and is a required review aid before high-risk workflow changes; it does not replace higher-authority governance, runtime contracts, HubSpot REV03, or task-specific instructions.
 
 
+## `docs/content-remediation/`
+
+### `/docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md`
+- **File path:** `docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md`
+- **Purpose / likely role:** CONTENT001 website content remediation Codex instructions converting live website audit findings into a bounded remediation plan and task breakdown.
+- **Authority level:** **Governance / content remediation planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required source material before CONTENT001-B/C/D/E activation; does not authorize runtime, UI, route, HubSpot, Stripe, Scheduling, Email, environment, or public copy changes by itself.
+
+### `/docs/content-remediation/CONTENT001_FINDING_TO_REMEDIATION_MATRIX_REV01.md`
+- **File path:** `docs/content-remediation/CONTENT001_FINDING_TO_REMEDIATION_MATRIX_REV01.md`
+- **Purpose / likely role:** CONTENT001 audit-finding traceability matrix mapping live website findings to future bounded remediation tracks for Homepage, QR Landing, Packages, Support, Our Work, and opportunity pages.
+- **Authority level:** **Governance / content remediation traceability**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Required traceability source before CONTENT001-B/C/D/E activation; preserves gaps for missing social proof, hero CTA, no-required-monthly-fees positioning, customer-owned-equipment positioning, hardware-first messaging, local trust signals, QR context alignment, FAQ/self-service support, case-study storytelling, and future opportunity pages.
+
+
 ### `/docs/audits/payment_fix001_implementation_rev01.md`
 - **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
 - **Likely consumed by:** Codex operators, QA reviewers, and payment-flow governance follow-up tasks.
