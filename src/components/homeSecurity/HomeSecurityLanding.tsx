@@ -38,21 +38,70 @@ const solutionsPreview = [
   },
 ] as const;
 
+const homeownerProblems = [
+  {
+    title: 'Security & Awareness',
+    body:
+      'Know what is happening around doors, driveways, garages, and packages with cameras and alerts planned around your property.',
+  },
+  {
+    title: 'Property Protection',
+    body:
+      'Add practical awareness for water leaks, freeze risks, sump areas, garages, and other WNY property concerns before they become bigger problems.',
+  },
+  {
+    title: 'Family Awareness',
+    body:
+      'Help your household check in on entries, routines, loved ones, and daily activity without turning your home into a complicated system.',
+  },
+] as const;
+
 const HomeSecurityLanding = ({ ctaLink }: Props) => {
   return (
     <div className="hs-premium-shell hs-premium-shell--home-trust">
       <section className="hs-premium-hero hs-premium-hero--split">
         <div className="hs-premium-hero-content">
           <p className="hs-premium-eyebrow">Protect What Matters</p>
-          <h1>Practical protection for Western New York homes and small businesses.</h1>
+          <h1>Local smart property solutions for Western New York homeowners.</h1>
           <p className="hs-premium-hero-subhead">
-            Whether you're trying to stop package theft, keep an eye on your property, check in on loved ones, or make
-            your home easier to manage, we design practical security and smart property solutions built around your
-            goals.
+            Cameras, property protection, and smart home solutions built around your home, your routines, and the
+            concerns you actually want solved.
           </p>
+          <div className="hs-premium-hero-actions">
+            <Link className="btn btn-primary" to={ctaLink}>
+              Start Free Fit Check
+            </Link>
+            <a className="btn btn-secondary" href={buildTel()}>
+              Call/Text 716-201-0364
+            </a>
+          </div>
+          <div className="hs-premium-hero-proof-strip" aria-label="WNY Home Security positioning">
+            <span>No required monthly fees</span>
+            <span>Customer-owned equipment options</span>
+            <span>Professionally installed and locally supported</span>
+          </div>
         </div>
         <div className="hs-premium-hero-media" aria-hidden="true">
           <img src="/brand/heros/HomePageHero.png" alt="" loading="eager" />
+        </div>
+      </section>
+
+      <section className="hs-premium-section-panel hs-premium-problem-panel" aria-labelledby="homeowner-problems-heading">
+        <div className="hs-premium-section-header">
+          <p className="hs-premium-eyebrow">Built Around Real Homeowner Concerns</p>
+          <h2 id="homeowner-problems-heading">Start With The Problem, Then Build The Right System</h2>
+          <p>
+            WNY homes need more than a box of devices. We plan around the way you use your property, what you want to
+            know about, and how much control you want to keep.
+          </p>
+        </div>
+        <div className="hs-premium-problem-grid">
+          {homeownerProblems.map((item) => (
+            <article key={item.title} className="hs-premium-problem-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -119,6 +168,10 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
       <section className="hs-premium-section-panel hs-premium-trust-panel" aria-labelledby="home-trust-heading">
         <div className="hs-premium-section-header">
           <h2 id="home-trust-heading">Why Homeowners Choose WNY Home Security</h2>
+          <p>
+            Local planning, clear recommendations, and systems designed for homeowner control without pushing
+            unnecessary equipment or required ongoing fees.
+          </p>
         </div>
         <div className="hs-premium-trust-card-grid">
           <article className="hs-premium-trust-card">

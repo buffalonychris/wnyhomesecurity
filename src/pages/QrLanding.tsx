@@ -37,24 +37,29 @@ const QrLanding = () => {
           <span>WNY Home Security</span>
         </a>
         <nav>
-          <a href="/packages?vertical=home-security">View Solutions</a>
+          <a href="/packages?vertical=home-security">View Packages</a>
           <a href="/our-work?vertical=home-security">See Our Work</a>
           <a href={buildTel()}>Call/Text 716-201-0364</a>
-          <a href={callbackHref}>Request a Callback</a>
+          <a href={callbackHref}>Schedule Estimate</a>
         </nav>
       </header>
       <main className="qr-landing">
         <section className="qr-panel qr-hero">
           <div className="qr-hero-copy">
-            <p className="qr-kicker">Protect What Matters</p>
-            <h1>Cameras, Video Doorbells, and Package Theft Protection</h1>
+            <p className="qr-kicker">Scanned From A WNY Home Security Placard</p>
+            <h1>Local smart property solutions for Western New York homeowners</h1>
             <p>
-              Scanned a WNY Home Security sign? You're in the right place. We install practical security and
-              smart-property solutions for homes and small businesses throughout Western New York.
+              Looking into cameras, package protection, water alerts, or better awareness around your home? We plan
+              practical systems around your property without required monthly fees.
             </p>
+            <div className="qr-hero-proof-strip" aria-label="WNY Home Security positioning">
+              <span>No required monthly fees</span>
+              <span>Customer-owned equipment options</span>
+              <span>Locally installed and supported</span>
+            </div>
             <div className="qr-hero-actions">
               <a className="btn btn-primary" href={callbackHref}>
-                Request a Callback
+                Request a Local Smart Property Estimate
               </a>
               <span className="qr-cta-or">OR</span>
               <a className="btn btn-secondary" href={buildTel()}>
@@ -62,16 +67,49 @@ const QrLanding = () => {
               </a>
             </div>
           </div>
-          <img src="/brand/heros/HomePageHero.png" alt="Home security installation" className="qr-hero-image" />
+          <img
+            src="/images/home-security/hero-1024w.webp"
+            alt="Western New York home security and smart property installation"
+            className="qr-hero-image"
+            width="1024"
+            height="683"
+            loading="eager"
+            decoding="async"
+          />
+        </section>
+
+        <section className="qr-panel qr-benefit-panel" aria-labelledby="qr-benefit-heading">
+          <div className="qr-section-header">
+            <p className="qr-kicker">Built For Local Homes</p>
+            <h2 id="qr-benefit-heading">What We Can Help You Think Through</h2>
+          </div>
+          <div className="qr-benefit-grid">
+            <article>
+              <h3>Security & Awareness</h3>
+              <p>Doorbell cameras, driveway visibility, package awareness, and practical alerts.</p>
+            </article>
+            <article>
+              <h3>Property Protection</h3>
+              <p>Water, freeze, sump, garage, and outbuilding awareness for WNY property risks.</p>
+            </article>
+            <article>
+              <h3>Family Awareness</h3>
+              <p>Smarter visibility around entries, routines, and loved ones without overpromising what a system can do.</p>
+            </article>
+          </div>
         </section>
 
         <section className="qr-panel qr-next-panel" aria-labelledby="qr-next-heading">
           <div className="qr-section-header">
             <h2 id="qr-next-heading">What Happens Next</h2>
+            <p>
+              Tell us what you want solved, and we will help determine whether a callback or on-site estimate makes the
+              most sense.
+            </p>
           </div>
           <div className="qr-next-card-grid">
             <article className="qr-next-card">
-              <h3>Request a Callback</h3>
+              <h3>Request A Local Estimate</h3>
               <p>Tell us what you're looking to protect and the best way to reach you.</p>
             </article>
             <article className="qr-next-card">
