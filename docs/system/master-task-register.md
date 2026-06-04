@@ -88,6 +88,24 @@ Every actionable task record must include:
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### CONTENT001-B
+- **Task ID:** CONTENT001-B
+- **Task Name:** Sprint 1 Conversion Leak Fixes
+- **Status:** ACTIVE
+- **Category:** COPY / FUNNEL / QR
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Remediate highest-priority conversion leaks on the Homepage and QR Landing page while preserving route, runtime, and protected-system boundaries.
+- **Allowed Scope:** Future bounded implementation for Homepage and QR Landing only; hero CTA clarity; verified social proof placement or missing-content documentation; no-required-monthly-fees positioning; customer-owned-equipment positioning when claim-safe; homeowner-problem-first messaging; local WNY trust signals; QR placard-scan context alignment; QR perceived-load investigation only within page/component scope.
+- **Forbidden Scope:** No Packages page edits, no Support page edits, no Our Work page edits, no new routes, no broad redesign, no fabricated testimonials/reviews, no unsupported neighbor claims, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no environment variable changes, no secrets, no runtime contract changes, and no implementation outside Homepage + QR Landing.
+- **Target Files:** Future activation must discover exact Homepage, QR Landing, shared content/component, style, and site-version files before editing.
+- **Runtime Systems Affected:** Public page presentation only if activated; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and document missing verified social-proof/content requirements if implementation cannot safely add them.
+- **Validation Required:** Future activation must run `npm run build`, page-scope grep for required traceability items, forbidden-claims scan, protected-system diff check, and desktop/mobile render verification where tooling is available.
+- **Exit Criteria:** Homepage has a clear above-fold CTA; Homepage and QR Landing surface no-required-monthly-fees positioning; customer-owned-equipment positioning appears where claim-safe; QR Landing matches placard-scan context; social proof is verified or documented as missing; no unsupported claims or protected-system changes occur.
+- **Dependencies:** CONTENT001, tracked CONTENT001 remediation docs, operator approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-B.
+- **Operator Approval Requirements:** Requires separate implementation approval before any Homepage or QR Landing edits.
+
 ### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task Name:** Homepage Solutions Card Layout Polish
@@ -1971,24 +1989,6 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Dependencies:** CONTENT001-A completion and operator approval to activate any child implementation track.
 - **Operator Decision Required:** Approve activation of each child task individually before implementation.
 - **Operator Approval Requirements:** Implementation may begin only after the specific child task is promoted to `ACTIVE` or explicitly authorized by a future bounded prompt under the controlling context.
-
-### CONTENT001-B
-- **Task ID:** CONTENT001-B
-- **Task Name:** Sprint 1 Conversion Leak Fixes
-- **Status:** BACKLOG
-- **Category:** COPY / FUNNEL / QR
-- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Remediate highest-priority conversion leaks on the Homepage and QR Landing page while preserving route, runtime, and protected-system boundaries.
-- **Allowed Scope:** Future bounded implementation for Homepage and QR Landing only; hero CTA clarity; verified social proof placement or missing-content documentation; no-required-monthly-fees positioning; customer-owned-equipment positioning when claim-safe; homeowner-problem-first messaging; local WNY trust signals; QR placard-scan context alignment; QR perceived-load investigation only within page/component scope.
-- **Forbidden Scope:** No Packages page edits, no Support page edits, no Our Work page edits, no new routes, no broad redesign, no fabricated testimonials/reviews, no unsupported neighbor claims, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no environment variable changes, no secrets, no runtime contract changes, and no implementation outside Homepage + QR Landing.
-- **Target Files:** Future activation must discover exact Homepage, QR Landing, shared content/component, style, and site-version files before editing.
-- **Runtime Systems Affected:** Public page presentation only if activated; no protected runtime systems.
-- **Documentation Updates Required:** Update task status/completion notes and document missing verified social-proof/content requirements if implementation cannot safely add them.
-- **Validation Required:** Future activation must run `npm run build`, page-scope grep for required traceability items, forbidden-claims scan, protected-system diff check, and desktop/mobile render verification where tooling is available.
-- **Exit Criteria:** Homepage has a clear above-fold CTA; Homepage and QR Landing surface no-required-monthly-fees positioning; customer-owned-equipment positioning appears where claim-safe; QR Landing matches placard-scan context; social proof is verified or documented as missing; no unsupported claims or protected-system changes occur.
-- **Dependencies:** CONTENT001, tracked CONTENT001 remediation docs, operator approval, and promotion to `ACTIVE`.
-- **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-B.
-- **Operator Approval Requirements:** Requires separate implementation approval before any Homepage or QR Landing edits.
 
 ### CONTENT001-C
 - **Task ID:** CONTENT001-C
