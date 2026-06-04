@@ -91,7 +91,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### CONTENT001-B
 - **Task ID:** CONTENT001-B
 - **Task Name:** Sprint 1 Conversion Leak Fixes
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** COPY / FUNNEL / QR
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Remediate highest-priority conversion leaks on the Homepage and QR Landing page while preserving route, runtime, and protected-system boundaries.
@@ -105,6 +105,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Dependencies:** CONTENT001, tracked CONTENT001 remediation docs, operator approval, and promotion to `ACTIVE`.
 - **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-B.
 - **Operator Approval Requirements:** Requires separate implementation approval before any Homepage or QR Landing edits.
+- **Completion Notes:** Homepage now has an above-fold Fit Check CTA, no-required-monthly-fees and customer-owned-equipment positioning, Smart Property Solutions homeowner framing, and required Security & Awareness / Property Protection / Family Awareness problem sections. QR Landing now uses placard-scan context, outcome-focused H1/subheadline, visible no-required-monthly-fees and ownership positioning, local WNY trust language, a clear local estimate CTA, and a lighter existing WebP hero image to improve perceived load without runtime dependency or lead-signal changes. Verified reviews/testimonials/customer counts were not found in repo source material, so no social proof was fabricated; operator follow-up is needed for approved review/testimonial/story assets. Version bumped to `v1.0.109`.
 
 ### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
