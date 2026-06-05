@@ -84,6 +84,22 @@ Every actionable task record must include:
 
 ---
 
+## Initiative Records (Non-Executable)
+
+Initiative records group bounded tasks but are not executable task records. Only task records promoted to `ACTIVE` in Active Tasks may be executed.
+
+### SOLUTION001
+- **Initiative ID:** SOLUTION001
+- **Initiative Name:** WNYHS Solution Page Standardization
+- **Status:** ACTIVE
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Establish and apply a repeatable WNYHS solution-page system for opportunity pages using `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`.
+- **Current Authorized Task:** SOLUTION001-A only.
+- **Reserved Future Task:** SOLUTION001-B is reserved for locking the standard after operator visual approval and is not created or executable in SOLUTION001-A.
+- **Protected Boundaries:** No protected runtime systems, global navigation, unrelated public pages, pricing/business rules, semantic token definitions, or unsupported claims.
+
+---
+
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
@@ -163,6 +179,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Approve whether and when each opportunity page should be created.
 - **Operator Approval Requirements:** Requires separate implementation approval before any new route or page creation.
 - **Completion Notes:** Promoted CONTENT001-E from `BACKLOG` to `ACTIVE` and moved the task into the Active Tasks execution section before implementation. Created four explicit routes only: `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes`. Added a shared problem-first Smart Property Solutions page component covering homeowner problem, emotional reason, WNY context, solution approach, safe feature examples, ownership/no-required-monthly-fees positioning, local install/support, and CTAs/internal links. Added conservative Packages-page internal links to the four pages without changing global navigation. Public copy avoids guarantees, fabricated proof, invented statistics, emergency-response claims, medical/fall-detection claims, insurance-savings claims, and public monitoring/dispatch language. Version bumped to `v1.0.112`. Build, diff check, focused lint, route grep, and source forbidden-claims scan passed; repo-wide lint still has pre-existing unrelated baseline failures outside touched TS/TSX files.
+
+### SOLUTION001-A
+- **Task ID:** SOLUTION001-A
+- **Task Name:** Apply Solution Page Standard To Existing Opportunity Pages
+- **Status:** DONE
+- **Category:** COPY / FUNNEL / GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Apply `SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01` to the four existing opportunity solution pages so they share a repeatable WNYHS solution-page structure, visual hierarchy, CTA pattern, and claim-safe content posture.
+- **Allowed Scope:** Update only `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes`; update the shared solution page component and scoped solution-page styling; add/register the SOLUTION001 standard document; update document catalog/manifest/task register; bump visible site version.
+- **Forbidden Scope:** No Homepage changes, no Packages page changes, no Support page changes, no Our Work page changes, no QR Landing page changes, no new routes beyond the four existing solution routes, no global navigation redesign, no SOLUTION001-B creation or execution, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email/Resend changes, no runtime contract changes, no environment variable changes, no secrets, no pricing/business-rule changes, no semantic token definition changes, no hardcoded colors, no unsupported claims, no fake customer stories, and no invented locations/outcomes.
+- **Target Files:** `src/pages/SolutionOpportunity.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public solution-page presentation only; no protected runtime systems.
+- **Documentation Updates Required:** Include and register the SOLUTION001 REV01 standard document; update catalog/manifest/register status and completion notes.
+- **Validation Required:** `npm run build`; `git diff --check`; focused lint/typecheck where feasible for touched TS/TSX files; source scan for forbidden claims in changed solution page files; protected-system diff check.
+- **Exit Criteria:** All four solution pages follow Hero, Who This Helps, Problem / Solution / Outcome, Western New York Context, Possible Pieces Of The Plan, Example Scenario, and Next Step order; hero trust pills and CTA hierarchy match the standard; copy remains problem-first, local, and claim-safe; internal links include Packages, Fit Check, and Estimate; standard doc is included; no protected systems or forbidden pages are changed; validation passes or any unrelated baseline issue is documented.
+- **Dependencies:** SOLUTION001 standard document, CONTENT001-E opportunity pages, controlling context alignment, and bounded operator prompt approval.
+- **Operator Decision Required:** Visual approval of the standardized solution-page system before any future SOLUTION001-B locking task.
+- **Completion Notes:** Created the non-executable SOLUTION001 initiative record and promoted SOLUTION001-A to `ACTIVE` before implementation, then marked it `DONE` after successful validation. Added and registered `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`; updated the four existing solution opportunity routes through the shared `SolutionOpportunity` component to follow Hero, Who This Helps, Problem / Solution / Outcome, Western New York Context, Possible Pieces Of The Plan, Example Scenario, and Next Step order; aligned hero trust pills and CTA hierarchy to the standard; added illustrative scenario copy without names, towns, or real-project claims; tightened scoped card styling with existing semantic tokens; preserved required Packages, Fit Check, Estimate, and Our Work links without global navigation changes. Version bumped to `v1.0.113`. `npm run build`, `git diff --check`, focused ESLint, source forbidden-claim scan, and documentation traceability grep passed.
 
 ### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001

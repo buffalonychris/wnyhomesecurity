@@ -22,6 +22,8 @@ REFERRAL-POLICY001 addendum: `docs/ops/referral_compensation_policy_rev01.md` wa
 
 CONTENT001 addendum: `docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md` and `docs/content-remediation/CONTENT001_FINDING_TO_REMEDIATION_MATRIX_REV01.md` were added after this manifest scan and should be included in the next full manifest regeneration. They are governance-only remediation planning and traceability sources required before CONTENT001-B/C/D/E activation; they do not authorize runtime, route, UI, HubSpot, Stripe, Scheduling, Email, environment, or public copy changes by themselves.
 
+SOLUTION001 addendum: `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is the solution-page standard for SOLUTION001-A updates to the four existing opportunity solution pages and does not authorize protected-system, global navigation, pricing, semantic-token, or unrelated page changes.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
