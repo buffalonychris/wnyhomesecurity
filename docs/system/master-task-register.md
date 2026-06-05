@@ -101,12 +101,12 @@ Initiative records group bounded tasks but are not executable task records. Only
 ### DESIGN001
 - **Initiative ID:** DESIGN001
 - **Initiative Name:** WNYHS Visual Design System Standard
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Extract the active WNYHS homepage visual system into a reviewable design-system governance standard without applying it to any page.
-- **Current Authorized Task:** DESIGN001-A only.
-- **Reserved Future Task:** DESIGN001-B is a BACKLOG-only implementation placeholder for applying the reviewed standard to solution pages after operator approval.
-- **Protected Boundaries:** No public website implementation files, CSS implementation files, semantic token definitions, global navigation, protected runtime systems, pricing/business rules, or deployed-site version changes.
+- **Purpose:** Extract and apply the active WNYHS homepage visual system through bounded design-system governance tasks.
+- **Current Authorized Task:** None. DESIGN001-A and DESIGN001-B are DONE.
+- **Reserved Future Task:** No DESIGN001 lock task is authorized by DESIGN001-B.
+- **Protected Boundaries:** No Homepage changes, Packages page changes, QR Landing changes, Support changes, Our Work changes, global navigation changes, semantic token definition changes, protected runtime systems, pricing/business rules, unsupported claims, UX001 work, or SOLUTION001-B locking work.
 
 ---
 
@@ -135,19 +135,20 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### DESIGN001-B
 - **Task ID:** DESIGN001-B
 - **Task Name:** Apply Visual System Standard To Solution Pages
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV / FUNNEL
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Future implementation placeholder for applying the reviewed DESIGN001 visual standard to solution pages after operator approval.
-- **Allowed Scope:** Future bounded implementation scope to be defined after DESIGN001-A review and approval.
-- **Forbidden Scope:** No execution in DESIGN001-A; no implementation before operator approval; no protected runtime systems; no global navigation redesign; no semantic token definition changes unless a future task explicitly authorizes them; no unsupported claims.
-- **Target Files:** Future scoped files only.
-- **Runtime Systems Affected:** None until a future approved implementation.
-- **Documentation Updates Required:** Update DESIGN001 standard/catalog/manifest/register if activated later.
-- **Validation Required:** Future scoped validation to be defined at activation.
-- **Exit Criteria:** To be defined when activated.
-- **Dependencies:** DESIGN001-A completed and operator-approved.
-- **Operator Decision Required:** Approve scope, target pages, and visual review gates before activation.
+- **Purpose:** Apply the reviewed homepage-derived DESIGN001 visual system standard to the four existing solution opportunity pages while preserving SOLUTION001 structure and safe-copy guardrails.
+- **Allowed Scope:** Update the shared four-page solution component and scoped solution-page CSS/classes for `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes`; reuse existing homepage premium classes/tokens where practical; make the visible site version patch bump; update this task-register lifecycle entry.
+- **Forbidden Scope:** No Homepage changes, Packages page changes, Support page changes, Our Work page changes, QR Landing changes, new routes, global navigation redesign, UX001 documents/tasks, SOLUTION001-B creation/execution/locking, semantic token definition changes, Stripe changes, HubSpot changes, Scheduling changes, Email/Resend changes, runtime contract changes, environment variable changes, secrets, pricing/business-rule changes, hardcoded new colors, unsupported claims, fake social proof, fake real-project claims, or broad copy rewrites.
+- **Target Files:** `src/pages/SolutionOpportunity.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Record DESIGN001-B promotion, execution scope, and completion notes in this task register only.
+- **Validation Required:** `npm run build`; `git diff --check`; focused lint/typecheck for touched TS/TSX if feasible; forbidden-claim source scan in changed solution page files; local route availability checks for the four target solution routes if feasible.
+- **Exit Criteria:** The four existing solution pages visually align with the homepage-derived premium system for shell, hero hierarchy, eyebrows, headings, body copy, trust pills, CTAs, cards/panels, spacing, and responsive behavior; SOLUTION001 section order is preserved; no full Why WNYHS block is added; no protected systems or semantic token definitions are changed; validation passes or failures are clearly attributed.
+- **Dependencies:** DESIGN001-A completed and operator-approved by bounded prompt; SOLUTION001-A completed.
+- **Operator Decision Required:** Visual/operator approval remains required before any future design-system locking task.
+- **Completion Notes:** Applied the DESIGN001 homepage-derived premium visual system to the four existing solution opportunity routes by updating the shared `SolutionOpportunity` component and scoped opportunity CSS. Reused the premium shell, hero hierarchy, eyebrow, hero proof strip, section panel, problem card, final CTA, and global CTA button classes; replaced older gallery/card markup and opportunity-only card styling with semantic-token-backed scoped styles. Preserved SOLUTION001 section order, page copy posture, trust pill content, primary/secondary CTAs, internal links, and the four existing routes. Did not add a full Why WNYHS block, UX001 work, SOLUTION001-B locking work, global navigation changes, semantic token definition changes, protected runtime changes, new hardcoded colors, unsupported claims, fake social proof, or fake real-project claims. Bumped visible site version to `v1.0.114`. `npm run build`, focused ESLint for `src/pages/SolutionOpportunity.tsx`, `git diff --check`, forbidden-claim source scan, and local HTTP route checks for all four solution routes passed. Browser plugin visual smoke check was attempted but unavailable because the in-app browser backend did not expose `iab` in this session.
 
 ### CONTENT001-B
 - **Task ID:** CONTENT001-B

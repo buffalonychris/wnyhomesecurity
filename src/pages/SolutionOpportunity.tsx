@@ -167,20 +167,20 @@ const SolutionOpportunity = () => {
 
   return (
     <WnyhsMarketingLayout ctaLink="/contact?vertical=home-security">
-      <div className="wnyhs-marketing-stack opportunity-page">
-        <section className="card opportunity-hero">
-          <div>
-            <p className="eyebrow wnyhs-gallery-text-reset">{page.eyebrow}</p>
-            <h1 className="wnyhs-gallery-text-reset">{page.title}</h1>
-            <p className="wnyhs-gallery-body wnyhs-gallery-body--wide">{page.intro}</p>
+      <div className="hs-premium-shell hs-premium-shell--home-trust opportunity-page">
+        <section className="hs-premium-hero hs-premium-hero--trust opportunity-hero">
+          <div className="hs-premium-hero-content">
+            <p className="hs-premium-eyebrow">{page.eyebrow}</p>
+            <h1>{page.title}</h1>
+            <p className="hs-premium-hero-subhead">{page.intro}</p>
           </div>
-          <div className="opportunity-hero-panel" aria-label="Solution positioning">
+          <div className="hs-premium-hero-proof-strip opportunity-hero-proof-strip" aria-label="Solution positioning">
             <span>Local Smart Property Solutions</span>
             <span>No Required Monthly Fees</span>
             <span>Customer-Owned Equipment</span>
             <span>Professionally Installed & Locally Supported</span>
           </div>
-          <div className="wnyhs-gallery-actions">
+          <div className="hs-premium-hero-actions">
             <Link className="btn btn-primary" to="/contact?vertical=home-security">
               Request Estimate
             </Link>
@@ -190,40 +190,48 @@ const SolutionOpportunity = () => {
           </div>
         </section>
 
-        <section className="card opportunity-section" aria-labelledby={`${page.slug}-fit-heading`}>
-          <p className="eyebrow wnyhs-gallery-text-reset">Who This Helps</p>
-          <h2 id={`${page.slug}-fit-heading`} className="wnyhs-gallery-text-reset">Built around the homeowner problem</h2>
-          <p className="wnyhs-gallery-body wnyhs-gallery-body--wide">{page.forWhom}</p>
+        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-fit-heading`}>
+          <div className="hs-premium-section-header">
+            <p className="hs-premium-eyebrow">Who This Helps</p>
+            <h2 id={`${page.slug}-fit-heading`}>Built around the homeowner problem</h2>
+            <p>{page.forWhom}</p>
+          </div>
         </section>
 
-        <section className="card opportunity-section" aria-labelledby={`${page.slug}-story-heading`}>
-          <p className="eyebrow wnyhs-gallery-text-reset">Problem / Solution / Outcome</p>
-          <h2 id={`${page.slug}-story-heading`} className="wnyhs-gallery-text-reset">A practical way to think about the setup</h2>
+        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-story-heading`}>
+          <div className="hs-premium-section-header">
+            <p className="hs-premium-eyebrow">Problem / Solution / Outcome</p>
+            <h2 id={`${page.slug}-story-heading`}>A practical way to think about the setup</h2>
+          </div>
           <div className="opportunity-three-up">
-            <article>
+            <article className="hs-premium-problem-card">
               <h3>Problem</h3>
               <p>{page.problem}</p>
             </article>
-            <article>
+            <article className="hs-premium-problem-card">
               <h3>Solution</h3>
               <p>{page.solution}</p>
             </article>
-            <article>
+            <article className="hs-premium-problem-card">
               <h3>Outcome</h3>
               <p>{page.outcome}</p>
             </article>
           </div>
         </section>
 
-        <section className="card opportunity-section" aria-labelledby={`${page.slug}-wny-heading`}>
-          <p className="eyebrow wnyhs-gallery-text-reset">Western New York Context</p>
-          <h2 id={`${page.slug}-wny-heading`} className="wnyhs-gallery-text-reset">Planned for local homes and real routines</h2>
-          <p className="wnyhs-gallery-body wnyhs-gallery-body--wide">{page.wnyContext}</p>
+        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-wny-heading`}>
+          <div className="hs-premium-section-header">
+            <p className="hs-premium-eyebrow">Western New York Context</p>
+            <h2 id={`${page.slug}-wny-heading`}>Planned for local homes and real routines</h2>
+            <p>{page.wnyContext}</p>
+          </div>
         </section>
 
-        <section className="card opportunity-section" aria-labelledby={`${page.slug}-features-heading`}>
-          <p className="eyebrow wnyhs-gallery-text-reset">Safe Feature Examples</p>
-          <h2 id={`${page.slug}-features-heading`} className="wnyhs-gallery-text-reset">Possible Pieces Of The Plan</h2>
+        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-features-heading`}>
+          <div className="hs-premium-section-header">
+            <p className="hs-premium-eyebrow">Safe Feature Examples</p>
+            <h2 id={`${page.slug}-features-heading`}>Possible Pieces Of The Plan</h2>
+          </div>
           <div className="opportunity-feature-grid">
             {page.features.map((feature) => (
               <span key={feature}>{feature}</span>
@@ -231,21 +239,23 @@ const SolutionOpportunity = () => {
           </div>
         </section>
 
-        <section className="card opportunity-section opportunity-scenario" aria-labelledby={`${page.slug}-scenario-heading`}>
-          <p className="eyebrow wnyhs-gallery-text-reset">Example Scenario</p>
-          <h2 id={`${page.slug}-scenario-heading`} className="wnyhs-gallery-text-reset">How this might look</h2>
-          <p className="wnyhs-gallery-body wnyhs-gallery-body--wide">{page.exampleScenario}</p>
+        <section className="hs-premium-section-panel opportunity-section opportunity-scenario" aria-labelledby={`${page.slug}-scenario-heading`}>
+          <div className="hs-premium-section-header">
+            <p className="hs-premium-eyebrow">Example Scenario</p>
+            <h2 id={`${page.slug}-scenario-heading`}>How this might look</h2>
+            <p>{page.exampleScenario}</p>
+          </div>
         </section>
 
-        <section className="card opportunity-section opportunity-links" aria-labelledby={`${page.slug}-next-heading`}>
-          <div>
-            <p className="eyebrow wnyhs-gallery-text-reset">Next Step</p>
-            <h2 id={`${page.slug}-next-heading`} className="wnyhs-gallery-text-reset">Talk through your property</h2>
-            <p className="wnyhs-gallery-body">
+        <section className="hs-premium-section-panel hs-premium-final-cta-panel opportunity-links" aria-labelledby={`${page.slug}-next-heading`}>
+          <div className="hs-premium-final-cta-copy">
+            <p className="hs-premium-eyebrow">Next Step</p>
+            <h2 id={`${page.slug}-next-heading`}>Talk through your property</h2>
+            <p>
               Final recommendations depend on layout, power, internet, entry points, and what you actually want to know sooner.
             </p>
           </div>
-          <div className="wnyhs-gallery-actions">
+          <div className="hs-premium-final-cta-actions">
             <Link className="btn btn-primary" to="/contact?vertical=home-security">
               Request Estimate
             </Link>

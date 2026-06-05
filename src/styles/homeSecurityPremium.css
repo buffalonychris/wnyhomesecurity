@@ -818,59 +818,59 @@
 }
 
 .opportunity-page {
-  gap: 1.25rem;
-}
-
-.opportunity-hero,
-.opportunity-section {
-  display: grid;
-  gap: clamp(1rem, 2vw, 1.35rem);
+  gap: 1.5rem;
 }
 
 .opportunity-hero {
-  border-color: color-mix(in srgb, var(--hs-premium-accent) 32%, var(--hs-premium-border));
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.35rem);
+  border-radius: 20px;
+  padding: 1.35rem;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--hs-premium-accent) 16%, transparent), transparent 42%),
+    color-mix(in srgb, var(--background) 68%, var(--card) 32%);
+  border: 1px solid color-mix(in srgb, var(--hs-premium-accent) 32%, var(--hs-premium-border));
 }
 
-.opportunity-hero-panel {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
+.opportunity-hero .hs-premium-hero-content {
+  display: grid;
+  gap: 0.65rem;
 }
 
-.opportunity-hero-panel span,
-.opportunity-feature-grid span,
-.opportunity-link-card {
-  border: 1px solid var(--hs-premium-border);
-  background: color-mix(in srgb, var(--hs-premium-card) 82%, transparent);
+.opportunity-hero .hs-premium-hero-content h1,
+.opportunity-hero .hs-premium-hero-content p {
+  margin: 0;
 }
 
-.opportunity-hero-panel span,
-.opportunity-feature-grid span {
-  border-radius: 999px;
-  color: var(--foreground);
-  font-weight: 700;
-  padding: 0.5rem 0.75rem;
+.opportunity-hero .hs-premium-hero-subhead {
+  max-width: 62ch;
+}
+
+.opportunity-hero-proof-strip {
+  margin-top: 0;
+}
+
+.opportunity-section {
+  gap: 1rem;
+}
+
+.opportunity-section .hs-premium-eyebrow,
+.opportunity-section h2 {
+  margin: 0;
 }
 
 .opportunity-three-up,
-.opportunity-feature-grid,
-.opportunity-link-grid {
+.opportunity-feature-grid {
   display: grid;
   gap: 0.85rem;
 }
 
 .opportunity-three-up {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .opportunity-three-up article {
-  border: 1px solid var(--hs-premium-border);
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--hs-premium-card) 82%, transparent);
-  display: grid;
-  gap: 0.45rem;
   min-height: 100%;
-  padding: 1rem;
 }
 
 .opportunity-three-up h3,
@@ -878,54 +878,30 @@
   margin: 0;
 }
 
-.opportunity-three-up h3 {
-  color: var(--foreground);
-}
-
-.opportunity-three-up p,
-.opportunity-links p,
-.opportunity-scenario p {
-  color: var(--hs-premium-muted);
-}
-
 .opportunity-feature-grid {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
+.opportunity-feature-grid span {
+  display: grid;
+  align-items: center;
+  min-height: 100%;
+  border: 1px solid var(--hs-premium-border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--background) 58%, var(--card) 42%);
+  color: color-mix(in srgb, var(--foreground) 88%, var(--hs-premium-muted) 12%);
+  font-weight: 700;
+  padding: 0.75rem 0.85rem;
+}
+
 .opportunity-scenario {
-  border-color: color-mix(in srgb, var(--hs-premium-accent) 24%, var(--hs-premium-border));
+  border-color: color-mix(in srgb, var(--hs-premium-accent) 28%, var(--hs-premium-border));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--card) 88%, transparent), color-mix(in srgb, var(--background) 72%, var(--card) 28%));
 }
 
 .opportunity-links {
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-}
-
-.opportunity-link-grid {
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-}
-
-.opportunity-link-card {
-  border-radius: 0.75rem;
-  color: var(--foreground);
-  display: grid;
-  gap: 0.35rem;
-  padding: 0.85rem;
-}
-
-.opportunity-link-card:hover {
-  border-color: var(--hs-premium-accent);
-  color: var(--foreground);
-  transform: translateY(-1px);
-}
-
-.opportunity-link-card span {
-  font-weight: 800;
-}
-
-.opportunity-link-card small {
-  color: var(--hs-premium-muted);
-  line-height: 1.45;
+  gap: 1rem;
 }
 
 .hs-premium-hero-media {
@@ -2016,6 +1992,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 @media (max-width: 980px) {
   .hs-premium-trust-strip,
   .hs-premium-problem-grid,
+  .opportunity-three-up,
   .hs-premium-process-timeline {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2030,6 +2007,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   .hs-premium-our-work-strip,
   .hs-premium-trust-strip,
   .hs-premium-problem-grid,
+  .opportunity-three-up,
   .hs-premium-trust-card-grid,
   .hs-premium-process-timeline {
     grid-template-columns: 1fr;
