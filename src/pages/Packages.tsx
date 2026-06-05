@@ -16,6 +16,32 @@ import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayou
 import { getHomeSecurityCtaLink } from '../content/wnyhsNavigation';
 import { buildTel, wnyhsContact } from '../content/wnyhsContact';
 
+const homeSecuritySolutionPillars = [
+  'No required monthly fees',
+  'Customer-owned equipment',
+  'Locally installed and supported',
+  'Built around your property',
+] as const;
+
+const homeSecurityProblemContexts = [
+  {
+    title: 'Entry & Package Awareness',
+    body: 'Start with front-door visibility, package theft concerns, and the entries your household uses most.',
+  },
+  {
+    title: 'Driveways, Garages & Workshops',
+    body: 'Plan camera and alert coverage around driveways, side doors, detached garages, workshops, and outbuildings.',
+  },
+  {
+    title: 'Water & Freeze Awareness',
+    body: 'Add practical alerts for WNY seasonal risks such as leaks, freeze concerns, sump areas, and utility spaces.',
+  },
+  {
+    title: 'Family Awareness',
+    body: 'Support daily household routines, arrivals, and check-ins without turning the system into unnecessary equipment.',
+  },
+] as const;
+
 const Packages = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -46,7 +72,7 @@ const Packages = () => {
     markFlowStep('select');
     const stored = loadRetailFlow().guidedMode;
     if (stored) setGuidedMode(true);
-  }, [searchParams]);
+  }, [pathParam, searchParams]);
 
   const exitGuidedMode = () => {
     setGuidedMode(false);
@@ -83,17 +109,24 @@ const Packages = () => {
       <section className="packages-hero">
         <div style={{ display: 'grid', gap: '0.65rem', maxWidth: 760 }}>
           <h1 style={{ margin: 0 }}>
-            {vertical === 'home-security' ? 'Explore protection styles for your home' : `Choose the ${brandSite} package that fits`}
+            {vertical === 'home-security' ? 'Smart Property Solutions Built Around Your Home' : `Choose the ${brandSite} package that fits`}
           </h1>
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
-              ? 'Compare starting points for cameras, video doorbells, package theft protection, and smart home security. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
+              ? 'Compare practical starting points for cameras, property protection, smart entry, garage awareness, water alerts, and family peace of mind. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
               : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
           </p>
           {isHomeSecurity && (
+            <div className="packages-solution-pillars" aria-label="WNY Home Security solution differentiators">
+              {homeSecuritySolutionPillars.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          )}
+          {isHomeSecurity && (
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
               <Link className="btn btn-primary" to={discoveryLink}>
-                Request a Free Estimate
+                Request Walkthrough Estimate
               </Link>
               <a className="btn btn-secondary" href={buildTel()}>
                 Call/Text {wnyhsContact.phone.display}
@@ -112,6 +145,22 @@ const Packages = () => {
           </div>
         )}
       </section>
+      {isHomeSecurity && (
+        <section className="packages-context-panel" aria-labelledby="packages-context-heading">
+          <div className="packages-context-header">
+            <p>Start With The Problem</p>
+            <h2 id="packages-context-heading">Then Build The Right System</h2>
+          </div>
+          <div className="packages-context-grid">
+            {homeSecurityProblemContexts.map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       <div className="card-grid motion-stagger">
         {packageList.map((pkg) => {
           const tierMedia = homeSecurityTierMedia?.[pkg.id as keyof typeof HOME_SECURITY_TIER_MEDIA];
@@ -132,22 +181,24 @@ const Packages = () => {
         </div>
       )}
       {vertical === 'home-security' && (
-        <p style={{ marginTop: '1rem', color: 'var(--kaec-muted)' }}>
-          No required monthly contracts. Many Western New York customers choose local-first systems that are locally installed and supported without recurring service contracts.
-        </p>
+        <section className="packages-pricing-note" aria-label="Pricing and ownership clarity">
+          <strong>Pricing clarity:</strong> starting points shown above use the current package prices. Final
+          scope is confirmed after walkthrough based on property layout, wiring, network readiness, and coverage goals.
+          <span>No required monthly fees; equipment options are customer-owned.</span>
+        </section>
       )}
       {vertical === 'home-security' && (
         <section className="card motion-fade-up" style={{ marginTop: '1rem' }}>
           <h2 style={{ marginTop: 0 }}>Build Around Your Property</h2>
           <p style={{ color: 'var(--kaec-muted)' }}>
-            Choose from planning modules like Indoor Cameras, Outdoor Cameras, Video Doorbells, Garage Coverage, Smart Locks, Door/Window Sensors, Motion Sensors, Floodlights, Remote Access, Local Recording, and Smart Automations.
+            Choose from planning modules like Indoor Cameras, Outdoor Cameras, Video Doorbells, Garage Coverage, Smart Locks, Door/Window Sensors, Motion Sensors, Floodlights, Water Alerts, Remote Access, Local Recording, and Smart Automations.
           </p>
           <p style={{ color: 'var(--kaec-muted)', marginBottom: 0 }}>
-            We’ll help determine what actually makes sense for your layout and priorities. Every plan is customized during your local walkthrough and confirmed in writing after review.
+            We will help determine what actually makes sense for your layout and priorities. Every plan is customized during your local walkthrough and confirmed in writing after review, so you can add on later without replacing the whole system.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem' }}>
-            {['Indoor Cameras','Outdoor Cameras','Video Doorbells','Garage Coverage','Smart Locks','Door/Window Sensors','Motion Sensors','Floodlights','Remote Access','Local Recording','Smart Automations'].map((item) => (
-              <span key={item} style={{ border: '1px solid var(--kaec-border)', padding: '0.35rem 0.6rem', borderRadius: '999px', color: '#fff7e6', fontSize: '0.9rem' }}>{item}</span>
+            {['Indoor Cameras','Outdoor Cameras','Video Doorbells','Garage Coverage','Smart Locks','Door/Window Sensors','Motion Sensors','Floodlights','Water Alerts','Remote Access','Local Recording','Smart Automations'].map((item) => (
+              <span key={item} className="packages-module-chip">{item}</span>
             ))}
           </div>
         </section>

@@ -107,6 +107,25 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Approval Requirements:** Requires separate implementation approval before any Homepage or QR Landing edits.
 - **Completion Notes:** Homepage now has an above-fold Fit Check CTA, no-required-monthly-fees and customer-owned-equipment positioning, Smart Property Solutions homeowner framing, and required Security & Awareness / Property Protection / Family Awareness problem sections. QR Landing now uses placard-scan context, outcome-focused H1/subheadline, visible no-required-monthly-fees and ownership positioning, local WNY trust language, a clear local estimate CTA, and a lighter existing WebP hero image to improve perceived load without runtime dependency or lead-signal changes. Verified reviews/testimonials/customer counts were not found in repo source material, so no social proof was fabricated; operator follow-up is needed for approved review/testimonial/story assets. Version bumped to `v1.0.109`.
 
+### CONTENT001-C
+- **Task ID:** CONTENT001-C
+- **Task Name:** Solutions / Packages Remediation
+- **Status:** DONE
+- **Category:** COPY / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reframe the Packages page around homeowner outcomes and clear package guidance while preserving pricing/business rules and existing funnel behavior.
+- **Allowed Scope:** Future bounded implementation for the Packages page only; outcome/problem-based package framing; "best for" homeowner mapping; no-required-monthly-fees positioning; customer-owned-equipment positioning when claim-safe; verified package-related social proof or missing-content documentation; pricing visibility only from approved/current source data when separately authorized.
+- **Forbidden Scope:** No Homepage edits, no QR Landing edits, no Support edits, no Our Work edits, no route creation, no package architecture rename unless explicitly approved, no invented pricing, no pricing/business-rule drift, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no runtime contract changes, no environment variable changes, and no secrets.
+- **Target Files:** `src/pages/Packages.tsx`, `src/components/PackageCard.tsx`, `src/content/packages.ts`, `src/index.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public Packages presentation only if activated; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and document pricing/social-proof/content gaps if blocked by missing approved source material.
+- **Validation Required:** Future activation must run `npm run build`, page-scope grep for outcome framing/no-required-monthly-fees/customer-owned-equipment/pricing-source handling, forbidden-claims scan, pricing/business-rule drift check, and protected-system diff check.
+- **Exit Criteria:** Packages page reads as homeowner outcome guidance rather than a hardware menu; each package has clear use-case mapping; differentiators are visible; pricing visibility is either sourced and authorized or documented as a gap; CTAs and protected systems remain unchanged.
+- **Dependencies:** CONTENT001, CONTENT001-B preferred completion/review, approved pricing/source material for any pricing changes, operator approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve exact implementation scope, pricing-source posture, and activation of CONTENT001-C.
+- **Operator Approval Requirements:** Requires separate implementation approval before any Packages page edits.
+- **Completion Notes:** Promoted CONTENT001-C from `BACKLOG` to `ACTIVE` and moved the task into the Active Tasks execution section before implementation. Packages page now frames the page as Smart Property Solutions, adds visible no-required-monthly-fees/customer-owned-equipment/local-support/property-fit differentiators, adds problem-first WNY context for entry/package awareness, driveway/garage/workshop awareness, water/freeze awareness, and family awareness, strengthens each package with Best for guidance, and surfaces existing source-backed package starting prices without changing price values, package IDs, routes, or CTA destinations. No verified package testimonials/reviews/ratings/customer counts were found in repo source material, so no social proof was fabricated; operator follow-up is needed for approved proof assets. Version bumped to `v1.0.110`.
+
 ### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task Name:** Homepage Solutions Card Layout Polish
@@ -1856,7 +1875,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 ### CATALOG002
 - **Task ID:** CATALOG002
 - **Task Name:** Expand/Validate Missing Feature Categories
-- **Status:** BACKLOG
+- **Status:** ACTIVE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Review the REV02 capability catalog for missing categories, duplicate context rows, naming consistency, and category boundaries before REV03.
@@ -1990,24 +2009,6 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Dependencies:** CONTENT001-A completion and operator approval to activate any child implementation track.
 - **Operator Decision Required:** Approve activation of each child task individually before implementation.
 - **Operator Approval Requirements:** Implementation may begin only after the specific child task is promoted to `ACTIVE` or explicitly authorized by a future bounded prompt under the controlling context.
-
-### CONTENT001-C
-- **Task ID:** CONTENT001-C
-- **Task Name:** Solutions / Packages Remediation
-- **Status:** BACKLOG
-- **Category:** COPY / FUNNEL
-- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Reframe the Packages page around homeowner outcomes and clear package guidance while preserving pricing/business rules and existing funnel behavior.
-- **Allowed Scope:** Future bounded implementation for the Packages page only; outcome/problem-based package framing; "best for" homeowner mapping; no-required-monthly-fees positioning; customer-owned-equipment positioning when claim-safe; verified package-related social proof or missing-content documentation; pricing visibility only from approved/current source data when separately authorized.
-- **Forbidden Scope:** No Homepage edits, no QR Landing edits, no Support edits, no Our Work edits, no route creation, no package architecture rename unless explicitly approved, no invented pricing, no pricing/business-rule drift, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no runtime contract changes, no environment variable changes, and no secrets.
-- **Target Files:** Future activation must discover exact Packages page, package content/config, shared package-card, style, and site-version files before editing.
-- **Runtime Systems Affected:** Public Packages presentation only if activated; no protected runtime systems.
-- **Documentation Updates Required:** Update task status/completion notes and document pricing/social-proof/content gaps if blocked by missing approved source material.
-- **Validation Required:** Future activation must run `npm run build`, page-scope grep for outcome framing/no-required-monthly-fees/customer-owned-equipment/pricing-source handling, forbidden-claims scan, pricing/business-rule drift check, and protected-system diff check.
-- **Exit Criteria:** Packages page reads as homeowner outcome guidance rather than a hardware menu; each package has clear use-case mapping; differentiators are visible; pricing visibility is either sourced and authorized or documented as a gap; CTAs and protected systems remain unchanged.
-- **Dependencies:** CONTENT001, CONTENT001-B preferred completion/review, approved pricing/source material for any pricing changes, operator approval, and promotion to `ACTIVE`.
-- **Operator Decision Required:** Approve exact implementation scope, pricing-source posture, and activation of CONTENT001-C.
-- **Operator Approval Requirements:** Requires separate implementation approval before any Packages page edits.
 
 ### CONTENT001-D
 - **Task ID:** CONTENT001-D

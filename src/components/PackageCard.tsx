@@ -59,16 +59,25 @@ const PackageCard = ({ pkg, vertical, image }: Props) => {
       ) : null}
       <div className="package-card-header">
         <div style={{ display: 'grid', gap: '0.35rem' }}>
-          <h3 style={{ margin: 0, color: '#fff7e6' }}>{styleLabel}</h3>
-          <div style={{ color: 'var(--kaec-muted)' }}>{pkg.oneLiner}</div>
+          {isHomeSecurity ? <p className="package-card-tier-label">{pkg.name} starting point</p> : null}
+          <h3 className="package-card-title">{styleLabel}</h3>
+          <div className="package-card-one-liner">{pkg.oneLiner}</div>
         </div>
-        {isHomeSecurity ? (
-          <div className="package-card-context">
-            <small style={{ color: 'var(--kaec-muted)' }}>{pkg.tagline}</small>
-          </div>
-        ) : null}
+        {isHomeSecurity ? <div className="package-card-price-block" aria-label={`${pkg.price} starting point`}>
+          <span>Starting point</span>
+          <strong>{pkg.price}</strong>
+          <small>Final scope after walkthrough</small>
+        </div> : null}
       </div>
-      <ul className="list" aria-label="Included features">
+      {isHomeSecurity ? (
+        <div className="package-card-context">
+          <p>
+            <strong>Best for:</strong> {pkg.idealFor}
+          </p>
+          <small>{pkg.tagline}</small>
+        </div>
+      ) : null}
+      <ul className="list" aria-label={isHomeSecurity ? 'Homeowner outcome examples' : 'Included features'}>
         {featureList.map((item) => (
           <li key={item}>
             <span />
