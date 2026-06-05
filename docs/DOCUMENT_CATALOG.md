@@ -56,6 +56,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Not yet locked; reserved SOLUTION001-B may lock the standard only after visual approval. Does not authorize Homepage, Packages, Support, Our Work, QR Landing, protected runtime, HubSpot, Stripe, Scheduling, Email, environment, pricing, global navigation, or semantic-token changes.
 
 
+## `docs/design-system/`
+
+### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
+- **File path:** `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
+- **Purpose / likely role:** Homepage-derived WNYHS visual design system standard extracted from the active `/home-security` implementation, active semantic tokens, and current homepage CSS.
+- **Authority level:** **Design-system governance standard / docs-only extraction artifact**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by DESIGN001-A for operator review. It defines a future reuse target but does not authorize implementation, page changes, CSS changes, semantic token changes, global navigation changes, protected-system changes, or a visible site version bump.
+
+
 ### `/docs/audits/payment_fix001_implementation_rev01.md`
 - **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
 - **Likely consumed by:** Codex operators, QA reviewers, and payment-flow governance follow-up tasks.

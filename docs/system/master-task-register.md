@@ -98,11 +98,56 @@ Initiative records group bounded tasks but are not executable task records. Only
 - **Reserved Future Task:** SOLUTION001-B is reserved for locking the standard after operator visual approval and is not created or executable in SOLUTION001-A.
 - **Protected Boundaries:** No protected runtime systems, global navigation, unrelated public pages, pricing/business rules, semantic token definitions, or unsupported claims.
 
+### DESIGN001
+- **Initiative ID:** DESIGN001
+- **Initiative Name:** WNYHS Visual Design System Standard
+- **Status:** ACTIVE
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Extract the active WNYHS homepage visual system into a reviewable design-system governance standard without applying it to any page.
+- **Current Authorized Task:** DESIGN001-A only.
+- **Reserved Future Task:** DESIGN001-B is a BACKLOG-only implementation placeholder for applying the reviewed standard to solution pages after operator approval.
+- **Protected Boundaries:** No public website implementation files, CSS implementation files, semantic token definitions, global navigation, protected runtime systems, pricing/business rules, or deployed-site version changes.
+
 ---
 
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+
+### DESIGN001-A
+- **Task ID:** DESIGN001-A
+- **Task Name:** Extract Homepage Visual System Standard
+- **Status:** DONE
+- **Category:** GOV / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only authoritative WNYHS visual design standard by extracting the visual system currently implemented on the active `/home-security` homepage and its active semantic tokens/styles.
+- **Allowed Scope:** Inspect current homepage implementation, homepage CSS, shared homepage layout/nav/footer components, active semantic token files, and older design/brand/style docs as reference only; create `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register; add a future DESIGN001-B BACKLOG placeholder if useful.
+- **Forbidden Scope:** No Homepage changes, Packages changes, QR Landing changes, Support changes, Our Work changes, Solution page changes, React/TSX implementation changes, CSS implementation changes, semantic token definition changes, global navigation changes, Stripe changes, HubSpot changes, Scheduling changes, Email/Resend changes, runtime contract changes, environment variable changes, secrets, pricing/business-rule changes, implementation work, commits that include source changes, or visible site version bump.
+- **Target Files:** `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add/register the DESIGN001 REV01 visual system standard and record task status/completion notes.
+- **Validation Required:** `git diff --check`; documentation traceability grep for DESIGN001 entries; `npm run build` if required by controlling context/repo convention; no-implementation-file diff check.
+- **Exit Criteria:** Standard document clearly states authority model, extraction sources, non-authoritative older-doc handling, homepage-derived standards, token/class reference, visual element rules, allowed reuse, forbidden drift, future implementation guidance, and review/adoption workflow; no implementation files are modified; validation passes.
+- **Dependencies:** Current homepage implementation and active semantic tokens on `main`; bounded operator prompt approval.
+- **Operator Decision Required:** Review and approve DESIGN001 REV01 before any future implementation task.
+- **Completion Notes:** Created `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md` as a docs-only homepage-derived visual system standard. Extracted page shell/canvas, typography, token/color usage, panels, cards, CTAs, pills/badges, images, layout patterns, responsive behavior, raw values to tokenize later, allowed reuse patterns, forbidden visual drift, and future adoption workflow from current `/home-security` implementation and active semantic token/CSS files. Reviewed older brand/design docs as reference only and did not treat them as source of truth unless aligned with current code. Added catalog and manifest entries. Added DESIGN001-B as a BACKLOG-only future implementation placeholder and did not execute it. No public website files, React/TSX files, CSS implementation files, token definitions, global navigation, protected runtime systems, pricing/business rules, or visible site version files were changed. `git diff --check`, documentation traceability grep, no-implementation-file diff check, deleted-file check, and `npm run build` passed.
+
+### DESIGN001-B
+- **Task ID:** DESIGN001-B
+- **Task Name:** Apply Visual System Standard To Solution Pages
+- **Status:** BACKLOG
+- **Category:** GOV / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Future implementation placeholder for applying the reviewed DESIGN001 visual standard to solution pages after operator approval.
+- **Allowed Scope:** Future bounded implementation scope to be defined after DESIGN001-A review and approval.
+- **Forbidden Scope:** No execution in DESIGN001-A; no implementation before operator approval; no protected runtime systems; no global navigation redesign; no semantic token definition changes unless a future task explicitly authorizes them; no unsupported claims.
+- **Target Files:** Future scoped files only.
+- **Runtime Systems Affected:** None until a future approved implementation.
+- **Documentation Updates Required:** Update DESIGN001 standard/catalog/manifest/register if activated later.
+- **Validation Required:** Future scoped validation to be defined at activation.
+- **Exit Criteria:** To be defined when activated.
+- **Dependencies:** DESIGN001-A completed and operator-approved.
+- **Operator Decision Required:** Approve scope, target pages, and visual review gates before activation.
 
 ### CONTENT001-B
 - **Task ID:** CONTENT001-B
