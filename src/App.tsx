@@ -78,6 +78,7 @@ const Pricing = lazy(() => import('./pages/Pricing'));
 const FiveDayDemo = lazy(() => import('./pages/FiveDayDemo'));
 const Partners = lazy(() => import('./pages/Partners'));
 const Support = lazy(() => import('./pages/Support'));
+const SolutionOpportunity = lazy(() => import('./pages/SolutionOpportunity'));
 const NewSiteLayout = lazy(() => import('./newsite/layout/NewSiteLayout'));
 const NewSiteHome = lazy(() => import('./newsite/pages/NewSiteHome'));
 const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
@@ -207,6 +208,10 @@ const App = () => {
             <Route path="/5-day-demo" element={<FiveDayDemo />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/solutions/senior-safety" element={<SolutionOpportunity />} />
+            <Route path="/solutions/water-protection" element={<SolutionOpportunity />} />
+            <Route path="/solutions/family-awareness" element={<SolutionOpportunity />} />
+            <Route path="/solutions/vacation-homes" element={<SolutionOpportunity />} />
             <Route path="/qrlanding" element={<QrLanding />} />
             <Route path="/qrlanding.htm" element={<QrLandingAlias />} />
           </Route>
