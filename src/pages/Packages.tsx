@@ -42,6 +42,29 @@ const homeSecurityProblemContexts = [
   },
 ] as const;
 
+const homeSecurityOpportunityLinks = [
+  {
+    title: 'Senior Safety',
+    body: 'Non-invasive awareness for an aging parent living more independently at home.',
+    to: '/solutions/senior-safety',
+  },
+  {
+    title: 'Water Protection',
+    body: 'Water, freeze, sump, and basement awareness planned around WNY seasonal risks.',
+    to: '/solutions/water-protection',
+  },
+  {
+    title: 'Family Awareness',
+    body: 'Doors, garage, driveway, smart entry, and package awareness for busy households.',
+    to: '/solutions/family-awareness',
+  },
+  {
+    title: 'Vacation Home Awareness',
+    body: 'Practical remote awareness for second homes, seasonal properties, and time away.',
+    to: '/solutions/vacation-homes',
+  },
+] as const;
+
 const Packages = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -157,6 +180,22 @@ const Packages = () => {
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
               </article>
+            ))}
+          </div>
+        </section>
+      )}
+      {isHomeSecurity && (
+        <section className="card opportunity-section" aria-labelledby="packages-opportunity-heading">
+          <div className="packages-context-header">
+            <p>Explore By Concern</p>
+            <h2 id="packages-opportunity-heading">High-Opportunity Smart Property Solutions</h2>
+          </div>
+          <div className="opportunity-link-grid">
+            {homeSecurityOpportunityLinks.map((item) => (
+              <Link key={item.to} className="opportunity-link-card" to={item.to}>
+                <span>{item.title}</span>
+                <small>{item.body}</small>
+              </Link>
             ))}
           </div>
         </section>

@@ -817,6 +817,105 @@
   border-color: rgba(245, 192, 66, 0.24);
 }
 
+.opportunity-page {
+  gap: 1.25rem;
+}
+
+.opportunity-hero,
+.opportunity-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.opportunity-hero {
+  border-color: color-mix(in srgb, var(--hs-premium-accent) 32%, var(--hs-premium-border));
+}
+
+.opportunity-hero-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.opportunity-hero-panel span,
+.opportunity-feature-grid span,
+.opportunity-link-card {
+  border: 1px solid var(--hs-premium-border);
+  background: color-mix(in srgb, var(--hs-premium-card) 82%, transparent);
+}
+
+.opportunity-hero-panel span,
+.opportunity-feature-grid span {
+  border-radius: 999px;
+  color: var(--foreground);
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+}
+
+.opportunity-three-up,
+.opportunity-feature-grid,
+.opportunity-link-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.opportunity-three-up {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.opportunity-three-up article {
+  border-left: 3px solid var(--hs-premium-accent);
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 0.8rem;
+}
+
+.opportunity-three-up h3,
+.opportunity-three-up p {
+  margin: 0;
+}
+
+.opportunity-three-up p,
+.opportunity-links p {
+  color: var(--hs-premium-muted);
+}
+
+.opportunity-feature-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.opportunity-links {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.opportunity-link-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.opportunity-link-card {
+  border-radius: 0.75rem;
+  color: var(--foreground);
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem;
+}
+
+.opportunity-link-card:hover {
+  border-color: var(--hs-premium-accent);
+  color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+.opportunity-link-card span {
+  font-weight: 800;
+}
+
+.opportunity-link-card small {
+  color: var(--hs-premium-muted);
+  line-height: 1.45;
+}
+
 .hs-premium-hero-media {
   position: relative;
   border-radius: 20px;

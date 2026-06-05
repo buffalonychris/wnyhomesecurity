@@ -145,6 +145,25 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Approval Requirements:** Requires separate implementation approval before any Support or Our Work edits.
 - **Completion Notes:** Promoted CONTENT001-D from `BACKLOG` to `ACTIVE` and moved the task into the Active Tasks execution section before implementation. Support now adds local WNY support positioning, preserves call/text/email/form paths, adds support categories, adds FAQ/self-serve guidance, clarifies follow-up expectations without faster-time promises, and adds a support-first add-on path for existing customers. Our Work now uses Smart Property Solutions framing, problem-solution-outcome example cards, per-card CTAs, safe concept/example image language, and explicit verified-story/quote gap language instead of fabricated customer proof. CONTENT001-E stayed in `BACKLOG` and was not executed. Version bumped to `v1.0.111`.
 
+### CONTENT001-E
+- **Task ID:** CONTENT001-E
+- **Task Name:** Opportunity Expansion Pages
+- **Status:** DONE
+- **Category:** COPY / FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Queue future opportunity-page work for high-value homeowner problem areas identified by the audit without creating routes or pages in the governance task.
+- **Allowed Scope:** Future bounded implementation planning or explicitly approved page creation for Senior Safety, Water Protection, Family Awareness, and Vacation Home Monitoring only after core remediation review; demand/priority validation; safe claims review; route/content design within future activated scope.
+- **Forbidden Scope:** No route creation in CONTENT001-A; no public page creation until separately authorized; no medical/fall-detection guarantees; no emergency-response claims; no monitoring/dispatch claims; no fabricated demand proof; no Stripe changes; no HubSpot changes; no Scheduling changes; no Email changes; no runtime contract changes; no environment variable changes; and no secrets.
+- **Target Files:** `src/App.tsx`, `src/pages/SolutionOpportunity.tsx`, `src/pages/Packages.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public page presentation and route wiring only; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and create any needed page-specific governance specs before implementation if scope is broad.
+- **Validation Required:** Future activation must run `npm run build`, route/nav grep, forbidden-claims scan, protected-system diff check, and desktop/mobile render verification where tooling is available.
+- **Exit Criteria:** Opportunity pages remain queued until operator approval; when activated, each page is bounded by problem area, claim-safe copy, route approval, and validation; no silent route/page creation occurs.
+- **Dependencies:** CONTENT001, completion/review of CONTENT001-B/C/D or explicit operator override, route approval, copy/claims approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve whether and when each opportunity page should be created.
+- **Operator Approval Requirements:** Requires separate implementation approval before any new route or page creation.
+- **Completion Notes:** Promoted CONTENT001-E from `BACKLOG` to `ACTIVE` and moved the task into the Active Tasks execution section before implementation. Created four explicit routes only: `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes`. Added a shared problem-first Smart Property Solutions page component covering homeowner problem, emotional reason, WNY context, solution approach, safe feature examples, ownership/no-required-monthly-fees positioning, local install/support, and CTAs/internal links. Added conservative Packages-page internal links to the four pages without changing global navigation. Public copy avoids guarantees, fabricated proof, invented statistics, emergency-response claims, medical/fall-detection claims, insurance-savings claims, and public monitoring/dispatch language. Version bumped to `v1.0.112`. Build, diff check, focused lint, route grep, and source forbidden-claims scan passed; repo-wide lint still has pre-existing unrelated baseline failures outside touched TS/TSX files.
+
 ### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task Name:** Homepage Solutions Card Layout Polish
@@ -2028,24 +2047,6 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Dependencies:** CONTENT001-A completion and operator approval to activate any child implementation track.
 - **Operator Decision Required:** Approve activation of each child task individually before implementation.
 - **Operator Approval Requirements:** Implementation may begin only after the specific child task is promoted to `ACTIVE` or explicitly authorized by a future bounded prompt under the controlling context.
-
-### CONTENT001-E
-- **Task ID:** CONTENT001-E
-- **Task Name:** Opportunity Expansion Pages
-- **Status:** BACKLOG
-- **Category:** COPY / FUNNEL
-- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Queue future opportunity-page work for high-value homeowner problem areas identified by the audit without creating routes or pages in the governance task.
-- **Allowed Scope:** Future bounded implementation planning or explicitly approved page creation for Senior Safety, Water Protection, Family Awareness, and Vacation Home Monitoring only after core remediation review; demand/priority validation; safe claims review; route/content design within future activated scope.
-- **Forbidden Scope:** No route creation in CONTENT001-A; no public page creation until separately authorized; no medical/fall-detection guarantees; no emergency-response claims; no monitoring/dispatch claims; no fabricated demand proof; no Stripe changes; no HubSpot changes; no Scheduling changes; no Email changes; no runtime contract changes; no environment variable changes; and no secrets.
-- **Target Files:** Future activation must define exact route, page, navigation, content, style, and site-version files before editing.
-- **Runtime Systems Affected:** None until future activation; potential public page presentation only if separately authorized.
-- **Documentation Updates Required:** Update task status/completion notes and create any needed page-specific governance specs before implementation if scope is broad.
-- **Validation Required:** Future activation must run `npm run build`, route/nav grep, forbidden-claims scan, protected-system diff check, and desktop/mobile render verification where tooling is available.
-- **Exit Criteria:** Opportunity pages remain queued until operator approval; when activated, each page is bounded by problem area, claim-safe copy, route approval, and validation; no silent route/page creation occurs.
-- **Dependencies:** CONTENT001, completion/review of CONTENT001-B/C/D or explicit operator override, route approval, copy/claims approval, and promotion to `ACTIVE`.
-- **Operator Decision Required:** Approve whether and when each opportunity page should be created.
-- **Operator Approval Requirements:** Requires separate implementation approval before any new route or page creation.
 
 ### CONTENT001-A
 - **Task ID:** CONTENT001-A
