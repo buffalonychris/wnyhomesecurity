@@ -126,6 +126,25 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Approval Requirements:** Requires separate implementation approval before any Packages page edits.
 - **Completion Notes:** Promoted CONTENT001-C from `BACKLOG` to `ACTIVE` and moved the task into the Active Tasks execution section before implementation. Packages page now frames the page as Smart Property Solutions, adds visible no-required-monthly-fees/customer-owned-equipment/local-support/property-fit differentiators, adds problem-first WNY context for entry/package awareness, driveway/garage/workshop awareness, water/freeze awareness, and family awareness, strengthens each package with Best for guidance, and surfaces existing source-backed package starting prices without changing price values, package IDs, routes, or CTA destinations. No verified package testimonials/reviews/ratings/customer counts were found in repo source material, so no social proof was fabricated; operator follow-up is needed for approved proof assets. Version bumped to `v1.0.110`.
 
+### CONTENT001-D
+- **Task ID:** CONTENT001-D
+- **Task Name:** Trust & Authority Pages
+- **Status:** DONE
+- **Category:** COPY / FUNNEL / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Improve Support and Our Work as trust/authority pages through local support positioning, self-service support structure, and customer-outcome storytelling.
+- **Allowed Scope:** Future bounded implementation for Support and Our Work only; Support FAQ/self-service structure; realistic local support expectations; local WNY support positioning; Our Work problem-solution-outcome case-study framing; verified story/photo/quote usage or missing-content documentation; safe customer-owned-equipment positioning where appropriate.
+- **Forbidden Scope:** No Homepage edits, no QR Landing edits, no Packages edits, no new routes, no fabricated locations, no fabricated customer quotes, no misleading imagery claims, no response-time promises unsupported by operations, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no runtime contract changes, no environment variable changes, and no secrets.
+- **Target Files:** `src/pages/Support.tsx`, `src/pages/OurWork.tsx`, `src/data/ourWorkGallery.ts`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public Support and Our Work presentation only if activated; no protected runtime systems.
+- **Documentation Updates Required:** Update task status/completion notes and document missing verified project/story/review/FAQ content if unavailable.
+- **Validation Required:** Future activation must run `npm run build`, page-scope grep for FAQ/self-service and case-study traceability, forbidden-claims scan, fabricated-proof guard check, and protected-system diff check.
+- **Exit Criteria:** Support clearly communicates local support paths and self-service help without overpromising; Our Work reads as customer outcome stories rather than a hardware gallery; verified proof is used only when available; no protected-system changes occur.
+- **Dependencies:** CONTENT001, CONTENT001-B and CONTENT001-C preferred review, verified support/story/photo/quote content where needed, operator approval, and promotion to `ACTIVE`.
+- **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-D.
+- **Operator Approval Requirements:** Requires separate implementation approval before any Support or Our Work edits.
+- **Completion Notes:** Promoted CONTENT001-D from `BACKLOG` to `ACTIVE` and moved the task into the Active Tasks execution section before implementation. Support now adds local WNY support positioning, preserves call/text/email/form paths, adds support categories, adds FAQ/self-serve guidance, clarifies follow-up expectations without faster-time promises, and adds a support-first add-on path for existing customers. Our Work now uses Smart Property Solutions framing, problem-solution-outcome example cards, per-card CTAs, safe concept/example image language, and explicit verified-story/quote gap language instead of fabricated customer proof. CONTENT001-E stayed in `BACKLOG` and was not executed. Version bumped to `v1.0.111`.
+
 ### HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task ID:** HOMEPAGE-SOLUTIONS-CARD-POLISH-MAIN-001
 - **Task Name:** Homepage Solutions Card Layout Polish
@@ -2009,24 +2028,6 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Dependencies:** CONTENT001-A completion and operator approval to activate any child implementation track.
 - **Operator Decision Required:** Approve activation of each child task individually before implementation.
 - **Operator Approval Requirements:** Implementation may begin only after the specific child task is promoted to `ACTIVE` or explicitly authorized by a future bounded prompt under the controlling context.
-
-### CONTENT001-D
-- **Task ID:** CONTENT001-D
-- **Task Name:** Trust & Authority Pages
-- **Status:** BACKLOG
-- **Category:** COPY / FUNNEL / QA
-- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Improve Support and Our Work as trust/authority pages through local support positioning, self-service support structure, and customer-outcome storytelling.
-- **Allowed Scope:** Future bounded implementation for Support and Our Work only; Support FAQ/self-service structure; realistic local support expectations; local WNY support positioning; Our Work problem-solution-outcome case-study framing; verified story/photo/quote usage or missing-content documentation; safe customer-owned-equipment positioning where appropriate.
-- **Forbidden Scope:** No Homepage edits, no QR Landing edits, no Packages edits, no new routes, no fabricated locations, no fabricated customer quotes, no misleading imagery claims, no response-time promises unsupported by operations, no Stripe changes, no HubSpot changes, no Scheduling changes, no Email changes, no runtime contract changes, no environment variable changes, and no secrets.
-- **Target Files:** Future activation must discover exact Support, Our Work, shared content/component, style, and site-version files before editing.
-- **Runtime Systems Affected:** Public Support and Our Work presentation only if activated; no protected runtime systems.
-- **Documentation Updates Required:** Update task status/completion notes and document missing verified project/story/review/FAQ content if unavailable.
-- **Validation Required:** Future activation must run `npm run build`, page-scope grep for FAQ/self-service and case-study traceability, forbidden-claims scan, fabricated-proof guard check, and protected-system diff check.
-- **Exit Criteria:** Support clearly communicates local support paths and self-service help without overpromising; Our Work reads as customer outcome stories rather than a hardware gallery; verified proof is used only when available; no protected-system changes occur.
-- **Dependencies:** CONTENT001, CONTENT001-B and CONTENT001-C preferred review, verified support/story/photo/quote content where needed, operator approval, and promotion to `ACTIVE`.
-- **Operator Decision Required:** Approve exact implementation copy/assets and activate CONTENT001-D.
-- **Operator Approval Requirements:** Requires separate implementation approval before any Support or Our Work edits.
 
 ### CONTENT001-E
 - **Task ID:** CONTENT001-E
