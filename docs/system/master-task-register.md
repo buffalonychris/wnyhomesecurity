@@ -114,6 +114,24 @@ Initiative records group bounded tasks but are not executable task records. Only
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### IMAGE001-A
+- **Task ID:** IMAGE001-A
+- **Task Name:** Wire Solution Images Into Solution Pages
+- **Status:** DONE
+- **Category:** FUNNEL / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add the approved local solution hero and sample images to the four existing solution opportunity pages while preserving the SOLUTION001 structure and DESIGN001 visual system.
+- **Allowed Scope:** Update only `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes` through the shared solution page component and scoped solution-page CSS; place one hero image and one Example Scenario supporting image per page; copy approved local image files into `public/images/home-security/solutions` if required for the requested public URL mapping; bump visible site version; update this task-register lifecycle entry.
+- **Forbidden Scope:** No Homepage changes, Packages page changes, QR Landing changes, Support page changes, Our Work page changes, new routes, global navigation changes, semantic token definition changes, HubSpot changes, Stripe changes, Scheduling changes, Email/Resend changes, runtime contract changes, environment variable changes, secrets, pricing/business-rule changes, unsupported claims, fake social proof, fake customer stories, fake project claims, or broad copy rewrites.
+- **Target Files:** `src/pages/SolutionOpportunity.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`, `public/images/home-security/solutions/*.png`.
+- **Runtime Systems Affected:** None. Public solution-page visual presentation only.
+- **Documentation Updates Required:** Add/promote IMAGE001-A for this run and record completion notes when validation succeeds.
+- **Validation Required:** `npm run build`; `git diff --check`; focused ESLint for touched TS/TSX files if feasible; confirm mapped image files exist; protected-system diff check; source forbidden-claims scan; local route availability checks for the four solution routes if feasible.
+- **Exit Criteria:** All four target solution routes use the requested hero and sample image mapping; hero images sit in the hero section without shrinking trust pills or CTAs; sample images support the Example Scenario section; alt text is descriptive, neutral, and claim-safe; SOLUTION001 section order is preserved; DESIGN001 visual system classes/tokens are followed; no protected systems or unrelated pages are changed; validation passes or any unrelated baseline issue is documented.
+- **Dependencies:** Existing four solution routes, SOLUTION001-A completion, DESIGN001-B completion, bounded operator prompt approval, and approved local image assets.
+- **Operator Decision Required:** Visual approval after PR review.
+- **Completion Notes:** Added IMAGE001-A to the Active Tasks section before implementation and marked it `DONE` after successful validation. Copied the approved local solution images into `public/images/home-security/solutions` so the requested `/images/home-security/solutions/...` URL mapping resolves. Wired each solution page to one right-side hero image and one Example Scenario supporting image through the shared `SolutionOpportunity` component. Added neutral, illustrative alt text and scoped responsive image framing using existing DESIGN001/SOLUTION001 visual patterns and semantic tokens. Preserved the SOLUTION001 section order, existing routes, hero copy, trust pills, CTAs, page copy posture, and protected runtime boundaries. Bumped visible site version to `v1.0.115`. `npm run build`, focused ESLint for `src/pages/SolutionOpportunity.tsx`, `git diff --check`, target image existence checks, source forbidden-claim scan, and HTTP 200 checks for all four solution routes passed.
+
 ### DESIGN001-A
 - **Task ID:** DESIGN001-A
 - **Task Name:** Extract Homepage Visual System Standard

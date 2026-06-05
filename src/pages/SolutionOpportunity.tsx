@@ -9,6 +9,14 @@ type OpportunityPage = {
   eyebrow: string;
   title: string;
   intro: string;
+  heroImage: {
+    src: string;
+    alt: string;
+  };
+  sampleImage: {
+    src: string;
+    alt: string;
+  };
   forWhom: string;
   problem: string;
   solution: string;
@@ -26,6 +34,14 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
     title: 'Help an Aging Parent Live More Independently at Home',
     intro:
       'A Smart Property Solution can help families reduce uncertainty without making the home feel clinical or intrusive.',
+    heroImage: {
+      src: '/images/home-security/solutions/solutions-aging-hero.png',
+      alt: 'Illustration of a calm home entry area for senior-safety awareness planning',
+    },
+    sampleImage: {
+      src: '/images/home-security/solutions/solutions-aging-sample.png',
+      alt: 'Illustrative interior scene showing practical home awareness planning for an aging parent',
+    },
     forWhom:
       'For families supporting an aging parent, grandparent, or loved one who wants independence while relatives want practical awareness.',
     problem:
@@ -57,6 +73,14 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
     title: 'Know Sooner About Water, Freeze, and Sump Concerns',
     intro:
       'Water problems can move quickly. A local smart property setup can help you notice common risk points sooner.',
+    heroImage: {
+      src: '/images/home-security/solutions/solutions-water-hero.png',
+      alt: 'Illustration of a basement utility area for water and temperature awareness planning',
+    },
+    sampleImage: {
+      src: '/images/home-security/solutions/solutions-water-sample.png',
+      alt: 'Illustrative mechanical-room scene showing water and temperature awareness planning',
+    },
     forWhom:
       'For homeowners worried about frozen pipes, water leaks, sump areas, basement utility spaces, and spring thaw conditions.',
     problem:
@@ -88,6 +112,14 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
     title: 'Know More About Doors, Driveways, Packages, and Daily Arrivals',
     intro:
       'Family awareness should feel practical, low-pressure, and built around household routines instead of a heavy-handed setup.',
+    heroImage: {
+      src: '/images/home-security/solutions/solutions-awareness-hero.png',
+      alt: 'Illustration of a family entry and driveway area for everyday awareness planning',
+    },
+    sampleImage: {
+      src: '/images/home-security/solutions/solutions-awareness-sample.png',
+      alt: 'Illustrative home scene showing door, garage, and package awareness planning',
+    },
     forWhom:
       'For parents and caregivers who want better visibility around kids arriving home, doors opening, garage use, packages, and driveway activity.',
     problem:
@@ -119,6 +151,14 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
     title: 'Keep Better Awareness of a Seasonal or Second Home While Away',
     intro:
       'A second home or seasonal property needs practical visibility when nobody is there every day.',
+    heroImage: {
+      src: '/images/home-security/solutions/solutions-vacation-hero.png',
+      alt: 'Illustration of a seasonal home exterior for remote property awareness planning',
+    },
+    sampleImage: {
+      src: '/images/home-security/solutions/solutions-vacation-sample.png',
+      alt: 'Illustrative seasonal property scene showing access, temperature, and water awareness planning',
+    },
     forWhom:
       'For owners of vacation homes, seasonal properties, cabins, lake-area properties, or second homes who want practical remote awareness.',
     problem:
@@ -168,26 +208,31 @@ const SolutionOpportunity = () => {
   return (
     <WnyhsMarketingLayout ctaLink="/contact?vertical=home-security">
       <div className="hs-premium-shell hs-premium-shell--home-trust opportunity-page">
-        <section className="hs-premium-hero hs-premium-hero--trust opportunity-hero">
-          <div className="hs-premium-hero-content">
-            <p className="hs-premium-eyebrow">{page.eyebrow}</p>
-            <h1>{page.title}</h1>
-            <p className="hs-premium-hero-subhead">{page.intro}</p>
+        <section className="hs-premium-hero hs-premium-hero--split hs-premium-hero--trust opportunity-hero">
+          <div className="opportunity-hero-copy">
+            <div className="hs-premium-hero-content">
+              <p className="hs-premium-eyebrow">{page.eyebrow}</p>
+              <h1>{page.title}</h1>
+              <p className="hs-premium-hero-subhead">{page.intro}</p>
+            </div>
+            <div className="hs-premium-hero-proof-strip opportunity-hero-proof-strip" aria-label="Solution positioning">
+              <span>Local Smart Property Solutions</span>
+              <span>No Required Monthly Fees</span>
+              <span>Customer-Owned Equipment</span>
+              <span>Professionally Installed & Locally Supported</span>
+            </div>
+            <div className="hs-premium-hero-actions">
+              <Link className="btn btn-primary" to="/contact?vertical=home-security">
+                Request Estimate
+              </Link>
+              <Link className="btn btn-secondary" to="/discovery?vertical=home-security">
+                Start Fit Check
+              </Link>
+            </div>
           </div>
-          <div className="hs-premium-hero-proof-strip opportunity-hero-proof-strip" aria-label="Solution positioning">
-            <span>Local Smart Property Solutions</span>
-            <span>No Required Monthly Fees</span>
-            <span>Customer-Owned Equipment</span>
-            <span>Professionally Installed & Locally Supported</span>
-          </div>
-          <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary" to="/contact?vertical=home-security">
-              Request Estimate
-            </Link>
-            <Link className="btn btn-secondary" to="/discovery?vertical=home-security">
-              Start Fit Check
-            </Link>
-          </div>
+          <figure className="hs-premium-hero-media opportunity-hero-media">
+            <img src={page.heroImage.src} alt={page.heroImage.alt} width="920" height="690" fetchPriority="high" />
+          </figure>
         </section>
 
         <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-fit-heading`}>
@@ -240,11 +285,14 @@ const SolutionOpportunity = () => {
         </section>
 
         <section className="hs-premium-section-panel opportunity-section opportunity-scenario" aria-labelledby={`${page.slug}-scenario-heading`}>
-          <div className="hs-premium-section-header">
+          <div className="hs-premium-section-header opportunity-scenario-copy">
             <p className="hs-premium-eyebrow">Example Scenario</p>
             <h2 id={`${page.slug}-scenario-heading`}>How this might look</h2>
             <p>{page.exampleScenario}</p>
           </div>
+          <figure className="opportunity-sample-media">
+            <img src={page.sampleImage.src} alt={page.sampleImage.alt} width="920" height="690" loading="lazy" />
+          </figure>
         </section>
 
         <section className="hs-premium-section-panel hs-premium-final-cta-panel opportunity-links" aria-labelledby={`${page.slug}-next-heading`}>
