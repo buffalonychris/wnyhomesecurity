@@ -741,6 +741,27 @@
   max-width: 70ch;
 }
 
+.wnyhs-gallery-story-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.wnyhs-gallery-story-list div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.wnyhs-gallery-story-list dt {
+  color: var(--hs-premium-accent);
+  font-weight: 800;
+}
+
+.wnyhs-gallery-story-list dd {
+  margin: 0;
+  color: var(--hs-premium-muted);
+}
+
 .hs-premium-primary-cta {
   padding: 0.72rem 1.35rem;
   font-weight: 700;
