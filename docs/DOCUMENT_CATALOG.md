@@ -45,6 +45,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Required traceability source before CONTENT001-B/C/D/E activation; preserves gaps for missing social proof, hero CTA, no-required-monthly-fees positioning, customer-owned-equipment positioning, hardware-first messaging, local trust signals, QR context alignment, FAQ/self-service support, case-study storytelling, and future opportunity pages.
 
 
+## `docs/solution-system/`
+
+### `/docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`
+- **File path:** `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`
+- **Purpose / likely role:** First formal WNYHS solution-page standard defining required structure, visual hierarchy, typography, card rules, CTA hierarchy, copy guardrails, image posture, and internal linking standards for solution pages.
+- **Authority level:** **Solution-page governance standard / implementation standard for SOLUTION001-A**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for bounded SOLUTION001-A updates to the four existing opportunity solution pages named in the standard and task register.
+- **Notes:** Not yet locked; reserved SOLUTION001-B may lock the standard only after visual approval. Does not authorize Homepage, Packages, Support, Our Work, QR Landing, protected runtime, HubSpot, Stripe, Scheduling, Email, environment, pricing, global navigation, or semantic-token changes.
+
+
 ### `/docs/audits/payment_fix001_implementation_rev01.md`
 - **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
 - **Likely consumed by:** Codex operators, QA reviewers, and payment-flow governance follow-up tasks.

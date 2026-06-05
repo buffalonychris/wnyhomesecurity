@@ -824,7 +824,7 @@
 .opportunity-hero,
 .opportunity-section {
   display: grid;
-  gap: 1rem;
+  gap: clamp(1rem, 2vw, 1.35rem);
 }
 
 .opportunity-hero {
@@ -864,10 +864,13 @@
 }
 
 .opportunity-three-up article {
-  border-left: 3px solid var(--hs-premium-accent);
+  border: 1px solid var(--hs-premium-border);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--hs-premium-card) 82%, transparent);
   display: grid;
-  gap: 0.35rem;
-  padding-left: 0.8rem;
+  gap: 0.45rem;
+  min-height: 100%;
+  padding: 1rem;
 }
 
 .opportunity-three-up h3,
@@ -875,13 +878,22 @@
   margin: 0;
 }
 
+.opportunity-three-up h3 {
+  color: var(--foreground);
+}
+
 .opportunity-three-up p,
-.opportunity-links p {
+.opportunity-links p,
+.opportunity-scenario p {
   color: var(--hs-premium-muted);
 }
 
 .opportunity-feature-grid {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.opportunity-scenario {
+  border-color: color-mix(in srgb, var(--hs-premium-accent) 24%, var(--hs-premium-border));
 }
 
 .opportunity-links {
