@@ -130,6 +130,22 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Exit Criteria:** `/packages?vertical=home-security` keeps the existing hero direction and clear Fit Check/Estimate CTAs; the first major cards are Home Security, Home Automation, and Aging In Place; Common Homeowner Situations links to Senior Safety, Water Protection, Family Awareness, and Vacation Homes; secondary/future ideas are lower priority and route only to Fit Check/Estimate where no detail page exists; no protected systems, pricing, routes, nav, images, or unrelated pages are changed; validation passes and any manual-review limitation is documented.
 - **Dependencies:** DESIGN001 REV01, SOLUTION001 REV02, existing `/packages?vertical=home-security` page, existing four solution detail routes, bounded operator prompt approval, and CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01.
 - **Operator Decision Required:** Manual visual review before merge.
+### IMAGE002-B
+- **Task ID:** IMAGE002-B
+- **Task Name:** Wire Replacement Solution Page Images
+- **Status:** ACTIVE
+- **Category:** FUNNEL / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Wire the committed replacement solution-page images to the four existing solution routes while preserving SOLUTION001 REV02 and DESIGN001 visual standards.
+- **Allowed Scope:** Inspect and reconcile solution image asset paths; use `/public/images/home-security/solutions` as the canonical solution-image folder when aligned with SOLUTION001 REV02 and current code; replace canonical copies with the operator-provided replacement files from `public/images/solutions` if needed; remove only duplicate tracked replacement copies from the non-canonical folder after the canonical copies are preserved; update the shared solution page implementation and scoped solution image CSS if needed; bump the visible site version; validate desktop, tablet, and mobile rendering for `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes`.
+- **Forbidden Scope:** No Stripe changes, HubSpot changes, Scheduling/calendar changes, Email/Resend changes, runtime behavior changes, pricing changes, route changes, global navigation changes, unrelated page redesign, unrelated CSS changes, semantic-token changes, hardcoded colors, unsupported claims, copy rewrites except alt text if necessary, or destructive cleanup outside duplicate image-path cleanup needed for this task.
+- **Target Files:** `docs/system/master-task-register.md`, `src/pages/SolutionOpportunity.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, `public/images/home-security/solutions/*.png`, duplicate tracked `public/images/solutions/solutions-*-hero.png` and `public/images/solutions/solutions-*-sample.png` files only when preserved in the canonical folder first.
+- **Runtime Systems Affected:** None. Public solution-page presentation and static assets only.
+- **Documentation Updates Required:** Add/promote IMAGE002-B as `ACTIVE` for this run and mark it `DONE` only after successful validation.
+- **Validation Required:** `git status`; `git diff --check`; `git diff --stat`; `rg -n "solutions-aging|solutions-water|solutions-awareness|solutions-vacation" src public docs`; `npm run build`; available lint/typecheck scripts as appropriate; local dev-server visual checks for all four solution routes at desktop, tablet/narrow, and mobile widths.
+- **Exit Criteria:** All four solution routes use the operator-provided replacement hero and sample files from the canonical image folder; duplicate tracked replacement copies are avoided; hero and sample images render without broken paths, distortion, or critical cropping; mobile layout preserves the main subject and awareness panel; no protected systems, pricing, routes, or unrelated pages are changed; validation passes or any unrelated baseline issue is documented.
+- **Dependencies:** SOLUTION001 REV02, DESIGN001 REV01, existing four solution routes, committed replacement image assets, bounded operator prompt approval, and CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01.
+- **Operator Decision Required:** PR review and visual approval before merge.
 
 ### SOLUTION001-B
 - **Task ID:** SOLUTION001-B
