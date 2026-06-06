@@ -931,7 +931,8 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .opportunity-links {
@@ -952,6 +953,12 @@
   object-fit: cover;
   object-position: right center;
   display: block;
+}
+
+.opportunity-hero-media img {
+  object-fit: contain;
+  object-position: center;
+  background: color-mix(in srgb, var(--background) 64%, var(--card) 36%);
 }
 
 .hs-premium-hero-overlay {
