@@ -14,7 +14,6 @@ import { resolveVertical } from '../lib/verticals';
 import { useLayoutConfig } from '../components/LayoutConfig';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { getHomeSecurityCtaLink } from '../content/wnyhsNavigation';
-import { buildTel, wnyhsContact } from '../content/wnyhsContact';
 
 const homeSecuritySolutionPillars = [
   'No required monthly fees',
@@ -23,45 +22,81 @@ const homeSecuritySolutionPillars = [
   'Built around your property',
 ] as const;
 
-const homeSecurityProblemContexts = [
+const signatureSolutionCategories = [
   {
-    title: 'Entry & Package Awareness',
-    body: 'Start with front-door visibility, package theft concerns, and the entries your household uses most.',
+    title: 'Home Security',
+    purpose: 'Awareness around doors, driveways, packages, visitors, and property activity.',
+    examples: ['Cameras', 'Video doorbells', 'Smart entry', 'Driveway awareness', 'Package protection'],
+    ctaLabel: 'Talk Through Home Security',
+    to: '/contact?vertical=home-security',
   },
   {
-    title: 'Driveways, Garages & Workshops',
-    body: 'Plan camera and alert coverage around driveways, side doors, detached garages, workshops, and outbuildings.',
+    title: 'Home Automation',
+    purpose: 'Practical automation and smart-property controls that simplify everyday routines.',
+    examples: ['Lighting', 'Garage doors', 'Smart locks', 'Notifications', 'Energy awareness', 'Environmental controls'],
+    ctaLabel: 'Talk Through Home Automation',
+    to: '/discovery?vertical=home-security',
   },
   {
-    title: 'Water & Freeze Awareness',
-    body: 'Add practical alerts for WNY seasonal risks such as leaks, freeze concerns, sump areas, and utility spaces.',
-  },
-  {
-    title: 'Family Awareness',
-    body: 'Support daily household routines, arrivals, and check-ins without turning the system into unnecessary equipment.',
+    title: 'Aging In Place',
+    purpose: 'Support independence while giving families better awareness and peace of mind.',
+    examples: ['Daily activity awareness', 'Family notifications', 'Entry awareness', 'Routine check-in options', 'Check-in planning'],
+    ctaLabel: 'Explore Aging In Place Solutions',
+    to: '/solutions/senior-safety',
   },
 ] as const;
 
-const homeSecurityOpportunityLinks = [
+const homeSecuritySituationLinks = [
   {
     title: 'Senior Safety',
-    body: 'Non-invasive awareness for an aging parent living more independently at home.',
+    body: 'For families supporting an aging parent or loved one who wants more independence at home.',
     to: '/solutions/senior-safety',
+    ctaLabel: 'Learn About Senior Safety',
   },
   {
     title: 'Water Protection',
-    body: 'Water, freeze, sump, and basement awareness planned around WNY seasonal risks.',
+    body: 'For homeowners worried about leaks, freeze concerns, sump areas, basements, and utility spaces.',
     to: '/solutions/water-protection',
+    ctaLabel: 'Learn About Water Protection',
   },
   {
     title: 'Family Awareness',
-    body: 'Doors, garage, driveway, smart entry, and package awareness for busy households.',
+    body: 'For households that want clearer awareness around arrivals, garage activity, packages, and busy routines.',
     to: '/solutions/family-awareness',
+    ctaLabel: 'Learn About Family Awareness',
   },
   {
-    title: 'Vacation Home Awareness',
-    body: 'Practical remote awareness for second homes, seasonal properties, and time away.',
+    title: 'Vacation Homes',
+    body: 'For seasonal or second properties where practical remote awareness can reduce uncertainty between visits.',
     to: '/solutions/vacation-homes',
+    ctaLabel: 'Learn About Vacation Homes',
+  },
+] as const;
+
+const secondarySolutionIdeas = [
+  {
+    title: 'Package Protection',
+    body: 'Front-door visibility and arrival awareness planned around how your household receives deliveries.',
+  },
+  {
+    title: 'Smart Entry',
+    body: 'Lock, door, and access planning that fits everyday routines without making the system feel complicated.',
+  },
+  {
+    title: 'Outdoor Property Automation',
+    body: 'Practical awareness for driveways, detached garages, sheds, workshops, and common outdoor activity zones.',
+  },
+  {
+    title: 'Energy Awareness',
+    body: 'Smart-property controls that help you understand and adjust everyday lighting and environmental routines.',
+  },
+  {
+    title: 'Small Business Awareness',
+    body: 'A future planning direction for simple property awareness around small shops, offices, or workspaces.',
+  },
+  {
+    title: 'Whole-Property Awareness',
+    body: 'A broader planning category for owners who want better awareness across more than one property area.',
   },
 ] as const;
 
@@ -136,7 +171,7 @@ const Packages = () => {
           </h1>
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
-              ? 'Compare practical starting points for cameras, property protection, smart entry, garage awareness, water alerts, and family peace of mind. Final recommendations depend on layout, entry points, wiring, network readiness, and coverage goals.'
+              ? 'WNY Home Security builds practical smart-property systems around homeowner needs: awareness, automation, family routines, water concerns, and the way your property is actually used. Start with a major category, then drill into a situation that sounds familiar.'
               : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
           </p>
           {isHomeSecurity && (
@@ -149,11 +184,11 @@ const Packages = () => {
           {isHomeSecurity && (
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
               <Link className="btn btn-primary" to={discoveryLink}>
-                Request Walkthrough Estimate
+                Start Fit Check
               </Link>
-              <a className="btn btn-secondary" href={buildTel()}>
-                Call/Text {wnyhsContact.phone.display}
-              </a>
+              <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+                Request Estimate
+              </Link>
             </div>
           )}
         </div>
@@ -169,34 +204,76 @@ const Packages = () => {
         )}
       </section>
       {isHomeSecurity && (
-        <section className="packages-context-panel" aria-labelledby="packages-context-heading">
+        <section className="packages-context-panel packages-signature-panel" aria-labelledby="packages-signature-heading">
           <div className="packages-context-header">
-            <p>Start With The Problem</p>
-            <h2 id="packages-context-heading">Then Build The Right System</h2>
+            <p>Signature Solution Categories</p>
+            <h2 id="packages-signature-heading">Start with the kind of help you need</h2>
+            <span>
+              These are not fixed packages or gadget lists. They are planning categories for building a practical system around your home.
+            </span>
           </div>
-          <div className="packages-context-grid">
-            {homeSecurityProblemContexts.map((item) => (
-              <article key={item.title}>
+          <div className="packages-signature-grid">
+            {signatureSolutionCategories.map((item) => (
+              <article key={item.title} className="packages-signature-card">
                 <h3>{item.title}</h3>
-                <p>{item.body}</p>
+                <p>{item.purpose}</p>
+                <ul>
+                  {item.examples.map((example) => (
+                    <li key={example}>{example}</li>
+                  ))}
+                </ul>
+                <Link className="packages-card-link" to={item.to}>
+                  {item.ctaLabel}
+                </Link>
               </article>
             ))}
           </div>
         </section>
       )}
       {isHomeSecurity && (
-        <section className="card opportunity-section" aria-labelledby="packages-opportunity-heading">
+        <section className="card opportunity-section" aria-labelledby="packages-situations-heading">
           <div className="packages-context-header">
-            <p>Explore By Concern</p>
-            <h2 id="packages-opportunity-heading">High-Opportunity Smart Property Solutions</h2>
+            <p>Common Homeowner Situations</p>
+            <h2 id="packages-situations-heading">Find the situation that sounds familiar</h2>
+            <span>
+              Each page explains the homeowner problem, the planning approach, and how a tailored system might help reduce uncertainty.
+            </span>
           </div>
           <div className="opportunity-link-grid">
-            {homeSecurityOpportunityLinks.map((item) => (
+            {homeSecuritySituationLinks.map((item) => (
               <Link key={item.to} className="opportunity-link-card" to={item.to}>
                 <span>{item.title}</span>
                 <small>{item.body}</small>
+                <strong>{item.ctaLabel}</strong>
               </Link>
             ))}
+          </div>
+        </section>
+      )}
+      {isHomeSecurity && (
+        <section className="packages-context-panel packages-secondary-panel" aria-labelledby="packages-secondary-heading">
+          <div className="packages-context-header">
+            <p>More Ways We Can Help</p>
+            <h2 id="packages-secondary-heading">Secondary ideas for the fit check</h2>
+            <span>
+              If one of these sounds closer to your property, use Fit Check or Request Estimate so we can talk through whether it belongs in the plan.
+            </span>
+          </div>
+          <div className="packages-secondary-grid">
+            {secondarySolutionIdeas.map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="packages-secondary-actions">
+            <Link className="btn btn-primary" to={discoveryLink}>
+              Start Fit Check
+            </Link>
+            <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+              Request Estimate
+            </Link>
           </div>
         </section>
       )}
