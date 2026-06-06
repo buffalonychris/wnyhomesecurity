@@ -114,6 +114,24 @@ Initiative records group bounded tasks but are not executable task records. Only
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### SOLUTIONS-LANDING-003
+- **Task ID:** SOLUTIONS-LANDING-003
+- **Task Name:** Add Visuals + Complete Solution Category Browse List
+- **Status:** PARTIAL
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Polish the existing nav-linked Solutions landing page at `/packages?vertical=home-security` by adding existing approved visuals to the three premier solution cards and completing the category browse list for customer window-shopping.
+- **Allowed Scope:** Update the existing home-security branch of `src/pages/Packages.tsx`; update scoped Solutions landing page CSS in `src/index.css`; bump visible site version in `src/lib/siteVersion.ts`; preserve existing route structure and navigation; use only existing image files with claim-safe alt text; update this task-register lifecycle entry.
+- **Forbidden Scope:** No new `/solutions` route, route changes, navigation changes, Stripe changes, HubSpot changes, Scheduling/calendar changes, Email/Resend changes, runtime behavior changes, pricing logic changes, image generation, image file changes, individual solution-page changes, unrelated page edits, unrelated CSS changes, hardcoded brand colors outside semantic tokens, unsupported claims, fake proof, fear-based framing, or customer-facing use of `monitoring`/`monitored` terminology.
+- **Target Files:** `docs/system/master-task-register.md`, `src/pages/Packages.tsx`, `src/index.css`, `src/lib/siteVersion.ts`.
+- **Runtime Systems Affected:** None. Public Solutions landing page presentation only.
+- **Documentation Updates Required:** Add/promote SOLUTIONS-LANDING-003 as `ACTIVE` for this run and mark `DONE` only after build passes and manual visual review notes are included.
+- **Validation Required:** `git status`; `git diff --check`; `git diff --stat`; targeted `rg` for required Solutions visual/browse labels and old package/restricted terms in `src` and `docs`; `npm run build`; focused ESLint for `src/pages/Packages.tsx`; manual review of `/packages?vertical=home-security` if browser review is available.
+- **Exit Criteria:** `/packages?vertical=home-security` preserves the SOLUTIONS-LANDING-002 flow; Home Security, Home Automation, and Aging In Place premier cards each use existing visuals with claim-safe alt text; Browse Our Solutions By Category includes Family Awareness, Vacation Homes, Package Protection, Driveway Awareness, Smart Entry, Water Protection, Smart Lighting, Garage Control, Energy Awareness, Senior Safety, Caregiver Awareness, and Daily Activity Awareness; live solution links route to the four existing solution pages; non-live items route only to valid Fit Check/Estimate paths; no protected systems, pricing logic, routes, nav, images, individual solution pages, or unrelated pages are changed; validation passes and any manual-review limitation is documented.
+- **Dependencies:** SOLUTIONS-LANDING-002, DESIGN001 REV01, SOLUTION001 REV02, existing `/packages?vertical=home-security` page, existing four solution detail routes, existing approved image assets, bounded operator prompt approval, and CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01.
+- **Operator Decision Required:** Manual visual review before merge if browser review cannot be completed by Codex.
+- **Partial Completion Notes:** Implemented the existing `/packages?vertical=home-security` Solutions landing page polish with visuals for the three premier cards, the complete requested category browse list, valid live solution links, valid Fit Check routing for planning topics, and visible version bump to `v1.0.118`. Build and focused ESLint passed, and local HTTP checks returned 200 for the target page, four live solution routes, and reused image assets. Manual visual review is still required before merge because the in-app browser surface was unavailable in this session.
+
 ### SOLUTIONS-LANDING-002
 - **Task ID:** SOLUTIONS-LANDING-002
 - **Task Name:** Rebuild Solutions Landing Page As Storefront + Browsing Hub
