@@ -114,6 +114,22 @@ Initiative records group bounded tasks but are not executable task records. Only
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### SOLUTIONS-LANDING-001
+- **Task ID:** SOLUTIONS-LANDING-001
+- **Task Name:** Rework Solutions Landing Page Around Signature Categories
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Rework the existing Solutions landing page rendered at `/packages?vertical=home-security` so it introduces WNYHS through three premier/signature categories before routing visitors into the existing solution detail pages and Fit Check/Estimate paths.
+- **Allowed Scope:** Update the existing home-security branch of `src/pages/Packages.tsx`; update scoped Solutions landing page CSS in `src/index.css`; bump visible site version in `src/lib/siteVersion.ts`; preserve existing route structure and navigation; add/update this task-register lifecycle entry.
+- **Forbidden Scope:** No route changes, navigation changes, Stripe changes, HubSpot changes, Scheduling/calendar changes, Email/Resend changes, runtime behavior changes, pricing changes, image generation, new image files, individual solution-page image replacement, unrelated page edits, unrelated CSS changes, hardcoded brand colors outside semantic tokens, unsupported claims, fake proof, fear-based framing, or destructive cleanup outside this page scope.
+- **Target Files:** `docs/system/master-task-register.md`, `src/pages/Packages.tsx`, `src/index.css`, `src/lib/siteVersion.ts`.
+- **Runtime Systems Affected:** None. Public Solutions landing page presentation only.
+- **Documentation Updates Required:** Add/promote SOLUTIONS-LANDING-001 as `ACTIVE` for this run and mark `DONE` only after validation and manual review requirements are satisfied.
+- **Validation Required:** `git status`; `git diff --check`; `git diff --stat`; targeted `rg` for required Solutions landing labels in `src` and `docs`; `npm run build`; existing lint/typecheck scripts as appropriate; manual review of `/packages?vertical=home-security` for desktop/mobile layout, CTA/link behavior, and no unrelated page drift.
+- **Exit Criteria:** `/packages?vertical=home-security` keeps the existing hero direction and clear Fit Check/Estimate CTAs; the first major cards are Home Security, Home Automation, and Aging In Place; Common Homeowner Situations links to Senior Safety, Water Protection, Family Awareness, and Vacation Homes; secondary/future ideas are lower priority and route only to Fit Check/Estimate where no detail page exists; no protected systems, pricing, routes, nav, images, or unrelated pages are changed; validation passes and any manual-review limitation is documented.
+- **Dependencies:** DESIGN001 REV01, SOLUTION001 REV02, existing `/packages?vertical=home-security` page, existing four solution detail routes, bounded operator prompt approval, and CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01.
+- **Operator Decision Required:** Manual visual review before merge.
 ### IMAGE002-B
 - **Task ID:** IMAGE002-B
 - **Task Name:** Wire Replacement Solution Page Images

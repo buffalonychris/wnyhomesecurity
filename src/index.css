@@ -629,8 +629,14 @@ header.hide-when-print {
 
 .packages-context-header p,
 .packages-context-header h2,
+.packages-context-header span,
 .packages-context-grid h3,
-.packages-context-grid p {
+.packages-context-grid p,
+.packages-signature-card h3,
+.packages-signature-card p,
+.packages-signature-card ul,
+.packages-secondary-grid h3,
+.packages-secondary-grid p {
   margin: 0;
 }
 
@@ -640,6 +646,11 @@ header.hide-when-print {
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.packages-context-header span {
+  color: var(--kaec-muted);
+  max-width: 720px;
 }
 
 .packages-context-grid {
@@ -677,6 +688,99 @@ header.hide-when-print {
 .packages-module-chip {
   padding: 0.35rem 0.6rem;
   font-size: 0.9rem;
+}
+
+.packages-signature-panel {
+  gap: 1.15rem;
+}
+
+.packages-signature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.packages-signature-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.7rem;
+  min-height: 100%;
+  padding: 1.05rem;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--kaec-border) 78%, var(--color-text-primary) 22%);
+  background: color-mix(in srgb, var(--kaec-surface-strong) 70%, var(--kaec-bg) 30%);
+}
+
+.packages-signature-card h3 {
+  font-size: 1.28rem;
+}
+
+.packages-signature-card p,
+.packages-signature-card li,
+.packages-secondary-grid p {
+  color: var(--kaec-muted);
+}
+
+.packages-signature-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0;
+  list-style: none;
+}
+
+.packages-signature-card li {
+  border: 1px solid var(--kaec-border);
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  background: color-mix(in srgb, var(--kaec-bg) 54%, var(--kaec-surface) 46%);
+  font-size: 0.82rem;
+}
+
+.packages-card-link {
+  color: var(--color-text-primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.packages-card-link:hover {
+  color: var(--kaec-accent);
+}
+
+.opportunity-link-card {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.opportunity-link-card strong {
+  color: var(--color-text-primary);
+  font-size: 0.86rem;
+}
+
+.packages-secondary-panel {
+  gap: 1rem;
+  background: color-mix(in srgb, var(--kaec-surface) 58%, var(--kaec-bg) 42%);
+}
+
+.packages-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.packages-secondary-grid article {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.8rem;
+  border-radius: 14px;
+  border: 1px solid var(--kaec-border);
+  background: color-mix(in srgb, var(--kaec-bg) 62%, var(--kaec-surface-strong) 38%);
+}
+
+.packages-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .package-card:hover .package-card-media {
@@ -2625,7 +2729,9 @@ body.modal-open {
 }
 
 @media (max-width: 960px) {
-  .packages-context-grid {
+  .packages-context-grid,
+  .packages-signature-grid,
+  .packages-secondary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2636,7 +2742,9 @@ body.modal-open {
 }
 
 @media (max-width: 640px) {
-  .packages-context-grid {
+  .packages-context-grid,
+  .packages-signature-grid,
+  .packages-secondary-grid {
     grid-template-columns: 1fr;
   }
 
