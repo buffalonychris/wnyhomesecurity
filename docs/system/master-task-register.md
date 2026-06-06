@@ -114,6 +114,23 @@ Initiative records group bounded tasks but are not executable task records. Only
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### SOLUTIONS-LANDING-002
+- **Task ID:** SOLUTIONS-LANDING-002
+- **Task Name:** Rebuild Solutions Landing Page As Storefront + Browsing Hub
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Correct the existing nav-linked Solutions landing page rendered at `/packages?vertical=home-security` so it functions as a storefront and browsing hub for homeowner-focused WNYHS solution families instead of an old package/pricing page.
+- **Allowed Scope:** Update the existing home-security branch of `src/pages/Packages.tsx`; update scoped Solutions landing page CSS in `src/index.css`; bump visible site version in `src/lib/siteVersion.ts`; preserve existing route structure and navigation; use claim-safe awareness terminology required by repository guardrails; add/update this task-register lifecycle entry.
+- **Forbidden Scope:** No new `/solutions` route, route changes, navigation changes, Stripe changes, HubSpot changes, Scheduling/calendar changes, Email/Resend changes, runtime behavior changes, pricing logic changes, image generation, image file changes, individual solution-page changes, unrelated page edits, unrelated CSS changes, hardcoded brand colors outside semantic tokens, unsupported claims, fake proof, fear-based framing, or customer-facing use of `monitoring`/`monitored` terminology.
+- **Target Files:** `docs/system/master-task-register.md`, `src/pages/Packages.tsx`, `src/index.css`, `src/lib/siteVersion.ts`.
+- **Runtime Systems Affected:** None. Public Solutions landing page presentation only.
+- **Documentation Updates Required:** Add/promote SOLUTIONS-LANDING-002 as `ACTIVE` for this run and mark `DONE` only after build passes and manual visual review notes are included.
+- **Validation Required:** `git status`; `git diff --check`; `git diff --stat`; targeted `rg` for required Solutions storefront labels and old package terms in `src` and `docs`; `npm run build`; focused ESLint for `src/pages/Packages.tsx`; manual review of `/packages?vertical=home-security` if browser review is available.
+- **Exit Criteria:** `/packages?vertical=home-security` keeps the existing hero direction and clear Fit Check/Estimate CTAs; the first major content section is exactly three premium cards for Home Security, Home Automation, and Aging In Place; old Essential Awareness/Balanced Home Coverage/Expanded Property Coverage/Bronze/Silver/Gold/pricing-card framing is removed from the home-security landing page; Browse Our Solutions By Category appears below the premier cards with Home Security, Home Automation, and Aging In Place categories; live links route to Senior Safety, Water Protection, Family Awareness, and Vacation Homes; final CTA routes to Fit Check and Estimate; no protected systems, pricing logic, routes, nav, images, or unrelated pages are changed; validation passes and any manual-review limitation is documented.
+- **Dependencies:** DESIGN001 REV01, SOLUTION001 REV02, existing `/packages?vertical=home-security` page, existing four solution detail routes, bounded operator prompt approval, and CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01.
+- **Operator Decision Required:** Manual visual review before merge if browser review cannot be completed by Codex.
+
 ### SOLUTIONS-LANDING-001
 - **Task ID:** SOLUTIONS-LANDING-001
 - **Task Name:** Rework Solutions Landing Page Around Signature Categories
