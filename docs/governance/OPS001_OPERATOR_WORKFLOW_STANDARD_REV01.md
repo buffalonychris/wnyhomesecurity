@@ -80,7 +80,32 @@ A valid task must include:
 - validation required
 - exit criteria
 
-### 4. Codex Work Order
+### 4. Mandatory Local Repo Refresh Preflight
+
+Before every new Codex work order, the operator must refresh the local repository state and start from a clean task branch.
+
+The operator must:
+
+1. Return to `main`.
+2. Pull the latest `origin/main`.
+3. Confirm the working tree is clean.
+4. Create a fresh task branch.
+5. Only then run Codex.
+
+Required command pattern:
+
+```powershell
+cd C:\dev\wnyhomesecurity
+git checkout main
+git pull origin main
+git status
+git checkout -b <task-id-or-short-task-name>
+codex
+```
+
+`git status` must report no pending local changes before the fresh branch is created. A local BAT helper may be used to run these steps, but this workflow rule is authoritative if the helper behavior ever differs.
+
+### 5. Codex Work Order
 
 ChatGPT generates one bounded Codex prompt.
 
@@ -96,7 +121,7 @@ The prompt must include:
 - required output
 - self-check
 
-### 5. Local Codex Execution
+### 6. Local Codex Execution
 
 Operator runs:
 
@@ -107,7 +132,7 @@ codex
 
 Operator pastes the bounded work order into Codex.
 
-### 6. Codex Summary Review
+### 7. Codex Summary Review
 
 Operator pastes Codex summary back into ChatGPT.
 
@@ -120,7 +145,7 @@ ChatGPT reviews summary against:
 - protected systems
 - version bump requirements if applicable
 
-### 7. GitHub Workflow
+### 8. GitHub Workflow
 
 ChatGPT provides exact PowerShell/GitHub next steps.
 
@@ -128,7 +153,7 @@ Operator reviews the PR in GitHub Web UI.
 
 Operator merges only after scope and validation are acceptable.
 
-### 8. Cloudflare Deployment Review
+### 9. Cloudflare Deployment Review
 
 Operator reviews Cloudflare deployment.
 
@@ -139,7 +164,7 @@ For customer-facing changes, confirm:
 - protected routes remain intact
 - runtime-sensitive flows still behave as expected
 
-### 9. Closeout
+### 10. Closeout
 
 After deployment validation, close or update the task status.
 
