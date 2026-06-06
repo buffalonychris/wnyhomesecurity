@@ -50,10 +50,18 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 ### `/docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`
 - **File path:** `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`
 - **Purpose / likely role:** First formal WNYHS solution-page standard defining required structure, visual hierarchy, typography, card rules, CTA hierarchy, copy guardrails, image posture, and internal linking standards for solution pages.
-- **Authority level:** **Solution-page governance standard / implementation standard for SOLUTION001-A**
+- **Authority level:** **Historical solution-page governance standard / implementation standard for SOLUTION001-A**
 - **Customer-facing:** No.
 - **Implementation authority:** Yes, only for bounded SOLUTION001-A updates to the four existing opportunity solution pages named in the standard and task register.
-- **Notes:** Not yet locked; reserved SOLUTION001-B may lock the standard only after visual approval. Does not authorize Homepage, Packages, Support, Our Work, QR Landing, protected runtime, HubSpot, Stripe, Scheduling, Email, environment, pricing, global navigation, or semantic-token changes.
+- **Notes:** Superseded by REV02 for future solution image governance. Does not authorize Homepage, Packages, Support, Our Work, QR Landing, protected runtime, HubSpot, Stripe, Scheduling, Email, environment, pricing, global navigation, or semantic-token changes.
+
+### `/docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md`
+- **File path:** `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md`
+- **Purpose / likely role:** Current WNYHS solution-page standard defining structure, visual hierarchy, typography, card rules, CTA hierarchy, copy guardrails, internal linking standards, and the approved two-image solution system for `solution-hero-image` and `solution-sample-image`.
+- **Authority level:** **Current solution-page governance standard / image-system standard for SOLUTION001-B**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. It governs future bounded solution-page image and page updates only when a separate active implementation task authorizes source, CSS, route, or image-file work.
+- **Notes:** Added by SOLUTION001-B as docs-only governance. Defines hero images as emotional/lifestyle outcome imagery and sample images as scenario + relevant hardware + focused awareness-panel support. Does not authorize image generation, image wiring, Homepage, Packages, Support, Our Work, QR Landing, protected runtime, HubSpot, Stripe, Scheduling, Email, environment, pricing, business-rule, global navigation, semantic-token, or implementation changes.
 
 
 ## `docs/design-system/`

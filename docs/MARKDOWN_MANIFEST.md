@@ -24,6 +24,8 @@ CONTENT001 addendum: `docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_
 
 SOLUTION001 addendum: `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is the solution-page standard for SOLUTION001-A updates to the four existing opportunity solution pages and does not authorize protected-system, global navigation, pricing, semantic-token, or unrelated page changes.
 
+SOLUTION001-B addendum: `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is the current solution-page governance standard for the approved two-image system, including `solution-hero-image`, `solution-sample-image`, awareness-panel language, image relationship, claims, naming, and storage rules. It does not authorize image generation, source/CSS/runtime implementation, protected-system changes, global navigation, pricing, semantic-token, or unrelated page changes by itself.
+
 DESIGN001 addendum: `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a docs-only homepage-derived visual design system standard for review and does not authorize implementation, public page changes, CSS changes, semantic token changes, protected-system changes, or a visible site version bump.
 
 ## 1. Purpose

@@ -93,9 +93,9 @@ Initiative records group bounded tasks but are not executable task records. Only
 - **Initiative Name:** WNYHS Solution Page Standardization
 - **Status:** ACTIVE
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Establish and apply a repeatable WNYHS solution-page system for opportunity pages using `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`.
-- **Current Authorized Task:** SOLUTION001-A only.
-- **Reserved Future Task:** SOLUTION001-B is reserved for locking the standard after operator visual approval and is not created or executable in SOLUTION001-A.
+- **Purpose:** Establish and apply a repeatable WNYHS solution-page system for opportunity pages using the current approved standard in `docs/solution-system/`.
+- **Current Authorized Task:** None. SOLUTION001-A and SOLUTION001-B are DONE.
+- **Reserved Future Task:** Future production image generation or replacement-image wiring requires a separate bounded task and operator approval.
 - **Protected Boundaries:** No protected runtime systems, global navigation, unrelated public pages, pricing/business rules, semantic token definitions, or unsupported claims.
 
 ### DESIGN001
@@ -113,6 +113,24 @@ Initiative records group bounded tasks but are not executable task records. Only
 ## Active Tasks (Execution Driver)
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+
+### SOLUTION001-B
+- **Task ID:** SOLUTION001-B
+- **Task Name:** Add Solution Image Standard To Solution Page Governance
+- **Status:** DONE
+- **Category:** GOV / QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Update the WNYHS Solution Page Standard to formally include the approved solution image system for `solution-hero-image` and `solution-sample-image`.
+- **Allowed Scope:** Documentation-only governance update; create `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md` from the existing REV01 standard; define hero image, sample image, awareness-panel language, image relationship, claims guardrails, naming, and storage standards; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register.
+- **Forbidden Scope:** No source code changes, React/TSX changes, CSS changes, image generation, image file changes, route changes, navigation changes, runtime contract changes, Stripe changes, HubSpot changes, Scheduling/calendar changes, Email/Resend changes, environment variable changes, secrets, pricing/business-rule changes, semantic-token changes, unsupported claims, fake customer proof, or implementation work.
+- **Target Files:** `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add/promote SOLUTION001-B as `ACTIVE` for this run; create/register REV02; update catalog and manifest; mark SOLUTION001-B `DONE` only after successful validation.
+- **Validation Required:** `git diff --check`; targeted `rg` checks for `SOLUTION001`, `solution-hero-image`, `solution-sample-image`, and `Solution Image System Standard`; protected-system/source drift check; `npm run build` if required by repo convention.
+- **Exit Criteria:** REV02 exists or the standard is clearly revised to REV02; the image standard clearly separates hero and sample image purposes; claims guardrails and naming/storage rules are documented; catalog/manifest/register are updated; only docs/index files changed; no protected systems, source, CSS, route, image, pricing, or business-rule files changed; validation passes or unrelated baseline failures are documented.
+- **Dependencies:** SOLUTION001-A completion, IMAGE001-A completion or approved image direction, current bounded operator prompt, and CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 governance allowance for bounded documentation tasks.
+- **Operator Decision Required:** Separate follow-up approval is required before generating replacement production images or wiring any new image assets into the site.
+- **Completion Notes:** Added SOLUTION001-B to the Active Tasks section for this bounded run and marked it `DONE` after successful validation. Created and registered `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md` as the current solution-page standard. REV02 adds the approved image system for `solution-hero-image` and `solution-sample-image`, including hero outcome/lifestyle rules, sample scenario + relevant hardware + awareness-panel rules, plain-language awareness-panel examples, image relationship rules, claims guardrails, illustrative-only/alt-text requirements, and naming/storage guidance for `/public/images/home-security/solutions`. Updated `docs/DOCUMENT_CATALOG.md` and `docs/MARKDOWN_MANIFEST.md`. No source, CSS, image, route, runtime, Stripe, HubSpot, Scheduling, Email/Resend, environment, pricing, or business-rule files were modified. `git diff --check`, targeted traceability `rg`, protected-system/source drift checks, and `npm run build` passed.
 
 ### IMAGE001-A
 - **Task ID:** IMAGE001-A
