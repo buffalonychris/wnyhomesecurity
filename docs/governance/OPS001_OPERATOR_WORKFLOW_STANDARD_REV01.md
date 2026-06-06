@@ -7,6 +7,16 @@ Target location: `/docs/ops/OPS001_OPERATOR_WORKFLOW_STANDARD_REV01.md` or `/doc
 
 Define the standard operating workflow for WNY Home Security execution using ChatGPT, local Codex CLI, GitHub Web UI, and Cloudflare Web UI.
 
+## Relationship to Codex Work Order Standard
+
+OPS001 governs the operator workflow: idea intake, promotion decision, task-register dispatch, local repo preflight, Codex execution, summary review, GitHub review, deployment review, and closeout.
+
+`/docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md` governs Codex prompt and work-order structure for all future Codex tasks.
+
+Future Codex tasks must follow the Codex Work Order Standard for work-order sections, scope boundaries, validation instructions, expected output, protected-system confirmation, branch rules, and PR rules.
+
+OPS001 should reference the Codex Work Order Standard for Codex prompt and work-order requirements rather than duplicating that standard here.
+
 ## Local Repo Locations
 
 Local parent directory:
