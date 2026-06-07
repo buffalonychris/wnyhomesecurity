@@ -431,9 +431,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 ### `/docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
 - **File path:** `docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
 - **Purpose / likely role:** Home Security funnel/page structure reference retained for funnel intent lineage.
-- **Authority level:** **CONFLICTING / NEEDS RECONCILIATION**
-- **Lineage status:** Historical Step101 lineage; preserved body includes legacy active/controlling UI and funnel wording that conflicts with current single-context governance.
-- **Notes:** Use only as supporting reference when explicitly named by the current operational context or bounded work order; reconcile legacy status wording before relying on it operationally.
+- **Authority level:** **SUPPORTING REFERENCE**
+- **Lineage status:** Historical Step101 funnel/page lineage reconciled by GOV005 as non-controlling reference material.
+- **Notes:** Use only as supporting reference when explicitly named by the current operational context or bounded work order; it does not authorize UI, funnel, route, visual-standard, or copy-rule changes by itself.
 
 ### `/docs/steps/step_103_full_funnel_validation_rev_01.md`
 - **File path:** `docs/steps/step_103_full_funnel_validation_rev_01.md`
