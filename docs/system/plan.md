@@ -19,7 +19,7 @@ Execution authority is determined by both documents together:
 - `step-current.md`: defines the single current operational context
 - `master-task-register.md`: defines the operational execution queue (Active Tasks)
 
-Codex must stop when requested work is not present in Active Tasks or falls outside the current context.
+Codex must stop when requested work falls outside the current context or is neither present in Active Tasks nor explicitly created as a bounded prompt/work order permitted by higher-authority governance.
 
 ---
 
@@ -27,7 +27,7 @@ Codex must stop when requested work is not present in Active Tasks or falls outs
 
 Preferred order:
 
-1. Version bump for deploy visibility
+1. Version bump for deploy visibility when the task affects the deployed site
 2. Surgical route/page cleanup
 3. Build verification
 4. Protected-flow confirmation
@@ -62,7 +62,7 @@ Do not delete suspicious routes until a removal Step or explicit prompt authoriz
 
 ## 5. Build Requirements
 
-Run:
+For implementation tasks, run:
 
 ```bash
 npm run build
@@ -75,6 +75,8 @@ npm run lint
 npm run typecheck
 npm run typecheck:api
 ```
+
+For docs-only governance tasks, follow the task-specific work order validation. Do not run broad build checks unless the work order or repo tooling explicitly requires them.
 
 If a script fails due to pre-existing unrelated issues, state that clearly and confirm whether changed files introduced new errors.
 
@@ -117,8 +119,9 @@ Execution precedence for planning/implementation decisions:
 4. `/docs/system/plan.md`
 5. `/docs/system/step-current.md`
 6. `/docs/system/master-task-register.md`
-7. active bounded task definition
-8. locked specs / runtime contracts
-9. historical Step docs
-10. project-source artifacts / visual references
-11. chat-derived context after promotion into repo docs
+7. active bounded task definition or task-specific Codex work order
+8. locked standards and specs
+9. runtime contracts
+10. implementation code and project-source artifacts
+11. historical Step docs as lineage/reference unless promoted
+12. chat-derived context after promotion into repo docs or the bounded work order

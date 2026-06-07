@@ -32,7 +32,7 @@ Use this template for any new task entry intended for `/docs/system/master-task-
 
 ## Execution Guardrails (Required)
 
-- Follow controlling Step from `/docs/system/step-current.md`.
+- Follow the current operational context from `/docs/system/step-current.md`.
 - Follow root `AGENTS.md` and `/docs/system/guardrails.md`.
 - Make minimal, surgical changes only.
 - Do **NOT** modify HubSpot schema/pipeline.
@@ -64,4 +64,4 @@ Return:
 - Files modified
 - Confirmation HubSpot untouched (unless explicitly authorized)
 - Confirmation Stripe untouched (unless explicitly authorized)
-- Build result
+- Build result, or explicit docs-only skip note when the work order says not to run build

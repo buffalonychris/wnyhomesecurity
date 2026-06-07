@@ -88,9 +88,10 @@ Lifecycle guidance:
 ## Active Task Gating Rule (Execution Driver)
 
 - Codex may execute only tasks with `Status: ACTIVE` in the **Active Tasks** section.
+- Codex may also execute an explicitly bounded prompt-created work order when higher-authority governance permits it and the work order states the target files, forbidden scope, validation, and expected output.
 - READY tasks are not executable until promoted to ACTIVE.
 - BACKLOG, BLOCKED, DONE, and ARCHIVED are non-executable states.
-- Multi-active execution is allowed only when each ACTIVE task is explicitly listed and does not conflict with the single controlling context in `/docs/system/step-current.md`.
+- The register may contain more than one `ACTIVE` task record, but Codex still receives and executes one bounded task or work order at a time.
 - No ACTIVE task may silently expand scope beyond its declared Allowed Scope.
 
 ---
@@ -118,7 +119,7 @@ Lifecycle guidance:
 
 Codex must stop when:
 
-- requested work is not an ACTIVE task,
+- requested work is neither an ACTIVE task nor an explicitly bounded prompt-created work order permitted by higher-authority governance,
 - task schema is incomplete for an actionable task,
 - requested work falls outside the controlling context,
 - requested work violates guardrails.

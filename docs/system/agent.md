@@ -18,7 +18,7 @@ Before implementation, the agent must:
    - `/docs/system/step-current.md`
 4. Read the current operational context defined in `step-current.md`
 5. Read Active Tasks in `/docs/system/master-task-register.md`
-6. Read controlling Step and lineage references named by `step-current.md`
+6. Read the current-context authority and any lineage references named by `step-current.md`
 
 If the repo is wrong, stop.
 
@@ -34,7 +34,7 @@ Historical Step docs are lineage/reference unless explicitly promoted into `step
 
 A task may proceed only when:
 
-- the task is listed under **Active Tasks** in `/docs/system/master-task-register.md`, and
+- the task is listed under **Active Tasks** in `/docs/system/master-task-register.md` or is an explicitly bounded prompt-created work order permitted by higher-authority governance, and
 - the task is authorized by the current operational context, and
 - the task does not violate guardrails.
 
@@ -118,7 +118,7 @@ When Step201 is active:
 Implementation responses must include:
 
 1. Confirmed repo path
-2. Current operational context + controlling Step
+2. Current operational context + current-context authority
 3. Files changed
 4. Summary of changes
 5. Tests/build result
