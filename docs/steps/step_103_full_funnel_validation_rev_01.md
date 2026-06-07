@@ -4,6 +4,7 @@ Supersedes: Step102 — WNYHS Replication-Readiness Hardening — REV01
 Superseded By: None
 Current Use: Reference for completed validation lineage and regression memory.
 Do Not Use For: Do not use as active controller unless explicitly elevated in step-current.md.
+Reconciliation Note: This document is a completed validation baseline. Any preserved references to prior or parallel Steps are historical and do not create current execution authority.
 
 ---
 
@@ -104,7 +105,7 @@ Step103 is complete only when:
 - Step103 is the current controlling Step for full-funnel validation and direct blocker resolution.
 - Step102 remains a completed hardening reference and must be preserved.
 - Step101 remains the canonical funnel specification reference.
-- Step201 remains active only within its original isolated scope and must not conflict with Step103.
+- Step201 remains historical/supporting reference unless the current operational context or an active bounded task/work order explicitly activates that email scope.
 
 ---
 

@@ -1,16 +1,17 @@
-Status: CURRENT CONTEXT
-Authority Role: Controlling Step (when selected by step-current.md)
+Status: CONFLICTING / NEEDS RECONCILIATION
+Authority Role: Historical QRLanding reference with legacy controlling-language conflict
 Supersedes: None
 Superseded By: None
-Current Use: Active controller only when explicitly named in /docs/system/step-current.md.
-Do Not Use For: Do not use as implicit authority when step-current names a different controlling Step.
+Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly references this Step102 QRLanding scope.
+Do Not Use For: Do not use as implicit authority when `docs/system/step-current.md` names a different current operational context.
+Reconciliation Note: The preserved body includes legacy "ACTIVE" and "Controlling Implementation Step" wording. Current repo governance treats this document as non-controlling lineage/reference unless explicitly promoted by `docs/system/step-current.md` or a bounded work order.
 
 ---
 
 # Step102 — WNYHS ScanCode / QRLanding Funnel Spec — REV01
 
-Status: ACTIVE
-Authority Level: Controlling Implementation Step
+Legacy Status (historical): ACTIVE
+Legacy Authority Level (historical): Controlling Implementation Step
 Scope Type: Additive
 
 ---

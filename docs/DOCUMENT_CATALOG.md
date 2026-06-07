@@ -414,31 +414,31 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
 - **File path:** `docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
-- **Purpose / likely role:** QR acquisition funnel implementation Step102 artifact.
-- **Authority level:** **Historical/supporting Step unless selected in step-current**
-- **Lineage status:** Historical Step102 lineage; not the current operational context unless explicitly promoted in `step-current.md`.
-- **Notes:** Only controlling when explicitly named by `/docs/system/step-current.md`.
+- **Purpose / likely role:** QR acquisition funnel implementation Step102 artifact retained for historical lineage and future reference.
+- **Authority level:** **CONFLICTING / NEEDS RECONCILIATION**
+- **Lineage status:** Historical Step102 lineage; preserved body includes legacy `ACTIVE` / controlling implementation language that conflicts with current single-context governance.
+- **Notes:** Non-controlling unless explicitly promoted by `/docs/system/step-current.md` or a bounded active task/work order; reconcile legacy status wording before relying on it operationally.
 
 ### `/docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
 - **File path:** `docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
-- **Purpose / likely role:** Canonical funnel/page structure reference.
-- **Authority level:** **SUPPORTING REFERENCE**
-- **Lineage status:** Historical baseline + ongoing reference for funnel intent.
-- **Notes:** Not a simultaneous controller with current context.
+- **Purpose / likely role:** Home Security funnel/page structure reference retained for funnel intent lineage.
+- **Authority level:** **CONFLICTING / NEEDS RECONCILIATION**
+- **Lineage status:** Historical Step101 lineage; preserved body includes legacy active/controlling UI and funnel wording that conflicts with current single-context governance.
+- **Notes:** Use only as supporting reference when explicitly named by the current operational context or bounded work order; reconcile legacy status wording before relying on it operationally.
 
 ### `/docs/steps/step_103_full_funnel_validation_rev_01.md`
 - **File path:** `docs/steps/step_103_full_funnel_validation_rev_01.md`
 - **Purpose / likely role:** Full-funnel validation baseline and findings snapshot.
 - **Authority level:** **HISTORICAL BASELINE**
-- **Lineage status:** Completed validation lineage; regression reference.
-- **Notes:** Non-controlling unless explicitly elevated in `step-current.md`.
+- **Lineage status:** Completed validation lineage; regression reference. Preserved prior-Step references are historical, not current execution authority.
+- **Notes:** Non-controlling unless explicitly elevated by `step-current.md` or a bounded active task/work order.
 
 ### `/docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`
 - **File path:** `docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`
 - **Purpose / likely role:** Email architecture Step for isolated Resend scope.
-- **Authority level:** **SUPPORTING REFERENCE**
-- **Lineage status:** Isolated Step lineage, not active unless explicitly activated.
-- **Notes:** Cannot silently override current non-email controlling context.
+- **Authority level:** **CONFLICTING / NEEDS RECONCILIATION**
+- **Lineage status:** Historical Step201 lineage; preserved body includes legacy active/controlling email wording that conflicts with current single-context governance.
+- **Notes:** Use only as supporting email reference when explicitly named by the current operational context or bounded work order; reconcile legacy status wording before relying on it operationally.
 
 ### `/docs/steps/placeholder.txt`
 - **File path:** `docs/steps/placeholder.txt`

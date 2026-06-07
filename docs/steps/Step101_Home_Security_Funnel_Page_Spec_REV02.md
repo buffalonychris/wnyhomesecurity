@@ -1,16 +1,17 @@
-Status: SUPPORTING REFERENCE
-Authority Role: Canonical funnel/reference specification
+Status: CONFLICTING / NEEDS RECONCILIATION
+Authority Role: Historical funnel/reference specification with legacy controlling-language conflict
 Supersedes: Step101 REV01
 Superseded By: None
-Current Use: Use for funnel/page intent reference under current context.
-Do Not Use For: Do not treat as simultaneous controlling authority.
+Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly references Step101.
+Do Not Use For: Do not treat as simultaneous controlling authority or implementation permission by itself.
+Reconciliation Note: The preserved body includes legacy "Active / Controlling" wording. Current repo governance treats this document as non-controlling lineage/reference unless explicitly promoted by `docs/system/step-current.md` or a bounded work order.
 
 ---
 
 # Step101 — Home Security Funnel + Page Spec (REV02)
 
 Vertical: Residential — Home Security
-Status: Active / Controlling for UI, funnel, page structure, navigation, and visual cleanup
+Legacy Status (historical): Active / Controlling for UI, funnel, page structure, navigation, and visual cleanup
 
 ---
 

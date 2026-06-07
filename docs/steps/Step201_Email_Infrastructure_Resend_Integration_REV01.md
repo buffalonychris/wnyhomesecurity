@@ -1,15 +1,16 @@
-Status: SUPPORTING REFERENCE
-Authority Role: Isolated scope reference Step
+Status: CONFLICTING / NEEDS RECONCILIATION
+Authority Role: Historical email reference with legacy controlling-language conflict
 Supersedes: None
 Superseded By: None
-Current Use: Use only when current context explicitly activates Step201 scope.
-Do Not Use For: Do not apply outside explicit Step201 activation.
+Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly activates Step201 email scope.
+Do Not Use For: Do not apply outside explicit current-context or bounded-work-order activation.
+Reconciliation Note: The preserved body includes legacy "Active / Controlling" wording. Current repo governance treats this document as non-controlling lineage/reference unless explicitly promoted by `docs/system/step-current.md` or a bounded work order.
 
 ---
 
 # Step201 — Email Infrastructure + Resend Integration (REV01)
 
-Status: Active / Controlling for outbound email, Resend, server email endpoints, and audit-copy behavior
+Legacy Status (historical): Active / Controlling for outbound email, Resend, server email endpoints, and audit-copy behavior
 
 ---
 
