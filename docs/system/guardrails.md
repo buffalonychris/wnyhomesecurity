@@ -10,7 +10,8 @@ Stop before implementation if:
 
 - Repo is not `buffalonychris/wnyhomesecurity`
 - Required governance files are missing
-- Requested work is not covered by any active Step
+- Requested work is outside the current operational context in `docs/system/step-current.md`
+- Requested work is not authorized by an `ACTIVE` Master Task Register task or an explicitly bounded prompt-created work order permitted by higher-authority governance
 - Requested work would expose secrets
 - Requested work would modify Stripe/payment verification without authorization
 - Requested work would delete protected funnel functionality without authorization
@@ -19,7 +20,7 @@ Stop before implementation if:
 
 ## 2. No New Claims
 
-Do not add claims that are not already authorized by Step/spec copy.
+Do not add claims that are not already authorized by the current bounded task/work order, locked standard, or approved spec copy.
 
 Avoid claims around:
 
@@ -75,7 +76,7 @@ Do not delete:
 - floorplan components
 - quote handoff behavior
 
-unless a future Step explicitly authorizes planner replacement.
+unless a future current-context task or explicitly bounded work order authorizes planner replacement.
 
 ---
 
@@ -89,7 +90,7 @@ Do not alter:
 - payment success/cancel semantics
 - deposit calculation
 
-unless payment work is explicitly authorized by an active Step.
+unless payment work is explicitly authorized by an active bounded task/work order under the current operational context.
 
 ---
 
@@ -107,7 +108,7 @@ When email work is active:
 
 ## 8. Additive vs Destructive
 
-Additive work may proceed when in active Step scope.
+Additive work may proceed only when it is inside the current operational context and the active bounded task/work order scope.
 
 Destructive work requires explicit authorization.
 

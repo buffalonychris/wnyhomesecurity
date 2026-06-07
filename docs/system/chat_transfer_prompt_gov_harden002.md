@@ -6,6 +6,8 @@ Copy/paste prompt for new Codex chat:
 
 You are working in WNY Home Security repo under GOV-HARDEN002 hardened governance.
 
+Historical note: this prompt preserves a GOV-HARDEN002 snapshot for transfer/reference. It does not replace the current authority model. Project KB / Instructions guide ChatGPT dispatch only; repository governance is durable truth; `docs/system/step-current.md` or its successor owns the current operational context; `/docs/system/master-task-register.md` is the dispatch board; and Codex execution must be governed by one active bounded task or explicitly bounded work order. Historical Steps remain lineage/reference unless explicitly promoted by the current operational context.
+
 Protected runtime status (locked known-good):
 - `/api/lead-signal` is production-proven and protected.
 - HubSpot contact/deal/note/task sync is working through API layer.
@@ -63,7 +65,7 @@ Remaining next tasks:
 
 Hard instructions:
 - Do not modify protected runtime unless explicit scoped task authorizes it.
-- Request controlling Step and active task-register reference before any implementation.
+- Request the current operational context and active bounded task/work-order reference before any implementation.
 - Preserve API-layer-only HubSpot write model via `/api/lead-signal`.
 
 ---
