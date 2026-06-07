@@ -231,6 +231,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **QA / validation**
 - **Notes:** Complements template and build/test expectations.
 
+## `docs/governance/`
+
+### `/docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
+- **File path:** `docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
+- **Purpose / likely role:** Governance-only reconciliation task plan sequencing authority-chain, task-dispatch, operator-workflow, document-classification, conflicting-Step, runtime-ownership, Project KB, and implementation-resume tasks.
+- **Authority level:** **Governance planning / reconciliation sequence**
+- **Implementation authority:** No.
+- **Notes:** Includes GOV005, GOV006, and GOV007 plans for Step101, QR Step102, and Step201 documents classified as `CONFLICTING / NEEDS RECONCILIATION`; does not authorize Step doc rewrites, runtime changes, code changes, task-register updates, or protected-system work by itself.
+
 
 ## `docs/runtime/`
 
