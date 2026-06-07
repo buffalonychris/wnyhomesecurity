@@ -2,7 +2,7 @@
 
 Status: Active  
 Current Operational Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Controlling Step: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Development Execution Unblock — REV01
+Current Context Authority: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Development Execution Unblock — REV01
 
 ---
 
@@ -86,7 +86,7 @@ Every actionable task record must include:
 
 ## Initiative Records (Non-Executable)
 
-Initiative records group bounded tasks but are not executable task records. Only task records promoted to `ACTIVE` in Active Tasks may be executed.
+Initiative records group bounded tasks but are not executable task records. Codex may execute only task records promoted to `ACTIVE` in Active Tasks or explicitly bounded prompt-created work orders permitted by higher-authority governance.
 
 ### SOLUTION001
 - **Initiative ID:** SOLUTION001
@@ -112,7 +112,7 @@ Initiative records group bounded tasks but are not executable task records. Only
 
 ## Active Tasks (Execution Driver)
 
-Only tasks in this section with `Status: ACTIVE` are executable by Codex.
+This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
 ### SOLUTIONS-LANDING-003
 - **Task ID:** SOLUTIONS-LANDING-003
@@ -464,7 +464,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Reconcile governance precedence to a single current-context + Master Task Register execution model and remove multi-active-Step ambiguity.
+- **Purpose:** Reconcile governance precedence to a single current-context + Master Task Register execution model and remove parallel-Step ambiguity.
 - **Allowed Scope:**
   - docs-only governance reconciliation in `/docs/system/` and `/docs/DOCUMENT_CATALOG.md`
   - authority hierarchy clarification
@@ -478,8 +478,8 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
   - no deletion of historical docs
 - **Validation Required:**
   - `git diff -- docs/system docs/DOCUMENT_CATALOG.md docs/codex`
-  - `rg -n "active step|active Step|controlling step|controlling Step|multi-active|multiple active|Step101|Step102|Step201|current operational context|Master Task Register|authority hierarchy|precedence" docs/system docs/DOCUMENT_CATALOG.md docs/codex`
-  - `rg -n "Vercel|vercel" docs`
+  - `rg -n "current operational context|Master Task Register|authority hierarchy|precedence|Step101|Step102|Step201" docs/system docs/DOCUMENT_CATALOG.md docs/codex`
+  - `rg -n "Cloudflare|deployment" docs/system docs/DOCUMENT_CATALOG.md docs/codex`
 - **Exit Criteria:**
   - authority hierarchy is explicit and unambiguous
   - `step-current.md` is explicitly single-current-context authority
@@ -2549,7 +2549,7 @@ No ARCHIVED tasks are currently recorded.
 
 - A task may be promoted to **ACTIVE** only when authorized by the current operational context in `/docs/system/step-current.md`.
 - A promoted task must include the required task schema defined in `/docs/codex/CODEX_TASK_REGISTER_RULES.md`.
-- If scope is unclear or outside the current context/controlling Step, stop and request a context revision before promotion.
+- If scope is unclear or outside the current operational context, stop and request a context revision before promotion.
 
 ---
 

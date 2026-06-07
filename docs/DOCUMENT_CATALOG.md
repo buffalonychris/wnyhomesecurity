@@ -161,9 +161,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/system/project.md`
 - **File path:** `docs/system/project.md`
-- **Purpose / likely role:** Top-level project authority and policy hierarchy.
+- **Purpose / likely role:** Top-level repository authority and practical precedence hierarchy for Codex execution.
 - **Authority level:** **System governance**
-- **Notes:** Explicitly authoritative per root instructions.
+- **Notes:** Defines Project KB as ChatGPT control layer only, repository docs as durable truth, current operational context, Master Task Register dispatch, bounded work-order authority, locked standards/specs, runtime contracts, implementation code, and historical Step lineage.
 
 ### `/docs/system/agent.md`
 - **File path:** `docs/system/agent.md`
@@ -185,7 +185,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/system/step-current.md`
 - **File path:** `docs/system/step-current.md`
-- **Purpose / likely role:** Current operational context document naming the single controlling Step and preserved Step lineage.
+- **Purpose / likely role:** Current operational context document naming the single current-context authority and preserved Step lineage.
 - **Authority level:** **System governance**
 - **Notes:** Single current operational context authority; historical Steps are lineage/reference only unless promoted here; always check before execution.
 
@@ -213,9 +213,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Required review/load document for future Codex tasks; does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
 
+### `/docs/codex/CODEX_TASK_REGISTER_RULES.md`
+- **File path:** `docs/codex/CODEX_TASK_REGISTER_RULES.md`
+- **Purpose / likely role:** Codex task-register execution rules defining the Master Task Register as dispatch board, task schema, status lifecycle, active-task gating, prompt-created work-order allowance, and stop discipline.
+- **Authority level:** **Codex workflow / task dispatch governance**
+- **Notes:** Works under `/docs/system/project.md`, `/docs/system/step-current.md`, and `/docs/system/master-task-register.md`; does not authorize runtime, UI, route, HubSpot, Stripe, scheduling, or implementation changes by itself.
+
 ### `/docs/codex/CODEX_TASK_TEMPLATE.md`
 - **File path:** `docs/codex/CODEX_TASK_TEMPLATE.md`
-- **Purpose / likely role:** Required Codex run template including version bump, validation, and output format.
+- **Purpose / likely role:** Codex task-entry template aligned to current operational context, protected-system guardrails, validation, and output format.
 - **Authority level:** **Codex workflow**
 - **Notes:** Operationally required by current task invocation.
 
@@ -403,14 +409,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **File path:** `docs/steps/step_102_wnyhs_replication_readiness_hardening_rev_01.md`
 - **Purpose / likely role:** Original Step102 hardening context retained for historical traceability.
 - **Authority level:** **ARCHIVED / SUPERSEDED**
-- **Lineage status:** Superseded by QRLanding Step102 for active Step102 naming.
+- **Lineage status:** Superseded by QRLanding Step102 for historical Step102 naming.
 - **Notes:** Must not be treated as controlling context.
 
 ### `/docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
 - **File path:** `docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
 - **Purpose / likely role:** QR acquisition funnel implementation Step102 artifact.
-- **Authority level:** **CURRENT CONTEXT when selected in step-current**
-- **Lineage status:** Current controlling Step102 under CTX-STEP102-QRLANDING-REV01.
+- **Authority level:** **Historical/supporting Step unless selected in step-current**
+- **Lineage status:** Historical Step102 lineage; not the current operational context unless explicitly promoted in `step-current.md`.
 - **Notes:** Only controlling when explicitly named by `/docs/system/step-current.md`.
 
 ### `/docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`

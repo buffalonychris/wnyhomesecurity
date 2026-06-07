@@ -10,17 +10,21 @@ Repository: buffalonychris/wnyhomesecurity
 
 When working in this repository, follow this authority chain:
 
-1. `/docs/system/project.md`
-2. `/docs/system/guardrails.md`
-3. `/docs/system/agent.md`
-4. `/docs/system/plan.md`
-5. `/docs/system/step-current.md`
-6. `/docs/system/master-task-register.md`
-7. Active bounded task definition (register task or explicitly bounded prompt task)
-8. Locked specs / runtime contracts (`/docs/specs/`, `/docs/runtime/`, locked CRM contracts)
-9. Historical Step docs (lineage/reference only unless promoted in `step-current.md`)
-10. Project-source artifacts / visual references
-11. Chat-derived context only after promotion into repository docs
+1. ChatGPT Project KB / Project Instructions, as the ChatGPT control layer only
+2. Repository system governance (`/docs/system/project.md`, `/docs/system/guardrails.md`, `/docs/system/agent.md`, `/docs/system/plan.md`)
+3. Current operational context (`/docs/system/step-current.md`)
+4. Master Task Register (`/docs/system/master-task-register.md`)
+5. Active bounded task definition or task-specific Codex work order
+6. Locked standards and specs (`/docs/specs/`, `/docs/brand/`, `/docs/design-system/`, `/docs/solution-system/`, locked CRM docs)
+7. Runtime contracts (`/docs/runtime/`)
+8. Implementation code and project-source artifacts
+9. GitHub PR review and Cloudflare deployment validation evidence
+10. Historical Step docs, as lineage/reference only unless explicitly promoted in `step-current.md`
+11. Chat-derived context only after promotion into repository docs or the current bounded work order
+
+Project KB / Project Instructions guide ChatGPT dispatch and prompt construction. They do not authorize Codex implementation by themselves.
+
+Repository docs are the durable source of truth for Codex execution. A Codex run must be anchored to the current operational context plus either an `ACTIVE` Master Task Register task or an explicitly bounded prompt-created work order permitted by higher-authority governance.
 
 If a lower authority conflicts with a higher authority, the higher authority wins.
 
@@ -124,7 +128,7 @@ Reason: the version badge is used to confirm Cloudflare has published merged cha
 
 `/docs/system/step-current.md` defines exactly one **current operational context** at a time.
 
-- The current operational context may reference a controlling Step.
+- The current operational context may reference historical Step lineage when relevant.
 - Historical Step documents remain preserved lineage and validation history.
 - Historical Steps are not simultaneous controllers unless explicitly elevated in `step-current.md` as the current context.
 
@@ -139,7 +143,7 @@ If requested work is outside the current operational context, stop and request a
 Stop when:
 
 - The requested work is outside the current operational context
-- The requested work is not listed in Active Tasks in `/docs/system/master-task-register.md`
+- The requested work is neither listed in Active Tasks in `/docs/system/master-task-register.md` nor explicitly created as a bounded prompt/work order permitted by higher-authority governance
 - The requested work violates guardrails
 - The requested work would expose secrets or private data
 - The requested work would change Stripe/payment verification without authorization

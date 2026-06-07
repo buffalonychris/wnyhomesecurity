@@ -12,9 +12,11 @@
 
 - ACTIVE
 
-## Controlling Step
+## Current Operational Context Authority
 
-- CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Development Execution Unblock — REV01 (CONTROLLING)
+- CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 — Final-Hour Business Development Execution Unblock — REV01 (CURRENT CONTEXT)
+
+This file is the single current operational context authority. Historical Step documents remain lineage/reference unless explicitly promoted here.
 
 ## Purpose
 
@@ -52,7 +54,7 @@
 - Governance and task-register updates that activate/sequence bounded final-hour business-development tasks.
 - Creating bounded task entries under active final-hour categories.
 - Source-only print asset packages, local marketing documentation/assets, QR campaign materials, business development materials, and deployment-support documentation when explicitly named by an `ACTIVE` task.
-- Implementation only for explicitly prompted tasks that are `ACTIVE` in `/docs/system/master-task-register.md`.
+- Implementation only for explicitly prompted tasks that are `ACTIVE` in `/docs/system/master-task-register.md`, or for explicitly bounded prompt-created work orders permitted by higher-authority governance.
 - Validation/build checks and scope-audit grep verification.
 
 ## Forbidden Scope
@@ -87,6 +89,8 @@
   - New Estimate Request stage ID: `3680633583`
 
 ## Required Validation
+
+These are context-default validation expectations. A task-specific bounded work order may narrow validation for docs-only governance tasks when it explicitly says not to run broader build checks.
 
 - `npm run build`
 - `git diff -- docs/system/step-current.md docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md`
