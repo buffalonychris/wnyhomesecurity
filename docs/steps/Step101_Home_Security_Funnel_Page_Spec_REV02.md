@@ -1,17 +1,17 @@
-Status: CONFLICTING / NEEDS RECONCILIATION
-Authority Role: Historical funnel/reference specification with legacy controlling-language conflict
+Status: SUPPORTING REFERENCE
+Authority Role: Historical funnel/page lineage reference
 Supersedes: Step101 REV01
 Superseded By: None
 Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly references Step101.
-Do Not Use For: Do not treat as simultaneous controlling authority or implementation permission by itself.
-Reconciliation Note: The preserved body includes legacy "Active / Controlling" wording. Current repo governance treats this document as non-controlling lineage/reference unless explicitly promoted by `docs/system/step-current.md` or a bounded work order.
+Do Not Use For: Do not treat as current controlling implementation authority or permission to change UI, funnel behavior, routes, visual standards, or copy rules by itself.
+Reconciliation Note: GOV005 reconciled this document as non-controlling historical/reference material. Current repo governance treats Step101 as lineage unless explicitly promoted by `docs/system/step-current.md` or an active bounded task/work order.
 
 ---
 
 # Step101 — Home Security Funnel + Page Spec (REV02)
 
 Vertical: Residential — Home Security
-Legacy Status (historical): Active / Controlling for UI, funnel, page structure, navigation, and visual cleanup
+Historical Status Note: Former Step101 implementation spec for UI, funnel, page structure, navigation, and visual cleanup.
 
 ---
 
@@ -187,9 +187,9 @@ Required behavior:
 
 ---
 
-## 10. Authorized Work Under Step101
+## 10. Historical Work Scope Recorded Under Step101
 
-Authorized:
+Historically recorded scope:
 
 - UI cleanup
 - homepage/page structure
@@ -199,7 +199,7 @@ Authorized:
 - WNYHS branding cleanup
 - version badge bump
 
-Not authorized unless another active Step covers it:
+Out of scope for this historical Step unless a current operational context or active bounded task/work order authorizes it:
 
 - backend email infrastructure
 - CRM writes
