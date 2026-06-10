@@ -233,6 +233,70 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/governance/`
 
+### `/docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`
+- **File path:** `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`
+- **Purpose / likely role:** Approved governance context for next-generation WNYHS site hierarchy, content architecture, content inheritance, navigation, homepage, QR Landing, WNYHS Core, and standards sequencing.
+- **Authority level:** **Approved governance context / site-content architecture**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Does not authorize application code, routes, runtime, protected systems, UI rebuilds, asset replacement, or source changes by itself.
+
+### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
+- **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
+- **Purpose / likely role:** Working visual-system standard for WNYHS light-theme-first presentation, semantic-token usage, visual hierarchy, photography, cards, buttons, search, navigation, homepage, and QR Landing visual structure.
+- **Authority level:** **Working visual governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Requires a separate bounded task before any CSS, component, token, route, asset, or public-page implementation.
+
+### `/docs/governance/MASTER_SOLUTION_CATALOG_V1.md`
+- **File path:** `docs/governance/MASTER_SOLUTION_CATALOG_V1.md`
+- **Purpose / likely role:** Approved V1 catalog of WNYHS Solution Objects across Home Security, Aging-In-Place, Environmental Safety, Home Automation, and Home Lighting categories.
+- **Authority level:** **Approved catalog / solution inventory**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Catalog references may guide future planning, but no page, route, card, package, Fit Check, runtime, or protected-system changes are authorized by this document alone.
+
+### `/docs/governance/SOLUTION001_WNYHS_SOLUTION_OBJECT_STANDARD_REV02.md`
+- **File path:** `docs/governance/SOLUTION001_WNYHS_SOLUTION_OBJECT_STANDARD_REV02.md`
+- **Purpose / likely role:** Working Solution Object standard defining solution metadata, relationships to packages/categories/search, WNYHS Core requirements, media expectations, page structure, CTAs, and production-readiness criteria.
+- **Authority level:** **Working solution-object governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Supersedes narrower solution-page framing for future planning, but still requires separate bounded implementation authorization.
+
+### `/docs/governance/SOLUTION_MEDIA001_WNYHS_SOLUTION_IMAGE_INTERACTION_STANDARD_REV01.md`
+- **File path:** `docs/governance/SOLUTION_MEDIA001_WNYHS_SOLUTION_IMAGE_INTERACTION_STANDARD_REV01.md`
+- **Purpose / likely role:** Working solution media standard for image roles, optional image types, modal/lightbox behavior, captions, alt text, generation guidance, naming, and readiness rules.
+- **Authority level:** **Working solution-media governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Does not authorize image generation, asset replacement, media wiring, source changes, routes, CSS, or protected-system work.
+
+### `/docs/governance/PACKAGE001_WNYHS_PACKAGE_STANDARD_REV01.md`
+- **File path:** `docs/governance/PACKAGE001_WNYHS_PACKAGE_STANDARD_REV01.md`
+- **Purpose / likely role:** Working package standard defining package relationships, naming, quantity/growth rules, WNYHS Core role, composition, metadata, page structure, and pricing boundaries.
+- **Authority level:** **Working package governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Does not authorize package page changes, pricing, routes, runtime systems, protected systems, or application code changes.
+
+### `/docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`
+- **File path:** `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`
+- **Purpose / likely role:** Working category standard defining category structure, approved top-level categories, relationships to packages/solutions, category page structure, metadata, search, homepage, and QR Landing relationships.
+- **Authority level:** **Working category governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Does not authorize category pages, navigation changes, search implementation, routing, source changes, or protected-system work.
+
+### `/docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
+- **File path:** `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
+- **Purpose / likely role:** Working UX/page-structure standard for homepage and QR Landing purpose, hierarchy, search, content order, navigation expectations, visual alignment, and mockup-reference handling.
+- **Authority level:** **Working UX governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Promoted by GOV009. Planning input only until a separate bounded task authorizes homepage, QR Landing, search, route, CSS, component, or runtime changes.
+
 ### `/docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **File path:** `docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **Purpose / likely role:** Governance-only reconciliation task plan sequencing authority-chain, task-dispatch, operator-workflow, document-classification, conflicting-Step, runtime-ownership, Project KB, and implementation-resume tasks.

@@ -114,6 +114,92 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+### GOV009
+- **Task ID:** GOV009
+- **Task Name:** Promote Site Architecture / Visual / Solution Governance Docs
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Adopt, validate, catalog, and promote the eight local governance markdown documents placed in `docs/governance/` as official repository governance and standards references.
+- **Allowed Scope:** Docs-only governance promotion; inspect the eight new governance docs; update their status labels when needed; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register; add planning-only follow-up placeholders.
+- **Forbidden Scope:** No application/source files, routes, assets, generated images, CSS/components, runtime behavior, Cloudflare, HubSpot, Stripe, Resend, Google Workspace, scheduling, secrets, homepage implementation, QR Landing implementation, category implementation, package implementation, solution implementation, visual-system implementation, asset implementation, or search implementation.
+- **Target Files:** `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/MASTER_SOLUTION_CATALOG_V1.md`, `docs/governance/SOLUTION001_WNYHS_SOLUTION_OBJECT_STANDARD_REV02.md`, `docs/governance/SOLUTION_MEDIA001_WNYHS_SOLUTION_IMAGE_INTERACTION_STANDARD_REV01.md`, `docs/governance/PACKAGE001_WNYHS_PACKAGE_STANDARD_REV01.md`, `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only promotion.
+- **Documentation Updates Required:** Promote the eight governance docs, add catalog entries, add manifest addendum, record GOV009, and queue planning-only follow-up placeholders.
+- **Validation Required:** `git status`; targeted `git diff`; targeted `rg` for required governance/search/content terms; `git diff --check`. No `npm run build` unless application files are changed.
+- **Exit Criteria:** All eight docs are inspected and registered; statuses are clear; implementation boundaries remain explicit; no secrets or protected-system authorizations are recorded; follow-up tasks are planning-only; only allowed documentation files change; validation passes; branch is pushed and PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded GOV009 work order, `docs/system/step-current.md`, `docs/governance/AUTHORITY-MAP-REV01.md`, `docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md`, `docs/governance/OPS001_OPERATOR_WORKFLOW_STANDARD_REV01.md`, `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Operator Decision Required:** Review and merge PR if the promoted governance docs and planning placeholders are accepted.
+- **Completion Notes:** Promoted eight local governance documents as docs-only official references. Updated status labels to `Working Standard` where appropriate, retained `Approved Governance Context` and `Approved Catalog V1`, removed guardrail-sensitive claim wording from the promoted docs, updated catalog and manifest, queued planning-only follow-up placeholders, and made no implementation, runtime, protected-system, secret, route, source, CSS, asset, or image-generation changes.
+
+### HOMEPAGE-REDESIGN-PLANNING-001
+- **Task ID:** HOMEPAGE-REDESIGN-PLANNING-001
+- **Task Name:** Plan Homepage Redesign From Promoted Governance Docs
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a future bounded planning task for homepage redesign sequencing using GOV009-promoted governance docs.
+- **Allowed Scope:** Planning-only future task definition and owner-document routing.
+- **Forbidden Scope:** No homepage implementation, source changes, CSS/component changes, routes, assets, search implementation, runtime systems, protected systems, or public-page changes until a separate ACTIVE task authorizes them.
+- **Target Files:** Future scoped planning docs and task-register updates only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Define exact planning artifact and implementation gates when activated.
+- **Validation Required:** Future docs-only validation when activated.
+- **Exit Criteria:** Future task clearly separates homepage planning from implementation.
+- **Dependencies:** GOV009, `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`.
+- **Operator Decision Required:** Approve planning scope before activation.
+
+### QRLANDING-REDESIGN-PLANNING-001
+- **Task ID:** QRLANDING-REDESIGN-PLANNING-001
+- **Task Name:** Plan QR Landing Redesign From Promoted Governance Docs
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a future bounded planning task for QR Landing redesign sequencing using GOV009-promoted governance docs.
+- **Allowed Scope:** Planning-only future task definition and owner-document routing.
+- **Forbidden Scope:** No QR Landing implementation, route changes, source changes, CSS/component changes, assets, search implementation, lead-signal changes, HubSpot changes, Stripe changes, scheduling changes, runtime systems, protected systems, or public-page changes until a separate ACTIVE task authorizes them.
+- **Target Files:** Future scoped planning docs and task-register updates only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Define exact planning artifact and implementation gates when activated.
+- **Validation Required:** Future docs-only validation when activated.
+- **Exit Criteria:** Future task clearly separates QR Landing planning from implementation and protected runtime boundaries.
+- **Dependencies:** GOV009, `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`.
+- **Operator Decision Required:** Approve planning scope before activation.
+
+### SEARCH-UX-PLANNING-001
+- **Task ID:** SEARCH-UX-PLANNING-001
+- **Task Name:** Plan Public Search UX From Promoted Governance Docs
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a future bounded planning task for public search UX requirements and owner routing.
+- **Allowed Scope:** Planning-only future task definition for search scope, result ownership, source documents, and implementation gates.
+- **Forbidden Scope:** No search implementation, indexing implementation, source changes, route changes, CSS/component changes, runtime behavior, protected systems, or public-page changes until a separate ACTIVE task authorizes them.
+- **Target Files:** Future scoped planning docs and task-register updates only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Define exact planning artifact and implementation gates when activated.
+- **Validation Required:** Future docs-only validation when activated.
+- **Exit Criteria:** Future task defines search planning boundaries without implementing search.
+- **Dependencies:** GOV009, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`, `docs/governance/SOLUTION001_WNYHS_SOLUTION_OBJECT_STANDARD_REV02.md`.
+- **Operator Decision Required:** Approve planning scope before activation.
+
+### SITE-CONTENT-OWNER-ROUTING-001
+- **Task ID:** SITE-CONTENT-OWNER-ROUTING-001
+- **Task Name:** Plan Site Content Owner Routing From Promoted Governance Docs
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a future bounded planning task to map canonical owner documents for site content objects, categories, packages, solutions, media, homepage, QR Landing, and search.
+- **Allowed Scope:** Planning-only future task definition and owner-document routing.
+- **Forbidden Scope:** No implementation work, source changes, routes, assets, CSS/components, runtime systems, protected systems, public-page changes, catalog expansion, or content migration until a separate ACTIVE task authorizes them.
+- **Target Files:** Future scoped planning docs and task-register updates only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Define exact owner-routing artifact and implementation gates when activated.
+- **Validation Required:** Future docs-only validation when activated.
+- **Exit Criteria:** Future task defines ownership/routing gaps and next planning sequence without implementing any page or runtime behavior.
+- **Dependencies:** GOV009 and all eight GOV009-promoted governance docs.
+- **Operator Decision Required:** Confirm whether a dedicated owner-routing artifact is needed before activation.
+
 ### RUNTIME-AUDIT-001
 - **Task ID:** RUNTIME-AUDIT-001
 - **Task Name:** Cloudflare Current Config Inventory
