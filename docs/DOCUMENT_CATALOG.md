@@ -424,9 +424,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 ### `/docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
 - **File path:** `docs/steps/Step102 — WNYHS ScanCode QRLanding Funnel Spec — REV01.md`
 - **Purpose / likely role:** QR acquisition funnel implementation Step102 artifact retained for historical lineage and future reference.
-- **Authority level:** **CONFLICTING / NEEDS RECONCILIATION**
-- **Lineage status:** Historical Step102 lineage; preserved body includes legacy `ACTIVE` / controlling implementation language that conflicts with current single-context governance.
-- **Notes:** Non-controlling unless explicitly promoted by `/docs/system/step-current.md` or a bounded active task/work order; reconcile legacy status wording before relying on it operationally.
+- **Authority level:** **SUPPORTING REFERENCE**
+- **Lineage status:** Historical Step102 QRLanding lineage reconciled by GOV006 as non-controlling reference material.
+- **Notes:** Use only as supporting QRLanding reference when explicitly named by the current operational context or bounded work order; it does not authorize route, CRM, lead-signal, scheduling, attribution, runtime, HubSpot, Stripe, Cloudflare, deployment, or UI changes by itself.
 
 ### `/docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
 - **File path:** `docs/steps/Step101_Home_Security_Funnel_Page_Spec_REV02.md`
