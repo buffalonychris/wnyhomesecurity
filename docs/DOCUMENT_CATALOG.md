@@ -297,6 +297,16 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Promoted by GOV009. Planning input only until a separate bounded task authorizes homepage, QR Landing, search, route, CSS, component, or runtime changes.
 
+## `docs/planning/`
+
+### `/docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`
+- **File path:** `docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`
+- **Purpose / likely role:** Planning-only Homepage redesign plan translating GOV009-promoted site architecture, visual-system, category, package, solution, media, and homepage/QR Landing governance into an implementation-ready section plan.
+- **Authority level:** **Planning document / implementation-readiness artifact**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by HOMEPAGE-REDESIGN-PLANNING-001. Defines Homepage purpose, section order, Search, Category Explorer, Featured Packages, Featured Solutions, WNYHS Core, CTA, footer, visual-system requirements, content source mapping, forbidden scope, and a future implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, asset, image-generation, Search, Homepage, QR Landing, or implementation changes by itself.
+
 ### `/docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **File path:** `docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **Purpose / likely role:** Governance-only reconciliation task plan sequencing authority-chain, task-dispatch, operator-workflow, document-classification, conflicting-Step, runtime-ownership, Project KB, and implementation-resume tasks.

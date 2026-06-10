@@ -135,19 +135,20 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 ### HOMEPAGE-REDESIGN-PLANNING-001
 - **Task ID:** HOMEPAGE-REDESIGN-PLANNING-001
 - **Task Name:** Plan Homepage Redesign From Promoted Governance Docs
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Create a future bounded planning task for homepage redesign sequencing using GOV009-promoted governance docs.
-- **Allowed Scope:** Planning-only future task definition and owner-document routing.
-- **Forbidden Scope:** No homepage implementation, source changes, CSS/component changes, routes, assets, search implementation, runtime systems, protected systems, or public-page changes until a separate ACTIVE task authorizes them.
-- **Target Files:** Future scoped planning docs and task-register updates only.
+- **Purpose:** Create a bounded Homepage redesign planning document using GOV009-promoted governance docs.
+- **Allowed Scope:** Planning-only document creation and registration in the document catalog, markdown manifest, and task register.
+- **Forbidden Scope:** No Homepage implementation, source changes, CSS/component changes, routes, assets, Search implementation, runtime systems, protected systems, QR Landing implementation, or public-page changes until a separate ACTIVE task authorizes them.
+- **Target Files:** `docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Define exact planning artifact and implementation gates when activated.
-- **Validation Required:** Future docs-only validation when activated.
-- **Exit Criteria:** Future task clearly separates homepage planning from implementation.
-- **Dependencies:** GOV009, `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`.
-- **Operator Decision Required:** Approve planning scope before activation.
+- **Documentation Updates Required:** Create `docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`; register it in `docs/DOCUMENT_CATALOG.md` and `docs/MARKDOWN_MANIFEST.md`; mark this task complete in the register.
+- **Validation Required:** `git status`; scoped `git diff`; scoped `rg` for Homepage planning terms and implementation boundary language; `git diff --check`.
+- **Exit Criteria:** Homepage plan defines purpose, section order, navigation, Search, Hero, Trust Bar, Category Explorer, Featured Packages, Featured Solutions, WNYHS Core, How It Works, Why WNYHS, CTA, footer, visual-system requirements, content source mapping, forbidden scope, implementation readiness checklist, and a follow-up implementation task recommendation without implementing Homepage, Search, QR Landing, runtime, or protected-system changes.
+- **Dependencies:** GOV009, `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/MASTER_SOLUTION_CATALOG_V1.md`, `docs/governance/SOLUTION001_WNYHS_SOLUTION_OBJECT_STANDARD_REV02.md`, `docs/governance/SOLUTION_MEDIA001_WNYHS_SOLUTION_IMAGE_INTERACTION_STANDARD_REV01.md`, `docs/governance/PACKAGE001_WNYHS_PACKAGE_STANDARD_REV01.md`, `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`.
+- **Operator Decision Required:** None. Activated by explicit bounded planning prompt.
+- **Completion Notes:** Completed as docs-only planning in `docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`. Follow-up implementation recommendation recorded as HOMEPAGE-REDESIGN-IMPLEMENTATION-001 planning recommendation only; implementation remains unauthorized until a separate active implementation task is approved.
 
 ### QRLANDING-REDESIGN-PLANNING-001
 - **Task ID:** QRLANDING-REDESIGN-PLANNING-001
