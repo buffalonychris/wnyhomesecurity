@@ -315,6 +315,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by QRLANDING-REDESIGN-PLANNING-001. Defines QR Landing purpose, section order, Search, scan acknowledgment, Popular Solutions, WNYHS Core, Light Theme alignment, Request Estimate, Call / Text, content source mapping, QR attribution preservation, requestId preservation, lead-signal preservation, forbidden scope, and a future implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, analytics, attribution, asset, image-generation, Search, Homepage, QR Landing, qrlanding, requestId, lead-signal, or implementation changes by itself.
 
+### `/docs/planning/SEARCH_UX_PLAN_REV01.md`
+- **File path:** `docs/planning/SEARCH_UX_PLAN_REV01.md`
+- **Purpose / likely role:** Planning-only public Search UX plan translating promoted governance plus Homepage and QR Landing planning docs into an implementation-ready Search scope, result, metadata, placement, ranking, accessibility, and forbidden-result plan.
+- **Authority level:** **Planning document / implementation-readiness artifact**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by SEARCH-UX-PLANNING-001. Defines Search purpose, scope, search result types, placement, behavior, ranking recommendations, metadata, Category / Package / Solution / Public Information mapping, Homepage and QR Landing requirements, mobile/accessibility requirements, forbidden result types, forbidden implementation scope, and a future implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, analytics, attribution, asset, image-generation, Search implementation, Homepage implementation, QR Landing implementation, QR attribution changes, API changes, or protected-system changes by itself.
+
 ### `/docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **File path:** `docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **Purpose / likely role:** Governance-only reconciliation task plan sequencing authority-chain, task-dispatch, operator-workflow, document-classification, conflicting-Step, runtime-ownership, Project KB, and implementation-resume tasks.
