@@ -271,6 +271,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by RUNTIME-AUDIT-002 as documentation-only inventory aligned to HubSpot REV03. Preserves `/api/lead-signal` as the canonical boundary, records repo-documented facts, marks HubSpot dashboard/API-only areas as `Not inspected`, and records No configuration changes and No secret values; does not authorize or perform HubSpot schema, property, pipeline, stage, workflow, runtime, code, Stripe, Cloudflare, Resend, Google Workspace, or secret changes.
 
+### `/docs/runtime/resend_current_config_inventory_rev01.md`
+- **File path:** `docs/runtime/resend_current_config_inventory_rev01.md`
+- **Purpose / likely role:** Read-only Resend Current Config Inventory for outbound email domains, sender identities, API key variable names, webhook posture, suppression/bounce posture, and operator/customer email boundaries.
+- **Authority level:** **Current Config Inventory / runtime evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by RUNTIME-AUDIT-003 as documentation-only inventory. Records repo-documented facts, marks Resend dashboard/API-only areas as `Not inspected`, and records No configuration changes and No secret values; does not authorize or perform Resend, domain, sender, DNS, webhook, API key, email runtime, code, Cloudflare, HubSpot, Stripe, Google Workspace, or secret changes.
+
 ### `/docs/runtime/stripe_runtime.md`
 - **File path:** `docs/runtime/stripe_runtime.md`
 - **Purpose / likely role:** Canonical Stripe runtime/payment contract for server-side verification, webhook authority, env ownership, diagnostics, and change governance.

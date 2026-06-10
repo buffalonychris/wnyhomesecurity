@@ -150,6 +150,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Provide HubSpot dashboard/API export or screenshots before any future live HubSpot configuration verification task.
 - **Completion Notes:** Created the docs-only HubSpot Current Config Inventory aligned to HubSpot REV03. Live HubSpot account/portal identity, property schema details, pipeline dashboard, forms, lists, workflows, token scopes, audit logs, and API call history were Not inspected because no HubSpot credentials or operator export were available. `/api/lead-signal` remains the canonical boundary. No configuration changes and No secret values.
 
+### RUNTIME-AUDIT-003
+- **Task ID:** RUNTIME-AUDIT-003
+- **Task Name:** Resend Current Config Inventory
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a read-only inventory of current Resend configuration relevant to WNY Home Security email sending, verified domains, sender identities, API key naming, webhook posture, and operator/customer email boundaries.
+- **Allowed Scope:** Documentation-only inventory in `docs/runtime/resend_current_config_inventory_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register; record non-secret repo-documented facts; mark Resend dashboard/API-only areas as `Not inspected` where Resend access or operator export is unavailable.
+- **Forbidden Scope:** No Resend configuration changes, domain changes, sender changes, DNS changes, webhook changes, API key changes, email runtime behavior changes, code changes, secret values, Cloudflare changes, HubSpot changes, Stripe changes, Google Workspace changes, or new runtime contract creation.
+- **Target Files:** `docs/runtime/resend_current_config_inventory_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Inventory only.
+- **Documentation Updates Required:** Add Resend current config inventory document, catalog entry, manifest addendum, and task-register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/runtime/resend_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `rg -n "Resend|Current Config Inventory|Not inspected|No configuration changes|No secret values" docs/runtime/resend_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --check`.
+- **Exit Criteria:** Inventory records repo-documented Resend domains, sender identity references, API key/env variable names without values, webhook posture, suppression/bounce posture, and email ownership notes; identifies live Resend dashboard/API-only gaps as `Not inspected`; records no secret values; and confirms no Resend configuration, domain, sender, DNS, webhook, API key, email runtime, code, Cloudflare, HubSpot, Stripe, or Google Workspace changes.
+- **Dependencies:** `docs/governance/NEXT_GOVERNANCE_TASK_QUEUE_REV01.md`, `docs/runtime/runtime_ownership_map.md`, `docs/runtime/resend_runtime.md`, `docs/runtime/cloudflare_email_routing.md`, `docs/runtime/protected_runtime_contract.md`, `docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`.
+- **Operator Decision Required:** Provide Resend dashboard/API export or screenshots before any future live Resend configuration verification task.
+- **Completion Notes:** Created the docs-only Resend Current Config Inventory. Live Resend account identity, verified domains, sender verification status, API key labels/scopes/status, webhooks, suppression/bounce settings, and delivery logs were Not inspected because no Resend credentials or operator export were available. No configuration changes and No secret values.
+
 ### SOLUTIONS-LANDING-003
 - **Task ID:** SOLUTIONS-LANDING-003
 - **Task Name:** Add Visuals + Complete Solution Category Browse List
