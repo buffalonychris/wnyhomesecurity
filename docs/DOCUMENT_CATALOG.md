@@ -263,6 +263,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by RUNTIME-AUDIT-001 as documentation-only inventory. Records repo-documented facts and marks dashboard/API-only areas as `Not inspected`; does not authorize or perform Cloudflare, DNS, deployment, route, runtime, code, Stripe, HubSpot, Resend, Google Workspace, or secret changes.
 
+### `/docs/runtime/hubspot_current_config_inventory_rev01.md`
+- **File path:** `docs/runtime/hubspot_current_config_inventory_rev01.md`
+- **Purpose / likely role:** Read-only HubSpot Current Config Inventory for CRM ownership, object model, contact/deal property names, pipeline/stage IDs, forms, lists, workflows, integration variable names, and API-layer posture.
+- **Authority level:** **Current Config Inventory / runtime evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by RUNTIME-AUDIT-002 as documentation-only inventory aligned to HubSpot REV03. Preserves `/api/lead-signal` as the canonical boundary, records repo-documented facts, marks HubSpot dashboard/API-only areas as `Not inspected`, and records No configuration changes and No secret values; does not authorize or perform HubSpot schema, property, pipeline, stage, workflow, runtime, code, Stripe, Cloudflare, Resend, Google Workspace, or secret changes.
+
 ### `/docs/runtime/stripe_runtime.md`
 - **File path:** `docs/runtime/stripe_runtime.md`
 - **Purpose / likely role:** Canonical Stripe runtime/payment contract for server-side verification, webhook authority, env ownership, diagnostics, and change governance.
