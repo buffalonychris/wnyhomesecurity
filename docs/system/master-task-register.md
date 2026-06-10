@@ -132,6 +132,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Provide Cloudflare dashboard/API export or screenshots before any future live configuration verification task.
 - **Completion Notes:** Created the docs-only Cloudflare current config inventory. Live Cloudflare dashboard/API, DNS, Pages settings, Email Routing aliases, security controls, deployment logs, and analytics were not inspected because no Cloudflare credentials or operator export were available. No configuration changes and No secret values.
 
+### RUNTIME-AUDIT-002
+- **Task ID:** RUNTIME-AUDIT-002
+- **Task Name:** HubSpot Current Config Inventory
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a read-only inventory of current HubSpot configuration relevant to CRM ownership, contact/deal properties, pipeline/stage IDs, forms, lists, workflows, and API integration posture.
+- **Allowed Scope:** Documentation-only inventory in `docs/runtime/hubspot_current_config_inventory_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register; record non-secret repo-documented facts; mark HubSpot dashboard/API-only areas as `Not inspected` where HubSpot access or operator export is unavailable; preserve `/api/lead-signal` as the canonical boundary under HubSpot REV03.
+- **Forbidden Scope:** No HubSpot schema changes, property changes, pipeline changes, stage changes, workflow changes, direct frontend/client write path to HubSpot, `/api/lead-signal` bypass, code changes, runtime behavior changes, secret values, Stripe changes, Cloudflare changes, Resend changes, Google Workspace changes, or new runtime contract creation.
+- **Target Files:** `docs/runtime/hubspot_current_config_inventory_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Inventory only.
+- **Documentation Updates Required:** Add HubSpot current config inventory document, catalog entry, manifest addendum, and task-register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/runtime/hubspot_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `rg -n "HubSpot|Current Config Inventory|REV03|/api/lead-signal|Not inspected|No configuration changes|No secret values" docs/runtime/hubspot_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --check`.
+- **Exit Criteria:** Inventory records repo-documented HubSpot object model, property names, pipeline/stage IDs, forms/lists/workflows status, integration variable names without values, and API-layer touchpoints; identifies live HubSpot dashboard/API-only gaps as `Not inspected`; records no secret values; preserves `/api/lead-signal`; and confirms no HubSpot configuration, schema, property, pipeline, stage, workflow, code, runtime, Stripe, Cloudflare, Resend, or Google Workspace changes.
+- **Dependencies:** `docs/governance/NEXT_GOVERNANCE_TASK_QUEUE_REV01.md`, `docs/crm/hubspot/hubspot_kb_rev03.md`, `docs/runtime/runtime_ownership_map.md`, `docs/runtime/hubspot_properties.md`, `docs/runtime/hubspot_sync_contract.md`, `docs/runtime/lead_signal_contract.md`, `docs/runtime/request_id_contract.md`, `docs/runtime/protected_runtime_contract.md`.
+- **Operator Decision Required:** Provide HubSpot dashboard/API export or screenshots before any future live HubSpot configuration verification task.
+- **Completion Notes:** Created the docs-only HubSpot Current Config Inventory aligned to HubSpot REV03. Live HubSpot account/portal identity, property schema details, pipeline dashboard, forms, lists, workflows, token scopes, audit logs, and API call history were Not inspected because no HubSpot credentials or operator export were available. `/api/lead-signal` remains the canonical boundary. No configuration changes and No secret values.
+
 ### SOLUTIONS-LANDING-003
 - **Task ID:** SOLUTIONS-LANDING-003
 - **Task Name:** Add Visuals + Complete Solution Category Browse List

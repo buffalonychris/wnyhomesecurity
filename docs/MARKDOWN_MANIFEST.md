@@ -30,6 +30,8 @@ DESIGN001 addendum: `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_R
 
 RUNTIME-AUDIT-001 addendum: `docs/runtime/cloudflare_current_config_inventory_rev01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a read-only Cloudflare Current Config Inventory that records repo-documented facts and marks dashboard/API-only areas as `Not inspected`; it records No configuration changes and No secret values.
 
+RUNTIME-AUDIT-002 addendum: `docs/runtime/hubspot_current_config_inventory_rev01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a read-only HubSpot Current Config Inventory aligned to HubSpot REV03 that preserves `/api/lead-signal`, records repo-documented facts, marks live HubSpot dashboard/API-only areas as `Not inspected`, and records No configuration changes and No secret values.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
