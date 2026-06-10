@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
-import { buildTel } from '../../content/wnyhsContact';
+import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 import '../../styles/homeSecurityPremium.css';
 
 type Props = {
@@ -8,96 +8,272 @@ type Props = {
   ctaLink: string;
 };
 
-const solutionsPreview = [
+const categoryExplorer = [
   {
-    id: 'front-door-package-protection',
-    name: 'Front Door & Package Protection',
-    image: '/images/solutions/front-door-package-protection.png',
-    detail: "See who's at the door, know when packages arrive, and get alerts when activity happens at your front entry.",
-    priceLine: 'Starting At $399 Installed',
-    priceAmount: '$399',
-    availabilityLine: 'Available As A Base Or Add-On Solution',
+    name: 'Home Security',
+    body: 'Entry, driveway, package, garage, and property awareness planned around the way your home is used.',
+    focus: 'Doors, driveways, packages, garages',
   },
   {
-    id: 'smart-home-security',
-    name: 'Smart Home Security',
-    image: '/images/solutions/smart-home-security.png',
-    detail: 'Cameras, alerts, smart automations, and property protection working together in one system.',
-    priceLine: 'Starting At $899 Installed',
-    priceAmount: '$899',
-    availabilityLine: 'Available As A Base Or Add-On Solution',
+    name: 'Aging-In-Place',
+    body: 'Home awareness that helps families support independence, routines, safer movement, and caregiver access.',
+    focus: 'Family confidence, routines, access',
   },
   {
-    id: 'connected-garage-workshop',
-    name: 'Connected Garage / Workshop',
-    image: '/images/solutions/connected-garage-workshop.png',
-    detail: 'Know if the garage was left open, control it from anywhere, and automate lighting when you arrive home.',
-    priceLine: 'Starting At $349 Installed',
-    priceAmount: '$349',
-    availabilityLine: 'Available As A Base Or Add-On Solution',
+    name: 'Environmental Safety',
+    body: 'Practical awareness for water, sump, utility, freeze, and home condition concerns common in WNY properties.',
+    focus: 'Water, sump, utility rooms',
+  },
+  {
+    name: 'Home Automation',
+    body: 'Connected routines, dashboard control, garage awareness, and everyday automations built on a local-first core.',
+    focus: 'Control, routines, garage status',
+  },
+  {
+    name: 'Home Lighting',
+    body: 'Arrival, pathway, security, vacation, and outdoor lighting designed to improve visibility and usability.',
+    focus: 'Arrival, pathways, outdoor living',
   },
 ] as const;
 
-const homeownerProblems = [
+const featuredPackages = [
   {
-    title: 'Security & Awareness',
-    body:
-      'Know what is happening around doors, driveways, garages, and packages with cameras and alerts planned around your property.',
+    name: 'Property Awareness Package',
+    summary: 'A discovery path for homeowners who want better visibility around entries, driveways, garages, and packages.',
+    includes: ['Package Protection', 'Driveway Watch', 'Smart Entry'],
   },
   {
-    title: 'Property Protection',
-    body:
-      'Add practical awareness for water leaks, freeze risks, sump areas, garages, and other WNY property concerns before they become bigger problems.',
+    name: 'Basement & Utility Protection Package',
+    summary: 'A practical starting point for water, sump, utility room, and environmental concerns.',
+    includes: ['Water Damage Prevention', 'Sump Pump Awareness', 'Utility Room Protection'],
   },
   {
-    title: 'Family Awareness',
-    body:
-      'Help your household check in on entries, routines, loved ones, and daily activity without turning your home into a complicated system.',
+    name: 'Family Confidence Package',
+    summary: 'A homeowner-friendly path for aging-in-place awareness, safer movement, and trusted access.',
+    includes: ['Family Awareness', 'Safer Night Movement', 'Caregiver Access'],
   },
 ] as const;
 
-const HomeSecurityLanding = ({ ctaLink }: Props) => {
+const featuredSolutions = [
+  {
+    name: 'Package Protection',
+    category: 'Home Security',
+    summary: 'Know when deliveries arrive and reduce the chance of packages being forgotten, exposed, or left unattended.',
+  },
+  {
+    name: 'Driveway Watch',
+    category: 'Home Security',
+    summary: 'Gain awareness of vehicles and visitors entering the property before they reach the home.',
+  },
+  {
+    name: 'Water Damage Prevention',
+    category: 'Environmental Safety',
+    summary: 'Detect water-related concerns early and improve awareness before major damage occurs.',
+  },
+  {
+    name: 'Sump Pump Awareness',
+    category: 'Environmental Safety',
+    summary: 'Know when sump activity becomes abnormal or protection may be compromised.',
+  },
+  {
+    name: 'Family Awareness',
+    category: 'Aging-In-Place',
+    summary: 'Help loved ones remain independent while giving family members greater confidence and awareness.',
+  },
+  {
+    name: 'Security Lighting',
+    category: 'Home Lighting',
+    summary: 'Improve property visibility and awareness through strategically controlled lighting.',
+  },
+] as const;
+
+const trustItems = ['Locally Owned', 'Customer-Owned', 'No Required Monthly Fees', 'Professional Installation', 'Built To Expand'] as const;
+
+const coreItems = [
+  'Home Assistant-based local control',
+  'Unified dashboard for supported systems',
+  'Customer-owned equipment and data',
+  'No vendor lock-in',
+  'Expansion-ready foundation',
+] as const;
+
+const whyItems = [
+  {
+    title: 'Local Planning',
+    body: 'Recommendations are shaped around WNY homes, weather, property layouts, and how homeowners actually use their space.',
+  },
+  {
+    title: 'Professional Installation',
+    body: 'The goal is a clean installed system with clear ownership, practical handoff, and room to add more later.',
+  },
+  {
+    title: 'Consultation First',
+    body: 'The homepage points you toward a conversation and estimate path before committing you to a fixed package.',
+  },
+] as const;
+
+const searchExamples = ['doorbell camera', 'basement leak', 'mom living alone', 'holiday lights'] as const;
+const estimateLink = '/contact?vertical=home-security';
+
+const HomeSecurityLanding = (_props: Props) => {
+  void _props;
+
   return (
-    <div className="hs-premium-shell hs-premium-shell--home-trust">
-      <section className="hs-premium-hero hs-premium-hero--split">
-        <div className="hs-premium-hero-content">
-          <p className="hs-premium-eyebrow">Protect What Matters</p>
-          <h1>Local smart property solutions for Western New York homeowners.</h1>
-          <p className="hs-premium-hero-subhead">
-            Cameras, property protection, and smart home solutions built around your home, your routines, and the
-            concerns you actually want solved.
+    <div className="hs-premium-shell hs-premium-shell--home-redesign">
+      <section id="home-search" className="hs-home-search-access" aria-labelledby="home-search-heading">
+        <div>
+          <p className="hs-premium-eyebrow">Search Access</p>
+          <h2 id="home-search-heading">Find the right starting point in your own words.</h2>
+          <p>
+            Search is planned for categories, packages, solutions, and public help pages. For now, use these examples
+            as a guided entry point while full search indexing remains out of scope.
           </p>
-          <div className="hs-premium-hero-actions">
-            <Link className="btn btn-primary" to={ctaLink}>
-              Start Free Fit Check
-            </Link>
-            <a className="btn btn-secondary" href={buildTel()}>
-              Call/Text 716-201-0364
-            </a>
-          </div>
-          <div className="hs-premium-hero-proof-strip" aria-label="WNY Home Security positioning">
-            <span>No required monthly fees</span>
-            <span>Customer-owned equipment options</span>
-            <span>Professionally installed and locally supported</span>
-          </div>
         </div>
-        <div className="hs-premium-hero-media" aria-hidden="true">
-          <img src="/brand/heros/HomePageHero.png" alt="" loading="eager" />
+        <div className="hs-home-search-box" role="search" aria-label="Search placeholder">
+          <span>Search WNYHS</span>
+          <div className="hs-home-search-input" aria-hidden="true">
+            Try: {searchExamples[0]}
+          </div>
+          <p>Placeholder only. Search results and query handling are not implemented in this task.</p>
+        </div>
+        <div className="hs-home-search-examples" aria-label="Example search terms">
+          {searchExamples.map((term) => (
+            <span key={term}>{term}</span>
+          ))}
         </div>
       </section>
 
-      <section className="hs-premium-section-panel hs-premium-problem-panel" aria-labelledby="homeowner-problems-heading">
+      <section className="hs-home-hero" aria-labelledby="home-hero-heading">
+        <div className="hs-home-hero-copy">
+          <p className="hs-premium-eyebrow">WNY Home Security</p>
+          <h1 id="home-hero-heading">Smart home and security solutions built around your home.</h1>
+          <p className="hs-premium-hero-subhead">
+            Local planning for cameras, property awareness, environmental safety, automation, and lighting with a
+            customer-owned core that can grow over time.
+          </p>
+          <div className="hs-premium-hero-actions">
+            <Link className="btn btn-primary" to={estimateLink}>
+              Request Estimate
+            </Link>
+            <a className="btn btn-secondary" href={buildTel()}>
+              Call / Text {wnyhsContact.phone.display}
+            </a>
+          </div>
+        </div>
+        <figure className="hs-home-hero-media">
+          <img src="/brand/heros/HomePageHero.png" alt="WNY Home Security smart home and security overview" loading="eager" />
+        </figure>
+      </section>
+
+      <section className="hs-home-trust-bar" aria-label="WNY Home Security trust indicators">
+        {trustItems.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </section>
+
+      <section id="category-explorer" className="hs-premium-section-panel hs-home-section" aria-labelledby="category-explorer-heading">
         <div className="hs-premium-section-header">
-          <p className="hs-premium-eyebrow">Built Around Real Homeowner Concerns</p>
-          <h2 id="homeowner-problems-heading">Start With The Problem, Then Build The Right System</h2>
+          <p className="hs-premium-eyebrow">Category Explorer</p>
+          <h2 id="category-explorer-heading">Start with the concern, not the hardware.</h2>
+          <p>Choose a broad homeowner need first, then narrow into packages and solutions.</p>
+        </div>
+        <div className="hs-home-category-grid">
+          {categoryExplorer.map((category) => (
+            <article key={category.name} className="hs-home-category-card">
+              <span>{category.name}</span>
+              <h3>{category.focus}</h3>
+              <p>{category.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="featured-packages" className="hs-premium-section-panel hs-home-section" aria-labelledby="featured-packages-heading">
+        <div className="hs-premium-section-header">
+          <p className="hs-premium-eyebrow">Featured Packages</p>
+          <h2 id="featured-packages-heading">Outcome-based paths for common homeowner situations.</h2>
+          <p>Packages group related approved solutions without turning the homepage into pricing tiers.</p>
+        </div>
+        <div className="hs-home-package-grid">
+          {featuredPackages.map((item) => (
+            <article key={item.name} className="hs-home-package-card">
+              <h3>{item.name}</h3>
+              <p>{item.summary}</p>
+              <ul>
+                {item.includes.map((solution) => (
+                  <li key={solution}>{solution}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="featured-solutions" className="hs-premium-section-panel hs-home-section" aria-labelledby="featured-solutions-heading">
+        <div className="hs-premium-section-header">
+          <p className="hs-premium-eyebrow">Featured Solutions</p>
+          <h2 id="featured-solutions-heading">A selected sample from the approved solution catalog.</h2>
+          <p>These examples represent multiple categories and do not replace a full solution catalog.</p>
+        </div>
+        <div className="hs-home-solution-grid">
+          {featuredSolutions.map((solution) => (
+            <article key={solution.name} className="hs-home-solution-card">
+              <span>{solution.category}</span>
+              <h3>{solution.name}</h3>
+              <p>{solution.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="wnyhs-core" className="hs-home-core-section" aria-labelledby="wnyhs-core-heading">
+        <div>
+          <p className="hs-premium-eyebrow">WNYHS Core</p>
+          <h2 id="wnyhs-core-heading">A local-first foundation for the solutions you choose.</h2>
           <p>
-            WNY homes need more than a box of devices. We plan around the way you use your property, what you want to
-            know about, and how much control you want to keep.
+            WNYHS Core is the customer-owned platform layer behind supported solutions: local control, one dashboard,
+            no required monthly fees, and room to expand without starting over.
           </p>
         </div>
-        <div className="hs-premium-problem-grid">
-          {homeownerProblems.map((item) => (
-            <article key={item.title} className="hs-premium-problem-card">
+        <ul>
+          {coreItems.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="how-it-works" className="hs-premium-section-panel hs-home-section hs-home-process" aria-labelledby="how-it-works-heading">
+        <div className="hs-premium-section-header">
+          <p className="hs-premium-eyebrow">How It Works</p>
+          <h2 id="how-it-works-heading">Simple steps before anything gets installed.</h2>
+        </div>
+        <ol className="hs-premium-process-timeline">
+          <li>
+            <span>01</span>
+            <h3>Explore Solutions</h3>
+            <p>Browse by category, package, or solution to understand what is possible for your home.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>Request Estimate</h3>
+            <p>Use the estimate path or call/text to start a practical conversation about your property.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>We Build The Right Plan</h3>
+            <p>WNYHS turns your concerns, layout, and goals into a scoped recommendation.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="why-wnyhs" className="hs-premium-section-panel hs-home-section" aria-labelledby="why-wnyhs-heading">
+        <div className="hs-premium-section-header">
+          <p className="hs-premium-eyebrow">Why WNYHS</p>
+          <h2 id="why-wnyhs-heading">Built for ownership, clarity, and future expansion.</h2>
+        </div>
+        <div className="hs-premium-trust-card-grid">
+          {whyItems.map((item) => (
+            <article key={item.title} className="hs-premium-trust-card">
               <h3>{item.title}</h3>
               <p>{item.body}</p>
             </article>
@@ -105,118 +281,22 @@ const HomeSecurityLanding = ({ ctaLink }: Props) => {
         </div>
       </section>
 
-      <section className="hs-premium-section-panel hs-premium-process">
-        <div className="hs-premium-section-header">
-          <h2>How It Works</h2>
-        </div>
-        <ol className="hs-premium-process-timeline">
-          <li>
-            <h3>Step 1 - Fit Check</h3>
-            <p>Answer a few quick questions about your property, concerns, and goals.</p>
-          </li>
-          <li>
-            <h3>Step 2 - Talk To Us</h3>
-            <p>
-              Request a callback so we can discuss your situation, answer questions, and determine the best next steps
-              for your property.
-            </p>
-          </li>
-          <li>
-            <h3>Step 3 - Plan Installation</h3>
-            <p>Once you're comfortable with the recommendation, we'll schedule installation at a time and date that works for you.</p>
-          </li>
-          <li>
-            <h3>Step 4 - Enjoy</h3>
-            <p>Enjoy greater awareness, convenience, and peace of mind knowing your property is better protected.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section id="packages" className="hs-premium-packages hs-premium-section-panel">
-        <div className="hs-premium-section-header">
-          <h2>Solutions</h2>
-          <p>Common solution starting points based on your goals, concerns, and property type.</p>
-        </div>
-        <div className="hs-premium-package-preview-grid">
-          {solutionsPreview.map((item) => (
-            <article key={item.id} className="hs-premium-package-preview-card">
-              <img src={item.image} alt="" loading="lazy" />
-              <div className="hs-premium-package-preview-card-copy">
-                <h3>{item.name}</h3>
-                <p>{item.detail}</p>
-                <div className="hs-premium-package-preview-value-row" aria-label={item.priceLine}>
-                  <div className="hs-premium-package-preview-price">
-                    <span>Starting At</span>
-                    <strong>{item.priceAmount}</strong>
-                    <span>Installed</span>
-                  </div>
-                  <div className="hs-premium-package-preview-status" aria-label={item.availabilityLine}>
-                    <span>Available As A</span>
-                    <span>Base Or Add-On</span>
-                    <span>Solution</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        <Link className="hs-premium-text-link" to="/packages?vertical=home-security">
-          View More Solutions
-        </Link>
-      </section>
-
-      <section className="hs-premium-section-panel hs-premium-trust-panel" aria-labelledby="home-trust-heading">
-        <div className="hs-premium-section-header">
-          <h2 id="home-trust-heading">Why Homeowners Choose WNY Home Security</h2>
-          <p>
-            Local planning, clear recommendations, and systems designed for homeowner control without pushing
-            unnecessary equipment or required ongoing fees.
-          </p>
-        </div>
-        <div className="hs-premium-trust-card-grid">
-          <article className="hs-premium-trust-card">
-            <h3>Built To Grow</h3>
-            <p>
-              Your first solution includes the system foundation. After that, you can add as much or as little as you
-              need without having to upgrade or replace anything.
-            </p>
-          </article>
-          <article className="hs-premium-trust-card">
-            <h3>Only What You Need</h3>
-            <p>We recommend solutions based on your property and goals, not extra equipment you do not need.</p>
-          </article>
-          <article className="hs-premium-trust-card">
-            <h3>Your Home Stays Private</h3>
-            <p>
-              Your cameras, alerts, and activity are for you and your family. We believe what happens inside your home
-              should stay inside your home.
-            </p>
-          </article>
-          <article className="hs-premium-trust-card">
-            <h3>Works When You Need It</h3>
-            <p>
-              Your home should continue doing its job even when the internet is having a bad day. We build solutions
-              designed to keep working when you need them most.
-            </p>
-          </article>
-        </div>
-      </section>
-
       <section className="hs-premium-section-panel hs-premium-final-cta-panel">
         <div className="hs-premium-final-cta-copy">
-          <h2>Ready To Talk Through Your Property?</h2>
+          <p className="hs-premium-eyebrow">Primary CTA</p>
+          <h2>Ready to talk through your home?</h2>
           <p>
-            Start with a quick callback. We'll learn about your property, answer questions, and help determine whether
-            an on-site estimate makes sense.
+            Request an estimate or call/text WNYHS to discuss categories, packages, and solutions that fit your
+            property.
           </p>
         </div>
         <div className="hs-premium-final-cta-actions">
-          <Link className="btn btn-primary" to={ctaLink}>
-            Request a Callback
+          <Link className="btn btn-primary" to={estimateLink}>
+            Request Estimate
           </Link>
           <span className="hs-premium-final-cta-or">OR</span>
           <a className="btn btn-secondary" href={buildTel()}>
-            Call/Text 716-201-0364
+            Call / Text {wnyhsContact.phone.display}
           </a>
         </div>
       </section>

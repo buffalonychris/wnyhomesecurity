@@ -9,7 +9,7 @@ type WnyhsTopNavProps = {
   ctaLabel?: string;
 };
 
-const WnyhsTopNav = (_props: WnyhsTopNavProps) => {
+const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = 'Request Estimate' }: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
@@ -54,6 +54,9 @@ const WnyhsTopNav = (_props: WnyhsTopNavProps) => {
         </nav>
 
         <div className="wnyhs-top-nav-actions">
+          <Link className="btn btn-primary wnyhs-top-nav-cta" to={ctaLink}>
+            {ctaLabel}
+          </Link>
           <a className="wnyhs-top-nav-phone" href={buildTel()}>
             Call/Text {wnyhsContact.phone.display}
           </a>
