@@ -189,19 +189,20 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 ### SITE-CONTENT-OWNER-ROUTING-001
 - **Task ID:** SITE-CONTENT-OWNER-ROUTING-001
 - **Task Name:** Plan Site Content Owner Routing From Promoted Governance Docs
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Create a future bounded planning task to map canonical owner documents for site content objects, categories, packages, solutions, media, homepage, QR Landing, and search.
-- **Allowed Scope:** Planning-only future task definition and owner-document routing.
-- **Forbidden Scope:** No implementation work, source changes, routes, assets, CSS/components, runtime systems, protected systems, public-page changes, catalog expansion, or content migration until a separate ACTIVE task authorizes them.
-- **Target Files:** Future scoped planning docs and task-register updates only.
+- **Purpose:** Create the authoritative docs-only content ownership and routing plan that determines where Homepage, QR Landing, Category, Package, Solution, Search, Public Information, media, Fit Check, and Catalog content should live within the repository.
+- **Allowed Scope:** Planning-only documentation; create `docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register only.
+- **Forbidden Scope:** No implementation work, source changes, routes, assets, CSS/components, runtime systems, protected systems, public-page changes, Search implementation, Homepage implementation, QR Landing implementation, Category implementation, Package implementation, Solution implementation, Fit Check implementation, Catalog generation, catalog expansion, content migration, secrets, or merge.
+- **Target Files:** `docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Define exact owner-routing artifact and implementation gates when activated.
-- **Validation Required:** Future docs-only validation when activated.
-- **Exit Criteria:** Future task defines ownership/routing gaps and next planning sequence without implementing any page or runtime behavior.
-- **Dependencies:** GOV009 and all eight GOV009-promoted governance docs.
-- **Operator Decision Required:** Confirm whether a dedicated owner-routing artifact is needed before activation.
+- **Documentation Updates Required:** Add the content owner-routing plan, document catalog entry, markdown manifest addendum, and register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `rg -n "Solution|Package|Category|Homepage|QR Landing|Search|Fit Check|Catalog|ownership|source of truth|duplicate|inheritance|implementation boundary" docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --check`.
+- **Exit Criteria:** Content ownership philosophy, source hierarchy, Homepage ownership, QR Landing ownership, Category ownership, Package ownership, Solution ownership, Public Information ownership, Search indexing sources, image/media ownership, Fit Check guidance, Catalog guidance, duplication prevention, recommended repository content structure, implementation readiness checklist, and follow-up implementation recommendation are documented without implementation or forbidden file changes.
+- **Dependencies:** GOV009, HOMEPAGE-REDESIGN-PLANNING-001, QRLANDING-REDESIGN-PLANNING-001, SEARCH-UX-PLANNING-001, and all eight GOV009-promoted governance docs.
+- **Operator Decision Required:** None for this planning task; future implementation requires a separate active task.
+- **Completion Notes:** Created `docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md` as a docs-only content ownership and routing plan. The plan reinforces Solution as the source of truth, defines Package and Category reference ownership, requires Homepage and QR Landing to consume existing content instead of duplicating catalogs, limits Search to approved public content sources, and documents Fit Check and Catalog generation guidance. No source/app/runtime/protected-system files, routes, assets, CSS/components, QR attribution behavior, HubSpot, Stripe, Cloudflare, Resend, Google Workspace, scheduling, secrets, or implementation behavior were changed.
 
 ### RUNTIME-AUDIT-001
 - **Task ID:** RUNTIME-AUDIT-001
