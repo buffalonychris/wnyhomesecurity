@@ -186,6 +186,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Provide Stripe dashboard/API export or screenshots before any future live Stripe configuration verification task.
 - **Completion Notes:** Created the docs-only Stripe Current Config Inventory. Live Stripe account identity, account mode, live/test status, products, prices, payment links, checkout dashboard settings, webhook dashboard settings, subscribed webhook events, delivery logs, API key labels/scopes/status, tax settings, payout settings, and production payment/session histories were Not inspected because no Stripe credentials or operator export were available. Payment success was not inferred from redirect URLs. Server-side verification and webhook authority boundaries were preserved. No configuration changes and No secret values.
 
+### RUNTIME-AUDIT-005
+- **Task ID:** RUNTIME-AUDIT-005
+- **Task Name:** Google Workspace Current Config Inventory
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a read-only inventory of current Google Workspace configuration relevant to WNY Home Security domain identity, email aliases/groups, calendar ownership, account roles, security posture, and integration boundaries.
+- **Allowed Scope:** Documentation-only inventory in `docs/runtime/google_workspace_current_config_inventory_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register; record non-secret repo-documented facts; mark Google Admin/Workspace-only areas as `Not inspected` where Google Workspace access or operator export is unavailable; confirm no scheduling or email routing behavior changed.
+- **Forbidden Scope:** No Google Workspace configuration changes, user changes, group changes, alias changes, calendar changes, routing changes, security setting changes, scheduling behavior changes, email routing changes, code changes, runtime behavior changes, secret values, Cloudflare changes, HubSpot changes, Stripe changes, Resend changes, or new runtime contract creation.
+- **Target Files:** `docs/runtime/google_workspace_current_config_inventory_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Inventory only.
+- **Documentation Updates Required:** Add Google Workspace current config inventory document, catalog entry, manifest addendum, and task-register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/runtime/google_workspace_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `rg -n "Google Workspace|Current Config Inventory|Calendar|Not inspected|No configuration changes|No secret values" docs/runtime/google_workspace_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --check`.
+- **Exit Criteria:** Inventory records repo-documented Google Workspace domain references, user/account role gaps, group/alias references, Calendar ownership posture, integration posture, retention/security gaps, and unknown areas; identifies live Google Admin/Workspace-only gaps as `Not inspected`; records no secret values; confirms No configuration changes; confirms no scheduling or email routing behavior changed; and confirms no Google Workspace, user, group, alias, calendar, routing, security, scheduling, email routing, code, runtime, Cloudflare, HubSpot, Stripe, or Resend changes.
+- **Dependencies:** `docs/governance/NEXT_GOVERNANCE_TASK_QUEUE_REV01.md`, `docs/runtime/runtime_ownership_map.md`, `docs/runtime/google_calendar_runtime.md`, `docs/runtime/scheduling_ownership.md`, `docs/runtime/scheduling_future_model.md`, `docs/runtime/cloudflare_email_routing.md`, `docs/runtime/protected_runtime_contract.md`.
+- **Operator Decision Required:** Provide Google Admin/Workspace export or screenshots before any future live Google Workspace configuration verification task.
+- **Completion Notes:** Created the docs-only Google Workspace Current Config Inventory. Live Google Workspace domain identity, users, account roles, admin roles, groups, aliases, Gmail routing, calendar ownership/sharing, OAuth app/API posture, retention, Vault, security controls, and audit logs were Not inspected because no Google Admin access, Google Workspace export, Google Calendar admin export, OAuth console export, operator screenshots, or read-only administrative credentials were available. No scheduling or email routing behavior changed. No configuration changes and No secret values.
+
 ### SOLUTIONS-LANDING-003
 - **Task ID:** SOLUTIONS-LANDING-003
 - **Task Name:** Add Visuals + Complete Solution Category Browse List

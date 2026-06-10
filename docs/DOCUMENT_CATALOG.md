@@ -287,6 +287,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by RUNTIME-AUDIT-004 as documentation-only inventory. Records repo-documented facts, marks Stripe dashboard/API-only areas as `Not inspected`, reaffirms webhook and server-side payment verification boundaries, and records No configuration changes and No secret values; does not authorize or perform Stripe configuration, product, price, checkout, payment link, webhook, tax, payout, account, code, runtime, HubSpot, Cloudflare, Resend, Google Workspace, or secret changes.
 
+### `/docs/runtime/google_workspace_current_config_inventory_rev01.md`
+- **File path:** `docs/runtime/google_workspace_current_config_inventory_rev01.md`
+- **Purpose / likely role:** Read-only Google Workspace Current Config Inventory for domain identity, email aliases/groups, Calendar ownership, account roles, security posture, integration boundaries, and unknown areas.
+- **Authority level:** **Current Config Inventory / runtime evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by RUNTIME-AUDIT-005 as documentation-only inventory. Records repo-documented Google Workspace and Calendar references, marks Google Admin/Workspace-only areas as `Not inspected`, confirms no scheduling or email routing behavior changed, and records No configuration changes and No secret values; does not authorize or perform Google Workspace configuration, user, group, alias, calendar, routing, security, scheduling, email routing, code, runtime, Cloudflare, HubSpot, Stripe, Resend, or secret changes.
+
 ### `/docs/runtime/stripe_runtime.md`
 - **File path:** `docs/runtime/stripe_runtime.md`
 - **Purpose / likely role:** Canonical Stripe runtime/payment contract for server-side verification, webhook authority, env ownership, diagnostics, and change governance.
