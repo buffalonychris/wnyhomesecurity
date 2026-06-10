@@ -150,6 +150,28 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** None. Activated by explicit bounded planning prompt.
 - **Completion Notes:** Completed as docs-only planning in `docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`. Follow-up implementation recommendation recorded as HOMEPAGE-REDESIGN-IMPLEMENTATION-001 planning recommendation only; implementation remains unauthorized until a separate active implementation task is approved.
 
+### HOMEPAGE-REDESIGN-IMPLEMENTATION-001
+- **Task ID:** HOMEPAGE-REDESIGN-IMPLEMENTATION-001
+- **Task Name:** Implement Homepage Redesign From Approved Planning Docs
+- **Status:** ACTIVE
+- **Type:** Bounded frontend implementation
+- **Category:** FUNNEL / UX / FRONTEND
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement the redesigned Homepage only, using the approved Homepage redesign plan and promoted governance standards.
+- **Controlling Docs:** `docs/planning/HOMEPAGE_REDESIGN_PLAN_REV01.md`, `docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md`, `docs/planning/SEARCH_UX_PLAN_REV01.md`, `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`, `docs/governance/MASTER_SOLUTION_CATALOG_V1.md`, `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`, `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`, `docs/governance/PACKAGE001_WNYHS_PACKAGE_STANDARD_REV01.md`, `docs/governance/SOLUTION001_WNYHS_SOLUTION_OBJECT_STANDARD_REV02.md`.
+- **Allowed Scope:** Homepage redesign only. Implement the approved Homepage section order: Navigation, Search Access placeholder or entry point only, Hero, Trust Bar, Category Explorer, Featured Packages, Featured Solutions, WNYHS Core Section, How It Works, Why WNYHS, Primary CTA, and Footer. Use approved categories, approved Solution catalog content, promoted content ownership guidance, existing safe routes, existing components/patterns, and semantic visual tokens where possible.
+- **Forbidden Scope:** No QR Landing implementation or QR Landing behavior changes; no Search implementation, indexing, routing, result UI, or search logic; no Category page implementation; no Package page implementation; no Solution page implementation; no backend/runtime changes; no payment, Stripe, scheduling, HubSpot, lead-signal, requestId, QR attribution, API route, Cloudflare, Resend, Google Workspace, environment variable, analytics, protected-system, or secret changes; no asset generation; no image generation; no unrelated route changes; no merge.
+- **Target Files:** Existing Homepage frontend, style/content, navigation support, and visible site version files only as required by the implementation. Exact files must be identified by implementation inspection before edits.
+- **Runtime Systems Affected:** None. Homepage frontend presentation only; protected runtime systems must remain untouched.
+- **Version Bump Required:** Yes. Visible site version must be bumped according to the existing repo convention.
+- **Documentation Updates Required:** None unless implementation findings require a bounded task-register completion note after implementation validation.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; `npm run build`; run standard lint/typecheck scripts if `package.json` indicates they are standard validation scripts and they are applicable after implementation.
+- **PR Target:** `main`
+- **Exit Criteria:** Homepage implements the approved section order; Search access is present only as a placeholder or entry point without Search functionality; approved Categories and approved Solution catalog content are used; Homepage presents Category before Package before Solution; visual implementation follows Light Theme primary, charcoal/black structural contrast, antique gold accent, premium residential feel, existing WNYHS shield/eagle logo preservation, semantic tokens where possible, readable fonts, and mobile-first responsive behavior; visible site version is bumped; QR Landing is untouched; Search functionality is not implemented; Category, Package, and Solution pages are not implemented; protected systems are untouched; validation passes; branch is pushed and PR targets `main` without merge.
+- **Dependencies:** HOMEPAGE-REDESIGN-PLANNING-001, SITE-CONTENT-OWNER-ROUTING-001, SEARCH-UX-PLANNING-001, GOV009, and listed controlling docs.
+- **Operator Decision Required:** Review and merge the implementation PR if validation passes and the Homepage-only implementation is accepted.
+- **Activation Notes:** Activated by TASK-AUTH-001 as a docs-only task-register authorization. This entry authorizes the future bounded Homepage redesign implementation only; TASK-AUTH-001 did not implement Homepage, QR Landing, Search, Category pages, Package pages, Solution pages, runtime behavior, protected systems, assets, or routes.
+
 ### QRLANDING-REDESIGN-PLANNING-001
 - **Task ID:** QRLANDING-REDESIGN-PLANNING-001
 - **Task Name:** Plan QR Landing Redesign From Promoted Governance Docs
