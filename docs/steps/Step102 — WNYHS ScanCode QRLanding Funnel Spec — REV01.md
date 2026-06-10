@@ -1,10 +1,10 @@
-Status: CONFLICTING / NEEDS RECONCILIATION
-Authority Role: Historical QRLanding reference with legacy controlling-language conflict
+Status: SUPPORTING REFERENCE
+Authority Role: Historical QRLanding lineage reference
 Supersedes: None
 Superseded By: None
 Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly references this Step102 QRLanding scope.
-Do Not Use For: Do not use as implicit authority when `docs/system/step-current.md` names a different current operational context.
-Reconciliation Note: The preserved body includes legacy "ACTIVE" and "Controlling Implementation Step" wording. Current repo governance treats this document as non-controlling lineage/reference unless explicitly promoted by `docs/system/step-current.md` or a bounded work order.
+Do Not Use For: Do not treat as current controlling implementation authority or permission to change routes, QRLanding behavior, CRM, lead-signal, scheduling, attribution, or runtime systems by itself.
+Reconciliation Note: GOV006 reconciled this document as non-controlling historical/reference material. The preserved body includes legacy "ACTIVE" and "Controlling Implementation Step" wording, but current repo governance treats Step102 as lineage unless explicitly promoted by `docs/system/step-current.md` or an active bounded task/work order.
 
 ---
 
