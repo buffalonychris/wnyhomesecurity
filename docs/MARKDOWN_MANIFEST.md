@@ -28,6 +28,8 @@ SOLUTION001-B addendum: `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_ST
 
 DESIGN001 addendum: `docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a docs-only homepage-derived visual design system standard for review and does not authorize implementation, public page changes, CSS changes, semantic token changes, protected-system changes, or a visible site version bump.
 
+RUNTIME-AUDIT-001 addendum: `docs/runtime/cloudflare_current_config_inventory_rev01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a read-only Cloudflare Current Config Inventory that records repo-documented facts and marks dashboard/API-only areas as `Not inspected`; it records No configuration changes and No secret values.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 

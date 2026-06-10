@@ -255,6 +255,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Operational runtime contract**
 - **Notes:** Authored in RUNTIME002 REV01; marks confirmed assumptions and unknowns needing operator verification.
 
+### `/docs/runtime/cloudflare_current_config_inventory_rev01.md`
+- **File path:** `docs/runtime/cloudflare_current_config_inventory_rev01.md`
+- **Purpose / likely role:** Read-only Cloudflare current config inventory for zone, DNS, Pages, Functions, environment variable names, Email Routing, deployment, and security posture.
+- **Authority level:** **Current Config Inventory / runtime evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by RUNTIME-AUDIT-001 as documentation-only inventory. Records repo-documented facts and marks dashboard/API-only areas as `Not inspected`; does not authorize or perform Cloudflare, DNS, deployment, route, runtime, code, Stripe, HubSpot, Resend, Google Workspace, or secret changes.
+
 ### `/docs/runtime/stripe_runtime.md`
 - **File path:** `docs/runtime/stripe_runtime.md`
 - **Purpose / likely role:** Canonical Stripe runtime/payment contract for server-side verification, webhook authority, env ownership, diagnostics, and change governance.
