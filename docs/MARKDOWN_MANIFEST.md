@@ -34,6 +34,8 @@ RUNTIME-AUDIT-002 addendum: `docs/runtime/hubspot_current_config_inventory_rev01
 
 RUNTIME-AUDIT-003 addendum: `docs/runtime/resend_current_config_inventory_rev01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a read-only Resend Current Config Inventory that records repo-documented facts, marks live Resend dashboard/API-only areas as `Not inspected`, and records No configuration changes and No secret values.
 
+RUNTIME-AUDIT-004 addendum: `docs/runtime/stripe_current_config_inventory_rev01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It is a read-only Stripe Current Config Inventory that records repo-documented facts, marks live Stripe dashboard/API-only areas as `Not inspected`, preserves webhook and server-side payment verification boundaries, and records No configuration changes and No secret values.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
