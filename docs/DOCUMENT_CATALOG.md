@@ -444,10 +444,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`
 - **File path:** `docs/steps/Step201_Email_Infrastructure_Resend_Integration_REV01.md`
-- **Purpose / likely role:** Email architecture Step for isolated Resend scope.
-- **Authority level:** **CONFLICTING / NEEDS RECONCILIATION**
-- **Lineage status:** Historical Step201 lineage; preserved body includes legacy active/controlling email wording that conflicts with current single-context governance.
-- **Notes:** Use only as supporting email reference when explicitly named by the current operational context or bounded work order; reconcile legacy status wording before relying on it operationally.
+- **Purpose / likely role:** Email architecture Step retained for outbound Resend and audit-copy lineage.
+- **Authority level:** **SUPPORTING REFERENCE**
+- **Lineage status:** Historical Step201 email lineage reconciled by GOV007 as non-controlling reference material.
+- **Notes:** Use only as supporting email reference when explicitly named by the current operational context or bounded work order; it does not authorize email runtime, Resend, endpoint, DNS, Cloudflare Email Routing, secret, audit-copy, HubSpot, Stripe, Cloudflare, deployment, or code changes by itself.
 
 ### `/docs/steps/placeholder.txt`
 - **File path:** `docs/steps/placeholder.txt`

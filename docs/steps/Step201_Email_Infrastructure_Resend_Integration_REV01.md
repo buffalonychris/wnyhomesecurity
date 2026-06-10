@@ -1,28 +1,29 @@
-Status: CONFLICTING / NEEDS RECONCILIATION
-Authority Role: Historical email reference with legacy controlling-language conflict
+Status: SUPPORTING REFERENCE
+Authority Role: Historical email lineage reference
 Supersedes: None
 Superseded By: None
-Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly activates Step201 email scope.
-Do Not Use For: Do not apply outside explicit current-context or bounded-work-order activation.
-Reconciliation Note: The preserved body includes legacy "Active / Controlling" wording. Current repo governance treats this document as non-controlling lineage/reference unless explicitly promoted by `docs/system/step-current.md` or a bounded work order.
+Current Use: Use only as supporting reference when the current operational context or active bounded task/work order explicitly references Step201 email scope.
+Do Not Use For: Do not treat as current controlling implementation authority or permission to change email runtime, Resend configuration, server email endpoints, DNS, Cloudflare Email Routing, secrets, or audit-copy behavior by itself.
+Reconciliation Note: GOV007 reconciled this document as non-controlling historical/reference material. The preserved body includes legacy "Active / Controlling" wording, but current repo governance treats Step201 as lineage unless explicitly promoted by `docs/system/step-current.md` or an active bounded task/work order.
 
 ---
 
 # Step201 — Email Infrastructure + Resend Integration (REV01)
 
 Legacy Status (historical): Active / Controlling for outbound email, Resend, server email endpoints, and audit-copy behavior
+Current Authority Note: The legacy status line above is preserved for historical lineage only. It does not authorize email runtime, Resend, endpoint, DNS, Cloudflare Email Routing, secret, or audit-copy changes unless Step201 scope is explicitly promoted by the current operational context or an active bounded work order.
 
 ---
 
 ## 1. Purpose
 
-Implement and standardize all outbound email behavior across WNY Home Security using Resend, while preserving existing funnel structure and transaction flow.
+Historically, this Step described an intent to implement and standardize outbound email behavior across WNY Home Security using Resend, while preserving existing funnel structure and transaction flow.
 
 ---
 
-## 2. Authorized Scope
+## 2. Historical Authorized Scope
 
-This Step authorizes:
+This preserved historical section described the Step201 implementation scope at the time it was written. Under current governance, it is reference lineage only and does not authorize changes by itself:
 
 - Server/API email infrastructure updates
 - Resend integration
@@ -40,9 +41,9 @@ This Step authorizes:
 
 ---
 
-## 3. Non-Scope
+## 3. Historical Non-Scope
 
-Do not modify under this Step:
+The preserved Step201 non-scope language remains useful historical boundary context. It is not a current implementation authorization:
 
 - Funnel order
 - Homepage/visual hierarchy, unless Step101 is also active
@@ -56,6 +57,8 @@ Do not modify under this Step:
 ---
 
 ## 4. Email Architecture
+
+This architecture section preserves historical email-design intent. Current outbound runtime authority lives in `docs/runtime/resend_runtime.md`; current inbound routing authority lives in `docs/runtime/cloudflare_email_routing.md`.
 
 Inbound:
 
@@ -116,6 +119,8 @@ No private addresses or secrets may be hardcoded into frontend code.
 ---
 
 ## 8. Audit Copy Rule
+
+This preserved audit-copy rule documents historical Step201 intent. It does not change or authorize current audit-copy runtime behavior unless an active bounded work order promotes this scope.
 
 Every system-generated outbound email must send an internal copy.
 
@@ -198,7 +203,9 @@ If audit copy fails:
 
 ---
 
-## 11. Completion Criteria
+## 11. Historical Completion Criteria
+
+These preserved criteria describe the historical Step201 completion target. They are not current validation requirements unless explicitly adopted by the current operational context or an active bounded work order.
 
 - Resend helper exists and is centralized
 - All submission-style email flows use server endpoints
