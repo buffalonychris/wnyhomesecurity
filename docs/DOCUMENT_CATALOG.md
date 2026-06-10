@@ -307,6 +307,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by HOMEPAGE-REDESIGN-PLANNING-001. Defines Homepage purpose, section order, Search, Category Explorer, Featured Packages, Featured Solutions, WNYHS Core, CTA, footer, visual-system requirements, content source mapping, forbidden scope, and a future implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, asset, image-generation, Search, Homepage, QR Landing, or implementation changes by itself.
 
+### `/docs/planning/QRLANDING_REDESIGN_PLAN_REV01.md`
+- **File path:** `docs/planning/QRLANDING_REDESIGN_PLAN_REV01.md`
+- **Purpose / likely role:** Planning-only QR Landing redesign plan translating GOV009-promoted governance, the Homepage redesign plan, and QR runtime contracts into an implementation-ready conversion-page plan.
+- **Authority level:** **Planning document / implementation-readiness artifact**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QRLANDING-REDESIGN-PLANNING-001. Defines QR Landing purpose, section order, Search, scan acknowledgment, Popular Solutions, WNYHS Core, Light Theme alignment, Request Estimate, Call / Text, content source mapping, QR attribution preservation, requestId preservation, lead-signal preservation, forbidden scope, and a future implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, analytics, attribution, asset, image-generation, Search, Homepage, QR Landing, qrlanding, requestId, lead-signal, or implementation changes by itself.
+
 ### `/docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **File path:** `docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **Purpose / likely role:** Governance-only reconciliation task plan sequencing authority-chain, task-dispatch, operator-workflow, document-classification, conflicting-Step, runtime-ownership, Project KB, and implementation-resume tasks.
