@@ -323,6 +323,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by SEARCH-UX-PLANNING-001. Defines Search purpose, scope, search result types, placement, behavior, ranking recommendations, metadata, Category / Package / Solution / Public Information mapping, Homepage and QR Landing requirements, mobile/accessibility requirements, forbidden result types, forbidden implementation scope, and a future implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, analytics, attribution, asset, image-generation, Search implementation, Homepage implementation, QR Landing implementation, QR attribution changes, API changes, or protected-system changes by itself.
 
+### `/docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md`
+- **File path:** `docs/planning/SITE_CONTENT_OWNER_ROUTING_PLAN_REV01.md`
+- **Purpose / likely role:** Planning-only site content ownership and routing plan defining the canonical source hierarchy for Solution, Package, Category, Homepage, QR Landing, Search, Public Information, image/media, Fit Check, and Catalog generation content.
+- **Authority level:** **Planning document / implementation-readiness artifact**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by SITE-CONTENT-OWNER-ROUTING-001. Defines ownership philosophy, source of truth hierarchy, inheritance rules, duplicate prevention, recommended repository content structure, Search indexing sources, Fit Check guidance, Catalog guidance, implementation boundary, and a follow-up implementation task recommendation. Does not authorize source, CSS, component, route, runtime, HubSpot, Stripe, Resend, Google Workspace, Cloudflare, scheduling, analytics, attribution, asset, image-generation, Search implementation, Homepage implementation, QR Landing implementation, Category implementation, Package implementation, Solution implementation, Fit Check implementation, Catalog generation, API changes, or protected-system changes by itself.
+
 ### `/docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **File path:** `docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md`
 - **Purpose / likely role:** Governance-only reconciliation task plan sequencing authority-chain, task-dispatch, operator-workflow, document-classification, conflicting-Step, runtime-ownership, Project KB, and implementation-resume tasks.
