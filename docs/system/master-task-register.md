@@ -168,6 +168,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Provide Resend dashboard/API export or screenshots before any future live Resend configuration verification task.
 - **Completion Notes:** Created the docs-only Resend Current Config Inventory. Live Resend account identity, verified domains, sender verification status, API key labels/scopes/status, webhooks, suppression/bounce settings, and delivery logs were Not inspected because no Resend credentials or operator export were available. No configuration changes and No secret values.
 
+### RUNTIME-AUDIT-004
+- **Task ID:** RUNTIME-AUDIT-004
+- **Task Name:** Stripe Current Config Inventory
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a read-only inventory of current Stripe configuration relevant to WNY Home Security payment ownership, products/prices, checkout posture, webhook endpoints, deposit/payment verification, and secret-management boundaries.
+- **Allowed Scope:** Documentation-only inventory in `docs/runtime/stripe_current_config_inventory_rev01.md`; update `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this task register; record non-secret repo-documented facts; mark Stripe dashboard/API-only areas as `Not inspected` where Stripe access or operator export is unavailable; reaffirm server-side verification and webhook authority boundaries.
+- **Forbidden Scope:** No Stripe configuration changes, product changes, price changes, checkout changes, payment link changes, webhook changes, tax changes, payout changes, account changes, client-side payment confirmation logic, payment success authority from redirect URLs, code changes, runtime behavior changes, secret values, HubSpot changes, Cloudflare changes, Resend changes, Google Workspace changes, or new runtime contract creation.
+- **Target Files:** `docs/runtime/stripe_current_config_inventory_rev01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Inventory only.
+- **Documentation Updates Required:** Add Stripe current config inventory document, catalog entry, manifest addendum, and task-register completion record.
+- **Validation Required:** `git status`; `git diff -- docs/runtime/stripe_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `rg -n "Stripe|Current Config Inventory|webhook|server-side|Not inspected|No configuration changes|No secret values" docs/runtime/stripe_current_config_inventory_rev01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`; `git diff --check`.
+- **Exit Criteria:** Inventory records repo-documented Stripe account-mode gaps, product/price posture, checkout settings, webhook endpoint URLs, webhook event names, payment verification posture, and environment variable names without values; identifies live Stripe dashboard/API-only gaps as `Not inspected`; records no secret values; confirms No configuration changes; preserves webhook and server-side verification authority boundaries; confirms redirect URLs were not treated as payment authority; and confirms no Stripe configuration, product, price, checkout, payment link, webhook, tax, payout, account, code, runtime, HubSpot, Cloudflare, Resend, or Google Workspace changes.
+- **Dependencies:** `docs/governance/NEXT_GOVERNANCE_TASK_QUEUE_REV01.md`, `docs/runtime/runtime_ownership_map.md`, `docs/runtime/stripe_runtime.md`, `docs/runtime/protected_runtime_contract.md`.
+- **Operator Decision Required:** Provide Stripe dashboard/API export or screenshots before any future live Stripe configuration verification task.
+- **Completion Notes:** Created the docs-only Stripe Current Config Inventory. Live Stripe account identity, account mode, live/test status, products, prices, payment links, checkout dashboard settings, webhook dashboard settings, subscribed webhook events, delivery logs, API key labels/scopes/status, tax settings, payout settings, and production payment/session histories were Not inspected because no Stripe credentials or operator export were available. Payment success was not inferred from redirect URLs. Server-side verification and webhook authority boundaries were preserved. No configuration changes and No secret values.
+
 ### SOLUTIONS-LANDING-003
 - **Task ID:** SOLUTIONS-LANDING-003
 - **Task Name:** Add Visuals + Complete Solution Category Browse List
