@@ -3577,3 +3577,21 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** T-CATALOG001, T-HARDWARE001, T-CLAIMS001, `docs/solution-system/SOLUTION_CATALOG_RECONCILIATION_REV01.md`, `docs/solution-system/HARDWARE001_WNYHS_APPROVED_HARDWARE_REGISTRY_REV01.md`, `docs/solution-system/CLAIMS001_WNYHS_UNIFIED_CLAIMS_GUARDRAIL_ADDENDUM_REV01.md`.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created docs-only offer architecture governance. No app/source/runtime/payment/HubSpot/scheduling files were changed. No public copy, The Vault deployment, pricing, hardware purchasing, customer installation, or implementation was authorized.
+
+### T-PACKAGEBOM001
+- **Task ID:** T-PACKAGEBOM001
+- **Task Name:** Create Package Map + BOM/Pricing Input Schema REV01
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create docs-only WNYHS package/BOM/pricing-input governance defining package structure, Core inclusion logic, existing-customer add-on treatment, BOM input fields, pricing-input fields, install/labor planning inputs, and Vault/custom quote inputs without setting final prices.
+- **Allowed Scope:** Docs-only package/BOM/pricing-input governance creation; create `docs/solution-system/PACKAGEBOM001_WNYHS_PACKAGE_MAP_AND_BOM_PRICING_INPUT_SCHEMA_REV01.md`; update `docs/DOCUMENT_CATALOG.md`; update this task register.
+- **Forbidden Scope:** No app/source files, routes, pages, components, styles, CSS, tokens, runtime behavior, public copy deployment, site version bump, final public prices, supplier costs, invented hardware prices, Stripe/payment changes, HubSpot changes, scheduling changes, Cloudflare/environment changes, hardware purchasing authorization, or customer installation authorization.
+- **Target Files:** `docs/solution-system/PACKAGEBOM001_WNYHS_PACKAGE_MAP_AND_BOM_PRICING_INPUT_SCHEMA_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create package/BOM/pricing-input governance, register it in the document catalog, and record T-PACKAGEBOM001 in the task register.
+- **Validation Required:** `git status --short`; `git diff --name-only`; `git diff --check`; stage only target files; `git diff --cached --check`; confirm only intended docs files changed.
+- **Exit Criteria:** Package concepts are mapped from governed solutions; Core first-time and existing-customer add-on rules are documented; BOM and pricing-input schemas exist; install/labor planning assumptions are recorded as internal inputs only; Vault/custom quote inputs preserve The Vault tiers; explicit non-pricing and implementation-hold language is present; document catalog is updated; task register is updated; only intended docs files changed; validation passes.
+- **Dependencies:** T-CATALOG001, T-HARDWARE001, T-CLAIMS001, T-OFFERING001.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created docs-only package/BOM/pricing-input governance. No app/source/runtime/payment/HubSpot/scheduling/public copy/pricing files were changed. No final prices, supplier costs, invented hardware prices, public pricing, site version bump, hardware purchasing, customer installation, or implementation was authorized.

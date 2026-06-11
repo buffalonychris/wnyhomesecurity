@@ -100,6 +100,16 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Public-copy deployment authority:** No.
 - **Notes:** Added by T-OFFERING001 as a docs-only governance artifact. It does not authorize app/source changes, page edits, The Vault deployment, public copy deployment, pricing, hardware purchasing, HubSpot, Stripe, scheduling, runtime behavior, or customer installation by itself.
 
+### `/docs/solution-system/PACKAGEBOM001_WNYHS_PACKAGE_MAP_AND_BOM_PRICING_INPUT_SCHEMA_REV01.md`
+- **File path:** `docs/solution-system/PACKAGEBOM001_WNYHS_PACKAGE_MAP_AND_BOM_PRICING_INPUT_SCHEMA_REV01.md`
+- **Purpose / likely role:** WNYHS package map and BOM/pricing-input governance defining package candidates, Core inclusion logic, existing-customer add-on treatment, BOM fields, pricing-input fields, install/labor planning inputs, and Vault/custom quote inputs.
+- **Authority level:** **Solution-system governance / package + BOM governance / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Pricing-approved:** No.
+- **Public-copy deployment authority:** No.
+- **Notes:** Added by T-PACKAGEBOM001 as a docs-only governance artifact. It does not authorize app/source changes, routes, pages, styles, runtime behavior, public pricing, Stripe/payment changes, HubSpot changes, scheduling changes, Cloudflare/environment changes, hardware purchasing, customer installation, public copy deployment, or site version bump by itself.
+
 ## `docs/design-system/`
 
 ### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
