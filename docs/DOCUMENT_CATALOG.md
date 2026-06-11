@@ -72,6 +72,16 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Created by T-CATALOG001 as docs-only governance. It does not authorize public pages, package implementation, solution-page implementation, pricing, BOM commitments, hardware purchasing, Stripe/payment behavior, HubSpot workflows, scheduling changes, runtime behavior, source changes, route changes, style changes, or deployment. Follow-up governance is required for hardware registry, claims guardrails, field-test backlog, SOP/disclosure docs, BOM/pricing schema, and solution object index.
 
+### `/docs/solution-system/HARDWARE001_WNYHS_APPROVED_HARDWARE_REGISTRY_REV01.md`
+- **File path:** `docs/solution-system/HARDWARE001_WNYHS_APPROVED_HARDWARE_REGISTRY_REV01.md`
+- **Purpose / likely role:** WNYHS hardware governance registry classifying approved standard, conditional, pilot, premium/custom, research-only, and excluded hardware candidates for future catalog, package, BOM, claims, and field-test work.
+- **Authority level:** **Solution-system governance / hardware registry / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Pricing-approved:** No.
+- **Purchasing-approved:** No.
+- **Notes:** Added by T-HARDWARE001 as a docs-only governance artifact. It does not authorize hardware purchasing, installation, public solution pages, pricing, quote behavior, runtime changes, HubSpot, Stripe, scheduling, or public copy deployment by itself.
+
 ## `docs/design-system/`
 
 ### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
