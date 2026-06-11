@@ -205,6 +205,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Customer-facing:** No.
 - **Notes:** Required review aid before LEADFLOW001 and other high-risk implementation work; does not authorize runtime, HubSpot, Stripe, scheduling, route, UI, referral, request-estimate, BOM, package, or pricing changes.
 
+### `/docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md`
+- **File path:** `docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md`
+- **Purpose / likely role:** Repository connector dispatch standard defining how ChatGPT should use live GitHub connector access to inspect current repository facts before generating Codex work orders.
+- **Authority level:** **System operations governance / dispatcher standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by GOV-REPOACCESS-001-B as documentation bookkeeping for OPS002. It improves repo-aware dispatcher preparation and does not authorize source, CSS, route, runtime, API, HubSpot, Stripe, Resend, Gmail/Workspace, Cloudflare, scheduling, secrets, assets, dependencies, package-lock, package/catalog implementation, pricing implementation, or protected-system changes by itself.
+
 ### `/docs/system/project.md`
 - **File path:** `docs/system/project.md`
 - **Purpose / likely role:** Top-level repository authority and practical precedence hierarchy for Codex execution.

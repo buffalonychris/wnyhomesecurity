@@ -149,6 +149,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if the promoted governance docs and planning placeholders are accepted.
 - **Completion Notes:** Promoted eight local governance documents as docs-only official references. Updated status labels to `Working Standard` where appropriate, retained `Approved Governance Context` and `Approved Catalog V1`, removed guardrail-sensitive claim wording from the promoted docs, updated catalog and manifest, queued planning-only follow-up placeholders, and made no implementation, runtime, protected-system, secret, route, source, CSS, asset, or image-generation changes.
 
+### GOV-REPOACCESS-001-B
+- **Task ID:** GOV-REPOACCESS-001-B
+- **Task Name:** Complete Repository Connector Dispatch Governance Bookkeeping
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Complete documentation bookkeeping for the repo-access dispatcher governance file already added at `docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md`.
+- **Allowed Scope:** Docs-only bookkeeping; register `docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md` in `docs/DOCUMENT_CATALOG.md`; add an OPS002 addendum to `docs/MARKDOWN_MANIFEST.md`; add this completed task record to `docs/system/master-task-register.md`.
+- **Forbidden Scope:** No edits to `docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md`; no src changes; no CSS changes; no visual implementation; no route changes; no homepage changes; no Solutions page changes; no package/catalog implementation; no pricing implementation; no HubSpot changes; no Stripe/payment changes; no Resend changes; no Gmail/Workspace changes; no Cloudflare config changes; no scheduling changes; no API changes; no runtime behavior changes; no secrets; no assets; no dependency changes; no package-lock changes; no build config changes.
+- **Target Files:** `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only bookkeeping.
+- **Documentation Updates Required:** Add catalog registration, manifest addendum, and completed task-register record for OPS002 repository connector dispatch governance.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; `rg -n "OPS002|Repository Connector Dispatch|GOV-REPOACCESS-001-B|GitHub connector|repo-aware dispatcher" docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md`. No `npm run build` unless application/source files are changed.
+- **Exit Criteria:** OPS002 is registered in the document catalog; the markdown manifest includes an OPS002 addendum; this task record is DONE; only target docs bookkeeping files changed; OPS002 source document remains untouched; no source, CSS, route, runtime, API, protected-system, package/catalog implementation, pricing, secrets, assets, dependencies, package-lock, or build-config files changed; validation passes.
+- **Dependencies:** Prompt-created bounded GOV-REPOACCESS-001-B work order; existing `docs/system/OPS002_REPOSITORY_CONNECTOR_DISPATCH_STANDARD_REV01.md`; `docs/system/step-current.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed docs-only bookkeeping for OPS002 repository connector dispatch governance. Registered the OPS002 document in the catalog, added the manifest addendum, and recorded this task as DONE without editing the OPS002 source document or any source/runtime/protected-system files.
+
 ### HOMEPAGE-REDESIGN-PLANNING-001
 - **Task ID:** HOMEPAGE-REDESIGN-PLANNING-001
 - **Task Name:** Plan Homepage Redesign From Promoted Governance Docs
