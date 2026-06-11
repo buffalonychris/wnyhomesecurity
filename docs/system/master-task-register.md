@@ -114,6 +114,23 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+### HOMEPAGE-ASSET-POLISH-001
+- **Task ID:** HOMEPAGE-ASSET-POLISH-001
+- **Task Name:** Homepage Approved Asset Placement Polish
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Improve the existing `/home-security` homepage presentation by placing approved homepage image assets while preserving the current page structure and funnel behavior.
+- **Allowed Scope:** Homepage image placement from `public/images/home-security/homepage/`; listed homepage copy cleanup only; CSS styling needed for correct responsive image scaling; visible site version patch bump; required validation.
+- **Forbidden Scope:** No new routes, navigation rewrite, QR Landing changes, Fit Check changes, Quote/Estimate behavior changes, HubSpot changes, Stripe/payment changes, scheduling changes, API/runtime changes, Cloudflare changes, design-system rewrite, solution catalog rewrite, package/category architecture changes, large refactor, unsupported claims, or merge.
+- **Target Files:** `docs/system/master-task-register.md`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/styles/homeSecurityPremium.css`, `src/lib/siteVersion.ts`, approved existing assets under `public/images/home-security/homepage/`.
+- **Runtime Systems Affected:** None. Homepage presentation only; protected runtime systems must remain untouched.
+- **Documentation Updates Required:** Add this minimal ACTIVE task-register entry before implementation.
+- **Validation Required:** `npm run build`; `git diff --check`; `git status`; confirm corrected sump pump asset usage and protected systems untouched.
+- **Exit Criteria:** Homepage uses approved hero, category, package, solution, and WNYHS Core assets from `public/images/home-security/homepage/`; corrected `solution-sump-pump-awarenes.png` asset is used for Sump Pump Awareness; listed copy cleanup is applied only if matching text is present; visible site version is bumped; validation passes; PR targets `main` without merge.
+- **Dependencies:** Operator confirmation to use `public/images/home-security/homepage/solution-sump-pump-awarenes.png` for the sump pump asset.
+- **Operator Decision Required:** Review and merge PR if accepted.
+
 ### GOV009
 - **Task ID:** GOV009
 - **Task Name:** Promote Site Architecture / Visual / Solution Governance Docs
