@@ -5,7 +5,7 @@
   line-height: 1.7;
   font-weight: 400;
 
-  --wny-font-heading: 'Oswald', 'Inter', system-ui, sans-serif;
+  --wny-font-heading: 'Manrope', 'Inter', system-ui, sans-serif;
   --wny-black-950: #050404;
   --wny-black-900: #080706;
   --wny-black-850: #0b0803;
@@ -68,19 +68,19 @@
   --color-destructive-border: color-mix(in srgb, var(--destructive) 62%, transparent);
 
   --kaec-font-heading: var(--wny-font-heading);
-  --kaec-bg: #070b12;
-  --kaec-surface: rgba(13, 19, 28, 0.9);
-  --kaec-surface-strong: rgba(18, 27, 40, 0.92);
-  --kaec-border: rgba(120, 136, 158, 0.24);
-  --kaec-border-strong: rgba(120, 203, 255, 0.4);
-  --kaec-text: #e2e8f0;
-  --kaec-text-strong: #f8fafc;
-  --kaec-text-muted: #c6d1e0;
-  --kaec-text-subtle: #8b9bb2;
-  --kaec-accent: #4cc2ff;
-  --kaec-accent-strong: #1aa6f0;
-  --kaec-accent-soft: rgba(76, 194, 255, 0.12);
-  --kaec-neon: #8ad1ff;
+  --kaec-bg: var(--background);
+  --kaec-surface: color-mix(in srgb, var(--card) 88%, transparent);
+  --kaec-surface-strong: color-mix(in srgb, var(--card) 94%, var(--background) 6%);
+  --kaec-border: var(--border);
+  --kaec-border-strong: color-mix(in srgb, var(--primary) 44%, var(--border));
+  --kaec-text: var(--wny-text-secondary);
+  --kaec-text-strong: var(--wny-text-primary);
+  --kaec-text-muted: var(--wny-text-secondary);
+  --kaec-text-subtle: var(--wny-text-muted);
+  --kaec-accent: var(--primary);
+  --kaec-accent-strong: var(--wny-gold-600);
+  --kaec-accent-soft: color-mix(in srgb, var(--primary) 14%, transparent);
+  --kaec-neon: var(--wny-gold-400);
   --kaec-shadow: 0 20px 55px rgba(4, 9, 18, 0.6);
   --kaec-black: var(--background);
   --kaec-gold: var(--primary);
@@ -89,10 +89,10 @@
   --dur-fast: 140ms;
   --dur-med: 220ms;
   --dur-slow: 420ms;
-  --kaec-charcoal: #0b1320;
+  --kaec-charcoal: var(--wny-steel-800);
   --kaec-sand: var(--wny-text-primary);
   --kaec-muted: var(--kaec-text-subtle);
-  --kaec-green: #3ddc97;
+  --kaec-green: var(--success);
 }
 
 * {
@@ -112,8 +112,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--kaec-font-heading);
-  letter-spacing: 0.015em;
+  font-family: var(--wny-font-heading);
+  letter-spacing: 0;
   line-height: 1.2;
 }
 
@@ -255,30 +255,30 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, rgba(22, 163, 238, 0.95), rgba(76, 194, 255, 0.95));
-  color: #07121c;
-  box-shadow: 0 18px 40px rgba(19, 134, 206, 0.35);
+  background: linear-gradient(135deg, var(--primary), var(--wny-gold-400));
+  color: var(--primary-foreground);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--primary) 28%, transparent);
   background-size: 160% 160%;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 22px 50px rgba(19, 134, 206, 0.45);
+  box-shadow: 0 22px 50px color-mix(in srgb, var(--primary) 36%, transparent);
   background-position: 0% 50%;
 }
 
 .btn-secondary {
-  border: 1px solid rgba(120, 203, 255, 0.45);
-  background: rgba(12, 18, 28, 0.55);
+  border: 1px solid color-mix(in srgb, var(--border) 78%, var(--foreground) 22%);
+  background: color-mix(in srgb, var(--secondary) 70%, transparent);
   color: var(--foreground);
   backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
-  border-color: rgba(120, 203, 255, 0.8);
-  box-shadow: 0 14px 30px rgba(12, 26, 40, 0.45);
-  background: rgba(16, 27, 41, 0.7);
+  border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--background) 40%, transparent);
+  background: color-mix(in srgb, var(--secondary) 84%, var(--primary) 8%);
 }
 
 .btn:active {

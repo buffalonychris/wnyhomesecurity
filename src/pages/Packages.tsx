@@ -12,7 +12,7 @@ import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayou
 import { getHomeSecurityCtaLink } from '../content/wnyhsNavigation';
 
 const homeSecuritySolutionPillars = [
-  'No required monthly fees',
+  'No required monthly fees where supported',
   'Customer-owned equipment',
   'Locally installed and supported',
   'Built around your property',
@@ -194,7 +194,7 @@ const Packages = () => {
   };
 
   const content = (
-    <div className={isHomeSecurity ? 'wnyhs-marketing-stack' : 'container section'}>
+    <div className={isHomeSecurity ? 'wnyhs-page wnyhs-marketing-stack' : 'container section'}>
       {isHomeSecurity && (
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <Link className="btn btn-link" to="/home-security">
@@ -238,10 +238,10 @@ const Packages = () => {
           )}
           {isHomeSecurity && (
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
-              <Link className="btn btn-primary" to={discoveryLink}>
+              <Link className="wnyhs-button wnyhs-button--primary btn btn-primary" to={discoveryLink}>
                 Start Fit Check
               </Link>
-              <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+              <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary" to="/contact?vertical=home-security">
                 Request Estimate
               </Link>
             </div>
@@ -259,9 +259,9 @@ const Packages = () => {
         )}
       </section>
       {isHomeSecurity && (
-        <section className="packages-context-panel packages-premier-panel" aria-labelledby="packages-premier-heading">
-          <div className="packages-context-header">
-            <p>Featured / Premier Solutions</p>
+        <section className="wnyhs-section wnyhs-section--solutions packages-context-panel packages-premier-panel" aria-labelledby="packages-premier-heading">
+          <div className="wnyhs-section-header packages-context-header">
+            <p className="wnyhs-eyebrow">Featured / Premier Solutions</p>
             <h2 id="packages-premier-heading">Window-shop the flagship WNYHS solution families</h2>
             <span>
               Start with the outcome you want, then drill into the situations that sound most like your property.
@@ -269,7 +269,7 @@ const Packages = () => {
           </div>
           <div className="packages-premier-grid">
             {signatureSolutionCategories.map((item) => (
-              <article key={item.title} className="packages-premier-card">
+              <article key={item.title} className="wnyhs-card wnyhs-card--solution packages-premier-card">
                 <figure className="packages-premier-media">
                   <img src={item.image} alt={item.imageAlt} loading="lazy" />
                 </figure>
@@ -283,7 +283,7 @@ const Packages = () => {
                     <li key={example}>{example}</li>
                   ))}
                 </ul>
-                <Link className="btn btn-secondary packages-premier-cta" to={item.to}>
+                <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary packages-premier-cta" to={item.to}>
                   {item.ctaLabel}
                 </Link>
               </article>
@@ -292,9 +292,9 @@ const Packages = () => {
         </section>
       )}
       {isHomeSecurity && (
-        <section className="packages-context-panel packages-browse-panel" aria-labelledby="packages-browse-heading">
-          <div className="packages-context-header">
-            <p>Browse Our Solutions By Category</p>
+        <section className="wnyhs-section wnyhs-section--category packages-context-panel packages-browse-panel" aria-labelledby="packages-browse-heading">
+          <div className="wnyhs-section-header packages-context-header">
+            <p className="wnyhs-eyebrow">Browse Our Solutions By Category</p>
             <h2 id="packages-browse-heading">Find a starting point that matches your property</h2>
             <span>
               Use these storefront categories to browse current solution pages and related fit-check topics.
@@ -302,7 +302,7 @@ const Packages = () => {
           </div>
           <div className="packages-browse-grid">
             {browseSolutionCategories.map((category) => (
-              <article key={category.title} className="packages-browse-card">
+              <article key={category.title} className="wnyhs-card wnyhs-card--category packages-browse-card">
                 <div className="packages-browse-card-header">
                   <h3>{category.title}</h3>
                   <p>{category.intro}</p>
@@ -332,19 +332,19 @@ const Packages = () => {
         </section>
       )}
       {isHomeSecurity && (
-        <section className="packages-final-cta-panel" aria-labelledby="packages-final-cta-heading">
-          <div className="packages-context-header">
-            <p>Not Sure Where To Start?</p>
+        <section className="wnyhs-section packages-final-cta-panel" aria-labelledby="packages-final-cta-heading">
+          <div className="wnyhs-section-header packages-context-header">
+            <p className="wnyhs-eyebrow">Not Sure Where To Start?</p>
             <h2 id="packages-final-cta-heading">Start with a fit check or request an estimate</h2>
             <span>
               You do not need to know the exact solution yet. Tell us what you are trying to solve and we will help sort the right direction.
             </span>
           </div>
           <div className="packages-final-cta-actions">
-            <Link className="btn btn-primary" to={discoveryLink}>
+            <Link className="wnyhs-button wnyhs-button--primary btn btn-primary" to={discoveryLink}>
               Start Fit Check
             </Link>
-            <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+            <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary" to="/contact?vertical=home-security">
               Request Estimate
             </Link>
           </div>

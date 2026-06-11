@@ -10,7 +10,7 @@ type WnyhsMarketingLayoutProps = {
 
 const WnyhsMarketingLayout = ({ ctaLink = '/contact?vertical=home-security', children }: WnyhsMarketingLayoutProps) => {
   return (
-    <div className="wnyhs-page-layout wnyhs-page-layout--marketing">
+    <div className="wnyhs-page wnyhs-page-layout wnyhs-page-layout--marketing">
       <WnyhsTopNav ctaLink={ctaLink} />
       <div className="wnyhs-page-layout-body">
         <div className="container wnyhs-page-layout-container">{children}</div>

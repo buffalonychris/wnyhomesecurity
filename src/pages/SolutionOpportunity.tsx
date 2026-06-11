@@ -58,7 +58,7 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
       'Lighting automation for normal routines',
       'Smart entry options',
       'Family notification planning where supported',
-      'Customer-owned equipment with no required monthly fees',
+      'Customer-owned equipment with no required monthly fees where supported',
     ],
     exampleScenario:
       'An aging parent wants to stay independent, while family members want a simple way to understand normal daily routines. A plan might focus on entry activity, a few routine-aware devices, and lighting that supports common paths through the home.',
@@ -69,7 +69,7 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
   },
   'water-protection': {
     slug: 'water-protection',
-    eyebrow: 'Water Protection',
+    eyebrow: 'Water Leak Awareness',
     title: 'Know Sooner About Water, Freeze, and Sump Concerns',
     intro:
       'Water problems can move quickly. A local smart property setup can help you notice common risk points sooner.',
@@ -97,7 +97,7 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
       'Sump area awareness',
       'Basement and mechanical-room planning',
       'Alert routing for practical follow-up',
-      'Customer-owned equipment with no required monthly fees',
+      'Customer-owned equipment with no required monthly fees where supported',
     ],
     exampleScenario:
       'A homeowner is away during a cold stretch and wants better awareness around a basement utility area and sump location. A plan might include water placement, temperature awareness, and simple alert routing so the right person can decide on practical follow-up.',
@@ -136,7 +136,7 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
       'Driveway and package visibility',
       'Camera awareness for key approaches',
       'Simple alert planning',
-      'Customer-owned equipment with no required monthly fees',
+      'Customer-owned equipment with no required monthly fees where supported',
     ],
     exampleScenario:
       'A family wants less uncertainty around after-school arrivals, garage use, driveway activity, and packages. A plan might combine door awareness, garage awareness, camera placement for key approaches, and simple alerts tied to normal routines.',
@@ -175,7 +175,7 @@ const pages: Record<OpportunitySlug, OpportunityPage> = {
       'Camera and property awareness',
       'Smart access planning',
       'Remote check-in options',
-      'Customer-owned equipment with no required monthly fees',
+      'Customer-owned equipment with no required monthly fees where supported',
     ],
     exampleScenario:
       'A seasonal property sits empty for stretches between visits. A plan might focus on temperature awareness, water points, access events, and camera placement for practical remote check-ins without implying a fixed package or one-size-fits-all setup.',
@@ -207,25 +207,25 @@ const SolutionOpportunity = () => {
 
   return (
     <WnyhsMarketingLayout ctaLink="/contact?vertical=home-security">
-      <div className="hs-premium-shell hs-premium-shell--home-trust opportunity-page">
-        <section className="hs-premium-hero hs-premium-hero--split hs-premium-hero--trust opportunity-hero">
+      <div className="wnyhs-page wnyhs-shell hs-premium-shell hs-premium-shell--home-trust opportunity-page">
+        <section className="wnyhs-section wnyhs-section--dark hs-premium-hero hs-premium-hero--split hs-premium-hero--trust opportunity-hero">
           <div className="opportunity-hero-copy">
             <div className="hs-premium-hero-content">
-              <p className="hs-premium-eyebrow">{page.eyebrow}</p>
+              <p className="wnyhs-eyebrow hs-premium-eyebrow">{page.eyebrow}</p>
               <h1>{page.title}</h1>
               <p className="hs-premium-hero-subhead">{page.intro}</p>
             </div>
             <div className="hs-premium-hero-proof-strip opportunity-hero-proof-strip" aria-label="Solution positioning">
               <span>Local Smart Property Solutions</span>
-              <span>No Required Monthly Fees</span>
+              <span>No Required Monthly Fees Where Supported</span>
               <span>Customer-Owned Equipment</span>
               <span>Professionally Installed & Locally Supported</span>
             </div>
             <div className="hs-premium-hero-actions">
-              <Link className="btn btn-primary" to="/contact?vertical=home-security">
+              <Link className="wnyhs-button wnyhs-button--primary btn btn-primary" to="/contact?vertical=home-security">
                 Request Estimate
               </Link>
-              <Link className="btn btn-secondary" to="/discovery?vertical=home-security">
+              <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary" to="/discovery?vertical=home-security">
                 Start Fit Check
               </Link>
             </div>
@@ -235,46 +235,46 @@ const SolutionOpportunity = () => {
           </figure>
         </section>
 
-        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-fit-heading`}>
-          <div className="hs-premium-section-header">
-            <p className="hs-premium-eyebrow">Who This Helps</p>
+        <section className="wnyhs-section hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-fit-heading`}>
+          <div className="wnyhs-section-header hs-premium-section-header">
+            <p className="wnyhs-eyebrow hs-premium-eyebrow">Who This Helps</p>
             <h2 id={`${page.slug}-fit-heading`}>Built around the homeowner problem</h2>
             <p>{page.forWhom}</p>
           </div>
         </section>
 
-        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-story-heading`}>
-          <div className="hs-premium-section-header">
-            <p className="hs-premium-eyebrow">Problem / Solution / Outcome</p>
+        <section className="wnyhs-section hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-story-heading`}>
+          <div className="wnyhs-section-header hs-premium-section-header">
+            <p className="wnyhs-eyebrow hs-premium-eyebrow">Problem / Solution / Outcome</p>
             <h2 id={`${page.slug}-story-heading`}>A practical way to think about the setup</h2>
           </div>
           <div className="opportunity-three-up">
-            <article className="hs-premium-problem-card">
+            <article className="wnyhs-card hs-premium-problem-card">
               <h3>Problem</h3>
               <p>{page.problem}</p>
             </article>
-            <article className="hs-premium-problem-card">
+            <article className="wnyhs-card hs-premium-problem-card">
               <h3>Solution</h3>
               <p>{page.solution}</p>
             </article>
-            <article className="hs-premium-problem-card">
+            <article className="wnyhs-card hs-premium-problem-card">
               <h3>Outcome</h3>
               <p>{page.outcome}</p>
             </article>
           </div>
         </section>
 
-        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-wny-heading`}>
-          <div className="hs-premium-section-header">
-            <p className="hs-premium-eyebrow">Western New York Context</p>
+        <section className="wnyhs-section hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-wny-heading`}>
+          <div className="wnyhs-section-header hs-premium-section-header">
+            <p className="wnyhs-eyebrow hs-premium-eyebrow">Western New York Context</p>
             <h2 id={`${page.slug}-wny-heading`}>Planned for local homes and real routines</h2>
             <p>{page.wnyContext}</p>
           </div>
         </section>
 
-        <section className="hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-features-heading`}>
-          <div className="hs-premium-section-header">
-            <p className="hs-premium-eyebrow">Safe Feature Examples</p>
+        <section className="wnyhs-section hs-premium-section-panel opportunity-section" aria-labelledby={`${page.slug}-features-heading`}>
+          <div className="wnyhs-section-header hs-premium-section-header">
+            <p className="wnyhs-eyebrow hs-premium-eyebrow">Safe Feature Examples</p>
             <h2 id={`${page.slug}-features-heading`}>Possible Pieces Of The Plan</h2>
           </div>
           <div className="opportunity-feature-grid">
@@ -284,9 +284,9 @@ const SolutionOpportunity = () => {
           </div>
         </section>
 
-        <section className="hs-premium-section-panel opportunity-section opportunity-scenario" aria-labelledby={`${page.slug}-scenario-heading`}>
-          <div className="hs-premium-section-header opportunity-scenario-copy">
-            <p className="hs-premium-eyebrow">Example Scenario</p>
+        <section className="wnyhs-section hs-premium-section-panel opportunity-section opportunity-scenario" aria-labelledby={`${page.slug}-scenario-heading`}>
+          <div className="wnyhs-section-header hs-premium-section-header opportunity-scenario-copy">
+            <p className="wnyhs-eyebrow hs-premium-eyebrow">Example Scenario</p>
             <h2 id={`${page.slug}-scenario-heading`}>How this might look</h2>
             <p>{page.exampleScenario}</p>
           </div>
@@ -295,23 +295,23 @@ const SolutionOpportunity = () => {
           </figure>
         </section>
 
-        <section className="hs-premium-section-panel hs-premium-final-cta-panel opportunity-links" aria-labelledby={`${page.slug}-next-heading`}>
+        <section className="wnyhs-section hs-premium-section-panel hs-premium-final-cta-panel opportunity-links" aria-labelledby={`${page.slug}-next-heading`}>
           <div className="hs-premium-final-cta-copy">
-            <p className="hs-premium-eyebrow">Next Step</p>
+            <p className="wnyhs-eyebrow hs-premium-eyebrow">Next Step</p>
             <h2 id={`${page.slug}-next-heading`}>Talk through your property</h2>
             <p>
               Final recommendations depend on layout, power, internet, entry points, and what you actually want to know sooner.
             </p>
           </div>
           <div className="hs-premium-final-cta-actions">
-            <Link className="btn btn-primary" to="/contact?vertical=home-security">
+            <Link className="wnyhs-button wnyhs-button--primary btn btn-primary" to="/contact?vertical=home-security">
               Request Estimate
             </Link>
-            <Link className="btn btn-secondary" to="/discovery?vertical=home-security">
+            <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary" to="/discovery?vertical=home-security">
               Start Fit Check
             </Link>
             {page.secondaryLinks.map((link) => (
-              <Link key={link.to} className="btn btn-secondary" to={link.to}>
+              <Link key={link.to} className="wnyhs-button wnyhs-button--secondary btn btn-secondary" to={link.to}>
                 {link.label}
               </Link>
             ))}
