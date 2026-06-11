@@ -82,6 +82,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Purchasing-approved:** No.
 - **Notes:** Added by T-HARDWARE001 as a docs-only governance artifact. It does not authorize hardware purchasing, installation, public solution pages, pricing, quote behavior, runtime changes, HubSpot, Stripe, scheduling, or public copy deployment by itself.
 
+### `/docs/solution-system/CLAIMS001_WNYHS_UNIFIED_CLAIMS_GUARDRAIL_ADDENDUM_REV01.md`
+- **File path:** `docs/solution-system/CLAIMS001_WNYHS_UNIFIED_CLAIMS_GUARDRAIL_ADDENDUM_REV01.md`
+- **Purpose / likely role:** Unified WNYHS claims guardrail addendum governing future public copy, solution pages, package pages, ads, sales language, proposals, and customer-facing explanations.
+- **Authority level:** **Solution-system governance / claims governance / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Public-copy deployment authority:** No.
+- **Notes:** Added by T-CLAIMS001 as a docs-only governance artifact. It does not authorize app/source changes, page edits, public copy deployment, ad launch, pricing, hardware purchasing, HubSpot, Stripe, scheduling, runtime behavior, or customer installation by itself.
+
 ## `docs/design-system/`
 
 ### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
