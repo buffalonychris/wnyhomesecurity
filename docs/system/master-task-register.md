@@ -2,7 +2,7 @@
 
 Status: Active  
 Current Operational Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Current Context Authority: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Final-Hour Business Development Execution Unblock ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â REV01
+Current Context Authority: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Final-Hour Business Development Execution Unblock ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â REV01
 
 ---
 
@@ -69,7 +69,7 @@ Every actionable task record must include:
 - ARCHIVED preserves historical traceability and is non-executable.
 - Activation to ACTIVE requires controlling-context alignment and complete required task fields.
 
-### Current Context ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬Â Task Record ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬Â Codex Execution Relationship
+### Current Context ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Task Record ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Codex Execution Relationship
 
 - `step-current.md` defines the single active operational context.
 - The Master Task Register defines bounded execution tasks within that context.
@@ -801,7 +801,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Forbidden Scope:** no Stripe/payment changes; no HubSpot schema/pipeline/workflow changes; no pricing logic changes; no unrelated route or UI redesign.
 - **Validation Required:** `npm run build`; `rg -n "quoteReview|QuoteReview|Review Estimate Summary|selected-package|estimateIntent|CanonicalEstimateRequestForm|sendLeadSignal|lead-signal|HubSpot|sourceFamily|qrlanding|estimate_form_submitted|entryRoute|requestId|dedupe|dedup" src docs`; `git diff -- src docs/system/master-task-register.md docs/specs docs/runtime docs/codex/QA_CHECKLIST.md`.
 - **Exit Criteria:** package-selected submissions use the canonical `/api/lead-signal` path with non-QR context preserved and without QR-only attribution leakage; `/quoteReview` query-only package URLs render visible fallback/summary and never blank-screen; QRLanding and Fit Check flows remain intact.
-- **Completion Notes:** Verified QRLanding and package/contact flows both submit through `sendLeadSignal` ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ `/api/lead-signal` with shared canonical contact/request contract; package flow intentionally keeps non-QR `sourceFamily=MAIN_SITE`, non-QR source strings, and `estimateIntent=selected-package` context. HubSpot behavior aligns with expected contact dedupe/append when reused identities are submitted. `/quoteReview` black-screen root cause was conditional hook ordering (early return before later hooks), repaired by ensuring hooks execute in stable order before null-quote fallback rendering.
+- **Completion Notes:** Verified QRLanding and package/contact flows both submit through `sendLeadSignal` ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ `/api/lead-signal` with shared canonical contact/request contract; package flow intentionally keeps non-QR `sourceFamily=MAIN_SITE`, non-QR source strings, and `estimateIntent=selected-package` context. HubSpot behavior aligns with expected contact dedupe/append when reused identities are submitted. `/quoteReview` black-screen root cause was conditional hook ordering (early return before later hooks), repaired by ensuring hooks execute in stable order before null-quote fallback rendering.
 
 
 ### HOTFIX002
@@ -980,7 +980,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
   - no generated binaries are committed
   - task registered or updated
   - no runtime/source behavior changed
-- **Completion Notes:** Source-only pole/mall flyer package created under `/public/brand/print-assets/pole-mall-flyer/`; generated PDFs are local-only under ignored `generated/`; canonical `PoleFlyerMallFlyer.png` is used as the full-page base/reference; exact on-disk QR Landing / Campaign QR asset `/public/brand/forprint/QR QRLANDING  Home Page QR.png` is overlaid; main website / business-card QR asset is documented as blocked and not used for output generation; claim caveats for ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œNo Cloud RequiredÃƒÂ¢Ã¢â€šÂ¬Ã‚Â and ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œYou Own. You Control.ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â are recorded for operator review before bulk production.
+- **Completion Notes:** Source-only pole/mall flyer package created under `/public/brand/print-assets/pole-mall-flyer/`; generated PDFs are local-only under ignored `generated/`; canonical `PoleFlyerMallFlyer.png` is used as the full-page base/reference; exact on-disk QR Landing / Campaign QR asset `/public/brand/forprint/QR QRLANDING  Home Page QR.png` is overlaid; main website / business-card QR asset is documented as blocked and not used for output generation; claim caveats for ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“No Cloud RequiredÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â and ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“You Own. You Control.ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â are recorded for operator review before bulk production.
 
 ### PRINT-ASSET002B
 - **Task ID:** PRINT-ASSET002B
@@ -1446,13 +1446,13 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 - **Execution Rule:** Multiple DESIGN-SKINNING subtasks may exist simultaneously, but Codex may execute only the explicitly named task in the active prompt.
 - **Completion Rule:** This task family remains ACTIVE until the operator explicitly declares the branding/skinning initiative complete.
 - **Example Subtasks (illustrative only):**
-  - DESIGN-SKIN001 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Homepage visual refinement
-  - DESIGN-SKIN002 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â QR funnel conversion polish
-  - DESIGN-SKIN003 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Mobile responsiveness polish
-  - DESIGN-SKIN004 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Typography/system refinement
-  - DESIGN-SKIN005 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Yard sign/print branding alignment
-  - DESIGN-SKIN006 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Animation/motion polish
-  - DESIGN-SKIN007 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Site-wide tactical brand system (VISUAL001 + VISUAL002)
+  - DESIGN-SKIN001 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Homepage visual refinement
+  - DESIGN-SKIN002 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â QR funnel conversion polish
+  - DESIGN-SKIN003 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Mobile responsiveness polish
+  - DESIGN-SKIN004 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Typography/system refinement
+  - DESIGN-SKIN005 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Yard sign/print branding alignment
+  - DESIGN-SKIN006 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Animation/motion polish
+  - DESIGN-SKIN007 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Site-wide tactical brand system (VISUAL001 + VISUAL002)
 
 ### SCHED-IMPL002
 - **Task ID:** SCHED-IMPL002
@@ -1828,7 +1828,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME003-001
 - **Task ID:** T-RUNTIME003-001
-- **Task Name:** RUNTIME003 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Stripe Runtime Contract
+- **Task Name:** RUNTIME003 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Stripe Runtime Contract
 - **Status:** DONE
 - **Category:** PAYMENT
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
@@ -1846,7 +1846,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME004-001
 - **Task ID:** T-RUNTIME004-001
-- **Task Name:** RUNTIME004 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Email Runtime Contracts
+- **Task Name:** RUNTIME004 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Email Runtime Contracts
 - **Status:** DONE
 - **Category:** EMAIL
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
@@ -1864,7 +1864,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME005-001
 - **Task ID:** T-RUNTIME005-001
-- **Task Name:** RUNTIME005 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Lead Signal + requestId Contracts
+- **Task Name:** RUNTIME005 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Lead Signal + requestId Contracts
 - **Status:** DONE
 - **Category:** LEAD
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
@@ -1882,7 +1882,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME006-001
 - **Task ID:** T-RUNTIME006-001
-- **Task Name:** RUNTIME006 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â HubSpot Runtime Contracts
+- **Task Name:** RUNTIME006 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â HubSpot Runtime Contracts
 - **Status:** DONE
 - **Category:** CRM
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
@@ -1899,7 +1899,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME007-001
 - **Task ID:** T-RUNTIME007-001
-- **Task Name:** RUNTIME007 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Scheduling Ownership Contract
+- **Task Name:** RUNTIME007 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Scheduling Ownership Contract
 - **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
@@ -1917,7 +1917,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME008-001
 - **Task ID:** T-RUNTIME008-001
-- **Task Name:** RUNTIME008 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â QR Attribution + Funnel Analytics Runtime Documentation
+- **Task Name:** RUNTIME008 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â QR Attribution + Funnel Analytics Runtime Documentation
 - **Status:** DONE
 - **Category:** QR / RUNTIME
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
@@ -1935,7 +1935,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME009-001
 - **Task ID:** T-RUNTIME009-001
-- **Task Name:** RUNTIME009 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â QRLanding Event Instrumentation
+- **Task Name:** RUNTIME009 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â QRLanding Event Instrumentation
 - **Status:** DONE
 - **Category:** QR / RUNTIME
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
@@ -1956,7 +1956,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME010-001
 - **Task ID:** T-RUNTIME010-001
-- **Task Name:** RUNTIME010 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â QR Attribution Event Schema Validation Contract
+- **Task Name:** RUNTIME010 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â QR Attribution Event Schema Validation Contract
 - **Status:** DONE
 - **Category:** QR / RUNTIME
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
@@ -1976,7 +1976,7 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ### T-RUNTIME011-001
 - **Task ID:** T-RUNTIME011-001
-- **Task Name:** RUNTIME011 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â QR Attribution Reporting / Review SOP
+- **Task Name:** RUNTIME011 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â QR Attribution Reporting / Review SOP
 - **Status:** DONE
 - **Category:** QR / OPS / GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
@@ -2239,7 +2239,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ### T-QA001-001
 - **Task ID:** T-QA001-001
-- **Task Name:** QA001 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Deployment Validation SOP + QA Checklist
+- **Task Name:** QA001 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Deployment Validation SOP + QA Checklist
 - **Status:** DONE
 - **Category:** QA / GOV / OPS
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
@@ -2299,7 +2299,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Scope:** Inspect route/page/nav/CTA architecture; define final journey, page roles, nav hierarchy, estimate role, planner role, duplicate/disruptive link findings, and bounded implementation sequence.
 - **Forbidden Scope:** No UI/route/runtime/API/HubSpot/Stripe/scheduling implementation changes beyond visible version bump; no QUOTE-GEN001 or CRM-STAGEFLOW001 implementation.
 - **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `git diff` + `rg` governance checks.
-- **Completion Notes:** Bumped visible site version to `v1.0.55`; added architecture audit doc `docs/audits/funnel_arch001_rev01.md` with dominant journey and alternate paths, page-role matrix, nav hierarchy recommendations, estimate/planner role decisions, duplicate/disruptive link findings, risk analysis, and bounded implementation order (`FUNNEL-ARCH002` ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ `ESTIMATE-FLOW001` ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ `QUOTE-GEN001` ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ `CRM-STAGEFLOW001`); protected runtime and HubSpot/Stripe logic unchanged.
+- **Completion Notes:** Bumped visible site version to `v1.0.55`; added architecture audit doc `docs/audits/funnel_arch001_rev01.md` with dominant journey and alternate paths, page-role matrix, nav hierarchy recommendations, estimate/planner role decisions, duplicate/disruptive link findings, risk analysis, and bounded implementation order (`FUNNEL-ARCH002` ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ `ESTIMATE-FLOW001` ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ `QUOTE-GEN001` ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ `CRM-STAGEFLOW001`); protected runtime and HubSpot/Stripe logic unchanged.
 ### NAV-UX001
 - **Task ID:** NAV-UX001
 - **Task Name:** Route transition page-top normalization + intentional form persistence/reset
@@ -2428,8 +2428,8 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Validation:** `npm run lint`; `npm run test -- --run`; `npm run build`; required `rg`/`git diff` audits.
 - **Completion Notes:** Site version bumped to v1.0.52; removed duplicated hook-closure in `src/pages/QuoteReview.tsx` causing render instability risk; improved quote/review missing-data fallback messaging + recovery paths; protected runtime systems preserved; audit note added at `docs/audits/nav_bug001_rev01.md`.
 
-- **QUOTE-GEN001** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Quote generation, HubSpot quote-stage update, customer/operator quote email delivery. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
-- **CRM-STAGEFLOW001** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Deal pipeline advancement rules after quote/deposit/scheduling events. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
+- **QUOTE-GEN001** ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Quote generation, HubSpot quote-stage update, customer/operator quote email delivery. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
+- **CRM-STAGEFLOW001** ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Deal pipeline advancement rules after quote/deposit/scheduling events. (Deferred; not implemented in MAIN-FUNNEL-FIX003B.)
 
 ---
 
@@ -2473,12 +2473,12 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 Runtime documentation hardening is authorized as documentation-only work under the current Step102 context. The following recommended execution order is approved to avoid repeated one-by-one promotion stops while preserving ACTIVE-task gating:
 
-1. **RUNTIME004 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Email Runtime Contracts**
-2. **RUNTIME005 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Lead Signal + requestId Contracts**
-3. **RUNTIME003 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Stripe Runtime Contract**
-4. **RUNTIME006 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â HubSpot Runtime Contracts**
-5. **RUNTIME007 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Scheduling Ownership Contract**
-6. **QA001 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Deployment Validation SOP** (promote from READY when safe)
+1. **RUNTIME004 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Email Runtime Contracts**
+2. **RUNTIME005 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Lead Signal + requestId Contracts**
+3. **RUNTIME003 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Stripe Runtime Contract**
+4. **RUNTIME006 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â HubSpot Runtime Contracts**
+5. **RUNTIME007 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Scheduling Ownership Contract**
+6. **QA001 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Deployment Validation SOP** (promote from READY when safe)
 
 Rationale:
 - Cloudflare runtime is already documented.
@@ -2528,7 +2528,7 @@ Rationale:
 - **Scope:** Add estimate-gateway review CTA when selected/recommended context exists; ensure quote review can render from durable query/bootstrap context in addition to existing token/storage paths; provide safe missing-context recovery CTAs; preserve estimate-review disclaimer and existing quote send runtime path.
 - **Forbidden Scope:** No `/api/lead-signal` or `/api/support` changes; no Stripe/scheduling/SMS/reminders/autonomous booking; no HubSpot schema/property/pipeline changes; no CRM stage-flow automation.
 - **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` + `rg` audits completed.
-- **Completion Notes:** Version bumped to `v1.0.62`; `/contact` now conditionally shows ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œReview Estimate SummaryÃƒÂ¢Ã¢â€šÂ¬Ã‚Â when selected-package or recommendation context exists and routes into `/quoteReview` with durable query context; `/quoteReview` now hydrates from token ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ saved quote ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ bounded query tier/recommendation fallback and shows required missing-context recovery CTAs (Find The Right System / Choose a Package / Request Estimate); send-quote path remained operational with existing customer-email validation and operator/ownership copy support.
+- **Completion Notes:** Version bumped to `v1.0.62`; `/contact` now conditionally shows ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“Review Estimate SummaryÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â when selected-package or recommendation context exists and routes into `/quoteReview` with durable query context; `/quoteReview` now hydrates from token ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ saved quote ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ bounded query tier/recommendation fallback and shows required missing-context recovery CTAs (Find The Right System / Choose a Package / Request Estimate); send-quote path remained operational with existing customer-email validation and operator/ownership copy support.
 - **Next Task Recommendation:** CRM-STAGEFLOW001 after manual QA.
 
 
@@ -2544,7 +2544,7 @@ Rationale:
 - **Scope:** Refine customer acknowledgement subject/body/greeting/next-step language for estimate requests while preserving existing dynamic context, protected `/api/lead-signal` runtime behavior, operator notification path, and HubSpot sync behavior.
 - **Forbidden Scope:** No `/api/lead-signal` control-flow changes; no requestId lifecycle changes; no HubSpot schema/property/pipeline/stage logic changes; no Stripe/scheduling/SMS/support/quote runtime changes; no forbidden claims.
 - **Validation:** `npm run lint` (pre-existing unrelated failures unchanged), `npm run test -- --run` (pre-existing `src/pages/__tests__/operatorNavbar.test.tsx` failure unchanged), `npm run build` pass, required `git diff` and `rg` audits completed.
-- **Completion Notes:** Visible version bumped to `v1.0.81`; customer acknowledgement email subject refined to ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œWe received your WNY Home Security estimate requestÃƒÂ¢Ã¢â€šÂ¬Ã‚Â; greeting/next-step/disclaimer/response-expectation/contact footer language updated for local professional clarity and mobile readability; dynamic selected-package + discovery context preserved; operator notification path and HubSpot/requestId/runtime behavior untouched.
+- **Completion Notes:** Visible version bumped to `v1.0.81`; customer acknowledgement email subject refined to ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“We received your WNY Home Security estimate requestÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â; greeting/next-step/disclaimer/response-expectation/contact footer language updated for local professional clarity and mobile readability; dynamic selected-package + discovery context preserved; operator notification path and HubSpot/requestId/runtime behavior untouched.
 - **Next Task Recommendation:** SCHED-GCAL001 only after ESTIMATE-EMAIL001 manual QA and launch-readiness review.
 
 ### QUOTE-SEND001
@@ -2671,7 +2671,7 @@ No BLOCKED tasks are currently recorded.
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-SCHED-MVP-REV01 (bounded main funnel UX cleanup)
 - **Purpose:** Clarify Planner as optional/advanced/later and reduce nav distraction from estimate-request conversion flow.
-- **Completion Notes:** Updated visible site version to v1.0.51; repositioned top-nav Planner entry as secondary optional item; retained Planner route access; tightened Planner CTA wording in recommendation state to emphasize later optional use; preserved home-security ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ discovery ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ recommendation ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ contact path and runtime boundaries; documented implementation in `docs/audits/main_funnel_fix003c_rev01.md`.
+- **Completion Notes:** Updated visible site version to v1.0.51; repositioned top-nav Planner entry as secondary optional item; retained Planner route access; tightened Planner CTA wording in recommendation state to emphasize later optional use; preserved home-security ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ discovery ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ recommendation ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ contact path and runtime boundaries; documented implementation in `docs/audits/main_funnel_fix003c_rev01.md`.
 
 ### MAIN-FUNNEL-FIX003B
 - **Task ID:** MAIN-FUNNEL-FIX003B
@@ -2690,7 +2690,7 @@ No BLOCKED tasks are currently recorded.
 
 ### T-STEP102-HARDEN-001
 - **Task ID:** T-STEP102-HARDEN-001
-- **Task Name:** Fix Payment ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Schedule quote-scoped deposit validation
+- **Task Name:** Fix Payment ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ Schedule quote-scoped deposit validation
 - **Status:** DONE
 - **Category:** PAYMENT
 
@@ -2702,13 +2702,13 @@ No BLOCKED tasks are currently recorded.
 
 ### T-STEP102-HARDEN-003
 - **Task ID:** T-STEP102-HARDEN-003
-- **Task Name:** Add Agreement ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Payment binding metadata
+- **Task Name:** Add Agreement ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ Payment binding metadata
 - **Status:** DONE
 - **Category:** PAYMENT
 
 ### T-STEP102-HARDEN-004
 - **Task ID:** T-STEP102-HARDEN-004
-- **Task Name:** Strengthen Quote ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ Agreement validation
+- **Task Name:** Strengthen Quote ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ Agreement validation
 - **Status:** DONE
 - **Category:** PAYMENT
 
@@ -2717,7 +2717,7 @@ No BLOCKED tasks are currently recorded.
 
 ### T-SCHED001-001
 - **Task ID:** T-SCHED001-001
-- **Task Name:** SCHED001 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Safe Scheduling Posture + Future Scheduling Model Lock-In
+- **Task Name:** SCHED001 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Safe Scheduling Posture + Future Scheduling Model Lock-In
 - **Status:** DONE
 - **Category:** SCHED
 - **Controlling Context:** CTX-STEP102-QRLANDING-REV01 with GOV004 runtime documentation hardening authorization in `/docs/system/step-current.md`.
@@ -3556,5 +3556,24 @@ No ARCHIVED tasks are currently recorded.
 - **Validation Required:** `git status`; targeted `git diff`; `git diff --check`; confirm only documentation files changed.
 - **Exit Criteria:** Reconciliation governance document exists; document states no implementation is authorized; master solution list, primary/secondary category ownership, status definitions, package compatibility guidance, hardware summary, BOM/pricing gaps, field-test summary, SOP/disclosure queue, and claims guardrail summary are captured; document catalog is updated; no protected systems or application files are changed.
 - **Dependencies:** Completed Home Safety / Environmental Safety research result, completed Home Security / Entry / Garage / Access research result, completed Home Lighting / Home Automation / Aging-in-Place research result, existing solution-system governance docs, current project guardrails.
-- **Operator Decision Required:** Review and promote via the operatorÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s normal GitHub PR process if accepted.
+- **Operator Decision Required:** Review and promote via the operatorÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢s normal GitHub PR process if accepted.
 - **Completion Notes:** Prepared docs-only reconciliation governance content. Follow-up tasks recommended: T-HARDWARE001, T-CLAIMS001, T-QUOTE001, T-FIELDTEST001, T-SOP001, T-SOLUTIONCAT001, T-BOM001, and T-PACKAGE001.
+
+
+### T-OFFERING001
+- **Task ID:** T-OFFERING001
+- **Task Name:** Create Offer Architecture, Visibility Tiers, and The Vault Governance REV01
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create docs-only WNYHS offer architecture governance defining public standard catalog, The Vault/custom-project visibility, internal operator catalog, research/excluded tiering, and Core first-time vs existing-customer offer rules.
+- **Allowed Scope:** Docs-only offer architecture governance creation; create `docs/solution-system/OFFERING001_WNYHS_OFFER_ARCHITECTURE_VISIBILITY_TIERS_AND_VAULT_GOVERNANCE_REV01.md`; update `docs/DOCUMENT_CATALOG.md`; update this task register.
+- **Forbidden Scope:** No application/source files, routes, pages, components, styles, runtime behavior, HubSpot, Stripe/payment, scheduling, Cloudflare, environment variables, public pricing, hardware purchasing, customer installation authorization, public copy deployment, The Vault page deployment, ad launch, package/solution page edits, or site version bump.
+- **Target Files:** `docs/solution-system/OFFERING001_WNYHS_OFFER_ARCHITECTURE_VISIBILITY_TIERS_AND_VAULT_GOVERNANCE_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create offer architecture governance, register it in the document catalog, and record T-OFFERING001 in the task register.
+- **Validation Required:** `git status --short`; `git diff --name-only`; `git diff --check`; `git diff --cached --check` before commit.
+- **Exit Criteria:** Offer architecture document exists; public/custom/internal/research tiers are defined; The Vault custom-project concept is governed; Core first-time vs existing-customer rules are documented; internal operator catalog requirement is documented; implementation hold language is present; document catalog is updated; task register is updated; only intended docs files changed; validation passes.
+- **Dependencies:** T-CATALOG001, T-HARDWARE001, T-CLAIMS001, `docs/solution-system/SOLUTION_CATALOG_RECONCILIATION_REV01.md`, `docs/solution-system/HARDWARE001_WNYHS_APPROVED_HARDWARE_REGISTRY_REV01.md`, `docs/solution-system/CLAIMS001_WNYHS_UNIFIED_CLAIMS_GUARDRAIL_ADDENDUM_REV01.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created docs-only offer architecture governance. No app/source/runtime/payment/HubSpot/scheduling files were changed. No public copy, The Vault deployment, pricing, hardware purchasing, customer installation, or implementation was authorized.

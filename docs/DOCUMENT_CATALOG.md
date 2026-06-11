@@ -91,6 +91,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Public-copy deployment authority:** No.
 - **Notes:** Added by T-CLAIMS001 as a docs-only governance artifact. It does not authorize app/source changes, page edits, public copy deployment, ad launch, pricing, hardware purchasing, HubSpot, Stripe, scheduling, runtime behavior, or customer installation by itself.
 
+### `/docs/solution-system/OFFERING001_WNYHS_OFFER_ARCHITECTURE_VISIBILITY_TIERS_AND_VAULT_GOVERNANCE_REV01.md`
+- **File path:** `docs/solution-system/OFFERING001_WNYHS_OFFER_ARCHITECTURE_VISIBILITY_TIERS_AND_VAULT_GOVERNANCE_REV01.md`
+- **Purpose / likely role:** WNYHS offer architecture governance defining public standard catalog, The Vault/custom-project visibility, internal operator catalog, research/excluded tiering, and WNYHS Core first-time vs existing-customer offer rules.
+- **Authority level:** **Solution-system governance / offer architecture / custom catalog governance / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Public-copy deployment authority:** No.
+- **Notes:** Added by T-OFFERING001 as a docs-only governance artifact. It does not authorize app/source changes, page edits, The Vault deployment, public copy deployment, pricing, hardware purchasing, HubSpot, Stripe, scheduling, runtime behavior, or customer installation by itself.
+
 ## `docs/design-system/`
 
 ### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
