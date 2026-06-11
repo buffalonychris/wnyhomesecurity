@@ -64,6 +64,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Added by SOLUTION001-B as docs-only governance. Defines hero images as emotional/lifestyle outcome imagery and sample images as scenario + relevant hardware + focused awareness-panel support. Does not authorize image generation, image wiring, Homepage, Packages, Support, Our Work, QR Landing, protected runtime, HubSpot, Stripe, Scheduling, Email, environment, pricing, business-rule, global navigation, semantic-token, or implementation changes.
 
 
+### `/docs/solution-system/SOLUTION_CATALOG_RECONCILIATION_REV01.md`
+- **File path:** `docs/solution-system/SOLUTION_CATALOG_RECONCILIATION_REV01.md`
+- **Purpose / likely role:** Docs-only solution catalog reconciliation governance document consolidating the Home Safety, Home Security, Home Lighting, Home Automation, and Aging-in-Place research outputs into one governed working catalog with solution statuses, category ownership, package compatibility guidance, hardware-status summary, BOM/pricing gaps, field-test backlog summary, SOP/disclosure queue, and claims guardrail summary.
+- **Authority level:** **Solution-system governance / catalog reconciliation draft**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Created by T-CATALOG001 as docs-only governance. It does not authorize public pages, package implementation, solution-page implementation, pricing, BOM commitments, hardware purchasing, Stripe/payment behavior, HubSpot workflows, scheduling changes, runtime behavior, source changes, route changes, style changes, or deployment. Follow-up governance is required for hardware registry, claims guardrails, field-test backlog, SOP/disclosure docs, BOM/pricing schema, and solution object index.
+
 ## `docs/design-system/`
 
 ### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
