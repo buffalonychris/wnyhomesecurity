@@ -98,7 +98,7 @@ const featuredSolutions = [
   {
     name: 'Water Leak Awareness',
     category: 'Environmental Safety',
-    summary: 'Detect water-related concerns early and improve awareness before major damage occurs.',
+    summary: 'Adds earlier awareness of water-related conditions in selected areas.',
     image: '/images/home-security/homepage/solution-water-damage-prevention.png',
     imageAlt: 'Water leak awareness equipment near home plumbing area',
   },

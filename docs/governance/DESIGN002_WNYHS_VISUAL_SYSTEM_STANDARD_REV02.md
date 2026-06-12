@@ -20,7 +20,7 @@ REV02 promotes the visual direction into shared implementation primitives while 
 
 ## Source Note
 
-The local input file `C:\dev\wnyhomesecurity_codex-input\DESIGN_TOKEN_SYSTEM_001\DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02_FINAL.md` was not present during DESIGN-TOKEN-SYSTEM-001 implementation. This REV02 document records the implementation standard applied from the bounded work order and existing repository governance.
+The local input file was not available to this Codex run at `C:\dev\wnyhomesecurity_codex-input\DESIGN_TOKEN_SYSTEM_001\DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02_FINAL.md`. This REV02 document records the implementation standard applied from the bounded work order and current repository governance.
 
 ## Typography Standard
 
