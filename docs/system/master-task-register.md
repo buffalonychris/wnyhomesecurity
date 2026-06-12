@@ -150,6 +150,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Added `src/content/wnyhsOfferCatalog.ts` as the governed public offer catalog source; wired homepage category, package, and solution cards to useful offer anchors or existing live solution routes; rebuilt `/packages?vertical=home-security` as the public offerings landing page with WNYHS Core, categories, standard/planning solution visibility, package starting points, and Vault quote-only reviewed-individually visibility; bumped visible site version to `v1.0.123`; preserved existing solution detail routes, global navigation, protected runtime systems, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, assets, and public amount boundaries. `npm run build`, touched-file ESLint, `git diff --check`, version grep, route/link inspection, and scoped no-public-amount/payment-term grep passed. Broad `npm run lint` and `npm run typecheck:api` still report unrelated baseline issues outside this task; `npm run typecheck:test` passed. Manual visual review is deferred to operator review because browser/screenshot automation was intentionally stopped for this run.
 
+### SOLUTION-PUBLISHING-001-CONTRAST-HOTFIX
+- **Task ID:** SOLUTION-PUBLISHING-001-CONTRAST-HOTFIX
+- **Task Name:** Public Offerings Page Card Contrast Fix
+- **Status:** DONE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Fix post-merge readability regressions on `/packages?vertical=home-security` where light offering cards inherited pale text from dark or mixed visual sections.
+- **Allowed Scope:** CSS-only contrast/readability fixes for public offerings card selectors; visible site version patch bump to `v1.0.124`; this task-register record.
+- **Forbidden Scope:** No catalog data changes, public copy/content changes, route changes, navigation changes, new sections, pricing, supplier costs, BOM values, package/solution strategy changes, new claims, protected-system changes, dependency changes, package-lock changes, assets, image generation, or browser automation.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/index.css`, `src/styles/homeSecurityPremium.css`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. CSS/readability and deploy-visible version only; protected runtime systems remain untouched.
+- **Documentation Updates Required:** Add this minimal HOTFIX task-register record and mark DONE after validation.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; version grep; forbidden-claim grep; `npm run build`.
+- **Exit Criteria:** Visible site version is `v1.0.124`; `.packages-core-card`, `.packages-category-card`, `.packages-vault-card`, `.packages-signature-card`, and `.packages-card-link` text is forced to readable existing WNYHS ink/accent tokens on light card surfaces; no content, catalog, routes, pricing, claims, protected systems, dependencies, assets, or browser automation are changed; validation passes and PR targets `main` without merge.
+- **Dependencies:** SOLUTION-PUBLISHING-001, DESIGN001/DESIGN002 visual governance, CLAIMS001, OFFERING001, PACKAGEBOM001, and OPS002 repository-aware dispatch standard.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Scoped light-card text and link colors to existing WNYHS ink/accent tokens for public offerings readability; preserved `.wnyhs-card` global behavior, content, routes, catalog data, pricing, claims, and protected systems. Validation passed and PR opened to `main` without merge.
+
 ### DESIGN-TOKEN-SYSTEM-001
 - **Task ID:** DESIGN-TOKEN-SYSTEM-001
 - **Task Name:** Implement Sitewide Visual Token System and Normalize Public Marketing Pages
