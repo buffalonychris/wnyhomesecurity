@@ -13,6 +13,8 @@ export type OfferSolution = {
   body: string;
   href: string;
   ctaLabel: string;
+  imageSrc: string;
+  imageAlt: string;
 };
 
 export type OfferPackage = {
@@ -65,31 +67,31 @@ export const offerCategories: OfferCategory[] = [
     id: 'home-security',
     name: 'Home Security',
     outcome: 'Entry, package-area, garage, driveway, and perimeter awareness for the everyday parts of the property people ask about most.',
-    anchor: `${offeringsPath}#category-home-security`,
+    anchor: fitCheckPath,
   },
   {
     id: 'environmental-safety',
     name: 'Home Safety / Environmental Safety',
     outcome: 'Water, temperature, sump, basement, and utility-room visibility for selected areas.',
-    anchor: `${offeringsPath}#category-environmental-safety`,
+    anchor: fitCheckPath,
   },
   {
     id: 'home-lighting',
     name: 'Home Lighting',
     outcome: 'Everyday lighting, entry lighting, night paths, and routines where circuits and supported equipment allow it.',
-    anchor: `${offeringsPath}#category-home-lighting`,
+    anchor: fitCheckPath,
   },
   {
     id: 'home-automation',
     name: 'Home Automation',
     outcome: 'Modes, notification routing, dashboard views, scenes, and routines for supported devices and integrations.',
-    anchor: `${offeringsPath}#category-home-automation`,
+    anchor: fitCheckPath,
   },
   {
     id: 'aging-in-place',
     name: 'Aging-in-Place / Elder Care',
     outcome: 'Non-medical home awareness, family visibility, entry and exit awareness, and selected notifications.',
-    anchor: `${offeringsPath}#category-aging-in-place`,
+    anchor: fitCheckPath,
   },
   {
     id: 'vault',
@@ -106,8 +108,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-security',
     status: 'Standard candidate',
     body: 'Front-door and package-area awareness using supported hardware and selected alerts.',
-    href: `${offeringsPath}#category-home-security`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/solution-package-protection.png',
+    imageAlt: 'Front porch delivery area with package awareness equipment',
   },
   {
     id: 'entry-perimeter-awareness',
@@ -117,6 +121,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Visibility around selected doors, approaches, and perimeter areas after property review.',
     href: fitCheckPath,
     ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/category-home-security.png',
+    imageAlt: 'Exterior home entry with smart property awareness equipment',
   },
   {
     id: 'driveway-watch',
@@ -126,6 +132,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Arrivals, visitors, and driveway activity awareness where placement and equipment support it.',
     href: fitCheckPath,
     ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/solution-driveway-watch.png',
+    imageAlt: 'Driveway and garage area with property awareness camera',
   },
   {
     id: 'smart-entry',
@@ -133,8 +141,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-security',
     status: 'Standard candidate',
     body: 'Access-code planning, supported locks, and entry awareness with customer-owned equipment.',
-    href: `${offeringsPath}#category-home-security`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/solutions/front-door-package-protection.png',
+    imageAlt: 'Front door smart entry area with package and access awareness equipment',
   },
   {
     id: 'garage-door-awareness',
@@ -144,6 +154,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Open or closed status visibility and selected reminders for supported garage setups.',
     href: fitCheckPath,
     ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/solutions/connected-garage-workshop.png',
+    imageAlt: 'Connected garage and workshop area for garage status awareness',
   },
   {
     id: 'door-window-left-open-awareness',
@@ -153,6 +165,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Selected open or closed awareness for doors and windows included in the reviewed scope.',
     href: fitCheckPath,
     ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/category-home-security.png',
+    imageAlt: 'Home entry area planned for selected door and window awareness',
   },
   {
     id: 'water-leak-alerts',
@@ -162,6 +176,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Earlier awareness when water appears in selected areas.',
     href: '/solutions/water-protection',
     ctaLabel: 'View Solution',
+    imageSrc: '/images/home-security/solutions/solutions-water-hero.png',
+    imageAlt: 'Home utility area planned for water leak awareness',
   },
   {
     id: 'freeze-risk-awareness',
@@ -169,8 +185,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'environmental-safety',
     status: 'Standard candidate',
     body: 'Selected temperature awareness for scoped spaces during WNY cold-weather routines.',
-    href: `${offeringsPath}#category-environmental-safety`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/category-environmental-safety.png',
+    imageAlt: 'Home utility area with environmental safety awareness equipment',
   },
   {
     id: 'basement-utility-awareness',
@@ -178,8 +196,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'environmental-safety',
     status: 'Standard candidate',
     body: 'Water, temperature, humidity, and utility-space visibility after site details are reviewed.',
-    href: `${offeringsPath}#category-environmental-safety`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/package-basement-utility-protection.png',
+    imageAlt: 'Basement and utility awareness equipment near home utility systems',
   },
   {
     id: 'sump-area-awareness',
@@ -189,6 +209,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Sump-area water presence and selected alerts where sensor placement is practical.',
     href: fitCheckPath,
     ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/solution-sump-pump-awarenes.png',
+    imageAlt: 'Sump pump area with awareness equipment for basement visibility',
   },
   {
     id: 'smarter-everyday-lighting',
@@ -196,8 +218,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-lighting',
     status: 'Standard candidate',
     body: 'Everyday lighting control and routines where supported switches, circuits, and goals align.',
-    href: `${offeringsPath}#category-home-lighting`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/category-home-lighting.png',
+    imageAlt: 'Home exterior with planned lighting for arrival and outdoor visibility',
   },
   {
     id: 'night-path-lighting',
@@ -205,8 +229,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-lighting',
     status: 'Standard candidate',
     body: 'Night movement lighting routines for selected routes and supported equipment.',
-    href: `${offeringsPath}#category-home-lighting`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/solution-security-lighting.png',
+    imageAlt: 'Home exterior lighting planned for visibility around the property',
   },
   {
     id: 'entry-lighting-automation',
@@ -214,8 +240,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-lighting',
     status: 'Standard candidate',
     body: 'Arrival and entry lighting behavior for reviewed circuits and supported controls.',
-    href: `${offeringsPath}#category-home-lighting`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/solution-security-lighting.png',
+    imageAlt: 'Entry and exterior lighting planned for supported home routines',
   },
   {
     id: 'away-night-vacation-modes',
@@ -223,8 +251,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-automation',
     status: 'Standard candidate',
     body: 'Mode-based routines and selected alerts for supported devices and household patterns.',
-    href: `${offeringsPath}#category-home-automation`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/category-home-automation.png',
+    imageAlt: 'Smart home dashboard and automation controls for everyday routines',
   },
   {
     id: 'family-awareness',
@@ -234,6 +264,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Practical household awareness around doors, arrivals, packages, garage use, and routines.',
     href: '/solutions/family-awareness',
     ctaLabel: 'View Solution',
+    imageSrc: '/images/home-security/solutions/solutions-awareness-hero.png',
+    imageAlt: 'Family home scene planned for household awareness',
   },
   {
     id: 'senior-safety',
@@ -243,6 +275,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Non-medical awareness and family visibility for older adults who want independence at home.',
     href: '/solutions/senior-safety',
     ctaLabel: 'View Solution',
+    imageSrc: '/images/home-security/solutions/solutions-aging-hero.png',
+    imageAlt: 'Comfortable home environment planned for aging-in-place awareness',
   },
   {
     id: 'entry-exit-older-adult',
@@ -250,8 +284,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'aging-in-place',
     status: 'Standard candidate',
     body: 'Consent-aware entry and exit awareness with selected family notifications.',
-    href: `${offeringsPath}#category-aging-in-place`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/category-aging-in-place.png',
+    imageAlt: 'Comfortable home interior planned for family awareness and independence',
   },
   {
     id: 'help-button',
@@ -259,8 +295,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'aging-in-place',
     status: 'Standard candidate',
     body: 'Fixed in-home assistance trigger for selected notifications, not medical service or urgent-service response.',
-    href: `${offeringsPath}#category-aging-in-place`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/package-family-confidence.png',
+    imageAlt: 'Family confidence package supporting home awareness and trusted access',
   },
   {
     id: 'family-check-in-dashboard',
@@ -270,6 +308,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'A local dashboard view for approved household awareness signals and family check-ins.',
     href: fitCheckPath,
     ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/solutions/solutions-awareness-sample.png',
+    imageAlt: 'Illustrative family awareness dashboard and home context',
   },
   {
     id: 'notification-routing',
@@ -277,8 +317,10 @@ export const publicSolutions: OfferSolution[] = [
     categoryId: 'home-automation',
     status: 'Standard candidate',
     body: 'Selected alerts, recipients, quiet hours, and routing rules for the reviewed system scope.',
-    href: `${offeringsPath}#category-home-automation`,
-    ctaLabel: 'View Category',
+    href: fitCheckPath,
+    ctaLabel: 'Ask In Fit Check',
+    imageSrc: '/images/home-security/homepage/WNYHSCorePhone.png',
+    imageAlt: 'Phone view for selected WNYHS Core awareness notifications',
   },
   {
     id: 'local-camera-awareness',
@@ -288,6 +330,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Supported camera visibility with site-reviewed placement, privacy, recording, and support boundaries.',
     href: estimatePath,
     ctaLabel: 'Request Estimate',
+    imageSrc: '/images/solutions/smart-home-security.png',
+    imageAlt: 'Smart home property awareness camera view for reviewed camera placement',
   },
   {
     id: 'vacation-home-awareness',
@@ -297,6 +341,8 @@ export const publicSolutions: OfferSolution[] = [
     body: 'Remote property awareness for seasonal and second homes, shaped by site conditions.',
     href: '/solutions/vacation-homes',
     ctaLabel: 'View Solution',
+    imageSrc: '/images/home-security/solutions/solutions-vacation-hero.png',
+    imageAlt: 'Seasonal home planned for remote property awareness',
   },
 ];
 
