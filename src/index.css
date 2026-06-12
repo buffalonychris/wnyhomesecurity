@@ -1119,6 +1119,161 @@ header.hide-when-print {
   gap: 0.75rem;
 }
 
+.wnyhs-solutions-listing {
+  gap: 1rem;
+}
+
+.wnyhs-solutions-hero {
+  align-items: stretch;
+  padding: 1.15rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--wnyhs-gold-soft) 24%, transparent), transparent 42%),
+    color-mix(in srgb, var(--wnyhs-surface-raised) 82%, var(--wnyhs-surface-soft) 18%);
+  box-shadow: var(--wnyhs-shadow-card);
+}
+
+.wnyhs-solutions-hero h1 {
+  color: var(--wnyhs-ink);
+}
+
+.wnyhs-solutions-hero p {
+  color: var(--wnyhs-ink-secondary);
+}
+
+.wnyhs-solution-panel {
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 86%, var(--wnyhs-surface-soft) 14%);
+}
+
+.wnyhs-solution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.wnyhs-solution-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.75rem;
+  min-height: 100%;
+  padding: 0.9rem;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--wnyhs-border) 78%, var(--wnyhs-gold-soft) 22%);
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 90%, var(--wnyhs-gold-soft) 10%);
+  color: var(--wnyhs-ink);
+  text-decoration: none;
+  box-shadow: var(--wnyhs-shadow-card);
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.wnyhs-solution-card:hover {
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 42%, var(--wnyhs-border));
+  box-shadow: var(--wnyhs-shadow-panel);
+  transform: translateY(-2px);
+}
+
+.wnyhs-solution-card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--wnyhs-border) 72%, transparent);
+  background: color-mix(in srgb, var(--wnyhs-surface-soft) 72%, var(--wnyhs-surface-raised) 28%);
+}
+
+.wnyhs-solution-card-meta {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.4rem;
+}
+
+.wnyhs-solution-card-meta small {
+  color: var(--wnyhs-gold-strong);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wnyhs-solution-card-meta h3,
+.wnyhs-solution-card-meta p,
+.wnyhs-solution-card-meta strong {
+  margin: 0;
+}
+
+.wnyhs-solution-card-meta h3 {
+  color: var(--wnyhs-ink);
+  font-size: 1.08rem;
+}
+
+.wnyhs-solution-card-meta p {
+  color: var(--wnyhs-ink-secondary);
+}
+
+.wnyhs-solution-card-meta strong {
+  color: var(--wnyhs-charcoal);
+  font-size: 0.88rem;
+}
+
+.wnyhs-vault-panel {
+  gap: 1rem;
+}
+
+.wnyhs-vault-panel .packages-vault-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wnyhs-vault-panel .packages-vault-card {
+  box-shadow: none;
+}
+
+.wnyhs-core-value-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 1rem;
+}
+
+.wnyhs-core-value-panel > div {
+  display: grid;
+  gap: 0.65rem;
+  align-content: start;
+}
+
+.wnyhs-core-value-panel h2,
+.wnyhs-core-value-panel p,
+.wnyhs-core-value-panel li {
+  margin: 0;
+  color: var(--wnyhs-dark-text);
+}
+
+.wnyhs-core-value-panel p,
+.wnyhs-core-value-panel li {
+  color: color-mix(in srgb, var(--wnyhs-dark-text) 78%, transparent);
+}
+
+.wnyhs-core-value-panel ul {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding-left: 1.05rem;
+}
+
+.wnyhs-page-cta {
+  background: color-mix(in srgb, var(--wnyhs-surface-soft) 78%, var(--wnyhs-surface-raised) 22%);
+  box-shadow: var(--wnyhs-shadow-card);
+}
+
+.wnyhs-page-cta .packages-context-header span {
+  max-width: 600px;
+  color: var(--wnyhs-ink-secondary);
+}
+
 .package-card:hover .package-card-media {
   border-color: rgba(125, 211, 252, 0.6);
   box-shadow: 0 24px 55px rgba(5, 10, 20, 0.65);
@@ -3072,8 +3227,14 @@ body.modal-open {
   .packages-core-grid,
   .packages-category-grid,
   .packages-vault-grid,
-  .packages-secondary-grid {
+  .packages-secondary-grid,
+  .wnyhs-solution-grid,
+  .wnyhs-vault-panel .packages-vault-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wnyhs-core-value-panel {
+    grid-template-columns: 1fr;
   }
 
   .portal-grid-active,
@@ -3096,7 +3257,9 @@ body.modal-open {
   .packages-core-grid,
   .packages-category-grid,
   .packages-vault-grid,
-  .packages-secondary-grid {
+  .packages-secondary-grid,
+  .wnyhs-solution-grid,
+  .wnyhs-vault-panel .packages-vault-grid {
     grid-template-columns: 1fr;
   }
 
