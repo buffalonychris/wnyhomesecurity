@@ -2344,6 +2344,18 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   color: var(--hs-home-muted);
 }
 
+.hs-home-linked-card {
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.hs-home-linked-card:hover {
+  border-color: color-mix(in srgb, var(--hs-home-gold) 44%, var(--hs-home-border));
+  box-shadow: 0 16px 30px color-mix(in srgb, var(--hs-home-charcoal) 12%, transparent);
+  transform: translateY(-2px);
+}
+
 .hs-home-package-card ul,
 .hs-home-core-section ul {
   display: grid;

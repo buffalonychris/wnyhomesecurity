@@ -4,6 +4,15 @@ import PackageCard from '../components/PackageCard';
 import ComparisonLadder from '../components/ComparisonLadder';
 import OwnershipOfflineGuarantee from '../components/OwnershipOfflineGuarantee';
 import { getPackages } from '../content/packages';
+import {
+  estimatePath,
+  fitCheckPath,
+  offerCategories,
+  packageStartingPoints,
+  publicSolutions,
+  vaultBuckets,
+  wnyhsCoreOffer,
+} from '../content/wnyhsOfferCatalog';
 import { brandSite } from '../lib/brand';
 import { loadRetailFlow, markFlowStep, updateRetailFlow } from '../lib/retailFlow';
 import { resolveVertical } from '../lib/verticals';
@@ -18,144 +27,6 @@ const homeSecuritySolutionPillars = [
   'Built around your property',
 ] as const;
 
-const signatureSolutionCategories = [
-  {
-    title: 'Home Security',
-    headline: 'Know what is happening around the everyday areas people worry about most.',
-    purpose: 'Plan practical visibility and alerts around doors, driveways, packages, visitors, garages, and property activity without turning the home into a hardware catalog.',
-    image: '/images/solutions/smart-home-security.png',
-    imageAlt: 'Home exterior with smart security awareness',
-    examples: ['Video doorbells', 'Security cameras', 'Driveway awareness', 'Smart entry', 'Package protection', 'Local recording'],
-    ctaLabel: 'Request Callback About Home Security',
-    to: '/contact?vertical=home-security',
-  },
-  {
-    title: 'Home Automation',
-    headline: 'Simplify routines with controls that fit the way your household already works.',
-    purpose: 'Connect useful smart-property controls, notifications, comfort routines, and environmental awareness into a plan that feels practical instead of complicated.',
-    image: '/images/solutions/connected-garage-workshop.png',
-    imageAlt: 'Garage and smart-property controls in a home setting',
-    examples: ['Smart lighting', 'Garage control', 'Smart locks', 'Comfort routines', 'Energy awareness', 'Environmental awareness'],
-    ctaLabel: 'Talk Through Home Automation',
-    to: '/discovery?vertical=home-security',
-  },
-  {
-    title: 'Aging In Place',
-    headline: 'Support independence while giving families better ways to check in.',
-    purpose: 'Build non-intrusive awareness around daily routines, entry activity, family notifications, and future expansion planning for loved ones living more independently.',
-    image: '/images/home-security/solutions/solutions-aging-hero.png',
-    imageAlt: 'Calm home setting for aging-in-place awareness',
-    examples: ['Daily activity awareness', 'Entry activity awareness', 'Family notifications', 'Routine check-in options', 'Non-intrusive awareness', 'Future expansion planning'],
-    ctaLabel: 'Explore Aging In Place Solutions',
-    to: '/solutions/senior-safety',
-  },
-] as const;
-
-const browseSolutionCategories = [
-  {
-    title: 'Home Security',
-    intro: 'Browse solutions for entries, arrivals, visitors, deliveries, garages, driveways, and time away from home.',
-    items: [
-      {
-        title: 'Family Awareness',
-        body: 'For busy households that want clearer awareness around arrivals, garage activity, packages, and routines.',
-        to: '/solutions/family-awareness',
-        label: 'View Solution',
-        status: 'Live solution',
-      },
-      {
-        title: 'Vacation Homes',
-        body: 'For seasonal or second properties where remote property awareness can reduce uncertainty between visits.',
-        to: '/solutions/vacation-homes',
-        label: 'View Solution',
-        status: 'Live solution',
-      },
-      {
-        title: 'Package Protection',
-        body: 'For deliveries, porch activity, and clearer awareness around what happened at the front door.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-      {
-        title: 'Driveway Awareness',
-        body: 'For arrivals, visitors, vehicles, and activity near the approach to the property.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-      {
-        title: 'Smart Entry',
-        body: 'For locks, entry routines, garage access, and household access planning.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-    ],
-  },
-  {
-    title: 'Home Automation',
-    intro: 'Browse practical controls and environmental awareness ideas that make the property easier to understand and manage.',
-    items: [
-      {
-        title: 'Water Protection',
-        body: 'For leaks, freeze concerns, sump areas, basements, and utility spaces where early awareness matters.',
-        to: '/solutions/water-protection',
-        label: 'View Solution',
-        status: 'Live solution',
-      },
-      {
-        title: 'Smart Lighting',
-        body: 'For everyday lighting routines, arrival scenes, and practical household convenience.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-      {
-        title: 'Garage Control',
-        body: 'For garage status, access routines, and fewer unknowns around a common entry point.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-      {
-        title: 'Energy Awareness',
-        body: 'For better visibility into usage patterns, comfort settings, and practical ways to reduce waste.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-    ],
-  },
-  {
-    title: 'Aging In Place',
-    intro: 'Browse options for supporting independence, family awareness, routine check-ins, and future planning.',
-    items: [
-      {
-        title: 'Senior Safety',
-        body: 'For families supporting an aging parent or loved one who wants more independence at home.',
-        to: '/solutions/senior-safety',
-        label: 'View Solution',
-        status: 'Live solution',
-      },
-      {
-        title: 'Caregiver Awareness',
-        body: 'For relatives and caregivers who want practical ways to know when something may need attention.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-      {
-        title: 'Daily Activity Awareness',
-        body: 'For non-intrusive signals around normal routines, movement patterns, and household activity.',
-        to: 'fit-check',
-        label: 'Ask In Fit Check',
-        status: 'Planning topic',
-      },
-    ],
-  },
-] as const;
-
 const Packages = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -165,6 +36,12 @@ const Packages = () => {
   const packageList = getPackages(vertical);
   const isHomeSecurity = vertical === 'home-security';
   const discoveryLink = getHomeSecurityCtaLink(pathParam);
+  const solutionsByCategory = offerCategories
+    .map((category) => ({
+      category,
+      items: publicSolutions.filter((solution) => solution.categoryId === category.id),
+    }))
+    .filter((group) => group.items.length > 0);
 
   useLayoutConfig({
     layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide',
@@ -227,7 +104,7 @@ const Packages = () => {
           <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
             {vertical === 'home-security'
               ? 'Start here to browse WNY Home Security solution families, compare common homeowner situations, and choose whether a Fit Check, estimate, or solution detail page is the right next step.'
-              : 'One-time pricing, delivered with Home Assistant as your single control surface.'}
+              : 'One-time package selection, delivered with Home Assistant as your single control surface.'}
           </p>
           {isHomeSecurity && (
             <div className="packages-solution-pillars" aria-label="WNY Home Security solution differentiators">
@@ -253,81 +130,150 @@ const Packages = () => {
               Continue to Fit Check
             </Link>
             <small style={{ color: '#c8c0aa' }}>
-              Clear pricing with pro install, ready for offline resilience.
+              Clear package selection with pro install, ready for offline resilience.
             </small>
           </div>
         )}
       </section>
       {isHomeSecurity && (
-        <section className="wnyhs-section wnyhs-section--solutions packages-context-panel packages-premier-panel" aria-labelledby="packages-premier-heading">
+        <section id="wnyhs-core" className="wnyhs-section wnyhs-section--dark packages-context-panel packages-core-panel" aria-labelledby="packages-core-heading">
           <div className="wnyhs-section-header packages-context-header">
-            <p className="wnyhs-eyebrow">Featured / Premier Solutions</p>
-            <h2 id="packages-premier-heading">Window-shop the flagship WNYHS solution families</h2>
-            <span>
-              Start with the outcome you want, then drill into the situations that sound most like your property.
-            </span>
+            <p className="wnyhs-eyebrow">{wnyhsCoreOffer.eyebrow}</p>
+            <h2 id="packages-core-heading">{wnyhsCoreOffer.title}</h2>
+            <span>{wnyhsCoreOffer.body}</span>
           </div>
-          <div className="packages-premier-grid">
-            {signatureSolutionCategories.map((item) => (
-              <article key={item.title} className="wnyhs-card wnyhs-card--solution packages-premier-card">
-                <figure className="packages-premier-media">
-                  <img src={item.image} alt={item.imageAlt} loading="lazy" />
-                </figure>
-                <div className="packages-premier-copy">
-                  <span>{item.title}</span>
-                  <h3>{item.headline}</h3>
+          <div className="packages-core-grid">
+            <article className="wnyhs-card packages-core-card">
+              <h3>First-time customers</h3>
+              <p>{wnyhsCoreOffer.firstCustomer}</p>
+            </article>
+            <article className="wnyhs-card packages-core-card">
+              <h3>Existing WNYHS Core customers</h3>
+              <p>{wnyhsCoreOffer.existingCustomer}</p>
+            </article>
+            <article className="wnyhs-card packages-core-card packages-core-card--wide">
+              <h3>What Core supports</h3>
+              <ul>
+                {wnyhsCoreOffer.bullets.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+      )}
+      {isHomeSecurity && (
+        <section id="offer-categories" className="wnyhs-section wnyhs-section--category packages-context-panel packages-browse-panel" aria-labelledby="packages-category-heading">
+          <div className="wnyhs-section-header packages-context-header">
+            <p className="wnyhs-eyebrow">Public Service Categories</p>
+            <h2 id="packages-category-heading">Start with the homeowner outcome</h2>
+            <span>Categories help connect broad concerns to live solutions, planning topics, package starting points, and custom review paths.</span>
+          </div>
+          <div className="packages-category-grid">
+            {offerCategories.map((category) => (
+              <Link
+                key={category.id}
+                id={`category-${category.id}`}
+                className="wnyhs-card wnyhs-card--category packages-category-card"
+                to={category.anchor}
+              >
+                <h3>{category.name}</h3>
+                <p>{category.outcome}</p>
+                <strong>Browse related offers</strong>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+      {isHomeSecurity && (
+        <section id="standard-planning-solutions" className="wnyhs-section wnyhs-section--solutions packages-context-panel packages-browse-panel" aria-labelledby="packages-solutions-heading">
+          <div className="wnyhs-section-header packages-context-header">
+            <p className="wnyhs-eyebrow">Standard / Planning Solutions</p>
+            <h2 id="packages-solutions-heading">Live pages and visible planning topics</h2>
+            <span>Live solution pages link directly. Other governed topics stay visible as Fit Check, estimate, or category paths until a full detail page exists.</span>
+          </div>
+          <div className="packages-browse-grid">
+            {solutionsByCategory.map(({ category, items }) => (
+              <article key={category.id} className="wnyhs-card wnyhs-card--category packages-browse-card">
+                <div className="packages-browse-card-header">
+                  <h3>{category.name}</h3>
+                  <p>{category.outcome}</p>
                 </div>
-                <p>{item.purpose}</p>
-                <ul>
-                  {item.examples.map((example) => (
-                    <li key={example}>{example}</li>
+                <div className="packages-browse-item-grid">
+                  {items.map((item) => (
+                    <Link
+                      key={item.id}
+                      id={`solution-${item.id}`}
+                      className={`packages-browse-item-card${item.status === 'Planning topic' ? ' packages-browse-item-card--planned' : ''}`}
+                      to={item.href}
+                    >
+                      <small>{item.status}</small>
+                      <span>{item.title}</span>
+                      <p>{item.body}</p>
+                      <strong>{item.ctaLabel}</strong>
+                    </Link>
                   ))}
-                </ul>
-                <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary packages-premier-cta" to={item.to}>
-                  {item.ctaLabel}
-                </Link>
+                </div>
               </article>
             ))}
           </div>
         </section>
       )}
       {isHomeSecurity && (
-        <section className="wnyhs-section wnyhs-section--category packages-context-panel packages-browse-panel" aria-labelledby="packages-browse-heading">
+        <section id="package-starting-points" className="wnyhs-section wnyhs-section--packages packages-context-panel packages-package-panel" aria-labelledby="packages-starting-heading">
           <div className="wnyhs-section-header packages-context-header">
-            <p className="wnyhs-eyebrow">Browse Our Solutions By Category</p>
-            <h2 id="packages-browse-heading">Find a starting point that matches your property</h2>
-            <span>
-              Use these storefront categories to browse current solution pages and related fit-check topics.
-            </span>
+            <p className="wnyhs-eyebrow">Package Starting Points</p>
+            <h2 id="packages-starting-heading">Customer-understandable ways to begin</h2>
+            <span>These are governed package concepts, not fixed public offers. Final scope confirmed after property review.</span>
           </div>
-          <div className="packages-browse-grid">
-            {browseSolutionCategories.map((category) => (
-              <article key={category.title} className="wnyhs-card wnyhs-card--category packages-browse-card">
-                <div className="packages-browse-card-header">
-                  <h3>{category.title}</h3>
-                  <p>{category.intro}</p>
-                </div>
-                <div className="packages-browse-item-grid">
-                  {category.items.map((item) => {
-                    const destination = item.to === 'fit-check' ? discoveryLink : item.to;
-                    const isPlanningTopic = item.to === 'fit-check';
-
-                    return (
-                      <Link
-                        key={item.title}
-                        className={`packages-browse-item-card${isPlanningTopic ? ' packages-browse-item-card--planned' : ''}`}
-                        to={destination}
-                      >
-                        <small>{item.status}</small>
-                        <span>{item.title}</span>
-                        <p>{item.body}</p>
-                        <strong>{item.label}</strong>
-                      </Link>
-                    );
-                  })}
+          <div className="packages-signature-grid">
+            {packageStartingPoints.map((item) => (
+              <article key={item.id} className="wnyhs-card wnyhs-card--package packages-signature-card">
+                <small>{item.status}</small>
+                <h3>{item.name}</h3>
+                <p>{item.customerProblem}</p>
+                <ul>
+                  {item.includedTopics.map((topic) => (
+                    <li key={topic}>{topic}</li>
+                  ))}
+                </ul>
+                <p>{item.coreRule}</p>
+                <div className="packages-card-actions">
+                  <Link className="packages-card-link" to={item.href}>
+                    {item.href === estimatePath ? 'Request Estimate' : 'Start Fit Check'}
+                  </Link>
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+      )}
+      {isHomeSecurity && (
+        <section id="the-vault" className="wnyhs-section wnyhs-section--dark packages-context-panel packages-vault-panel" aria-labelledby="packages-vault-heading">
+          <div className="wnyhs-section-header packages-context-header">
+            <p className="wnyhs-eyebrow">The Vault / Custom Projects</p>
+            <h2 id="packages-vault-heading">Custom smart-property projects reviewed individually</h2>
+            <span>
+              Specialty controls for outdoor living, detached spaces, lighting, gates, pools, hot tubs, workshops, and other site-specific needs. Designed around compatibility, safety, wiring, weather exposure, and customer goals. Quote-only after review and available where equipment and site conditions support it.
+            </span>
+          </div>
+          <div className="packages-vault-grid">
+            {vaultBuckets.map((item) => (
+              <article key={item.id} className="wnyhs-card packages-vault-card">
+                <small>Quote-only after review</small>
+                <h3>{item.name}</h3>
+                <p>{item.body}</p>
+                <strong>Reviewed individually</strong>
+              </article>
+            ))}
+          </div>
+          <div className="packages-secondary-actions">
+            <Link className="wnyhs-button wnyhs-button--primary btn btn-primary" to={estimatePath}>
+              Request Estimate
+            </Link>
+            <Link className="wnyhs-button wnyhs-button--secondary btn btn-secondary" to={fitCheckPath}>
+              Start Fit Check
+            </Link>
           </div>
         </section>
       )}
