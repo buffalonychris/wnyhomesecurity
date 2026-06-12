@@ -207,7 +207,7 @@ const SolutionOpportunity = () => {
 
   return (
     <WnyhsMarketingLayout ctaLink="/contact?vertical=home-security">
-      <div className="wnyhs-page wnyhs-shell hs-premium-shell hs-premium-shell--home-trust opportunity-page">
+      <div className="wnyhs-page wnyhs-shell hs-premium-shell hs-premium-shell--home-trust hs-premium-shell--solution-detail opportunity-page">
         <section className="wnyhs-section wnyhs-section--dark hs-premium-hero hs-premium-hero--split hs-premium-hero--trust opportunity-hero">
           <div className="opportunity-hero-copy">
             <div className="hs-premium-hero-content">
@@ -279,7 +279,7 @@ const SolutionOpportunity = () => {
           </div>
           <div className="opportunity-feature-grid">
             {page.features.map((feature) => (
-              <span key={feature}>{feature}</span>
+              <span key={feature} className="wnyhs-card opportunity-feature-chip">{feature}</span>
             ))}
           </div>
         </section>
