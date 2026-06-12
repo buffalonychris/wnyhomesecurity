@@ -114,6 +114,23 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+### DESIGN-TOKEN-SYSTEM-002
+- **Task ID:** DESIGN-TOKEN-SYSTEM-002
+- **Task Name:** Public Visual QA Cleanup After v1.0.121
+- **Status:** ACTIVE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Fix specific post-deploy visual QA defects after DESIGN-TOKEN-SYSTEM-001 without redesigning pages, adding features, changing routes, or touching protected systems.
+- **Allowed Scope:** Visible site version patch bump to `v1.0.122`; visual contrast fixes; typography/wrapping fixes; CSS token/primitives cleanup; image framing/object-fit fixes; minor class additions needed to apply existing visual primitives; minor copy spacing fixes only if verified real in the app; this task-register record.
+- **Forbidden Scope:** No new business strategy, sections, routes, route renames, navigation structure changes, Search implementation, QR Landing redesign, Fit Check behavior changes, Estimate behavior changes, HubSpot changes, Stripe/payment changes, Resend changes, Gmail/Workspace changes, Cloudflare config changes, scheduling changes, API/runtime behavior changes, secrets, dependency changes, package-lock changes, asset generation, image generation, public pricing values, invented package prices, invented solution prices, supplier costs, BOM values, invented packages, invented solutions, invented hardware standardization, unsupported claims, or hardcoded new colors outside the visual token system unless unavoidable and explained.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/index.css`, `src/styles/wnyhsVisualGovernance.css`, `src/styles/homeSecurityPremium.css`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/pages/Packages.tsx`, `src/pages/SolutionOpportunity.tsx`, `src/components/homeSecurity/WnyhsMarketingLayout.tsx`, `src/components/homeSecurity/WnyhsPageLayout.tsx`, `src/components/homeSecurity/WnyhsSiteFooter.tsx`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Public visual presentation only; protected runtime systems must remain untouched.
+- **Documentation Updates Required:** Add/update this bounded `DESIGN-TOKEN-SYSTEM-002` task-register record.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; version grep; forbidden-claim grep; spacing-artifact grep; hardcoded color grep; `npm run build`; safe standard lint/typecheck scripts if present and applicable; manual local visual review for `/home-security`, `/packages?vertical=home-security`, `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes`.
+- **Exit Criteria:** Visible site version is `v1.0.122`; header brand text is readable; packages premier-card text is readable; solution detail hero headings are less cramped; homepage hero image no longer has heavy letterboxing; WNYHS Core image framing is improved; third premier card layout is less awkward; spacing artifacts are verified as browser issues and fixed or documented as extraction artifacts; no fake prices, prohibited claims, broken images, route/navigation changes, features, or protected-system changes are introduced; validation passes or unrelated baseline failures are documented; PR targets `main` without merge.
+- **Dependencies:** DESIGN-TOKEN-SYSTEM-001, current context, DESIGN001/DESIGN002 visual governance, claims guardrails, offer architecture, package/BOM governance, brand/page/header/footer/public funnel standards, and OPS002 repository-aware dispatch standard.
+- **Operator Decision Required:** Review and merge PR if accepted.
+
 ### DESIGN-TOKEN-SYSTEM-001
 - **Task ID:** DESIGN-TOKEN-SYSTEM-001
 - **Task Name:** Implement Sitewide Visual Token System and Normalize Public Marketing Pages

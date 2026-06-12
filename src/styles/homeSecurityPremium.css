@@ -169,6 +169,10 @@
   color: inherit;
 }
 
+.wnyhs-top-nav .wnyhs-top-nav-brand {
+  color: var(--wnyhs-dark-text);
+}
+
 .wnyhs-top-nav-icon img {
   width: 22px;
   height: 22px;
@@ -823,6 +827,7 @@
 
 .opportunity-hero {
   display: grid;
+  grid-template-columns: minmax(0, 1.24fr) minmax(280px, 0.76fr);
   gap: clamp(1rem, 2vw, 1.35rem);
   border-radius: 20px;
   padding: 1.35rem;
@@ -848,6 +853,11 @@
   margin: 0;
 }
 
+.opportunity-hero .hs-premium-hero-content h1 {
+  max-width: 22ch;
+  font-size: clamp(2rem, 3.35vw, 2.95rem);
+}
+
 .opportunity-hero .hs-premium-hero-subhead {
   max-width: 62ch;
 }
@@ -859,7 +869,7 @@
 .opportunity-hero-media {
   margin: 0;
   min-height: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 11;
 }
 
 .opportunity-section {
@@ -956,7 +966,7 @@
 }
 
 .opportunity-hero-media img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   background: color-mix(in srgb, var(--background) 64%, var(--card) 36%);
 }
@@ -2220,7 +2230,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 .hs-home-hero-media {
   margin: 0;
-  min-height: 280px;
+  min-height: 320px;
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--hs-home-gold) 34%, transparent);
@@ -2230,10 +2240,10 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 .hs-home-hero-media img {
   width: 100%;
   height: 100%;
-  min-height: 280px;
+  min-height: 320px;
   display: block;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .hs-home-trust-bar {
@@ -2355,7 +2365,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 .hs-home-core-media {
   position: relative;
   margin: 0;
-  min-height: 300px;
+  min-height: 280px;
   display: grid;
   align-items: end;
   overflow: hidden;
@@ -2373,18 +2383,18 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .hs-home-core-dashboard {
-  width: 82%;
-  max-height: 260px;
-  margin: 1rem auto 1rem 1rem;
+  width: 88%;
+  max-height: 245px;
+  margin: 0.65rem auto 0.65rem 0.65rem;
   border-radius: 12px;
 }
 
 .hs-home-core-phone {
   position: absolute;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  width: min(34%, 130px);
-  max-height: 82%;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  width: min(31%, 118px);
+  max-height: 78%;
   filter: drop-shadow(0 14px 24px color-mix(in srgb, var(--hs-home-charcoal) 48%, transparent));
 }
 
@@ -2460,6 +2470,10 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   }
 
   .hs-home-hero h1 {
+    max-width: none;
+  }
+
+  .opportunity-hero .hs-premium-hero-content h1 {
     max-width: none;
   }
 

@@ -664,7 +664,8 @@ header.hide-when-print {
 
 .packages-premier-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 360px));
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -679,9 +680,10 @@ header.hide-when-print {
   border-radius: 20px;
   border: 1px solid color-mix(in srgb, var(--kaec-border) 76%, var(--color-text-primary) 24%);
   background:
-    linear-gradient(145deg, color-mix(in srgb, var(--kaec-surface-strong) 90%, transparent), color-mix(in srgb, var(--kaec-bg) 76%, transparent)),
-    color-mix(in srgb, var(--kaec-surface) 72%, var(--kaec-bg) 28%);
-  box-shadow: 0 18px 48px color-mix(in srgb, var(--kaec-bg) 72%, transparent);
+    linear-gradient(145deg, color-mix(in srgb, var(--wnyhs-surface-raised) 92%, var(--wnyhs-gold-soft) 8%), var(--wnyhs-surface)),
+    var(--wnyhs-surface-raised);
+  color: var(--wnyhs-ink);
+  box-shadow: var(--wnyhs-shadow-card);
 }
 
 .packages-premier-media {
@@ -708,20 +710,23 @@ header.hide-when-print {
 }
 
 .packages-premier-card span {
-  color: var(--kaec-accent);
+  color: var(--wnyhs-gold-strong);
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .packages-premier-card h3 {
-  color: var(--color-text-primary);
+  color: var(--wnyhs-ink);
   font-size: clamp(1.25rem, 1.7vw, 1.65rem);
   line-height: 1.15;
 }
 
 .packages-premier-card p,
-.packages-premier-card li,
+.packages-premier-card li {
+  color: var(--wnyhs-ink-secondary);
+}
+
 .packages-browse-card p,
 .packages-browse-link-card small {
   color: var(--kaec-muted);
@@ -737,12 +742,16 @@ header.hide-when-print {
 }
 
 .packages-premier-card li {
-  border: 1px solid var(--kaec-border);
+  border: 1px solid var(--wnyhs-border);
   border-radius: 999px;
   padding: 0.3rem 0.6rem;
-  background: color-mix(in srgb, var(--kaec-bg) 54%, var(--kaec-surface) 46%);
+  background: color-mix(in srgb, var(--wnyhs-gold-soft) 36%, var(--wnyhs-surface) 64%);
   font-size: 0.82rem;
   font-weight: 650;
+}
+
+.packages-premier-card .packages-premier-cta {
+  color: var(--wnyhs-charcoal);
 }
 
 .packages-premier-cta {
@@ -2940,6 +2949,12 @@ body.modal-open {
   .portal-grid-future {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .packages-premier-card:nth-child(3):last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 360px);
+  }
 }
 
 @media (max-width: 640px) {
@@ -2955,6 +2970,12 @@ body.modal-open {
   .package-card-price-block {
     justify-items: start;
     text-align: left;
+  }
+
+  .packages-premier-card:nth-child(3):last-child {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
   }
 
   .portal-grid-active,
