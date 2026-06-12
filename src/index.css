@@ -1069,6 +1069,7 @@ header.hide-when-print {
   border-radius: 999px;
   padding: 0.28rem 0.55rem;
   background: color-mix(in srgb, var(--kaec-bg) 54%, var(--kaec-surface) 46%);
+  color: var(--wnyhs-dark-text);
   font-size: 0.82rem;
 }
 

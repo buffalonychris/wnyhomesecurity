@@ -168,6 +168,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Scoped light-card text and link colors to existing WNYHS ink/accent tokens for public offerings readability; preserved `.wnyhs-card` global behavior, content, routes, catalog data, pricing, claims, and protected systems. Validation passed and PR opened to `main` without merge.
 
+### SOLUTION-PUBLISHING-001-POLISH-HOTFIX
+- **Task ID:** SOLUTION-PUBLISHING-001-POLISH-HOTFIX
+- **Task Name:** Public Offerings Page Final Readability Polish
+- **Status:** DONE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Fix remaining package topic pill readability on `/packages?vertical=home-security` after SOLUTION-PUBLISHING-001 and its contrast hotfix.
+- **Allowed Scope:** CSS-only readability fix for package topic pills; visible site version patch bump to `v1.0.125`; literal package-title spacing fixes only if confirmed in source; this minimal DONE record.
+- **Forbidden Scope:** No catalog strategy changes, solution/package/Vault content changes, page restructure, route/navigation changes, pricing, claims, protected-system changes, runtime/API changes, dependency changes, package-lock changes, assets, image generation, or browser automation.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/index.css`, `src/content/wnyhsOfferCatalog.ts` only if source spacing errors are confirmed, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Public CSS/readability and deploy-visible version only; protected runtime systems remain untouched.
+- **Documentation Updates Required:** Add this minimal DONE hotfix task-register record.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; version grep; spacing-artifact grep; forbidden-claim grep; `npm run build`; safe focused lint/typecheck if quick and available.
+- **Exit Criteria:** Visible site version is `v1.0.125`; package topic pills in `.packages-signature-card li` use existing WNYHS tokens for readable text; package title source strings are fixed only if literal spacing errors exist; no catalog strategy, routes, pricing, claims, or protected systems are changed; validation passes and PR targets `main` without merge.
+- **Dependencies:** SOLUTION-PUBLISHING-001, SOLUTION-PUBLISHING-001-CONTRAST-HOTFIX, DESIGN001/DESIGN002 visual governance, CLAIMS001, OFFERING001, PACKAGEBOM001, and OPS002 repository-aware dispatch standard.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Scoped package topic pill text to existing WNYHS dark-surface text token for readability; verified package title strings already include expected spacing, so no catalog content changes were needed; preserved catalog strategy, routes, pricing, claims, and protected systems.
+
 ### DESIGN-TOKEN-SYSTEM-001
 - **Task ID:** DESIGN-TOKEN-SYSTEM-001
 - **Task Name:** Implement Sitewide Visual Token System and Normalize Public Marketing Pages
