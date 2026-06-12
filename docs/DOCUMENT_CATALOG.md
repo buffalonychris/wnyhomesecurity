@@ -128,6 +128,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, except as the governance record created by the bounded DESIGN-TOKEN-SYSTEM-001 implementation task.
 - **Notes:** Records the visual token implementation standard and does not authorize public pricing values, invented packages, invented solutions, hardware standardization, HubSpot, Stripe, Resend, Gmail/Workspace, Cloudflare config, scheduling, API/runtime behavior, secrets, route changes, or navigation behavior.
 
+### `/docs/governance/PAGE_TOKEN_COMPLIANCE_GATE_REV01.md`
+- **File path:** `docs/governance/PAGE_TOKEN_COMPLIANCE_GATE_REV01.md`
+- **Purpose / likely role:** Standing public page token compliance gate requiring future public page work to check homepage-derived token CSS governance before editing.
+- **Authority level:** **Visual governance / public page compliance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. Consumed by future bounded public page tasks.
+- **Notes:** Added by PAGE-TOKEN-COMPLIANCE-GATE-001 as docs-only governance bookkeeping. It does not authorize source, CSS, route, page, runtime, HubSpot, Stripe/payment, Resend, Gmail/Workspace, scheduling, Cloudflare, secret, asset, dependency, package-lock, visual implementation, pricing, claims, or protected-system changes by itself.
+
 
 ### `/docs/audits/payment_fix001_implementation_rev01.md`
 - **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
@@ -220,6 +228,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Customer-facing:** No.
 - **Implementation authority:** No.
 - **Notes:** Added by GOV-REPOACCESS-001-B as documentation bookkeeping for OPS002. It improves repo-aware dispatcher preparation and does not authorize source, CSS, route, runtime, API, HubSpot, Stripe, Resend, Gmail/Workspace, Cloudflare, scheduling, secrets, assets, dependencies, package-lock, package/catalog implementation, pricing implementation, or protected-system changes by itself.
+
+### `/docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
+- **File path:** `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
+- **Purpose / likely role:** Planning/dispatch task pack listing next public page token-compliance tasks, including solution detail parity, media section, Vault image system, Solutions card density polish, and final governance update.
+- **Authority level:** **System planning / dispatch aid**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. Each task requires separate bounded work order.
+- **Notes:** Added by PAGE-TOKEN-COMPLIANCE-GATE-001 as docs-only governance bookkeeping. It does not authorize source, CSS, route, page, runtime, HubSpot, Stripe/payment, Resend, Gmail/Workspace, scheduling, Cloudflare, secret, asset, dependency, package-lock, visual implementation, pricing, claims, or protected-system changes by itself.
 
 ### `/docs/system/project.md`
 - **File path:** `docs/system/project.md`

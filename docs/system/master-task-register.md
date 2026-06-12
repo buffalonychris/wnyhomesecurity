@@ -114,6 +114,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+### PAGE-TOKEN-COMPLIANCE-GATE-001
+- **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
+- **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add a standing public-page token compliance gate requiring every future public page edit to ask whether the target page is compliant with the current homepage-derived Token CSS Governance, and register the next page-level task pack.
+- **Allowed Scope:** Docs-only governance closeout; register the new compliance gate and task pack; update catalog and manifest; no source/runtime/page/style changes.
+- **Forbidden Scope:** No source code changes, no CSS changes, no app changes, no route changes, no navigation changes, no page implementation, no visual implementation, no pricing, no claims changes, no HubSpot, no Stripe/payment, no Resend, no Gmail/Workspace, no scheduling, no API/runtime behavior changes, no Cloudflare config, no secrets, no assets, no dependencies, no package-lock.
+- **Target Files:** `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only closeout.
+- **Documentation Updates Required:** Add task-register closeout record; add catalog entries; add markdown manifest entries/addendum.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; `rg -n "PAGE_TOKEN_COMPLIANCE_GATE_REV01|PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01|PAGE-TOKEN-COMPLIANCE-GATE-001|Token CSS Governance|Page structure is page-specific|Visual language is shared" docs/system/master-task-register.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/governance/PAGE_TOKEN_COMPLIANCE_GATE_REV01.md docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`. No `npm run build` because this is docs-only.
+- **Exit Criteria:** The compliance gate and task pack are registered in the Master Task Register, Document Catalog, and Markdown Manifest; Task 0 is recorded as DONE; only docs bookkeeping files are changed; no app/source/runtime/protected-system files are changed; validation passes; PR targets `main` without merge.
+- **Dependencies:** `docs/governance/PAGE_TOKEN_COMPLIANCE_GATE_REV01.md`, `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`, DESIGN002, DESIGN003, DESIGN001, SOLUTION002, OPS002.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed docs-only governance bookkeeping for the public page token compliance gate and task pack. Registered both documents in the catalog, added the manifest addendum, and recorded PAGE-TOKEN-COMPLIANCE-GATE-001 as DONE without editing source, CSS, app, runtime, HubSpot, Stripe/payment, protected-system, asset, dependency, package-lock, or version files.
+
 ### DESIGN-TOKEN-SYSTEM-002
 - **Task ID:** DESIGN-TOKEN-SYSTEM-002
 - **Task Name:** Public Visual QA Cleanup After v1.0.121
