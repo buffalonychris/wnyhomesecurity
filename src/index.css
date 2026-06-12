@@ -794,8 +794,8 @@ header.hide-when-print {
 .packages-core-card,
 .packages-vault-card {
   border: 1px solid color-mix(in srgb, var(--wnyhs-gold-soft) 34%, var(--kaec-border));
-  background: color-mix(in srgb, var(--wnyhs-charcoal) 78%, var(--wnyhs-gold-soft) 22%);
-  color: var(--wnyhs-dark-text);
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
+  color: var(--wnyhs-ink);
 }
 
 .packages-core-card--wide {
@@ -804,17 +804,32 @@ header.hide-when-print {
 
 .packages-core-card h3,
 .packages-core-card p,
+.packages-core-card li,
 .packages-core-card ul,
 .packages-vault-card h3,
 .packages-vault-card p,
-.packages-vault-card strong {
+.packages-vault-card strong,
+.packages-vault-card small {
   margin: 0;
 }
 
+.packages-core-card h3,
+.packages-vault-card h3,
+.packages-category-card h3,
+.packages-signature-card h3 {
+  color: var(--wnyhs-ink);
+}
+
 .packages-core-card p,
+.packages-core-card li,
 .packages-core-card ul,
-.packages-vault-card p {
-  color: color-mix(in srgb, var(--wnyhs-dark-text) 78%, transparent);
+.packages-vault-card p,
+.packages-vault-card strong,
+.packages-category-card p,
+.packages-category-card strong,
+.packages-signature-card p,
+.packages-signature-card li {
+  color: var(--wnyhs-ink-secondary);
 }
 
 .packages-core-card ul {
@@ -829,18 +844,14 @@ header.hide-when-print {
 
 .packages-category-card {
   border: 1px solid var(--kaec-border);
-  background: color-mix(in srgb, var(--kaec-surface-strong) 66%, var(--kaec-bg) 34%);
-  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-surface-soft) 12%);
+  color: var(--wnyhs-ink);
 }
 
 .packages-category-card h3,
 .packages-category-card p,
 .packages-category-card strong {
   margin: 0;
-}
-
-.packages-category-card p {
-  color: var(--kaec-muted);
 }
 
 .packages-category-card strong,
@@ -854,7 +865,7 @@ header.hide-when-print {
 
 .packages-signature-card small,
 .packages-vault-card small {
-  color: var(--kaec-accent);
+  color: var(--wnyhs-gold-strong);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -873,10 +884,6 @@ header.hide-when-print {
 
 .packages-vault-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.packages-vault-card small {
-  color: var(--wnyhs-gold);
 }
 
 .packages-browse-panel {
@@ -1038,14 +1045,13 @@ header.hide-when-print {
   border-radius: 18px;
   border: 1px solid color-mix(in srgb, var(--kaec-border) 78%, var(--color-text-primary) 22%);
   background: color-mix(in srgb, var(--kaec-surface-strong) 70%, var(--kaec-bg) 30%);
+  color: var(--wnyhs-ink);
 }
 
 .packages-signature-card h3 {
   font-size: 1.28rem;
 }
 
-.packages-signature-card p,
-.packages-signature-card li,
 .packages-secondary-grid p {
   color: var(--kaec-muted);
 }
@@ -1067,7 +1073,7 @@ header.hide-when-print {
 }
 
 .packages-card-link {
-  color: var(--color-text-primary);
+  color: var(--wnyhs-ink);
   font-weight: 800;
   text-decoration: none;
 }
