@@ -2067,16 +2067,6 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 /* HOMEPAGE-REDESIGN-IMPLEMENTATION-001 */
 .hs-premium-shell--home-redesign {
-  --hs-home-bg: #f8f6f1;
-  --hs-home-panel: #ffffff;
-  --hs-home-panel-soft: #f0ece3;
-  --hs-home-ink: #111111;
-  --hs-home-muted: #5e5a52;
-  --hs-home-border: #beb8ac;
-  --hs-home-gold: #b88a2e;
-  --hs-home-gold-strong: #8c671d;
-  --hs-home-charcoal: #111111;
-
   max-width: 1080px;
   margin: 0 auto;
   gap: 1rem;
@@ -2206,7 +2196,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   align-items: stretch;
   padding: clamp(1rem, 2vw, 1.35rem);
   background: var(--hs-home-charcoal);
-  color: #f8f6f1;
+  color: var(--wnyhs-dark-text);
 }
 
 .hs-home-hero .hs-premium-eyebrow {
@@ -2214,7 +2204,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .hs-home-hero .hs-premium-hero-subhead {
-  color: color-mix(in srgb, #f8f6f1 78%, transparent);
+  color: color-mix(in srgb, var(--wnyhs-dark-text) 78%, transparent);
   max-width: 62ch;
 }
 
@@ -2359,7 +2349,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   gap: 1rem;
   padding: 1rem;
   background: color-mix(in srgb, var(--hs-home-charcoal) 94%, var(--hs-home-gold) 6%);
-  color: #f8f6f1;
+  color: var(--wnyhs-dark-text);
 }
 
 .hs-home-core-media {
@@ -2413,7 +2403,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 
 .hs-home-core-section p,
 .hs-home-core-section ul {
-  color: color-mix(in srgb, #f8f6f1 78%, transparent);
+  color: color-mix(in srgb, var(--wnyhs-dark-text) 78%, transparent);
 }
 
 .hs-home-core-section .hs-premium-eyebrow {

@@ -114,6 +114,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+### DESIGN-TOKEN-SYSTEM-001
+- **Task ID:** DESIGN-TOKEN-SYSTEM-001
+- **Task Name:** Implement Sitewide Visual Token System and Normalize Public Marketing Pages
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement a governed WNYHS visual token system and normalize public marketing page presentation so shared visual tokens/classes replace scattered legacy dark/blue styling where practical.
+- **Allowed Scope:** Visible site version patch bump; add `src/styles/wnyhsVisualGovernance.css`; import it globally; update font loading to Inter plus Manrope; normalize relevant global tokens in `src/index.css`; map WNYHS public marketing CSS and touched public proof surfaces to shared visual primitives; add claim-safe copy corrections on touched surfaces; add DESIGN002 REV02 governance record; update document catalog, markdown manifest, and this task record; run required validation and open PR to `main` without merge.
+- **Forbidden Scope:** No new business strategy, invented packages, invented solutions, invented prices, supplier costs, BOM calculations, hardware purchase authorization, public pricing values, Stripe/payment changes, HubSpot changes, Resend changes, Gmail/Workspace changes, Cloudflare config changes, scheduling changes, API/runtime behavior changes, secrets, route changes, navigation redesign, QR Landing redesign, Fit Check behavior changes, Estimate behavior changes, payment/deposit behavior changes, protected-system edits, dependency changes, package-lock changes, deleted routes/components/assets, or hardcoded new colors outside the token system.
+- **Target Files:** `index.html`, `src/main.tsx`, `src/index.css`, `src/styles/wnyhsVisualGovernance.css`, `src/styles/homeSecurityPremium.css`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/pages/Packages.tsx`, `src/pages/SolutionOpportunity.tsx`, `src/components/homeSecurity/WnyhsMarketingLayout.tsx`, `src/components/homeSecurity/WnyhsPageLayout.tsx`, `src/components/homeSecurity/WnyhsSiteFooter.tsx`, `src/lib/siteVersion.ts`, `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Public marketing presentation and documentation only; protected runtime systems must remain untouched.
+- **Documentation Updates Required:** Add DESIGN002 REV02 governance record if input is available or record missing-source implementation standard; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md`; add this bounded task-register record.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; font/token grep; forbidden-claim grep; hardcoded visual debt grep; `npm run build`; safe standard lint/typecheck scripts if applicable; manual local review for `/home-security`, `/packages?vertical=home-security`, `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes` if possible.
+- **Exit Criteria:** Site version is `v1.0.121`; WNYHS visual token CSS exists and is globally imported after `src/index.css`; public font loading uses Inter and Manrope; public marketing/homepage/package/solution surfaces use shared WNYHS primitives where practical; claim-risk copy touched by the task is corrected; no public pricing values are added; no catalog, package, hardware, HubSpot, Stripe, scheduling, API/runtime, route, navigation, secret, or Cloudflare changes occur; validation passes or unrelated baseline failures are documented; PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded DESIGN-TOKEN-SYSTEM-001 work order; current context; visual, catalog, solution, claims, offering, package/BOM, brand, public funnel, and repository dispatch governance documents.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added the sitewide WNYHS visual governance CSS primitives, switched public font loading to Inter/Manrope, moved touched public marketing pages toward shared token classes, corrected touched claim-risk copy, recorded DESIGN002 REV02, and preserved protected systems and runtime behavior.
+
 ### HOMEPAGE-ASSET-POLISH-001
 - **Task ID:** HOMEPAGE-ASSET-POLISH-001
 - **Task Name:** Homepage Approved Asset Placement Polish

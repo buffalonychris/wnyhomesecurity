@@ -4,7 +4,7 @@ import '../../styles/homeSecurityPremium.css';
 
 const WnyhsSiteFooter = () => {
   return (
-    <footer className="wnyhs-marketing-footer">
+    <footer className="wnyhs-footer wnyhs-marketing-footer">
       <div className="wnyhs-marketing-footer-main">
         <div className="wnyhs-marketing-footer-column wnyhs-marketing-footer-local">
           <span>Locally Owned & Operated</span>

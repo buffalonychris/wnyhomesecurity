@@ -15,7 +15,7 @@ type WnyhsPageLayoutProps = {
 
 const WnyhsPageLayout = ({ mode, ctaLink = getHomeSecurityCtaLink(), showStepRail, children }: WnyhsPageLayoutProps) => {
   return (
-    <div className={`wnyhs-page-layout wnyhs-page-layout--${mode}`}>
+    <div className={`wnyhs-page wnyhs-page-layout wnyhs-page-layout--${mode}`}>
       {mode === 'marketing' ? (
         <WnyhsTopNav ctaLink={ctaLink} />
       ) : (

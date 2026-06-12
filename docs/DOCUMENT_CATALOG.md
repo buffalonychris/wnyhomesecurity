@@ -120,6 +120,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by DESIGN001-A for operator review. It defines a future reuse target but does not authorize implementation, page changes, CSS changes, semantic token changes, global navigation changes, protected-system changes, or a visible site version bump.
 
+### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
+- **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
+- **Purpose / likely role:** REV02 governed sitewide WNYHS visual token system standard for public marketing pages, including Manrope headings, Inter body/UI, shared CSS primitives, pricing boundary, catalog boundary, claims-safe copy posture, and protected-system exclusions.
+- **Authority level:** **Visual-system governance / implementation record for DESIGN-TOKEN-SYSTEM-001**
+- **Customer-facing:** No.
+- **Implementation authority:** No, except as the governance record created by the bounded DESIGN-TOKEN-SYSTEM-001 implementation task.
+- **Notes:** Records the visual token implementation standard and does not authorize public pricing values, invented packages, invented solutions, hardware standardization, HubSpot, Stripe, Resend, Gmail/Workspace, Cloudflare config, scheduling, API/runtime behavior, secrets, route changes, or navigation behavior.
+
 
 ### `/docs/audits/payment_fix001_implementation_rev01.md`
 - **Purpose / likely role:** PAYMENT-FIX001 implementation note covering Stripe payment/deposit handoff verification, server-side confirmation posture checks, and claim-safe post-payment messaging hardening.
