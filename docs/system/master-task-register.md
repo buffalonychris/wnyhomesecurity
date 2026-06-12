@@ -132,6 +132,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Completed docs-only governance bookkeeping for the public page token compliance gate and task pack. Registered both documents in the catalog, added the manifest addendum, and recorded PAGE-TOKEN-COMPLIANCE-GATE-001 as DONE without editing source, CSS, app, runtime, HubSpot, Stripe/payment, protected-system, asset, dependency, package-lock, or version files.
 
+### OPS003-CODEX-CONTEXT-EFFICIENCY-001
+- **Task ID:** OPS003-CODEX-CONTEXT-EFFICIENCY-001
+- **Task Name:** Add Codex Context Efficiency Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a reusable repository standard for reducing Codex prompt and context token usage while preserving authority-chain enforcement, bounded task execution, protected-system boundaries, validation discipline, and accuracy.
+- **Allowed Scope:** Docs-only governance; create OPS003 context efficiency standard; register it in DOCUMENT_CATALOG and MARKDOWN_MANIFEST; add DONE task-register record.
+- **Forbidden Scope:** No source/app/CSS/page changes; no visual implementation; no route/navigation changes; no runtime/API behavior changes; no Cloudflare config changes; no HubSpot changes; no Stripe/payment changes; no Resend changes; no Gmail/Workspace changes; no scheduling changes; no secrets; no assets; no dependencies; no package-lock; no version bump.
+- **Target Files:** `docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create OPS003, catalog it, add it to manifest, add completed task-register record.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; `rg -n "OPS003|Codex Context Efficiency|CONTEXT EFFICIENCY REQUIREMENT|Use repo docs as authority|Load only the smallest set|OPS003-CODEX-CONTEXT-EFFICIENCY-001" docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md docs/DOCUMENT_CATALOG.md docs/MARKDOWN_MANIFEST.md docs/system/master-task-register.md`. No `npm run build` required because this is docs-only.
+- **Exit Criteria:** OPS003 exists; catalog and manifest include OPS003; Master Task Register records OPS003-CODEX-CONTEXT-EFFICIENCY-001 as DONE; only docs files changed; no source/app/CSS/runtime/protected-system files changed; no version bump; validation passes; PR targets `main` and is not merged.
+- **Dependencies:** OPS002, PAGE_TOKEN_COMPLIANCE_GATE_REV01, PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01, current governance authority chain.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed docs-only governance creation for OPS003. Created the context efficiency standard, registered it in the document catalog, added the manifest addendum, and recorded OPS003-CODEX-CONTEXT-EFFICIENCY-001 as DONE without editing source, CSS, app, runtime, HubSpot, Stripe/payment, protected-system, asset, dependency, package-lock, or version files.
+
 ### DESIGN-TOKEN-SYSTEM-002
 - **Task ID:** DESIGN-TOKEN-SYSTEM-002
 - **Task Name:** Public Visual QA Cleanup After v1.0.121

@@ -229,6 +229,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by GOV-REPOACCESS-001-B as documentation bookkeeping for OPS002. It improves repo-aware dispatcher preparation and does not authorize source, CSS, route, runtime, API, HubSpot, Stripe, Resend, Gmail/Workspace, Cloudflare, scheduling, secrets, assets, dependencies, package-lock, package/catalog implementation, pricing implementation, or protected-system changes by itself.
 
+### `/docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md`
+- **File path:** `docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md`
+- **Purpose / likely role:** Defines how ChatGPT should write Codex work orders so Codex uses repo docs as authority while minimizing prompt bloat, unnecessary document loading, broad searches, and repeated governance restatement.
+- **Authority level:** **System governance / Codex work-order efficiency standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. Consumed by future bounded Codex work orders.
+- **Notes:** Added by OPS003-CODEX-CONTEXT-EFFICIENCY-001 as docs-only governance. It improves context efficiency without weakening authority-chain enforcement, bounded task execution, protected-system boundaries, claims guardrails, or validation discipline.
+
 ### `/docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **File path:** `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **Purpose / likely role:** Planning/dispatch task pack listing next public page token-compliance tasks, including solution detail parity, media section, Vault image system, Solutions card density polish, and final governance update.
