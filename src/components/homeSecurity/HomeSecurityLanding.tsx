@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { PackageTier } from '../../content/packages';
+import { estimatePath, offeringsPath, offerAnchors } from '../../content/wnyhsOfferCatalog';
 import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 import '../../styles/homeSecurityPremium.css';
 
@@ -17,15 +18,17 @@ const categoryExplorer = [
     imageAlt: 'Exterior home entry with smart property awareness equipment',
     icon: '/images/home-security/homepage/icon-category-home-security.png',
     iconAlt: 'Home security category icon',
+    href: `${offeringsPath}#category-home-security`,
   },
   {
     name: 'Aging-In-Place',
-    body: 'Home awareness that helps families support independence, routines, safer movement, and caregiver access.',
+    body: 'Home awareness that helps families support independence, routines, night movement, and caregiver access.',
     focus: 'Family confidence, routines, access',
     image: '/images/home-security/homepage/category-aging-in-place.png',
     imageAlt: 'Comfortable home interior planned for family awareness and independence',
     icon: '/images/home-security/homepage/icon-category-aging-in-place.png',
     iconAlt: 'Aging-in-place category icon',
+    href: `${offeringsPath}#category-aging-in-place`,
   },
   {
     name: 'Environmental Safety',
@@ -35,6 +38,7 @@ const categoryExplorer = [
     imageAlt: 'Home utility area with environmental safety awareness equipment',
     icon: '/images/home-security/homepage/icon-category-environmental-safety.png',
     iconAlt: 'Environmental safety category icon',
+    href: `${offeringsPath}#category-environmental-safety`,
   },
   {
     name: 'Home Automation',
@@ -44,6 +48,7 @@ const categoryExplorer = [
     imageAlt: 'Smart home dashboard and automation controls for everyday routines',
     icon: '/images/home-security/homepage/icon-category-home-automation.png',
     iconAlt: 'Home automation category icon',
+    href: `${offeringsPath}#category-home-automation`,
   },
   {
     name: 'Home Lighting',
@@ -53,6 +58,7 @@ const categoryExplorer = [
     imageAlt: 'Home exterior with planned lighting for arrival and outdoor visibility',
     icon: '/images/home-security/homepage/icon-category-home-lighting.png',
     iconAlt: 'Home lighting category icon',
+    href: `${offeringsPath}#category-home-lighting`,
   },
 ] as const;
 
@@ -63,6 +69,7 @@ const featuredPackages = [
     includes: ['Package Protection', 'Driveway Watch', 'Smart Entry'],
     image: '/images/home-security/homepage/package-property-awareness-showcase.png',
     imageAlt: 'Property awareness package with connected home equipment and app dashboard',
+    href: offerAnchors.packages,
   },
   {
     name: 'Basement & Utility Protection Package',
@@ -70,13 +77,15 @@ const featuredPackages = [
     includes: ['Water Leak Awareness', 'Sump Pump Awareness', 'Utility Room Awareness'],
     image: '/images/home-security/homepage/package-basement-utility-protection.png',
     imageAlt: 'Basement and utility awareness equipment near home utility systems',
+    href: offerAnchors.packages,
   },
   {
     name: 'Family Confidence Package',
-    summary: 'A homeowner-friendly path for aging-in-place awareness, safer movement, and trusted access.',
-    includes: ['Family Awareness', 'Safer Night Movement', 'Caregiver Access'],
+    summary: 'A homeowner-friendly path for aging-in-place awareness, night movement, and trusted access.',
+    includes: ['Family Awareness', 'Night Path Lighting', 'Caregiver Access'],
     image: '/images/home-security/homepage/package-family-confidence.png',
     imageAlt: 'Family confidence package supporting home awareness and trusted access',
+    href: offerAnchors.packages,
   },
 ] as const;
 
@@ -84,9 +93,10 @@ const featuredSolutions = [
   {
     name: 'Package Protection',
     category: 'Home Security',
-    summary: 'Know when deliveries arrive and reduce the chance of packages being forgotten, exposed, or left unattended.',
+    summary: 'Know when deliveries arrive and add front-door package-area awareness with supported equipment.',
     image: '/images/home-security/homepage/solution-package-protection.png',
     imageAlt: 'Front porch delivery area with package awareness equipment',
+    href: `${offeringsPath}#solution-front-door-package-protection`,
   },
   {
     name: 'Driveway Watch',
@@ -94,6 +104,7 @@ const featuredSolutions = [
     summary: 'Gain awareness of vehicles and visitors entering the property before they reach the home.',
     image: '/images/home-security/homepage/solution-driveway-watch.png',
     imageAlt: 'Driveway and garage area with property awareness camera',
+    href: `${offeringsPath}#solution-driveway-watch`,
   },
   {
     name: 'Water Leak Awareness',
@@ -101,13 +112,15 @@ const featuredSolutions = [
     summary: 'Adds earlier awareness of water-related conditions in selected areas.',
     image: '/images/home-security/homepage/solution-water-damage-prevention.png',
     imageAlt: 'Water leak awareness equipment near home plumbing area',
+    href: '/solutions/water-protection',
   },
   {
     name: 'Sump Pump Awareness',
     category: 'Environmental Safety',
-    summary: 'Know when sump activity becomes abnormal or protection may be compromised.',
+    summary: 'Add selected sump-area awareness where sensor placement and site conditions support it.',
     image: '/images/home-security/homepage/solution-sump-pump-awarenes.png',
     imageAlt: 'Sump pump area with awareness equipment for basement protection',
+    href: `${offeringsPath}#solution-sump-area-awareness`,
   },
   {
     name: 'Family Awareness',
@@ -115,6 +128,7 @@ const featuredSolutions = [
     summary: 'Help loved ones remain independent while giving family members greater confidence and awareness.',
     image: '/images/home-security/homepage/solution-family-awareness.png',
     imageAlt: 'Home living area arranged for family awareness and independence',
+    href: '/solutions/family-awareness',
   },
   {
     name: 'Security Lighting',
@@ -122,6 +136,7 @@ const featuredSolutions = [
     summary: 'Improve property visibility and awareness through strategically controlled lighting.',
     image: '/images/home-security/homepage/solution-security-lighting.png',
     imageAlt: 'Home exterior lighting planned for visibility around the property',
+    href: `${offeringsPath}#solution-entry-lighting-automation`,
   },
 ] as const;
 
@@ -157,7 +172,7 @@ const whyItems = [
 ] as const;
 
 const searchExamples = ['doorbell camera', 'basement leak', 'mom living alone', 'holiday lights'] as const;
-const estimateLink = '/contact?vertical=home-security';
+const estimateLink = estimatePath;
 
 const HomeSecurityLanding = (_props: Props) => {
   void _props;
@@ -228,7 +243,7 @@ const HomeSecurityLanding = (_props: Props) => {
         </div>
         <div className="hs-home-category-grid">
           {categoryExplorer.map((category) => (
-            <article key={category.name} className="wnyhs-card wnyhs-card--category hs-home-category-card">
+            <Link key={category.name} className="wnyhs-card wnyhs-card--category hs-home-category-card hs-home-linked-card" to={category.href}>
               <div className="hs-home-category-media">
                 <img className="hs-home-category-icon" src={category.icon} alt={category.iconAlt} width="1254" height="1254" loading="lazy" />
                 <img className="hs-home-card-image" src={category.image} alt={category.imageAlt} width="1536" height="1024" loading="lazy" />
@@ -236,7 +251,7 @@ const HomeSecurityLanding = (_props: Props) => {
               <span>{category.name}</span>
               <h3>{category.focus}</h3>
               <p>{category.body}</p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -245,11 +260,11 @@ const HomeSecurityLanding = (_props: Props) => {
         <div className="wnyhs-section-header hs-premium-section-header">
           <p className="wnyhs-eyebrow hs-premium-eyebrow">Featured Packages</p>
           <h2 id="featured-packages-heading">Outcome-based paths for common homeowner situations.</h2>
-          <p>Packages group related approved solutions without turning the homepage into pricing tiers.</p>
+          <p>Packages group related approved solutions without turning the homepage into fixed offer tiers.</p>
         </div>
         <div className="hs-home-package-grid">
           {featuredPackages.map((item) => (
-            <article key={item.name} className="wnyhs-card wnyhs-card--package hs-home-package-card">
+            <Link key={item.name} className="wnyhs-card wnyhs-card--package hs-home-package-card hs-home-linked-card" to={item.href}>
               <img className="hs-home-card-image" src={item.image} alt={item.imageAlt} width="1536" height="1024" loading="lazy" />
               <h3>{item.name}</h3>
               <p>{item.summary}</p>
@@ -258,7 +273,7 @@ const HomeSecurityLanding = (_props: Props) => {
                   <li key={solution}>{solution}</li>
                 ))}
               </ul>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -271,12 +286,12 @@ const HomeSecurityLanding = (_props: Props) => {
         </div>
         <div className="hs-home-solution-grid">
           {featuredSolutions.map((solution) => (
-            <article key={solution.name} className="wnyhs-card wnyhs-card--solution hs-home-solution-card">
+            <Link key={solution.name} className="wnyhs-card wnyhs-card--solution hs-home-solution-card hs-home-linked-card" to={solution.href}>
               <img className="hs-home-card-image" src={solution.image} alt={solution.imageAlt} width="1536" height="1024" loading="lazy" />
               <span>{solution.category}</span>
               <h3>{solution.name}</h3>
               <p>{solution.summary}</p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

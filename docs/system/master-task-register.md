@@ -117,7 +117,7 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 ### DESIGN-TOKEN-SYSTEM-002
 - **Task ID:** DESIGN-TOKEN-SYSTEM-002
 - **Task Name:** Public Visual QA Cleanup After v1.0.121
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** QA
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Fix specific post-deploy visual QA defects after DESIGN-TOKEN-SYSTEM-001 without redesigning pages, adding features, changing routes, or touching protected systems.
@@ -130,6 +130,25 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Exit Criteria:** Visible site version is `v1.0.122`; header brand text is readable; packages premier-card text is readable; solution detail hero headings are less cramped; homepage hero image no longer has heavy letterboxing; WNYHS Core image framing is improved; third premier card layout is less awkward; spacing artifacts are verified as browser issues and fixed or documented as extraction artifacts; no fake prices, prohibited claims, broken images, route/navigation changes, features, or protected-system changes are introduced; validation passes or unrelated baseline failures are documented; PR targets `main` without merge.
 - **Dependencies:** DESIGN-TOKEN-SYSTEM-001, current context, DESIGN001/DESIGN002 visual governance, claims guardrails, offer architecture, package/BOM governance, brand/page/header/footer/public funnel standards, and OPS002 repository-aware dispatch standard.
 - **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Marked DONE based on production `v1.0.122` deployment visibility and follow-on authorization for the next bounded public offering publishing task.
+
+### SOLUTION-PUBLISHING-001
+- **Task ID:** SOLUTION-PUBLISHING-001
+- **Task Name:** Publish Public Solution, Package, Category, Core, and Vault Offering Layer
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Turn governed WNYHS offer architecture into a usable public offering layer on `/packages?vertical=home-security` while preserving protected runtime, payment, CRM, scheduling, and claims boundaries.
+- **Allowed Scope:** Visible site version patch bump to `v1.0.123`; governed public offer catalog data source; homepage category/package/solution card link wiring; home-security Packages/Solutions landing content for WNYHS Core, public categories, standard/planning solution cards, package starting points, and Vault quote-only public visibility; CSS needed to support those surfaces with existing visual tokens; this task-register record.
+- **Forbidden Scope:** No public amounts, supplier costs, BOM cost publication, Stripe product IDs, checkout changes, quote calculation changes, hardware purchasing authorization, customer installation authorization, HubSpot changes, Stripe/payment changes, Resend changes, Gmail/Workspace changes, Cloudflare config changes, scheduling changes, API/runtime behavior changes, secrets, dependency changes, package-lock changes, asset generation, image generation, route renames, route removals, Search implementation, QR Landing redesign, Fit Check behavior changes, Estimate behavior changes, Planner behavior changes, Our Work behavior changes, Support form changes, medical-service claims, professional alarm service claims, public-safety response claims, theft or crime outcome promises, water damage or frozen-pipe outcome promises, all-device compatibility claims, code-compliance or safety-certification claims for Vault/custom work, or public promise that Vault/custom items are standard installed packages.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/content/wnyhsOfferCatalog.ts`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/pages/Packages.tsx`, `src/pages/SolutionOpportunity.tsx`, `src/styles/homeSecurityPremium.css`, `src/index.css`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Public offering visibility, linking, and content only; protected runtime systems must remain untouched.
+- **Documentation Updates Required:** Add this bounded `SOLUTION-PUBLISHING-001` task-register record and mark it `DONE` only after validation passes and PR is opened.
+- **Validation Required:** `git status`; `git diff --stat`; `git diff --check`; version grep; forbidden-claim grep; no-public-amount/payment-term grep on touched public files; `npm run build`; safe lint/typecheck scripts if present; manual/local review for `/home-security`, `/packages?vertical=home-security`, `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes` if possible.
+- **Exit Criteria:** Visible site version is `v1.0.123`; offer catalog data source exists; homepage cards link somewhere useful; `/packages?vertical=home-security` explains WNYHS Core, categories, solution statuses, package starting points, and Vault quote-only review; four existing solution pages remain intact; no public amounts, unsupported claims, protected-system changes, route/nav changes, dependency changes, package-lock changes, or asset-generation changes are introduced; validation passes or unrelated baseline failures are documented; PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded `SOLUTION-PUBLISHING-001` work order; current context; SOLUTION001, CLAIMS001, OFFERING001, PACKAGEBOM001, DESIGN001/DESIGN002, brand, public funnel, and OPS002 governance.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added `src/content/wnyhsOfferCatalog.ts` as the governed public offer catalog source; wired homepage category, package, and solution cards to useful offer anchors or existing live solution routes; rebuilt `/packages?vertical=home-security` as the public offerings landing page with WNYHS Core, categories, standard/planning solution visibility, package starting points, and Vault quote-only reviewed-individually visibility; bumped visible site version to `v1.0.123`; preserved existing solution detail routes, global navigation, protected runtime systems, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, assets, and public amount boundaries. `npm run build`, touched-file ESLint, `git diff --check`, version grep, route/link inspection, and scoped no-public-amount/payment-term grep passed. Broad `npm run lint` and `npm run typecheck:api` still report unrelated baseline issues outside this task; `npm run typecheck:test` passed. Manual visual review is deferred to operator review because browser/screenshot automation was intentionally stopped for this run.
 
 ### DESIGN-TOKEN-SYSTEM-001
 - **Task ID:** DESIGN-TOKEN-SYSTEM-001
