@@ -132,6 +132,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created the initial quote-system governance folder and document set. Floorplan field capture and professional redraw standards are active; property photo validation, hardware placement, Home Assistant compatibility/BOM, customer capability mapping, customer proposal structure, and dashboard-prep standards are placeholders for future controlled passes. No app code, runtime behavior, payment flow, HubSpot logic, scheduling behavior, assets, dependencies, or package-lock files were changed.
 
+### QUOTESYSTEM-002
+- **Task ID:** QUOTESYSTEM-002
+- **Task Name:** Floorplan Redraw Fidelity Calibration
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Refine floorplan reconstruction standards and add redraw fidelity calibration so the first usable quote-system task is clearly defined: producing a professional-looking replica from a customer/operator sketch plus reference photos while preserving original layout fidelity.
+- **Allowed Scope:** Docs-only governance; expand floorplan capture/redraw/photo validation standards; add explicit symbol interpretation, acceptance/rejection, and source-photo validation rules; create `FLOORPLAN003_Redraw_Fidelity_Calibration_REV01.md`; update the quote-system document map; update the document catalog; update this task register.
+- **Forbidden Scope:** No application code, quote generator implementation, image-generation implementation, floorplan rendering tool implementation, camera placement implementation, sensor placement implementation, BOM/pricing implementation, Home Assistant dashboard generator implementation, UI, routes, assets, dependencies, package-lock, Stripe/payment changes, HubSpot changes, scheduling changes, runtime environment changes, or customer-facing deployment.
+- **Target Files:** `docs/quotesystem/FLOORPLAN000_Field_Capture_Standard_REV01.md`, `docs/quotesystem/FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md`, `docs/quotesystem/FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md`, `docs/quotesystem/FLOORPLAN003_Redraw_Fidelity_Calibration_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Refine the floorplan standards, add the redraw fidelity calibration standard, update the quote-system document map, add the catalog entry, and record QUOTESYSTEM-002 as DONE after validation.
+- **Validation Required:** Confirm all target files exist; confirm markdown headings/readability; `git status`; `git diff --stat`; `git diff --check`; confirm only documentation files changed; targeted grep for required fidelity, overlay, symbol, photo-validation, and downstream-gate terms; `npm run build`.
+- **Exit Criteria:** FLOORPLAN000 reinforces sketch primacy, orientation, photo capture, symbols, door/opening width, and ambiguity rules; FLOORPLAN001 reinforces professional replica, preservation, no-inference/no-normalization, overlay validation, and rejection rules; FLOORPLAN002 is refined as an active photo validation standard; FLOORPLAN003 exists with calibration inputs, outputs, overlay test, acceptance/rejection criteria, funeral-home pilot notes, and downstream gate; catalog and document map are updated; no app/runtime/payment/HubSpot/scheduling systems are touched; validation passes; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-001, current governance authority chain, `docs/system/step-current.md`, `docs/system/master-task-register.md`, and quote-system floorplan standards.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Refined the quote-system floorplan field capture, redraw, and photo validation standards; added `FLOORPLAN003_Redraw_Fidelity_Calibration_REV01.md`; updated the quote-system document map and document catalog. No app code, runtime behavior, payment flow, HubSpot logic, scheduling behavior, UI/routes/assets/dependencies, package-lock, quote generator, image generation, floorplan rendering tool, camera/sensor placement, BOM/pricing, or Home Assistant dashboard generator implementation was changed.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack
