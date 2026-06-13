@@ -150,6 +150,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Refined the quote-system floorplan field capture, redraw, and photo validation standards; added `FLOORPLAN003_Redraw_Fidelity_Calibration_REV01.md`; updated the quote-system document map and document catalog. No app code, runtime behavior, payment flow, HubSpot logic, scheduling behavior, UI/routes/assets/dependencies, package-lock, quote generator, image generation, floorplan rendering tool, camera/sensor placement, BOM/pricing, or Home Assistant dashboard generator implementation was changed.
 
+### QUOTESYSTEM-003
+- **Task ID:** QUOTESYSTEM-003
+- **Task Name:** Property Model + Operational Gates Architecture
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create docs-only quote-system governance defining the WNYHS Property Model as the central operational record connecting floorplan, photos, customer goals, solution placement, BOM, inventory, payment gates, scheduling gates, installer packets, and Home Assistant dashboard prep.
+- **Allowed Scope:** Docs-only governance; create Property Model, quote-to-install gates, inventory readiness, and installer packet standards; update related quote-system docs with references; update the quote-system document map, document catalog, and this task register.
+- **Forbidden Scope:** No app code, routes, UI, pricing engine, quote generator implementation, inventory implementation, dashboard generator implementation, Stripe/payment implementation, HubSpot implementation, scheduling implementation, runtime/environment changes, assets, dependencies, package-lock, or customer-facing deployment.
+- **Target Files:** `docs/quotesystem/PROPERTY001_Property_Model_Architecture_REV01.md`, `docs/quotesystem/GATES001_Quote_To_Install_Operational_Gates_REV01.md`, `docs/quotesystem/INVENTORY001_Quote_System_Inventory_Readiness_REV01.md`, `docs/quotesystem/INSTALLER001_Installer_Packet_Standard_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_GOALS_REV01.md`, `docs/quotesystem/HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md`, `docs/quotesystem/QUOTE001_CUSTOMER_PROPOSAL_STRUCTURE_REV01.md`, `docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create the four new quote-system governance standards, update related quote-system docs with references, add document-map entries, add catalog entries, and record QUOTESYSTEM-003 as DONE after validation.
+- **Validation Required:** Confirm all target files exist; confirm markdown headings/readability; `git status`; `git diff --stat`; `git diff --check`; confirm only documentation files changed; targeted grep for Property Model, operational gates, inventory readiness, installer packet, payment method, and protected-boundary terms; forbidden-claim scan; `npm run build`.
+- **Exit Criteria:** PROPERTY001 defines the central Property Model record and solution-first chain; GATES001 defines deposit, scheduling, inventory-purchase, final-payment, payment-method, and compliance gates; INVENTORY001 defines inventory readiness philosophy and buffer rules; INSTALLER001 defines installer packet contents, ownership, onsite window, and warehouse departure gate; related docs reference the new standards without implementation; no app/runtime/payment/HubSpot/scheduling systems are touched; validation passes; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-001, QUOTESYSTEM-002, current governance authority chain, `docs/system/step-current.md`, and quote-system floorplan standards.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created Property Model, operational gates, inventory readiness, and installer packet governance standards; updated quote-system goals, hardware/BOM, customer proposal, dashboard prep, document map, and document catalog. No app code, runtime behavior, payment flow, Stripe implementation, HubSpot logic, scheduling behavior, UI/routes/assets/dependencies, package-lock, quote generator, inventory system, or dashboard generator implementation was changed.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack

@@ -160,6 +160,38 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by QUOTESYSTEM-002 as docs-only governance. It does not authorize image-generation implementation, floorplan rendering tool implementation, camera placement, sensor placement, BOM/pricing implementation, customer quote generation, runtime changes, HubSpot, Stripe/payment, or scheduling changes.
 
+### `/docs/quotesystem/PROPERTY001_Property_Model_Architecture_REV01.md`
+- **File path:** `docs/quotesystem/PROPERTY001_Property_Model_Architecture_REV01.md`
+- **Purpose / likely role:** Property Model architecture standard defining the central operational record connecting field evidence, customer goals, WNYHS solution translation, hardware placement, BOM, inventory, quote, installer packet, and Home Assistant dashboard prep.
+- **Authority level:** **Quote-system governance / active property model architecture standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-003 as docs-only governance. It does not authorize database schema, API payloads, quote generation, inventory implementation, payment implementation, scheduling implementation, installer tooling, dashboard generation, HubSpot changes, Stripe/payment changes, or runtime behavior.
+
+### `/docs/quotesystem/GATES001_Quote_To_Install_Operational_Gates_REV01.md`
+- **File path:** `docs/quotesystem/GATES001_Quote_To_Install_Operational_Gates_REV01.md`
+- **Purpose / likely role:** Quote-to-install operational gates standard defining deposit, scheduling, inventory purchase, final payment, payment methods, and legal/compliance review boundaries.
+- **Authority level:** **Quote-system governance / active operational gates standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-003 as docs-only governance. It does not authorize payment implementation, Stripe changes, scheduling implementation, customer quote automation, checkout changes, runtime changes, or final production legal/compliance language.
+
+### `/docs/quotesystem/INVENTORY001_Quote_System_Inventory_Readiness_REV01.md`
+- **File path:** `docs/quotesystem/INVENTORY001_Quote_System_Inventory_Readiness_REV01.md`
+- **Purpose / likely role:** Inventory readiness standard defining solution/package-first inventory philosophy, standing inventory target, startup exception, Vault exclusion, Control Plane Kit tracking, deposit-triggered inventory workflow, and inventory buffer purpose.
+- **Authority level:** **Quote-system governance / active inventory readiness standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-003 as docs-only governance. It does not authorize inventory software, purchasing automation, BOM/pricing implementation, quote generation, payment implementation, scheduling implementation, runtime changes, or vendor commitments.
+
+### `/docs/quotesystem/INSTALLER001_Installer_Packet_Standard_REV01.md`
+- **File path:** `docs/quotesystem/INSTALLER001_Installer_Packet_Standard_REV01.md`
+- **Purpose / likely role:** Installer packet standard defining onsite time expectations, task ownership buckets, default installer roles, required packet contents, warehouse departure gate, and exception logging.
+- **Authority level:** **Quote-system governance / active installer packet standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-003 as docs-only governance. It does not authorize installer software, scheduling implementation, route/UI changes, inventory implementation, quote generation, payment changes, or runtime behavior.
+
 ### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **Purpose / likely role:** Placeholder standard for future hardware placement onto approved floorplans after base redraw approval.
@@ -170,7 +202,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/quotesystem/HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md`
 - **File path:** `docs/quotesystem/HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md`
-- **Purpose / likely role:** Placeholder standard for Home Assistant compatibility, WNYHS control-plane fit, BOM fields, and unsupported hardware disclosure/approval.
+- **Purpose / likely role:** Placeholder standard for Home Assistant compatibility, WNYHS control-plane fit, BOM fields, Property Model / inventory linkage, and unsupported hardware disclosure/approval.
 - **Authority level:** **Quote-system governance / placeholder**
 - **Customer-facing:** No.
 - **Implementation authority:** No.

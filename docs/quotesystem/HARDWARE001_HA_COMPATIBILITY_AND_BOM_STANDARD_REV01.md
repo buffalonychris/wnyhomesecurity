@@ -23,6 +23,16 @@ A future quote-system BOM should include:
 - Customer-facing capability.
 - Dashboard prep notes.
 
+## Property Model And Inventory Link
+
+The BOM should connect to the Property Model chain:
+
+Customer Goal -> WNYHS Solution -> Placed Hardware -> Capabilities -> BOM -> Inventory -> Installer Tasks -> Dashboard Features
+
+Hardware remains the implementation layer for a WNYHS solution or outcome. BOM entries should trace to placed hardware, customer-facing capabilities, inventory readiness, installer packet tasks, and future dashboard prep.
+
+Inventory readiness is governed by `INVENTORY001_Quote_System_Inventory_Readiness_REV01.md`.
+
 ## Unsupported Or Specialty Hardware
 
 Unsupported, specialty, pilot, custom, or exception hardware must require a disclosure and approval path before proposal use.

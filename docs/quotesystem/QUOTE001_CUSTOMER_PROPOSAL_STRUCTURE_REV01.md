@@ -8,6 +8,8 @@ Implementation authority: No
 
 This placeholder defines the future structure for a customer proposal package. It does not authorize customer quote issuance, pricing automation, payment changes, scheduling changes, or legal/compliance language for customer use.
 
+Future proposal structure should reference the approved Property Model and the quote-to-install operational gates rather than duplicating operational policy in multiple documents.
+
 ## Section 1: Floorplan / Property Plan
 
 The proposal should include the approved floorplan or property plan when available.
@@ -35,6 +37,8 @@ This section should include:
 - Exclusions.
 - Change-order expectations.
 - Legal/compliance review placeholder for New York business quote language.
+
+Payment, deposit, scheduling, and install-day payment policy is governed by `GATES001_Quote_To_Install_Operational_Gates_REV01.md`.
 
 ## Review Boundary
 
