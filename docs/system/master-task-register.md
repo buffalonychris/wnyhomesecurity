@@ -114,6 +114,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+### QUOTESYSTEM-001
+- **Task ID:** QUOTESYSTEM-001
+- **Task Name:** Create Initial Quote System Governance Folder And Document Set
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the initial `/docs/quotesystem/` governance folder and document set, with floorplan capture and professional redraw as the first fully developed topic and the remaining quote-system areas represented as clear placeholders for future controlled passes.
+- **Allowed Scope:** Docs-only governance setup; create `docs/quotesystem/`; create the quote-system governance standards and placeholders; update `docs/DOCUMENT_CATALOG.md`; update this task register.
+- **Forbidden Scope:** No app code, routes, UI changes, pricing engine, quote generator implementation, Home Assistant dashboard generator implementation, Stripe changes, HubSpot changes, scheduling changes, payment flow changes, runtime environment changes, source files, assets, dependencies, package-lock, public pricing, or customer-facing deployment.
+- **Target Files:** `docs/quotesystem/README.md`, `docs/quotesystem/QUOTE_SYSTEM_GOALS_REV01.md`, `docs/quotesystem/FLOORPLAN000_Field_Capture_Standard_REV01.md`, `docs/quotesystem/FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md`, `docs/quotesystem/FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md`, `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`, `docs/quotesystem/HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md`, `docs/quotesystem/FEATURES001_CUSTOMER_CAPABILITY_MAPPING_STANDARD_REV01.md`, `docs/quotesystem/QUOTE001_CUSTOMER_PROPOSAL_STRUCTURE_REV01.md`, `docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create the quote-system governance document set, register the documents in the document catalog, and record QUOTESYSTEM-001 as DONE after validation.
+- **Validation Required:** Confirm all quote-system files exist; confirm markdown headings render/read cleanly; `git status`; `git diff --stat`; `git diff --check`; confirm only documentation files changed; targeted grep for quote-system required terms; forbidden-claim grep on touched quote-system docs; `npm run build` per repository execution rules.
+- **Exit Criteria:** `/docs/quotesystem/` exists; all required quote-system documents exist; document map lists every created quote-system document with maturity; floorplan capture and redraw standards are developed; placeholder standards identify future controlled expansion; document catalog is updated; this task is recorded as DONE; no app/runtime/payment/HubSpot/scheduling systems are touched; validation passes or unrelated baseline failures are documented; PR targets `main` without merge.
+- **Dependencies:** Current governance authority chain, `docs/system/step-current.md`, `docs/system/master-task-register.md`, `docs/solution-system/PACKAGEBOM001_WNYHS_PACKAGE_MAP_AND_BOM_PRICING_INPUT_SCHEMA_REV01.md`, and `docs/catalogs/wnyhs_capability_catalog_rev03.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created the initial quote-system governance folder and document set. Floorplan field capture and professional redraw standards are active; property photo validation, hardware placement, Home Assistant compatibility/BOM, customer capability mapping, customer proposal structure, and dashboard-prep standards are placeholders for future controlled passes. No app code, runtime behavior, payment flow, HubSpot logic, scheduling behavior, assets, dependencies, or package-lock files were changed.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack

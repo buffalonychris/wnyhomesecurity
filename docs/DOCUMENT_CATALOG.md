@@ -110,6 +110,96 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Public-copy deployment authority:** No.
 - **Notes:** Added by T-PACKAGEBOM001 as a docs-only governance artifact. It does not authorize app/source changes, routes, pages, styles, runtime behavior, public pricing, Stripe/payment changes, HubSpot changes, scheduling changes, Cloudflare/environment changes, hardware purchasing, customer installation, public copy deployment, or site version bump by itself.
 
+## `docs/quotesystem/`
+
+### `/docs/quotesystem/README.md`
+- **File path:** `docs/quotesystem/README.md`
+- **Purpose / likely role:** Quote-system governance folder overview defining the quote-system goal and document-set boundary.
+- **Authority level:** **Quote-system governance / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001. It does not authorize app code, routes, UI changes, pricing-engine implementation, customer proposal generation, Home Assistant dashboard generation, HubSpot changes, Stripe changes, scheduling changes, or runtime behavior changes.
+
+### `/docs/quotesystem/QUOTE_SYSTEM_GOALS_REV01.md`
+- **File path:** `docs/quotesystem/QUOTE_SYSTEM_GOALS_REV01.md`
+- **Purpose / likely role:** Initial quote-system goals standard defining inputs, outputs, three-part package structure, Home Assistant compatibility, customer capability mapping, dashboard prep, and compliance review boundaries.
+- **Authority level:** **Quote-system governance / active standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 as docs-only governance. Future implementation requires a separate bounded task.
+
+### `/docs/quotesystem/FLOORPLAN000_Field_Capture_Standard_REV01.md`
+- **File path:** `docs/quotesystem/FLOORPLAN000_Field_Capture_Standard_REV01.md`
+- **Purpose / likely role:** Field capture standard for floorplan source sketches, compass/orientation, exterior/interior photos, and sketch symbol language.
+- **Authority level:** **Quote-system governance / active floorplan capture standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 as the initial field-capture standard for future quote-system floorplan work.
+
+### `/docs/quotesystem/FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md`
+- **File path:** `docs/quotesystem/FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md`
+- **Purpose / likely role:** Professional redraw reconstruction standard defining Trace Mode, no redesign/inference/rotation, overlay validation, rejection rules, and base-redraw approval before overlays.
+- **Authority level:** **Quote-system governance / active floorplan redraw standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 as the first fully developed professional-redraw standard.
+
+### `/docs/quotesystem/FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md`
+- **File path:** `docs/quotesystem/FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md`
+- **Purpose / likely role:** Placeholder standard for property photo validation after Trace Mode and future photo-to-opening / compass-aware planning requirements.
+- **Authority level:** **Quote-system governance / placeholder**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion.
+
+### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
+- **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
+- **Purpose / likely role:** Placeholder standard for future hardware placement onto approved floorplans after base redraw approval.
+- **Authority level:** **Quote-system governance / placeholder**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion.
+
+### `/docs/quotesystem/HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md`
+- **File path:** `docs/quotesystem/HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md`
+- **Purpose / likely role:** Placeholder standard for Home Assistant compatibility, WNYHS control-plane fit, BOM fields, and unsupported hardware disclosure/approval.
+- **Authority level:** **Quote-system governance / placeholder**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion.
+
+### `/docs/quotesystem/FEATURES001_CUSTOMER_CAPABILITY_MAPPING_STANDARD_REV01.md`
+- **File path:** `docs/quotesystem/FEATURES001_CUSTOMER_CAPABILITY_MAPPING_STANDARD_REV01.md`
+- **Purpose / likely role:** Placeholder standard for translating BOM hardware into customer-accessible capabilities and future dashboard requirements.
+- **Authority level:** **Quote-system governance / placeholder**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion.
+
+### `/docs/quotesystem/QUOTE001_CUSTOMER_PROPOSAL_STRUCTURE_REV01.md`
+- **File path:** `docs/quotesystem/QUOTE001_CUSTOMER_PROPOSAL_STRUCTURE_REV01.md`
+- **Purpose / likely role:** Placeholder standard for customer proposal sections, deposit/install-payment terms, assumptions, exclusions, change orders, and New York legal/compliance review placeholder.
+- **Authority level:** **Quote-system governance / placeholder**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion. It does not authorize customer quote issuance, pricing automation, payment changes, or scheduling changes.
+
+### `/docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`
+- **File path:** `docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`
+- **Purpose / likely role:** Placeholder standard for translating finalized hardware/BOM decisions into future Home Assistant dashboard requirements.
+- **Authority level:** **Quote-system governance / placeholder**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion. It does not authorize dashboard generation.
+
+### `/docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`
+- **File path:** `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`
+- **Purpose / likely role:** Initial quote-system document map listing every created quote-system document, its purpose, and maturity.
+- **Authority level:** **Quote-system governance / document map**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-001 as docs-only governance.
+
 ## `docs/design-system/`
 
 ### `/docs/design-system/DESIGN001_WNYHS_VISUAL_SYSTEM_STANDARD_REV01.md`
