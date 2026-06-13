@@ -14,6 +14,7 @@ This document defines the initial governance goals for the quote system. It does
 
 The quote system may consume these governed inputs after future bounded implementation approval:
 
+- Property Model record.
 - Exterior photos.
 - Interior photos.
 - Customer or operator floorplan sketch.
@@ -27,9 +28,11 @@ The quote system may consume these governed inputs after future bounded implemen
 
 The quote system should support these future governed outputs:
 
+- Property Model record connecting floorplan evidence, customer goals, solution translation, placement, BOM, inventory readiness, quote, installer packet, and dashboard prep.
 - Workable floorplan or property plan.
 - Customer goals and WNYHS accommodation plan.
 - BOM-backed hardware plan.
+- Inventory readiness and installer packet handoff materials.
 - Customer-accessible feature and capability explanation.
 - Formal business quote with deposit and install-payment terms.
 - Future Home Assistant dashboard prep packet from finalized hardware.
@@ -48,6 +51,8 @@ All standard hardware must be Home Assistant compatible and appropriate for the 
 
 Unsupported, specialty, pilot, custom, or exception hardware requires a disclosure and approval path before customer proposal use.
 
+WNYHS manages to solutions and outcomes, not hardware. Hardware is the implementation layer and should remain traceable through the Property Model from customer goal to WNYHS solution, placed hardware, capability, BOM, inventory, installer task, and dashboard feature.
+
 ## Customer Capability Rule
 
 Hardware features must be translated into customer-accessible capabilities. A quote package should explain what the customer can view, control, receive notices for, or use in everyday terms without exposing internal BOM strategy or implementation detail.
@@ -57,6 +62,8 @@ Hardware features must be translated into customer-accessible capabilities. A qu
 Finalized hardware should feed a future Home Assistant Dashboard Generator prep packet. The prep packet should capture device names, areas, user-facing controls, notices, automations, modes, and permission needs after hardware and quote scope are finalized.
 
 No dashboard generation is authorized by this document.
+
+Dashboard prep should use the approved Property Model after the base floorplan, placement, BOM, inventory readiness, and quote scope are finalized.
 
 ## Liability And Compliance Note
 
