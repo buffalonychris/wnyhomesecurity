@@ -130,27 +130,35 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/quotesystem/FLOORPLAN000_Field_Capture_Standard_REV01.md`
 - **File path:** `docs/quotesystem/FLOORPLAN000_Field_Capture_Standard_REV01.md`
-- **Purpose / likely role:** Field capture standard for floorplan source sketches, compass/orientation, exterior/interior photos, and sketch symbol language.
+- **Purpose / likely role:** Field capture standard for floorplan source sketches, sketch primacy, exact orientation preservation, compass/orientation, exterior/interior photos, sketch symbol language, and door/threshold interpretation.
 - **Authority level:** **Quote-system governance / active floorplan capture standard**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Added by QUOTESYSTEM-001 as the initial field-capture standard for future quote-system floorplan work.
+- **Notes:** Added by QUOTESYSTEM-001 and refined by QUOTESYSTEM-002 as docs-only governance. It does not authorize floorplan rendering implementation, image generation, quote generation, camera/sensor placement, runtime changes, HubSpot, Stripe/payment, or scheduling changes.
 
 ### `/docs/quotesystem/FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md`
 - **File path:** `docs/quotesystem/FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md`
-- **Purpose / likely role:** Professional redraw reconstruction standard defining Trace Mode, no redesign/inference/rotation, overlay validation, rejection rules, and base-redraw approval before overlays.
+- **Purpose / likely role:** Professional redraw reconstruction standard defining Trace Mode, professional replica expectations, no redesign/inference/rotation/normalization, overlay validation, rejection rules, and base-redraw approval before overlays.
 - **Authority level:** **Quote-system governance / active floorplan redraw standard**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Added by QUOTESYSTEM-001 as the first fully developed professional-redraw standard.
+- **Notes:** Added by QUOTESYSTEM-001 and refined by QUOTESYSTEM-002 as docs-only governance. It does not authorize floorplan rendering implementation, image generation, quote generation, camera/sensor placement, runtime changes, HubSpot, Stripe/payment, or scheduling changes.
 
 ### `/docs/quotesystem/FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md`
 - **File path:** `docs/quotesystem/FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md`
-- **Purpose / likely role:** Placeholder standard for property photo validation after Trace Mode and future photo-to-opening / compass-aware planning requirements.
-- **Authority level:** **Quote-system governance / placeholder**
+- **Purpose / likely role:** Property photo validation standard for Trace Mode reference use, compass-aware side mapping, conflict notes, and photo limits before automatic correction.
+- **Authority level:** **Quote-system governance / active photo validation standard**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion.
+- **Notes:** Added by QUOTESYSTEM-001 and promoted/refined by QUOTESYSTEM-002 as docs-only governance. It does not authorize photo analysis automation, floorplan rendering implementation, camera/environment planning implementation, runtime changes, HubSpot, Stripe/payment, or scheduling changes.
+
+### `/docs/quotesystem/FLOORPLAN003_Redraw_Fidelity_Calibration_REV01.md`
+- **File path:** `docs/quotesystem/FLOORPLAN003_Redraw_Fidelity_Calibration_REV01.md`
+- **Purpose / likely role:** Redraw fidelity calibration standard defining source-sketch fidelity, overlay testing, acceptance/rejection criteria, funeral-home pilot lessons, and downstream gate before placement/BOM/quote work.
+- **Authority level:** **Quote-system governance / active redraw fidelity calibration standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTESYSTEM-002 as docs-only governance. It does not authorize image-generation implementation, floorplan rendering tool implementation, camera placement, sensor placement, BOM/pricing implementation, customer quote generation, runtime changes, HubSpot, Stripe/payment, or scheduling changes.
 
 ### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`

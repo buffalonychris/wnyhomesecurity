@@ -8,15 +8,18 @@ Implementation authority: No
 
 This standard defines the initial field capture requirements for creating a professional redraw from a customer or operator floorplan sketch.
 
+The operator/customer sketch is the primary capture object. Photos and notes support validation, but they do not replace the sketch during trace-first reconstruction.
+
 ## Required Capture Inputs
 
 Each floorplan capture packet should include:
 
 - Customer or operator hand sketch.
-- Compass direction and orientation note.
+- Compass direction and orientation note when known.
 - Exterior photos by side where possible.
 - Interior photos sufficient to validate walls, openings, thresholds, and fixed features.
 - Notes for rooms, hallways, stairs, garage areas, exterior doors, windows, and unusual offsets.
+- Field symbol legend or confirmation that the WNYHS symbol standard was used.
 
 ## Hand Sketch Expectations
 
@@ -28,14 +31,15 @@ The sketch should show:
 - Fixed fixtures when relevant to planning.
 - Furniture or large obstructions when relevant to camera, sensor, lighting, safety, or access-control placement.
 - Compass direction or a clear orientation marker.
+- Door, threshold, and opening width relationships when relevant.
 
-The sketch does not need to be professionally drawn, but it must be legible enough to trace without redesigning or inferring a different layout.
+The sketch does not need to be beautiful or professionally drawn, but it must be unambiguous enough to trace without redesigning or inferring a different layout.
 
 ## Compass And Orientation Requirement
 
-Compass direction must be recorded whenever possible. North, south, east, and west references should be preserved through the redraw process.
+Compass direction is mandatory when known. North, south, east, and west references should be preserved through the redraw process.
 
-The operator or customer sketch orientation controls unless explicitly changed and documented.
+The operator or customer sketch orientation controls unless explicitly changed and documented. Preserve the sketch orientation exactly through capture, redraw, overlay validation, and approval.
 
 ## Exterior Photo Set
 
@@ -59,6 +63,8 @@ Interior photos should help validate:
 - Stairs, garage entries, utility areas, and other planning-relevant areas.
 - Large furniture or obstructions that affect practical placement.
 
+Interior photos support layout validation but do not replace the operator/customer sketch during trace-first reconstruction.
+
 ## Field Symbol Language
 
 Use these symbols in sketches and capture notes:
@@ -68,6 +74,10 @@ Use these symbols in sketches and capture notes:
 - `G` = garage door.
 - Tick marks plus a solid line between = interior door.
 - Tick marks with no line between = open threshold or open passage.
+
+Interior open passages must not be converted into hinged doors unless the sketch shows a door.
+
+Door and threshold relative width must be preserved in the redraw. Double doors must be visibly wider than standard single doors.
 
 ## Source Orientation Control
 
