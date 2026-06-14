@@ -41,6 +41,17 @@ C:\dev\wnyhomesecurity
 | GitHub Web UI | PR review and merge control |
 | Cloudflare Web UI | Deployment verification |
 
+## ChatGPT Command Formatting
+
+When ChatGPT provides shell commands that the operator is expected to copy and run, commands must be presented in copy-friendly fenced code blocks.
+
+Rules:
+
+- Provide each logical command group in its own fenced code block.
+- Avoid inline command sequences when the operator is expected to copy/paste.
+- Prefer `powershell` fencing for Windows commands.
+- Keep commands concise and executable.
+
 ## Standard Workflow
 
 ### 1. Idea Intake
@@ -115,6 +126,23 @@ codex
 
 `git status` must report no pending local changes before the fresh branch is created. A local BAT helper may be used to run these steps, but this workflow rule is authoritative if the helper behavior ever differs.
 
+When `mainsync.bat` is available and appropriate, ChatGPT may present it as Option A for local sync:
+
+```powershell
+.\mainsync.bat
+```
+
+Manual fallback remains:
+
+```powershell
+cd C:\dev\wnyhomesecurity
+git checkout main
+git pull origin main
+git status
+```
+
+Use the manual fallback when there are pending local changes, branch uncertainty, or uncertainty about helper behavior.
+
 ### 5. Codex Work Order
 
 ChatGPT generates one bounded Codex prompt.
@@ -162,6 +190,8 @@ ChatGPT provides exact PowerShell/GitHub next steps.
 Operator reviews the PR in GitHub Web UI.
 
 Operator merges only after scope and validation are acceptable.
+
+When user-authorized and governance-compliant, ChatGPT may use available GitHub connector tools to inspect repository files, read governance docs, create or update repository documentation, create branches, open pull requests, add PR comments, and inspect PR metadata. Connector usage does not replace operator PR review or manual merge control.
 
 ### 9. Cloudflare Deployment Review
 

@@ -481,6 +481,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/governance/`
 
+### `/docs/governance/CODEX_CONTEXT_OPTIMIZATION_STANDARD_REV01.md`
+- **File path:** `docs/governance/CODEX_CONTEXT_OPTIMIZATION_STANDARD_REV01.md`
+- **Purpose / likely role:** Governance standard for ChatGPT GitHub connector usage, repo authority boundaries, copy-friendly command formatting, Codex prompt delivery and reuse, future governance-source-map prompt minimization, `mainsync.bat` sync guidance, and mandatory Codex Context Usage Reports.
+- **Authority level:** **Governance / Codex and ChatGPT workflow optimization standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. Future work still requires current-context alignment and a bounded task/work order.
+- **Notes:** Added by GOV009 ChatGPT GitHub Workflow + Codex Context Optimization Standard. It does not authorize source, CSS, route, UI, runtime, HubSpot, Stripe/payment, scheduling, email/Resend, Cloudflare/runtime/env, quote-system behavior, dependency, package-lock, or protected-system changes.
+
 ### `/docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`
 - **File path:** `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`
 - **Purpose / likely role:** Approved governance context for next-generation WNYHS site hierarchy, content architecture, content inheritance, navigation, homepage, QR Landing, WNYHS Core, and standards sequencing.
