@@ -168,6 +168,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created Property Model, operational gates, inventory readiness, and installer packet governance standards; updated quote-system goals, hardware/BOM, customer proposal, dashboard prep, document map, and document catalog. No app code, runtime behavior, payment flow, Stripe implementation, HubSpot logic, scheduling behavior, UI/routes/assets/dependencies, package-lock, quote generator, inventory system, or dashboard generator implementation was changed.
 
+### QUOTESYSTEM-004
+- **Task ID:** QUOTESYSTEM-004
+- **Task Name:** Property Model Storage + Admin Intake Skeleton
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement the first bounded internal Property Model storage and operator intake/edit skeleton for quote-system records.
+- **Allowed Scope:** Create a practical Property Model record type, local browser-storage adapter, and operator-only intake/edit route; update related quote-system documentation and this task register; bump the visible app version.
+- **Forbidden Scope:** No public quote generation, pricing engine, customer quote builder, Stripe/payment implementation, HubSpot implementation, Google Calendar scheduling writes, inventory automation, installer packet generator, Home Assistant dashboard generator, new dependencies, package-lock changes, production secrets/env changes, unrelated UI/routes/assets, or unrelated marketing changes.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/App.tsx`, `src/pages/Operator.tsx`, `docs/quotesystem/IMPLEMENTATION004_Property_Model_Storage_Admin_Intake_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_GOALS_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** Internal operator route and local browser storage only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-004 implementation note, update quote-system goals/status and document map, update the document catalog, and record this task as DONE.
+- **Validation Required:** Confirm all target files exist; confirm markdown headings/readability; `git diff --check`; forbidden-claim scan on introduced changes; confirm only allowed files changed; run `npm run build`; run available lint/typecheck/test commands and document any unrelated baseline failures.
+- **Exit Criteria:** Version is bumped to `v1.0.128`; Property Model schema includes record/request ID, customer/contact basics, property address basics, property context, concerns/situations, solution categories, areas/zones placeholder, devices/hardware placeholder, quote stage, operational gate placeholders, notes, and timestamps; operator route can create/edit/save records in local browser storage; docs record partial implementation and storage limitation; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-001, QUOTESYSTEM-002, QUOTESYSTEM-003, current governance authority chain, `docs/system/step-current.md`, and the quote-system Property Model/gates/inventory/installer standards.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added the first bounded Property Model storage/admin intake skeleton under `/operator/property-model` using local browser storage. No public quote generation, pricing engine, payment processing, Stripe implementation, HubSpot implementation, scheduling writes, inventory automation, installer packet generator, Home Assistant dashboard generator, new dependencies, package-lock changes, or unrelated public marketing redesign was introduced.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack

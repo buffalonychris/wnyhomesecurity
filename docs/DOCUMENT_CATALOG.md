@@ -192,6 +192,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by QUOTESYSTEM-003 as docs-only governance. It does not authorize installer software, scheduling implementation, route/UI changes, inventory implementation, quote generation, payment changes, or runtime behavior.
 
+### `/docs/quotesystem/IMPLEMENTATION004_Property_Model_Storage_Admin_Intake_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION004_Property_Model_Storage_Admin_Intake_REV01.md`
+- **Purpose / likely role:** Implementation note for the bounded QUOTESYSTEM-004 Property Model type, local browser-storage adapter, and operator intake/edit route.
+- **Authority level:** **Quote-system implementation note / partial runtime implementation**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for the completed QUOTESYSTEM-004 scope.
+- **Notes:** Records a local/dev-compatible storage limitation. It does not authorize production persistence, quote generation, pricing automation, payment processing, HubSpot writes, scheduling writes, inventory automation, installer packet generation, or Home Assistant dashboard generation.
+
 ### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **Purpose / likely role:** Placeholder standard for future hardware placement onto approved floorplans after base redraw approval.
