@@ -204,6 +204,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Extended the internal Property Model prototype into a draft quote workspace using local browser storage. No HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, new dependencies, authentication system, public customer quote builder, production persistence, installer packet generator, or Home Assistant dashboard generator was introduced.
 
+### QUOTESYSTEM-006
+- **Task ID:** QUOTESYSTEM-006
+- **Task Name:** Quote Workspace Structure + WNYHS Styling Refactor
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Refactor `/operator/property-model` from a generic prototype form into a WNY Home Security quote workspace aligned with HubSpot CRM authority, source solution/category/package data, WNYHS terminology, Property Model governance, quote gates, and WNYHS visual/token CSS standards.
+- **Allowed Scope:** Internal operator route refactor for `/operator/property-model`; update local Property Model types and localStorage normalization; add controlled dropdowns for property type, occupancy context, quote stage, source-backed WNYHS categories/solutions/packages, customer concerns, property rooms/areas to cover, Draft Hardware / BOM status, and draft quote preview; add token-based workspace styling; add the QUOTESYSTEM-006 implementation note; update quote-system document map, document catalog, markdown manifest addendum, master task register, and visible site version.
+- **Forbidden Scope:** No HubSpot writes, HubSpot schema/properties/pipeline changes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, authentication system, new dependencies, package-lock changes, unrelated public site redesign, protected runtime behavior changes, or customer-facing quote automation.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/index.css`, `docs/quotesystem/IMPLEMENTATION006_Quote_Workspace_Structure_Styling_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator route and local browser storage only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-006 implementation note, update quote-system document map, add the document catalog entry, add the markdown manifest addendum, record this task as DONE, and bump the visible site version.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; confirm WNYHS token/CSS standards followed as much as existing codebase permits.
+- **Exit Criteria:** Version is bumped to `v1.0.130`; `/operator/property-model` uses WNYHS Quote Workspace framing; customer/deal authority is HubSpot-owned without writes; Property Type, Occupancy Context, and Quote Stage are controlled options; Customer Concerns are the primary customer-language capture area; Property Rooms / Areas To Cover replaces vague rooms/zones language; selected solutions use repo source data where practical; Draft Hardware / BOM supports status and manual adjustment; draft quote preview keeps the three required sections and GATES001 payment terms; styling uses WNYHS tokens/classes; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-004, QUOTESYSTEM-005, PROPERTY001, GATES001, QUOTE001, QUOTE_SYSTEM_DOCUMENT_MAP, DESIGN001, HubSpot REV03, runtime HubSpot/requestId/protected-runtime contracts, source solution/package/hardware data, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Refactored the internal Property Model quote workspace with HubSpot-owned CRM framing, WNYHS terminology, source-backed selectors, multi-concern capture, room/area planning, Draft Hardware / BOM status, GATES001-aligned draft quote preview, token-based styling, and visible version `v1.0.130`. No HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, authentication system, new dependencies, package-lock changes, public quote automation, or protected runtime behavior changes were introduced.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack

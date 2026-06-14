@@ -208,6 +208,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** Yes, only for the completed QUOTESYSTEM-005 scope.
 - **Notes:** Records local-storage-only workspace support for customer goals, WNYHS solutions, hardware/BOM line items, and draft quote structure. It does not authorize public quote generation, quote PDFs, pricing automation, payment processing, HubSpot writes, scheduling automation, inventory automation, email sending, authentication, production persistence, installer packet generation, or Home Assistant dashboard generation.
 
+### `/docs/quotesystem/IMPLEMENTATION006_Quote_Workspace_Structure_Styling_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION006_Quote_Workspace_Structure_Styling_REV01.md`
+- **Purpose / likely role:** Implementation note for the bounded QUOTESYSTEM-006 refactor of the internal quote workspace structure, HubSpot authority framing, WNYHS terminology, source-backed solution/package selectors, Draft Hardware / BOM status, and token-based styling.
+- **Authority level:** **Quote-system implementation note / partial runtime implementation**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for the completed QUOTESYSTEM-006 scope.
+- **Notes:** Records that `/operator/property-model` remains local-storage only and does not authorize HubSpot writes, Stripe/payment behavior, production persistence, pricing automation, inventory automation, scheduling automation, quote PDF generation, email sending, or protected runtime changes.
+
 ### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **Purpose / likely role:** Placeholder standard for future hardware placement onto approved floorplans after base redraw approval.
