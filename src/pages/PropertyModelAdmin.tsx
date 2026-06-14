@@ -25,8 +25,7 @@ import {
   type PropertyModelRecord,
   type PropertyModelSolution,
 } from '../lib/propertyModel';
-import { getHomeSecurityHardwareItems } from '../content/homeSecurityPackageData';
-import { offerCategories, packageStartingPoints, publicSolutions } from '../content/wnyhsOfferCatalog';
+import { catalogCategories, catalogHardwareItems, catalogPackages, catalogSolutions } from '../data/catalog';
 
 const paymentPolicyItems = [
   '50% deposit required before scheduling.',
@@ -55,7 +54,7 @@ const fallbackHardwareTypes = [
 ];
 
 const hardwareTypeOptions = Array.from(
-  new Set([...getHomeSecurityHardwareItems('a2').map((item) => item.label), ...fallbackHardwareTypes]),
+  new Set([...catalogHardwareItems.map((item) => item.hardwareType), ...catalogHardwareItems.map((item) => item.label), ...fallbackHardwareTypes]),
 );
 
 const concernLabel = (concern: PropertyModelCustomerConcern) =>
@@ -735,7 +734,7 @@ const PropertyModelAdmin = () => {
               <div>
                 <p className="quote-workspace-eyebrow">Selected WNYHS Solutions</p>
                 <h2>Selected WNYHS Solutions</h2>
-                <p>Source-backed options use the current offer catalog; notes remain optional.</p>
+                <p>Source-backed options use the canonical runtime catalog; notes remain optional.</p>
               </div>
               <button
                 className="btn btn-secondary"
@@ -761,7 +760,7 @@ const PropertyModelAdmin = () => {
                     <Field label="WNYHS Category">
                       <select value={solution.categoryId} onChange={(event) => updateSolution(solution.id, { categoryId: event.target.value })}>
                         <option value="">Select</option>
-                        {offerCategories.map((category) => (
+                        {catalogCategories.map((category) => (
                           <option key={category.id} value={category.id}>
                             {category.name}
                           </option>
@@ -771,9 +770,9 @@ const PropertyModelAdmin = () => {
                     <Field label="WNYHS Solution">
                       <select value={solution.title} onChange={(event) => updateSolution(solution.id, { title: event.target.value })}>
                         <option value="">Select or enter note below</option>
-                        {publicSolutions.map((item) => (
-                          <option key={item.id} value={item.title}>
-                            {item.title}
+                        {catalogSolutions.map((item) => (
+                          <option key={item.id} value={item.name}>
+                            {item.name}
                           </option>
                         ))}
                       </select>
@@ -781,7 +780,7 @@ const PropertyModelAdmin = () => {
                     <Field label="Package / Starting Point">
                       <select value={solution.packageRef} onChange={(event) => updateSolution(solution.id, { packageRef: event.target.value })}>
                         <option value="">Not tied to a package</option>
-                        {packageStartingPoints.map((item) => (
+                        {catalogPackages.map((item) => (
                           <option key={item.id} value={item.name}>
                             {item.name}
                           </option>

@@ -26,6 +26,32 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Supports future Codex planning and is a required review aid before high-risk workflow changes; it does not replace higher-authority governance, runtime contracts, HubSpot REV03, or task-specific instructions.
 
 
+## `docs/catalog/`
+
+### `/docs/catalog/README.md`
+- **File path:** `docs/catalog/README.md`
+- **Purpose / likely role:** Catalog governance home defining reusable catalog truth boundaries and the split between catalog data, quote/property records, and CRM authority.
+- **Authority level:** **Catalog governance / boundary standard**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for bounded catalog tasks that cite this standard.
+- **Notes:** Added by CATALOG001. Does not authorize CRM writes, payment behavior, customer/job storage in catalog, inventory automation, ordering automation, installer pick-list generation, or durable storage.
+
+### `/docs/catalog/CATALOG001_Canonical_Catalog_Source_Standard_REV01.md`
+- **File path:** `docs/catalog/CATALOG001_Canonical_Catalog_Source_Standard_REV01.md`
+- **Purpose / likely role:** Canonical source standard for the initial WNYHS runtime catalog and future catalog consumers.
+- **Authority level:** **Catalog governance / source-of-truth standard**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, for CATALOG001 and future bounded catalog migration tasks.
+- **Notes:** Establishes parts-to-solutions-to-packages-to-categories ownership and initial `src/data/catalog/` runtime source.
+
+### `/docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
+- **File path:** `docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
+- **Purpose / likely role:** Implementation note for the first file-backed runtime catalog, including source inventory, promoted data, temporary data, deferred migrations, and next candidates.
+- **Authority level:** **Catalog implementation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records CATALOG001 implementation only.
+- **Notes:** Documents that public pages, durable storage, inventory automation, ordering automation, installer pick-list generation, dashboard generation, and job/customer records were not migrated.
+
 ## `docs/content-remediation/`
 
 ### `/docs/content-remediation/CONTENT001_WNYHS_WEBSITE_CONTENT_REMEDIATION_CODEX_INSTRUCTIONS_REV01.md`
