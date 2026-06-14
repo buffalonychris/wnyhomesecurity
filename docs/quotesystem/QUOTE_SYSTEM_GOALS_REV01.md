@@ -37,6 +37,12 @@ The quote system should support these future governed outputs:
 - Formal business quote with deposit and install-payment terms.
 - Future Home Assistant dashboard prep packet from finalized hardware.
 
+## Current Implementation Status
+
+`QUOTESYSTEM-004` adds the first bounded Property Model storage and operator intake skeleton. It is limited to a local browser-storage record type and internal operator edit surface.
+
+This partial implementation does not authorize customer quote generation, pricing automation, payment processing, scheduling writes, inventory automation, installer packet generation, HubSpot changes, Stripe changes, or Home Assistant dashboard generation.
+
 ## Quote Package Structure
 
 The standard quote package has three parts:
