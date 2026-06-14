@@ -3901,3 +3901,22 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** T-CATALOG001, T-HARDWARE001, T-CLAIMS001, T-OFFERING001.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created docs-only package/BOM/pricing-input governance. No app/source/runtime/payment/HubSpot/scheduling/public copy/pricing files were changed. No final prices, supplier costs, invented hardware prices, public pricing, site version bump, hardware purchasing, customer installation, or implementation was authorized.
+
+
+### CATALOG001-RUNTIME
+- **Task ID:** CATALOG001
+- **Task Name:** Promote Existing Offer Data Into Canonical Runtime Catalog
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the first canonical WNYHS runtime catalog source so website pages, quote workspace, future inventory readiness, future ordering prep, future installer pick lists, and future dashboard prep can consume the same reusable catalog data.
+- **Allowed Scope:** Create `docs/catalog/` governance docs; create `src/data/catalog/` typed runtime catalog; promote existing Home Security package data from `src/content/homeSecurityPackageData.ts` and `src/content/packages.ts`; use existing offer categories, solutions, and package starting points; minimally update `/operator/property-model` selectors to consume the runtime catalog; update version, document catalog, markdown manifest, and this register.
+- **Forbidden Scope:** No HubSpot writes, HubSpot schema changes, Stripe/payment implementation, inventory automation, ordering automation, scheduling automation, quote PDF generation, email sending, auth system, durable production storage, new dependencies, package-lock changes, unrelated public site redesign, protected runtime behavior changes, or public page refactor beyond what is necessary to preserve behavior.
+- **Target Files:** `docs/catalog/README.md`, `docs/catalog/CATALOG001_Canonical_Catalog_Source_Standard_REV01.md`, `docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`, `src/data/catalog/index.ts`, `src/data/catalog/catalogTypes.ts`, `src/data/catalog/catalogData.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator route selectors and local browser-storage draft workspace only.
+- **Documentation Updates Required:** Catalog governance docs created; document catalog and markdown manifest updated; this register records completion.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files where available; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; confirm no protected runtime systems changed.
+- **Exit Criteria:** Runtime catalog exists with typed categories, packages, solutions, and hardware/parts; quote workspace selector options consume `src/data/catalog/`; existing package page behavior remains preserved; catalog pricing gaps are documented as future work; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** Current governance authority chain, `docs/system/step-current.md`, quote-system standards, solution-system standards, and existing package source data.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created the initial file-backed canonical runtime catalog and documentation. Promoted Home Security tier packages, offer categories, public solution options, package starting points, and tier hardware quantities into typed catalog structures. Updated `/operator/property-model` category, solution, package, and hardware selector sources to consume `src/data/catalog/` while preserving local draft-only behavior. No HubSpot, Stripe, protected API, inventory automation, ordering automation, scheduling automation, email sending, quote PDF generation, auth, durable storage, dependency, or package-lock changes were made.
