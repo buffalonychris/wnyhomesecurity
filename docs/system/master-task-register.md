@@ -186,6 +186,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Added the first bounded Property Model storage/admin intake skeleton under `/operator/property-model` using local browser storage. No public quote generation, pricing engine, payment processing, Stripe implementation, HubSpot implementation, scheduling writes, inventory automation, installer packet generator, Home Assistant dashboard generator, new dependencies, package-lock changes, or unrelated public marketing redesign was introduced.
 
+### QUOTESYSTEM-005
+- **Task ID:** QUOTESYSTEM-005
+- **Task Name:** Draft Quote Workspace
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Extend the internal `/operator/property-model` prototype into a local draft quote workspace for customer goals, WNYHS solutions, hardware/BOM line items, and draft quote structure preview.
+- **Allowed Scope:** Add local prototype quote workspace fields and UI to `/operator/property-model`; preserve localStorage-only persistence; add the QUOTESYSTEM-005 implementation note; update quote-system document map, document catalog, master task register, and visible site version.
+- **Forbidden Scope:** No HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, new dependencies, authentication system, public customer quote builder, production persistence, or protected-system changes.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `docs/quotesystem/IMPLEMENTATION005_Draft_Quote_Workspace_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** Internal operator route and local browser storage only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-005 implementation note, update the quote-system document map, add the document catalog entry, and record this task as DONE.
+- **Validation Required:** `npm run build`; targeted lint/typecheck when available; `git diff --check`; confirm protected systems untouched.
+- **Exit Criteria:** Version is bumped to `v1.0.129`; `/operator/property-model` supports customer goals, WNYHS solutions, hardware/BOM line items with required fields, and visible draft quote sections; persistence remains localStorage-only; no protected systems are touched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-004, PROPERTY001, GATES001, QUOTE001, HARDWARE001, FEATURES001, DASHBOARD_PREP001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Extended the internal Property Model prototype into a draft quote workspace using local browser storage. No HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, new dependencies, authentication system, public customer quote builder, production persistence, installer packet generator, or Home Assistant dashboard generator was introduced.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack
