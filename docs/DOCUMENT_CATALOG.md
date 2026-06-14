@@ -218,11 +218,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/quotesystem/IMPLEMENTATION007_Floorplan_Evidence_Attachments_REV01.md`
 - **File path:** `docs/quotesystem/IMPLEMENTATION007_Floorplan_Evidence_Attachments_REV01.md`
-- **Purpose / likely role:** Implementation note for the bounded QUOTESYSTEM-007 extension of the internal quote workspace with floorplan/evidence references, base floorplan status, WNYHS governance helper language, and Draft Quote Preview Section 1 evidence summary.
+- **Purpose / likely role:** Implementation note for the bounded QUOTESYSTEM-007 extension of the internal quote workspace with repeatable floorplan/property evidence items, controlled evidence type/orientation/status options, WNYHS workflow guidance, and Draft Quote Preview Section 1 evidence summary.
 - **Authority level:** **Quote-system implementation note / partial runtime implementation**
 - **Customer-facing:** No.
 - **Implementation authority:** Yes, only for the completed QUOTESYSTEM-007 scope.
-- **Notes:** Records that `/operator/property-model` remains local-storage only and does not authorize file uploads, durable storage, cloud storage, image processing, floorplan rendering, AI redraw generation, HubSpot writes, Stripe/payment behavior, production persistence, inventory automation, scheduling automation, quote PDF generation, email sending, or protected runtime changes.
+- **Notes:** Records that `/operator/property-model` remains local-storage only and does not authorize file uploads, durable storage, cloud storage, Google Drive integration, image processing, floorplan rendering, AI redraw generation, HubSpot writes, Stripe/payment behavior, production persistence, inventory automation, scheduling automation, quote PDF generation, email sending, or protected runtime changes.
 
 ### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`

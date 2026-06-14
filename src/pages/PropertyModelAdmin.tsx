@@ -12,13 +12,16 @@ import {
   customerConcernCategoryOptions,
   loadPropertyModelRecords,
   occupancyContextOptions,
-  propertyBaseFloorplanStatusOptions,
+  propertyEvidenceOrientationOptions,
+  propertyEvidenceStatusOptions,
+  propertyEvidenceTypeOptions,
   propertyQuoteStageOptions,
   propertyTypeOptions,
   savePropertyModelRecord,
   type PropertyModelAreaPlaceholder,
   type PropertyModelBomLineItem,
   type PropertyModelCustomerConcern,
+  type PropertyModelEvidenceItem,
   type PropertyModelRecord,
   type PropertyModelSolution,
 } from '../lib/propertyModel';
@@ -100,6 +103,16 @@ const createBomLineItem = (): PropertyModelBomLineItem => ({
   installerNote: '',
 });
 
+const createEvidenceItem = (): PropertyModelEvidenceItem => ({
+  id: createPropertyModelChildId('EVID'),
+  evidenceType: 'hand_drawn_floorplan',
+  label: '',
+  sourceReference: '',
+  orientationSide: 'unknown_na',
+  notes: '',
+  status: 'source_provided',
+});
+
 const PropertyModelAdmin = () => {
   const [records, setRecords] = useState<PropertyModelRecord[]>(() => loadPropertyModelRecords());
   const [selectedRecordId, setSelectedRecordId] = useState(() => records[0]?.recordId ?? '');
@@ -116,9 +129,16 @@ const PropertyModelAdmin = () => {
   const hasHubSpotRecord = Boolean(draft.hubSpotLink.contactUrl || draft.hubSpotLink.dealUrl);
   const quoteStageLabel =
     propertyQuoteStageOptions.find((stage) => stage.value === draft.quoteStage)?.label ?? 'Requested Quote';
-  const baseFloorplanStatusLabel =
-    propertyBaseFloorplanStatusOptions.find((status) => status.value === draft.evidence.baseFloorplanStatus)?.label ??
-    'Not Started';
+  const floorplanEvidenceSummary = useMemo(
+    () => ({
+      handDrawnFloorplan: draft.evidenceItems.some((item) => item.evidenceType === 'hand_drawn_floorplan'),
+      professionalRedraw: draft.evidenceItems.some((item) => item.evidenceType === 'professional_redraw'),
+      exteriorPhotos: draft.evidenceItems.some((item) => item.evidenceType === 'exterior_photo'),
+      interiorPhotos: draft.evidenceItems.some((item) => item.evidenceType === 'interior_photo'),
+      orientationEvidence: draft.evidenceItems.some((item) => item.evidenceType === 'compass_orientation_note'),
+    }),
+    [draft.evidenceItems],
+  );
 
   const updateDraft = (updater: React.SetStateAction<PropertyModelRecord>) => {
     setDraft((current) => {
@@ -180,6 +200,13 @@ const PropertyModelAdmin = () => {
     }));
   };
 
+  const updateEvidenceItem = (itemId: string, updates: Partial<PropertyModelEvidenceItem>) => {
+    updateDraft((record) => ({
+      ...record,
+      evidenceItems: record.evidenceItems.map((item) => (item.id === itemId ? { ...item, ...updates } : item)),
+    }));
+  };
+
   const removeConcern = (concernId: string) => {
     updateDraft((record) => ({
       ...record,
@@ -205,6 +232,13 @@ const PropertyModelAdmin = () => {
     updateDraft((record) => ({
       ...record,
       bomLineItems: record.bomLineItems.filter((item) => item.id !== itemId),
+    }));
+  };
+
+  const removeEvidenceItem = (itemId: string) => {
+    updateDraft((record) => ({
+      ...record,
+      evidenceItems: record.evidenceItems.filter((item) => item.id !== itemId),
     }));
   };
 
@@ -336,126 +370,106 @@ const PropertyModelAdmin = () => {
           <SpaceFrame className="quote-workspace-panel">
             <div className="quote-workspace-panel-head">
               <div>
-                <p className="quote-workspace-eyebrow">Floorplan & Property Evidence</p>
-                <h2>Floorplan & Property Evidence</h2>
-                <p>Source sketch orientation controls during Trace Mode.</p>
+                <p className="quote-workspace-eyebrow">Floorplan / Property Evidence</p>
+                <h2>Floorplan / Property Evidence</h2>
+                <p>Hand-drawn floorplan and professional redraw are separate evidence items.</p>
                 <p>
-                  Exterior and interior photos validate the sketch/redraw; they do not override source geometry unless
-                  WNYHS approves a correction.
+                  Exterior/interior photos validate the floorplan but do not override sketch geometry during Trace Mode
+                  unless approved.
                 </p>
-                <p>No security/device overlay should proceed until the base floorplan is approved.</p>
+                <p>
+                  Compass/orientation matters for camera, sensor, lighting, environmental, and future coverage planning.
+                </p>
+                <p>LiDAR/Digital Twin capture is a future source type, not implemented here.</p>
               </div>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={() =>
+                  updateDraft((record) => ({ ...record, evidenceItems: [...record.evidenceItems, createEvidenceItem()] }))
+                }
+              >
+                Add Evidence
+              </button>
             </div>
-            <div className="quote-workspace-grid">
-              <Field label="Source Sketch Reference" help="URL, filename, storage note, or handwritten sketch reference.">
-                <input
-                  value={draft.evidence.sourceSketchReference}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: { ...record.evidence, sourceSketchReference: event.target.value },
-                    }))
-                  }
-                />
-              </Field>
-              <Field label="Professional Redraw Reference" help="URL, filename, or redraw work reference.">
-                <input
-                  value={draft.evidence.professionalRedrawReference}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: { ...record.evidence, professionalRedrawReference: event.target.value },
-                    }))
-                  }
-                />
-              </Field>
-              <Field label="Base Floorplan Status">
-                <select
-                  value={draft.evidence.baseFloorplanStatus}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: {
-                        ...record.evidence,
-                        baseFloorplanStatus: event.target.value as PropertyModelRecord['evidence']['baseFloorplanStatus'],
-                      },
-                    }))
-                  }
-                >
-                  {propertyBaseFloorplanStatusOptions.map((status) => (
-                    <option key={status.value} value={status.value}>
-                      {status.label}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              {(['north', 'south', 'east', 'west'] as const).map((side) => (
-                <Field key={side} label={`${side[0].toUpperCase()}${side.slice(1)} Exterior Photo Reference`}>
-                  <input
-                    value={draft.evidence.exteriorPhotoReferences[side]}
-                    onChange={(event) =>
-                      updateDraft((record) => ({
-                        ...record,
-                        evidence: {
-                          ...record.evidence,
-                          exteriorPhotoReferences: {
-                            ...record.evidence.exteriorPhotoReferences,
-                            [side]: event.target.value,
-                          },
-                        },
-                      }))
-                    }
-                  />
-                </Field>
+            <div className="quote-workspace-stack">
+              {draft.evidenceItems.length === 0 ? <p>No floorplan or property evidence entered yet.</p> : null}
+              {draft.evidenceItems.map((item, index) => (
+                <article className="quote-workspace-item" key={item.id}>
+                  <div className="quote-workspace-item-head">
+                    <h3>Evidence {index + 1}</h3>
+                    <button className="btn btn-secondary btn-small" type="button" onClick={() => removeEvidenceItem(item.id)}>
+                      Remove
+                    </button>
+                  </div>
+                  <div className="quote-workspace-grid">
+                    <Field label="Evidence Type">
+                      <select
+                        value={item.evidenceType}
+                        onChange={(event) =>
+                          updateEvidenceItem(item.id, {
+                            evidenceType: event.target.value as PropertyModelEvidenceItem['evidenceType'],
+                          })
+                        }
+                      >
+                        {propertyEvidenceTypeOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Label / Name">
+                      <input value={item.label} onChange={(event) => updateEvidenceItem(item.id, { label: event.target.value })} />
+                    </Field>
+                    <Field
+                      label="Source / Reference"
+                      help="Filename, local path, Google Drive note, photo batch note, uploaded in chat, onsite phone photo, or future LiDAR capture."
+                    >
+                      <textarea
+                        rows={3}
+                        value={item.sourceReference}
+                        onChange={(event) => updateEvidenceItem(item.id, { sourceReference: event.target.value })}
+                      />
+                    </Field>
+                    <Field label="Orientation / Side">
+                      <select
+                        value={item.orientationSide}
+                        onChange={(event) =>
+                          updateEvidenceItem(item.id, {
+                            orientationSide: event.target.value as PropertyModelEvidenceItem['orientationSide'],
+                          })
+                        }
+                      >
+                        {propertyEvidenceOrientationOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Status">
+                      <select
+                        value={item.status}
+                        onChange={(event) =>
+                          updateEvidenceItem(item.id, {
+                            status: event.target.value as PropertyModelEvidenceItem['status'],
+                          })
+                        }
+                      >
+                        {propertyEvidenceStatusOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Notes">
+                      <textarea rows={3} value={item.notes} onChange={(event) => updateEvidenceItem(item.id, { notes: event.target.value })} />
+                    </Field>
+                  </div>
+                </article>
               ))}
-              <Field label="Interior Photo References" help="Room photo URLs, filenames, or grouped reference notes.">
-                <textarea
-                  rows={3}
-                  value={draft.evidence.interiorPhotoReferences}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: { ...record.evidence, interiorPhotoReferences: event.target.value },
-                    }))
-                  }
-                />
-              </Field>
-              <Field label="Compass / Orientation Notes">
-                <textarea
-                  rows={3}
-                  value={draft.evidence.compassOrientationNotes}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: { ...record.evidence, compassOrientationNotes: event.target.value },
-                    }))
-                  }
-                />
-              </Field>
-              <Field label="Known Measurements">
-                <textarea
-                  rows={3}
-                  value={draft.evidence.measurementNotes}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: { ...record.evidence, measurementNotes: event.target.value },
-                    }))
-                  }
-                />
-              </Field>
-              <Field label="Floorplan Validation Notes">
-                <textarea
-                  rows={3}
-                  value={draft.evidence.validationNotes}
-                  onChange={(event) =>
-                    updateDraft((record) => ({
-                      ...record,
-                      evidence: { ...record.evidence, validationNotes: event.target.value },
-                    }))
-                  }
-                />
-              </Field>
             </div>
           </SpaceFrame>
 
@@ -882,18 +896,27 @@ const PropertyModelAdmin = () => {
                 <h3>Section 1: Floorplan / Property Plan</h3>
                 <ul className="operator-list">
                   <li>
-                    <strong>Base floorplan status:</strong> {baseFloorplanStatusLabel}
+                    <strong>Hand-drawn floorplan:</strong>{' '}
+                    {floorplanEvidenceSummary.handDrawnFloorplan ? 'Evidence entered' : 'Not entered yet.'}
                   </li>
                   <li>
-                    <strong>Source sketch reference:</strong>{' '}
-                    {draft.evidence.sourceSketchReference || 'Not entered yet.'}
+                    <strong>Professional redraw:</strong>{' '}
+                    {floorplanEvidenceSummary.professionalRedraw ? 'Evidence entered' : 'Not entered yet.'}
                   </li>
                   <li>
-                    <strong>Professional redraw reference:</strong>{' '}
-                    {draft.evidence.professionalRedrawReference || 'Not entered yet.'}
+                    <strong>Exterior photos:</strong>{' '}
+                    {floorplanEvidenceSummary.exteriorPhotos ? 'Evidence entered' : 'Not entered yet.'}
                   </li>
                   <li>
-                    <strong>Validation notes:</strong> {draft.evidence.validationNotes || 'No conflicts noted yet.'}
+                    <strong>Interior photos:</strong>{' '}
+                    {floorplanEvidenceSummary.interiorPhotos ? 'Evidence entered' : 'Not entered yet.'}
+                  </li>
+                  <li>
+                    <strong>Compass / orientation evidence:</strong>{' '}
+                    {floorplanEvidenceSummary.orientationEvidence ? 'Evidence entered' : 'Not entered yet.'}
+                  </li>
+                  <li>
+                    Base floorplan must be approved before hardware placement or quote finalization.
                   </li>
                 </ul>
               </section>
