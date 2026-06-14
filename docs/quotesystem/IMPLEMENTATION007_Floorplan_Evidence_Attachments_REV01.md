@@ -6,9 +6,9 @@ Task: QUOTESYSTEM-007
 
 ## Purpose
 
-This document records the bounded QUOTESYSTEM-007 extension of `/operator/property-model` so the WNYHS Quote Workspace can capture floorplan and property evidence references for a local Property Model draft.
+This document records the bounded QUOTESYSTEM-007 extension of `/operator/property-model` so the WNYHS Quote Workspace can capture repeatable floorplan and property evidence references for a local Property Model draft.
 
-The implementation remains an internal local-storage prototype. It captures text and URL references only. It does not create file uploads, durable storage, cloud storage, image processing, a floorplan rendering engine, AI redraw generation, HubSpot writes, Stripe/payment behavior, scheduling automation, inventory automation, quote PDF generation, email sending, or authentication.
+The implementation remains an internal local-storage prototype. It captures text references only. It does not create file uploads, durable storage, cloud storage, Google Drive integration, image processing, a floorplan rendering engine, AI redraw generation, HubSpot writes, Stripe/payment behavior, scheduling automation, inventory automation, quote PDF generation, email sending, or authentication.
 
 ## Source Authority Used
 
@@ -28,28 +28,51 @@ The implementation remains an internal local-storage prototype. It captures text
 
 ## Implementation Summary
 
-QUOTESYSTEM-007 updates the local Property Model workspace to store floorplan and property evidence references for:
+QUOTESYSTEM-007 updates the local Property Model workspace to store multiple floorplan and property evidence items.
 
-- Source Sketch Reference
-- Professional Redraw Reference
-- Exterior Photo References for north, south, east, and west sides
-- Interior Photo References
-- Compass / Orientation Notes
-- Known Measurements
-- Floorplan Validation Notes
-- Base Floorplan Status
+Each evidence item includes:
 
-Base Floorplan Status uses the controlled options:
+- Evidence type
+- Label/name
+- Source/reference
+- Orientation/side when applicable
+- Notes
+- Status
 
-- Not Started
-- Source Evidence Collected
-- Redraw Needed
-- Redraw In Review
-- Approved For Quote Use
+Evidence type uses the controlled options:
 
-The UI adds a WNYHS-styled `Floorplan & Property Evidence` section that follows existing `quote-workspace-*` token-based classes. Helper language records that source sketch orientation controls during Trace Mode, photos validate rather than override source geometry unless WNYHS approves a correction, and no security/device overlay should proceed until the base floorplan is approved.
+- Hand-Drawn Floorplan
+- Professional Redraw
+- Exterior Photo
+- Interior Photo
+- Measurement Note
+- Compass / Orientation Note
+- LiDAR / Digital Twin Capture
+- Other
 
-Draft Quote Preview Section 1 now summarizes the base floorplan status, source sketch reference, professional redraw reference, and floorplan validation notes.
+Orientation/side uses the controlled options:
+
+- North
+- South
+- East
+- West
+- Interior
+- Whole Property
+- Unknown / Not Applicable
+
+Evidence status uses the controlled options:
+
+- Source Provided
+- Needs Review
+- Accepted For Trace
+- Accepted For Validation
+- Rejected / Superseded
+
+The UI adds a WNYHS-styled `Floorplan / Property Evidence` section that follows existing `quote-workspace-*` token-based classes. It supports adding, editing, listing, removing, saving, and reloading evidence items through the existing localStorage prototype.
+
+Visible workflow guidance records that hand-drawn floorplans and professional redraws are separate evidence items, exterior/interior photos validate the floorplan without overriding sketch geometry during Trace Mode unless approved, compass/orientation matters for camera, sensor, lighting, environmental, and future coverage planning, and LiDAR/Digital Twin capture is a future source type that is not implemented here.
+
+Draft Quote Preview Section 1 now summarizes whether hand-drawn floorplan evidence, professional redraw evidence, exterior photos, interior photos, and compass/orientation evidence exist. It also records that the base floorplan must be approved before hardware placement or quote finalization.
 
 ## Protected-System Boundary
 
@@ -63,7 +86,7 @@ This task did not modify:
 - Resend/email runtime
 - Inventory automation
 - Quote PDF generation
-- Upload, cloud-storage, image-processing, floorplan-rendering, or AI redraw runtime
+- Upload, cloud-storage, Google Drive, image-processing, floorplan-rendering, or AI redraw runtime
 
 The page remains local browser-storage only.
 
@@ -71,6 +94,7 @@ The page remains local browser-storage only.
 
 - No real file upload handling.
 - No durable storage for evidence assets.
+- No Google Drive integration.
 - No image processing or automatic redraw generation.
 - No floorplan rendering or overlay engine.
 - No production database persistence.

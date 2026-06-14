@@ -8,12 +8,31 @@ export type PropertyQuoteStage =
 
 export type PropertyModelBomStatus = 'gpt_proposed' | 'wnyhs_modified' | 'approved' | 'locked';
 
-export type PropertyModelBaseFloorplanStatus =
-  | 'not_started'
-  | 'source_evidence_collected'
-  | 'redraw_needed'
-  | 'redraw_in_review'
-  | 'approved_for_quote_use';
+export type PropertyModelEvidenceType =
+  | 'hand_drawn_floorplan'
+  | 'professional_redraw'
+  | 'exterior_photo'
+  | 'interior_photo'
+  | 'measurement_note'
+  | 'compass_orientation_note'
+  | 'lidar_digital_twin_capture'
+  | 'other';
+
+export type PropertyModelEvidenceOrientation =
+  | 'north'
+  | 'south'
+  | 'east'
+  | 'west'
+  | 'interior'
+  | 'whole_property'
+  | 'unknown_na';
+
+export type PropertyModelEvidenceStatus =
+  | 'source_provided'
+  | 'needs_review'
+  | 'accepted_for_trace'
+  | 'accepted_for_validation'
+  | 'rejected_superseded';
 
 export type PropertyModelAreaPlaceholder = {
   id: string;
@@ -70,20 +89,14 @@ export type PropertyModelGateStatus = {
   finalBalanceExceptionApproved: boolean;
 };
 
-export type PropertyModelEvidenceReferences = {
-  sourceSketchReference: string;
-  professionalRedrawReference: string;
-  exteriorPhotoReferences: {
-    north: string;
-    south: string;
-    east: string;
-    west: string;
-  };
-  interiorPhotoReferences: string;
-  compassOrientationNotes: string;
-  measurementNotes: string;
-  validationNotes: string;
-  baseFloorplanStatus: PropertyModelBaseFloorplanStatus;
+export type PropertyModelEvidenceItem = {
+  id: string;
+  evidenceType: PropertyModelEvidenceType;
+  label: string;
+  sourceReference: string;
+  orientationSide: PropertyModelEvidenceOrientation;
+  notes: string;
+  status: PropertyModelEvidenceStatus;
 };
 
 export type PropertyModelRecord = {
@@ -118,7 +131,7 @@ export type PropertyModelRecord = {
   customerGoals: PropertyModelCustomerGoal[];
   solutionCategories: string[];
   proposedSolutions: PropertyModelSolution[];
-  evidence: PropertyModelEvidenceReferences;
+  evidenceItems: PropertyModelEvidenceItem[];
   areas: PropertyModelAreaPlaceholder[];
   devices: PropertyModelDevicePlaceholder[];
   bomLineItems: PropertyModelBomLineItem[];
@@ -131,6 +144,15 @@ export type PropertyModelRecord = {
 
 type StoredPropertyModelRecord = Partial<PropertyModelRecord> & {
   recordId: string;
+  evidence?: Partial<{
+    sourceSketchReference: string;
+    professionalRedrawReference: string;
+    exteriorPhotoReferences: Partial<Record<'north' | 'south' | 'east' | 'west', string>>;
+    interiorPhotoReferences: string;
+    compassOrientationNotes: string;
+    measurementNotes: string;
+    validationNotes: string;
+  }>;
 };
 
 type StoredPropertyModelSolution = Partial<PropertyModelSolution> & {
@@ -212,12 +234,33 @@ export const bomStatusOptions: Array<{ value: PropertyModelBomStatus; label: str
   { value: 'locked', label: 'Locked' },
 ];
 
-export const propertyBaseFloorplanStatusOptions: Array<{ value: PropertyModelBaseFloorplanStatus; label: string }> = [
-  { value: 'not_started', label: 'Not Started' },
-  { value: 'source_evidence_collected', label: 'Source Evidence Collected' },
-  { value: 'redraw_needed', label: 'Redraw Needed' },
-  { value: 'redraw_in_review', label: 'Redraw In Review' },
-  { value: 'approved_for_quote_use', label: 'Approved For Quote Use' },
+export const propertyEvidenceTypeOptions: Array<{ value: PropertyModelEvidenceType; label: string }> = [
+  { value: 'hand_drawn_floorplan', label: 'Hand-Drawn Floorplan' },
+  { value: 'professional_redraw', label: 'Professional Redraw' },
+  { value: 'exterior_photo', label: 'Exterior Photo' },
+  { value: 'interior_photo', label: 'Interior Photo' },
+  { value: 'measurement_note', label: 'Measurement Note' },
+  { value: 'compass_orientation_note', label: 'Compass / Orientation Note' },
+  { value: 'lidar_digital_twin_capture', label: 'LiDAR / Digital Twin Capture' },
+  { value: 'other', label: 'Other' },
+];
+
+export const propertyEvidenceOrientationOptions: Array<{ value: PropertyModelEvidenceOrientation; label: string }> = [
+  { value: 'north', label: 'North' },
+  { value: 'south', label: 'South' },
+  { value: 'east', label: 'East' },
+  { value: 'west', label: 'West' },
+  { value: 'interior', label: 'Interior' },
+  { value: 'whole_property', label: 'Whole Property' },
+  { value: 'unknown_na', label: 'Unknown / Not Applicable' },
+];
+
+export const propertyEvidenceStatusOptions: Array<{ value: PropertyModelEvidenceStatus; label: string }> = [
+  { value: 'source_provided', label: 'Source Provided' },
+  { value: 'needs_review', label: 'Needs Review' },
+  { value: 'accepted_for_trace', label: 'Accepted For Trace' },
+  { value: 'accepted_for_validation', label: 'Accepted For Validation' },
+  { value: 'rejected_superseded', label: 'Rejected / Superseded' },
 ];
 
 const propertyModelStorageKey = 'wnyhs_property_models_v1';
@@ -264,21 +307,7 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
     customerGoals: [],
     solutionCategories: [],
     proposedSolutions: [],
-    evidence: {
-      sourceSketchReference: '',
-      professionalRedrawReference: '',
-      exteriorPhotoReferences: {
-        north: '',
-        south: '',
-        east: '',
-        west: '',
-      },
-      interiorPhotoReferences: '',
-      compassOrientationNotes: '',
-      measurementNotes: '',
-      validationNotes: '',
-      baseFloorplanStatus: 'not_started',
-    },
+    evidenceItems: [],
     areas: [],
     devices: [],
     bomLineItems: [],
@@ -332,11 +361,107 @@ const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): Proper
     record.quoteStage && propertyQuoteStageOptions.some((stage) => stage.value === record.quoteStage)
       ? record.quoteStage
       : legacyStageMap[String(record.quoteStage)] ?? emptyRecord.quoteStage;
-  const normalizedBaseFloorplanStatus =
-    record.evidence?.baseFloorplanStatus &&
-    propertyBaseFloorplanStatusOptions.some((status) => status.value === record.evidence?.baseFloorplanStatus)
-      ? record.evidence.baseFloorplanStatus
-      : emptyRecord.evidence.baseFloorplanStatus;
+  const normalizeEvidenceItem = (item: Partial<PropertyModelEvidenceItem>, index: number): PropertyModelEvidenceItem => ({
+    id: item.id ?? `evidence-${index + 1}`,
+    evidenceType:
+      item.evidenceType && propertyEvidenceTypeOptions.some((option) => option.value === item.evidenceType)
+        ? item.evidenceType
+        : 'other',
+    label: item.label ?? '',
+    sourceReference: item.sourceReference ?? '',
+    orientationSide:
+      item.orientationSide &&
+      propertyEvidenceOrientationOptions.some((option) => option.value === item.orientationSide)
+        ? item.orientationSide
+        : 'unknown_na',
+    notes: item.notes ?? '',
+    status:
+      item.status && propertyEvidenceStatusOptions.some((option) => option.value === item.status)
+        ? item.status
+        : 'source_provided',
+  });
+  const legacyEvidenceItemsWithNulls: Array<Partial<PropertyModelEvidenceItem> | null> = [
+    record.evidence?.sourceSketchReference
+      ? {
+          evidenceType: 'hand_drawn_floorplan' as const,
+          label: 'Source sketch reference',
+          sourceReference: record.evidence.sourceSketchReference,
+          orientationSide: 'whole_property' as const,
+          notes: '',
+          status: 'source_provided' as const,
+        }
+      : null,
+    record.evidence?.professionalRedrawReference
+      ? {
+          evidenceType: 'professional_redraw' as const,
+          label: 'Professional redraw reference',
+          sourceReference: record.evidence.professionalRedrawReference,
+          orientationSide: 'whole_property' as const,
+          notes: '',
+          status: 'needs_review' as const,
+        }
+      : null,
+    ...(record.evidence?.exteriorPhotoReferences
+      ? (['north', 'south', 'east', 'west'] as const).map((side) =>
+          record.evidence?.exteriorPhotoReferences?.[side]
+            ? {
+                evidenceType: 'exterior_photo' as const,
+                label: `${side[0].toUpperCase()}${side.slice(1)} exterior photo`,
+                sourceReference: record.evidence.exteriorPhotoReferences[side] ?? '',
+                orientationSide: side,
+                notes: '',
+                status: 'accepted_for_validation' as const,
+              }
+            : null,
+        )
+      : []),
+    record.evidence?.interiorPhotoReferences
+      ? {
+          evidenceType: 'interior_photo' as const,
+          label: 'Interior photo references',
+          sourceReference: record.evidence.interiorPhotoReferences,
+          orientationSide: 'interior' as const,
+          notes: '',
+          status: 'accepted_for_validation' as const,
+        }
+      : null,
+    record.evidence?.compassOrientationNotes
+      ? {
+          evidenceType: 'compass_orientation_note' as const,
+          label: 'Compass / orientation notes',
+          sourceReference: 'Legacy orientation note',
+          orientationSide: 'whole_property' as const,
+          notes: record.evidence.compassOrientationNotes,
+          status: 'source_provided' as const,
+        }
+      : null,
+    record.evidence?.measurementNotes
+      ? {
+          evidenceType: 'measurement_note' as const,
+          label: 'Known measurements',
+          sourceReference: 'Legacy measurement note',
+          orientationSide: 'unknown_na' as const,
+          notes: record.evidence.measurementNotes,
+          status: 'source_provided' as const,
+        }
+      : null,
+    record.evidence?.validationNotes
+      ? {
+          evidenceType: 'other' as const,
+          label: 'Floorplan validation notes',
+          sourceReference: 'Legacy validation note',
+          orientationSide: 'unknown_na' as const,
+          notes: record.evidence.validationNotes,
+          status: 'needs_review' as const,
+        }
+      : null,
+  ];
+  const legacyEvidenceItems = legacyEvidenceItemsWithNulls.filter(
+    (item): item is Partial<PropertyModelEvidenceItem> => item !== null,
+  );
+  const normalizedEvidenceItems = Array.isArray(record.evidenceItems)
+    ? record.evidenceItems.map(normalizeEvidenceItem)
+    : legacyEvidenceItems.map(normalizeEvidenceItem);
 
   return {
     ...emptyRecord,
@@ -372,15 +497,7 @@ const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): Proper
           notes: solution.notes ?? solution.wnyhsPurpose ?? '',
         }))
       : [],
-    evidence: {
-      ...emptyRecord.evidence,
-      ...record.evidence,
-      exteriorPhotoReferences: {
-        ...emptyRecord.evidence.exteriorPhotoReferences,
-        ...record.evidence?.exteriorPhotoReferences,
-      },
-      baseFloorplanStatus: normalizedBaseFloorplanStatus,
-    },
+    evidenceItems: normalizedEvidenceItems,
     areas: Array.isArray(record.areas) ? record.areas : [],
     devices: Array.isArray(record.devices) ? record.devices : [],
     bomLineItems: Array.isArray(record.bomLineItems)
