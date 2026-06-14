@@ -222,6 +222,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Refactored the internal Property Model quote workspace with HubSpot-owned CRM framing, WNYHS terminology, source-backed selectors, multi-concern capture, room/area planning, Draft Hardware / BOM status, GATES001-aligned draft quote preview, token-based styling, and visible version `v1.0.130`. No HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, authentication system, new dependencies, package-lock changes, public quote automation, or protected runtime behavior changes were introduced.
 
+### QUOTESYSTEM-007
+- **Task ID:** QUOTESYSTEM-007
+- **Task Name:** Floorplan / Evidence Attachments
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Extend `/operator/property-model` so the WNYHS Quote Workspace can capture local floorplan and property evidence references for a Property Model draft, including source sketch, professional redraw, exterior and interior photo references, orientation notes, measurement notes, validation notes, and approved base floorplan status.
+- **Allowed Scope:** Internal operator route extension for `/operator/property-model`; update local Property Model types and localStorage normalization; add controlled Base Floorplan Status options; add a token-based Floorplan & Property Evidence UI section; update Draft Quote Preview Section 1 with evidence summary; add the QUOTESYSTEM-007 implementation note; update quote-system document map, document catalog, master task register, and visible site version.
+- **Forbidden Scope:** No real file upload implementation, durable storage, cloud storage, image processing, floorplan rendering engine, AI redraw generation, HubSpot writes, HubSpot schema/properties/pipeline changes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, authentication system, new dependencies, package-lock changes, unrelated public site redesign, or protected runtime behavior changes.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `docs/quotesystem/IMPLEMENTATION007_Floorplan_Evidence_Attachments_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** Internal operator route and local browser storage only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-007 implementation note, update quote-system document map, add the document catalog entry, record this task as DONE, and bump the visible site version.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; confirm WNYHS token/CSS standards followed as much as existing codebase permits.
+- **Exit Criteria:** Version is bumped to `v1.0.131`; `/operator/property-model` captures source sketch, professional redraw, exterior side photos, interior room photos, compass/orientation notes, known measurements, validation notes, and Base Floorplan Status; Draft Quote Preview Section 1 reflects floorplan evidence references and validation notes; persistence remains localStorage-only; no protected systems are touched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-006, FLOORPLAN000, FLOORPLAN001, FLOORPLAN002, FLOORPLAN003, PROPERTY001, QUOTE_SYSTEM_DOCUMENT_MAP, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Extended the internal Property Model quote workspace with local-storage-only floorplan/evidence reference fields, controlled Base Floorplan Status, WNYHS floorplan governance helper language, and Draft Quote Preview Section 1 evidence summary. No file uploads, durable storage, cloud storage, image processing, floorplan rendering engine, AI redraw generation, HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, authentication system, new dependencies, package-lock changes, public quote automation, or protected runtime behavior changes were introduced.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack

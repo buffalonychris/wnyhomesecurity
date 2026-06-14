@@ -12,6 +12,7 @@ import {
   customerConcernCategoryOptions,
   loadPropertyModelRecords,
   occupancyContextOptions,
+  propertyBaseFloorplanStatusOptions,
   propertyQuoteStageOptions,
   propertyTypeOptions,
   savePropertyModelRecord,
@@ -115,6 +116,9 @@ const PropertyModelAdmin = () => {
   const hasHubSpotRecord = Boolean(draft.hubSpotLink.contactUrl || draft.hubSpotLink.dealUrl);
   const quoteStageLabel =
     propertyQuoteStageOptions.find((stage) => stage.value === draft.quoteStage)?.label ?? 'Requested Quote';
+  const baseFloorplanStatusLabel =
+    propertyBaseFloorplanStatusOptions.find((status) => status.value === draft.evidence.baseFloorplanStatus)?.label ??
+    'Not Started';
 
   const updateDraft = (updater: React.SetStateAction<PropertyModelRecord>) => {
     setDraft((current) => {
@@ -322,6 +326,132 @@ const PropertyModelAdmin = () => {
                     updateDraft((record) => ({
                       ...record,
                       hubSpotLink: { ...record.hubSpotLink, leadSource: event.target.value },
+                    }))
+                  }
+                />
+              </Field>
+            </div>
+          </SpaceFrame>
+
+          <SpaceFrame className="quote-workspace-panel">
+            <div className="quote-workspace-panel-head">
+              <div>
+                <p className="quote-workspace-eyebrow">Floorplan & Property Evidence</p>
+                <h2>Floorplan & Property Evidence</h2>
+                <p>Source sketch orientation controls during Trace Mode.</p>
+                <p>
+                  Exterior and interior photos validate the sketch/redraw; they do not override source geometry unless
+                  WNYHS approves a correction.
+                </p>
+                <p>No security/device overlay should proceed until the base floorplan is approved.</p>
+              </div>
+            </div>
+            <div className="quote-workspace-grid">
+              <Field label="Source Sketch Reference" help="URL, filename, storage note, or handwritten sketch reference.">
+                <input
+                  value={draft.evidence.sourceSketchReference}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: { ...record.evidence, sourceSketchReference: event.target.value },
+                    }))
+                  }
+                />
+              </Field>
+              <Field label="Professional Redraw Reference" help="URL, filename, or redraw work reference.">
+                <input
+                  value={draft.evidence.professionalRedrawReference}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: { ...record.evidence, professionalRedrawReference: event.target.value },
+                    }))
+                  }
+                />
+              </Field>
+              <Field label="Base Floorplan Status">
+                <select
+                  value={draft.evidence.baseFloorplanStatus}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: {
+                        ...record.evidence,
+                        baseFloorplanStatus: event.target.value as PropertyModelRecord['evidence']['baseFloorplanStatus'],
+                      },
+                    }))
+                  }
+                >
+                  {propertyBaseFloorplanStatusOptions.map((status) => (
+                    <option key={status.value} value={status.value}>
+                      {status.label}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              {(['north', 'south', 'east', 'west'] as const).map((side) => (
+                <Field key={side} label={`${side[0].toUpperCase()}${side.slice(1)} Exterior Photo Reference`}>
+                  <input
+                    value={draft.evidence.exteriorPhotoReferences[side]}
+                    onChange={(event) =>
+                      updateDraft((record) => ({
+                        ...record,
+                        evidence: {
+                          ...record.evidence,
+                          exteriorPhotoReferences: {
+                            ...record.evidence.exteriorPhotoReferences,
+                            [side]: event.target.value,
+                          },
+                        },
+                      }))
+                    }
+                  />
+                </Field>
+              ))}
+              <Field label="Interior Photo References" help="Room photo URLs, filenames, or grouped reference notes.">
+                <textarea
+                  rows={3}
+                  value={draft.evidence.interiorPhotoReferences}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: { ...record.evidence, interiorPhotoReferences: event.target.value },
+                    }))
+                  }
+                />
+              </Field>
+              <Field label="Compass / Orientation Notes">
+                <textarea
+                  rows={3}
+                  value={draft.evidence.compassOrientationNotes}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: { ...record.evidence, compassOrientationNotes: event.target.value },
+                    }))
+                  }
+                />
+              </Field>
+              <Field label="Known Measurements">
+                <textarea
+                  rows={3}
+                  value={draft.evidence.measurementNotes}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: { ...record.evidence, measurementNotes: event.target.value },
+                    }))
+                  }
+                />
+              </Field>
+              <Field label="Floorplan Validation Notes">
+                <textarea
+                  rows={3}
+                  value={draft.evidence.validationNotes}
+                  onChange={(event) =>
+                    updateDraft((record) => ({
+                      ...record,
+                      evidence: { ...record.evidence, validationNotes: event.target.value },
                     }))
                   }
                 />
@@ -750,7 +880,22 @@ const PropertyModelAdmin = () => {
             <div className="quote-workspace-preview">
               <section>
                 <h3>Section 1: Floorplan / Property Plan</h3>
-                <p>Pending approved floorplan/property plan. Use approved redraw and customer room names before treating placement as final.</p>
+                <ul className="operator-list">
+                  <li>
+                    <strong>Base floorplan status:</strong> {baseFloorplanStatusLabel}
+                  </li>
+                  <li>
+                    <strong>Source sketch reference:</strong>{' '}
+                    {draft.evidence.sourceSketchReference || 'Not entered yet.'}
+                  </li>
+                  <li>
+                    <strong>Professional redraw reference:</strong>{' '}
+                    {draft.evidence.professionalRedrawReference || 'Not entered yet.'}
+                  </li>
+                  <li>
+                    <strong>Validation notes:</strong> {draft.evidence.validationNotes || 'No conflicts noted yet.'}
+                  </li>
+                </ul>
               </section>
               <section>
                 <h3>Section 2: Customer Concerns + WNYHS Accommodation Plan</h3>

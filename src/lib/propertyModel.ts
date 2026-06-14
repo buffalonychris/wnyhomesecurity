@@ -8,6 +8,13 @@ export type PropertyQuoteStage =
 
 export type PropertyModelBomStatus = 'gpt_proposed' | 'wnyhs_modified' | 'approved' | 'locked';
 
+export type PropertyModelBaseFloorplanStatus =
+  | 'not_started'
+  | 'source_evidence_collected'
+  | 'redraw_needed'
+  | 'redraw_in_review'
+  | 'approved_for_quote_use';
+
 export type PropertyModelAreaPlaceholder = {
   id: string;
   label: string;
@@ -63,6 +70,22 @@ export type PropertyModelGateStatus = {
   finalBalanceExceptionApproved: boolean;
 };
 
+export type PropertyModelEvidenceReferences = {
+  sourceSketchReference: string;
+  professionalRedrawReference: string;
+  exteriorPhotoReferences: {
+    north: string;
+    south: string;
+    east: string;
+    west: string;
+  };
+  interiorPhotoReferences: string;
+  compassOrientationNotes: string;
+  measurementNotes: string;
+  validationNotes: string;
+  baseFloorplanStatus: PropertyModelBaseFloorplanStatus;
+};
+
 export type PropertyModelRecord = {
   recordId: string;
   requestId: string;
@@ -95,6 +118,7 @@ export type PropertyModelRecord = {
   customerGoals: PropertyModelCustomerGoal[];
   solutionCategories: string[];
   proposedSolutions: PropertyModelSolution[];
+  evidence: PropertyModelEvidenceReferences;
   areas: PropertyModelAreaPlaceholder[];
   devices: PropertyModelDevicePlaceholder[];
   bomLineItems: PropertyModelBomLineItem[];
@@ -188,6 +212,14 @@ export const bomStatusOptions: Array<{ value: PropertyModelBomStatus; label: str
   { value: 'locked', label: 'Locked' },
 ];
 
+export const propertyBaseFloorplanStatusOptions: Array<{ value: PropertyModelBaseFloorplanStatus; label: string }> = [
+  { value: 'not_started', label: 'Not Started' },
+  { value: 'source_evidence_collected', label: 'Source Evidence Collected' },
+  { value: 'redraw_needed', label: 'Redraw Needed' },
+  { value: 'redraw_in_review', label: 'Redraw In Review' },
+  { value: 'approved_for_quote_use', label: 'Approved For Quote Use' },
+];
+
 const propertyModelStorageKey = 'wnyhs_property_models_v1';
 
 const createId = (prefix: string) => {
@@ -232,6 +264,21 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
     customerGoals: [],
     solutionCategories: [],
     proposedSolutions: [],
+    evidence: {
+      sourceSketchReference: '',
+      professionalRedrawReference: '',
+      exteriorPhotoReferences: {
+        north: '',
+        south: '',
+        east: '',
+        west: '',
+      },
+      interiorPhotoReferences: '',
+      compassOrientationNotes: '',
+      measurementNotes: '',
+      validationNotes: '',
+      baseFloorplanStatus: 'not_started',
+    },
     areas: [],
     devices: [],
     bomLineItems: [],
@@ -285,6 +332,11 @@ const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): Proper
     record.quoteStage && propertyQuoteStageOptions.some((stage) => stage.value === record.quoteStage)
       ? record.quoteStage
       : legacyStageMap[String(record.quoteStage)] ?? emptyRecord.quoteStage;
+  const normalizedBaseFloorplanStatus =
+    record.evidence?.baseFloorplanStatus &&
+    propertyBaseFloorplanStatusOptions.some((status) => status.value === record.evidence?.baseFloorplanStatus)
+      ? record.evidence.baseFloorplanStatus
+      : emptyRecord.evidence.baseFloorplanStatus;
 
   return {
     ...emptyRecord,
@@ -320,6 +372,15 @@ const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): Proper
           notes: solution.notes ?? solution.wnyhsPurpose ?? '',
         }))
       : [],
+    evidence: {
+      ...emptyRecord.evidence,
+      ...record.evidence,
+      exteriorPhotoReferences: {
+        ...emptyRecord.evidence.exteriorPhotoReferences,
+        ...record.evidence?.exteriorPhotoReferences,
+      },
+      baseFloorplanStatus: normalizedBaseFloorplanStatus,
+    },
     areas: Array.isArray(record.areas) ? record.areas : [],
     devices: Array.isArray(record.devices) ? record.devices : [],
     bomLineItems: Array.isArray(record.bomLineItems)
