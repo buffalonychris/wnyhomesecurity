@@ -22,6 +22,31 @@ export type PropertyModelDevicePlaceholder = {
   notes: string;
 };
 
+export type PropertyModelCustomerGoal = {
+  id: string;
+  goal: string;
+  notes: string;
+};
+
+export type PropertyModelSolution = {
+  id: string;
+  title: string;
+  customerGoalRef: string;
+  wnyhsPurpose: string;
+  notes: string;
+};
+
+export type PropertyModelBomLineItem = {
+  id: string;
+  itemName: string;
+  quantity: number;
+  locationRef: string;
+  customerGoalServed: string;
+  wnyhsPurpose: string;
+  dashboardPrepNote: string;
+  installerNote: string;
+};
+
 export type PropertyModelGateStatus = {
   floorplanApproved: boolean;
   depositVerified: boolean;
@@ -52,14 +77,21 @@ export type PropertyModelRecord = {
     notes: string;
   };
   customerConcerns: string[];
+  customerGoals: PropertyModelCustomerGoal[];
   solutionCategories: string[];
+  proposedSolutions: PropertyModelSolution[];
   areas: PropertyModelAreaPlaceholder[];
   devices: PropertyModelDevicePlaceholder[];
+  bomLineItems: PropertyModelBomLineItem[];
   quoteStage: PropertyQuoteStage;
   gates: PropertyModelGateStatus;
   notes: string;
   createdAt: string;
   updatedAt: string;
+};
+
+type StoredPropertyModelRecord = Partial<PropertyModelRecord> & {
+  recordId: string;
 };
 
 export const propertyQuoteStageOptions: Array<{ value: PropertyQuoteStage; label: string }> = [
@@ -80,6 +112,8 @@ const createId = (prefix: string) => {
   const random = Math.random().toString(36).slice(2, 7).toUpperCase();
   return `${prefix}-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}-${random}`;
 };
+
+export const createPropertyModelChildId = (prefix: string) => createId(prefix);
 
 export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
   const timestamp = new Date().toISOString();
@@ -106,9 +140,12 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
       notes: '',
     },
     customerConcerns: [],
+    customerGoals: [],
     solutionCategories: [],
+    proposedSolutions: [],
     areas: [],
     devices: [],
+    bomLineItems: [],
     quoteStage: 'draft',
     gates: {
       floorplanApproved: false,
@@ -120,6 +157,44 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
     notes: '',
     createdAt: timestamp,
     updatedAt: timestamp,
+  };
+};
+
+const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): PropertyModelRecord => {
+  const emptyRecord = createEmptyPropertyModelRecord();
+
+  return {
+    ...emptyRecord,
+    ...record,
+    recordId: record.recordId,
+    requestId: record.requestId ?? '',
+    customer: {
+      ...emptyRecord.customer,
+      ...record.customer,
+    },
+    propertyAddress: {
+      ...emptyRecord.propertyAddress,
+      ...record.propertyAddress,
+    },
+    propertyContext: {
+      ...emptyRecord.propertyContext,
+      ...record.propertyContext,
+    },
+    customerConcerns: Array.isArray(record.customerConcerns) ? record.customerConcerns : [],
+    customerGoals: Array.isArray(record.customerGoals) ? record.customerGoals : [],
+    solutionCategories: Array.isArray(record.solutionCategories) ? record.solutionCategories : [],
+    proposedSolutions: Array.isArray(record.proposedSolutions) ? record.proposedSolutions : [],
+    areas: Array.isArray(record.areas) ? record.areas : [],
+    devices: Array.isArray(record.devices) ? record.devices : [],
+    bomLineItems: Array.isArray(record.bomLineItems) ? record.bomLineItems : [],
+    quoteStage: record.quoteStage ?? emptyRecord.quoteStage,
+    gates: {
+      ...emptyRecord.gates,
+      ...record.gates,
+    },
+    notes: record.notes ?? '',
+    createdAt: record.createdAt ?? emptyRecord.createdAt,
+    updatedAt: record.updatedAt ?? emptyRecord.updatedAt,
   };
 };
 
@@ -160,8 +235,8 @@ const writeToStorage = <T,>(key: string, value: T) => {
 };
 
 export const loadPropertyModelRecords = () => {
-  const records = readFromStorage<PropertyModelRecord[]>(propertyModelStorageKey);
-  return Array.isArray(records) ? records : [];
+  const records = readFromStorage<StoredPropertyModelRecord[]>(propertyModelStorageKey);
+  return Array.isArray(records) ? records.map(normalizePropertyModelRecord) : [];
 };
 
 export const savePropertyModelRecord = (record: PropertyModelRecord) => {

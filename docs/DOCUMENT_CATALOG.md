@@ -200,6 +200,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** Yes, only for the completed QUOTESYSTEM-004 scope.
 - **Notes:** Records a local/dev-compatible storage limitation. It does not authorize production persistence, quote generation, pricing automation, payment processing, HubSpot writes, scheduling writes, inventory automation, installer packet generation, or Home Assistant dashboard generation.
 
+### `/docs/quotesystem/IMPLEMENTATION005_Draft_Quote_Workspace_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION005_Draft_Quote_Workspace_REV01.md`
+- **Purpose / likely role:** Implementation note for the bounded QUOTESYSTEM-005 draft quote workspace extension to the internal Property Model prototype.
+- **Authority level:** **Quote-system implementation note / partial runtime implementation**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for the completed QUOTESYSTEM-005 scope.
+- **Notes:** Records local-storage-only workspace support for customer goals, WNYHS solutions, hardware/BOM line items, and draft quote structure. It does not authorize public quote generation, quote PDFs, pricing automation, payment processing, HubSpot writes, scheduling automation, inventory automation, email sending, authentication, production persistence, installer packet generation, or Home Assistant dashboard generation.
+
 ### `/docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **File path:** `docs/quotesystem/SOLUTION_PLACEMENT001_Hardware_Placement_Standard_REV01.md`
 - **Purpose / likely role:** Placeholder standard for future hardware placement onto approved floorplans after base redraw approval.
