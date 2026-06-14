@@ -437,6 +437,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if the promoted governance docs and planning placeholders are accepted.
 - **Completion Notes:** Promoted eight local governance documents as docs-only official references. Updated status labels to `Working Standard` where appropriate, retained `Approved Governance Context` and `Approved Catalog V1`, removed guardrail-sensitive claim wording from the promoted docs, updated catalog and manifest, queued planning-only follow-up placeholders, and made no implementation, runtime, protected-system, secret, route, source, CSS, asset, or image-generation changes.
 
+### GOV009-CODEX-CONTEXT-OPTIMIZATION
+- **Task ID:** GOV009
+- **Task Name:** ChatGPT GitHub Workflow + Codex Context Optimization Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Update WNYHS governance so future ChatGPT/Codex workflows explicitly document available GitHub connector usage, implementation authority boundaries, copy-friendly command formatting, `mainsync.bat` guidance, prompt delivery/reuse standards, future source-map-based prompt minimization, and mandatory Codex Context Usage Reports.
+- **Allowed Scope:** Docs-only governance; create `CODEX_CONTEXT_OPTIMIZATION_STANDARD_REV01.md`; update authority, operator workflow, and Codex work-order standards; update document catalog and markdown manifest; record this task as DONE.
+- **Forbidden Scope:** No app/runtime/source code changes, route/UI changes, HubSpot changes, Stripe/payment changes, scheduling changes, email/Resend changes, Cloudflare/runtime/env changes, quote-system behavior changes, package/dependency changes, package-lock changes, public claims changes, or visible version bump.
+- **Target Files:** `docs/governance/CODEX_CONTEXT_OPTIMIZATION_STANDARD_REV01.md`, `docs/governance/AUTHORITY-MAP-REV01.md`, `docs/governance/OPS001_OPERATOR_WORKFLOW_STANDARD_REV01.md`, `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create the new context optimization standard, update authority/workflow/work-order governance, add catalog entry, add manifest addendum, and record DONE status.
+- **Validation Required:** Confirm all target files exist; confirm markdown headings/readability; `git diff --check`; forbidden-claim scan if available; confirm only docs/markdown files changed; no runtime build required.
+- **Exit Criteria:** New governance standard exists; ChatGPT GitHub connector use and limits are documented; Project KB/chat authority correction is reinforced; Codex final summary Context Usage Report is mandatory; command formatting and `mainsync.bat` guidance are recorded; prompt delivery/reuse/source-map minimization standards are documented; catalog and manifest are updated; only docs files changed; protected systems untouched; PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded GOV009 work order, current governance authority chain, `docs/system/step-current.md`, `docs/governance/AUTHORITY-MAP-REV01.md`, `docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md`, `docs/governance/OPS001_OPERATOR_WORKFLOW_STANDARD_REV01.md`, `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed docs-only governance update for ChatGPT GitHub connector workflow, repo authority correction, Codex Context Usage Reports, command formatting, `mainsync.bat` sync guidance, Codex prompt delivery, prompt reuse, and future governance-source-map minimization direction. No source, runtime, route, UI, HubSpot, Stripe/payment, scheduling, email/Resend, Cloudflare/runtime/env, quote-system behavior, dependency, package-lock, protected-system, or version files were changed.
+
 ### GOV-REPOACCESS-001-B
 - **Task ID:** GOV-REPOACCESS-001-B
 - **Task Name:** Complete Repository Connector Dispatch Governance Bookkeeping

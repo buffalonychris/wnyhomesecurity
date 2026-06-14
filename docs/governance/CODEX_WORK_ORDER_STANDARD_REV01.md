@@ -154,6 +154,7 @@ Codex final summary must report:
 - files changed
 - validation run
 - protected systems confirmation
+- Context Usage Report
 
 Use `not applicable` for PR number and PR link when no PR was created.
 
@@ -212,7 +213,51 @@ Codex must stop execution and request operator revision or clarification when an
 
 ---
 
-## 10. Reusable Codex Prompt Template
+## 10. Context Usage Report
+
+Every Codex final summary must include:
+
+```text
+Context Usage Report:
+
+Approximate prompt/context load:
+Docs actually used:
+Docs loaded but not useful:
+Repeated instructions that should move into repo docs:
+Prompt sections that can be shortened next time:
+Missing repo docs that would reduce future prompt size:
+Suggested reusable validation/script improvements:
+```
+
+Purpose:
+
+- Create a recursive prompt improvement loop.
+- Reduce pasted context over time.
+- Increase reliance on repo-native governance and standards.
+- Improve accuracy while minimizing token use.
+- Identify repeated validation or reporting work that should become reusable scripts.
+
+---
+
+## 11. Prompt Delivery and Reuse
+
+ChatGPT should deliver Codex work orders in a format that supports direct copy/paste into Codex.
+
+Rules:
+
+- Deliver the entire Codex work order inside one copyable code block whenever practical.
+- Avoid nested markdown code fences inside a larger work order.
+- Represent example shell commands inside the work order as plain text or clearly escaped examples.
+- Prefer prompt formats that survive copy/paste without manual editing.
+- Optimize for one-click copy behavior.
+
+Before generating a new work order, ChatGPT should prefer existing repository governance documents, standards, runtime contracts, work-order templates, and authority maps over re-explaining the same context repeatedly.
+
+Future prompt minimization should move from long explicit lists such as `Read these 12 documents...` toward source-map routing such as `Load governance source map and task-referenced standards.`
+
+---
+
+## 12. Reusable Codex Prompt Template
 
 ```text
 SYSTEM CONTEXT
@@ -309,6 +354,14 @@ Codex must report:
 - Source branch
 - Base branch
 - Merge target
+- Context Usage Report:
+  - Approximate prompt/context load:
+  - Docs actually used:
+  - Docs loaded but not useful:
+  - Repeated instructions that should move into repo docs:
+  - Prompt sections that can be shortened next time:
+  - Missing repo docs that would reduce future prompt size:
+  - Suggested reusable validation/script improvements:
 
 SELF-CHECK
 
