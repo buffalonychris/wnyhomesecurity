@@ -1606,3 +1606,10 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 - `docs/quotesystem/IMPLEMENTATION013_Pricing_Totals_Placeholder_REV01.md`
 
 - `docs/quotesystem/IMPLEMENTATION014_Funeral_Home_Test_Case_REV01.md`
+
+## QUOTESYSTEM-015 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/quotesystem/FLOORPLAN004_Redraw_Photo_Analysis_Handoff_REV01.md | FLOORPLAN004 REV01 — Redraw + Photo Analysis Workflow Handoff | Governance for redraw/photo-analysis handoff source hierarchy, checklist, fallback, and outputs. | Quote System / Floorplan / Property Model | Active | Supporting standard | No | No | redraw, photo analysis, floorplan, handoff | Manual governance only; no image processing or protected-system change. |
+| docs/quotesystem/IMPLEMENTATION015_Redraw_Photo_Analysis_Handoff_REV01.md | IMPLEMENTATION015 REV01 — Redraw + Photo Analysis Handoff Support | Implementation note for local Property Model handoff fields and preview compatibility. | Quote System / Runtime Docs | Active | Implementation note | Yes - local operator workspace only | No | Property Model, handoff, quote preview, installer packet | HubSpot and Stripe/payment untouched. |

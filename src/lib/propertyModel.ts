@@ -20,6 +20,15 @@ export type PropertyModelInstallerAssignment =
   | "both_installers_required"
   | "unassigned";
 
+export type PropertyModelRedrawStatus =
+  | "not_started"
+  | "source_evidence_collected"
+  | "redraw_needed"
+  | "redraw_in_progress"
+  | "redraw_ready_for_review"
+  | "redraw_approved"
+  | "redraw_rejected_needs_revision";
+
 export type PropertyModelEvidenceType =
   | "hand_drawn_floorplan"
   | "professional_redraw"
@@ -118,6 +127,18 @@ export type PropertyModelGateStatus = {
   finalBalanceExceptionApproved: boolean;
 };
 
+export type PropertyModelRedrawPhotoHandoff = {
+  redrawStatus: PropertyModelRedrawStatus;
+  redrawReference: string;
+  photoAnalysisSummary: string;
+  doorLockNotes: string;
+  windowSensorNotes: string;
+  cameraPlacementNotes: string;
+  ambiguityNotes: string;
+  onsiteVerificationNotes: string;
+  roughEstimateAllowed: boolean;
+};
+
 export type PropertyModelEvidenceItem = {
   id: string;
   evidenceType: PropertyModelEvidenceType;
@@ -161,6 +182,7 @@ export type PropertyModelRecord = {
   solutionCategories: string[];
   proposedSolutions: PropertyModelSolution[];
   evidenceItems: PropertyModelEvidenceItem[];
+  redrawPhotoHandoff: PropertyModelRedrawPhotoHandoff;
   areas: PropertyModelAreaPlaceholder[];
   devices: PropertyModelDevicePlaceholder[];
   bomLineItems: PropertyModelBomLineItem[];
@@ -283,6 +305,19 @@ export const areaNameOptions = [
   "Office",
 ];
 
+export const redrawStatusOptions: Array<{
+  value: PropertyModelRedrawStatus;
+  label: string;
+}> = [
+  { value: "not_started", label: "Not Started" },
+  { value: "source_evidence_collected", label: "Source Evidence Collected" },
+  { value: "redraw_needed", label: "Redraw Needed" },
+  { value: "redraw_in_progress", label: "Redraw In Progress" },
+  { value: "redraw_ready_for_review", label: "Redraw Ready For Review" },
+  { value: "redraw_approved", label: "Redraw Approved" },
+  { value: "redraw_rejected_needs_revision", label: "Redraw Rejected / Needs Revision" },
+];
+
 export const installerAssignmentOptions: Array<{
   value: PropertyModelInstallerAssignment;
   label: string;
@@ -391,6 +426,17 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
     solutionCategories: [],
     proposedSolutions: [],
     evidenceItems: [],
+    redrawPhotoHandoff: {
+      redrawStatus: "not_started",
+      redrawReference: "",
+      photoAnalysisSummary: "",
+      doorLockNotes: "",
+      windowSensorNotes: "",
+      cameraPlacementNotes: "",
+      ambiguityNotes: "",
+      onsiteVerificationNotes: "",
+      roughEstimateAllowed: false,
+    },
     areas: [],
     devices: [],
     bomLineItems: [],
@@ -615,6 +661,19 @@ export const normalizePropertyModelRecord = (
         )
       : [],
     evidenceItems: normalizedEvidenceItems,
+    redrawPhotoHandoff: {
+      ...emptyRecord.redrawPhotoHandoff,
+      ...record.redrawPhotoHandoff,
+      redrawStatus:
+        record.redrawPhotoHandoff?.redrawStatus &&
+        redrawStatusOptions.some(
+          (option) => option.value === record.redrawPhotoHandoff?.redrawStatus,
+        )
+          ? record.redrawPhotoHandoff.redrawStatus
+          : emptyRecord.redrawPhotoHandoff.redrawStatus,
+      roughEstimateAllowed:
+        record.redrawPhotoHandoff?.roughEstimateAllowed ?? false,
+    },
     areas: Array.isArray(record.areas) ? record.areas : [],
     devices: Array.isArray(record.devices) ? record.devices : [],
     bomLineItems: Array.isArray(record.bomLineItems)

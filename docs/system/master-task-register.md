@@ -4051,3 +4051,21 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** QUOTESYSTEM-011, QUOTESYSTEM-012, PROPERTY001, QUOTE001, GATES001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Added local manual pricing/totals placeholders to the Property Model workspace and normalized older records with default 50% deposit behavior. Quote Preview Section 3 now includes subtotal, optional discount/tax-fees, total, deposit requirement, deposit amount, balance due on arrival, pricing notes, and payment terms. Installer Packet shows payment gate readiness without a full pricing breakdown. No HubSpot, Stripe/payment, pricing engine, catalog pricing, inventory costing/margin, scheduling, ordering, email, PDF, auth, durable storage, dependency, package-lock, protected runtime, or unrelated public-site changes were made. Version bumped to `v1.0.139`.
+
+### QUOTESYSTEM-015
+- **Task ID:** QUOTESYSTEM-015
+- **Task Name:** Redraw + Photo Analysis Workflow Handoff
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create governance and local workspace support for professional redraw/photo-analysis handoff notes supporting quote creation.
+- **Allowed Scope:** FLOORPLAN004 governance; IMPLEMENTATION015 note; local Property Model handoff fields; `/operator/property-model` handoff section; quote preview Section 1 and installer packet evidence compatibility; document map/catalog/manifest/register updates; visible version bump.
+- **Forbidden Scope:** No image processing, AI redraw generation, computer vision, uploads, LiDAR implementation, durable backend persistence, HubSpot writes, Stripe/payment changes, inventory, ordering, scheduling, email, PDF generation, auth, dependencies, package-lock, protected runtime changes, or unrelated redesign.
+- **Target Files:** `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/pages/PropertyModelQuotePreview.tsx`, `src/pages/PropertyModelInstallerPacket.tsx`, `src/lib/siteVersion.ts`, `docs/quotesystem/FLOORPLAN004_Redraw_Photo_Analysis_Handoff_REV01.md`, `docs/quotesystem/IMPLEMENTATION015_Redraw_Photo_Analysis_Handoff_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator Property Model route and local browser storage only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; targeted typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model`, `/operator/property-model/quote-preview`, and `/operator/property-model/installer-packet`.
+- **Exit Criteria:** Version is bumped to `v1.0.141`; governance and implementation docs exist; handoff fields normalize locally; workspace section exists; quote preview and installer packet surface handoff summary; protected systems remain untouched.
+- **Dependencies:** QUOTESYSTEM-001 through QUOTESYSTEM-014, PROPERTY001, FLOORPLAN000-003, HARDWARE001, SOLUTION_PLACEMENT001, CATALOG001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added manual redraw/photo-analysis handoff governance and local workspace support. No HubSpot, Stripe/payment, image processing, AI redraw generation, uploads, LiDAR capture, durable backend persistence, email, PDF, auth, inventory, ordering, scheduling, dependency, package-lock, protected runtime, or unrelated public-site changes were made.

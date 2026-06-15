@@ -6,6 +6,7 @@ import {
   propertyEvidenceOrientationOptions,
   propertyEvidenceStatusOptions,
   propertyEvidenceTypeOptions,
+  redrawStatusOptions,
   type PropertyModelBomLineItem,
   type PropertyModelEvidenceItem,
   type PropertyModelPricing,
@@ -52,6 +53,11 @@ const calculatePricing = (
     balanceDueOnArrival: Math.max(0, total - depositAmount),
   };
 };
+
+const redrawStatusLabel = (record: PropertyModelRecord) =>
+  redrawStatusOptions.find(
+    (option) => option.value === record.redrawPhotoHandoff.redrawStatus,
+  )?.label ?? "Not Started";
 
 const optionLabel = <T extends string>(
   options: Array<{ value: T; label: string }>,
@@ -331,6 +337,22 @@ const PropertyModelQuotePreview = () => {
               <dd>
                 {statusForEvidenceType(record, "compass_orientation_note")}
               </dd>
+            </div>
+            <div>
+              <dt>Redraw handoff status</dt>
+              <dd>{redrawStatusLabel(record)}</dd>
+            </div>
+            <div>
+              <dt>Rough estimate allowed</dt>
+              <dd>{record.redrawPhotoHandoff.roughEstimateAllowed ? "Yes - with risk notes" : "No"}</dd>
+            </div>
+            <div>
+              <dt>Photo analysis summary</dt>
+              <dd>{record.redrawPhotoHandoff.photoAnalysisSummary || "Not entered"}</dd>
+            </div>
+            <div>
+              <dt>Ambiguity / onsite verification</dt>
+              <dd>{record.redrawPhotoHandoff.ambiguityNotes || record.redrawPhotoHandoff.onsiteVerificationNotes || "Not entered"}</dd>
             </div>
           </dl>
           {record.propertyContext.notes ? (

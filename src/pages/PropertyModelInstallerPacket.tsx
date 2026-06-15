@@ -8,6 +8,7 @@ import {
   propertyEvidenceStatusOptions,
   propertyEvidenceTypeOptions,
   propertyQuoteStageOptions,
+  redrawStatusOptions,
   type PropertyModelBomLineItem,
   type PropertyModelPricing,
   type PropertyModelRecord,
@@ -41,6 +42,11 @@ const calculatePricing = (
     balanceDueOnArrival: Math.max(0, total - depositAmount),
   };
 };
+
+const redrawStatusLabel = (record: PropertyModelRecord) =>
+  redrawStatusOptions.find(
+    (option) => option.value === record.redrawPhotoHandoff.redrawStatus,
+  )?.label ?? "Not Started";
 
 const optionLabel = <T extends string>(
   options: Array<{ value: T; label: string }>,
@@ -318,6 +324,30 @@ const PropertyModelInstallerPacket = () => {
             <div>
               <dt>Professional redraw</dt>
               <dd>{statusForEvidenceType(record, "professional_redraw")}</dd>
+            </div>
+            <div>
+              <dt>Redraw handoff status</dt>
+              <dd>{redrawStatusLabel(record)}</dd>
+            </div>
+            <div>
+              <dt>Photo analysis summary</dt>
+              <dd>{record.redrawPhotoHandoff.photoAnalysisSummary || "Not entered"}</dd>
+            </div>
+            <div>
+              <dt>Door / lock notes</dt>
+              <dd>{record.redrawPhotoHandoff.doorLockNotes || "Not entered"}</dd>
+            </div>
+            <div>
+              <dt>Window / sensor notes</dt>
+              <dd>{record.redrawPhotoHandoff.windowSensorNotes || "Not entered"}</dd>
+            </div>
+            <div>
+              <dt>Camera placement notes</dt>
+              <dd>{record.redrawPhotoHandoff.cameraPlacementNotes || "Not entered"}</dd>
+            </div>
+            <div>
+              <dt>Onsite verification</dt>
+              <dd>{record.redrawPhotoHandoff.onsiteVerificationNotes || "Not entered"}</dd>
             </div>
           </dl>
         </section>

@@ -22,6 +22,7 @@ import {
   propertyEvidenceTypeOptions,
   propertyQuoteStageOptions,
   propertyTypeOptions,
+  redrawStatusOptions,
   normalizePropertyModelRecord,
   savePropertyModelRecord,
   savePropertyModelRecords,
@@ -511,6 +512,15 @@ const PropertyModelAdmin = () => {
     updateDraft((record) => ({
       ...record,
       pricing: calculatePricing({ ...record.pricing, ...updates }),
+    }));
+  };
+
+  const updateRedrawPhotoHandoff = (
+    updates: Partial<PropertyModelRecord["redrawPhotoHandoff"]>,
+  ) => {
+    updateDraft((record) => ({
+      ...record,
+      redrawPhotoHandoff: { ...record.redrawPhotoHandoff, ...updates },
     }));
   };
 
@@ -1894,6 +1904,70 @@ const PropertyModelAdmin = () => {
             </div>
           </SpaceFrame>
 
+
+
+          <SpaceFrame className="quote-workspace-panel">
+            <div className="quote-workspace-panel-head">
+              <div>
+                <p className="quote-workspace-eyebrow">Redraw / Photo Analysis Handoff</p>
+                <h2>Redraw / Photo Analysis Handoff</h2>
+                <p>Capture manual handoff notes for professional redraw review and quote-risk decisions. This workspace does not analyze images or generate redraws.</p>
+              </div>
+            </div>
+            <div className="quote-workspace-grid">
+              <Field label="Redraw Status">
+                <select
+                  value={draft.redrawPhotoHandoff.redrawStatus}
+                  onChange={(event) =>
+                    updateRedrawPhotoHandoff({
+                      redrawStatus: event.target.value as PropertyModelRecord["redrawPhotoHandoff"]["redrawStatus"],
+                    })
+                  }
+                >
+                  {redrawStatusOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Rough Estimate Allowed">
+                <select
+                  value={draft.redrawPhotoHandoff.roughEstimateAllowed ? "yes" : "no"}
+                  onChange={(event) =>
+                    updateRedrawPhotoHandoff({
+                      roughEstimateAllowed: event.target.value === "yes",
+                    })
+                  }
+                >
+                  <option value="no">No</option>
+                  <option value="yes">Yes - with risk notes</option>
+                </select>
+              </Field>
+              <Field label="Redraw Reference">
+                <textarea rows={3} value={draft.redrawPhotoHandoff.redrawReference} onChange={(event) => updateRedrawPhotoHandoff({ redrawReference: event.target.value })} />
+              </Field>
+              <Field label="Photo Analysis Summary">
+                <textarea rows={4} value={draft.redrawPhotoHandoff.photoAnalysisSummary} onChange={(event) => updateRedrawPhotoHandoff({ photoAnalysisSummary: event.target.value })} />
+              </Field>
+              <Field label="Door / Lock Notes">
+                <textarea rows={3} value={draft.redrawPhotoHandoff.doorLockNotes} onChange={(event) => updateRedrawPhotoHandoff({ doorLockNotes: event.target.value })} />
+              </Field>
+              <Field label="Window / Sensor Notes">
+                <textarea rows={3} value={draft.redrawPhotoHandoff.windowSensorNotes} onChange={(event) => updateRedrawPhotoHandoff({ windowSensorNotes: event.target.value })} />
+              </Field>
+              <Field label="Camera Placement Notes">
+                <textarea rows={3} value={draft.redrawPhotoHandoff.cameraPlacementNotes} onChange={(event) => updateRedrawPhotoHandoff({ cameraPlacementNotes: event.target.value })} />
+              </Field>
+              <Field label="Ambiguity / Risk Notes">
+                <textarea rows={3} value={draft.redrawPhotoHandoff.ambiguityNotes} onChange={(event) => updateRedrawPhotoHandoff({ ambiguityNotes: event.target.value })} />
+              </Field>
+              <Field label="Onsite Verification Notes">
+                <textarea rows={3} value={draft.redrawPhotoHandoff.onsiteVerificationNotes} onChange={(event) => updateRedrawPhotoHandoff({ onsiteVerificationNotes: event.target.value })} />
+              </Field>
+            </div>
+          </SpaceFrame>
+
           <SpaceFrame className="quote-workspace-panel">
             <div className="quote-workspace-panel-head">
               <div>
@@ -1934,6 +2008,19 @@ const PropertyModelAdmin = () => {
                     {floorplanEvidenceSummary.orientationEvidence
                       ? "Evidence entered"
                       : "Not entered yet."}
+                  </li>
+                  <li>
+                    <strong>Redraw handoff:</strong>{" "}
+                    {redrawStatusOptions.find((option) => option.value === draft.redrawPhotoHandoff.redrawStatus)?.label ?? "Not Started"}
+                    {draft.redrawPhotoHandoff.roughEstimateAllowed ? " - rough estimate allowed with notes." : " - rough estimate not marked allowed."}
+                  </li>
+                  <li>
+                    <strong>Photo analysis summary:</strong>{" "}
+                    {draft.redrawPhotoHandoff.photoAnalysisSummary || "Not entered yet."}
+                  </li>
+                  <li>
+                    <strong>Onsite verification:</strong>{" "}
+                    {draft.redrawPhotoHandoff.onsiteVerificationNotes || "Not entered yet."}
                   </li>
                   <li>
                     Base floorplan must be approved before hardware placement or
