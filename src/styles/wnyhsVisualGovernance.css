@@ -1,6 +1,8 @@
 :root {
-  --wnyhs-font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --wnyhs-font-heading: 'Manrope', 'Inter', system-ui, sans-serif;
+  --wnyhs-font-body:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --wnyhs-font-heading: "Manrope", "Inter", system-ui, sans-serif;
 
   --wnyhs-canvas: #f8f6f1;
   --wnyhs-surface: #ffffff;
@@ -22,9 +24,12 @@
   --wnyhs-radius-shell: 18px;
   --wnyhs-radius-card: 14px;
   --wnyhs-radius-media: 16px;
-  --wnyhs-shadow-soft: 0 18px 44px color-mix(in srgb, var(--wnyhs-charcoal) 14%, transparent);
-  --wnyhs-shadow-card: 0 12px 28px color-mix(in srgb, var(--wnyhs-charcoal) 10%, transparent);
-  --wnyhs-focus: 0 0 0 3px color-mix(in srgb, var(--wnyhs-gold) 36%, transparent);
+  --wnyhs-shadow-soft: 0 18px 44px
+    color-mix(in srgb, var(--wnyhs-charcoal) 14%, transparent);
+  --wnyhs-shadow-card: 0 12px 28px
+    color-mix(in srgb, var(--wnyhs-charcoal) 10%, transparent);
+  --wnyhs-focus: 0 0 0 3px
+    color-mix(in srgb, var(--wnyhs-gold) 36%, transparent);
 
   --wnyhs-dark-surface: #111111;
   --wnyhs-dark-panel: #1a1815;
@@ -59,7 +64,11 @@
 }
 
 .wnyhs-section--category {
-  background: color-mix(in srgb, var(--wnyhs-surface) 82%, var(--wnyhs-gold-soft) 18%);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface) 82%,
+    var(--wnyhs-gold-soft) 18%
+  );
   border-color: color-mix(in srgb, var(--wnyhs-gold) 30%, var(--wnyhs-border));
 }
 
@@ -112,7 +121,11 @@
   padding: 0.9rem;
   border: 1px solid var(--wnyhs-border);
   border-radius: var(--wnyhs-radius-card);
-  background: color-mix(in srgb, var(--wnyhs-surface) 86%, var(--wnyhs-surface-soft) 14%);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface) 86%,
+    var(--wnyhs-surface-soft) 14%
+  );
   box-shadow: var(--wnyhs-shadow-card);
 }
 
@@ -142,9 +155,14 @@
 .wnyhs-card-media,
 .wnyhs-media {
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--wnyhs-border-strong) 72%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--wnyhs-border-strong) 72%, transparent);
   border-radius: var(--wnyhs-radius-media);
-  background: color-mix(in srgb, var(--wnyhs-surface-soft) 76%, var(--wnyhs-surface) 24%);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-soft) 76%,
+    var(--wnyhs-surface) 24%
+  );
 }
 
 .wnyhs-price-badge,
@@ -154,9 +172,14 @@
   width: fit-content;
   min-height: 2rem;
   padding: 0.35rem 0.7rem;
-  border: 1px dashed color-mix(in srgb, var(--wnyhs-gold) 48%, var(--wnyhs-border));
+  border: 1px dashed
+    color-mix(in srgb, var(--wnyhs-gold) 48%, var(--wnyhs-border));
   border-radius: 999px;
-  background: color-mix(in srgb, var(--wnyhs-gold-soft) 42%, var(--wnyhs-surface));
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-gold-soft) 42%,
+    var(--wnyhs-surface)
+  );
   color: var(--wnyhs-gold-strong);
   font-size: 0.78rem;
   font-weight: 800;
@@ -175,14 +198,22 @@
 }
 
 .wnyhs-button--primary {
-  background: linear-gradient(135deg, var(--wnyhs-gold), var(--wnyhs-gold-soft));
+  background: linear-gradient(
+    135deg,
+    var(--wnyhs-gold),
+    var(--wnyhs-gold-soft)
+  );
   color: var(--wnyhs-ink);
   box-shadow: 0 14px 28px color-mix(in srgb, var(--wnyhs-gold) 28%, transparent);
 }
 
 .wnyhs-button--secondary {
   border-color: var(--wnyhs-border-strong);
-  background: color-mix(in srgb, var(--wnyhs-surface) 78%, var(--wnyhs-charcoal) 4%);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface) 78%,
+    var(--wnyhs-charcoal) 4%
+  );
   color: var(--wnyhs-charcoal);
 }
 
@@ -226,7 +257,11 @@
 }
 
 .wnyhs-contact-support-hero {
-  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-raised) 88%,
+    var(--wnyhs-gold-soft) 12%
+  );
 }
 
 .wnyhs-contact-support-hero .wnyhs-heading {
@@ -271,4 +306,118 @@
   outline: none;
   border-color: var(--wnyhs-gold);
   box-shadow: var(--wnyhs-focus);
+}
+
+.wnyhs-fit-check {
+  display: grid;
+  gap: 1rem;
+}
+
+.wnyhs-fit-check-hero {
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-raised) 86%,
+    var(--wnyhs-gold-soft) 14%
+  );
+}
+
+.wnyhs-fit-check-hero .wnyhs-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  max-width: 18ch;
+}
+
+.wnyhs-fit-check-question-stack,
+.wnyhs-fit-check-results-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.wnyhs-fit-check-question {
+  gap: 1rem;
+}
+
+.wnyhs-fit-check-question h2,
+.wnyhs-fit-check-actions h2,
+.wnyhs-fit-check-results h2,
+.wnyhs-fit-check-results h3,
+.wnyhs-fit-check-estimate-card h3 {
+  margin: 0;
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
+}
+
+.wnyhs-fit-check-question p,
+.wnyhs-fit-check-actions p,
+.wnyhs-fit-check-results p,
+.wnyhs-fit-check-estimate-card p {
+  margin: 0.35rem 0 0;
+  color: var(--wnyhs-ink-muted);
+}
+
+.wnyhs-fit-check-options {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.wnyhs-fit-check-option {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-surface-raised);
+  color: var(--wnyhs-ink-secondary);
+}
+
+.wnyhs-fit-check-option:has(input:checked) {
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 46%, var(--wnyhs-border));
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-raised) 76%,
+    var(--wnyhs-gold-soft) 24%
+  );
+  color: var(--wnyhs-ink);
+}
+
+.wnyhs-fit-check-option input {
+  accent-color: var(--wnyhs-gold);
+  margin-top: 0.25rem;
+}
+
+.wnyhs-fit-check-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.wnyhs-fit-check .wnyhs-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.wnyhs-fit-check-results {
+  outline: none;
+}
+
+.wnyhs-fit-check-results-grid article {
+  padding: 0.85rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-surface-raised);
+}
+
+.wnyhs-fit-check-answer-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--wnyhs-ink-muted);
+}
+
+.wnyhs-fit-check-estimate-card {
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 34%, var(--wnyhs-border));
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-raised) 78%,
+    var(--wnyhs-gold-soft) 22%
+  );
 }
