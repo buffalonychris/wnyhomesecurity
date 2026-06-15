@@ -284,7 +284,7 @@ export const propertyEvidenceStatusOptions: Array<{ value: PropertyModelEvidence
   { value: 'rejected_superseded', label: 'Rejected / Superseded' },
 ];
 
-const propertyModelStorageKey = 'wnyhs_property_models_v1';
+export const propertyModelStorageKey = 'wnyhs_property_models_v1';
 
 const createId = (prefix: string) => {
   const random = Math.random().toString(36).slice(2, 7).toUpperCase();
@@ -346,7 +346,7 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
   };
 };
 
-const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): PropertyModelRecord => {
+export const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): PropertyModelRecord => {
   const emptyRecord = createEmptyPropertyModelRecord();
   const legacyStageMap: Record<string, PropertyQuoteStage> = {
     draft: 'requested_quote',
@@ -594,6 +594,8 @@ export const loadPropertyModelRecords = () => {
   return Array.isArray(records) ? records.map(normalizePropertyModelRecord) : [];
 };
 
+export const savePropertyModelRecords = (records: PropertyModelRecord[]) => writeToStorage(propertyModelStorageKey, records);
+
 export const savePropertyModelRecord = (record: PropertyModelRecord) => {
   const records = loadPropertyModelRecords();
   const nextRecord = {
@@ -615,4 +617,20 @@ export const createPropertyModelRecord = () => {
   const record = createEmptyPropertyModelRecord();
   const result = savePropertyModelRecord(record);
   return result.ok ? result.record : record;
+};
+
+export const createPropertyModelImportCopy = (record: PropertyModelRecord) => {
+  const now = new Date().toISOString();
+  return normalizePropertyModelRecord({
+    ...record,
+    recordId: createId('WNYHS-PM'),
+    createdAt: now,
+    updatedAt: now,
+  });
+};
+
+export const isPropertyModelImportCandidate = (value: unknown): value is StoredPropertyModelRecord => {
+  if (!value || typeof value !== 'object') return false;
+  const candidate = value as Partial<StoredPropertyModelRecord>;
+  return typeof candidate.recordId === 'string' && typeof candidate.customer === 'object' && typeof candidate.propertyAddress === 'object';
 };

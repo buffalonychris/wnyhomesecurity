@@ -3627,6 +3627,18 @@ body.modal-open {
   color: var(--wnyhs-success);
 }
 
+.quote-workspace-hidden-file {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.quote-workspace-guidance {
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
+}
+
 @media (max-width: 860px) {
   .quote-workspace-hero,
   .quote-workspace-status-grid {
