@@ -1049,3 +1049,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Implementation note / quote-system runtime documentation**
 - **Status:** **Implemented / partial local-storage prototype**
 - **Notes:** Confirms manual totals only; no pricing engine, catalog pricing, Stripe/payment implementation, HubSpot writes, inventory costing, scheduling automation, or durable storage.
+
+
+### `/docs/quotesystem/IMPLEMENTATION014_Funeral_Home_Test_Case_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION014_Funeral_Home_Test_Case_REV01.md`
+- **Purpose / likely role:** Records the QUOTESYSTEM-014 local funeral home Property Model test-case implementation.
+- **Authority level:** **Implementation note / quote-system runtime documentation**
+- **Status:** **Implemented / partial local-storage prototype**
+- **Notes:** Confirms sample data is localStorage-only and does not add HubSpot writes, Stripe/payment changes, uploads, inventory automation, ordering automation, scheduling automation, auth, PDF generation, durable storage, dependencies, or package-lock changes.

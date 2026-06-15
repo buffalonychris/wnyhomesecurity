@@ -12,6 +12,7 @@ import {
   createPropertyModelChildId,
   createPropertyModelImportCopy,
   createPropertyModelRecord,
+  createFuneralHomeTestCasePropertyModelRecordInStorage,
   customerConcernCategoryOptions,
   isPropertyModelImportCandidate,
   loadPropertyModelRecords,
@@ -327,6 +328,22 @@ const PropertyModelAdmin = () => {
     setSavedMessage(`Created ${next.recordId}`);
   };
 
+  const handleLoadFuneralHomeTestCase = () => {
+    const result = createFuneralHomeTestCasePropertyModelRecordInStorage();
+    if (result.ok) {
+      setRecords(result.records);
+      setSelectedRecordId(result.record.recordId);
+      setDraft(result.record);
+      setSavedMessage(
+        `Loaded funeral home local test case ${result.record.recordId}. Existing records were not overwritten.`,
+      );
+    } else {
+      setSavedMessage(
+        "Unable to save the funeral home test case in this browser storage session.",
+      );
+    }
+  };
+
   const makeExportFileName = (record: PropertyModelRecord) => {
     const label =
       record.propertyAddress.line1 || record.customer.name || record.recordId;
@@ -613,6 +630,13 @@ const PropertyModelAdmin = () => {
                 onChange={handleImportFile}
               />
               <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={handleLoadFuneralHomeTestCase}
+              >
+                Load Funeral Home Test Case
+              </button>
+              <button
                 className="btn btn-primary"
                 type="button"
                 onClick={handleCreateRecord}
@@ -667,6 +691,13 @@ const PropertyModelAdmin = () => {
               form="quote-workspace-form"
             >
               Save
+            </button>
+            <button
+              className="btn btn-secondary"
+              type="button"
+              onClick={handleLoadFuneralHomeTestCase}
+            >
+              Load Funeral Home Test Case
             </button>
             <button
               className="btn btn-secondary"
