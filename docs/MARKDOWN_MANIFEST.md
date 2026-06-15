@@ -1604,3 +1604,5 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 - `docs/quotesystem/IMPLEMENTATION011_Local_Import_Export_REV01.md`
 - `docs/quotesystem/IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md`
 - `docs/quotesystem/IMPLEMENTATION013_Pricing_Totals_Placeholder_REV01.md`
+
+- `docs/quotesystem/IMPLEMENTATION014_Funeral_Home_Test_Case_REV01.md`

@@ -2561,6 +2561,25 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### QUOTESYSTEM-014
+- **Task ID:** QUOTESYSTEM-014
+- **Task Name:** Funeral Home Test Case
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a documented local end-to-end quote-system test case for the funeral home job so WNYHS can validate the current Property Model workflow against a real customer-style scenario.
+- **Allowed Scope:** Local-only sample/test data utility for `/operator/property-model`; new local Property Model record creation; funeral home scenario fields, concerns, evidence placeholders, rooms/areas, selected solutions, rough BOM, redraw reminder, quote preview/installer packet/import-export compatibility, documentation map/catalog/manifest/register/site-version updates.
+- **Forbidden Scope:** No real customer persistence beyond localStorage sample, uploads, image processing, AI redraw generation, HubSpot writes, Stripe/payment changes, inventory automation, ordering automation, scheduling automation, email sending, PDF generation, auth, durable production storage, new dependencies, package-lock changes, protected runtime changes, unrelated public redesign, or Property Model flow breakage.
+- **Target Files:** `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/lib/siteVersion.ts`, `docs/quotesystem/IMPLEMENTATION014_Funeral_Home_Test_Case_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator Property Model route and local browser storage only.
+- **Documentation Updates Required:** Create implementation note and register it in quote-system map, document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model`, `/operator/property-model/quote-preview`, and `/operator/property-model/installer-packet`.
+- **Exit Criteria:** Version is bumped to `v1.0.140`; Load Funeral Home Test Case action creates a new local record without overwriting existing records; sample populates realistic funeral home concerns, evidence, areas, selected solutions, and rough BOM with reconciliation fields; preview, packet, and JSON import/export remain generically compatible; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-004 through QUOTESYSTEM-013, PROPERTY001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added the localStorage-only funeral home Property Model test case and loader action. The sample record includes commercial property context, break-in/opening/glass/access/doorbell/local-control concerns, floorplan/photo/orientation evidence placeholders, redraw-fidelity notes, funeral home room/area coverage, catalog-aligned solution selections with freehand fallbacks, and rough BOM lines with room/area, concern, selected solution, evidence reference, installer note, dashboard prep note, and reconciliation status. No HubSpot, Stripe/payment, uploads, image processing, AI redraw, inventory, ordering, scheduling, email, PDF, auth, durable storage, dependency, package-lock, or unrelated public-site changes were made.
+
+
 - **Task ID:** FUNNEL004
 - **Task Name:** Replace Public Package Pricing With Guided Protection Styles + Build Your System Direction
 - **Status:** ACTIVE
