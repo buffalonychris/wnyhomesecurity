@@ -11,13 +11,6 @@ const WnyhsSiteFooter = () => {
           <span>Serving Western New York</span>
         </div>
         <nav className="wnyhs-marketing-footer-links" aria-label="WNY Home Security footer">
-          <NavLink to="/home-security">Home</NavLink>
-          <NavLink to="/home-security#category-explorer">Explore</NavLink>
-          <NavLink to="/home-security#featured-packages">Packages</NavLink>
-          <NavLink to="/home-security#featured-solutions">Solutions</NavLink>
-          <NavLink to="/home-security#why-wnyhs">Why WNYHS</NavLink>
-          <NavLink to="/home-security#how-it-works">How It Works</NavLink>
-          <NavLink to="/home-security#home-search">Search</NavLink>
           <NavLink to="/about?vertical=home-security">About</NavLink>
           <NavLink to="/contact?vertical=home-security">Contact</NavLink>
           <NavLink to="/privacy?vertical=home-security">Privacy</NavLink>
