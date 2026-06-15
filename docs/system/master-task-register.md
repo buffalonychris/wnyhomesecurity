@@ -112,6 +112,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 ## Active Tasks (Execution Driver)
 
+### HOTFIX-WNYHS-APEX-HOSTNAME-001
+- **Task ID:** HOTFIX-WNYHS-APEX-HOSTNAME-001
+- **Task Name:** Apex Hostname Rendering Failure Investigation
+- **Status:** DONE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Investigate and minimally fix apex hostname blank/black production behavior while preserving the known-good www host.
+- **Allowed Scope:** Hostname/domain routing inspection, minimal Cloudflare Pages redirect correction, implementation record, catalog/manifest/register updates, and visible site version bump.
+- **Forbidden Scope:** No visual redesign, visual parity work, quote-system changes, contact/support behavior changes, package data/pricing changes, HubSpot changes, Stripe/payment changes, scheduling changes, lead-signal/requestId changes, Resend/email changes, auth changes, durable storage changes, dependencies, package-lock changes, or unrelated cleanup.
+- **Target Files:** `public/_redirects`, `src/lib/siteVersion.ts`, `docs/governance/HOTFIX_WNYHS_APEX_HOSTNAME_001_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public hostname normalization at Cloudflare Pages redirect layer only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; targeted typecheck via build; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; route/domain logic grep summary; local Host-header preview checks when practical.
+- **Exit Criteria:** Version is bumped to `v1.0.147`; apex requests redirect to the known-good www host with path preserved; www routes remain working; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded hotfix work order, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added a Cloudflare Pages apex-to-www canonical redirect before the SPA fallback. Source inspection found no exact apex-vs-www frontend branch; the redirect removes the production host split while preserving path and query behavior. HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email, package data/pricing, dependencies, and package-lock were not changed.
+
+
 ### WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-003
 - **Task ID:** WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-003
 - **Task Name:** Contact + Support Wrapper Cleanup
