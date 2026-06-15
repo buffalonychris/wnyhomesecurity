@@ -59,3 +59,8 @@ Future controlled tasks may add or expand standards for:
 
 None of those future areas are implemented or authorized by this map.
 - `IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md` — implemented usability/layout pass for the internal Property Model Quote Workspace.
+
+## QUOTESYSTEM-015 Addendum — Redraw + Photo Analysis Handoff
+
+- `docs/quotesystem/FLOORPLAN004_Redraw_Photo_Analysis_Handoff_REV01.md` — ACTIVE governance for source hierarchy, professional redraw requirements, photo-analysis checklist, limited-evidence fallback, and required handoff outputs.
+- `docs/quotesystem/IMPLEMENTATION015_Redraw_Photo_Analysis_Handoff_REV01.md` — ACTIVE implementation note for local Property Model handoff fields and quote preview/installer packet compatibility.

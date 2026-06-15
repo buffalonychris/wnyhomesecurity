@@ -1057,3 +1057,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Implementation note / quote-system runtime documentation**
 - **Status:** **Implemented / partial local-storage prototype**
 - **Notes:** Confirms sample data is localStorage-only and does not add HubSpot writes, Stripe/payment changes, uploads, inventory automation, ordering automation, scheduling automation, auth, PDF generation, durable storage, dependencies, or package-lock changes.
+
+## QUOTESYSTEM-015 — Redraw + Photo Analysis Handoff
+
+- **Document:** `docs/quotesystem/FLOORPLAN004_Redraw_Photo_Analysis_Handoff_REV01.md`
+- **Status:** ACTIVE
+- **Purpose / likely role:** Governance for manual professional redraw and property photo-analysis handoff inputs, hierarchy, limited-evidence fallback, and quote-risk outputs.
+- **Protected boundaries:** Does not authorize image processing, AI redraw generation, uploads, LiDAR capture, durable backend persistence, HubSpot writes, Stripe/payment changes, inventory automation, ordering, scheduling, or public-site claims.
+
+- **Document:** `docs/quotesystem/IMPLEMENTATION015_Redraw_Photo_Analysis_Handoff_REV01.md`
+- **Status:** ACTIVE IMPLEMENTATION NOTE
+- **Purpose / likely role:** Records the local Property Model redraw/photo handoff fields, workspace behavior, and quote preview/installer packet compatibility added for QUOTESYSTEM-015.
+- **Protected boundaries:** Local browser workspace support only; HubSpot and Stripe/payment untouched.
