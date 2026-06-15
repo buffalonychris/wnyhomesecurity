@@ -4013,3 +4013,22 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** QUOTESYSTEM-011, PROPERTY001, QUOTE001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Reordered the internal Property Model workspace, added an easy-access action bar, compacted local backup/import/export guidance, added operational empty states, and improved hardware/BOM reconciliation scanability. No HubSpot writes, Stripe/payment changes, backend persistence, cloud storage, email, PDF, auth, inventory, ordering, scheduling, dependencies, package-lock, route removals, or public-site redesign changes were made. Version bumped to `v1.0.138`.
+
+
+### QUOTESYSTEM-013
+- **Task ID:** QUOTESYSTEM-013
+- **Task Name:** Pricing / Totals Placeholder
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add manual pricing and totals fields to the local WNYHS Quote Workspace so live quotes can show subtotal, deposit amount, and balance due without a pricing engine or payment implementation.
+- **Allowed Scope:** Local Property Model pricing fields, manual subtotal/discount/tax-fee entry, calculated total/deposit/balance placeholders, quote preview Section 3 totals, installer packet payment-gate guidance, import/export normalization, documentation updates, and site-version bump.
+- **Forbidden Scope:** No pricing engine, automatic catalog pricing, inventory costing/margin logic, Stripe/payment implementation, payment verification, checkout links, HubSpot writes, scheduling automation, inventory automation, ordering automation, email sending, PDF generation, auth, durable production storage, new dependencies, package-lock changes, protected runtime behavior changes, or unrelated public redesign.
+- **Target Files:** `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/pages/PropertyModelQuotePreview.tsx`, `src/pages/PropertyModelInstallerPacket.tsx`, `src/lib/siteVersion.ts`, `docs/quotesystem/IMPLEMENTATION013_Pricing_Totals_Placeholder_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator Property Model route, quote preview, installer packet preview, and local browser storage only.
+- **Documentation Updates Required:** Add IMPLEMENTATION013 and register it in the quote-system document map, document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke checks for Property Model, quote preview, and installer packet routes.
+- **Exit Criteria:** Version is bumped to `v1.0.139`; manual pricing fields exist and normalize for older records; totals/deposit/balance calculate locally; quote preview shows customer-appropriate totals and terms; installer packet shows field-relevant payment gates only; protected systems remain untouched.
+- **Dependencies:** QUOTESYSTEM-011, QUOTESYSTEM-012, PROPERTY001, QUOTE001, GATES001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added local manual pricing/totals placeholders to the Property Model workspace and normalized older records with default 50% deposit behavior. Quote Preview Section 3 now includes subtotal, optional discount/tax-fees, total, deposit requirement, deposit amount, balance due on arrival, pricing notes, and payment terms. Installer Packet shows payment gate readiness without a full pricing breakdown. No HubSpot, Stripe/payment, pricing engine, catalog pricing, inventory costing/margin, scheduling, ordering, email, PDF, auth, durable storage, dependency, package-lock, protected runtime, or unrelated public-site changes were made. Version bumped to `v1.0.139`.

@@ -1,45 +1,50 @@
 export type PropertyQuoteStage =
-  | 'requested_call'
-  | 'requested_quote'
-  | 'rough_quote_provided_no_onsite'
-  | 'onsite_quote_provided'
-  | 'accepted_quote_owes_deposit'
-  | 'quote_complete_deposit_paid';
+  | "requested_call"
+  | "requested_quote"
+  | "rough_quote_provided_no_onsite"
+  | "onsite_quote_provided"
+  | "accepted_quote_owes_deposit"
+  | "quote_complete_deposit_paid";
 
-export type PropertyModelBomStatus = 'needs_placement' | 'gpt_proposed' | 'wnyhs_modified' | 'approved' | 'locked';
+export type PropertyModelBomStatus =
+  | "needs_placement"
+  | "gpt_proposed"
+  | "wnyhs_modified"
+  | "approved"
+  | "locked";
 
 export type PropertyModelInstallerAssignment =
-  | 'installer_a'
-  | 'installer_b'
-  | 'either_installer'
-  | 'both_installers_required'
-  | 'unassigned';
+  | "installer_a"
+  | "installer_b"
+  | "either_installer"
+  | "both_installers_required"
+  | "unassigned";
 
 export type PropertyModelEvidenceType =
-  | 'hand_drawn_floorplan'
-  | 'professional_redraw'
-  | 'exterior_photo'
-  | 'interior_photo'
-  | 'measurement_note'
-  | 'compass_orientation_note'
-  | 'lidar_digital_twin_capture'
-  | 'other';
+  | "hand_drawn_floorplan"
+  | "professional_redraw"
+  | "exterior_photo"
+  | "interior_photo"
+  | "measurement_note"
+  | "compass_orientation_note"
+  | "lidar_digital_twin_capture"
+  | "other";
 
 export type PropertyModelEvidenceOrientation =
-  | 'north'
-  | 'south'
-  | 'east'
-  | 'west'
-  | 'interior'
-  | 'whole_property'
-  | 'unknown_na';
+  | "north"
+  | "south"
+  | "east"
+  | "west"
+  | "interior"
+  | "whole_property"
+  | "unknown_na";
 
 export type PropertyModelEvidenceStatus =
-  | 'source_provided'
-  | 'needs_review'
-  | 'accepted_for_trace'
-  | 'accepted_for_validation'
-  | 'rejected_superseded';
+  | "source_provided"
+  | "needs_review"
+  | "accepted_for_trace"
+  | "accepted_for_validation"
+  | "rejected_superseded";
 
 export type PropertyModelAreaPlaceholder = {
   id: string;
@@ -91,6 +96,18 @@ export type PropertyModelBomLineItem = {
   dashboardPrepNote: string;
   installerNote: string;
   installerAssignment: PropertyModelInstallerAssignment;
+};
+
+export type PropertyModelPricing = {
+  quoteSubtotal: number;
+  quoteDiscount: number;
+  quoteTaxOrFees: number;
+  quoteTotal: number;
+  depositRequired: boolean;
+  depositPercent: number;
+  depositAmount: number;
+  balanceDueOnArrival: number;
+  pricingNotes: string;
 };
 
 export type PropertyModelGateStatus = {
@@ -148,6 +165,7 @@ export type PropertyModelRecord = {
   devices: PropertyModelDevicePlaceholder[];
   bomLineItems: PropertyModelBomLineItem[];
   quoteStage: PropertyQuoteStage;
+  pricing: PropertyModelPricing;
   gates: PropertyModelGateStatus;
   notes: string;
   createdAt: string;
@@ -159,7 +177,9 @@ type StoredPropertyModelRecord = Partial<PropertyModelRecord> & {
   evidence?: Partial<{
     sourceSketchReference: string;
     professionalRedrawReference: string;
-    exteriorPhotoReferences: Partial<Record<'north' | 'south' | 'east' | 'west', string>>;
+    exteriorPhotoReferences: Partial<
+      Record<"north" | "south" | "east" | "west", string>
+    >;
     interiorPhotoReferences: string;
     compassOrientationNotes: string;
     measurementNotes: string;
@@ -183,112 +203,142 @@ type StoredPropertyModelBomLineItem = Partial<PropertyModelBomLineItem> & {
   wnyhsPurpose?: string;
 };
 
-export const propertyQuoteStageOptions: Array<{ value: PropertyQuoteStage; label: string }> = [
-  { value: 'requested_call', label: 'Requested Call' },
-  { value: 'requested_quote', label: 'Requested Quote' },
-  { value: 'rough_quote_provided_no_onsite', label: 'Rough Quote Provided - No Onsite' },
-  { value: 'onsite_quote_provided', label: 'Onsite Quote Provided' },
-  { value: 'accepted_quote_owes_deposit', label: 'Accepted Quote - Owes Deposit' },
-  { value: 'quote_complete_deposit_paid', label: 'Quote Complete - Deposit Paid' },
+export const propertyQuoteStageOptions: Array<{
+  value: PropertyQuoteStage;
+  label: string;
+}> = [
+  { value: "requested_call", label: "Requested Call" },
+  { value: "requested_quote", label: "Requested Quote" },
+  {
+    value: "rough_quote_provided_no_onsite",
+    label: "Rough Quote Provided - No Onsite",
+  },
+  { value: "onsite_quote_provided", label: "Onsite Quote Provided" },
+  {
+    value: "accepted_quote_owes_deposit",
+    label: "Accepted Quote - Owes Deposit",
+  },
+  {
+    value: "quote_complete_deposit_paid",
+    label: "Quote Complete - Deposit Paid",
+  },
 ];
 
 export const propertyTypeOptions = [
-  'Single-family home',
-  'Townhome / duplex',
-  'Condo',
-  'Apartment',
-  'Seasonal / vacation property',
-  'Detached garage / workshop',
-  'Mixed property',
-  'Other / needs review',
+  "Single-family home",
+  "Townhome / duplex",
+  "Condo",
+  "Apartment",
+  "Seasonal / vacation property",
+  "Detached garage / workshop",
+  "Mixed property",
+  "Other / needs review",
 ];
 
 export const occupancyContextOptions = [
-  'Owner occupied',
-  'Family / caregiver supported',
-  'Seasonal / away for stretches',
-  'Rental / tenant occupied',
-  'New homeowner',
-  'Existing WNYHS Core customer',
-  'First-time WNYHS customer',
-  'Other / needs review',
+  "Owner occupied",
+  "Family / caregiver supported",
+  "Seasonal / away for stretches",
+  "Rental / tenant occupied",
+  "New homeowner",
+  "Existing WNYHS Core customer",
+  "First-time WNYHS customer",
+  "Other / needs review",
 ];
 
 export const customerConcernCategoryOptions = [
-  'Front door / packages',
-  'Entry / perimeter',
-  'Garage / driveway',
-  'Water / temperature',
-  'Lighting / routines',
-  'Family awareness',
-  'Aging-in-place awareness',
-  'Vacation / away mode',
-  'Custom / freehand',
+  "Front door / packages",
+  "Entry / perimeter",
+  "Garage / driveway",
+  "Water / temperature",
+  "Lighting / routines",
+  "Family awareness",
+  "Aging-in-place awareness",
+  "Vacation / away mode",
+  "Custom / freehand",
 ];
 
 export const areaNameOptions = [
-  'Living Room',
-  'Dining Room',
-  'Rec Room',
-  'Basement',
-  'Utility Room',
-  'Garage',
-  'Front Porch',
-  'Driveway',
-  'Viewing Room',
-  'Office',
+  "Living Room",
+  "Dining Room",
+  "Rec Room",
+  "Basement",
+  "Utility Room",
+  "Garage",
+  "Front Porch",
+  "Driveway",
+  "Viewing Room",
+  "Office",
 ];
 
-export const installerAssignmentOptions: Array<{ value: PropertyModelInstallerAssignment; label: string }> = [
-  { value: 'installer_a', label: 'Installer A' },
-  { value: 'installer_b', label: 'Installer B' },
-  { value: 'either_installer', label: 'Either Installer' },
-  { value: 'both_installers_required', label: 'Both Installers Required' },
-  { value: 'unassigned', label: 'Unassigned' },
+export const installerAssignmentOptions: Array<{
+  value: PropertyModelInstallerAssignment;
+  label: string;
+}> = [
+  { value: "installer_a", label: "Installer A" },
+  { value: "installer_b", label: "Installer B" },
+  { value: "either_installer", label: "Either Installer" },
+  { value: "both_installers_required", label: "Both Installers Required" },
+  { value: "unassigned", label: "Unassigned" },
 ];
 
-export const bomStatusOptions: Array<{ value: PropertyModelBomStatus; label: string }> = [
-  { value: 'needs_placement', label: 'Needs Placement' },
-  { value: 'gpt_proposed', label: 'GPT Proposed' },
-  { value: 'wnyhs_modified', label: 'WNYHS Modified' },
-  { value: 'approved', label: 'Approved' },
-  { value: 'locked', label: 'Locked' },
+export const bomStatusOptions: Array<{
+  value: PropertyModelBomStatus;
+  label: string;
+}> = [
+  { value: "needs_placement", label: "Needs Placement" },
+  { value: "gpt_proposed", label: "GPT Proposed" },
+  { value: "wnyhs_modified", label: "WNYHS Modified" },
+  { value: "approved", label: "Approved" },
+  { value: "locked", label: "Locked" },
 ];
 
-export const propertyEvidenceTypeOptions: Array<{ value: PropertyModelEvidenceType; label: string }> = [
-  { value: 'hand_drawn_floorplan', label: 'Hand-Drawn Floorplan' },
-  { value: 'professional_redraw', label: 'Professional Redraw' },
-  { value: 'exterior_photo', label: 'Exterior Photo' },
-  { value: 'interior_photo', label: 'Interior Photo' },
-  { value: 'measurement_note', label: 'Measurement Note' },
-  { value: 'compass_orientation_note', label: 'Compass / Orientation Note' },
-  { value: 'lidar_digital_twin_capture', label: 'LiDAR / Digital Twin Capture' },
-  { value: 'other', label: 'Other' },
+export const propertyEvidenceTypeOptions: Array<{
+  value: PropertyModelEvidenceType;
+  label: string;
+}> = [
+  { value: "hand_drawn_floorplan", label: "Hand-Drawn Floorplan" },
+  { value: "professional_redraw", label: "Professional Redraw" },
+  { value: "exterior_photo", label: "Exterior Photo" },
+  { value: "interior_photo", label: "Interior Photo" },
+  { value: "measurement_note", label: "Measurement Note" },
+  { value: "compass_orientation_note", label: "Compass / Orientation Note" },
+  {
+    value: "lidar_digital_twin_capture",
+    label: "LiDAR / Digital Twin Capture",
+  },
+  { value: "other", label: "Other" },
 ];
 
-export const propertyEvidenceOrientationOptions: Array<{ value: PropertyModelEvidenceOrientation; label: string }> = [
-  { value: 'north', label: 'North' },
-  { value: 'south', label: 'South' },
-  { value: 'east', label: 'East' },
-  { value: 'west', label: 'West' },
-  { value: 'interior', label: 'Interior' },
-  { value: 'whole_property', label: 'Whole Property' },
-  { value: 'unknown_na', label: 'Unknown / Not Applicable' },
+export const propertyEvidenceOrientationOptions: Array<{
+  value: PropertyModelEvidenceOrientation;
+  label: string;
+}> = [
+  { value: "north", label: "North" },
+  { value: "south", label: "South" },
+  { value: "east", label: "East" },
+  { value: "west", label: "West" },
+  { value: "interior", label: "Interior" },
+  { value: "whole_property", label: "Whole Property" },
+  { value: "unknown_na", label: "Unknown / Not Applicable" },
 ];
 
-export const propertyEvidenceStatusOptions: Array<{ value: PropertyModelEvidenceStatus; label: string }> = [
-  { value: 'source_provided', label: 'Source Provided' },
-  { value: 'needs_review', label: 'Needs Review' },
-  { value: 'accepted_for_trace', label: 'Accepted For Trace' },
-  { value: 'accepted_for_validation', label: 'Accepted For Validation' },
-  { value: 'rejected_superseded', label: 'Rejected / Superseded' },
+export const propertyEvidenceStatusOptions: Array<{
+  value: PropertyModelEvidenceStatus;
+  label: string;
+}> = [
+  { value: "source_provided", label: "Source Provided" },
+  { value: "needs_review", label: "Needs Review" },
+  { value: "accepted_for_trace", label: "Accepted For Trace" },
+  { value: "accepted_for_validation", label: "Accepted For Validation" },
+  { value: "rejected_superseded", label: "Rejected / Superseded" },
 ];
 
-export const propertyModelStorageKey = 'wnyhs_property_models_v1';
+export const propertyModelStorageKey = "wnyhs_property_models_v1";
 
 const createId = (prefix: string) => {
   const random = Math.random().toString(36).slice(2, 7).toUpperCase();
-  return `${prefix}-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}-${random}`;
+  return `${prefix}-${new Date().toISOString().slice(0, 10).replaceAll("-", "")}-${random}`;
 };
 
 export const createPropertyModelChildId = (prefix: string) => createId(prefix);
@@ -297,32 +347,32 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
   const timestamp = new Date().toISOString();
 
   return {
-    recordId: createId('WNYHS-PM'),
-    requestId: '',
+    recordId: createId("WNYHS-PM"),
+    requestId: "",
     customer: {
-      name: '',
-      email: '',
-      phone: '',
-      preferredContactMethod: '',
+      name: "",
+      email: "",
+      phone: "",
+      preferredContactMethod: "",
     },
     propertyAddress: {
-      line1: '',
-      line2: '',
-      city: '',
-      state: 'NY',
-      postalCode: '',
+      line1: "",
+      line2: "",
+      city: "",
+      state: "NY",
+      postalCode: "",
     },
     propertyContext: {
-      propertyType: '',
-      occupancyContext: '',
-      notes: '',
+      propertyType: "",
+      occupancyContext: "",
+      notes: "",
     },
     hubSpotLink: {
-      contactUrl: '',
-      dealUrl: '',
-      owner: '',
-      leadSource: '',
-      lifecycleStage: '',
+      contactUrl: "",
+      dealUrl: "",
+      owner: "",
+      leadSource: "",
+      lifecycleStage: "",
     },
     customerConcerns: [],
     customerGoals: [],
@@ -332,7 +382,18 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
     areas: [],
     devices: [],
     bomLineItems: [],
-    quoteStage: 'requested_quote',
+    quoteStage: "requested_quote",
+    pricing: {
+      quoteSubtotal: 0,
+      quoteDiscount: 0,
+      quoteTaxOrFees: 0,
+      quoteTotal: 0,
+      depositRequired: true,
+      depositPercent: 50,
+      depositAmount: 0,
+      balanceDueOnArrival: 0,
+      pricingNotes: "",
+    },
     gates: {
       floorplanApproved: false,
       depositVerified: false,
@@ -340,143 +401,159 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
       schedulingReady: false,
       finalBalanceExceptionApproved: false,
     },
-    notes: '',
+    notes: "",
     createdAt: timestamp,
     updatedAt: timestamp,
   };
 };
 
-export const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): PropertyModelRecord => {
+export const normalizePropertyModelRecord = (
+  record: StoredPropertyModelRecord,
+): PropertyModelRecord => {
   const emptyRecord = createEmptyPropertyModelRecord();
   const legacyStageMap: Record<string, PropertyQuoteStage> = {
-    draft: 'requested_quote',
-    field_capture: 'requested_call',
-    redraw_review: 'requested_quote',
-    solution_mapping: 'requested_quote',
-    proposal_draft: 'rough_quote_provided_no_onsite',
-    deposit_pending: 'accepted_quote_owes_deposit',
-    deposit_verified: 'quote_complete_deposit_paid',
-    install_ready: 'quote_complete_deposit_paid',
-    closed: 'quote_complete_deposit_paid',
+    draft: "requested_quote",
+    field_capture: "requested_call",
+    redraw_review: "requested_quote",
+    solution_mapping: "requested_quote",
+    proposal_draft: "rough_quote_provided_no_onsite",
+    deposit_pending: "accepted_quote_owes_deposit",
+    deposit_verified: "quote_complete_deposit_paid",
+    install_ready: "quote_complete_deposit_paid",
+    closed: "quote_complete_deposit_paid",
   };
   const normalizedConcerns = Array.isArray(record.customerConcerns)
     ? record.customerConcerns.map((concern, index) => {
-        if (typeof concern === 'string') {
+        if (typeof concern === "string") {
           return {
-            id: createId('CONCERN'),
-            category: 'Custom / freehand',
+            id: createId("CONCERN"),
+            category: "Custom / freehand",
             text: concern,
-            notes: '',
+            notes: "",
           };
         }
 
         return {
           id: concern.id ?? `concern-${index + 1}`,
-          category: concern.category ?? 'Custom / freehand',
-          text: concern.text ?? '',
-          notes: concern.notes ?? '',
+          category: concern.category ?? "Custom / freehand",
+          text: concern.text ?? "",
+          notes: concern.notes ?? "",
         };
       })
     : [];
   const normalizedQuoteStage =
-    record.quoteStage && propertyQuoteStageOptions.some((stage) => stage.value === record.quoteStage)
+    record.quoteStage &&
+    propertyQuoteStageOptions.some((stage) => stage.value === record.quoteStage)
       ? record.quoteStage
-      : legacyStageMap[String(record.quoteStage)] ?? emptyRecord.quoteStage;
-  const normalizeEvidenceItem = (item: Partial<PropertyModelEvidenceItem>, index: number): PropertyModelEvidenceItem => ({
+      : (legacyStageMap[String(record.quoteStage)] ?? emptyRecord.quoteStage);
+  const normalizeEvidenceItem = (
+    item: Partial<PropertyModelEvidenceItem>,
+    index: number,
+  ): PropertyModelEvidenceItem => ({
     id: item.id ?? `evidence-${index + 1}`,
     evidenceType:
-      item.evidenceType && propertyEvidenceTypeOptions.some((option) => option.value === item.evidenceType)
+      item.evidenceType &&
+      propertyEvidenceTypeOptions.some(
+        (option) => option.value === item.evidenceType,
+      )
         ? item.evidenceType
-        : 'other',
-    label: item.label ?? '',
-    sourceReference: item.sourceReference ?? '',
+        : "other",
+    label: item.label ?? "",
+    sourceReference: item.sourceReference ?? "",
     orientationSide:
       item.orientationSide &&
-      propertyEvidenceOrientationOptions.some((option) => option.value === item.orientationSide)
+      propertyEvidenceOrientationOptions.some(
+        (option) => option.value === item.orientationSide,
+      )
         ? item.orientationSide
-        : 'unknown_na',
-    notes: item.notes ?? '',
+        : "unknown_na",
+    notes: item.notes ?? "",
     status:
-      item.status && propertyEvidenceStatusOptions.some((option) => option.value === item.status)
+      item.status &&
+      propertyEvidenceStatusOptions.some(
+        (option) => option.value === item.status,
+      )
         ? item.status
-        : 'source_provided',
+        : "source_provided",
   });
-  const legacyEvidenceItemsWithNulls: Array<Partial<PropertyModelEvidenceItem> | null> = [
-    record.evidence?.sourceSketchReference
-      ? {
-          evidenceType: 'hand_drawn_floorplan' as const,
-          label: 'Source sketch reference',
-          sourceReference: record.evidence.sourceSketchReference,
-          orientationSide: 'whole_property' as const,
-          notes: '',
-          status: 'source_provided' as const,
-        }
-      : null,
-    record.evidence?.professionalRedrawReference
-      ? {
-          evidenceType: 'professional_redraw' as const,
-          label: 'Professional redraw reference',
-          sourceReference: record.evidence.professionalRedrawReference,
-          orientationSide: 'whole_property' as const,
-          notes: '',
-          status: 'needs_review' as const,
-        }
-      : null,
-    ...(record.evidence?.exteriorPhotoReferences
-      ? (['north', 'south', 'east', 'west'] as const).map((side) =>
-          record.evidence?.exteriorPhotoReferences?.[side]
-            ? {
-                evidenceType: 'exterior_photo' as const,
-                label: `${side[0].toUpperCase()}${side.slice(1)} exterior photo`,
-                sourceReference: record.evidence.exteriorPhotoReferences[side] ?? '',
-                orientationSide: side,
-                notes: '',
-                status: 'accepted_for_validation' as const,
-              }
-            : null,
-        )
-      : []),
-    record.evidence?.interiorPhotoReferences
-      ? {
-          evidenceType: 'interior_photo' as const,
-          label: 'Interior photo references',
-          sourceReference: record.evidence.interiorPhotoReferences,
-          orientationSide: 'interior' as const,
-          notes: '',
-          status: 'accepted_for_validation' as const,
-        }
-      : null,
-    record.evidence?.compassOrientationNotes
-      ? {
-          evidenceType: 'compass_orientation_note' as const,
-          label: 'Compass / orientation notes',
-          sourceReference: 'Legacy orientation note',
-          orientationSide: 'whole_property' as const,
-          notes: record.evidence.compassOrientationNotes,
-          status: 'source_provided' as const,
-        }
-      : null,
-    record.evidence?.measurementNotes
-      ? {
-          evidenceType: 'measurement_note' as const,
-          label: 'Known measurements',
-          sourceReference: 'Legacy measurement note',
-          orientationSide: 'unknown_na' as const,
-          notes: record.evidence.measurementNotes,
-          status: 'source_provided' as const,
-        }
-      : null,
-    record.evidence?.validationNotes
-      ? {
-          evidenceType: 'other' as const,
-          label: 'Floorplan validation notes',
-          sourceReference: 'Legacy validation note',
-          orientationSide: 'unknown_na' as const,
-          notes: record.evidence.validationNotes,
-          status: 'needs_review' as const,
-        }
-      : null,
-  ];
+  const legacyEvidenceItemsWithNulls: Array<Partial<PropertyModelEvidenceItem> | null> =
+    [
+      record.evidence?.sourceSketchReference
+        ? {
+            evidenceType: "hand_drawn_floorplan" as const,
+            label: "Source sketch reference",
+            sourceReference: record.evidence.sourceSketchReference,
+            orientationSide: "whole_property" as const,
+            notes: "",
+            status: "source_provided" as const,
+          }
+        : null,
+      record.evidence?.professionalRedrawReference
+        ? {
+            evidenceType: "professional_redraw" as const,
+            label: "Professional redraw reference",
+            sourceReference: record.evidence.professionalRedrawReference,
+            orientationSide: "whole_property" as const,
+            notes: "",
+            status: "needs_review" as const,
+          }
+        : null,
+      ...(record.evidence?.exteriorPhotoReferences
+        ? (["north", "south", "east", "west"] as const).map((side) =>
+            record.evidence?.exteriorPhotoReferences?.[side]
+              ? {
+                  evidenceType: "exterior_photo" as const,
+                  label: `${side[0].toUpperCase()}${side.slice(1)} exterior photo`,
+                  sourceReference:
+                    record.evidence.exteriorPhotoReferences[side] ?? "",
+                  orientationSide: side,
+                  notes: "",
+                  status: "accepted_for_validation" as const,
+                }
+              : null,
+          )
+        : []),
+      record.evidence?.interiorPhotoReferences
+        ? {
+            evidenceType: "interior_photo" as const,
+            label: "Interior photo references",
+            sourceReference: record.evidence.interiorPhotoReferences,
+            orientationSide: "interior" as const,
+            notes: "",
+            status: "accepted_for_validation" as const,
+          }
+        : null,
+      record.evidence?.compassOrientationNotes
+        ? {
+            evidenceType: "compass_orientation_note" as const,
+            label: "Compass / orientation notes",
+            sourceReference: "Legacy orientation note",
+            orientationSide: "whole_property" as const,
+            notes: record.evidence.compassOrientationNotes,
+            status: "source_provided" as const,
+          }
+        : null,
+      record.evidence?.measurementNotes
+        ? {
+            evidenceType: "measurement_note" as const,
+            label: "Known measurements",
+            sourceReference: "Legacy measurement note",
+            orientationSide: "unknown_na" as const,
+            notes: record.evidence.measurementNotes,
+            status: "source_provided" as const,
+          }
+        : null,
+      record.evidence?.validationNotes
+        ? {
+            evidenceType: "other" as const,
+            label: "Floorplan validation notes",
+            sourceReference: "Legacy validation note",
+            orientationSide: "unknown_na" as const,
+            notes: record.evidence.validationNotes,
+            status: "needs_review" as const,
+          }
+        : null,
+    ];
   const legacyEvidenceItems = legacyEvidenceItemsWithNulls.filter(
     (item): item is Partial<PropertyModelEvidenceItem> => item !== null,
   );
@@ -488,7 +565,7 @@ export const normalizePropertyModelRecord = (record: StoredPropertyModelRecord):
     ...emptyRecord,
     ...record,
     recordId: record.recordId,
-    requestId: record.requestId ?? '',
+    requestId: record.requestId ?? "",
     customer: {
       ...emptyRecord.customer,
       ...record.customer,
@@ -506,55 +583,82 @@ export const normalizePropertyModelRecord = (record: StoredPropertyModelRecord):
       ...record.hubSpotLink,
     },
     customerConcerns: normalizedConcerns,
-    customerGoals: Array.isArray(record.customerGoals) ? record.customerGoals : [],
-    solutionCategories: Array.isArray(record.solutionCategories) ? record.solutionCategories : [],
+    customerGoals: Array.isArray(record.customerGoals)
+      ? record.customerGoals
+      : [],
+    solutionCategories: Array.isArray(record.solutionCategories)
+      ? record.solutionCategories
+      : [],
     proposedSolutions: Array.isArray(record.proposedSolutions)
-      ? (record.proposedSolutions as StoredPropertyModelSolution[]).map((solution) => ({
-          id: solution.id,
-          title: solution.title,
-          categoryId: solution.categoryId ?? '',
-          packageRef: solution.packageRef ?? '',
-          concernServed: solution.concernServed ?? solution.customerGoalRef ?? '',
-          notes: solution.notes ?? solution.wnyhsPurpose ?? '',
-        }))
+      ? (record.proposedSolutions as StoredPropertyModelSolution[]).map(
+          (solution) => ({
+            id: solution.id,
+            title: solution.title,
+            categoryId: solution.categoryId ?? "",
+            packageRef: solution.packageRef ?? "",
+            concernServed:
+              solution.concernServed ?? solution.customerGoalRef ?? "",
+            notes: solution.notes ?? solution.wnyhsPurpose ?? "",
+          }),
+        )
       : [],
     evidenceItems: normalizedEvidenceItems,
     areas: Array.isArray(record.areas) ? record.areas : [],
     devices: Array.isArray(record.devices) ? record.devices : [],
     bomLineItems: Array.isArray(record.bomLineItems)
-      ? (record.bomLineItems as StoredPropertyModelBomLineItem[]).map((item) => ({
-          id: item.id,
-          itemName: item.itemName,
-          hardwareType: item.hardwareType ?? '',
-          quantity: item.quantity,
-          catalogHardwareItemId: item.catalogHardwareItemId ?? '',
-          locationRef: item.locationRef,
-          propertyAreaRef: item.propertyAreaRef ?? item.locationRef ?? '',
-          customerConcernServed: item.customerConcernServed ?? item.customerGoalServed ?? '',
-          selectedSolutionRef: item.selectedSolutionRef ?? item.wnyhsPurpose ?? '',
-          evidenceRef: item.evidenceRef ?? '',
-          bomStatus: item.bomStatus ?? 'needs_placement',
-          dashboardPrepNote: item.dashboardPrepNote ?? '',
-          installerNote: item.installerNote ?? '',
-          installerAssignment:
-            item.installerAssignment && installerAssignmentOptions.some((option) => option.value === item.installerAssignment)
-              ? item.installerAssignment
-              : 'unassigned',
-        }))
+      ? (record.bomLineItems as StoredPropertyModelBomLineItem[]).map(
+          (item) => ({
+            id: item.id,
+            itemName: item.itemName,
+            hardwareType: item.hardwareType ?? "",
+            quantity: item.quantity,
+            catalogHardwareItemId: item.catalogHardwareItemId ?? "",
+            locationRef: item.locationRef,
+            propertyAreaRef: item.propertyAreaRef ?? item.locationRef ?? "",
+            customerConcernServed:
+              item.customerConcernServed ?? item.customerGoalServed ?? "",
+            selectedSolutionRef:
+              item.selectedSolutionRef ?? item.wnyhsPurpose ?? "",
+            evidenceRef: item.evidenceRef ?? "",
+            bomStatus: item.bomStatus ?? "needs_placement",
+            dashboardPrepNote: item.dashboardPrepNote ?? "",
+            installerNote: item.installerNote ?? "",
+            installerAssignment:
+              item.installerAssignment &&
+              installerAssignmentOptions.some(
+                (option) => option.value === item.installerAssignment,
+              )
+                ? item.installerAssignment
+                : "unassigned",
+          }),
+        )
       : [],
     quoteStage: normalizedQuoteStage,
+    pricing: {
+      ...emptyRecord.pricing,
+      ...record.pricing,
+      quoteSubtotal: Number(record.pricing?.quoteSubtotal) || 0,
+      quoteDiscount: Number(record.pricing?.quoteDiscount) || 0,
+      quoteTaxOrFees: Number(record.pricing?.quoteTaxOrFees) || 0,
+      quoteTotal: Number(record.pricing?.quoteTotal) || 0,
+      depositRequired: record.pricing?.depositRequired ?? true,
+      depositPercent: Number(record.pricing?.depositPercent) || 50,
+      depositAmount: Number(record.pricing?.depositAmount) || 0,
+      balanceDueOnArrival: Number(record.pricing?.balanceDueOnArrival) || 0,
+      pricingNotes: record.pricing?.pricingNotes ?? "",
+    },
     gates: {
       ...emptyRecord.gates,
       ...record.gates,
     },
-    notes: record.notes ?? '',
+    notes: record.notes ?? "",
     createdAt: record.createdAt ?? emptyRecord.createdAt,
     updatedAt: record.updatedAt ?? emptyRecord.updatedAt,
   };
 };
 
-const readFromStorage = <T,>(key: string): T | null => {
-  if (typeof window === 'undefined') {
+const readFromStorage = <T>(key: string): T | null => {
+  if (typeof window === "undefined") {
     return null;
   }
 
@@ -576,8 +680,8 @@ const readFromStorage = <T,>(key: string): T | null => {
   }
 };
 
-const writeToStorage = <T,>(key: string, value: T) => {
-  if (typeof window === 'undefined') {
+const writeToStorage = <T>(key: string, value: T) => {
+  if (typeof window === "undefined") {
     return false;
   }
 
@@ -590,11 +694,16 @@ const writeToStorage = <T,>(key: string, value: T) => {
 };
 
 export const loadPropertyModelRecords = () => {
-  const records = readFromStorage<StoredPropertyModelRecord[]>(propertyModelStorageKey);
-  return Array.isArray(records) ? records.map(normalizePropertyModelRecord) : [];
+  const records = readFromStorage<StoredPropertyModelRecord[]>(
+    propertyModelStorageKey,
+  );
+  return Array.isArray(records)
+    ? records.map(normalizePropertyModelRecord)
+    : [];
 };
 
-export const savePropertyModelRecords = (records: PropertyModelRecord[]) => writeToStorage(propertyModelStorageKey, records);
+export const savePropertyModelRecords = (records: PropertyModelRecord[]) =>
+  writeToStorage(propertyModelStorageKey, records);
 
 export const savePropertyModelRecord = (record: PropertyModelRecord) => {
   const records = loadPropertyModelRecords();
@@ -602,8 +711,12 @@ export const savePropertyModelRecord = (record: PropertyModelRecord) => {
     ...record,
     updatedAt: new Date().toISOString(),
   };
-  const nextRecords = records.some((item) => item.recordId === nextRecord.recordId)
-    ? records.map((item) => (item.recordId === nextRecord.recordId ? nextRecord : item))
+  const nextRecords = records.some(
+    (item) => item.recordId === nextRecord.recordId,
+  )
+    ? records.map((item) =>
+        item.recordId === nextRecord.recordId ? nextRecord : item,
+      )
     : [nextRecord, ...records];
 
   return {
@@ -623,14 +736,20 @@ export const createPropertyModelImportCopy = (record: PropertyModelRecord) => {
   const now = new Date().toISOString();
   return normalizePropertyModelRecord({
     ...record,
-    recordId: createId('WNYHS-PM'),
+    recordId: createId("WNYHS-PM"),
     createdAt: now,
     updatedAt: now,
   });
 };
 
-export const isPropertyModelImportCandidate = (value: unknown): value is StoredPropertyModelRecord => {
-  if (!value || typeof value !== 'object') return false;
+export const isPropertyModelImportCandidate = (
+  value: unknown,
+): value is StoredPropertyModelRecord => {
+  if (!value || typeof value !== "object") return false;
   const candidate = value as Partial<StoredPropertyModelRecord>;
-  return typeof candidate.recordId === 'string' && typeof candidate.customer === 'object' && typeof candidate.propertyAddress === 'object';
+  return (
+    typeof candidate.recordId === "string" &&
+    typeof candidate.customer === "object" &&
+    typeof candidate.propertyAddress === "object"
+  );
 };
