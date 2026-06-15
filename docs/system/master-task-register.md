@@ -4087,3 +4087,21 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** QUOTESYSTEM-001 through QUOTESYSTEM-014, PROPERTY001, FLOORPLAN000-003, HARDWARE001, SOLUTION_PLACEMENT001, CATALOG001, current governance authority chain, and `docs/system/step-current.md`.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Added manual redraw/photo-analysis handoff governance and local workspace support. No HubSpot, Stripe/payment, image processing, AI redraw generation, uploads, LiDAR capture, durable backend persistence, email, PDF, auth, inventory, ordering, scheduling, dependency, package-lock, protected runtime, or unrelated public-site changes were made.
+
+### WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001
+- **Task ID:** WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001
+- **Task Name:** Static WNYHS Marketing Page Visual Parity
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Bring selected static WNYHS public marketing/trust pages into visual alignment with the current WNYHS homepage/solutions token system.
+- **Allowed Scope:** Visual parity migration for `src/pages/About.tsx`, `src/pages/OurWork.tsx`, `src/pages/Comparison.tsx`, `src/pages/Reliability.tsx`, and `src/pages/HomeSecurityWhatsIncluded.tsx`; token-backed utility CSS in `src/index.css`; claim-risk cleanup only where touched; version and documentation updates.
+- **Forbidden Scope:** No quote-system implementation changes, catalog schema changes, package data changes, pricing changes, HubSpot changes, Stripe/payment changes, scheduling changes, lead-signal/requestId changes, Resend/email changes, support/contact form behavior changes, auth changes, durable storage changes, dependencies, package-lock changes, package detail page work, Contact/Support wrapper cleanup, `/operator/property-model`, quote preview, or installer packet pages.
+- **Target Files:** `src/pages/About.tsx`, `src/pages/OurWork.tsx`, `src/pages/Comparison.tsx`, `src/pages/Reliability.tsx`, `src/pages/HomeSecurityWhatsIncluded.tsx`, `src/index.css`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_001_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Static public marketing/trust page presentation only.
+- **Documentation Updates Required:** Create implementation note and register it in document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check if practical for target routes.
+- **Exit Criteria:** Target pages use WNYHS primitives where practical; obvious claim-risk wording is cleaned where touched; routes and behavior are preserved; site version is bumped; protected systems remain untouched; validation passes or limitations are documented; PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded work order, DESIGN001 REV01, SOLUTION001 REV01, CATALOG001 REV01, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review PR preview and approve visual parity.
+- **Completion Notes:** Migrated selected static public marketing pages toward `.wnyhs-shell`, `.wnyhs-section`, `.wnyhs-section-header`, `.wnyhs-card`, `.wnyhs-button`, and related token-backed classes. Added minimal token-backed utility CSS in `src/index.css`. Cleaned Comparison third-party services language and Reliability outage limitation wording. Preserved package source data reads, routes, CTAs, accordions, forms, protected runtime boundaries, HubSpot, Stripe/payment, scheduling, lead-signal, email, auth, storage, dependencies, and package-lock. Version bumped to `v1.0.143`.

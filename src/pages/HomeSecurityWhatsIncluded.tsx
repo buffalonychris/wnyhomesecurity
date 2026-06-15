@@ -18,24 +18,26 @@ const HomeSecurityWhatsIncluded = () => {
 
   return (
     <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">
-      <div className="wnyhs-marketing-stack">
-        <div style={{ display: 'grid', gap: '0.5rem', maxWidth: 720 }}>
-          <div className="badge">What’s Included</div>
-          <h2 style={{ margin: 0 }}>Hardware and capabilities by tier</h2>
-          <p style={{ margin: 0, color: 'var(--kaec-muted)' }}>
+      <div className="wnyhs-shell wnyhs-marketing-stack">
+        <section className="wnyhs-section" aria-labelledby="whats-included-heading">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">What’s Included</p>
+            <h1 id="whats-included-heading" className="wnyhs-heading">Hardware and capabilities by tier</h1>
+          <p className="wnyhs-description">
             Each tier keeps Home Assistant as your single dashboard, with local-first coverage and optional remote access.
           </p>
-        </div>
+          </div>
+        </section>
 
-        <div className="section wnyhs-whats-included-grid">
+        <section className="wnyhs-section wnyhs-whats-included-grid" aria-label="Package tier inclusions">
           {tierOrder.map((tierId) => {
             const tier = HOME_SECURITY_PACKAGE_SPECS[tierId];
             const hardwareItems = getHomeSecurityHardwareItems(tierId);
             return (
-              <section key={tier.id} className="card wnyhs-whats-included-card">
-                <div style={{ display: 'grid', gap: '0.5rem' }}>
-                  <div className="badge">{tier.name} Tier</div>
-                  <h3 style={{ margin: 0 }}>Typical coverage</h3>
+              <section key={tier.id} className="wnyhs-card wnyhs-whats-included-card">
+                <div className="wnyhs-section-header">
+                  <p className="wnyhs-price-chip">{tier.name} Tier</p>
+                  <h2 className="wnyhs-card-title">Typical coverage</h2>
                   <ul className="list" style={{ margin: 0 }}>
                     <li>
                       <span />
@@ -76,12 +78,12 @@ const HomeSecurityWhatsIncluded = () => {
               </section>
             );
           })}
-        </div>
+        </section>
 
-        <div className="card">
-          <h3 style={{ marginTop: 0 }}>Clarity</h3>
-          <p style={{ marginBottom: 0, color: 'var(--kaec-muted)' }}>{HOME_SECURITY_CLARITY_FOOTER}</p>
-        </div>
+        <section className="wnyhs-section" aria-labelledby="clarity-heading">
+          <h2 id="clarity-heading" className="wnyhs-heading">Clarity</h2>
+          <p className="wnyhs-description">{HOME_SECURITY_CLARITY_FOOTER}</p>
+        </section>
       </div>
     </WnyhsMarketingLayout>
   );

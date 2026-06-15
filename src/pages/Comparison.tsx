@@ -60,33 +60,35 @@ const Comparison = () => {
     showBreadcrumbs: false,
   });
   const content = (
-    <div className={vertical === 'home-security' ? 'wnyhs-marketing-stack' : 'container section'}>
+    <div className={vertical === 'home-security' ? 'wnyhs-shell wnyhs-marketing-stack' : 'container section'}>
       {vertical === 'home-security' ? (
         <>
-          <div className="wnyhs-comparison-header">
-            <div className="badge">Comparison</div>
-            <h1 style={{ margin: 0 }}>Compare Home Security packages</h1>
+          <section className="wnyhs-section" aria-labelledby="comparison-heading">
+          <div className="wnyhs-section-header wnyhs-comparison-header">
+            <p className="wnyhs-eyebrow">Comparison</p>
+            <h1 id="comparison-heading" className="wnyhs-heading">Compare Home Security packages</h1>
             <p className="wnyhs-comparison-subtitle">
               Home Security tiers keep Home Assistant as the single dashboard. Remote access requires internet; local control stays available on LAN.
             </p>
           </div>
           <div className="wnyhs-comparison-grid">
-            <div className="wnyhs-comparison-card">
+            <div className="wnyhs-card wnyhs-comparison-card">
               <strong>Local-first operation</strong>
               <p>Every tier keeps local automations, alerts, and dashboards running on your home network.</p>
             </div>
-            <div className="wnyhs-comparison-card">
+            <div className="wnyhs-card wnyhs-comparison-card">
               <strong>Coverage difference</strong>
               <p>Bronze focuses on entry coverage, Silver extends indoor + outdoor cameras, and Gold expands every zone.</p>
             </div>
-            <div className="wnyhs-comparison-card">
-              <strong>Optional monitoring</strong>
-              <p>Professional monitoring is optional and provided directly by third-party services you choose.</p>
+            <div className="wnyhs-card wnyhs-comparison-card">
+              <strong>Optional third-party services</strong>
+              <p>Some customers choose separate third-party services; WNY Home Security focuses on customer-owned equipment and local-first setup.</p>
             </div>
           </div>
           <div className="wnyhs-comparison-table">
             <HomeSecurityComparisonTable />
           </div>
+        </section>
         </>
       ) : (
         <>

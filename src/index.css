@@ -4430,3 +4430,88 @@ body.modal-open {
     position: static;
   }
 }
+
+/* WNYHS public marketing visual parity utilities */
+.wnyhs-action-row,
+.wnyhs-gallery-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.wnyhs-marketing-stack {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.wnyhs-gallery-intro,
+.wnyhs-gallery-section,
+.wnyhs-gallery-final-cta,
+.wnyhs-comparison-header {
+  gap: 0.75rem;
+}
+
+.wnyhs-gallery-text-reset,
+.wnyhs-gallery-heading-spaced,
+.wnyhs-gallery-card-title--compact {
+  margin: 0;
+}
+
+.wnyhs-gallery-body,
+.wnyhs-comparison-subtitle {
+  margin: 0;
+  color: var(--wnyhs-ink-muted);
+}
+
+.wnyhs-gallery-body--wide {
+  max-width: 72ch;
+}
+
+.wnyhs-gallery-featured-grid,
+.wnyhs-gallery-grid,
+.wnyhs-comparison-grid,
+.wnyhs-whats-included-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+}
+
+.wnyhs-gallery-card-body,
+.wnyhs-gallery-card-body--compact {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.wnyhs-gallery-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--wnyhs-radius-media);
+  border: 1px solid var(--wnyhs-border);
+}
+
+.wnyhs-gallery-story-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.wnyhs-gallery-story-list div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.wnyhs-gallery-story-list dt {
+  color: var(--wnyhs-gold-strong);
+  font-weight: 800;
+}
+
+.wnyhs-gallery-story-list dd {
+  margin: 0;
+  color: var(--wnyhs-ink-muted);
+}
+
+.wnyhs-comparison-table {
+  overflow-x: auto;
+}
