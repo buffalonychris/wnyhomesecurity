@@ -112,6 +112,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 ## Active Tasks (Execution Driver)
 
+
+### CREATE-ESTIMATE-MANUAL-REV02
+- **Task ID:** CREATE-ESTIMATE-MANUAL-REV02
+- **Task Name:** Create Estimate Instruction Manual REV02
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a new full REV02 internal Create Estimate instruction manual that preserves the REV01 customer-discovery-to-deposit-ready-quote purpose while embedding the mandatory REV08 floorplan workflow as quote-prep procedure.
+- **Allowed Scope:** Visible site version bump; new REV02 Markdown manual source; controlled floorplan evidence gate before GPT analysis; minimum evidence package; two-pass reconstruction; SVG/vector baseline workflow; lock statuses; Step 6 and Step 7 updates; field definitions; review/lock rules; customer quote Section 1 output requirements; quality checklist; Appendix A GPT prompt; document catalog and markdown manifest updates; completed task record.
+- **Forbidden Scope:** No quote runtime code, HubSpot changes, Stripe/payment changes, scheduling changes, support/contact form changes, catalog schema changes, package pricing/data changes, auth changes, durable storage changes, dependency or package-lock changes, image processing, AI redraw generation, uploads, LiDAR capture, computer vision, or sensitive customer details.
+- **Target Files:** `src/lib/siteVersion.ts`, `docs/quotesystem/WNYHS_Create_Estimate_Instruction_Manual_REV02.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation/manual and visible version only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; `git diff --check`; `git diff --cached --check`; confirm protected runtime files unchanged; confirm REV01 was not overwritten; confirm REV02 Markdown exists as a new full document version; confirm no DOCX file remains staged or tracked in this PR.
+- **Exit Criteria:** Version is bumped to `v1.0.151`; REV02 exists as a new full document version; REV08 workflow is mandatory in quote prep; evidence gate, two-pass reconstruction, SVG/vector workflow, exact lock statuses, customer output requirements, quality checklist, and Appendix A GPT prompt are updated; protected systems remain untouched; REV01 is preserved.
+- **Dependencies:** Prompt-created bounded governance work order, current governance authority chain, `docs/system/step-current.md`, and `docs/quotesystem/FLOORPLAN_QUOTE_WORKFLOW_GOVERNANCE_REV01.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added the REV02 Create Estimate instruction manual as repo-tracked Markdown source only. DOCX/PDF exports should be generated outside the repo or attached separately when needed. HubSpot, Stripe/payment, scheduling, support/contact forms, catalog schema, package pricing/data, auth, durable storage, dependencies, package-lock, and quote runtime code were not changed.
+
 ### FLOORPLAN-QUOTE-GOV-001
 - **Task ID:** FLOORPLAN-QUOTE-GOV-001
 - **Task Name:** Floorplan Quote Workflow Governance

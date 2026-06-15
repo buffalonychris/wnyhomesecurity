@@ -69,6 +69,9 @@ VISUAL-PARITY-004 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETI
 
 WNYHS-PUBLIC-FOOTER-NAV-001 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_FOOTER_NAV_001_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the bounded public footer navigation cleanup limiting footer links to About, Contact, Privacy, Terms, and Support, preserving their existing destinations, and confirming top navigation, redirects, HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email, forms, quote-system runtime, catalog schema, package data/pricing, dependencies, and package-lock files were not changed.
 
+
+CREATE-ESTIMATE-MANUAL-REV02 addendum: `docs/quotesystem/WNYHS_Create_Estimate_Instruction_Manual_REV02.md` was added after this manifest scan and should be included in the next full manifest regeneration. This internal docs-only manual preserves the REV01 customer-discovery-to-deposit-ready-quote purpose while embedding the mandatory REV08 floorplan evidence gate, two-pass reconstruction, controlled SVG/vector baseline workflow, exact lock statuses, customer quote Section 1 evidence output, quality checklist, and Appendix A GPT Proposed prompt controls. It does not authorize quote runtime code, HubSpot, Stripe/payment, scheduling, support/contact forms, catalog schema, package pricing/data, auth, durable storage, dependencies, package-lock, image processing, uploads, LiDAR capture, computer vision, or AI redraw generation.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
