@@ -4356,3 +4356,77 @@ body.modal-open {
     background: var(--wnyhs-surface);
   }
 }
+
+.quote-workspace-action-bar {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 92%, var(--wnyhs-gold-soft) 8%);
+  box-shadow: var(--wnyhs-shadow-card);
+}
+
+.quote-workspace-action-bar > div:first-child {
+  display: grid;
+  gap: 0.15rem;
+  min-width: min(100%, 260px);
+}
+
+.quote-workspace-action-bar span,
+.quote-workspace-action-bar small {
+  color: var(--wnyhs-ink-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.quote-workspace-action-bar strong {
+  color: var(--wnyhs-ink);
+}
+
+.quote-workspace-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.quote-workspace-empty-state {
+  padding: 0.9rem;
+  border: 1px dashed var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 76%, var(--wnyhs-surface-soft) 24%);
+  color: var(--wnyhs-ink-muted);
+  font-weight: 700;
+}
+
+.quote-workspace-reconciliation-card--missing {
+  border-style: dashed;
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 82%, var(--wnyhs-gold-soft) 18%);
+}
+
+.quote-workspace-reconciliation-card--approved {
+  border-color: color-mix(in srgb, var(--wnyhs-success) 45%, var(--wnyhs-border));
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-success-soft) 12%);
+}
+
+.quote-workspace-reconciliation-card--approved strong {
+  color: var(--wnyhs-success);
+}
+
+.quote-workspace-reconciliation-card--locked {
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 55%, var(--wnyhs-border));
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 82%, var(--wnyhs-gold-soft) 18%);
+}
+
+@media (max-width: 720px) {
+  .quote-workspace-action-bar {
+    position: static;
+  }
+}

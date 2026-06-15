@@ -1040,3 +1040,4 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Customer-facing:** No.
 - **Implementation authority:** No, records QUOTESYSTEM-010 implementation only.
 - **Notes:** Documents that PDF generation, sending, scheduling, inventory/ordering automation, HubSpot sync, payment logic, auth, and durable storage remain out of scope.
+- `docs/quotesystem/IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md` — QUOTESYSTEM-012 internal Quote Workspace usability implementation note.

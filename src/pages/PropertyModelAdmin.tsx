@@ -164,6 +164,15 @@ const PropertyModelAdmin = () => {
     return haystack.includes('camera') || haystack.includes('video') || haystack.includes('doorbell');
   });
   const showMastReminder = securitySolutionSelected && hasCameraHardware;
+  const statusMessage = savedMessage || `Updated ${new Date(draft.updatedAt).toLocaleString()}`;
+
+  const getReconciliationCardClass = (label: string) => {
+    const lowerLabel = label.toLowerCase();
+    if (lowerLabel.startsWith('missing')) return 'quote-workspace-reconciliation-card quote-workspace-reconciliation-card--missing';
+    if (lowerLabel === 'approved') return 'quote-workspace-reconciliation-card quote-workspace-reconciliation-card--approved';
+    if (lowerLabel === 'locked') return 'quote-workspace-reconciliation-card quote-workspace-reconciliation-card--locked';
+    return 'quote-workspace-reconciliation-card';
+  };
 
   const floorplanEvidenceSummary = useMemo(
     () => ({
@@ -402,13 +411,13 @@ const PropertyModelAdmin = () => {
                 Preview / Print Installer Packet
               </Link>
               <button className="btn btn-secondary" type="button" onClick={handleExportCurrentRecord}>
-                Export Property Model JSON
+                Export JSON
               </button>
               <button className="btn btn-secondary" type="button" onClick={handleExportAllRecords}>
-                Export All Property Models JSON
+                Export All JSON
               </button>
               <button className="btn btn-secondary" type="button" onClick={() => importInputRef.current?.click()}>
-                Import Property Model JSON
+                Import JSON
               </button>
               <input
                 ref={importInputRef}
@@ -429,8 +438,8 @@ const PropertyModelAdmin = () => {
             <p className="quote-workspace-eyebrow">Property Model</p>
             <h2>{selectedRecordLabel}</h2>
             <p>
-              HubSpot owns customer identity, lead source, lifecycle, deal ownership, and deal stage context. This
-              workspace only stores local draft planning details for quote preparation.
+              Live-entry workspace for the active customer/deal frame, property basics, evidence, selected solutions,
+              hardware draft, quote preview, and local backup actions.
             </p>
           </div>
           <div className="quote-workspace-status-grid">
@@ -449,21 +458,35 @@ const PropertyModelAdmin = () => {
           </div>
         </SpaceFrame>
 
-        <SpaceFrame className="quote-workspace-panel quote-workspace-guidance">
+        <div className="quote-workspace-action-bar" aria-label="Quote workspace actions">
           <div>
-            <p className="quote-workspace-eyebrow">Local Backup Guidance</p>
-            <h2>Import / Export is prototype-only local JSON</h2>
-            <p>
-              Exported JSON may contain customer, property, quote, and installer-planning information. Store exported
-              files securely and do not upload sensitive customer files into public tools. This browser-only backup flow
-              does not add cloud storage, durable backend persistence, CRM sync, email sending, PDF generation, auth,
-              payment, inventory, ordering, or scheduling automation. Future durable storage is expected to replace it.
-            </p>
-            <p>Collision handling: imported records with an existing ID are saved as a new local copy instead of replacing unrelated records.</p>
+            <span>Selected record</span>
+            <strong>{selectedRecordLabel}</strong>
+            <small>{statusMessage}</small>
           </div>
-        </SpaceFrame>
+          <div className="quote-workspace-action-buttons">
+            <button className="btn btn-primary" type="submit" form="quote-workspace-form">
+              Save
+            </button>
+            <button className="btn btn-secondary" type="button" onClick={handleCreateRecord}>
+              New Property Model
+            </button>
+            <Link className="btn btn-secondary" to={`/operator/property-model/quote-preview?recordId=${encodeURIComponent(draft.recordId)}`}>
+              Preview / Print Quote
+            </Link>
+            <Link className="btn btn-secondary" to={`/operator/property-model/installer-packet?recordId=${encodeURIComponent(draft.recordId)}`}>
+              Preview / Print Installer Packet
+            </Link>
+            <button className="btn btn-secondary" type="button" onClick={handleExportCurrentRecord}>
+              Export JSON
+            </button>
+            <button className="btn btn-secondary" type="button" onClick={() => importInputRef.current?.click()}>
+              Import JSON
+            </button>
+          </div>
+        </div>
 
-        <form className="quote-workspace-form" onSubmit={handleSave}>
+        <form id="quote-workspace-form" className="quote-workspace-form" onSubmit={handleSave}>
           <SpaceFrame className="quote-workspace-panel">
             <div className="quote-workspace-panel-head">
               <div>
@@ -539,114 +562,9 @@ const PropertyModelAdmin = () => {
           <SpaceFrame className="quote-workspace-panel">
             <div className="quote-workspace-panel-head">
               <div>
-                <p className="quote-workspace-eyebrow">Floorplan / Property Evidence</p>
-                <h2>Floorplan / Property Evidence</h2>
-                <p>Hand-drawn floorplan and professional redraw are separate evidence items.</p>
-                <p>
-                  Exterior/interior photos validate the floorplan but do not override sketch geometry during Trace Mode
-                  unless approved.
-                </p>
-                <p>
-                  Compass/orientation matters for camera, sensor, lighting, environmental, and future coverage planning.
-                </p>
-                <p>LiDAR/Digital Twin capture is a future source type, not implemented here.</p>
-              </div>
-              <button
-                className="btn btn-secondary"
-                type="button"
-                onClick={() =>
-                  updateDraft((record) => ({ ...record, evidenceItems: [...record.evidenceItems, createEvidenceItem()] }))
-                }
-              >
-                Add Evidence
-              </button>
-            </div>
-            <div className="quote-workspace-stack">
-              {draft.evidenceItems.length === 0 ? <p>No floorplan or property evidence entered yet.</p> : null}
-              {draft.evidenceItems.map((item, index) => (
-                <article className="quote-workspace-item" key={item.id}>
-                  <div className="quote-workspace-item-head">
-                    <h3>Evidence {index + 1}</h3>
-                    <button className="btn btn-secondary btn-small" type="button" onClick={() => removeEvidenceItem(item.id)}>
-                      Remove
-                    </button>
-                  </div>
-                  <div className="quote-workspace-grid">
-                    <Field label="Evidence Type">
-                      <select
-                        value={item.evidenceType}
-                        onChange={(event) =>
-                          updateEvidenceItem(item.id, {
-                            evidenceType: event.target.value as PropertyModelEvidenceItem['evidenceType'],
-                          })
-                        }
-                      >
-                        {propertyEvidenceTypeOptions.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
-                    </Field>
-                    <Field label="Label / Name">
-                      <input value={item.label} onChange={(event) => updateEvidenceItem(item.id, { label: event.target.value })} />
-                    </Field>
-                    <Field
-                      label="Source / Reference"
-                      help="Filename, local path, Google Drive note, photo batch note, uploaded in chat, onsite phone photo, or future LiDAR capture."
-                    >
-                      <textarea
-                        rows={3}
-                        value={item.sourceReference}
-                        onChange={(event) => updateEvidenceItem(item.id, { sourceReference: event.target.value })}
-                      />
-                    </Field>
-                    <Field label="Orientation / Side">
-                      <select
-                        value={item.orientationSide}
-                        onChange={(event) =>
-                          updateEvidenceItem(item.id, {
-                            orientationSide: event.target.value as PropertyModelEvidenceItem['orientationSide'],
-                          })
-                        }
-                      >
-                        {propertyEvidenceOrientationOptions.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
-                    </Field>
-                    <Field label="Status">
-                      <select
-                        value={item.status}
-                        onChange={(event) =>
-                          updateEvidenceItem(item.id, {
-                            status: event.target.value as PropertyModelEvidenceItem['status'],
-                          })
-                        }
-                      >
-                        {propertyEvidenceStatusOptions.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
-                    </Field>
-                    <Field label="Notes">
-                      <textarea rows={3} value={item.notes} onChange={(event) => updateEvidenceItem(item.id, { notes: event.target.value })} />
-                    </Field>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </SpaceFrame>
-
-          <SpaceFrame className="quote-workspace-panel">
-            <div className="quote-workspace-panel-head">
-              <div>
                 <p className="quote-workspace-eyebrow">Property Model</p>
-                <h2>Customer + Property</h2>
+                <h2>Property Basics</h2>
+                <p>Capture the plain customer and property details needed while entering the quote.</p>
               </div>
             </div>
             <div className="quote-workspace-grid">
@@ -809,7 +727,7 @@ const PropertyModelAdmin = () => {
               <div>
                 <p className="quote-workspace-eyebrow">Customer Concerns</p>
                 <h2>Customer Concerns</h2>
-                <p>Preserve the customer wording for quote personalization. Freehand wording remains available.</p>
+                <p>Enter the customer's own words once, then map them to solutions and hardware below.</p>
               </div>
               <button
                 className="btn btn-secondary"
@@ -822,7 +740,7 @@ const PropertyModelAdmin = () => {
               </button>
             </div>
             <div className="quote-workspace-stack">
-              {draft.customerConcerns.length === 0 ? <p>No customer concerns entered yet.</p> : null}
+              {draft.customerConcerns.length === 0 ? <div className="quote-workspace-empty-state">No customer concerns yet. Add the first concern before selecting solutions.</div> : null}
               {draft.customerConcerns.map((concern, index) => (
                 <article className="quote-workspace-item" key={concern.id}>
                   <div className="quote-workspace-item-head">
@@ -877,7 +795,7 @@ const PropertyModelAdmin = () => {
               </button>
             </div>
             <div className="quote-workspace-stack">
-              {draft.areas.length === 0 ? <p>No rooms or areas entered yet.</p> : null}
+              {draft.areas.length === 0 ? <div className="quote-workspace-empty-state">No rooms or areas yet. Add customer-friendly room or property area names before placing hardware.</div> : null}
               {draft.areas.map((area, index) => (
                 <article className="quote-workspace-item" key={area.id}>
                   <div className="quote-workspace-item-head">
@@ -902,9 +820,115 @@ const PropertyModelAdmin = () => {
           <SpaceFrame className="quote-workspace-panel">
             <div className="quote-workspace-panel-head">
               <div>
+                <p className="quote-workspace-eyebrow">Floorplan / Property Evidence</p>
+                <h2>Floorplan / Property Evidence</h2>
+                <p>Hand-drawn floorplan and professional redraw are separate evidence items.</p>
+                <p>
+                  Exterior/interior photos validate the floorplan but do not override sketch geometry during Trace Mode
+                  unless approved.
+                </p>
+                <p>
+                  Compass/orientation matters for camera, sensor, lighting, environmental, and future coverage planning.
+                </p>
+                <p>LiDAR/Digital Twin capture is a future source type, not implemented here.</p>
+              </div>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={() =>
+                  updateDraft((record) => ({ ...record, evidenceItems: [...record.evidenceItems, createEvidenceItem()] }))
+                }
+              >
+                Add Evidence
+              </button>
+            </div>
+            <div className="quote-workspace-stack">
+              {draft.evidenceItems.length === 0 ? <div className="quote-workspace-empty-state">No evidence yet. Add a sketch, redraw, photo batch, or orientation note when it is available.</div> : null}
+              {draft.evidenceItems.map((item, index) => (
+                <article className="quote-workspace-item" key={item.id}>
+                  <div className="quote-workspace-item-head">
+                    <h3>Evidence {index + 1}</h3>
+                    <button className="btn btn-secondary btn-small" type="button" onClick={() => removeEvidenceItem(item.id)}>
+                      Remove
+                    </button>
+                  </div>
+                  <div className="quote-workspace-grid">
+                    <Field label="Evidence Type">
+                      <select
+                        value={item.evidenceType}
+                        onChange={(event) =>
+                          updateEvidenceItem(item.id, {
+                            evidenceType: event.target.value as PropertyModelEvidenceItem['evidenceType'],
+                          })
+                        }
+                      >
+                        {propertyEvidenceTypeOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Label / Name">
+                      <input value={item.label} onChange={(event) => updateEvidenceItem(item.id, { label: event.target.value })} />
+                    </Field>
+                    <Field
+                      label="Source / Reference"
+                      help="Filename, local path, Google Drive note, photo batch note, uploaded in chat, onsite phone photo, or future LiDAR capture."
+                    >
+                      <textarea
+                        rows={3}
+                        value={item.sourceReference}
+                        onChange={(event) => updateEvidenceItem(item.id, { sourceReference: event.target.value })}
+                      />
+                    </Field>
+                    <Field label="Orientation / Side">
+                      <select
+                        value={item.orientationSide}
+                        onChange={(event) =>
+                          updateEvidenceItem(item.id, {
+                            orientationSide: event.target.value as PropertyModelEvidenceItem['orientationSide'],
+                          })
+                        }
+                      >
+                        {propertyEvidenceOrientationOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Status">
+                      <select
+                        value={item.status}
+                        onChange={(event) =>
+                          updateEvidenceItem(item.id, {
+                            status: event.target.value as PropertyModelEvidenceItem['status'],
+                          })
+                        }
+                      >
+                        {propertyEvidenceStatusOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Notes">
+                      <textarea rows={3} value={item.notes} onChange={(event) => updateEvidenceItem(item.id, { notes: event.target.value })} />
+                    </Field>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </SpaceFrame>
+
+          <SpaceFrame className="quote-workspace-panel">
+            <div className="quote-workspace-panel-head">
+              <div>
                 <p className="quote-workspace-eyebrow">Selected WNYHS Solutions</p>
                 <h2>Selected WNYHS Solutions</h2>
-                <p>Source-backed options use the canonical runtime catalog; notes remain optional.</p>
+                <p>Use catalog-backed solutions where possible; keep notes short and tied to a customer concern.</p>
               </div>
               <button
                 className="btn btn-secondary"
@@ -917,7 +941,7 @@ const PropertyModelAdmin = () => {
               </button>
             </div>
             <div className="quote-workspace-stack">
-              {draft.proposedSolutions.length === 0 ? <p>No WNYHS solutions selected yet.</p> : null}
+              {draft.proposedSolutions.length === 0 ? <div className="quote-workspace-empty-state">No selected solutions yet. Choose the WNYHS solution that answers the customer concern.</div> : null}
               {draft.proposedSolutions.map((solution, index) => (
                 <article className="quote-workspace-item" key={solution.id}>
                   <div className="quote-workspace-item-head">
@@ -978,7 +1002,7 @@ const PropertyModelAdmin = () => {
               <div>
                 <p className="quote-workspace-eyebrow">Draft Hardware / BOM</p>
                 <h2>Draft Hardware / BOM</h2>
-                <p>Manual planning surface only. Chris/Lou can adjust line items before approval or lock.</p>
+                <p>Manual draft only. Reconcile each item to a room/area, concern, solution, evidence item, and installer note before approval.</p>
               </div>
               <button
                 className="btn btn-secondary"
@@ -1008,14 +1032,14 @@ const PropertyModelAdmin = () => {
                 ['Approved', reconciliationSummary.approved],
                 ['Locked', reconciliationSummary.locked],
               ].map(([label, value]) => (
-                <div key={label}>
+                <div className={getReconciliationCardClass(String(label))} key={label}>
                   <span>{label}</span>
                   <strong>{value}</strong>
                 </div>
               ))}
             </div>
             <div className="quote-workspace-stack">
-              {draft.bomLineItems.length === 0 ? <p>No draft hardware entered yet.</p> : null}
+              {draft.bomLineItems.length === 0 ? <div className="quote-workspace-empty-state">No draft hardware yet. Add hardware only after rooms, concerns, evidence, and selected solutions are started.</div> : null}
               {draft.bomLineItems.map((item, index) => (
                 <article className="quote-workspace-item" key={item.id}>
                   <div className="quote-workspace-item-head">
@@ -1253,6 +1277,20 @@ const PropertyModelAdmin = () => {
               ))}
             </div>
           </SpaceFrame>
+
+        <SpaceFrame className="quote-workspace-panel quote-workspace-guidance">
+          <div>
+            <p className="quote-workspace-eyebrow">Local Backup Guidance</p>
+            <h2>Import / Export is prototype-only local JSON</h2>
+            <p>
+              This page uses localStorage only: no durable storage and no backend save. Exported JSON may contain
+              sensitive customer, property, quote, and installer-planning information, so store files carefully. Import
+              creates local browser records only; it does not sync CRM, send email, create PDFs, process payment, reserve
+              inventory, place orders, or schedule work.
+            </p>
+            <p>Imported records with an existing ID are saved as a new local copy.</p>
+          </div>
+        </SpaceFrame>
 
           <SpaceFrame className="quote-workspace-panel">
             <div className="quote-workspace-grid">

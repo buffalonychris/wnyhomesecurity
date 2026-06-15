@@ -3995,3 +3995,21 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** Current governance authority chain, `docs/system/step-current.md`, quote-system standards, solution-system standards, and existing package source data.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created the initial file-backed canonical runtime catalog and documentation. Promoted Home Security tier packages, offer categories, public solution options, package starting points, and tier hardware quantities into typed catalog structures. Updated `/operator/property-model` category, solution, package, and hardware selector sources to consume `src/data/catalog/` while preserving local draft-only behavior. No HubSpot, Stripe, protected API, inventory automation, ordering automation, scheduling automation, email sending, quote PDF generation, auth, durable storage, dependency, or package-lock changes were made.
+
+### QUOTESYSTEM-012
+- **Task ID:** QUOTESYSTEM-012
+- **Task Name:** Quote Workspace Usability Pass
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Improve the internal Property Model workspace usability, scanability, and live-entry flow without adding major business features.
+- **Allowed Scope:** Workspace section ordering, easy action access, compact guidance, empty states, hardware/BOM reconciliation scanability, documentation updates, and site-version bump.
+- **Forbidden Scope:** No cloud storage, durable backend persistence, HubSpot writes, Stripe/payment changes, inventory automation, ordering automation, scheduling automation, email sending, PDF generation, auth system, new dependencies, package-lock changes, protected runtime behavior changes, or unrelated public-site redesign.
+- **Target Files:** `src/pages/PropertyModelAdmin.tsx`, `src/index.css`, `src/lib/siteVersion.ts`, `docs/quotesystem/IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator Property Model route presentation only; local browser storage behavior preserved.
+- **Documentation Updates Required:** Add IMPLEMENTATION012 and register it in the quote-system document map, document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke checks for Property Model, quote preview, and installer packet routes.
+- **Exit Criteria:** Live-entry workspace order is improved; primary actions are easier to reach; empty states guide operators; reconciliation counts are easier to scan; existing Property Model, quote preview, installer packet, and import/export behavior remains intact; protected systems remain untouched.
+- **Dependencies:** QUOTESYSTEM-011, PROPERTY001, QUOTE001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Reordered the internal Property Model workspace, added an easy-access action bar, compacted local backup/import/export guidance, added operational empty states, and improved hardware/BOM reconciliation scanability. No HubSpot writes, Stripe/payment changes, backend persistence, cloud storage, email, PDF, auth, inventory, ordering, scheduling, dependencies, package-lock, route removals, or public-site redesign changes were made. Version bumped to `v1.0.138`.
