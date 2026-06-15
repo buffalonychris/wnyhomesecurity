@@ -15,6 +15,29 @@ import {
 } from '../content/homeSecurityPackageData';
 import { buildTel, wnyhsContact } from '../content/wnyhsContact';
 
+const homeSecurityTierStrip = {
+  a1: '/images/home-security/tier-bronze-960w.png',
+  a2: '/images/home-security/tier-silver-960w.png',
+  a3: '/images/home-security/tier-gold-960w.png',
+} as const;
+
+const styleLabelMap: Record<string, string> = {
+  a1: 'Essential Awareness',
+  a2: 'Balanced Home Coverage',
+  a3: 'Expanded Property Coverage',
+};
+
+const renderList = (items: string[]) => (
+  <ul className="list wnyhs-package-detail-list">
+    {items.map((item) => (
+      <li key={item}>
+        <span />
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+);
+
 const PackageDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
@@ -24,13 +47,6 @@ const PackageDetail = () => {
   const verticalQuery = vertical === 'home-security' ? '?vertical=home-security' : '';
   const isHomeSecurityPdp = vertical === 'home-security' && (id === 'a1' || id === 'a2' || id === 'a3');
   const isMostPopular = isHomeSecurityPdp && id === 'a2';
-  const homeSecurityTierStrip = isHomeSecurityPdp
-    ? {
-        a1: '/images/home-security/tier-bronze-960w.png',
-        a2: '/images/home-security/tier-silver-960w.png',
-        a3: '/images/home-security/tier-gold-960w.png',
-      }
-    : null;
   const packageContent = useMemo(
     () => (isHomeSecurityPdp && pkg ? HOME_SECURITY_PDP_CONTENT[pkg.id as 'a1' | 'a2' | 'a3'] : null),
     [isHomeSecurityPdp, pkg]
@@ -41,16 +57,12 @@ const PackageDetail = () => {
         ? `/contact?vertical=home-security&package=${pkg.id}&estimateIntent=selected-package`
         : '/contact?vertical=home-security'
       : '/contact';
-  const styleLabelMap: Record<string, string> = {
-    a1: 'Essential Awareness',
-    a2: 'Balanced Home Coverage',
-    a3: 'Expanded Property Coverage',
-  };
   const styleLabel = isHomeSecurityPdp && pkg ? styleLabelMap[pkg.id] ?? pkg.name : pkg?.name ?? 'Package';
-  const primaryActionLabel = isHomeSecurityPdp ? `Request a Free Estimate` : 'Request install';
+  const primaryActionLabel = isHomeSecurityPdp ? 'Request a Free Estimate' : 'Request install';
   const primaryActionLink = isHomeSecurityPdp ? '/discovery?vertical=home-security' : contactLink;
   const tierLabel = pkg?.name ?? 'Package';
   const selectedTierId = pkg ? (pkg.id.toUpperCase() as PackageTierId) : undefined;
+
   useLayoutConfig({
     layoutVariant: isHomeSecurityPdp ? 'funnel' : 'sitewide',
     showBreadcrumbs: isHomeSecurityPdp,
@@ -71,113 +83,103 @@ const PackageDetail = () => {
 
   if (!pkg) {
     return (
-      <div className="container section">
-        <h2>Package not found</h2>
-        <p>Please return to the packages page.</p>
-        <Link className="btn btn-primary" to={`/packages${verticalQuery}`}>
-          Back to packages
-        </Link>
+      <div className="wnyhs-page wnyhs-shell wnyhs-marketing-stack">
+        <section className="wnyhs-section">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Package Detail</p>
+            <h1 className="wnyhs-heading">Package not found</h1>
+            <p className="wnyhs-description">Please return to the packages page.</p>
+          </div>
+          <Link className="wnyhs-button wnyhs-button--primary" to={`/packages${verticalQuery}`}>
+            Back to packages
+          </Link>
+        </section>
       </div>
     );
   }
 
   if (isHomeSecurityPdp && packageContent) {
-    const heroStripImage = pkg ? homeSecurityTierStrip?.[pkg.id as keyof typeof homeSecurityTierStrip] : null;
+    const heroStripImage = homeSecurityTierStrip[pkg.id as keyof typeof homeSecurityTierStrip];
     const tierSpec = getHomeSecurityPackageSpec(pkg.id as 'a1' | 'a2' | 'a3');
 
     return (
-      <div className="container section pdp-shell">
+      <div className="wnyhs-page wnyhs-shell wnyhs-marketing-stack wnyhs-package-detail">
         <HomeSecurityFunnelSteps currentStep="packages" />
-        <Link to={`/packages${verticalQuery}`} className="btn btn-link pdp-back">
+        <Link to={`/packages${verticalQuery}`} className="wnyhs-button wnyhs-button--secondary wnyhs-package-detail-back">
           Back to packages
         </Link>
-        <section className="hero-card pdp-hero motion-fade-up">
-          {heroStripImage ? (
-            <div className="pdp-hero-strip" style={{ backgroundImage: `url(${heroStripImage})` }} aria-hidden="true" />
-          ) : null}
-          <div className="pdp-hero-header">
-            <div style={{ display: 'grid', gap: '0.75rem' }}>
-              <div className="pdp-hero-badges">
+
+        <section className="wnyhs-section wnyhs-section--category wnyhs-package-detail-hero motion-fade-up">
+          <img className="wnyhs-package-detail-hero-media" src={heroStripImage} alt="" aria-hidden="true" loading="lazy" />
+          <div className="wnyhs-package-detail-hero-content">
+            <div className="wnyhs-section-header">
+              <div className="wnyhs-package-detail-badges">
                 <TierBadge
-                  tierId={(pkg.id.toUpperCase() as PackageTierId) ?? 'A1'}
+                  tierId={pkg.id.toUpperCase() as PackageTierId}
                   labelOverride={pkg.badge ?? undefined}
                   vertical={vertical}
                 />
-                {isMostPopular && <span className="popular-pill">Recommended</span>}
+                {isMostPopular && <span className="wnyhs-price-chip">Recommended</span>}
               </div>
-              <h1 className="pdp-title">{styleLabel}</h1>
-              <p className="pdp-tagline">{packageContent.heroOneLiner}</p>
+              <p className="wnyhs-eyebrow">WNYHS package starting point</p>
+              <h1 className="wnyhs-heading wnyhs-package-detail-title">{styleLabel}</h1>
+              <p className="wnyhs-description wnyhs-package-detail-lede">{packageContent.heroOneLiner}</p>
             </div>
-            <div className="pdp-price">
-              <div className="pdp-price-value">Customized walkthrough pricing</div>
-              <small>Typical systems vary based on layout and coverage goals.</small>
+            <div className="wnyhs-card wnyhs-package-detail-price" aria-label="Pricing note">
+              <strong>Customized walkthrough pricing</strong>
+              <span>Typical systems vary based on layout and coverage goals.</span>
             </div>
           </div>
-            <div className="pdp-hero-actions">
-              <Link className="btn btn-primary" to={primaryActionLink}>
-                {primaryActionLabel}
-              </Link>
-              <a className="btn btn-secondary" href={buildTel()}>
-                Call/Text {wnyhsContact.phone.display}
-              </a>
+          <div className="wnyhs-package-detail-actions">
+            <Link className="wnyhs-button wnyhs-button--primary" to={primaryActionLink}>
+              {primaryActionLabel}
+            </Link>
+            <a className="wnyhs-button wnyhs-button--secondary" href={buildTel()}>
+              Call/Text {wnyhsContact.phone.display}
+            </a>
           </div>
         </section>
 
-        <section id="what-you-get" className="card pdp-section motion-fade-up">
-          <div className="pdp-section-header">
-            <h2>Starting-point equipment examples</h2>
-            <p>These are common modules for this protection style, not a rigid SKU.</p>
+        <section id="what-you-get" className="wnyhs-section motion-fade-up">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Equipment examples</p>
+            <h2 className="wnyhs-heading">Starting-point equipment examples</h2>
+            <p className="wnyhs-description">These are common modules for this protection style, not a rigid SKU.</p>
           </div>
-          <ul className="list">
-            {getHomeSecurityHardwareList(pkg.id as 'a1' | 'a2' | 'a3').map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="wnyhs-card">{renderList(getHomeSecurityHardwareList(pkg.id as 'a1' | 'a2' | 'a3'))}</div>
         </section>
 
-        <section id="typical-coverage" className="card pdp-section motion-fade-up">
-          <div className="pdp-section-header">
-            <h2>Typical property fit</h2>
-            <p>Directional footprint guidance. Final scope is confirmed in writing after walkthrough review.</p>
-          </div>
-          <ul className="list">
-            <li>
-              <span />
-              <span>Square footage: {tierSpec.coverage}</span>
-            </li>
-            <li>
-              <span />
-              <span>Entrances: {tierSpec.entrances}</span>
-            </li>
-            <li>
-              <span />
-              <span>Cameras: {tierSpec.cameras}</span>
-            </li>
-          </ul>
-        </section>
+        <div className="wnyhs-package-detail-grid">
+          <section id="typical-coverage" className="wnyhs-section motion-fade-up">
+            <div className="wnyhs-section-header">
+              <p className="wnyhs-eyebrow">Property fit</p>
+              <h2 className="wnyhs-heading">Typical property fit</h2>
+              <p className="wnyhs-description">Directional footprint guidance. Final scope is confirmed in writing after walkthrough review.</p>
+            </div>
+            <div className="wnyhs-card">
+              {renderList([
+                `Square footage: ${tierSpec.coverage}`,
+                `Entrances: ${tierSpec.entrances}`,
+                `Cameras: ${tierSpec.cameras}`,
+              ])}
+            </div>
+          </section>
 
-        <section id="capabilities" className="card pdp-section motion-fade-up">
-          <div className="pdp-section-header">
-            <h2>Build Your System options</h2>
-            <p>Common capabilities we can combine into a custom recommendation.</p>
-          </div>
-          <ul className="list">
-            {tierSpec.capabilities.map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section id="capabilities" className="wnyhs-section motion-fade-up">
+            <div className="wnyhs-section-header">
+              <p className="wnyhs-eyebrow">Options</p>
+              <h2 className="wnyhs-heading">Build Your System options</h2>
+              <p className="wnyhs-description">Common capabilities we can combine into a custom recommendation.</p>
+            </div>
+            <div className="wnyhs-card">{renderList(tierSpec.capabilities)}</div>
+          </section>
+        </div>
 
-        <section id="clarity-footer" className="card pdp-section motion-fade-up">
-          <div className="pdp-section-header">
-            <h2>Estimate clarity</h2>
-            <p>No required monthly contracts. Most systems are customized after walkthrough, and final recommendations are built around your layout, entry points, and coverage goals.</p>
+        <section id="clarity-footer" className="wnyhs-section wnyhs-page-cta motion-fade-up">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Estimate clarity</p>
+            <h2 className="wnyhs-heading">A walkthrough shapes the final recommendation.</h2>
+            <p className="wnyhs-description">No required monthly contracts. Most systems are customized after walkthrough, and final recommendations are built around your layout, entry points, and coverage goals.</p>
           </div>
         </section>
       </div>
@@ -185,132 +187,114 @@ const PackageDetail = () => {
   }
 
   return (
-    <div className="container section">
-      <Link to={`/packages${verticalQuery}`} className="btn btn-secondary" style={{ marginBottom: '1.5rem' }}>
+    <div className="wnyhs-page wnyhs-shell wnyhs-marketing-stack wnyhs-package-detail">
+      <Link to={`/packages${verticalQuery}`} className="wnyhs-button wnyhs-button--secondary wnyhs-package-detail-back">
         Back to packages
       </Link>
-      <div className="card" aria-label={`${pkg.name} details`}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
-          <div style={{ display: 'grid', gap: '0.5rem' }}>
+      <section className="wnyhs-section wnyhs-section--category" aria-label={`${pkg.name} details`}>
+        <div className="wnyhs-package-detail-hero-content">
+          <div className="wnyhs-section-header">
             <TierBadge
-              tierId={(pkg.id.toUpperCase() as PackageTierId) ?? 'A1'}
+              tierId={pkg.id.toUpperCase() as PackageTierId}
               labelOverride={pkg.badge ?? undefined}
               vertical={vertical}
             />
-            <h2 style={{ margin: 0 }}>{pkg.name}</h2>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>{pkg.tagline}</p>
-            <p style={{ maxWidth: 720 }}>{pkg.oneLiner}</p>
-            <p style={{ fontWeight: 700, color: '#fff7e6' }}>
-              {vertical === 'home-security' ? 'Who it is for' : 'Ideal for'}: {pkg.idealFor}
-            </p>
-            {pkg.typicalCoverage && (
-              <p style={{ fontWeight: 700, color: '#fff7e6' }}>
-                Typical coverage: {pkg.typicalCoverage}
-              </p>
-            )}
+            <p className="wnyhs-eyebrow">Package Detail</p>
+            <h1 className="wnyhs-heading wnyhs-package-detail-title">{pkg.name}</h1>
+            <p className="wnyhs-description wnyhs-package-detail-lede">{pkg.tagline}</p>
+            <p className="wnyhs-description">{pkg.oneLiner}</p>
+            <p className="wnyhs-package-detail-strong">{vertical === 'home-security' ? 'Who it is for' : 'Ideal for'}: {pkg.idealFor}</p>
+            {pkg.typicalCoverage && <p className="wnyhs-package-detail-strong">Typical coverage: {pkg.typicalCoverage}</p>}
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--kaec-gold)' }}>{pkg.price}</div>
-            <small style={{ color: 'var(--kaec-muted)' }}>One-time upfront cost</small>
+          <div className="wnyhs-card wnyhs-package-detail-price">
+            <strong>{pkg.price}</strong>
+            <span>One-time upfront cost</span>
           </div>
         </div>
-        <div className="card" style={{ marginTop: '1.5rem' }}>
-          <h3 style={{ marginTop: 0, color: '#fff7e6' }}>Package bio</h3>
-          <p style={{ margin: 0, color: '#c8c0aa' }}>{pkg.bio}</p>
+      </section>
+
+      <section className="wnyhs-section">
+        <div className="wnyhs-section-header">
+          <p className="wnyhs-eyebrow">Overview</p>
+          <h2 className="wnyhs-heading">Package bio</h2>
+          <p className="wnyhs-description">{pkg.bio}</p>
         </div>
-        <div className="card" style={{ marginTop: '1rem' }}>
-          <h3 style={{ marginTop: 0, color: '#fff7e6' }}>
-            {vertical === 'home-security' ? "What's included (plain-English)" : 'Included equipment + setup'}
-          </h3>
-          <ul className="list">
-            {pkg.includes.map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      </section>
+
+      <div className="wnyhs-package-detail-grid">
+        <section className="wnyhs-section">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Included</p>
+            <h2 className="wnyhs-heading">{vertical === 'home-security' ? "What's included (plain-English)" : 'Included equipment + setup'}</h2>
+          </div>
+          <div className="wnyhs-card">{renderList(pkg.includes)}</div>
+        </section>
+
         {vertical !== 'home-security' && (
-          <div className="card" style={{ marginTop: '1rem' }}>
-            <h3 style={{ marginTop: 0, color: '#fff7e6' }}>Bill of materials (BOM)</h3>
-            <ul className="list">
-              {pkg.billOfMaterials.map((item) => (
-                <li key={item}>
-                  <span />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <section className="wnyhs-section">
+            <div className="wnyhs-section-header">
+              <p className="wnyhs-eyebrow">Materials</p>
+              <h2 className="wnyhs-heading">Bill of materials (BOM)</h2>
+            </div>
+            <div className="wnyhs-card">{renderList(pkg.billOfMaterials)}</div>
+          </section>
         )}
-        <div className="card" style={{ marginTop: '1rem' }}>
-          <h3 style={{ marginTop: 0, color: '#fff7e6' }}>Differentiators</h3>
-          <ul className="list">
-            {pkg.differentiators.map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="card" style={{ marginTop: '1rem' }}>
-          <h3 style={{ marginTop: 0, color: '#fff7e6' }}>
-            {vertical === 'home-security' ? 'What your system can and will do' : 'Automation flows'}
-          </h3>
-          <ul className="list">
-            {pkg.automationFlows.map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="card" style={{ marginTop: '1rem' }}>
-          <h3 style={{ marginTop: 0, color: '#fff7e6' }}>Intake → delivery journey</h3>
-          <ul className="list">
-            {pkg.journeyFlow.map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="card" style={{ marginTop: '1rem' }}>
-          <h3 style={{ marginTop: 0, color: '#fff7e6' }}>Agreement + deposit checkpoints</h3>
-          <ul className="list">
-            {pkg.agreements.map((item) => (
-              <li key={item}>
-                <span />
-                <span>{item}</span>
-              </li>
-            ))}
-            <li>
-              <span />
-              <span>
-                Deposit policy:{' '}
-                {siteConfig.depositPolicy.type === 'flat'
+
+        <section className="wnyhs-section">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Why this package</p>
+            <h2 className="wnyhs-heading">Differentiators</h2>
+          </div>
+          <div className="wnyhs-card">{renderList(pkg.differentiators)}</div>
+        </section>
+
+        <section className="wnyhs-section">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Capabilities</p>
+            <h2 className="wnyhs-heading">{vertical === 'home-security' ? 'What your system can and will do' : 'Automation flows'}</h2>
+          </div>
+          <div className="wnyhs-card">{renderList(pkg.automationFlows)}</div>
+        </section>
+
+        <section className="wnyhs-section">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Process</p>
+            <h2 className="wnyhs-heading">Intake to delivery journey</h2>
+          </div>
+          <div className="wnyhs-card">{renderList(pkg.journeyFlow)}</div>
+        </section>
+
+        <section className="wnyhs-section">
+          <div className="wnyhs-section-header">
+            <p className="wnyhs-eyebrow">Checkpoints</p>
+            <h2 className="wnyhs-heading">Agreement + deposit checkpoints</h2>
+          </div>
+          <div className="wnyhs-card">
+            {renderList([
+              ...pkg.agreements,
+              `Deposit policy: ${
+                siteConfig.depositPolicy.type === 'flat'
                   ? `Flat $${siteConfig.depositPolicy.value}`
-                  : `${siteConfig.depositPolicy.value * 100}% of the deterministic total`}
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-          <Link className="btn btn-primary" to={contactLink}>
+                  : `${siteConfig.depositPolicy.value * 100}% of the deterministic total`
+              }`,
+            ])}
+          </div>
+        </section>
+      </div>
+
+      <section className="wnyhs-section wnyhs-page-cta">
+        <div className="wnyhs-package-detail-actions">
+          <Link className="wnyhs-button wnyhs-button--primary" to={contactLink}>
             Ask about this package
           </Link>
           <Link
-            className="btn btn-secondary"
+            className="wnyhs-button wnyhs-button--secondary"
             to={vertical === 'home-security' ? '/reliability?vertical=home-security' : '/reliability'}
           >
             Learn about offline readiness
           </Link>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
