@@ -1025,3 +1025,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Implementation note / quote-system runtime documentation**
 - **Status:** **Implemented / partial local-storage prototype**
 - **Notes:** Confirms the preview is local only and does not add PDF generation, quote sending, HubSpot writes, Stripe changes, inventory automation, ordering automation, scheduling automation, auth, production storage, dependencies, or package-lock changes.
+### `/docs/quotesystem/IMPLEMENTATION010_Installer_Packet_View_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION010_Installer_Packet_View_REV01.md`
+- **Purpose / likely role:** Implementation note for the local-storage-only installer packet browser-print view.
+- **Authority level:** **Quote-system implementation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records QUOTESYSTEM-010 implementation only.
+- **Notes:** Documents that PDF generation, sending, scheduling, inventory/ordering automation, HubSpot sync, payment logic, auth, and durable storage remain out of scope.

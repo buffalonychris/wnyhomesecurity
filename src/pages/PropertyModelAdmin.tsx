@@ -7,6 +7,7 @@ import SpaceFrame from '../components/operator/SpaceFrame';
 import {
   areaNameOptions,
   bomStatusOptions,
+  installerAssignmentOptions,
   createEmptyPropertyModelRecord,
   createPropertyModelChildId,
   createPropertyModelRecord,
@@ -105,6 +106,7 @@ const createBomLineItem = (): PropertyModelBomLineItem => ({
   bomStatus: 'needs_placement',
   dashboardPrepNote: '',
   installerNote: '',
+  installerAssignment: 'unassigned',
 });
 
 const createEvidenceItem = (): PropertyModelEvidenceItem => ({
@@ -295,6 +297,9 @@ const PropertyModelAdmin = () => {
             <>
               <Link className="btn btn-secondary" to={`/operator/property-model/quote-preview?recordId=${encodeURIComponent(draft.recordId)}`}>
                 Preview / Print Quote
+              </Link>
+              <Link className="btn btn-secondary" to={`/operator/property-model/installer-packet?recordId=${encodeURIComponent(draft.recordId)}`}>
+                Preview / Print Installer Packet
               </Link>
               <button className="btn btn-primary" type="button" onClick={handleCreateRecord}>
                 New Property Model
@@ -936,6 +941,15 @@ const PropertyModelAdmin = () => {
                     <Field label="BOM Status">
                       <select value={item.bomStatus} onChange={(event) => updateBomLineItem(item.id, { bomStatus: event.target.value as PropertyModelBomLineItem['bomStatus'] })}>
                         {bomStatusOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Installer Assignment" help="Used by the installer packet only; leave unassigned until reviewed.">
+                      <select value={item.installerAssignment} onChange={(event) => updateBomLineItem(item.id, { installerAssignment: event.target.value as PropertyModelBomLineItem['installerAssignment'] })}>
+                        {installerAssignmentOptions.map((option) => (
                           <option key={option.value} value={option.value}>
                             {option.label}
                           </option>
