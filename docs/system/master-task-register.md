@@ -2559,6 +2559,24 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 ## Active Tasks (Execution Driver)
 
+### QUOTESYSTEM-016
+- **Task ID:** QUOTESYSTEM-016
+- **Task Name:** Live Test / Bug Fix Pass
+- **Status:** DONE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Run a focused live-test stabilization pass on the local WNYHS Quote Workspace using the built-in Funeral Home Test Case and fix only defects, broken flows, usability blockers, or data-display issues found during the test.
+- **Allowed Scope:** Local Quote Workspace validation for `/operator/property-model`, `/operator/property-model/quote-preview`, and `/operator/property-model/installer-packet`; Funeral Home Test Case load/save/display; local JSON import/export collision behavior; missing recordId propagation; field rendering after normalization; obvious mislabeled fields; customer-facing quote-preview exposure correction; documentation and version updates.
+- **Forbidden Scope:** No durable storage, image upload, AI redraw generation, HubSpot sync, payment processing, inventory automation, ordering automation, scheduling automation, auth, PDF generation, email sending, public page redesign, catalog schema expansion unless required for a defect, protected runtime rewrites, funnel order changes, or unrelated feature work.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/pages/PropertyModelQuotePreview.tsx`, `docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_PASS_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal local Quote Workspace quote-preview display only; local browser storage validation only.
+- **Documentation Updates Required:** Create the implementation note and register it in the quote-system map, document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model`, `/operator/property-model/quote-preview`, and `/operator/property-model/installer-packet`.
+- **Exit Criteria:** Version is bumped to `v1.0.142`; Funeral Home Test Case creates and selects a new local record; save status, fields, concerns, areas, evidence, handoff, solutions, BOM, reconciliation, pricing, and import/export controls remain usable; quote preview and installer packet load by `recordId`; import collision creates a copy; internal installer notes are not exposed in the customer-facing quote preview; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-004 through QUOTESYSTEM-015, PROPERTY001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed the focused local live-test pass with the Funeral Home Test Case. Fixed customer-facing quote-preview overexposure by removing internal installer-note text from the quote hardware table while preserving installer notes in the internal installer packet. Confirmed local import/export collision-as-copy behavior and route loading by `recordId` in the workspace, quote preview, and installer packet. No HubSpot, Stripe/payment runtime, durable storage, image upload, AI redraw, inventory, ordering, scheduling, auth, PDF, email, public page, dependency, or package-lock changes were made.
+
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ### QUOTESYSTEM-014

@@ -226,8 +226,7 @@ const HardwareRow = ({
     <td>{describeSolution(record, item.selectedSolutionRef)}</td>
     <td>{describeEvidence(record, item.evidenceRef)}</td>
     <td>
-      {[item.dashboardPrepNote, item.installerNote].filter(Boolean).join(" ") ||
-        "No customer-appropriate notes entered."}
+      {item.dashboardPrepNote || "No customer-appropriate notes entered."}
     </td>
   </tr>
 );
