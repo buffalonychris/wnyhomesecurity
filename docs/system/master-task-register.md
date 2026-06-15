@@ -114,6 +114,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
+
+### QUOTESYSTEM-011
+- **Task ID:** QUOTESYSTEM-011
+- **Task Name:** Local Import / Export
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add local JSON import/export capability for WNYHS Quote Workspace Property Model records so live quote work is not trapped in browser localStorage.
+- **Allowed Scope:** Local browser JSON import/export for `/operator/property-model`; single-record export; full local collection export; local file import; minimal validation; normalization through existing Property Model normalization; collision-safe import as copy; implementation note, document map, catalog, manifest, task register, and site-version updates.
+- **Forbidden Scope:** No cloud storage, durable backend persistence, HubSpot sync or writes, email sending, PDF generation, auth, payment, inventory, ordering, scheduling automation, new dependencies, package-lock changes, protected runtime changes, unrelated public redesign, or funnel routing changes.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/index.css`, `docs/quotesystem/IMPLEMENTATION011_Local_Import_Export_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator Property Model route and local browser storage only.
+- **Documentation Updates Required:** Add implementation note and register it in quote-system map, document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model`, `/operator/property-model/quote-preview`, and `/operator/property-model/installer-packet`.
+- **Exit Criteria:** Version is bumped to `v1.0.137`; local current-record export exists; local all-records export exists; local JSON import validates minimally and normalizes before saving; ID collisions import as new local copies; visible guidance is added; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-004 through QUOTESYSTEM-010, PROPERTY001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added local JSON import/export to the internal Property Model workspace. Current-record export and all-record backup produce local downloads with metadata envelopes. Import accepts local JSON, validates minimal record shape, normalizes records, and creates new local copies for ID collisions instead of replacing existing records. Added operator guidance about sensitive local backup files. No HubSpot, Stripe/payment, cloud storage, durable backend persistence, email, PDF, auth, inventory, ordering, scheduling, dependency, package-lock, or unrelated public-site changes were made.
+
 ### QUOTESYSTEM-001
 - **Task ID:** QUOTESYSTEM-001
 - **Task Name:** Create Initial Quote System Governance Folder And Document Set

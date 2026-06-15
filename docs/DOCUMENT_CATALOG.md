@@ -433,6 +433,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, not by itself. Each task requires separate bounded work order.
 - **Notes:** Added by PAGE-TOKEN-COMPLIANCE-GATE-001 as docs-only governance bookkeeping. It does not authorize source, CSS, route, page, runtime, HubSpot, Stripe/payment, Resend, Gmail/Workspace, scheduling, Cloudflare, secret, asset, dependency, package-lock, visual implementation, pricing, claims, or protected-system changes by itself.
 
+
+### `/docs/quotesystem/IMPLEMENTATION011_Local_Import_Export_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION011_Local_Import_Export_REV01.md`
+- **Status:** PARTIAL
+- **Owner / domain:** Quote System / Property Model Implementation
+- **Purpose:** Records the QUOTESYSTEM-011 local JSON import/export implementation for browser-only Property Model backups.
+- **Customer-facing:** No
+
 ### `/docs/system/project.md`
 - **File path:** `docs/system/project.md`
 - **Purpose / likely role:** Top-level repository authority and practical precedence hierarchy for Codex execution.

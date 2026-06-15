@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useRef, useMemo, useState } from 'react';
 import type React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,8 +10,10 @@ import {
   installerAssignmentOptions,
   createEmptyPropertyModelRecord,
   createPropertyModelChildId,
+  createPropertyModelImportCopy,
   createPropertyModelRecord,
   customerConcernCategoryOptions,
+  isPropertyModelImportCandidate,
   loadPropertyModelRecords,
   occupancyContextOptions,
   propertyEvidenceOrientationOptions,
@@ -19,7 +21,9 @@ import {
   propertyEvidenceTypeOptions,
   propertyQuoteStageOptions,
   propertyTypeOptions,
+  normalizePropertyModelRecord,
   savePropertyModelRecord,
+  savePropertyModelRecords,
   type PropertyModelAreaPlaceholder,
   type PropertyModelBomLineItem,
   type PropertyModelCustomerConcern,
@@ -124,6 +128,7 @@ const PropertyModelAdmin = () => {
   const [selectedRecordId, setSelectedRecordId] = useState(() => records[0]?.recordId ?? '');
   const [draft, setDraft] = useState<PropertyModelRecord>(() => records[0] ?? createEmptyPropertyModelRecord());
   const [savedMessage, setSavedMessage] = useState('');
+  const importInputRef = useRef<HTMLInputElement | null>(null);
 
   const selectedRecordLabel = useMemo(() => {
     if (!draft.customer.name && !draft.propertyAddress.line1) {
@@ -197,6 +202,101 @@ const PropertyModelAdmin = () => {
     setSelectedRecordId(next.recordId);
     setDraft(next);
     setSavedMessage(`Created ${next.recordId}`);
+  };
+
+
+  const makeExportFileName = (record: PropertyModelRecord) => {
+    const label = record.propertyAddress.line1 || record.customer.name || record.recordId;
+    const safeLabel = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+    return `wnyhs-property-model-${safeLabel || record.recordId}.json`;
+  };
+
+  const downloadJson = (fileName: string, payload: unknown) => {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const exportEnvelope = (payload: unknown) => ({
+    schema: 'wnyhs-property-model-local-json',
+    schemaVersion: 1,
+    exportedAt: new Date().toISOString(),
+    storage: 'local-browser-backup-only',
+    payload,
+  });
+
+  const handleExportCurrentRecord = () => {
+    downloadJson(makeExportFileName(draft), exportEnvelope(draft));
+    setSavedMessage(`Exported ${draft.recordId} as local JSON.`);
+  };
+
+  const handleExportAllRecords = () => {
+    const currentRecords = loadPropertyModelRecords();
+    downloadJson('wnyhs-property-models-backup.json', exportEnvelope(currentRecords));
+    setSavedMessage(`Exported ${currentRecords.length} local Property Model record(s).`);
+  };
+
+  const extractImportRecords = (value: unknown): unknown[] => {
+    if (Array.isArray(value)) return value;
+    if (value && typeof value === 'object') {
+      const candidate = value as { payload?: unknown; records?: unknown };
+      if (Array.isArray(candidate.payload)) return candidate.payload;
+      if (isPropertyModelImportCandidate(candidate.payload)) return [candidate.payload];
+      if (Array.isArray(candidate.records)) return candidate.records;
+    }
+    return [value];
+  };
+
+  const handleImportFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+
+    try {
+      const parsed = JSON.parse(await file.text()) as unknown;
+      const candidates = extractImportRecords(parsed);
+      const normalizedImports = candidates
+        .filter(isPropertyModelImportCandidate)
+        .map((candidate) => normalizePropertyModelRecord(candidate));
+
+      if (normalizedImports.length === 0) {
+        setSavedMessage('Import failed: JSON did not match the expected Property Model shape.');
+        return;
+      }
+
+      const currentRecords = loadPropertyModelRecords();
+      const currentIds = new Set(currentRecords.map((record) => record.recordId));
+      const importIds = new Set<string>();
+      const importedRecords = normalizedImports.map((record) => {
+        if (currentIds.has(record.recordId) || importIds.has(record.recordId)) {
+          const copy = createPropertyModelImportCopy(record);
+          importIds.add(copy.recordId);
+          return copy;
+        }
+        importIds.add(record.recordId);
+        return { ...record, updatedAt: new Date().toISOString() };
+      });
+      const nextRecords = [...importedRecords, ...currentRecords];
+
+      if (savePropertyModelRecords(nextRecords)) {
+        setRecords(nextRecords);
+        setSelectedRecordId(importedRecords[0].recordId);
+        setDraft(importedRecords[0]);
+        setSavedMessage(
+          `Imported ${importedRecords.length} Property Model record(s). ID collisions were imported as new local copies.`,
+        );
+      } else {
+        setSavedMessage('Import failed: unable to save in this browser storage session.');
+      }
+    } catch {
+      setSavedMessage('Import failed: choose a valid local JSON export file.');
+    }
   };
 
   const updateConcern = (concernId: string, updates: Partial<PropertyModelCustomerConcern>) => {
@@ -301,6 +401,22 @@ const PropertyModelAdmin = () => {
               <Link className="btn btn-secondary" to={`/operator/property-model/installer-packet?recordId=${encodeURIComponent(draft.recordId)}`}>
                 Preview / Print Installer Packet
               </Link>
+              <button className="btn btn-secondary" type="button" onClick={handleExportCurrentRecord}>
+                Export Property Model JSON
+              </button>
+              <button className="btn btn-secondary" type="button" onClick={handleExportAllRecords}>
+                Export All Property Models JSON
+              </button>
+              <button className="btn btn-secondary" type="button" onClick={() => importInputRef.current?.click()}>
+                Import Property Model JSON
+              </button>
+              <input
+                ref={importInputRef}
+                className="quote-workspace-hidden-file"
+                type="file"
+                accept="application/json,.json"
+                onChange={handleImportFile}
+              />
               <button className="btn btn-primary" type="button" onClick={handleCreateRecord}>
                 New Property Model
               </button>
@@ -330,6 +446,20 @@ const PropertyModelAdmin = () => {
               <span>Storage</span>
               <strong>Local draft only</strong>
             </div>
+          </div>
+        </SpaceFrame>
+
+        <SpaceFrame className="quote-workspace-panel quote-workspace-guidance">
+          <div>
+            <p className="quote-workspace-eyebrow">Local Backup Guidance</p>
+            <h2>Import / Export is prototype-only local JSON</h2>
+            <p>
+              Exported JSON may contain customer, property, quote, and installer-planning information. Store exported
+              files securely and do not upload sensitive customer files into public tools. This browser-only backup flow
+              does not add cloud storage, durable backend persistence, CRM sync, email sending, PDF generation, auth,
+              payment, inventory, ordering, or scheduling automation. Future durable storage is expected to replace it.
+            </p>
+            <p>Collision handling: imported records with an existing ID are saved as a new local copy instead of replacing unrelated records.</p>
           </div>
         </SpaceFrame>
 
