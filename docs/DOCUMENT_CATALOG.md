@@ -1127,6 +1127,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No. Records the completed bounded public visual QA correction pass.
 - **Notes:** Documents public destination inspection, readability/token corrections, preserved nav/footer destinations, preserved form/API behavior, protected-system confirmations, and validation for version `v1.0.148`.
 
+
+### `/docs/quotesystem/WNYHS_Create_Estimate_Instruction_Manual_REV02.md`
+- **File path:** `docs/quotesystem/WNYHS_Create_Estimate_Instruction_Manual_REV02.md`
+- **Purpose / likely role:** Internal Create Estimate instruction manual REV02 for customer discovery to deposit-ready quote preparation, embedding the controlled REV08 floorplan evidence gate, two-pass reconstruction, SVG/vector baseline workflow, lock statuses, quote output requirements, quality checklist, and GPT Proposed prompt controls.
+- **Authority level:** **Quote-system internal operating procedure / docs-only manual**
+- **Customer-facing:** No.
+- **Implementation authority:** No runtime authority; governs internal estimate preparation only under current higher-authority context.
+- **Notes:** REV01 is not overwritten. DOCX/PDF exports are generated artifacts, not repo-tracked source files. Does not authorize quote runtime code, HubSpot, Stripe/payment, scheduling, support/contact forms, catalog schema, package pricing/data, auth, durable storage, dependencies, package-lock, image processing, uploads, LiDAR capture, computer vision, or AI redraw generation.
+
 ### `/docs/quotesystem/FLOORPLAN_QUOTE_WORKFLOW_GOVERNANCE_REV01.md`
 - **File path:** `docs/quotesystem/FLOORPLAN_QUOTE_WORKFLOW_GOVERNANCE_REV01.md`
 - **Document type:** Quote-system governance standard
