@@ -112,6 +112,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 ## Active Tasks (Execution Driver)
 
+### WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-003
+- **Task ID:** WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-003
+- **Task Name:** Contact + Support Wrapper Cleanup
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Bring Contact and Support page wrappers into visual alignment with the WNYHS public marketing token system while preserving form, API, requestId, and protected runtime behavior.
+- **Allowed Scope:** Contact and Support visible wrapper/page-shell cleanup, token-backed page utilities, implementation note, catalog, manifest, task register, and site-version updates.
+- **Forbidden Scope:** No form behavior changes, payload/schema changes, API changes, HubSpot changes, lead-signal/requestId changes, Resend/email changes, Stripe/payment changes, scheduling changes, quote-system changes, catalog schema changes, package data/pricing changes, auth changes, durable storage changes, new dependencies, package-lock changes, unrelated redesign, FAQ/Funding/Legal cleanup, or protected operator flow changes.
+- **Target Files:** `src/pages/Contact.tsx`, `src/pages/Support.tsx`, `src/styles/wnyhsVisualGovernance.css`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_003_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public Contact and Support page visual wrappers only.
+- **Documentation Updates Required:** Create implementation record and register it in document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check if practical for `/contact?vertical=home-security` and `/support?vertical=home-security`.
+- **Exit Criteria:** Version is bumped to `v1.0.145`; Contact and Support wrappers use WNYHS public visual primitives; forms and API behavior are preserved; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** Current governance authority chain, `docs/system/step-current.md`, visual parity implementation records 001 and 002, and WNYHS visual/solution/catalog standards.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Contact and Support visible shells now use token-backed WNYHS page, shell, section, card, action, and button primitives. Estimate form and support form behavior, payloads, APIs, request ID/lead-signal boundaries, HubSpot, Stripe/payment, scheduling, Resend/email runtime, quote system, package data, and catalog schema were not changed.
+
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
 
