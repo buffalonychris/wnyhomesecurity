@@ -12,12 +12,12 @@ const categorySections: { heading: string; categories: OurWorkGalleryCategory[] 
 ];
 
 const categoryStyles: Record<OurWorkGalleryCategory, { label: string; className: string }> = {
-  'Residential Security': { label: 'Residential Security', className: 'badge' },
-  'Outdoor Protection': { label: 'Outdoor Protection', className: 'badge badge--subtle' },
-  'Smart Home Control': { label: 'Smart Home Control', className: 'badge' },
-  'Water & Leak Protection': { label: 'Water & Leak Protection', className: 'badge badge--subtle' },
-  'Commercial Security': { label: 'Commercial Security', className: 'badge' },
-  'Family Safety': { label: 'Family Safety', className: 'badge badge--subtle' },
+  'Residential Security': { label: 'Residential Security', className: 'wnyhs-price-chip' },
+  'Outdoor Protection': { label: 'Outdoor Protection', className: 'wnyhs-price-chip' },
+  'Smart Home Control': { label: 'Smart Home Control', className: 'wnyhs-price-chip' },
+  'Water & Leak Protection': { label: 'Water & Leak Protection', className: 'wnyhs-price-chip' },
+  'Commercial Security': { label: 'Commercial Security', className: 'wnyhs-price-chip' },
+  'Family Safety': { label: 'Family Safety', className: 'wnyhs-price-chip' },
 };
 
 const sortByPriority = (a: OurWorkGalleryItem, b: OurWorkGalleryItem) => a.priority - b.priority;
@@ -33,8 +33,8 @@ const OurWork = () => {
 
   return (
     <WnyhsMarketingLayout ctaLink="/contact?vertical=home-security">
-      <div className="wnyhs-marketing-stack">
-        <section className="card wnyhs-gallery-intro">
+      <div className="wnyhs-shell wnyhs-marketing-stack">
+        <section className="wnyhs-section wnyhs-gallery-intro">
           <p className="eyebrow wnyhs-gallery-text-reset">Our Work</p>
           <h1 className="wnyhs-gallery-text-reset">Smart Property Solutions Built Around Real Problems</h1>
           <p className="wnyhs-gallery-body wnyhs-gallery-body--wide">
@@ -43,16 +43,16 @@ const OurWork = () => {
             solution patterns, not verified customer testimonials or claimed completed installs.
           </p>
           <div className="wnyhs-gallery-actions">
-            <Link className="btn btn-primary" to="/contact?vertical=home-security">
+            <Link className="wnyhs-button wnyhs-button--primary" to="/contact?vertical=home-security">
               Request a Similar Setup
             </Link>
-            <Link className="btn btn-secondary" to="/packages?vertical=home-security">
+            <Link className="wnyhs-button wnyhs-button--secondary" to="/packages?vertical=home-security">
               View Smart Property Solutions
             </Link>
           </div>
         </section>
 
-        <section className="card wnyhs-gallery-section" aria-labelledby="featured-gallery-heading">
+        <section className="wnyhs-section wnyhs-gallery-section" aria-labelledby="featured-gallery-heading">
           <div>
             <p className="eyebrow wnyhs-gallery-text-reset">Featured Solution Examples</p>
             <h2 id="featured-gallery-heading" className="wnyhs-gallery-heading-spaced">Problem, Solution, Outcome</h2>
@@ -64,7 +64,7 @@ const OurWork = () => {
           </div>
           <div className="wnyhs-gallery-featured-grid">
             {featuredItems.map((item) => (
-              <article key={item.slug} className="card wnyhs-gallery-card">
+              <article key={item.slug} className="wnyhs-card wnyhs-gallery-card">
                 <img
                   src={item.image}
                   alt={item.alt}
@@ -89,7 +89,7 @@ const OurWork = () => {
                       <dd>{item.outcome}</dd>
                     </div>
                   </dl>
-                  <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+                  <Link className="wnyhs-button wnyhs-button--secondary" to="/contact?vertical=home-security">
                     {item.ctaLabel}
                   </Link>
                 </div>
@@ -102,11 +102,11 @@ const OurWork = () => {
           const sectionItems = ourWorkGallery.filter((item) => section.categories.includes(item.category)).sort(sortByPriority);
 
           return (
-            <section key={section.heading} className="card wnyhs-gallery-section">
+            <section key={section.heading} className="wnyhs-section wnyhs-gallery-section">
               <h2 className="wnyhs-gallery-text-reset">{section.heading}</h2>
               <div className="wnyhs-gallery-grid">
                 {sectionItems.map((item) => (
-                  <article key={item.slug} className="card wnyhs-gallery-card wnyhs-gallery-card--compact">
+                  <article key={item.slug} className="wnyhs-card wnyhs-gallery-card wnyhs-gallery-card--compact">
                     <img
                       src={item.image}
                       alt={item.alt}
@@ -123,7 +123,7 @@ const OurWork = () => {
                       <p className="wnyhs-gallery-body wnyhs-gallery-body--compact">
                         <strong>Outcome:</strong> {item.outcome}
                       </p>
-                      <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+                      <Link className="wnyhs-button wnyhs-button--secondary" to="/contact?vertical=home-security">
                         {item.ctaLabel}
                       </Link>
                     </div>
@@ -134,7 +134,7 @@ const OurWork = () => {
           );
         })}
 
-        <section className="card wnyhs-gallery-intro wnyhs-gallery-intro--tight">
+        <section className="wnyhs-section wnyhs-gallery-intro wnyhs-gallery-intro--tight">
           <h2 className="wnyhs-gallery-text-reset">Built for Western New York. Built for Real Life.</h2>
           <p className="wnyhs-gallery-body wnyhs-gallery-body--wide">
             Smart Property Solutions can include cameras, smart entry, water and leak alerts, garage awareness,
@@ -143,13 +143,13 @@ const OurWork = () => {
           </p>
         </section>
 
-        <section className="card wnyhs-gallery-final-cta">
+        <section className="wnyhs-section wnyhs-gallery-final-cta">
           <h2 className="wnyhs-gallery-text-reset">Want to talk through a similar property problem?</h2>
           <p className="wnyhs-gallery-body">
             Share what you are trying to see, control, or protect, and we will help map the right starting point.
           </p>
           <div>
-            <Link className="btn btn-primary" to="/contact?vertical=home-security">
+            <Link className="wnyhs-button wnyhs-button--primary" to="/contact?vertical=home-security">
               Request a Similar Setup
             </Link>
           </div>

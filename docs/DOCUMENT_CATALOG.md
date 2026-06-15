@@ -1077,3 +1077,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Status:** ACTIVE IMPLEMENTATION NOTE
 - **Purpose / likely role:** Records the local Property Model redraw/photo handoff fields, workspace behavior, and quote preview/installer packet compatibility added for QUOTESYSTEM-015.
 - **Protected boundaries:** Local browser workspace support only; HubSpot and Stripe/payment untouched.
+
+### `/docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_001_REV01.md`
+- **File path:** `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_001_REV01.md`
+- **Document type:** Implementation record
+- **Authority level:** Task completion record for WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001
+- **Implementation authority:** No. Records the completed bounded public marketing visual parity pass.
+- **Notes:** Documents migrated static public pages, WNYHS visual primitives used, claim-risk cleanup, protected-system confirmations, validation, and remaining visual-review gap for version `v1.0.143`.

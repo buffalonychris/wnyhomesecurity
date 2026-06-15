@@ -20,36 +20,36 @@ const About = () => {
   });
 
   const content = (
-    <div className="card" style={{ display: 'grid', gap: '1rem' }}>
-      <div>
-        <div className="badge">About</div>
-        <h2 style={{ margin: 0 }}>{brandHomeSecurity}</h2>
+    <section className="wnyhs-section" aria-labelledby="about-heading">
+      <div className="wnyhs-section-header">
+        <p className="wnyhs-eyebrow">About</p>
+        <h1 id="about-heading" className="wnyhs-heading">{brandHomeSecurity}</h1>
       </div>
-      <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
+      <p className="wnyhs-description">
         {brandHomeSecurity} is operated by {brandLegal}. We focus on local-first home security systems with clear, one-time pricing and
         professional installation.
       </p>
-      <div style={{ display: 'grid', gap: '0.35rem' }}>
+      <div className="wnyhs-card">
         <strong>Service location</strong>
-        <span style={{ color: 'var(--color-text-secondary)' }}>{brandServiceLocation}</span>
+        <span className="wnyhs-card-copy">{brandServiceLocation}</span>
         <strong>Phone</strong>
-        <span style={{ color: 'var(--color-text-secondary)' }}>{brandPhonePrimary}</span>
+        <span className="wnyhs-card-copy">{brandPhonePrimary}</span>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <NavLink className="btn btn-primary" to="/contact?vertical=home-security">
+      <div className="wnyhs-action-row">
+        <NavLink className="wnyhs-button wnyhs-button--primary" to="/contact?vertical=home-security">
           Contact us
         </NavLink>
-        <NavLink className="btn btn-secondary" to="/support?vertical=home-security">
+        <NavLink className="wnyhs-button wnyhs-button--secondary" to="/support?vertical=home-security">
           Support
         </NavLink>
       </div>
-    </div>
+    </section>
   );
 
   if (isHomeSecurity) {
     return (
       <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">
-        <div className="wnyhs-marketing-stack">{content}</div>
+        <div className="wnyhs-shell wnyhs-marketing-stack">{content}</div>
       </WnyhsMarketingLayout>
     );
   }
