@@ -1599,3 +1599,5 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 - `docs/quotesystem/IMPLEMENTATION008_Hardware_Placement_Reconciliation_REV01.md`
 
 - `docs/quotesystem/IMPLEMENTATION009_Quote_Preview_Print_View_REV01.md`
+
+- `docs/quotesystem/IMPLEMENTATION010_Installer_Packet_View_REV01.md`

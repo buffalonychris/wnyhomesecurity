@@ -8,6 +8,13 @@ export type PropertyQuoteStage =
 
 export type PropertyModelBomStatus = 'needs_placement' | 'gpt_proposed' | 'wnyhs_modified' | 'approved' | 'locked';
 
+export type PropertyModelInstallerAssignment =
+  | 'installer_a'
+  | 'installer_b'
+  | 'either_installer'
+  | 'both_installers_required'
+  | 'unassigned';
+
 export type PropertyModelEvidenceType =
   | 'hand_drawn_floorplan'
   | 'professional_redraw'
@@ -83,6 +90,7 @@ export type PropertyModelBomLineItem = {
   bomStatus: PropertyModelBomStatus;
   dashboardPrepNote: string;
   installerNote: string;
+  installerAssignment: PropertyModelInstallerAssignment;
 };
 
 export type PropertyModelGateStatus = {
@@ -229,6 +237,14 @@ export const areaNameOptions = [
   'Driveway',
   'Viewing Room',
   'Office',
+];
+
+export const installerAssignmentOptions: Array<{ value: PropertyModelInstallerAssignment; label: string }> = [
+  { value: 'installer_a', label: 'Installer A' },
+  { value: 'installer_b', label: 'Installer B' },
+  { value: 'either_installer', label: 'Either Installer' },
+  { value: 'both_installers_required', label: 'Both Installers Required' },
+  { value: 'unassigned', label: 'Unassigned' },
 ];
 
 export const bomStatusOptions: Array<{ value: PropertyModelBomStatus; label: string }> = [
@@ -520,6 +536,10 @@ const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): Proper
           bomStatus: item.bomStatus ?? 'needs_placement',
           dashboardPrepNote: item.dashboardPrepNote ?? '',
           installerNote: item.installerNote ?? '',
+          installerAssignment:
+            item.installerAssignment && installerAssignmentOptions.some((option) => option.value === item.installerAssignment)
+              ? item.installerAssignment
+              : 'unassigned',
         }))
       : [],
     quoteStage: normalizedQuoteStage,

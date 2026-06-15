@@ -277,6 +277,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Added a local-storage-only browser-print quote preview route with WNYHS three-section quote structure and token-based print styling. No PDF generation, quote sending, email sending, HubSpot writes, Stripe/payment changes, inventory automation, ordering automation, scheduling automation, auth system, durable production storage, new dependencies, package-lock changes, public redesign, or protected runtime behavior changes were introduced.
 
+### QUOTESYSTEM-010
+- **Task ID:** QUOTESYSTEM-010
+- **Task Name:** Installer Packet View
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add an internal installer packet preview / browser-print view for the WNYHS Quote Workspace using existing local Property Model data.
+- **Allowed Scope:** Add `/operator/property-model/installer-packet`; read existing localStorage Property Model records; add a Preview / Print Installer Packet action; render job summary, readiness language, Draft Hardware / BOM pick list, installer task ownership, install notes, verification checklist, customer handoff checklist, exception/open-items log, and onsite duration guidance; add `installerAssignment` to local BOM line items; add the QUOTESYSTEM-010 implementation note; update quote-system document map, document catalog, markdown manifest, master task register, and visible site version.
+- **Forbidden Scope:** No PDF generation library, email sending, scheduling automation, inventory automation, ordering automation, HubSpot sync, payment logic, auth system, durable storage, new dependencies, package-lock changes, unrelated public redesign, protected runtime behavior changes, or changes to existing Quote, QuoteReview, QuotePrint, Agreement, Payment, Schedule, PropertyModelAdmin, or Quote Preview flows.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/pages/PropertyModelInstallerPacket.tsx`, `src/App.tsx`, `src/index.css`, `docs/quotesystem/IMPLEMENTATION010_Installer_Packet_View_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator installer packet route and local browser storage read path only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-010 implementation note, update the quote-system document map, add the document catalog entry, add the markdown manifest entry, record this task as DONE, and bump the visible site version.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model`, `/operator/property-model/quote-preview`, and `/operator/property-model/installer-packet` if practical.
+- **Exit Criteria:** Version is bumped to `v1.0.136`; `/operator/property-model/installer-packet` renders local Property Model draft data in an internal installer packet structure; `/operator/property-model` links to the packet; preview uses browser print only; checklists are display-only; persistence remains localStorage-only; no protected systems are touched; existing quote/payment/agreement/schedule and quote preview flows remain preserved; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-008, QUOTESYSTEM-009, PROPERTY001, INSTALLER001, HARDWARE001, DASHBOARD_PREP001, GATES001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added a local-storage-only internal installer packet browser-print route with job summary, readiness guidance, BOM pick list, installer assignment buckets, install notes, display-only verification/handoff/exception checklists, and onsite duration guidance. Added `installerAssignment` to Draft Hardware / BOM line items with default Unassigned. No PDF generation, email sending, scheduling automation, inventory automation, ordering automation, HubSpot sync, payment logic, auth system, durable storage, new dependencies, package-lock changes, public redesign, or protected runtime behavior changes were introduced.
+
 
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
