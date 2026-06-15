@@ -7,42 +7,42 @@ const Privacy = () => {
   const isHomeSecurity = searchParams.get('vertical') === 'home-security' || isHomeSecurityHost;
 
   const content = (
-    <div className="wnyhs-marketing-stack" style={{ display: 'grid', gap: '1.5rem' }}>
-      <section style={{ display: 'grid', gap: '0.75rem' }}>
-        <div className="badge">Privacy Policy</div>
-        <h1 style={{ marginTop: 0, color: '#fff7e6' }}>Privacy for the scheduling assistant</h1>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+    <div className="wnyhs-shell wnyhs-marketing-stack">
+      <section className="wnyhs-section">
+        <p className="wnyhs-eyebrow">Privacy Policy</p>
+        <h1 className="wnyhs-heading">Privacy for the scheduling assistant</h1>
+        <p className="wnyhs-description">
           This policy explains how call and text data is handled for the estimate scheduling assistant.
         </p>
       </section>
 
-      <section className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-        <h2 style={{ marginTop: 0 }}>Call recordings</h2>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">Call recordings</h2>
+        <p className="wnyhs-description">
           Calls may be recorded for quality, scheduling accuracy, and audit trail purposes. Access is limited to
           authorized users.
         </p>
       </section>
 
-      <section className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-        <h2 style={{ marginTop: 0 }}>SMS usage</h2>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">SMS usage</h2>
+        <p className="wnyhs-description">
           SMS is used for appointment confirmations, reminders, and opt-in scheduling updates. Message rates may
           apply based on your carrier.
         </p>
       </section>
 
-      <section className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-        <h2 style={{ marginTop: 0 }}>Data retention</h2>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">Data retention</h2>
+        <p className="wnyhs-description">
           Scheduling interactions are retained only as long as needed for audit trails, scheduling accuracy, and
           compliance. Retention windows are shared during onboarding.
         </p>
       </section>
 
-      <section className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-        <h2 style={{ marginTop: 0 }}>Opt-out handling</h2>
-        <p style={{ margin: 0, color: '#c8c0aa' }}>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">Opt-out handling</h2>
+        <p className="wnyhs-description">
           Customers can opt out of SMS updates at any time. Opt-out requests are honored promptly and recorded in
           the scheduling log.
         </p>

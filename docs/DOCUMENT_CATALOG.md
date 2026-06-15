@@ -1110,3 +1110,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task completion record for HOTFIX-WNYHS-APEX-HOSTNAME-001
 - **Implementation authority:** No. Records the bounded apex hostname hotfix only.
 - **Notes:** Documents hostname/domain logic found, root-cause assessment, Cloudflare Pages apex-to-www redirect fix, validation, and protected-system confirmations for version `v1.0.147`.
+
+### `/docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_VISUAL_QA_001_REV01.md`
+- **File path:** `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_VISUAL_QA_001_REV01.md`
+- **Document type:** Implementation record
+- **Authority level:** Task completion record for WNYHS-PUBLIC-VISUAL-QA-001
+- **Implementation authority:** No. Records the completed bounded public visual QA correction pass.
+- **Notes:** Documents public destination inspection, readability/token corrections, preserved nav/footer destinations, preserved form/API behavior, protected-system confirmations, and validation for version `v1.0.148`.

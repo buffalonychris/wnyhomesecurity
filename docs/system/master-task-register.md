@@ -168,6 +168,26 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Fit Check visible wrapper, questions, actions, results, answer snapshot, and estimate CTA now use token-backed WNYHS public primitives and Fit Check-specific visual utilities. Questions, options, scoring/recommendation logic, result behavior, query parameters, routes, CTA destinations, top navigation destinations, footer destinations, HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email runtime, quote system, package data, and catalog schema were not changed.
 
+
+
+### WNYHS-PUBLIC-VISUAL-QA-001
+- **Task ID:** WNYHS-PUBLIC-VISUAL-QA-001
+- **Task Name:** Public Text Contrast and Readability Audit
+- **Status:** DONE
+- **Category:** QA
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Fix known public-site legibility and formatting issues caused by incorrect semantic token/class usage or incorrect token application, without redesigning public pages.
+- **Allowed Scope:** Public nav/footer destination visual QA corrections; existing WNYHS semantic classes/tokens; token-backed utility classes where needed; footer visual-mass review; Privacy/Terms readability cleanup; implementation record, catalog, manifest, task register, and visible site-version bump.
+- **Forbidden Scope:** No redesign, nav/footer destination changes, route changes, Fit Check logic/question/result changes, Contact/Estimate form behavior changes, Support form behavior changes, API changes, HubSpot changes, lead-signal/requestId changes, Resend/email changes, Stripe/payment changes, scheduling changes, quote-system changes, catalog schema changes, package data/pricing changes, auth changes, durable storage changes, new dependencies, package-lock changes, unrelated cleanup, operator/property-model, quote preview, installer packet, or import/export flow changes.
+- **Target Files:** `src/styles/wnyhsVisualGovernance.css`, `src/components/FitCheck.tsx`, `src/pages/Discovery.tsx`, `src/pages/Packages.tsx`, `src/pages/Privacy.tsx`, `src/pages/Terms.tsx`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_VISUAL_QA_001_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public visual class/token usage only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; nav/footer destination diff check; token/CSS hardcoded color scan for touched styling; route smoke/source inspection for scoped public destinations.
+- **Exit Criteria:** Version is bumped to `v1.0.148`; public nav/footer destinations remain readable with WNYHS public tokens/classes; nav/footer destinations are preserved; forms and protected runtime systems remain untouched; PR targets current branch without merge.
+- **Dependencies:** Prompt-created bounded public visual QA work order, current governance authority chain, `docs/system/step-current.md`, visual system standard, solution page standard, and visual parity implementation records 001 through 004.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Corrected Solutions listing hero/supporting text, estimate intake heading/form-choice readability within the Contact wrapper, embedded Fit Check wrapper background alignment, and Privacy/Terms legal-page readability through WNYHS semantic class/token usage. Our Work, Support, About, and homepage destinations were inspected; no behavior or destination changes were made. HubSpot, Stripe/payment, lead-signal/requestId, Resend/email, scheduling, package data/pricing, quote-system, dependencies, and package-lock files were not changed.
+
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
 

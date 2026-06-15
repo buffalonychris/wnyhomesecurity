@@ -111,30 +111,30 @@ const Terms = () => {
   const isHomeSecurity = searchParams.get('vertical') === 'home-security' || isHomeSecurityHost;
 
   const content = (
-    <div className="wnyhs-marketing-stack" style={{ display: 'grid', gap: '1.5rem' }}>
-      <section style={{ display: 'grid', gap: '0.75rem' }}>
-        <div className="badge">Terms &amp; Conditions</div>
-        <h1 style={{ marginTop: 0 }}>Terms &amp; Conditions</h1>
-        <p style={{ margin: 0 }}>
+    <div className="wnyhs-shell wnyhs-marketing-stack">
+      <section className="wnyhs-section">
+        <p className="wnyhs-eyebrow">Terms &amp; Conditions</p>
+        <h1 className="wnyhs-heading">Terms &amp; Conditions</h1>
+        <p className="wnyhs-description">
           Terms for using the WNY Home Security website, requesting estimates, and working with us on home security
           planning, installation, and support.
         </p>
       </section>
 
-      <section className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-        <h2 style={{ marginTop: 0 }}>General note</h2>
-        <p style={{ margin: 0 }}>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">General note</h2>
+        <p className="wnyhs-description">
           These terms are provided for general website and service-use clarity and do not replace a signed estimate,
           agreement, invoice, or service contract.
         </p>
       </section>
 
       {termsSections.map((section) => (
-        <section key={section.title} className="card" style={{ display: 'grid', gap: '0.75rem' }}>
-          <h2 style={{ marginTop: 0 }}>{section.title}</h2>
-          <div style={{ display: 'grid', gap: '0.625rem' }}>
+        <section key={section.title} className="wnyhs-section">
+          <h2 className="wnyhs-heading">{section.title}</h2>
+          <div className="wnyhs-legal-copy">
             {section.body.map((line) => (
-              <p key={line} style={{ margin: 0 }}>
+              <p key={line}>
                 {line}
               </p>
             ))}

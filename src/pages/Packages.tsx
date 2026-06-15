@@ -69,8 +69,8 @@ const Packages = () => {
   const content = (
     <div className={isHomeSecurity ? 'wnyhs-page wnyhs-marketing-stack wnyhs-solutions-listing' : 'container section'}>
       {isHomeSecurity && (
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <Link className="btn btn-link" to="/home-security">
+        <div className="wnyhs-inline-actions">
+          <Link className="wnyhs-button wnyhs-button--secondary" to="/home-security">
             Back to overview
           </Link>
         </div>
@@ -93,11 +93,11 @@ const Packages = () => {
         </div>
       )}
       <section className="packages-hero wnyhs-solutions-hero">
-        <div style={{ display: 'grid', gap: '0.65rem', maxWidth: 760 }}>
-          <h1 style={{ margin: 0 }}>
+        <div className="wnyhs-solutions-hero-copy">
+          <h1 className="wnyhs-heading">
             {vertical === 'home-security' ? 'Solutions for the way your home actually works' : `Choose the ${brandSite} package that fits`}
           </h1>
-          <p style={{ margin: 0, color: 'var(--kaec-muted)', maxWidth: 560 }}>
+          <p className="wnyhs-description">
             {vertical === 'home-security'
               ? 'Browse homeowner-readable WNYHS solutions that can be installed individually, combined into packages, or reviewed as custom work. Each solution can grow around WNYHS Core when that foundation is part of your plan.'
               : 'One-time package selection, delivered with Home Assistant as your single control surface.'}
@@ -110,7 +110,7 @@ const Packages = () => {
             </div>
           )}
           {isHomeSecurity && (
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
+            <div className="wnyhs-inline-actions wnyhs-inline-actions--spaced">
               <Link className="wnyhs-button wnyhs-button--primary btn btn-primary" to={estimatePath}>
                 Request Estimate
               </Link>
@@ -135,8 +135,8 @@ const Packages = () => {
         <section id="standard-planning-solutions" className="wnyhs-section wnyhs-section--solutions packages-context-panel packages-browse-panel wnyhs-solution-panel" aria-labelledby="packages-solutions-heading">
           <div className="wnyhs-section-header packages-context-header">
             <p className="wnyhs-eyebrow">Image-Led Solution Grid</p>
-            <h2 id="packages-solutions-heading">Choose a concern, then choose the next step.</h2>
-            <span>Live solution pages link directly. Other visible topics route to Fit Check or estimate until a full detail page exists.</span>
+            <h2 id="packages-solutions-heading" className="wnyhs-heading">Choose a concern, then choose the next step.</h2>
+            <span className="wnyhs-description">Live solution pages link directly. Other visible topics route to Fit Check or estimate until a full detail page exists.</span>
           </div>
           <div className="wnyhs-solution-grid">
             {publicSolutions.map((item) => (
@@ -162,8 +162,8 @@ const Packages = () => {
         <section id="the-vault" className="wnyhs-section wnyhs-section--dark packages-context-panel packages-vault-panel wnyhs-vault-panel" aria-labelledby="packages-vault-heading">
           <div className="wnyhs-section-header packages-context-header">
             <p className="wnyhs-eyebrow">The Vault / Custom Projects</p>
-            <h2 id="packages-vault-heading">Custom smart-property projects reviewed individually</h2>
-            <span>
+            <h2 id="packages-vault-heading" className="wnyhs-heading">Custom smart-property projects reviewed individually</h2>
+            <span className="wnyhs-description">
               Specialty controls for outdoor living, detached spaces, lighting, gates, pools, hot tubs, workshops, and other site-specific needs. Each custom idea is reviewed for compatibility, wiring, weather exposure, safety/trade boundaries, manufacturer dependency, support scope, and customer goals. Quote-only after review and available where equipment and site conditions support it.
             </span>
           </div>
@@ -233,8 +233,8 @@ const Packages = () => {
         <section className="wnyhs-section packages-final-cta-panel wnyhs-page-cta" aria-labelledby="packages-final-cta-heading">
           <div className="wnyhs-section-header packages-context-header">
             <p className="wnyhs-eyebrow">Primary CTA</p>
-            <h2 id="packages-final-cta-heading">Ready to talk through your home?</h2>
-            <span>
+            <h2 id="packages-final-cta-heading" className="wnyhs-heading">Ready to talk through your home?</h2>
+            <span className="wnyhs-description">
               Request an estimate or call/text WNYHS to discuss solutions that fit your property.
             </span>
           </div>

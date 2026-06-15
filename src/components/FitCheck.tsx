@@ -758,7 +758,7 @@ const FitCheck = ({
 
   if (layout === "embedded") {
     return (
-      <div className={["fit-check", className].filter(Boolean).join(" ")}>
+      <div className={["wnyhs-page wnyhs-fit-check-embed", className].filter(Boolean).join(" ")}>
         {content}
       </div>
     );
