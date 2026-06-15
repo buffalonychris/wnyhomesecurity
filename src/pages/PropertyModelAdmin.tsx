@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import type React from 'react';
+import { Link } from 'react-router-dom';
 
 import SectionHeader from '../components/operator/SectionHeader';
 import SpaceFrame from '../components/operator/SpaceFrame';
@@ -291,9 +292,14 @@ const PropertyModelAdmin = () => {
           title="WNYHS Quote Workspace"
           subtitle="Property Model workspace for HubSpot-owned customer/deal records, customer concerns, selected WNYHS solutions, and draft hardware planning."
           actions={
-            <button className="btn btn-primary" type="button" onClick={handleCreateRecord}>
-              New Property Model
-            </button>
+            <>
+              <Link className="btn btn-secondary" to={`/operator/property-model/quote-preview?recordId=${encodeURIComponent(draft.recordId)}`}>
+                Preview / Print Quote
+              </Link>
+              <button className="btn btn-primary" type="button" onClick={handleCreateRecord}>
+                New Property Model
+              </button>
+            </>
           }
         />
 

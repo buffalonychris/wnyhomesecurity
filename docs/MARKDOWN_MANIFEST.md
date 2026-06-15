@@ -1597,3 +1597,5 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 - CATALOG-NEXT: After any CATALOG003 merge, update this manifest to include the new REV03 catalog artifact.
 
 - `docs/quotesystem/IMPLEMENTATION008_Hardware_Placement_Reconciliation_REV01.md`
+
+- `docs/quotesystem/IMPLEMENTATION009_Quote_Preview_Print_View_REV01.md`
