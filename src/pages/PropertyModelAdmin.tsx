@@ -95,9 +95,13 @@ const createBomLineItem = (): PropertyModelBomLineItem => ({
   itemName: '',
   hardwareType: '',
   quantity: 1,
+  catalogHardwareItemId: '',
   locationRef: '',
+  propertyAreaRef: '',
   customerConcernServed: '',
-  bomStatus: 'gpt_proposed',
+  selectedSolutionRef: '',
+  evidenceRef: '',
+  bomStatus: 'needs_placement',
   dashboardPrepNote: '',
   installerNote: '',
 });
@@ -128,6 +132,31 @@ const PropertyModelAdmin = () => {
   const hasHubSpotRecord = Boolean(draft.hubSpotLink.contactUrl || draft.hubSpotLink.dealUrl);
   const quoteStageLabel =
     propertyQuoteStageOptions.find((stage) => stage.value === draft.quoteStage)?.label ?? 'Requested Quote';
+
+  const reconciliationSummary = useMemo(
+    () => ({
+      totalHardwareItems: draft.bomLineItems.length,
+      missingRoomArea: draft.bomLineItems.filter((item) => !(item.propertyAreaRef || item.locationRef).trim()).length,
+      missingConcern: draft.bomLineItems.filter((item) => !item.customerConcernServed.trim()).length,
+      missingSolution: draft.bomLineItems.filter((item) => !item.selectedSolutionRef.trim()).length,
+      missingEvidence: draft.bomLineItems.filter((item) => !item.evidenceRef.trim()).length,
+      missingInstallerNote: draft.bomLineItems.filter((item) => !item.installerNote.trim()).length,
+      missingDashboardNote: draft.bomLineItems.filter((item) => !item.dashboardPrepNote.trim()).length,
+      approved: draft.bomLineItems.filter((item) => item.bomStatus === 'approved').length,
+      locked: draft.bomLineItems.filter((item) => item.bomStatus === 'locked').length,
+    }),
+    [draft.bomLineItems],
+  );
+  const securitySolutionSelected = draft.solutionCategories.includes('home-security') || draft.proposedSolutions.some((solution) => {
+    const haystack = [solution.categoryId, solution.title, solution.packageRef, solution.notes].join(' ').toLowerCase();
+    return haystack.includes('security') || haystack.includes('camera') || haystack.includes('video');
+  });
+  const hasCameraHardware = draft.bomLineItems.some((item) => {
+    const haystack = [item.itemName, item.hardwareType, item.catalogHardwareItemId].join(' ').toLowerCase();
+    return haystack.includes('camera') || haystack.includes('video') || haystack.includes('doorbell');
+  });
+  const showMastReminder = securitySolutionSelected && hasCameraHardware;
+
   const floorplanEvidenceSummary = useMemo(
     () => ({
       handDrawnFloorplan: draft.evidenceItems.some((item) => item.evidenceType === 'hand_drawn_floorplan'),
@@ -820,6 +849,30 @@ const PropertyModelAdmin = () => {
                 Add Hardware
               </button>
             </div>
+            {showMastReminder ? (
+              <div className="quote-workspace-reminder" role="note">
+                At least one camera in a full security design should have an intentional MAST-purpose placement: best
+                practical identifying image of a person/assailant where needed.
+              </div>
+            ) : null}
+            <div className="quote-workspace-summary-grid" aria-label="Hardware reconciliation summary">
+              {[
+                ['Total hardware items', reconciliationSummary.totalHardwareItems],
+                ['Missing room/area', reconciliationSummary.missingRoomArea],
+                ['Missing concern', reconciliationSummary.missingConcern],
+                ['Missing solution', reconciliationSummary.missingSolution],
+                ['Missing evidence', reconciliationSummary.missingEvidence],
+                ['Missing installer note', reconciliationSummary.missingInstallerNote],
+                ['Missing dashboard note', reconciliationSummary.missingDashboardNote],
+                ['Approved', reconciliationSummary.approved],
+                ['Locked', reconciliationSummary.locked],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
+            </div>
             <div className="quote-workspace-stack">
               {draft.bomLineItems.length === 0 ? <p>No draft hardware entered yet.</p> : null}
               {draft.bomLineItems.map((item, index) => (
@@ -831,6 +884,28 @@ const PropertyModelAdmin = () => {
                     </button>
                   </div>
                   <div className="quote-workspace-grid">
+                    <Field label="Catalog Hardware Item">
+                      <select
+                        value={item.catalogHardwareItemId}
+                        onChange={(event) => {
+                          const selected = catalogHardwareItems.find((hardware) => hardware.id === event.target.value);
+                          updateBomLineItem(item.id, {
+                            catalogHardwareItemId: event.target.value,
+                            itemName: selected?.label ?? item.itemName,
+                            hardwareType: selected?.hardwareType ?? item.hardwareType,
+                            dashboardPrepNote: item.dashboardPrepNote || selected?.dashboardImplication || '',
+                            installerNote: item.installerNote || selected?.installerNote || '',
+                          });
+                        }}
+                      >
+                        <option value="">Freehand / not selected</option>
+                        {catalogHardwareItems.map((hardware) => (
+                          <option key={hardware.id} value={hardware.id}>
+                            {hardware.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
                     <Field label="Item Name / Type">
                       <input list="quote-workspace-hardware-options" value={item.itemName} onChange={(event) => updateBomLineItem(item.id, { itemName: event.target.value })} />
                     </Field>
@@ -861,14 +936,35 @@ const PropertyModelAdmin = () => {
                         ))}
                       </select>
                     </Field>
-                    <Field label="Location / Floorplan Reference">
-                      <input value={item.locationRef} onChange={(event) => updateBomLineItem(item.id, { locationRef: event.target.value })} />
+                    <Field label="Property Room / Area">
+                      <input
+                        list="quote-workspace-area-options"
+                        value={item.propertyAreaRef || item.locationRef}
+                        onChange={(event) => updateBomLineItem(item.id, { propertyAreaRef: event.target.value, locationRef: event.target.value })}
+                      />
+                    </Field>
+                    <Field label="Floorplan / Evidence Reference">
+                      <select value={item.evidenceRef} onChange={(event) => updateBomLineItem(item.id, { evidenceRef: event.target.value })}>
+                        <option value="">Select or use location note</option>
+                        {draft.evidenceItems.map((evidence) => (
+                          <option key={evidence.id} value={evidence.label || evidence.sourceReference || evidence.id}>
+                            {evidence.label || evidence.sourceReference || evidence.id}
+                          </option>
+                        ))}
+                      </select>
                     </Field>
                     <Field label="Customer Concern Served">
                       <input
                         list="quote-workspace-concern-options"
                         value={item.customerConcernServed}
                         onChange={(event) => updateBomLineItem(item.id, { customerConcernServed: event.target.value })}
+                      />
+                    </Field>
+                    <Field label="Selected WNYHS Solution">
+                      <input
+                        list="quote-workspace-solution-options"
+                        value={item.selectedSolutionRef}
+                        onChange={(event) => updateBomLineItem(item.id, { selectedSolutionRef: event.target.value })}
                       />
                     </Field>
                     <Field label="Dashboard Prep Note">
@@ -954,9 +1050,12 @@ const PropertyModelAdmin = () => {
                   <ul className="operator-list">
                     {draft.bomLineItems.map((item) => (
                       <li key={item.id}>
-                        {item.quantity} x {item.itemName || item.hardwareType || 'Unnamed hardware'} at{' '}
-                        {item.locationRef || 'location not entered'}; serves{' '}
-                        {item.customerConcernServed || 'concern not entered'}.
+                        <strong>{item.quantity} x {item.itemName || item.hardwareType || 'Unnamed hardware'}</strong> — room/area:{' '}
+                        {item.propertyAreaRef || item.locationRef || 'not entered'}; concern:{' '}
+                        {item.customerConcernServed || 'not entered'}; solution: {item.selectedSolutionRef || 'not entered'}; evidence:{' '}
+                        {item.evidenceRef || 'not entered'}.
+                        {item.installerNote ? <span> Installer: {item.installerNote}</span> : null}
+                        {item.dashboardPrepNote ? <span> Dashboard: {item.dashboardPrepNote}</span> : null}
                       </li>
                     ))}
                   </ul>
@@ -1043,6 +1142,14 @@ const PropertyModelAdmin = () => {
         <datalist id="quote-workspace-concern-options">
           {draft.customerConcerns.map((concern) => (
             <option key={concern.id} value={concernLabel(concern)} />
+          ))}
+        </datalist>
+        <datalist id="quote-workspace-solution-options">
+          {draft.proposedSolutions.map((solution) => (
+            <option key={solution.id} value={solution.title || solution.packageRef || solution.id} />
+          ))}
+          {catalogSolutions.map((solution) => (
+            <option key={solution.id} value={solution.name} />
           ))}
         </datalist>
         <datalist id="quote-workspace-hardware-options">

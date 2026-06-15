@@ -1009,3 +1009,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Brand / print asset production system**
 - **Status:** **Active / canonical**
 - **Notes:** Controls WNYHS half-sheet flyer production rules and approved flyer variants.
+
+
+### `/docs/quotesystem/IMPLEMENTATION008_Hardware_Placement_Reconciliation_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION008_Hardware_Placement_Reconciliation_REV01.md`
+- **Purpose / likely role:** Records the QUOTESYSTEM-008 local Quote Workspace hardware placement reconciliation implementation.
+- **Authority level:** **Implementation note / quote-system runtime documentation**
+- **Status:** **Implemented / partial local-storage prototype**
+- **Notes:** Confirms reconciliation is local only and does not change HubSpot, Stripe, pricing, inventory, ordering, scheduling, email, auth, or production storage.
