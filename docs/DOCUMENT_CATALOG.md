@@ -1102,3 +1102,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Documents migrated package detail routes, WNYHS visual primitives used, preserved package data/flows, protected-system confirmations, validation, and remaining visual-review gap for version `v1.0.144`.
 
 - `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_003_REV01.md` — Contact + Support wrapper visual parity implementation record (v1.0.145).
+
+
+### `/docs/governance/HOTFIX_WNYHS_APEX_HOSTNAME_001_REV01.md`
+- **File path:** `docs/governance/HOTFIX_WNYHS_APEX_HOSTNAME_001_REV01.md`
+- **Document type:** Hotfix investigation and implementation record
+- **Authority level:** Task completion record for HOTFIX-WNYHS-APEX-HOSTNAME-001
+- **Implementation authority:** No. Records the bounded apex hostname hotfix only.
+- **Notes:** Documents hostname/domain logic found, root-cause assessment, Cloudflare Pages apex-to-www redirect fix, validation, and protected-system confirmations for version `v1.0.147`.
