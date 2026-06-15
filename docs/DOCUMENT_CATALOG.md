@@ -138,6 +138,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/quotesystem/`
 
+### `/docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_PASS_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_PASS_REV01.md`
+- **Purpose / likely role:** Implementation note for QUOTESYSTEM-016 live-test stabilization of the local Quote Workspace using the Funeral Home Test Case.
+- **Authority level:** **Quote-system implementation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records QUOTESYSTEM-016 implementation only.
+- **Notes:** Documents route, local import/export, quote preview, and installer packet validation plus the customer-facing quote-preview installer-note exposure fix; no HubSpot, Stripe/payment runtime, durable storage, PDF, email, inventory, ordering, scheduling, auth, or image-processing behavior was added.
+
 ### `/docs/quotesystem/README.md`
 - **File path:** `docs/quotesystem/README.md`
 - **Purpose / likely role:** Quote-system governance folder overview defining the quote-system goal and document-set boundary.
