@@ -64,6 +64,9 @@ CATALOG001 addendum: `docs/catalog/README.md`, `docs/catalog/CATALOG001_Canonica
 
 QUOTESYSTEM-016 addendum: `docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_PASS_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the focused local Quote Workspace live-test and stabilization pass using the Funeral Home Test Case, including route, local import/export, quote preview, installer packet validation, and the customer-facing quote-preview installer-note exposure fix. It does not authorize HubSpot writes, Stripe/payment runtime changes, durable storage, PDF generation, email sending, inventory automation, ordering automation, scheduling automation, auth, image upload, or AI redraw generation.
 
+
+VISUAL-PARITY-004 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_004_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the bounded Fit Check visual parity pass to WNYHS public primitives and confirms Fit Check behavior, top navigation/footer destinations, HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email, quote-system, package data, catalog schema, auth, durable storage, dependencies, and package-lock files were not changed.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 

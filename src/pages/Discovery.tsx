@@ -1,36 +1,39 @@
-import { useEffect, useMemo } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import FitCheck from '../components/FitCheck';
-import { useLayoutConfig } from '../components/LayoutConfig';
-import { fitCheckConfigs } from '../content/fitCheckConfigs';
-import WnyhsFunnelLayout from '../components/homeSecurity/WnyhsFunnelLayout';
-import WnyhsFunnelStepHeader from '../components/homeSecurity/WnyhsFunnelStepHeader';
-import WnyhsFunnelNotice from '../components/homeSecurity/WnyhsFunnelNotice';
-import { updateRetailFlow } from '../lib/retailFlow';
-import { HOME_SECURITY_ROUTES } from '../content/wnyhsNavigation';
-import { buildTalkToUsMailto, wnyhsContact } from '../content/wnyhsContact';
+import { useEffect, useMemo } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import FitCheck from "../components/FitCheck";
+import { useLayoutConfig } from "../components/LayoutConfig";
+import { fitCheckConfigs } from "../content/fitCheckConfigs";
+import WnyhsFunnelLayout from "../components/homeSecurity/WnyhsFunnelLayout";
+import WnyhsFunnelStepHeader from "../components/homeSecurity/WnyhsFunnelStepHeader";
+import WnyhsFunnelNotice from "../components/homeSecurity/WnyhsFunnelNotice";
+import { updateRetailFlow } from "../lib/retailFlow";
+import { HOME_SECURITY_ROUTES } from "../content/wnyhsNavigation";
+import { buildTalkToUsMailto, wnyhsContact } from "../content/wnyhsContact";
 
 const Discovery = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
-  const requestedVertical = searchParams.get('vertical') ?? 'home-security';
-  const pathParam = searchParams.get('path');
+  const requestedVertical = searchParams.get("vertical") ?? "home-security";
+  const pathParam = searchParams.get("path");
 
   const resolvedVertical = useMemo(() => {
     if (fitCheckConfigs[requestedVertical]) {
       return requestedVertical;
     }
-    return 'home-security';
+    return "home-security";
   }, [requestedVertical]);
-  const isHomeSecurity = resolvedVertical === 'home-security';
+  const isHomeSecurity = resolvedVertical === "home-security";
 
   useLayoutConfig({
-    layoutVariant: 'funnel',
+    layoutVariant: "funnel",
     showBreadcrumbs: !isHomeSecurity,
     breadcrumb: !isHomeSecurity
       ? [
-          { label: 'Discovery', href: `/discovery?vertical=${resolvedVertical}` },
-          { label: 'Fit Check' },
+          {
+            label: "Discovery",
+            href: `/discovery?vertical=${resolvedVertical}`,
+          },
+          { label: "Fit Check" },
         ]
       : [],
   });
@@ -39,16 +42,17 @@ const Discovery = () => {
   const showUnknownNote = requestedVertical !== resolvedVertical;
 
   useEffect(() => {
-    if (isHomeSecurity && (pathParam === 'online' || pathParam === 'onsite')) {
+    if (isHomeSecurity && (pathParam === "online" || pathParam === "onsite")) {
       updateRetailFlow({ homeSecurity: { selectedPath: pathParam } });
     }
   }, [isHomeSecurity, pathParam]);
 
-  const redirectMessage = (location.state as { message?: string } | undefined)?.message;
+  const redirectMessage = (location.state as { message?: string } | undefined)
+    ?.message;
   const talkToUsMailto = buildTalkToUsMailto({
     pageRoute: `${location.pathname}${location.search}`,
-    preferredCallbackTime: 'Weekdays 9am–6pm',
-    question: 'Tell us about your home and the best time to reach you.',
+    preferredCallbackTime: "Weekdays 9am–6pm",
+    question: "Tell us about your home and the best time to reach you.",
   });
 
   return (
@@ -59,15 +63,20 @@ const Discovery = () => {
     >
       <div className="wnyhs-funnel-stack">
         {isHomeSecurity && (
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <Link className="btn btn-link" to={HOME_SECURITY_ROUTES.packages}>
+          <div className="wnyhs-fit-check-button-row">
+            <Link
+              className="wnyhs-button wnyhs-button--secondary"
+              to={HOME_SECURITY_ROUTES.packages}
+            >
               ← Back to Packages
             </Link>
           </div>
         )}
-        {redirectMessage ? <WnyhsFunnelNotice message={redirectMessage} /> : null}
+        {redirectMessage ? (
+          <WnyhsFunnelNotice message={redirectMessage} />
+        ) : null}
         {isHomeSecurity && (
-          <div className="hero-card" style={{ display: 'grid', gap: '0.75rem' }}>
+          <div className="wnyhs-card wnyhs-fit-check-step-card">
             <WnyhsFunnelStepHeader
               stepId="fit-check"
               title="Fit Check"
@@ -77,23 +86,32 @@ const Discovery = () => {
         )}
         {showUnknownNote ? (
           <div>
-            <p style={{ margin: 0, color: 'rgba(165, 216, 247, 0.8)' }}>
-              We couldn’t find that discovery vertical, so we loaded Home Security instead.
+            <p style={{ margin: 0, color: "rgba(165, 216, 247, 0.8)" }}>
+              We couldn’t find that discovery vertical, so we loaded Home
+              Security instead.
             </p>
           </div>
         ) : null}
-        {isHomeSecurity ? <FitCheck config={config} layout="embedded" /> : <FitCheck config={config} />}
+        {isHomeSecurity ? (
+          <FitCheck config={config} layout="embedded" />
+        ) : (
+          <FitCheck config={config} />
+        )}
         {isHomeSecurity && (
-          <div className="card" style={{ display: 'grid', gap: '0.5rem' }}>
-            <div className="badge">Talk to us</div>
-            <p style={{ margin: 0, color: '#c8c0aa' }}>
-              Prefer to talk first? Call, text, or email and we&apos;ll help with the next best step.
+          <div className="wnyhs-card wnyhs-fit-check-talk-card">
+            <div className="wnyhs-eyebrow">Talk to us</div>
+            <p className="wnyhs-card-copy">
+              Prefer to talk first? Call, text, or email and we&apos;ll help
+              with the next best step.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <a href={`tel:${wnyhsContact.phone.tel}`} style={{ color: '#f5c042', fontWeight: 700 }}>
+            <div className="wnyhs-fit-check-button-row">
+              <a
+                href={`tel:${wnyhsContact.phone.tel}`}
+                className="wnyhs-contact-support-link"
+              >
                 Call/Text {wnyhsContact.phone.display}
               </a>
-              <a href={talkToUsMailto} style={{ color: '#f5c042', fontWeight: 700 }}>
+              <a href={talkToUsMailto} className="wnyhs-contact-support-link">
                 Email {wnyhsContact.emails.hello}
               </a>
             </div>
