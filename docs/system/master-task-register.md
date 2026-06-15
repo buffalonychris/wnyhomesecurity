@@ -112,6 +112,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 ## Active Tasks (Execution Driver)
 
+### FLOORPLAN-QUOTE-GOV-001
+- **Task ID:** FLOORPLAN-QUOTE-GOV-001
+- **Task Name:** Floorplan Quote Workflow Governance
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Formalize the docs-only quote-floorplan workflow proven by the generic funeral-home test case so future WNYHS quotes expect controlled editable vector floorplan geometry rather than authoritative AI image redraw output.
+- **Allowed Scope:** Visible site version bump; new quote-system governance document for evidence collection, two-pass reconstruction, vector floorplan workflow, approval gates, locked baseline status language, and generic funeral-home artifact reference; document catalog, markdown manifest, and task-register updates.
+- **Forbidden Scope:** No runtime quote-system code, HubSpot changes, Stripe/payment changes, scheduling changes, support/contact form changes, catalog schema changes, package pricing/data changes, auth changes, durable storage changes, dependency or package-lock changes, image processing, AI redraw generation, uploads, LiDAR capture, computer vision, or customer-sensitive funeral-home details beyond the generic artifact reference.
+- **Target Files:** `src/lib/siteVersion.ts`, `docs/quotesystem/FLOORPLAN_QUOTE_WORKFLOW_GOVERNANCE_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation/governance and visible version only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; `git diff --check`; `git diff --cached --check`; changed-file scope confirmation; protected runtime changed-file scan.
+- **Exit Criteria:** Version is bumped to `v1.0.150`; vector floorplan workflow, two-pass reconstruction model, approval gates, exact locked baseline statuses, and `FLOORPLAN REV08 — Frozen First Floor Geometry Baseline` reference are documented; protected systems remain untouched; no quote runtime implementation is added.
+- **Dependencies:** Prompt-created bounded governance work order, current governance authority chain, `docs/system/step-current.md`, and existing quote-system/funeral-home test-case lineage.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added docs-only floorplan quote workflow governance and registered it in catalog, manifest, and this task register. HubSpot, Stripe/payment, scheduling, support/contact forms, catalog schema, package pricing/data, auth, durable storage, dependencies, package-lock, and runtime quote-system code were not changed. No AI image-redraw workflow was made authoritative.
+
 ### HOTFIX-WNYHS-APEX-HOSTNAME-001
 - **Task ID:** HOTFIX-WNYHS-APEX-HOSTNAME-001
 - **Task Name:** Apex Hostname Rendering Failure Investigation

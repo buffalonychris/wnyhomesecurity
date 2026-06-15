@@ -1126,3 +1126,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task completion record for WNYHS-PUBLIC-VISUAL-QA-001
 - **Implementation authority:** No. Records the completed bounded public visual QA correction pass.
 - **Notes:** Documents public destination inspection, readability/token corrections, preserved nav/footer destinations, preserved form/API behavior, protected-system confirmations, and validation for version `v1.0.148`.
+
+### `/docs/quotesystem/FLOORPLAN_QUOTE_WORKFLOW_GOVERNANCE_REV01.md`
+- **File path:** `docs/quotesystem/FLOORPLAN_QUOTE_WORKFLOW_GOVERNANCE_REV01.md`
+- **Document type:** Quote-system governance standard
+- **Authority level:** Floorplan quote workflow governance for future bounded quote-floorplan tasks.
+- **Implementation authority:** No. Documents the controlled evidence, two-pass reconstruction, vector geometry, approval-gate, and locked-baseline workflow only.
+- **Notes:** References `FLOORPLAN REV08 — Frozen First Floor Geometry Baseline` as the current generic funeral-home test-case working artifact and confirms no runtime quote-system, HubSpot, Stripe/payment, scheduling, support/contact form, catalog schema, package pricing/data, auth, durable storage, dependency, image-processing, upload, LiDAR capture, computer-vision, or AI redraw implementation authority.
