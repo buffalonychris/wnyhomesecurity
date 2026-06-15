@@ -80,6 +80,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, records the completed bounded Fit Check visual parity implementation only.
 - **Notes:** Documents Fit Check visual primitive migration, behavior preservation, navigation/footer review, protected-system exclusions, validation, and remaining visual-review gap.
 
+
+### `/docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_FOOTER_NAV_001_REV01.md`
+- **File path:** `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_FOOTER_NAV_001_REV01.md`
+- **Purpose / likely role:** Implementation note for WNYHS-PUBLIC-FOOTER-NAV-001 public footer navigation cleanup.
+- **Authority level:** **Governance implementation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records the completed bounded footer navigation cleanup only.
+- **Notes:** Documents removal of extra footer links, preservation of About/Contact/Privacy/Terms/Support destinations, visible version `v1.0.149`, and protected-system exclusions.
+
 ## `docs/solution-system/`
 
 ### `/docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`

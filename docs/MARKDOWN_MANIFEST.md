@@ -67,6 +67,8 @@ QUOTESYSTEM-016 addendum: `docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_
 
 VISUAL-PARITY-004 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_004_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the bounded Fit Check visual parity pass to WNYHS public primitives and confirms Fit Check behavior, top navigation/footer destinations, HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email, quote-system, package data, catalog schema, auth, durable storage, dependencies, and package-lock files were not changed.
 
+WNYHS-PUBLIC-FOOTER-NAV-001 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_FOOTER_NAV_001_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the bounded public footer navigation cleanup limiting footer links to About, Contact, Privacy, Terms, and Support, preserving their existing destinations, and confirming top navigation, redirects, HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email, forms, quote-system runtime, catalog schema, package data/pricing, dependencies, and package-lock files were not changed.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 

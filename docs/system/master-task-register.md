@@ -188,6 +188,26 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Corrected Solutions listing hero/supporting text, estimate intake heading/form-choice readability within the Contact wrapper, embedded Fit Check wrapper background alignment, and Privacy/Terms legal-page readability through WNYHS semantic class/token usage. Our Work, Support, About, and homepage destinations were inspected; no behavior or destination changes were made. HubSpot, Stripe/payment, lead-signal/requestId, Resend/email, scheduling, package data/pricing, quote-system, dependencies, and package-lock files were not changed.
 
+
+
+### WNYHS-PUBLIC-FOOTER-NAV-001
+- **Task ID:** WNYHS-PUBLIC-FOOTER-NAV-001
+- **Task Name:** Public Footer Navigation Cleanup
+- **Status:** DONE
+- **Category:** public site footer/navigation cleanup
+- **Controlling Context:** post WNYHS-PUBLIC-VISUAL-QA-001 production review under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Remove unintended footer nav links so the public footer displays only the approved About, Contact, Privacy, Terms, and Support links.
+- **Allowed Scope:** Remove footer-only links outside the approved set; preserve existing hrefs/routes/query behavior for About, Contact, Privacy, Terms, and Support; preserve footer brand/local/service-area/operated-by text, visible version display, and footer visual treatment; bump visible site version to `v1.0.149`; create an implementation record; update catalog/manifest/register documentation only as required.
+- **Forbidden Scope:** No top navigation changes, `public/_redirects` changes, Cloudflare/Wrangler/deployment-setting changes, HubSpot changes, Stripe/payment changes, scheduling changes, Resend/email changes, requestId changes, lead-signal changes, support/contact form behavior changes, quote-system runtime changes, catalog schema changes, package pricing/data changes, auth changes, durable storage changes, dependency changes, `package.json` or `package-lock` changes, footer redesign, marketing-copy rewrite, new footer links, semantic-token value changes, hardcoded colors, or unsupported public claims.
+- **Target Files:** `src/components/homeSecurity/WnyhsSiteFooter.tsx`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_FOOTER_NAV_001_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Public footer link rendering only.
+- **Documentation Updates Required:** Add this bounded task entry; create implementation record; update document catalog and markdown manifest addendum for the new implementation record.
+- **Validation Required:** `npm run build`; focused ESLint for `src/components/homeSecurity/WnyhsSiteFooter.tsx`; `git diff --check`; protected-scope changed-file scan; added-line forbidden-claim scan; top-nav diff confirmation; redirects diff confirmation; final diff confirmation that retained and removed footer links match the work order.
+- **Exit Criteria:** Footer nav contains only About, Contact, Privacy, Terms, and Support with existing destinations preserved; Home, Explore, Packages, Solutions, Why WNYHS, How It Works, and Search are removed from the footer; visible version is `v1.0.149`; top nav and redirects are unchanged; protected systems remain untouched; validation passes; PR targets current branch without merge.
+- **Dependencies:** Prompt-created bounded work order, current governance authority chain, `docs/system/step-current.md`, WNYHS visual system standard, and header/footer standard.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Public footer navigation was reduced to the approved five-link set while preserving destinations for About, Contact, Privacy, Terms, and Support. Footer copy, footer visual treatment, top navigation, redirects, HubSpot, Stripe/payment, scheduling, lead-signal/requestId, Resend/email, support/contact form behavior, quote-system runtime, catalog schema, package data/pricing, dependencies, and package-lock were not changed.
+
 This section is the dispatch board for executable registered tasks. Codex may execute a registered task only when it appears here with `Status: ACTIVE`; prompt-created work orders remain executable only when explicitly bounded and permitted by higher-authority governance.
 
 
