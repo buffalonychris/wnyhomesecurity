@@ -1619,3 +1619,5 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_001_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the completed static public marketing visual parity pass for About, Our Work, Comparison, Reliability, and Home Security What's Included, and confirms protected runtime systems remained untouched.
 
 WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-002 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_002_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the completed package detail visual parity pass for Home Security package detail pages and confirms package data, pricing, protected runtime systems, HubSpot, and Stripe/payment remained untouched.
+
+- `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_003_REV01.md` — Contact + Support wrapper visual parity implementation record (v1.0.145).

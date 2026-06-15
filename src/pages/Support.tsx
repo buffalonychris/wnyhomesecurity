@@ -1,8 +1,6 @@
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 import { useLayoutConfig } from '../components/LayoutConfig';
-import SectionHeader from '../components/operator/SectionHeader';
-import SpaceFrame from '../components/operator/SpaceFrame';
 import WnyhsMarketingLayout from '../components/homeSecurity/WnyhsMarketingLayout';
 import { resolveVertical } from '../lib/verticals';
 import { buildSms, buildSupportMailto, buildTel, wnyhsContact } from '../content/wnyhsContact';
@@ -69,121 +67,138 @@ const Support = () => {
 
   const content = (
     <>
-      <SectionHeader
-        kicker="Support"
-        title="WNY Home Security Support"
-        subtitle="Local help for Western New York customers with cameras, alerts, smart entry, automation, access, and property-awareness questions."
-      />
-
-      <SpaceFrame>
-        <h2>Local support from people familiar with WNY homes</h2>
-        <p>
+      <section className="wnyhs-section wnyhs-contact-support-hero">
+        <div className="wnyhs-section-header">
+          <p className="wnyhs-eyebrow">Support</p>
+          <h1 className="wnyhs-heading">WNY Home Security Support</h1>
+          <p className="wnyhs-description">
+            Local help for Western New York customers with cameras, alerts, smart entry, automation, access, and
+            property-awareness questions.
+          </p>
+        </div>
+        <p className="wnyhs-card-copy">
           Whether you need help with an existing system or want to ask about a practical add-on, start here. Call,
           text, email, and the support form all stay available so you can choose the path that fits the issue.
         </p>
-        <p style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <a href={buildTel()} style={{ color: 'var(--color-accent)' }}>
+        <div className="wnyhs-contact-support-actions">
+          <a className="wnyhs-button wnyhs-button--primary" href={buildTel()}>
             Call {wnyhsContact.phone.display}
           </a>
-          <a href={buildSms('Hi! I need help with my WNY Home Security system.')} style={{ color: 'var(--color-accent)' }}>
+          <a
+            className="wnyhs-button wnyhs-button--secondary"
+            href={buildSms('Hi! I need help with my WNY Home Security system.')}
+          >
             Text {wnyhsContact.phone.display}
           </a>
-        </p>
-      </SpaceFrame>
+        </div>
+      </section>
 
-      <SpaceFrame>
-        <h2>What can we help with?</h2>
-        <div className="wnyhs-gallery-grid">
+      <section className="wnyhs-section">
+        <div className="wnyhs-section-header">
+          <p className="wnyhs-eyebrow">Support topics</p>
+          <h2 className="wnyhs-heading">What can we help with?</h2>
+        </div>
+        <div className="wnyhs-contact-support-grid">
           {supportCategories.map((category) => (
-            <article key={category.title} className="card wnyhs-gallery-card wnyhs-gallery-card--compact">
-              <div className="wnyhs-gallery-card-body wnyhs-gallery-card-body--compact">
-                <h3 className="wnyhs-gallery-card-title--compact">{category.title}</h3>
-                <p className="wnyhs-gallery-body wnyhs-gallery-body--compact">{category.body}</p>
-              </div>
+            <article key={category.title} className="wnyhs-card">
+              <h3 className="wnyhs-card-title">{category.title}</h3>
+              <p className="wnyhs-card-copy">{category.body}</p>
             </article>
           ))}
         </div>
-      </SpaceFrame>
+      </section>
 
-      <SpaceFrame>
-        <h2>Email support</h2>
-        <p>Send a message and include your name, property address, best number, and the device or area involved.</p>
-        <p>
-          <strong>
-            <a
-              href={buildSupportMailto({
-                issue: 'Tell us what you need help with.',
-                pageRoute: `${location.pathname}${location.search}`,
-              })}
-              style={{ color: 'var(--color-accent)' }}
-            >
-              {wnyhsContact.emails.support}
-            </a>
-          </strong>
-        </p>
-      </SpaceFrame>
+      <section className="wnyhs-section">
+        <div className="wnyhs-section-header">
+          <p className="wnyhs-eyebrow">Email</p>
+          <h2 className="wnyhs-heading">Email support</h2>
+          <p className="wnyhs-description">
+            Send a message and include your name, property address, best number, and the device or area involved.
+          </p>
+        </div>
+        <strong>
+          <a
+            className="wnyhs-contact-support-link"
+            href={buildSupportMailto({
+              issue: 'Tell us what you need help with.',
+              pageRoute: `${location.pathname}${location.search}`,
+            })}
+          >
+            {wnyhsContact.emails.support}
+          </a>
+        </strong>
+      </section>
       <SupportRequestForm pageRoute={`${location.pathname}${location.search}`} />
-      <SpaceFrame>
-        <h2>Phone or text</h2>
-        <p>Call or text for existing customer questions, system concerns, or help deciding whether the form is the right path.</p>
-        <p style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <a href={buildTel()} style={{ color: 'var(--color-accent)' }}>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">Phone or text</h2>
+        <p>
+          Call or text for existing customer questions, system concerns, or help deciding whether the form is the right
+          path.
+        </p>
+        <div className="wnyhs-contact-support-actions">
+          <a className="wnyhs-button wnyhs-button--primary" href={buildTel()}>
             Call {wnyhsContact.phone.display}
           </a>
-          <a href={buildSms('Hi! I need help with my Home Security system.')} style={{ color: 'var(--color-accent)' }}>
+          <a
+            className="wnyhs-button wnyhs-button--secondary"
+            href={buildSms('Hi! I need help with my Home Security system.')}
+          >
             Text {wnyhsContact.phone.display}
           </a>
-        </p>
-      </SpaceFrame>
+        </div>
+      </section>
 
-      <SpaceFrame>
-        <h2>FAQ and self-serve checks</h2>
-        <div className="space-grid">
+      <section className="wnyhs-section">
+        <div className="wnyhs-section-header">
+          <p className="wnyhs-eyebrow">FAQ</p>
+          <h2 className="wnyhs-heading">FAQ and self-serve checks</h2>
+        </div>
+        <div className="wnyhs-contact-support-grid">
           {supportFaqs.map((faq) => (
-            <article key={faq.question} className="card">
-              <h3 className="wnyhs-gallery-card-title--compact">{faq.question}</h3>
-              <p className="wnyhs-gallery-body">{faq.answer}</p>
+            <article key={faq.question} className="wnyhs-card">
+              <h3 className="wnyhs-card-title">{faq.question}</h3>
+              <p className="wnyhs-card-copy">{faq.answer}</p>
             </article>
           ))}
         </div>
-      </SpaceFrame>
+      </section>
 
-      <SpaceFrame>
-        <h2>Follow-up expectations</h2>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">Follow-up expectations</h2>
         <p>
           Support requests are reviewed during normal business operations. For time-sensitive help, call or text{' '}
           {wnyhsContact.phone.display}; do not rely on the form as an immediate-service channel.
         </p>
-      </SpaceFrame>
+      </section>
 
-      <SpaceFrame>
-        <h2>Already a customer and want to expand your system?</h2>
+      <section className="wnyhs-section">
+        <h2 className="wnyhs-heading">Already a customer and want to expand your system?</h2>
         <p>
           If your current setup is working and you want to add cameras, water alerts, garage awareness, smart entry,
           or automation, use the support form or request a local walkthrough.
         </p>
-        <div className="wnyhs-gallery-actions">
-          <Link className="btn btn-secondary" to="/contact?vertical=home-security">
+        <div className="wnyhs-contact-support-actions">
+          <Link className="wnyhs-button wnyhs-button--secondary" to="/contact?vertical=home-security">
             Ask About an Add-On
           </Link>
         </div>
-      </SpaceFrame>
+      </section>
     </>
   );
 
   if (isHomeSecurity) {
     return (
       <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">
-        <div className="space-shell">
-          <div className="section space-grid">{content}</div>
-        </div>
+        <div className="wnyhs-shell wnyhs-contact-support-shell">{content}</div>
       </WnyhsMarketingLayout>
     );
   }
 
   return (
-    <div className="space-shell">
-      <div className="container section space-grid">{content}</div>
+    <div className="wnyhs-page">
+      <div className="container section">
+        <div className="wnyhs-shell wnyhs-contact-support-shell">{content}</div>
+      </div>
     </div>
   );
 };
@@ -207,7 +222,10 @@ const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
       });
       if (!response.ok) {
         const payload = (await response.json().catch(() => ({}))) as { userMessage?: string };
-        setErrorMessage(payload.userMessage || 'We could not send your request through the form. Please call or text 716-201-0364, or email support@wnyhomesecurity.com.');
+        setErrorMessage(
+          payload.userMessage ||
+            'We could not send your request through the form. Please call or text 716-201-0364, or email support@wnyhomesecurity.com.',
+        );
         setStatus('error');
         return;
       }
@@ -217,15 +235,22 @@ const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
       setTopic('Existing customer support');
       setMessage('');
     } catch {
-      setErrorMessage('The form is not available right now. Please call or text 716-201-0364, or email support@wnyhomesecurity.com.');
+      setErrorMessage(
+        'The form is not available right now. Please call or text 716-201-0364, or email support@wnyhomesecurity.com.',
+      );
       setStatus('error');
     }
   };
   return (
-    <SpaceFrame>
-      <h2>Submit support request</h2>
-      <p>Use the form for support questions, troubleshooting details, new project questions, or add-on requests.</p>
-      <form className="form" onSubmit={onSubmit}>
+    <section className="wnyhs-section wnyhs-contact-support-form-panel">
+      <div className="wnyhs-section-header">
+        <p className="wnyhs-eyebrow">Form</p>
+        <h2 className="wnyhs-heading">Submit support request</h2>
+        <p className="wnyhs-description">
+          Use the form for support questions, troubleshooting details, new project questions, or add-on requests.
+        </p>
+      </div>
+      <form className="form wnyhs-contact-support-form" onSubmit={onSubmit}>
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
         <select value={topic} onChange={(e) => setTopic(e.target.value)} required>
@@ -235,14 +260,22 @@ const SupportRequestForm = ({ pageRoute }: { pageRoute: string }) => {
             </option>
           ))}
         </select>
-        <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Tell us what is happening, what changed recently, and the best number for follow-up." rows={4} required />
-        <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Tell us what is happening, what changed recently, and the best number for follow-up."
+          rows={4}
+          required
+        />
+        <button className="wnyhs-button wnyhs-button--primary" type="submit" disabled={status === 'sending'}>
           {status === 'sending' ? 'Sending...' : 'Send request'}
         </button>
         {status === 'success' && <p>Support request received. Follow-up happens during normal business operations.</p>}
-        {status === 'error' && <p>{errorMessage || 'Please call or text 716-201-0364, or email support@wnyhomesecurity.com.'}</p>}
+        {status === 'error' && (
+          <p>{errorMessage || 'Please call or text 716-201-0364, or email support@wnyhomesecurity.com.'}</p>
+        )}
       </form>
-    </SpaceFrame>
+    </section>
   );
 };
 

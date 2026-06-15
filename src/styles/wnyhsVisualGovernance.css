@@ -219,3 +219,56 @@
     padding: 0.85rem;
   }
 }
+
+.wnyhs-contact-support-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.wnyhs-contact-support-hero {
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
+}
+
+.wnyhs-contact-support-hero .wnyhs-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  max-width: 18ch;
+}
+
+.wnyhs-contact-support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.wnyhs-contact-support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.wnyhs-contact-support-link {
+  color: var(--wnyhs-gold-strong);
+  text-decoration-color: color-mix(in srgb, var(--wnyhs-gold) 44%, transparent);
+}
+
+.wnyhs-contact-support-form-panel .form,
+.wnyhs-contact-support-form {
+  max-width: none;
+}
+
+.wnyhs-contact-support-form-panel .form input,
+.wnyhs-contact-support-form-panel .form textarea,
+.wnyhs-contact-support-form-panel .form select {
+  border-color: var(--wnyhs-border);
+  background: var(--wnyhs-surface);
+  color: var(--wnyhs-ink);
+}
+
+.wnyhs-contact-support-form-panel .form input:focus,
+.wnyhs-contact-support-form-panel .form textarea:focus,
+.wnyhs-contact-support-form-panel .form select:focus {
+  outline: none;
+  border-color: var(--wnyhs-gold);
+  box-shadow: var(--wnyhs-focus);
+}

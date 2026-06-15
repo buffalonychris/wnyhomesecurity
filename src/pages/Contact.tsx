@@ -23,41 +23,59 @@ const Contact = () => {
 
   useLayoutConfig({ layoutVariant: isHomeSecurity ? 'funnel' : 'sitewide', showBreadcrumbs: false, breadcrumb: [] });
 
-
-  const content = <div className="contact-intake-shell">
-    <div className="contact-intake-header">
-      <h2>Request a Free Estimate from {isHomeSecurity ? brandHomeSecurity : brandSite}</h2>
-      <p>Tell us about your home security goals, or call/text now for cameras, video doorbells, package theft protection, and smart home security planning.</p>
+  const content = (
+    <div className="wnyhs-shell wnyhs-contact-support-shell">
+      <section className="wnyhs-section wnyhs-contact-support-hero">
+        <div className="wnyhs-section-header">
+          <p className="wnyhs-eyebrow">Contact</p>
+          <h1 className="wnyhs-heading">Request a Free Estimate from {isHomeSecurity ? brandHomeSecurity : brandSite}</h1>
+          <p className="wnyhs-description">
+            Tell us about your home security goals, or call/text now for cameras, video doorbells, package theft
+            protection, and smart home security planning.
+          </p>
+        </div>
+        <div className="wnyhs-contact-support-actions">
+          <a className="wnyhs-button wnyhs-button--primary" href={buildTel()}>
+            Call {wnyhsContact.phone.display}
+          </a>
+          <a
+            className="wnyhs-button wnyhs-button--secondary"
+            href={buildSms('Hi! I’d like to talk about Home Security. Please call me back.')}
+          >
+            Text {wnyhsContact.phone.display}
+          </a>
+        </div>
+      </section>
+      <section className="wnyhs-section wnyhs-contact-support-form-panel" id="estimate-form">
+        <CanonicalEstimateRequestForm
+          sourceFamily="MAIN_SITE"
+          source={estimateIntent === 'selected-package' ? 'contact_page_package_selected' : 'contact_page'}
+          landingRoute={`${location.pathname}${location.search}`}
+          requestId={undefined}
+          entryRoute={location.pathname}
+          enableIntakeSplit
+          requirePathSelection
+          compactEstimate
+          context={{
+            vertical,
+            estimateIntent: estimateIntent || undefined,
+            deal: packageTier ? { packageTier } : undefined,
+            package: packageId || undefined,
+            fit: fit || undefined,
+            recommended: recommended || undefined,
+            propertySize: propertySize || undefined,
+            coverageExpectation: coverageExpectation || undefined,
+          }}
+        />
+      </section>
     </div>
-    <div className="contact-intake-actions">
-      <a className="btn btn-link" href={buildTel()}>Call {wnyhsContact.phone.display}</a>
-      <a className="btn btn-link" href={buildSms('Hi! I’d like to talk about Home Security. Please call me back.')}>Text {wnyhsContact.phone.display}</a>
-    </div>
-    <section className="contact-intake-panel qr-panel" id="estimate-form">
-      <CanonicalEstimateRequestForm
-        sourceFamily="MAIN_SITE"
-        source={estimateIntent === 'selected-package' ? 'contact_page_package_selected' : 'contact_page'}
-        landingRoute={`${location.pathname}${location.search}`}
-        requestId={undefined}
-        entryRoute={location.pathname}
-        enableIntakeSplit
-        requirePathSelection
-        compactEstimate
-        context={{
-          vertical,
-          estimateIntent: estimateIntent || undefined,
-          deal: packageTier ? { packageTier } : undefined,
-          package: packageId || undefined,
-          fit: fit || undefined,
-          recommended: recommended || undefined,
-          propertySize: propertySize || undefined,
-          coverageExpectation: coverageExpectation || undefined,
-        }}
-      />
-    </section>
-  </div>;
+  );
 
-  return isHomeSecurity ? <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security"><div className="wnyhs-marketing-stack">{content}</div></WnyhsMarketingLayout> : <div className="container section">{content}</div>;
+  return isHomeSecurity ? (
+    <WnyhsMarketingLayout ctaLink="/discovery?vertical=home-security">{content}</WnyhsMarketingLayout>
+  ) : (
+    <div className="container section wnyhs-page">{content}</div>
+  );
 };
 
 export default Contact;
