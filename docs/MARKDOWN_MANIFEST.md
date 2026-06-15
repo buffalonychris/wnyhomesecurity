@@ -1627,3 +1627,5 @@ WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-002 addendum: `docs/governance/IMPLEMENTATI
 
 
 - `docs/governance/HOTFIX_WNYHS_APEX_HOSTNAME_001_REV01.md` — Apex hostname rendering failure hotfix investigation and implementation record (v1.0.147).
+
+WNYHS-PUBLIC-VISUAL-QA-001 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_VISUAL_QA_001_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It records the bounded public text contrast and readability correction pass for public nav/footer destinations and confirms HubSpot, Stripe/payment, Fit Check behavior, Contact/Estimate form behavior, Support form behavior, nav/footer destinations, package data/pricing, protected runtime systems, dependencies, and package-lock files were not changed.

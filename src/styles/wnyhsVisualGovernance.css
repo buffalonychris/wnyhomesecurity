@@ -421,3 +421,57 @@
     var(--wnyhs-gold-soft) 22%
   );
 }
+
+.wnyhs-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.wnyhs-inline-actions--spaced {
+  margin-top: 0.35rem;
+}
+
+.wnyhs-solutions-hero-copy {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 760px;
+}
+
+.wnyhs-solutions-hero-copy .wnyhs-description {
+  max-width: 560px;
+}
+
+.wnyhs-contact-support-form-panel .estimate-form-shell .qr-section legend {
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.15;
+}
+
+.wnyhs-contact-support-form-panel .estimate-form-shell .estimate-stage-note,
+.wnyhs-contact-support-form-panel .estimate-form-shell .intake-path-option small {
+  color: var(--wnyhs-ink-secondary);
+}
+
+.wnyhs-contact-support-form-panel .estimate-form-shell .qr-section.estimate-form-stage,
+.wnyhs-contact-support-form-panel .estimate-form-shell .intake-path-option {
+  border-color: var(--wnyhs-border);
+  background: var(--wnyhs-surface-raised);
+  color: var(--wnyhs-ink);
+}
+
+.wnyhs-fit-check-embed {
+  border-radius: var(--wnyhs-radius-shell);
+}
+
+.wnyhs-legal-copy {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.wnyhs-legal-copy p {
+  color: var(--wnyhs-ink-muted);
+  margin: 0;
+}

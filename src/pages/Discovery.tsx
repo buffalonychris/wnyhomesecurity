@@ -85,8 +85,8 @@ const Discovery = () => {
           </div>
         )}
         {showUnknownNote ? (
-          <div>
-            <p style={{ margin: 0, color: "rgba(165, 216, 247, 0.8)" }}>
+          <div className="wnyhs-section">
+            <p className="wnyhs-description">
               We couldn’t find that discovery vertical, so we loaded Home
               Security instead.
             </p>
