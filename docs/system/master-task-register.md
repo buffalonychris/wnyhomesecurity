@@ -240,6 +240,25 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Extended the internal Property Model quote workspace with local-storage-only repeatable floorplan/property evidence items, controlled evidence type/orientation/status options, WNYHS floorplan workflow guidance, and Draft Quote Preview Section 1 evidence summary. No file uploads, durable storage, cloud storage, Google Drive integration, image processing, floorplan rendering engine, AI redraw generation, HubSpot writes, Stripe/payment implementation, inventory automation, scheduling automation, quote PDF generation, email sending, authentication system, new dependencies, package-lock changes, public quote automation, or protected runtime behavior changes were introduced.
 
+
+### QUOTESYSTEM-008
+- **Task ID:** QUOTESYSTEM-008
+- **Task Name:** Hardware Placement Reconciliation
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Extend the internal Quote Workspace so Draft Hardware / BOM line items reconcile to property room/area, customer concern, selected WNYHS solution, catalog hardware item, evidence reference, installer note, dashboard prep note, and reconciliation status.
+- **Allowed Scope:** Internal operator route extension for `/operator/property-model`; update local Property Model types and localStorage normalization; add controlled reconciliation status including Needs Placement, GPT Proposed, WNYHS Modified, Approved, and Locked; add catalog-backed/freehand hardware placement controls; add reconciliation summary; update Draft Quote Preview Section 3; add non-blocking MAST camera reminder; add the QUOTESYSTEM-008 implementation note; update quote-system document map, document catalog, markdown manifest, master task register, and visible site version.
+- **Forbidden Scope:** No pricing engine, quote PDF generation, inventory automation, ordering automation, scheduling automation, HubSpot writes, HubSpot schema/properties/pipeline changes, Stripe/payment changes, email sending, auth system, durable production storage, new dependencies, package-lock changes, unrelated public site redesign, protected runtime behavior changes, or hardcoded color drift outside token governance.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/lib/propertyModel.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/index.css`, `docs/quotesystem/IMPLEMENTATION008_Hardware_Placement_Reconciliation_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator route and local browser storage only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-008 implementation note, update quote-system document map, add the document catalog entry, add the markdown manifest entry, record this task as DONE, and bump the visible site version.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model` if practical.
+- **Exit Criteria:** Version is bumped to `v1.0.134`; `/operator/property-model` supports Draft Hardware / BOM reconciliation to catalog item, room/area, concern, selected solution, evidence, installer note, dashboard note, and reconciliation status; reconciliation summary is visible; Draft Quote Preview Section 3 includes placement details; MAST camera reminder is non-blocking; persistence remains localStorage-only; no protected systems are touched; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-007, PROPERTY001, HARDWARE001, DASHBOARD_PREP001, INSTALLER001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Extended the internal Property Model quote workspace with local-storage-only hardware placement reconciliation fields, summary counts, Section 3 preview detail, and a non-blocking MAST camera reminder. No HubSpot writes, Stripe/payment changes, pricing engine, quote PDF generation, inventory automation, ordering automation, scheduling automation, email sending, auth system, durable production storage, new dependencies, package-lock changes, public site redesign, or protected runtime behavior changes were introduced.
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack

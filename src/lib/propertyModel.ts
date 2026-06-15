@@ -6,7 +6,7 @@ export type PropertyQuoteStage =
   | 'accepted_quote_owes_deposit'
   | 'quote_complete_deposit_paid';
 
-export type PropertyModelBomStatus = 'gpt_proposed' | 'wnyhs_modified' | 'approved' | 'locked';
+export type PropertyModelBomStatus = 'needs_placement' | 'gpt_proposed' | 'wnyhs_modified' | 'approved' | 'locked';
 
 export type PropertyModelEvidenceType =
   | 'hand_drawn_floorplan'
@@ -74,8 +74,12 @@ export type PropertyModelBomLineItem = {
   itemName: string;
   hardwareType: string;
   quantity: number;
+  catalogHardwareItemId: string;
   locationRef: string;
+  propertyAreaRef: string;
   customerConcernServed: string;
+  selectedSolutionRef: string;
+  evidenceRef: string;
   bomStatus: PropertyModelBomStatus;
   dashboardPrepNote: string;
   installerNote: string;
@@ -228,6 +232,7 @@ export const areaNameOptions = [
 ];
 
 export const bomStatusOptions: Array<{ value: PropertyModelBomStatus; label: string }> = [
+  { value: 'needs_placement', label: 'Needs Placement' },
   { value: 'gpt_proposed', label: 'GPT Proposed' },
   { value: 'wnyhs_modified', label: 'WNYHS Modified' },
   { value: 'approved', label: 'Approved' },
@@ -506,9 +511,13 @@ const normalizePropertyModelRecord = (record: StoredPropertyModelRecord): Proper
           itemName: item.itemName,
           hardwareType: item.hardwareType ?? '',
           quantity: item.quantity,
+          catalogHardwareItemId: item.catalogHardwareItemId ?? '',
           locationRef: item.locationRef,
+          propertyAreaRef: item.propertyAreaRef ?? item.locationRef ?? '',
           customerConcernServed: item.customerConcernServed ?? item.customerGoalServed ?? '',
-          bomStatus: item.bomStatus ?? 'gpt_proposed',
+          selectedSolutionRef: item.selectedSolutionRef ?? item.wnyhsPurpose ?? '',
+          evidenceRef: item.evidenceRef ?? '',
+          bomStatus: item.bomStatus ?? 'needs_placement',
           dashboardPrepNote: item.dashboardPrepNote ?? '',
           installerNote: item.installerNote ?? '',
         }))

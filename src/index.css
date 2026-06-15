@@ -4060,3 +4060,38 @@ body.modal-open {
     align-items: flex-start;
   }
 }
+
+.quote-workspace-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.7rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.quote-workspace-summary-grid div,
+.quote-workspace-reminder {
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
+  color: var(--wnyhs-ink);
+  padding: 0.8rem;
+}
+
+.quote-workspace-summary-grid span {
+  display: block;
+  color: var(--wnyhs-ink-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.quote-workspace-summary-grid strong {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--wnyhs-gold-strong);
+  font-size: 1.25rem;
+}
+
+.quote-workspace-reminder {
+  margin: 0.8rem 0 0;
+  font-weight: 700;
+}

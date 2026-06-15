@@ -1595,3 +1595,5 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 - DOCSTATUS001: Promote or mark stale the older root/spec/audit documents currently listed as historical, superseded candidates, unknown, or partial references.
 - LEADFLOW001-PREP: Create a focused lead-flow document map from the LEADFLOW001 review set before adding referral logic or changing estimate intake behavior.
 - CATALOG-NEXT: After any CATALOG003 merge, update this manifest to include the new REV03 catalog artifact.
+
+- `docs/quotesystem/IMPLEMENTATION008_Hardware_Placement_Reconciliation_REV01.md`
