@@ -1084,3 +1084,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task completion record for WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001
 - **Implementation authority:** No. Records the completed bounded public marketing visual parity pass.
 - **Notes:** Documents migrated static public pages, WNYHS visual primitives used, claim-risk cleanup, protected-system confirmations, validation, and remaining visual-review gap for version `v1.0.143`.
+
+### `/docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_002_REV01.md`
+- **File path:** `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_002_REV01.md`
+- **Document type:** Implementation record
+- **Authority level:** Task completion record for WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-002
+- **Implementation authority:** No. Records the completed bounded package detail visual parity pass.
+- **Notes:** Documents migrated package detail routes, WNYHS visual primitives used, preserved package data/flows, protected-system confirmations, validation, and remaining visual-review gap for version `v1.0.144`.

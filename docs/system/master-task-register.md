@@ -4105,3 +4105,21 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** Prompt-created bounded work order, DESIGN001 REV01, SOLUTION001 REV01, CATALOG001 REV01, current governance authority chain, and `docs/system/step-current.md`.
 - **Operator Decision Required:** Review PR preview and approve visual parity.
 - **Completion Notes:** Migrated selected static public marketing pages toward `.wnyhs-shell`, `.wnyhs-section`, `.wnyhs-section-header`, `.wnyhs-card`, `.wnyhs-button`, and related token-backed classes. Added minimal token-backed utility CSS in `src/index.css`. Cleaned Comparison third-party services language and Reliability outage limitation wording. Preserved package source data reads, routes, CTAs, accordions, forms, protected runtime boundaries, HubSpot, Stripe/payment, scheduling, lead-signal, email, auth, storage, dependencies, and package-lock. Version bumped to `v1.0.143`.
+
+### WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-002
+- **Task ID:** WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-002
+- **Task Name:** Package Detail Visual Parity
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Bring WNYHS package detail pages into visual alignment with the current WNYHS homepage/solutions token system while preserving package routing, data, prices, quote/contact/planner links, and legacy protected flows.
+- **Allowed Scope:** Visual parity migration for `src/pages/PackageDetail.tsx`; token-backed package-detail utilities in `src/index.css`; claim-risk cleanup only where touched; version and documentation updates.
+- **Forbidden Scope:** No quote-system implementation changes, catalog schema changes, package data/pricing changes, HubSpot changes, Stripe/payment changes, scheduling changes, lead-signal/requestId changes, Resend/email changes, support/contact form behavior changes, auth changes, durable storage changes, dependencies, package-lock changes, unrelated public-site redesign, Contact/Support cleanup, `/operator/property-model`, quote preview, installer packet, or import/export flows.
+- **Target Files:** `src/pages/PackageDetail.tsx`, `src/index.css`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_WNYHS_PUBLIC_MARKETING_VISUAL_PARITY_002_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public package detail page presentation only.
+- **Documentation Updates Required:** Created implementation note and registered it in document catalog, markdown manifest, and task register.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check if practical for target routes.
+- **Exit Criteria:** Package detail pages use WNYHS primitives where practical; package routing, package data, prices, selected tier behavior, vertical query behavior, and CTA destinations are preserved; site version is bumped to `v1.0.144`; protected systems remain untouched; validation passes or limitations are documented; PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded work order, DESIGN001 REV01, SOLUTION001 REV01, CATALOG001 REV01, WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review PR preview and approve visual parity.
+- **Completion Notes:** Migrated PackageDetail toward `.wnyhs-page`, `.wnyhs-shell`, `.wnyhs-section`, `.wnyhs-section-header`, `.wnyhs-card`, `.wnyhs-button`, `.wnyhs-price-chip`, and `.wnyhs-page-cta` primitives with token-backed package-detail utilities. Preserved package IDs, names, data sources, prices, tier logic, selected-tier behavior, vertical query behavior, CTA destinations, and protected runtime boundaries. No HubSpot, Stripe/payment, scheduling, lead-signal/requestId, support/contact form behavior, email/Resend, auth, durable storage, dependencies, package-lock, catalog schema, package pricing, quote-system, operator, quote preview, installer packet, import/export, or unrelated public-site changes were made. Version bumped to `v1.0.144`.
