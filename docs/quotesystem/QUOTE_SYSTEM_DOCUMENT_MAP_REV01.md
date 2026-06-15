@@ -56,3 +56,4 @@ Future controlled tasks may add or expand standards for:
 - Quote-system QA plan.
 
 None of those future areas are implemented or authorized by this map.
+- `IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md` — implemented usability/layout pass for the internal Property Model Quote Workspace.

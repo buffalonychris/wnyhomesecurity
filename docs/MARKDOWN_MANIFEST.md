@@ -1602,3 +1602,4 @@ Review these before availability, appointment, calendar, owner-confirmation, or 
 
 - `docs/quotesystem/IMPLEMENTATION010_Installer_Packet_View_REV01.md`
 - `docs/quotesystem/IMPLEMENTATION011_Local_Import_Export_REV01.md`
+- `docs/quotesystem/IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md`
