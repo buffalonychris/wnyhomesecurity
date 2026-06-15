@@ -1017,3 +1017,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Implementation note / quote-system runtime documentation**
 - **Status:** **Implemented / partial local-storage prototype**
 - **Notes:** Confirms reconciliation is local only and does not change HubSpot, Stripe, pricing, inventory, ordering, scheduling, email, auth, or production storage.
+
+
+### `/docs/quotesystem/IMPLEMENTATION009_Quote_Preview_Print_View_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION009_Quote_Preview_Print_View_REV01.md`
+- **Purpose / likely role:** Records the QUOTESYSTEM-009 local Property Model quote preview / browser-print implementation.
+- **Authority level:** **Implementation note / quote-system runtime documentation**
+- **Status:** **Implemented / partial local-storage prototype**
+- **Notes:** Confirms the preview is local only and does not add PDF generation, quote sending, HubSpot writes, Stripe changes, inventory automation, ordering automation, scheduling automation, auth, production storage, dependencies, or package-lock changes.

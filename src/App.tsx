@@ -74,6 +74,7 @@ const VendorApply = lazy(() => import('./pages/VendorApply'));
 const NeverMissAnotherEstimate = lazy(() => import('./pages/NeverMissAnotherEstimate'));
 const Operator = lazy(() => import('./pages/Operator'));
 const PropertyModelAdmin = lazy(() => import('./pages/PropertyModelAdmin'));
+const PropertyModelQuotePreview = lazy(() => import('./pages/PropertyModelQuotePreview'));
 const Demo = lazy(() => import('./pages/Demo'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const FiveDayDemo = lazy(() => import('./pages/FiveDayDemo'));
@@ -240,6 +241,7 @@ const App = () => {
           <Route element={<OperatorLayout />}>
             <Route path="/operator" element={<Operator />} />
             <Route path="/operator/property-model" element={<PropertyModelAdmin />} />
+            <Route path="/operator/property-model/quote-preview" element={<PropertyModelQuotePreview />} />
           </Route>
         </Route>
       </Routes>

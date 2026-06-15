@@ -259,6 +259,25 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Extended the internal Property Model quote workspace with local-storage-only hardware placement reconciliation fields, summary counts, Section 3 preview detail, and a non-blocking MAST camera reminder. No HubSpot writes, Stripe/payment changes, pricing engine, quote PDF generation, inventory automation, ordering automation, scheduling automation, email sending, auth system, durable production storage, new dependencies, package-lock changes, public site redesign, or protected runtime behavior changes were introduced.
 
+### QUOTESYSTEM-009
+- **Task ID:** QUOTESYSTEM-009
+- **Task Name:** Quote Preview / Print View
+- **Status:** DONE
+- **Category:** RUNTIME
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add a customer-facing quote preview / browser-print view for the WNYHS Quote Workspace using existing local Property Model data.
+- **Allowed Scope:** Add an operator quote preview route for `/operator/property-model`; read from existing localStorage Property Model records; add a Preview / Print Quote action; render the three-section quote structure; add token-based print CSS; add the QUOTESYSTEM-009 implementation note; update quote-system document map, document catalog, markdown manifest, master task register, and visible site version.
+- **Forbidden Scope:** No PDF generation library, quote sending, email sending, HubSpot writes, HubSpot schema/properties/pipeline changes, Stripe/payment changes, inventory automation, ordering automation, scheduling automation, auth system, durable production storage, new dependencies, package-lock changes, unrelated public redesign, protected runtime behavior changes, or changes to existing Quote, QuoteReview, QuotePrint, Agreement, Payment, or Schedule flows.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/pages/PropertyModelAdmin.tsx`, `src/pages/PropertyModelQuotePreview.tsx`, `src/App.tsx`, `src/index.css`, `docs/quotesystem/IMPLEMENTATION009_Quote_Preview_Print_View_REV01.md`, `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal operator quote preview route and local browser storage read path only.
+- **Documentation Updates Required:** Add the QUOTESYSTEM-009 implementation note, update quote-system document map, add the document catalog entry, add the markdown manifest entry, record this task as DONE, and bump the visible site version.
+- **Validation Required:** `npm run build`; targeted lint/typecheck for touched runtime files; `git diff --check`; protected-system changed-file scan; added-line forbidden-claim scan; token/CSS hardcoded color scan for touched styling; route smoke check for `/operator/property-model` and `/operator/property-model/quote-preview` if practical.
+- **Exit Criteria:** Version is bumped to `v1.0.135`; `/operator/property-model/quote-preview` renders local Property Model draft data in the three-section quote structure; `/operator/property-model` links to the preview; preview uses browser print only; persistence remains localStorage-only; no protected systems are touched; existing quote/payment/agreement/schedule flows remain preserved; PR targets `main` without merge.
+- **Dependencies:** QUOTESYSTEM-008, PROPERTY001, QUOTE001, GATES001, HARDWARE001, CATALOG001, DESIGN001, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added a local-storage-only browser-print quote preview route with WNYHS three-section quote structure and token-based print styling. No PDF generation, quote sending, email sending, HubSpot writes, Stripe/payment changes, inventory automation, ordering automation, scheduling automation, auth system, durable production storage, new dependencies, package-lock changes, public redesign, or protected runtime behavior changes were introduced.
+
+
 ### PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task ID:** PAGE-TOKEN-COMPLIANCE-GATE-001
 - **Task Name:** Add Public Page Token Compliance Gate and Page-Level Task Pack
