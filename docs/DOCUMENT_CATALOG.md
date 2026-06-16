@@ -156,6 +156,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/quotesystem/`
 
+
+### `/docs/quotesystem/QUOTESYSTEM017_Quote_Workspace_Workflow_Alignment_REV01.md`
+- **File path:** `docs/quotesystem/QUOTESYSTEM017_Quote_Workspace_Workflow_Alignment_REV01.md`
+- **Purpose / likely role:** Docs-only QUOTESYSTEM-017 alignment record mapping the current internal Quote Workspace / Property Model UI to the active operator playbook phases and identifying future bounded workflow gaps.
+- **Authority level:** **Quote-system workflow alignment / documentation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added as a docs-only alignment artifact. It does not authorize app/source changes, route changes, CSS changes, runtime behavior, HubSpot, Stripe/payment, scheduling, storage, uploads, exports, PDFs, email behavior, package changes, environment changes, or Cloudflare config changes.
+
 ### `/docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_PASS_REV01.md`
 - **File path:** `docs/quotesystem/IMPLEMENTATION016_Live_Test_Bug_Fix_PASS_REV01.md`
 - **Purpose / likely role:** Implementation note for QUOTESYSTEM-016 live-test stabilization of the local Quote Workspace using the Funeral Home Test Case.
