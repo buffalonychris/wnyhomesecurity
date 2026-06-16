@@ -113,6 +113,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 ## Active Tasks (Execution Driver)
 
 
+### QUOTESYSTEM-017
+- **Task ID:** QUOTESYSTEM-017
+- **Task Name:** Quote Workspace Workflow Alignment
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only workflow-alignment record that maps the current internal Quote Workspace / Property Model UI to `docs/quotesystem/WNYHS_Quote_Workspace_Operator_Playbook_REV01.md` and identifies future bounded implementation gaps.
+- **Allowed Scope:** Add `docs/quotesystem/QUOTESYSTEM017_Quote_Workspace_Workflow_Alignment_REV01.md`; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md`; add/update one completed Master Task Register entry; review existing quote/property workspace source files only as needed to document current UI state.
+- **Forbidden Scope:** No app/source code changes; no route changes; no CSS changes; no quote runtime behavior changes; no HubSpot changes; no Stripe/payment changes; no scheduling changes; no storage, upload, export, PDF, or email behavior; no customer-facing public page changes; no implementation task creation beyond documenting future recommendations; no `package.json`, `package-lock.json`, environment variable, or Cloudflare config changes.
+- **Target Files:** `docs/quotesystem/QUOTESYSTEM017_Quote_Workspace_Workflow_Alignment_REV01.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only workflow alignment.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; `git diff --check`; `git diff --cached --check`; confirm changed files are docs-only; confirm no `src/`, `functions/`, `api/`, `server/`, `package.json`, `package-lock.json`, `public/_redirects`, or Cloudflare config files changed.
+- **Exit Criteria:** Alignment document exists at the required path; current routes/source files reviewed are documented; current workflow sections found are documented; playbook-phase mapping table is documented; minimum future UI sequence is documented; dashboard preview mandatory note is documented; floorplan baseline locked or rough/limited-evidence note is documented; future bounded recommendations are documented without implementation; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded QUOTESYSTEM-017 docs-only work order, current governance authority chain, `docs/system/step-current.md`, Active Tasks review in this register, and `docs/quotesystem/WNYHS_Quote_Workspace_Operator_Playbook_REV01.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added the QUOTESYSTEM-017 docs-only workflow alignment record and catalog/manifest/register updates. Reviewed `/operator/property-model`, `/operator/property-model/quote-preview`, `/operator/property-model/installer-packet`, route registration, and local Property Model shape only as needed for documentation. HubSpot, Stripe/payment, scheduling, quote runtime behavior, routes, CSS, app/source code, public pages, storage, uploads, exports, PDFs, email behavior, package files, environment variables, and Cloudflare config were not changed.
+
+
 ### CREATE-ESTIMATE-MANUAL-REV02
 - **Task ID:** CREATE-ESTIMATE-MANUAL-REV02
 - **Task Name:** Create Estimate Instruction Manual REV02
