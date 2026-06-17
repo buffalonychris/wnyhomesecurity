@@ -75,6 +75,9 @@ CREATE-ESTIMATE-MANUAL-REV02 addendum: `docs/quotesystem/WNYHS_Create_Estimate_I
 
 CATALOG002 addendum: `docs/catalog/CATALOG002_Master_Parts_Data_Model_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It defines the exact master part-number data model, migration-safe mapping scaffold, GPT import path, installed asset snapshot rule, deferred full-backfill rationale, and protected boundaries. It does not authorize full hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, or hardware purchasing.
 
+
+CATALOG003 addendum: `docs/catalog/CATALOG003_GPT_Master_Parts_Import_File_Alignment_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It defines the GPT master parts JSONL/CSV import alignment contract, alias mapping, normalization rules, evidence expectations, gap/source report expectations, and review checklist. It does not authorize hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, or installer automation.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 

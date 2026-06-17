@@ -64,6 +64,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** Yes, only for the bounded CATALOG002 schema/data-model scaffold.
 - **Notes:** Does not authorize full hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, or hardware purchasing.
 
+
+### `/docs/catalog/CATALOG003_GPT_Master_Parts_Import_File_Alignment_REV01.md`
+- **File path:** `docs/catalog/CATALOG003_GPT_Master_Parts_Import_File_Alignment_REV01.md`
+- **Purpose / likely role:** Catalog governance document defining the GPT-to-repo import contract for exact master part records, including JSONL/CSV expectations, field normalization, alias mapping, evidence handling, gap/source reports, and protected boundaries before hardware backfill.
+- **Authority level:** **Catalog governance / GPT import-alignment standard**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for bounded import-file alignment and future bounded import review tasks.
+- **Notes:** Does not authorize hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, installer automation, or product approval.
+
 ### `/docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
 - **File path:** `docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
 - **Purpose / likely role:** Implementation note for the first file-backed runtime catalog, including source inventory, promoted data, temporary data, deferred migrations, and next candidates.
