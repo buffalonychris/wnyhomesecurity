@@ -72,6 +72,9 @@ WNYHS-PUBLIC-FOOTER-NAV-001 addendum: `docs/governance/IMPLEMENTATION_WNYHS_PUBL
 
 CREATE-ESTIMATE-MANUAL-REV02 addendum: `docs/quotesystem/WNYHS_Create_Estimate_Instruction_Manual_REV02.md` was added after this manifest scan and should be included in the next full manifest regeneration. This internal docs-only manual preserves the REV01 customer-discovery-to-deposit-ready-quote purpose while embedding the mandatory REV08 floorplan evidence gate, two-pass reconstruction, controlled SVG/vector baseline workflow, exact lock statuses, customer quote Section 1 evidence output, quality checklist, and Appendix A GPT Proposed prompt controls. It does not authorize quote runtime code, HubSpot, Stripe/payment, scheduling, support/contact forms, catalog schema, package pricing/data, auth, durable storage, dependencies, package-lock, image processing, uploads, LiDAR capture, computer vision, or AI redraw generation.
 
+
+CATALOG002 addendum: `docs/catalog/CATALOG002_Master_Parts_Data_Model_REV01.md` was added after this manifest scan and should be included in the next full manifest regeneration. It defines the exact master part-number data model, migration-safe mapping scaffold, GPT import path, installed asset snapshot rule, deferred full-backfill rationale, and protected boundaries. It does not authorize full hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, or hardware purchasing.
+
 ## 1. Purpose
 This manifest inventories every repository markdown file outside `.git` and `node_modules` so future Codex tasks can find source-of-truth documents, runtime contracts, HubSpot docs, request/estimate docs, QR attribution docs, catalog docs, and stale or duplicate documentation before making changes.
 
