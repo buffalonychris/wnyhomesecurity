@@ -55,6 +55,15 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** Yes, for CATALOG001 and future bounded catalog migration tasks.
 - **Notes:** Establishes parts-to-solutions-to-packages-to-categories ownership and initial `src/data/catalog/` runtime source.
 
+
+### `/docs/catalog/CATALOG002_Master_Parts_Data_Model_REV01.md`
+- **File path:** `docs/catalog/CATALOG002_Master_Parts_Data_Model_REV01.md`
+- **Purpose / likely role:** Catalog governance document defining the exact master part-number data model, migration-safe solution/package/hardware-label mapping scaffold, GPT import path, asset snapshot rule, deferred backfill rationale, and protected boundaries for CATALOG002.
+- **Authority level:** **Catalog governance / master parts data-model standard**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for the bounded CATALOG002 schema/data-model scaffold.
+- **Notes:** Does not authorize full hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, or hardware purchasing.
+
 ### `/docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
 - **File path:** `docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
 - **Purpose / likely role:** Implementation note for the first file-backed runtime catalog, including source inventory, promoted data, temporary data, deferred migrations, and next candidates.

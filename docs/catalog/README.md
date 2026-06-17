@@ -24,3 +24,8 @@ The catalog is not customer or job storage. Quote and Property Model records own
 ## Initial Runtime Source
 
 The initial runtime source lives in `src/data/catalog/` and is intentionally file-backed. A future controlled task may move editable catalog data to durable backend storage, an admin interface, or a GitHub-backed editing workflow.
+
+
+## CATALOG002 Master Parts Layer
+
+CATALOG002 adds the exact part-number layer to the file-backed catalog. Exact `part_id` records are the future atomic source for solutions, packages, quotes, installs, inventory planning, warranty support, and customer asset snapshots. The initial mapping scaffold is intentionally migration-safe and may remain empty until a bounded backfill/import task promotes validated records.

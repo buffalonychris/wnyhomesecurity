@@ -2905,20 +2905,21 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ### CATALOG002
 - **Task ID:** CATALOG002
-- **Task Name:** Expand/Validate Missing Feature Categories
-- **Status:** ACTIVE
+- **Task Name:** Master Parts Data Model and CATALOG001 Expansion
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Review the REV02 capability catalog for missing categories, duplicate context rows, naming consistency, and category boundaries before REV03.
-- **Allowed Scope:** Documentation-only catalog review and proposed category/feature changes.
-- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, pricing, customer-facing package commitments, and final hardware commitments.
-- **Target Files:** `docs/catalogs/wnyhs_capability_catalog_rev02.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if a new revision is created.
-- **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Update catalog revision notes and register status if activated.
-- **Validation Required:** Catalog diff review and targeted prohibited-claims scans.
-- **Exit Criteria:** Category and feature coverage gaps are documented or corrected in a future catalog revision.
-- **Dependencies:** CATALOG001.
-- **Operator Decision Required:** Confirm whether expansion proceeds as REV03 or a separate addendum.
+- **Purpose:** Create the bounded master part-number data model and migration-safe mapping scaffold under `src/data/catalog/` so exact part IDs can become the future atomic source for solutions, packages, quotes, installs, inventory planning, warranty/support, and customer asset records while preserving CATALOG001 runtime behavior.
+- **Allowed Scope:** Visible site version bump; update CATALOG002 task record; add CATALOG002 catalog governance document; extend `catalogTypes.ts` with master part-number and mapping types; add `masterPartsData.ts` with empty canonical source, lookups, and mapping scaffolds; export new catalog source; update catalog README, document catalog, and markdown manifest.
+- **Forbidden Scope:** No full hardware backfill, no new hardware evaluation, no pricing changes, no Stripe/payment changes, no HubSpot changes, no scheduling changes, no quote runtime behavior changes, no public customer-facing solution/package copy changes, no inventory automation, no package-lock changes, no dependencies, no route/page behavior changes, and no hardware purchasing authorization.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/data/catalog/catalogTypes.ts`, `src/data/catalog/masterPartsData.ts`, `src/data/catalog/index.ts`, `docs/catalog/CATALOG002_Master_Parts_Data_Model_REV01.md`, `docs/catalog/README.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** File-backed catalog schema/data exports only. Existing public/runtime catalog behavior is preserved.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; practical lint/typecheck if available; `git diff --check`; protected-system changed-file scan; confirm no Stripe/payment, HubSpot, scheduling, quote runtime, public copy, inventory automation, dependency, or package-lock changes.
+- **Exit Criteria:** Version is bumped to `v1.0.152`; master part model exists; `masterPartsData.ts` exists and is exported; solution/package/hardware-label part mapping scaffold exists; full backfill remains deferred; CATALOG001 runtime behavior remains preserved; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded CATALOG002 work order, current governance authority chain, CATALOG001 docs, hardware registry governance, and package/BOM governance.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Updated the prior CATALOG002 placeholder/backlog record to the executed master-parts work order requested by the operator. Added exact part-number catalog data-model scaffolding with empty runtime data arrays only. HubSpot, Stripe/payment, scheduling, quote runtime behavior, customer-facing copy, pricing, inventory automation, dependencies, and package-lock were not changed.
 
 ### CATALOG003
 - **Task ID:** CATALOG003
