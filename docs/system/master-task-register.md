@@ -113,6 +113,26 @@ Initiative records group bounded tasks but are not executable task records. Code
 ## Active Tasks (Execution Driver)
 
 
+### T-AUTOMATION001-001
+- **Task ID:** T-AUTOMATION001-001
+- **Task Name:** Create WNYHS Home Assistant Automation Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only WNYHS automation standard for Home Assistant-based customer solution/package deployments, including the Home Assistant-native default posture, C.A.F.E. evaluation path, and Node-RED/Homey exception rules.
+- **Allowed Scope:** Create `docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`; create `docs/automation-system/` if missing; update `docs/DOCUMENT_CATALOG.md`; add this completed bounded task record to the Master Task Register.
+- **Forbidden Scope:** No application source code, routes, customer-facing pages, CSS/design tokens, Stripe/payment logic, HubSpot logic, scheduling logic, estimate/quote runtime logic, environment variables, secrets, package dependencies, build/deployment configuration, existing SafePath implementation files, runtime automations, C.A.F.E. installation, HACS installation, Node-RED installation, Homey installation, customer dashboards, package/catalog behavior, final SafePath hardware standards, or unrelated task-status changes.
+- **Target Files:** `docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** None. Documentation-only automation architecture standard.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `git diff --check`; conflict-marker scan across docs; `npm run build` because root `AGENTS.md` requires build before completion.
+- **Exit Criteria:** Automation standard exists at the target path; standard defines purpose, scope, non-scope, WNYHS Core relationship, automation hierarchy, Home Assistant-native first rule, C.A.F.E. evaluation/adoption rule, Node-RED exception rule, Homey exception rule, dashboard/override requirements, customer-install dependency standard, supportability requirements, SafePath reference use case, future solution families, evaluation checklist, forbidden patterns, and promotion/implementation rule; C.A.F.E. is documented as an evaluation/preferred visual authoring candidate rather than an installed or required dependency; Node-RED and Homey are exception-path tools; protected runtime systems remain untouched.
+- **Dependencies:** Prompt-created bounded docs-only work order, current governance authority chain, `docs/system/step-current.md`, `docs/system/master-task-register.md`, and `docs/DOCUMENT_CATALOG.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added the REV01 Home Assistant automation standard as docs-only governance and registered it in the document catalog and this task register. HubSpot, Stripe/payment, scheduling, quote/estimate runtime, routes, customer-facing pages, CSS/design tokens, dependencies, build/deployment config, environment variables, secrets, runtime automations, dashboards, package/catalog behavior, and SafePath implementation files were not changed.
+
+
+
 ### QUOTESYSTEM-017
 - **Task ID:** QUOTESYSTEM-017
 - **Task Name:** Quote Workspace Workflow Alignment

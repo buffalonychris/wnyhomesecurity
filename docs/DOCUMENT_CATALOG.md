@@ -26,6 +26,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Supports future Codex planning and is a required review aid before high-risk workflow changes; it does not replace higher-authority governance, runtime contracts, HubSpot REV03, or task-specific instructions.
 
 
+
+## `docs/automation-system/`
+
+### `/docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`
+- **File path:** `docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`
+- **Purpose / likely role:** WNYHS Home Assistant automation standard defining the default Home Assistant-native automation posture, C.A.F.E. evaluation/adoption path for complex native flows, Node-RED and Homey exception rules, customer override expectations, supportability requirements, SafePath reference use case, future applicable solution families, evaluation checklist, forbidden patterns, and promotion/implementation rule.
+- **Authority level:** **Automation-system governance / Home Assistant automation architecture standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by T-AUTOMATION001-001 as a docs-only governance artifact. It does not authorize app/source changes, runtime automations, C.A.F.E. installation, HACS installation, Node-RED installation, Homey installation, customer dashboards, final SafePath BOM/pricing/hardware standards, HubSpot changes, Stripe/payment changes, scheduling changes, quote/estimate runtime changes, package/catalog behavior, dependency changes, environment changes, secrets, or deployment changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
