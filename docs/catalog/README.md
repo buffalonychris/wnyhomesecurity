@@ -29,3 +29,8 @@ The initial runtime source lives in `src/data/catalog/` and is intentionally fil
 ## CATALOG002 Master Parts Layer
 
 CATALOG002 adds the exact part-number layer to the file-backed catalog. Exact `part_id` records are the future atomic source for solutions, packages, quotes, installs, inventory planning, warranty support, and customer asset snapshots. The initial mapping scaffold is intentionally migration-safe and may remain empty until a bounded backfill/import task promotes validated records.
+
+
+## CATALOG003 GPT Master Parts Import Alignment
+
+CATALOG003 defines the import alignment contract for GPT-generated exact-part files before any hardware backfill occurs. `CatalogMasterPart` remains the target model, JSONL is the preferred canonical GPT import format, CSV is a convenience/review format, and `src/data/catalog/masterPartsData.ts` remains empty until a future bounded backfill/import task.

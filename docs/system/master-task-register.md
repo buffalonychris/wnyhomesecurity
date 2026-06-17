@@ -2921,23 +2921,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Updated the prior CATALOG002 placeholder/backlog record to the executed master-parts work order requested by the operator. Added exact part-number catalog data-model scaffolding with empty runtime data arrays only. HubSpot, Stripe/payment, scheduling, quote runtime behavior, customer-facing copy, pricing, inventory automation, dependencies, and package-lock were not changed.
 
+
 ### CATALOG003
 - **Task ID:** CATALOG003
-- **Task Name:** Research HA Integration / Local-Only Viability / Complexity / Market Interest
+- **Task Name:** GPT Master Parts Import File Alignment
 - **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Replace REV02 placeholder values with evidence-backed Home Assistant integration paths, local-only viability notes, complexity estimates, and market-interest assumptions.
-- **Allowed Scope:** Documentation-only research, evidence notes, and catalog revision work.
-- **Forbidden Scope:** Runtime code, UI components, routes, Stripe, HubSpot, scheduling, pricing, customer-facing package commitments, final hardware commitments, and vendor-cloud claims without evidence.
-- **Target Files:** `docs/catalogs/wnyhs_capability_catalog_rev02.md` or successor revision, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md` if a new revision is created.
-- **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Document evidence sources and unresolved validation items in the successor catalog revision.
-- **Validation Required:** Catalog diff review, prohibited-claims scan, and competitor-name scan.
-- **Exit Criteria:** Candidate rows have documented research status and remaining unknowns are explicit.
-- **Dependencies:** CATALOG001 and CATALOG002 if category expansion is needed first.
-- **Operator Decision Required:** Approve research source standards and priority order.
-- **Completion Notes:** Created `docs/catalogs/wnyhs_capability_catalog_rev03.md` as a governed internal validation artifact using REV02 as the authoritative 187-row feature universe and `docs/catalogs/deep-research-report.md` as the validation source. REV03 keeps researcher-suggested additions separate, avoids pricing/BOM approval, and preserves protected runtime boundaries.
+- **Purpose:** Create the repo-side import alignment standard so GPT-generated JSONL/CSV files can match the canonical `CatalogMasterPart` model before any hardware backfill occurs.
+- **Allowed Scope:** Bump visible site version; update this bounded task entry; add `docs/catalog/CATALOG003_GPT_Master_Parts_Import_File_Alignment_REV01.md`; add `src/data/catalog/masterPartsImportSchema.ts`; export the schema from `src/data/catalog/index.ts`; update catalog README, document catalog, and markdown manifest only as required.
+- **Forbidden Scope:** No hardware backfill; no real master part records; no new hardware evaluation; no public solution/package copy changes; no quote runtime behavior changes; no pricing changes; no Stripe/payment changes; no HubSpot or lead-signal changes; no scheduling changes; no inventory automation; no installer automation; no package dependency changes.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/data/catalog/masterPartsImportSchema.ts`, `src/data/catalog/index.ts`, `docs/catalog/CATALOG003_GPT_Master_Parts_Import_File_Alignment_REV01.md`, `docs/catalog/README.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Catalog import-alignment artifact and documentation only; no runtime catalog records added.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; `npm run lint` if practical; `npm run typecheck:test` if available; `npm run typecheck:api` if available; `git diff --check`; `git diff --cached --check`; protected-scope scans for Stripe/payment, HubSpot/lead-signal, scheduling, quote runtime, inventory automation, customer-facing copy/pricing, and package files.
+- **Exit Criteria:** Version is bumped to `v1.0.153`; CATALOG003 governance/import alignment document exists; import schema/template exports exact `CatalogMasterPart` field-name alignment helpers; JSONL preferred and CSV convenience expectations are documented; GPT alias-to-repo field mapping is documented; normalization rules are documented; `catalogMasterParts` remains empty; CATALOG001 runtime behavior and CATALOG002 model are preserved; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded CATALOG003 work order, current governance authority chain, `docs/system/step-current.md`, CATALOG001, CATALOG002, and current `CatalogMasterPart` type inspection.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Reused the prior completed CATALOG003 slot for the operator-requested CATALOG003 import-alignment work order. Added CATALOG003 import-alignment governance and a repo-side schema/template artifact aligned to the current `CatalogMasterPart` fields. Exported the schema without removing existing exports. Documented JSONL/CSV/gap/source file expectations, CSV array delimiter, enum/boolean/nullable/unknown normalization, and legacy GPT category aliases. No hardware backfill or real master part records were added; protected runtime systems remain untouched.
 
 ### BENCH001
 - **Task ID:** BENCH001
