@@ -20,6 +20,10 @@ import {
   propertyEvidenceOrientationOptions,
   propertyEvidenceStatusOptions,
   propertyEvidenceTypeOptions,
+  propertyOpeningPlannedDeviceTypeOptions,
+  propertyOpeningProtectionScopeOptions,
+  propertyOpeningTypeOptions,
+  propertyOpeningVerificationStatusOptions,
   propertyQuoteStageOptions,
   propertyTypeOptions,
   redrawStatusOptions,
@@ -30,6 +34,7 @@ import {
   type PropertyModelBomLineItem,
   type PropertyModelCustomerConcern,
   type PropertyModelEvidenceItem,
+  type PropertyModelOpening,
   type PropertyModelPricing,
   type PropertyModelRecord,
   type PropertyModelSolution,
@@ -173,6 +178,27 @@ const createEvidenceItem = (): PropertyModelEvidenceItem => ({
   status: "source_provided",
 });
 
+const createOpening = (): PropertyModelOpening => ({
+  openingId: createPropertyModelChildId("OPEN"),
+  label: "",
+  openingType: "Exterior Door",
+  locationAreaRef: "",
+  floorLevel: "First floor",
+  wallOrientation: "",
+  openingGroup: "",
+  quantity: 1,
+  protectionScope: "Verify Onsite",
+  plannedDeviceType: "Verify Onsite",
+  catalogHardwareItemId: "",
+  selectedSolutionRef: "",
+  customerConcernServed: "",
+  evidenceRef: "",
+  installNotes: "",
+  dashboardNotes: "",
+  verificationStatus: "GPT Proposed",
+  specialConsiderations: "",
+});
+
 const PropertyModelAdmin = () => {
   const [records, setRecords] = useState<PropertyModelRecord[]>(() =>
     loadPropertyModelRecords(),
@@ -298,6 +324,29 @@ const PropertyModelAdmin = () => {
     }),
     [draft.evidenceItems],
   );
+
+  const openingSummary = useMemo(() => {
+    const isDoor = (opening: PropertyModelOpening) =>
+      opening.openingType.toLowerCase().includes("door");
+    const isWindow = (opening: PropertyModelOpening) =>
+      opening.openingType.toLowerCase().includes("window");
+    const isGlass = (opening: PropertyModelOpening) =>
+      opening.openingType === "Glass Panel" || opening.openingType === "Fixed Window";
+    const deviceText = (opening: PropertyModelOpening) => opening.plannedDeviceType.toLowerCase();
+    return {
+      total: draft.openings.reduce((sum, opening) => sum + opening.quantity, 0),
+      included: draft.openings.filter((opening) => opening.protectionScope === "Included").reduce((sum, opening) => sum + opening.quantity, 0),
+      excluded: draft.openings.filter((opening) => opening.protectionScope === "Excluded").reduce((sum, opening) => sum + opening.quantity, 0),
+      verifyOnsite: draft.openings.filter((opening) => opening.protectionScope === "Verify Onsite").reduce((sum, opening) => sum + opening.quantity, 0),
+      doors: draft.openings.filter(isDoor).reduce((sum, opening) => sum + opening.quantity, 0),
+      windows: draft.openings.filter(isWindow).reduce((sum, opening) => sum + opening.quantity, 0),
+      glassFixed: draft.openings.filter(isGlass).reduce((sum, opening) => sum + opening.quantity, 0),
+      smartLockAccess: draft.openings.filter((opening) => deviceText(opening).includes("lock") || deviceText(opening).includes("entry")).reduce((sum, opening) => sum + opening.quantity, 0),
+      contactSensor: draft.openings.filter((opening) => deviceText(opening).includes("contact")).reduce((sum, opening) => sum + opening.quantity, 0),
+      glassBreak: draft.openings.filter((opening) => deviceText(opening).includes("glass-break")).reduce((sum, opening) => sum + opening.quantity, 0),
+      noDevice: draft.openings.filter((opening) => opening.plannedDeviceType === "No Device Planned").reduce((sum, opening) => sum + opening.quantity, 0),
+    };
+  }, [draft.openings]);
 
   const updateDraft = (updater: React.SetStateAction<PropertyModelRecord>) => {
     setDraft((current) => {
@@ -533,6 +582,25 @@ const PropertyModelAdmin = () => {
       evidenceItems: record.evidenceItems.map((item) =>
         item.id === itemId ? { ...item, ...updates } : item,
       ),
+    }));
+  };
+
+  const updateOpening = (
+    openingId: string,
+    updates: Partial<PropertyModelOpening>,
+  ) => {
+    updateDraft((record) => ({
+      ...record,
+      openings: record.openings.map((opening) =>
+        opening.openingId === openingId ? { ...opening, ...updates } : opening,
+      ),
+    }));
+  };
+
+  const removeOpening = (openingId: string) => {
+    updateDraft((record) => ({
+      ...record,
+      openings: record.openings.filter((opening) => opening.openingId !== openingId),
     }));
   };
 
@@ -1495,6 +1563,49 @@ const PropertyModelAdmin = () => {
                         }
                       />
                     </Field>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </SpaceFrame>
+
+          <SpaceFrame className="quote-workspace-panel">
+            <div className="quote-workspace-panel-head">
+              <div>
+                <p className="quote-workspace-eyebrow">Structured Opening Inventory</p>
+                <h2>Structured Opening Inventory</h2>
+                <p>Track doors, windows, glass panels, garage doors, and other openings as first-class planning records. These records connect floorplan/photo evidence to hardware placement, customer-facing coverage, and installer planning.</p>
+              </div>
+              <button className="btn btn-secondary" type="button" onClick={() => updateDraft((record) => ({ ...record, openings: [...record.openings, createOpening()] }))}>Add Opening</button>
+            </div>
+            <div className="quote-workspace-summary-grid" aria-label="Opening inventory summary">
+              {[
+                ["Total openings", openingSummary.total], ["Included openings", openingSummary.included], ["Excluded openings", openingSummary.excluded], ["Verify onsite openings", openingSummary.verifyOnsite], ["Doors", openingSummary.doors], ["Windows", openingSummary.windows], ["Glass/fixed openings", openingSummary.glassFixed], ["Smart lock/access planned", openingSummary.smartLockAccess], ["Contact sensor planned", openingSummary.contactSensor], ["Glass-break coverage planned", openingSummary.glassBreak], ["No device planned", openingSummary.noDevice],
+              ].map(([label, value]) => (<div key={label}><span>{label}</span><strong>{value}</strong></div>))}
+            </div>
+            <div className="quote-workspace-stack">
+              {draft.openings.length === 0 ? <div className="quote-workspace-empty-state">No structured openings yet. Add doors, windows, fixed glass, garage doors, or other openings after evidence review starts.</div> : null}
+              {draft.openings.map((opening, index) => (
+                <article className="quote-workspace-item" key={opening.openingId}>
+                  <div className="quote-workspace-item-head"><h3>Opening {index + 1}</h3><button className="btn btn-secondary btn-small" type="button" onClick={() => removeOpening(opening.openingId)}>Remove</button></div>
+                  <div className="quote-workspace-grid">
+                    <Field label="Label"><input value={opening.label} onChange={(event) => updateOpening(opening.openingId, { label: event.target.value })} /></Field>
+                    <Field label="Opening Type"><select value={opening.openingType} onChange={(event) => updateOpening(opening.openingId, { openingType: event.target.value as PropertyModelOpening["openingType"] })}>{propertyOpeningTypeOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></Field>
+                    <Field label="Room / Area Reference"><input list="quote-workspace-area-options" value={opening.locationAreaRef} onChange={(event) => updateOpening(opening.openingId, { locationAreaRef: event.target.value })} /></Field>
+                    <Field label="Floor Level"><input value={opening.floorLevel} onChange={(event) => updateOpening(opening.openingId, { floorLevel: event.target.value })} /></Field>
+                    <Field label="Wall Orientation"><input value={opening.wallOrientation} onChange={(event) => updateOpening(opening.openingId, { wallOrientation: event.target.value })} /></Field>
+                    <Field label="Group"><input value={opening.openingGroup} onChange={(event) => updateOpening(opening.openingId, { openingGroup: event.target.value })} /></Field>
+                    <Field label="Quantity"><input min={1} type="number" value={opening.quantity} onChange={(event) => updateOpening(opening.openingId, { quantity: Math.max(1, Number(event.target.value) || 1) })} /></Field>
+                    <Field label="Protection Scope"><select value={opening.protectionScope} onChange={(event) => updateOpening(opening.openingId, { protectionScope: event.target.value as PropertyModelOpening["protectionScope"] })}>{propertyOpeningProtectionScopeOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></Field>
+                    <Field label="Planned Device Type"><select value={opening.plannedDeviceType} onChange={(event) => updateOpening(opening.openingId, { plannedDeviceType: event.target.value as PropertyModelOpening["plannedDeviceType"] })}>{propertyOpeningPlannedDeviceTypeOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></Field>
+                    <Field label="Catalog Hardware Item"><select value={opening.catalogHardwareItemId} onChange={(event) => updateOpening(opening.openingId, { catalogHardwareItemId: event.target.value })}><option value="">Not selected</option>{catalogHardwareItems.map((hardware) => <option key={hardware.id} value={hardware.id}>{hardware.label}</option>)}</select></Field>
+                    <Field label="Selected Solution"><input list="quote-workspace-solution-options" value={opening.selectedSolutionRef} onChange={(event) => updateOpening(opening.openingId, { selectedSolutionRef: event.target.value })} /></Field>
+                    <Field label="Customer Concern"><input list="quote-workspace-concern-options" value={opening.customerConcernServed} onChange={(event) => updateOpening(opening.openingId, { customerConcernServed: event.target.value })} /></Field>
+                    <Field label="Evidence Reference"><select value={opening.evidenceRef} onChange={(event) => updateOpening(opening.openingId, { evidenceRef: event.target.value })}><option value="">Select evidence</option>{draft.evidenceItems.map((evidence) => <option key={evidence.id} value={evidence.label || evidence.sourceReference || evidence.id}>{evidence.label || evidence.sourceReference || evidence.id}</option>)}</select></Field>
+                    <Field label="Verification Status"><select value={opening.verificationStatus} onChange={(event) => updateOpening(opening.openingId, { verificationStatus: event.target.value as PropertyModelOpening["verificationStatus"] })}>{propertyOpeningVerificationStatusOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select></Field>
+                    <Field label="Install Notes"><textarea rows={3} value={opening.installNotes} onChange={(event) => updateOpening(opening.openingId, { installNotes: event.target.value })} /></Field>
+                    <Field label="Dashboard Notes"><textarea rows={3} value={opening.dashboardNotes} onChange={(event) => updateOpening(opening.openingId, { dashboardNotes: event.target.value })} /></Field>
+                    <Field label="Special Considerations"><textarea rows={3} value={opening.specialConsiderations} onChange={(event) => updateOpening(opening.openingId, { specialConsiderations: event.target.value })} /></Field>
                   </div>
                 </article>
               ))}

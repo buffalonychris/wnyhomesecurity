@@ -1211,3 +1211,5 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Implementation note / quote-system runtime documentation**
 - **Status:** **Implemented / partial local-storage prototype**
 - **Notes:** Confirms internal SOW section order, evidence/redraw/photo-analysis field exposure, opening inventory gap handling, hardware/BOM reconciliation counts, installer task planning, display-only checklist behavior, payment/scheduling gate reminders, route/localStorage preservation, and protected-system boundaries for version `v1.0.155`.
+
+- `docs/quotesystem/IMPLEMENTATION019_Structured_Opening_Inventory_REV01.md` — Records QUOTE-SYSTEM-STANDARD-004 structured opening inventory implementation for the local Property Model, customer estimate summary, installer packet detail, Funeral Home Test Case, and protected-system exclusions.
