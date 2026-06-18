@@ -4601,3 +4601,60 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 }
+
+.quote-print-cover {
+  gap: 0.9rem;
+}
+
+.quote-print-check-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--wnyhs-ink-secondary);
+}
+
+.quote-print-investment dd {
+  font-weight: 800;
+  color: var(--wnyhs-ink);
+}
+
+.quote-print-placeholder-card {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 1px dashed var(--wnyhs-gold);
+  border-radius: var(--wnyhs-radius-card);
+  background: color-mix(in srgb, var(--wnyhs-gold-soft) 22%, var(--wnyhs-surface) 78%);
+}
+
+.quote-print-placeholder-card h3 {
+  margin: 0;
+}
+
+.quote-print-signature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.quote-print-signature-line {
+  min-height: 4rem;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--wnyhs-border-strong);
+  color: var(--wnyhs-ink-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+@media print {
+  .quote-print-placeholder-card {
+    background: var(--wnyhs-surface);
+  }
+
+  .quote-print-signature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

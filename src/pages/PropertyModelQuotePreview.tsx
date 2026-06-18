@@ -3,7 +3,6 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import {
   loadPropertyModelRecords,
-  propertyEvidenceOrientationOptions,
   propertyEvidenceStatusOptions,
   propertyEvidenceTypeOptions,
   redrawStatusOptions,
@@ -15,15 +14,21 @@ import {
 } from "../lib/propertyModel";
 
 const paymentTerms = [
-  "A 50% deposit is required before scheduling.",
-  "Job-specific inventory purchase begins only after deposit verification.",
-  "A scheduling date is set only after deposit verification.",
-  "Final payment is due upon technician arrival on install day unless Chris or Lou explicitly approve an exception.",
-  "Accepted payment methods: credit card, cashiers check, Venmo, Cash App, Zelle, and Klarna financing.",
+  "A 50% deposit is required to reserve installation scheduling unless the local record shows an approved exception.",
+  "Installation scheduling is reserved after deposit receipt and operator confirmation.",
+  "Remaining balance is due upon installation completion or install day unless an approved exception is recorded.",
+  "Sales tax is shown as additional/placeholder unless an explicit treatment is entered in the local record.",
+  "Accepted payment methods may include credit card, cashier's check, Venmo, Cash App, Zelle, and Klarna financing when available.",
 ];
 
-const legalPlaceholder =
-  "Legal and compliance wording requires operator and/or attorney approval before production customer use.";
+const defaultExclusions = [
+  "Existing camera system excluded unless explicitly included in the accepted scope.",
+  "Second-floor or other-floor coverage excluded unless explicitly included in the accepted scope.",
+  "Offsite staffed notification services excluded unless explicitly sold using approved provider language.",
+  "Law-enforcement, emergency-response, or third-party urgent-response services excluded unless explicitly sold using approved provider language.",
+  "HVAC / thermostat work excluded unless explicitly included in the accepted scope.",
+  "Third-party subscriptions excluded unless explicitly included in the accepted scope.",
+];
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
@@ -101,21 +106,35 @@ const statusForEvidenceType = (
     .join("; ");
 };
 
-const describeEvidence = (record: PropertyModelRecord, evidenceRef: string) => {
-  if (!evidenceRef.trim()) return "Not entered";
-  const evidence = record.evidenceItems.find((item) =>
-    [item.id, item.label, item.sourceReference].includes(evidenceRef),
-  );
-  if (!evidence) return evidenceRef;
-  return (
-    evidence.label ||
-    evidence.sourceReference ||
-    optionLabel(propertyEvidenceTypeOptions, evidence.evidenceType)
-  );
+const includesText = (value: string, terms: string[]) => {
+  const normalized = value.toLowerCase();
+  return terms.some((term) => normalized.includes(term));
 };
 
+const solutionText = (solution: PropertyModelSolution) =>
+  [solution.title, solution.categoryId, solution.packageRef, solution.notes]
+    .join(" ")
+    .toLowerCase();
+
+const bomText = (item: PropertyModelBomLineItem) =>
+  [
+    item.itemName,
+    item.hardwareType,
+    item.locationRef,
+    item.propertyAreaRef,
+    item.selectedSolutionRef,
+    item.dashboardPrepNote,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+const hasSolution = (record: PropertyModelRecord, terms: string[]) =>
+  record.proposedSolutions.some((solution) =>
+    includesText(solutionText(solution), terms),
+  ) || record.bomLineItems.some((item) => includesText(bomText(item), terms));
+
 const describeSolution = (record: PropertyModelRecord, solutionRef: string) => {
-  if (!solutionRef.trim()) return "Not entered";
+  if (!solutionRef.trim()) return "Selected WNYHS solution";
   const solution = record.proposedSolutions.find((item) =>
     [item.id, item.title].includes(solutionRef),
   );
@@ -132,103 +151,102 @@ const describeArea = (
     );
     return area?.label || item.propertyAreaRef;
   }
-  return item.locationRef || "Not entered";
+  return item.locationRef || "Property area to be confirmed";
 };
 
-const EvidenceList = ({ record }: { record: PropertyModelRecord }) => {
-  if (record.evidenceItems.length === 0)
-    return <p>No source evidence references entered yet.</p>;
+const customerOutcomes = (record: PropertyModelRecord) => {
+  const concernOutcomes = record.customerConcerns
+    .slice(0, 4)
+    .map((concern) => concern.text || concern.category)
+    .filter(Boolean);
+  const solutionOutcomes = record.proposedSolutions
+    .slice(0, 4)
+    .map((solution) => solution.title)
+    .filter(Boolean);
+
+  if (concernOutcomes.length > 0) return concernOutcomes;
+  if (solutionOutcomes.length > 0) return solutionOutcomes;
+  return [
+    "A clearer property protection layout.",
+    "A WNYHS-reviewed smart-home security scope.",
+    "Customer dashboard access for everyday awareness.",
+  ];
+};
+
+const executiveSummary = (record: PropertyModelRecord, address: string) => {
+  const property = record.propertyContext.propertyType || "property";
+  const target = address || record.customer.name || "the listed property";
+  const solutionCount = record.proposedSolutions.length;
+  const areaCount = record.areas.length;
+  return `This customer estimate summarizes the proposed WNY Home Security scope for ${target}. The proposal is based on the local Property Model record for this ${property}${areaCount > 0 ? ` with ${areaCount} identified protected area(s)` : ""}${solutionCount > 0 ? ` and ${solutionCount} selected solution component(s)` : ""}. Final installation details remain subject to operator review and accepted project terms.`;
+};
+
+const DeliverableList = ({ record }: { record: PropertyModelRecord }) => {
+  const deliverables = [
+    ["WNYHS Core / Home Assistant platform", ["home assistant", "wnyhs core", "dashboard"]],
+    ["Smart lock / access control", ["lock", "access"]],
+    ["Doorbell / video entry", ["doorbell", "video entry"]],
+    ["Door protection", ["door", "contact"]],
+    ["Window protection", ["window"]],
+    ["Motion awareness", ["motion"]],
+    ["Glass-break awareness", ["glass", "break"]],
+    ["Local alert devices", ["siren", "alert", "chime"]],
+    ["Mobile dashboard access", ["mobile", "phone", "app"]],
+    ["Desktop dashboard access", ["desktop", "pc", "dashboard"]],
+    ["Remote notifications", ["notification", "remote"]],
+  ] as const;
+
+  const selected = deliverables.filter(([, terms]) => hasSolution(record, [...terms]));
+  const fallback = record.proposedSolutions.map((solution) => solution.title).filter(Boolean);
 
   return (
-    <ul className="quote-print-evidence-list">
-      {record.evidenceItems.map((item) => (
-        <li key={item.id}>
-          <strong>
-            {item.label ||
-              optionLabel(propertyEvidenceTypeOptions, item.evidenceType)}
-          </strong>
-          <span>
-            {optionLabel(propertyEvidenceTypeOptions, item.evidenceType)}
-          </span>
-          <span>
-            {optionLabel(
-              propertyEvidenceOrientationOptions,
-              item.orientationSide,
-            )}
-          </span>
-          <span>{optionLabel(propertyEvidenceStatusOptions, item.status)}</span>
-          {item.sourceReference ? (
-            <span>Ref: {item.sourceReference}</span>
-          ) : null}
-          {item.notes ? <span>{item.notes}</span> : null}
-        </li>
-      ))}
+    <ul className="quote-print-check-list">
+      {(selected.length > 0 ? selected.map(([label]) => label) : fallback).map(
+        (label) => (
+          <li key={label}>{label}</li>
+        ),
+      )}
+      {selected.length === 0 && fallback.length === 0 ? (
+        <li>Customer-facing deliverables will appear after solutions are selected.</li>
+      ) : null}
     </ul>
   );
 };
 
-const SolutionBlock = ({
-  record,
-  solution,
-}: {
-  record: PropertyModelRecord;
-  solution: PropertyModelSolution;
-}) => {
-  const concerns = solution.concernServed
-    ? record.customerConcerns.filter((concern) =>
-        [concern.id, concern.text, concern.category].includes(
-          solution.concernServed,
-        ),
-      )
-    : [];
-  const servedLabel =
-    concerns.length > 0
-      ? concerns.map((concern) => concern.text || concern.category).join("; ")
-      : solution.concernServed;
+const HardwareDeliverableRows = ({ record }: { record: PropertyModelRecord }) => {
+  const rows = record.bomLineItems.filter((item) => item.itemName || item.hardwareType);
+  if (rows.length === 0) return <p>No customer-facing hardware summary has been entered yet.</p>;
 
   return (
-    <article className="quote-print-card">
-      <h3>{solution.title || "WNYHS accommodation item"}</h3>
-      <dl>
-        <div>
-          <dt>Concerns served</dt>
-          <dd>{servedLabel || "To be matched during operator review."}</dd>
-        </div>
-        {solution.packageRef ? (
-          <div>
-            <dt>Package / source</dt>
-            <dd>{solution.packageRef}</dd>
-          </div>
-        ) : null}
-        {solution.notes ? (
-          <div>
-            <dt>Accommodation plan</dt>
-            <dd>{solution.notes}</dd>
-          </div>
-        ) : null}
-      </dl>
-    </article>
+    <div className="quote-print-table-wrap">
+      <table className="quote-print-table">
+        <thead>
+          <tr>
+            <th>Deliverable</th>
+            <th>Qty</th>
+            <th>Area</th>
+            <th>Customer purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((item) => (
+            <tr key={item.id}>
+              <td>{item.itemName || item.hardwareType}</td>
+              <td>{item.quantity}</td>
+              <td>{describeArea(record, item)}</td>
+              <td>{describeSolution(record, item.selectedSolutionRef)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
-const HardwareRow = ({
-  record,
-  item,
-}: {
-  record: PropertyModelRecord;
-  item: PropertyModelBomLineItem;
-}) => (
-  <tr>
-    <td>{item.itemName || item.hardwareType || "Hardware item pending"}</td>
-    <td>{item.quantity}</td>
-    <td>{describeArea(record, item)}</td>
-    <td>{item.customerConcernServed || "Not entered"}</td>
-    <td>{describeSolution(record, item.selectedSolutionRef)}</td>
-    <td>{describeEvidence(record, item.evidenceRef)}</td>
-    <td>
-      {item.dashboardPrepNote || "No customer-appropriate notes entered."}
-    </td>
-  </tr>
+const SignatureLine = ({ label }: { label: string }) => (
+  <div className="quote-print-signature-line">
+    <span>{label}</span>
+  </div>
 );
 
 const PropertyModelQuotePreview = () => {
@@ -242,7 +260,7 @@ const PropertyModelQuotePreview = () => {
     return (
       <main className="quote-print-shell">
         <section className="quote-print-page quote-print-empty">
-          <p className="quote-print-eyebrow">WNYHS Quote Preview</p>
+          <p className="quote-print-eyebrow">WNYHS Customer Estimate</p>
           <h1>No local Property Model found</h1>
           <p>
             Create or save a Property Model draft before opening the
@@ -263,17 +281,26 @@ const PropertyModelQuotePreview = () => {
   const pricing = calculatePricing(record.pricing);
   const customerLabel =
     record.customer.name || record.propertyAddress.line1 || record.recordId;
+  const issueDate = new Date(record.updatedAt || record.createdAt).toLocaleDateString();
+  const taxTreatment =
+    pricing.quoteTaxOrFees > 0
+      ? `Additional tax / fees placeholder: ${formatCurrency(pricing.quoteTaxOrFees)}`
+      : "Sales tax additional/placeholder unless explicit treatment is entered.";
+  const desktopNotes = record.bomLineItems
+    .map((item) => item.dashboardPrepNote)
+    .filter(Boolean)
+    .slice(0, 5);
 
   return (
     <main className="quote-print-shell">
       <section className="quote-print-page">
         <header className="quote-print-header">
           <div>
-            <p className="quote-print-eyebrow">WNY Home Security</p>
-            <h1>Quote Preview / Print View</h1>
+            <p className="quote-print-eyebrow">WNY Home Security Customer Estimate</p>
+            <h1>Customer Estimate Preview</h1>
             <p>
-              Prepared for {customerLabel}. This browser-print view uses the
-              local Property Model draft only.
+              Proposal and acceptance preview generated from the local Property
+              Model draft only.
             </p>
           </div>
           <div className="quote-print-actions quote-print-no-print">
@@ -290,188 +317,112 @@ const PropertyModelQuotePreview = () => {
           </div>
         </header>
 
-        <section className="quote-print-section">
+        <section className="quote-print-section quote-print-cover">
           <p className="quote-print-section-label">Section 1</p>
-          <h2>Floorplan / Property Plan</h2>
+          <h2>Cover / Executive Summary</h2>
           <dl className="quote-print-details">
-            <div>
-              <dt>Property</dt>
-              <dd>{address || customerLabel}</dd>
-            </div>
-            <div>
-              <dt>Property type</dt>
-              <dd>{record.propertyContext.propertyType || "Not entered"}</dd>
-            </div>
-            <div>
-              <dt>Occupancy context</dt>
-              <dd>
-                {record.propertyContext.occupancyContext || "Not entered"}
-              </dd>
-            </div>
-            <div>
-              <dt>Floorplan / evidence summary</dt>
-              <dd>
-                {record.evidenceItems.length} local evidence reference(s)
-                entered.
-              </dd>
-            </div>
-            <div>
-              <dt>Hand-drawn floorplan</dt>
-              <dd>{statusForEvidenceType(record, "hand_drawn_floorplan")}</dd>
-            </div>
-            <div>
-              <dt>Professional redraw</dt>
-              <dd>{statusForEvidenceType(record, "professional_redraw")}</dd>
-            </div>
-            <div>
-              <dt>Exterior photo evidence</dt>
-              <dd>{statusForEvidenceType(record, "exterior_photo")}</dd>
-            </div>
-            <div>
-              <dt>Interior photo evidence</dt>
-              <dd>{statusForEvidenceType(record, "interior_photo")}</dd>
-            </div>
-            <div>
-              <dt>Orientation / compass</dt>
-              <dd>
-                {statusForEvidenceType(record, "compass_orientation_note")}
-              </dd>
-            </div>
-            <div>
-              <dt>Redraw handoff status</dt>
-              <dd>{redrawStatusLabel(record)}</dd>
-            </div>
-            <div>
-              <dt>Rough estimate allowed</dt>
-              <dd>{record.redrawPhotoHandoff.roughEstimateAllowed ? "Yes - with risk notes" : "No"}</dd>
-            </div>
-            <div>
-              <dt>Photo analysis summary</dt>
-              <dd>{record.redrawPhotoHandoff.photoAnalysisSummary || "Not entered"}</dd>
-            </div>
-            <div>
-              <dt>Ambiguity / onsite verification</dt>
-              <dd>{record.redrawPhotoHandoff.ambiguityNotes || record.redrawPhotoHandoff.onsiteVerificationNotes || "Not entered"}</dd>
-            </div>
+            <div><dt>Prepared For</dt><dd>{customerLabel}</dd></div>
+            <div><dt>Prepared By</dt><dd>WNY Home Security / JDL Communications</dd></div>
+            <div><dt>Business / Property Address</dt><dd>{address || "Not entered"}</dd></div>
+            <div><dt>Proposal / Record Reference</dt><dd>{record.requestId || record.recordId}</dd></div>
+            <div><dt>Revision / Source Status</dt><dd>{record.quoteStage.replaceAll("_", " ")} / Updated {issueDate}</dd></div>
           </dl>
-          {record.propertyContext.notes ? (
-            <p>{record.propertyContext.notes}</p>
-          ) : null}
-          <p className="quote-print-note">
-            Final placement depends on the approved property plan where a
-            floorplan or redraw is part of the job scope.
-          </p>
-          <EvidenceList record={record} />
+          <p>{executiveSummary(record, address)}</p>
+          <h3>Customer Outcomes</h3>
+          <ul className="quote-print-check-list">
+            {customerOutcomes(record).map((outcome) => <li key={outcome}>{outcome}</li>)}
+          </ul>
         </section>
 
         <section className="quote-print-section">
           <p className="quote-print-section-label">Section 2</p>
-          <h2>Customer Concerns + WNYHS Accommodation Plan</h2>
-          {record.customerConcerns.length > 0 ? (
-            <ul className="quote-print-concern-list">
-              {record.customerConcerns.map((concern) => (
-                <li key={concern.id}>
-                  <strong>{concern.text || concern.category}</strong>
-                  {concern.notes ? <span>{concern.notes}</span> : null}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No customer concerns have been entered yet.</p>
-          )}
-          <div className="quote-print-card-grid">
-            {record.proposedSolutions.length > 0 ? (
-              record.proposedSolutions.map((solution) => (
-                <SolutionBlock
-                  key={solution.id}
-                  record={record}
-                  solution={solution}
-                />
-              ))
-            ) : (
-              <p>No WNYHS accommodation plan items have been selected yet.</p>
-            )}
+          <h2>Project Investment &amp; Acceptance</h2>
+          <dl className="quote-print-details quote-print-investment">
+            <div><dt>Project Investment / Quote Total</dt><dd>{formatCurrency(pricing.quoteTotal)}</dd></div>
+            <div><dt>Deposit Required</dt><dd>{pricing.depositRequired ? `${pricing.depositPercent}% (${formatCurrency(pricing.depositAmount)})` : "Approved exception / not required"}</dd></div>
+            <div><dt>Remaining Balance</dt><dd>{formatCurrency(pricing.balanceDueOnArrival)}</dd></div>
+            <div><dt>Sales Tax Treatment</dt><dd>{taxTreatment}</dd></div>
+            <div><dt>Install Scheduling Condition</dt><dd>Scheduling is reserved after deposit receipt and operator confirmation.</dd></div>
+            <div><dt>Payment Terms</dt><dd>Remaining balance due upon installation completion / install day.</dd></div>
+          </dl>
+          <ul className="quote-print-terms">
+            {paymentTerms.map((term) => <li key={term}>{term}</li>)}
+          </ul>
+          <div className="quote-print-signature-grid">
+            <SignatureLine label="Deposit Amount Paid" />
+            <SignatureLine label="Date Deposit Received" />
+            <SignatureLine label="Remaining Balance Due" />
+            <SignatureLine label="WNY Home Security Representative Signature / Date" />
+            <SignatureLine label="Customer Signature / Date" />
+            <SignatureLine label="Print Name" />
+            <SignatureLine label="Business / Property Address" />
           </div>
         </section>
 
         <section className="quote-print-section">
           <p className="quote-print-section-label">Section 3</p>
-          <h2>Formal Quote / Hardware List / Payment Terms</h2>
-          {record.bomLineItems.length > 0 ? (
-            <div className="quote-print-table-wrap">
-              <table className="quote-print-table">
-                <thead>
-                  <tr>
-                    <th>Hardware / BOM item</th>
-                    <th>Qty</th>
-                    <th>Room / area</th>
-                    <th>Concern served</th>
-                    <th>Selected solution</th>
-                    <th>Evidence ref</th>
-                    <th>Customer-appropriate notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {record.bomLineItems.map((item) => (
-                    <HardwareRow key={item.id} record={record} item={item} />
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p>No draft hardware line items have been entered yet.</p>
-          )}
-          <h3>Manual pricing totals</h3>
-          <dl className="quote-print-details">
-            <div>
-              <dt>Subtotal</dt>
-              <dd>{formatCurrency(pricing.quoteSubtotal)}</dd>
-            </div>
-            {pricing.quoteDiscount > 0 ? (
-              <div>
-                <dt>Discount</dt>
-                <dd>{formatCurrency(pricing.quoteDiscount)}</dd>
-              </div>
-            ) : null}
-            {pricing.quoteTaxOrFees > 0 ? (
-              <div>
-                <dt>Tax / fees</dt>
-                <dd>{formatCurrency(pricing.quoteTaxOrFees)}</dd>
-              </div>
-            ) : null}
-            <div>
-              <dt>Total</dt>
-              <dd>{formatCurrency(pricing.quoteTotal)}</dd>
-            </div>
-            <div>
-              <dt>Deposit required</dt>
-              <dd>
-                {pricing.depositRequired
-                  ? `${pricing.depositPercent}%`
-                  : "Exception / not required"}
-              </dd>
-            </div>
-            <div>
-              <dt>Deposit amount</dt>
-              <dd>{formatCurrency(pricing.depositAmount)}</dd>
-            </div>
-            <div>
-              <dt>Balance due on arrival</dt>
-              <dd>{formatCurrency(pricing.balanceDueOnArrival)}</dd>
-            </div>
-          </dl>
-          {pricing.pricingNotes ? (
-            <p className="quote-print-note">
-              Pricing notes: {pricing.pricingNotes}
+          <h2>First Floor / Property Protection Layout</h2>
+          <div className="quote-print-placeholder-card">
+            <h3>First floor / protected area plan</h3>
+            <p>No image is embedded in this local prototype preview.</p>
+            <dl className="quote-print-details">
+              <div><dt>Property / floorplan reference</dt><dd>{statusForEvidenceType(record, "hand_drawn_floorplan")}</dd></div>
+              <div><dt>Evidence status</dt><dd>{record.evidenceItems.length} local evidence reference(s) entered.</dd></div>
+              <div><dt>Redraw status</dt><dd>{redrawStatusLabel(record)}</dd></div>
+              <div><dt>First floor / protected area notes</dt><dd>{record.redrawPhotoHandoff.photoAnalysisSummary || record.propertyContext.notes || "Protected-area notes to be confirmed during operator review."}</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section className="quote-print-section">
+          <p className="quote-print-section-label">Section 4</p>
+          <h2>System Deliverables</h2>
+          <DeliverableList record={record} />
+          <HardwareDeliverableRows record={record} />
+        </section>
+
+        <section className="quote-print-section">
+          <p className="quote-print-section-label">Section 5</p>
+          <h2>PC / Desktop Dashboard Experience</h2>
+          <div className="quote-print-placeholder-card">
+            <h3>Desktop dashboard concept</h3>
+            <p>
+              Customer-facing desktop view for property status, device areas,
+              activity review, and everyday system awareness.
             </p>
-          ) : null}
-          <h3>Payment terms</h3>
+            <ul className="quote-print-check-list">
+              {(desktopNotes.length > 0 ? desktopNotes : ["Property overview", "Door / window status", "Device activity", "Optional tablet view for approved dashboard layouts"]).map((note) => <li key={note}>{note}</li>)}
+            </ul>
+          </div>
+        </section>
+
+        <section className="quote-print-section">
+          <p className="quote-print-section-label">Section 6</p>
+          <h2>Mobile Dashboard Experience</h2>
+          <div className="quote-print-placeholder-card">
+            <h3>Mobile dashboard concept</h3>
+            <ul className="quote-print-check-list">
+              <li>Remote awareness for selected property devices.</li>
+              {hasSolution(record, ["lock", "access"]) ? <li>Door control where smart locks are included.</li> : null}
+              <li>Notifications for configured device events.</li>
+              <li>Activity history for supported connected devices.</li>
+              <li>Building / property status summary.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="quote-print-section">
+          <p className="quote-print-section-label">Section 7</p>
+          <h2>Assumptions, Exclusions &amp; Warranty</h2>
+          <h3>Assumptions / Exclusions</h3>
           <ul className="quote-print-terms">
-            {paymentTerms.map((term) => (
-              <li key={term}>{term}</li>
-            ))}
+            {defaultExclusions.map((item) => <li key={item}>{item}</li>)}
           </ul>
-          <p className="quote-print-note">{legalPlaceholder}</p>
+          <h3>Warranty</h3>
+          <ul className="quote-print-terms">
+            <li>One-year workmanship warranty unless a later local record supports an approved override.</li>
+            <li>Hardware warranty subject to manufacturer terms.</li>
+          </ul>
         </section>
       </section>
     </main>

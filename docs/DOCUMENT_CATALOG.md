@@ -1197,3 +1197,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Floorplan quote workflow governance for future bounded quote-floorplan tasks.
 - **Implementation authority:** No. Documents the controlled evidence, two-pass reconstruction, vector geometry, approval-gate, and locked-baseline workflow only.
 - **Notes:** References `FLOORPLAN REV08 — Frozen First Floor Geometry Baseline` as the current generic funeral-home test-case working artifact and confirms no runtime quote-system, HubSpot, Stripe/payment, scheduling, support/contact form, catalog schema, package pricing/data, auth, durable storage, dependency, image-processing, upload, LiDAR capture, computer-vision, or AI redraw implementation authority.
+
+### `/docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md`
+- **Purpose / likely role:** Records the QUOTE-SYSTEM-STANDARD-002 runtime/UI alignment of the local Quote Preview route to the Customer Estimate Packet standard.
+- **Authority level:** **Implementation note / quote-system runtime documentation**
+- **Status:** **Implemented / partial local-storage prototype**
+- **Notes:** Confirms customer estimate section order, proposal/acceptance fields, customer-facing deliverables, dashboard placeholder cards, assumptions/exclusions/warranty, and protected-system boundaries for version `v1.0.154`.

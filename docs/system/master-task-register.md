@@ -133,6 +133,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Completion Notes:** Completed as a docs/governance-only standardization task. Promoted the rule: Customer-facing estimate = proposal/acceptance packet; Internal SOW = technical planning and fulfillment packet.
 
 
+### QUOTE-SYSTEM-STANDARD-002
+- **Task ID:** QUOTE-SYSTEM-STANDARD-002
+- **Task Name:** Align Quote Preview With Customer Estimate Packet Standard
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Align the existing local operator Quote Preview route to the locked Customer Estimate Packet standard so the preview behaves as a customer estimate / proposal / acceptance packet instead of an internal SOW.
+- **Allowed Scope:** Update `/operator/property-model/quote-preview`; add small token-governed quote print CSS utilities; create `docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md`; update quote-system document map, document catalog, markdown manifest, task register, and visible site version.
+- **Forbidden Scope:** No PDF generation, durable storage, HubSpot changes, Stripe/payment changes, scheduling changes, Resend/email changes, lead-signal/requestId changes, support/contact forms, public website pages, catalog schema, package data/pricing, auth, dependencies, package-lock, backend/API changes, upload/image processing, or installer packet rewrite.
+- **Target Files:** `src/pages/PropertyModelQuotePreview.tsx`; `src/index.css`; `src/lib/siteVersion.ts`; `docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md`; `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Local operator Quote Preview UI only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; `npx eslint src/pages/PropertyModelQuotePreview.tsx src/lib/propertyModel.ts --max-warnings 0`; `git diff --check`; `git diff --cached --check`; protected-system changed-file scan; added-line forbidden-claim scan; touched-CSS token review; route smoke review if practical.
+- **Exit Criteria:** Quote Preview uses the seven-section Customer Estimate Packet order; proposal/acceptance fields are present; internal/SOW fields are withheld; layout and dashboard placeholders are professional and customer-facing; assumptions/exclusions/warranty are present; localStorage, recordId, browser print, workspace, installer packet, import/export, and Funeral Home Test Case compatibility are preserved; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded work order, current governance authority chain, active customer estimate standard, internal SOW separation standard, quote-system document map, protected runtime contract, canonical catalog source standard, and current local Property Model runtime.
+- **Operator Decision Required:** Review and merge PR if accepted. Future PDF, storage, delivery, CRM sync, payment runtime, scheduling runtime, upload, or image work requires separate bounded authorization.
+- **Completion Notes:** Completed as a local Quote Preview alignment and documentation update for version `v1.0.154`.
+
+
 ### T-AUTOMATION001-001
 - **Task ID:** T-AUTOMATION001-001
 - **Task Name:** Create WNYHS Home Assistant Automation Standard
