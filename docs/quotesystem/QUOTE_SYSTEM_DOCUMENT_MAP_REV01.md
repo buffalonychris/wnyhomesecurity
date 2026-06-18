@@ -75,3 +75,9 @@ None of those future areas are implemented or authorized by this map.
 - `docs/quotesystem/QUOTE_INTERNAL_SOW_PACKET_STANDARD_REV01.md` — ACTIVE governance for the internal SOW/install-planning packet. It preserves technical planning, BOM/order readiness, compatibility, dashboard, installer, and QA detail for fulfillment use.
 - Key rule promoted: Customer-facing estimate = proposal/acceptance packet. Internal SOW = technical planning and fulfillment packet.
 - Future Quote Workspace generation should draw both artifacts from shared quote-system source data while enforcing audience-specific field exposure.
+
+## QUOTE-SYSTEM-STANDARD-002 Addendum — Customer Estimate Preview Alignment
+
+- `docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md` — ACTIVE implementation record for aligning `/operator/property-model/quote-preview` to the Customer Estimate Packet standard.
+- The route now follows the seven-section customer estimate / proposal / acceptance order while preserving localStorage-only records, `recordId` query behavior, and browser print behavior.
+- The implementation withholds SOW-only and internal planning fields from the customer-facing preview.
