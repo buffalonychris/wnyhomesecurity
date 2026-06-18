@@ -1204,3 +1204,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Implementation note / quote-system runtime documentation**
 - **Status:** **Implemented / partial local-storage prototype**
 - **Notes:** Confirms customer estimate section order, proposal/acceptance fields, customer-facing deliverables, dashboard placeholder cards, assumptions/exclusions/warranty, and protected-system boundaries for version `v1.0.154`.
+
+### `/docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md`
+- **File path:** `docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md`
+- **Purpose / likely role:** Records the QUOTE-SYSTEM-STANDARD-003 runtime/UI alignment of the local Installer Packet route to the Internal SOW Packet standard.
+- **Authority level:** **Implementation note / quote-system runtime documentation**
+- **Status:** **Implemented / partial local-storage prototype**
+- **Notes:** Confirms internal SOW section order, evidence/redraw/photo-analysis field exposure, opening inventory gap handling, hardware/BOM reconciliation counts, installer task planning, display-only checklist behavior, payment/scheduling gate reminders, route/localStorage preservation, and protected-system boundaries for version `v1.0.155`.

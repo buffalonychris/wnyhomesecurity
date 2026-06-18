@@ -1657,3 +1657,9 @@ QUOTE-SYSTEM-STANDARD-001 addendum: `docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PA
 | Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md | IMPLEMENTATION017 Customer Estimate Preview Alignment REV01 | Records the local Quote Preview customer-estimate alignment to the locked seven-section proposal/acceptance packet standard. | Quote System / Runtime Docs | Active | Implementation note | Yes - local operator quote preview only | No | quote preview, customer estimate, proposal, acceptance, localStorage | Preserves localStorage, recordId, browser print, installer packet, workspace, and import/export behavior; does not add PDF, storage, CRM sync, email sending, protected payment runtime, new dependencies, or public page changes. |
+
+## QUOTE-SYSTEM-STANDARD-003 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md | IMPLEMENTATION018 Internal SOW Installer Packet Alignment REV01 | Records the local Installer Packet alignment to the locked eleven-section Internal SOW / install-planning packet standard. | Quote System / Runtime Docs | Active | Implementation note | Yes - local operator installer packet only | No | installer packet, internal SOW, BOM reconciliation, evidence, redraw, localStorage | Preserves localStorage, recordId, browser print, customer quote preview, workspace, and import/export behavior; does not add PDF, storage, CRM sync, email sending, protected payment runtime, new dependencies, public page changes, inventory automation, ordering automation, or persistent checklist state. |

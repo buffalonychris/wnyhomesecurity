@@ -81,3 +81,9 @@ None of those future areas are implemented or authorized by this map.
 - `docs/quotesystem/IMPLEMENTATION017_Customer_Estimate_Preview_Alignment_REV01.md` — ACTIVE implementation record for aligning `/operator/property-model/quote-preview` to the Customer Estimate Packet standard.
 - The route now follows the seven-section customer estimate / proposal / acceptance order while preserving localStorage-only records, `recordId` query behavior, and browser print behavior.
 - The implementation withholds SOW-only and internal planning fields from the customer-facing preview.
+
+## QUOTE-SYSTEM-STANDARD-003 Addendum — Internal SOW Installer Packet Alignment
+
+- `docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md` — ACTIVE implementation record for aligning `/operator/property-model/installer-packet` to the Internal SOW Packet standard.
+- The route now follows the eleven-section internal technical planning structure while preserving localStorage-only records, `recordId` query behavior, and browser print behavior.
+- The implementation exposes internal SOW fields for evidence, redraw/photo analysis, hardware/BOM reconciliation, installer notes, dashboard planning, unresolved decisions, and payment/scheduling gate reminders while keeping customer-facing estimate output separate.

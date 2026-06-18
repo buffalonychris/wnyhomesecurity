@@ -152,6 +152,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Completion Notes:** Completed as a local Quote Preview alignment and documentation update for version `v1.0.154`.
 
 
+### QUOTE-SYSTEM-STANDARD-003
+- **Task ID:** QUOTE-SYSTEM-STANDARD-003
+- **Task Name:** Align Installer Packet / Internal SOW Output With Internal SOW Standard
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Align the existing local installer packet route to the locked Internal SOW Packet standard so the route behaves as a technical planning and fulfillment packet rather than a customer estimate packet.
+- **Allowed Scope:** Update `/operator/property-model/installer-packet`; create `docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md`; update quote-system document map, document catalog, markdown manifest, task register, and visible site version.
+- **Forbidden Scope:** No PDF generation, durable storage, HubSpot changes, Stripe/payment changes, scheduling changes, Resend/email changes, lead-signal/requestId changes, support/contact forms, public website pages, catalog schema, package data/pricing, auth, dependencies, package-lock, backend/API changes, upload/image processing, quote preview rewrite, customer delivery/send workflow, inventory/ordering automation, or persistent checklist state.
+- **Target Files:** `src/pages/PropertyModelInstallerPacket.tsx`; `src/lib/siteVersion.ts`; `docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md`; `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Local operator Installer Packet UI only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; `npx eslint src/pages/PropertyModelInstallerPacket.tsx src/lib/propertyModel.ts --max-warnings 0`; `git diff --check`; `git diff --cached --check`; protected-system changed-file scan; added-line forbidden-claim scan; touched-CSS token review if CSS changes; route smoke review if practical.
+- **Exit Criteria:** Installer Packet uses the eleven-section Internal SOW structure; internal evidence/redraw/photo-analysis fields are exposed; opening inventory gap is explicit; hardware/BOM reconciliation counts and internal line-item detail are present; access-control/doorbell/dashboard planning notes are present; installer task plan and display-only testing/handoff checklist are preserved; payment/scheduling gate notes are present; localStorage, recordId, browser print, workspace, quote preview, import/export, and Funeral Home Test Case compatibility are preserved; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded work order, current governance authority chain, active internal SOW packet standard, customer estimate separation standard, quote-system document map, protected runtime contract, canonical catalog source standard, and current local Property Model runtime.
+- **Operator Decision Required:** Review and merge PR if accepted. Future PDF, storage, delivery, CRM sync, payment runtime, scheduling runtime, upload, image work, inventory automation, ordering automation, or persistent checklist implementation requires separate bounded authorization.
+- **Completion Notes:** Completed as a local Installer Packet / Internal SOW alignment and documentation update for version `v1.0.155`.
+
+
 ### T-AUTOMATION001-001
 - **Task ID:** T-AUTOMATION001-001
 - **Task Name:** Create WNYHS Home Assistant Automation Standard
