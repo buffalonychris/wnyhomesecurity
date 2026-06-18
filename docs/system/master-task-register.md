@@ -2999,6 +2999,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Reused the prior completed CATALOG003 slot for the operator-requested CATALOG003 import-alignment work order. Added CATALOG003 import-alignment governance and a repo-side schema/template artifact aligned to the current `CatalogMasterPart` fields. Exported the schema without removing existing exports. Documented JSONL/CSV/gap/source file expectations, CSV array delimiter, enum/boolean/nullable/unknown normalization, and legacy GPT category aliases. No hardware backfill or real master part records were added; protected runtime systems remain untouched.
 
+### CATALOG004
+- **Task ID:** CATALOG004
+- **Task Name:** First Master Parts Backfill Import
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Import the reviewed five-doorbell CATALOG003 master parts handoff into the repo master parts data structure as internal catalog data.
+- **Allowed Scope:** Validate the corrected REV02 handoff files under `docs/catalog/imports/catalog004/`; preserve the handoff evidence files; import exactly the five reviewed records into `src/data/catalog/masterPartsData.ts`; add a narrow catalog data validation test; update catalog documentation indexes as required; bump visible site version.
+- **Forbidden Scope:** No public website changes; no quote logic changes; no package logic changes; no package promotion; no solution promotion; no Stripe/payment changes; no scheduling changes; no planner changes; no agreement changes; no deposit changes; no runtime/funnel changes; no HubSpot/API-layer changes; no hardware-status upgrades beyond the reviewed handoff.
+- **Target Files:** `src/lib/siteVersion.ts`, `src/data/catalog/masterPartsData.ts`, `src/data/catalog/__tests__/masterPartsData.test.ts`, `docs/catalog/README.md`, `docs/catalog/imports/catalog004/README.md`, `docs/catalog/imports/catalog004/wnyhs_master_parts_records.csv`, `docs/catalog/imports/catalog004/wnyhs_master_parts_records.jsonl`, `docs/catalog/imports/catalog004/wnyhs_master_parts_gap_report.md`, `docs/catalog/imports/catalog004/wnyhs_master_parts_sources.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Internal file-backed catalog master parts data only. No public package/solution/quote/runtime consumer was wired to these records.
+- **Documentation Updates Required:** Preserve the CATALOG004 handoff evidence folder and add CATALOG004 import bookkeeping to the catalog README, master task register, document catalog, and markdown manifest.
+- **Validation Required:** REV02 handoff validation for JSONL parse, CSV parse, record count, field count, field-name match, populated expected `part_id` values, reviewed status posture, no `category_home_*` fields, no legacy 188-field signals, JSONL array fields, and source URL tracking parameters; targeted catalog data test; `npm run build`; practical standard checks; `git diff --check`; protected-system changed-file scan.
+- **Exit Criteria:** Master parts data contains the five records; statuses match the reviewed handoff; source/gap handoff is preserved in `docs/catalog/imports/catalog004/`; build passes; no protected flows are touched.
+- **Dependencies:** Prompt-created bounded CATALOG004 work order, current governance authority chain, `docs/system/step-current.md`, CATALOG002 master parts model, CATALOG003 import alignment contract, and corrected REV02 CATALOG004 handoff files.
+- **Operator Decision Required:** Review and merge PR if accepted. Future package/solution promotion, quote integration, pricing, purchasing, field validation, or status upgrades require separate bounded authorization.
+- **Completion Notes:** Imported exactly `reolink-d340p`, `reolink-d340w`, `reolink-d340b`, `ubiquiti-uvc-g4-doorbell-pro-poe-kit`, and `aqara-db-c03e-g400-wired` into the internal master parts data after validating the corrected REV02 handoff. Preserved reviewed statuses: `conditional`, `conditional`, `field_test`, `custom_pass_through_only`, and `field_test`. No public pages, quote logic, package logic, solution/package promotion, HubSpot, Stripe/payment, scheduling, planner, agreement, deposit, runtime, or funnel flows were changed. Version bumped to `v1.0.157`.
+
 ### BENCH001
 - **Task ID:** BENCH001
 - **Task Name:** Bench Validation Matrix For High-Risk / Validation-Required Features
