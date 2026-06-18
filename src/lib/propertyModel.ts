@@ -55,6 +55,46 @@ export type PropertyModelEvidenceStatus =
   | "accepted_for_validation"
   | "rejected_superseded";
 
+export type PropertyModelOpeningType =
+  | "Exterior Door"
+  | "Interior Door"
+  | "Double Door"
+  | "Overhead Garage Door"
+  | "Sliding Door"
+  | "Window"
+  | "Double-Hung Window"
+  | "Fixed Window"
+  | "Glass Panel"
+  | "Other";
+
+export type PropertyModelOpeningProtectionScope =
+  | "Included"
+  | "Excluded"
+  | "Future Option"
+  | "Existing System"
+  | "Verify Onsite";
+
+export type PropertyModelOpeningPlannedDeviceType =
+  | "Contact Sensor"
+  | "Recessed Contact Sensor"
+  | "Smart Lock"
+  | "Doorbell / Video Entry"
+  | "Glass-Break Coverage"
+  | "Motion / Area Coverage"
+  | "Existing Camera / Existing System"
+  | "No Device Planned"
+  | "Verify Onsite";
+
+export type PropertyModelOpeningVerificationStatus =
+  | "GPT Proposed"
+  | "WNYHS Modified"
+  | "Verified From Photo"
+  | "Verified From Floorplan"
+  | "Verify Onsite"
+  | "Approved"
+  | "Locked"
+  | "Excluded";
+
 export type PropertyModelAreaPlaceholder = {
   id: string;
   label: string;
@@ -149,6 +189,27 @@ export type PropertyModelEvidenceItem = {
   status: PropertyModelEvidenceStatus;
 };
 
+export type PropertyModelOpening = {
+  openingId: string;
+  label: string;
+  openingType: PropertyModelOpeningType;
+  locationAreaRef: string;
+  floorLevel: string;
+  wallOrientation: string;
+  openingGroup: string;
+  quantity: number;
+  protectionScope: PropertyModelOpeningProtectionScope;
+  plannedDeviceType: PropertyModelOpeningPlannedDeviceType;
+  catalogHardwareItemId: string;
+  selectedSolutionRef: string;
+  customerConcernServed: string;
+  evidenceRef: string;
+  installNotes: string;
+  dashboardNotes: string;
+  verificationStatus: PropertyModelOpeningVerificationStatus;
+  specialConsiderations: string;
+};
+
 export type PropertyModelRecord = {
   recordId: string;
   requestId: string;
@@ -182,6 +243,7 @@ export type PropertyModelRecord = {
   solutionCategories: string[];
   proposedSolutions: PropertyModelSolution[];
   evidenceItems: PropertyModelEvidenceItem[];
+  openings: PropertyModelOpening[];
   redrawPhotoHandoff: PropertyModelRedrawPhotoHandoff;
   areas: PropertyModelAreaPlaceholder[];
   devices: PropertyModelDevicePlaceholder[];
@@ -370,6 +432,50 @@ export const propertyEvidenceOrientationOptions: Array<{
   { value: "unknown_na", label: "Unknown / Not Applicable" },
 ];
 
+export const propertyOpeningTypeOptions: Array<{ value: PropertyModelOpeningType; label: string }> = ([
+  "Exterior Door",
+  "Interior Door",
+  "Double Door",
+  "Overhead Garage Door",
+  "Sliding Door",
+  "Window",
+  "Double-Hung Window",
+  "Fixed Window",
+  "Glass Panel",
+  "Other",
+] as const).map((value) => ({ value, label: value }));
+
+export const propertyOpeningProtectionScopeOptions: Array<{ value: PropertyModelOpeningProtectionScope; label: string }> = ([
+  "Included",
+  "Excluded",
+  "Future Option",
+  "Existing System",
+  "Verify Onsite",
+] as const).map((value) => ({ value, label: value }));
+
+export const propertyOpeningPlannedDeviceTypeOptions: Array<{ value: PropertyModelOpeningPlannedDeviceType; label: string }> = ([
+  "Contact Sensor",
+  "Recessed Contact Sensor",
+  "Smart Lock",
+  "Doorbell / Video Entry",
+  "Glass-Break Coverage",
+  "Motion / Area Coverage",
+  "Existing Camera / Existing System",
+  "No Device Planned",
+  "Verify Onsite",
+] as const).map((value) => ({ value, label: value }));
+
+export const propertyOpeningVerificationStatusOptions: Array<{ value: PropertyModelOpeningVerificationStatus; label: string }> = ([
+  "GPT Proposed",
+  "WNYHS Modified",
+  "Verified From Photo",
+  "Verified From Floorplan",
+  "Verify Onsite",
+  "Approved",
+  "Locked",
+  "Excluded",
+] as const).map((value) => ({ value, label: value }));
+
 export const propertyEvidenceStatusOptions: Array<{
   value: PropertyModelEvidenceStatus;
   label: string;
@@ -426,6 +532,7 @@ export const createEmptyPropertyModelRecord = (): PropertyModelRecord => {
     solutionCategories: [],
     proposedSolutions: [],
     evidenceItems: [],
+    openings: [],
     redrawPhotoHandoff: {
       redrawStatus: "not_started",
       redrawReference: "",
@@ -618,6 +725,36 @@ export const normalizePropertyModelRecord = (
   const normalizedEvidenceItems = Array.isArray(record.evidenceItems)
     ? record.evidenceItems.map(normalizeEvidenceItem)
     : legacyEvidenceItems.map(normalizeEvidenceItem);
+  const normalizedOpenings = Array.isArray(record.openings)
+    ? record.openings.map((opening, index) => ({
+        openingId: opening.openingId ?? `opening-${index + 1}`,
+        label: opening.label ?? "",
+        openingType: propertyOpeningTypeOptions.some((option) => option.value === opening.openingType)
+          ? opening.openingType
+          : "Other",
+        locationAreaRef: opening.locationAreaRef ?? "",
+        floorLevel: opening.floorLevel ?? "",
+        wallOrientation: opening.wallOrientation ?? "",
+        openingGroup: opening.openingGroup ?? "",
+        quantity: Math.max(1, Number(opening.quantity) || 1),
+        protectionScope: propertyOpeningProtectionScopeOptions.some((option) => option.value === opening.protectionScope)
+          ? opening.protectionScope
+          : "Verify Onsite",
+        plannedDeviceType: propertyOpeningPlannedDeviceTypeOptions.some((option) => option.value === opening.plannedDeviceType)
+          ? opening.plannedDeviceType
+          : "Verify Onsite",
+        catalogHardwareItemId: opening.catalogHardwareItemId ?? "",
+        selectedSolutionRef: opening.selectedSolutionRef ?? "",
+        customerConcernServed: opening.customerConcernServed ?? "",
+        evidenceRef: opening.evidenceRef ?? "",
+        installNotes: opening.installNotes ?? "",
+        dashboardNotes: opening.dashboardNotes ?? "",
+        verificationStatus: propertyOpeningVerificationStatusOptions.some((option) => option.value === opening.verificationStatus)
+          ? opening.verificationStatus
+          : "Verify Onsite",
+        specialConsiderations: opening.specialConsiderations ?? "",
+      }))
+    : [];
 
   return {
     ...emptyRecord,
@@ -661,6 +798,7 @@ export const normalizePropertyModelRecord = (
         )
       : [],
     evidenceItems: normalizedEvidenceItems,
+    openings: normalizedOpenings,
     redrawPhotoHandoff: {
       ...emptyRecord.redrawPhotoHandoff,
       ...record.redrawPhotoHandoff,
@@ -1132,6 +1270,14 @@ export const createFuneralHomeTestCasePropertyModelRecord =
           "Placeholder area for first-floor window sensor grouping after redraw approval.",
         ],
       ].map(([id, label, notes]) => ({ id, label, notes })),
+      openings: [
+        { openingId: "OPEN-FUNERAL-EAST-DOUBLE-DOOR", label: "East double-door entry", openingType: "Double Door", locationAreaRef: funeralHomeAreaRefs.mainEntrance, floorLevel: "First floor", wallOrientation: "East", openingGroup: "Exterior entrances", quantity: 1, protectionScope: "Included", plannedDeviceType: "Smart Lock", catalogHardwareItemId: "", selectedSolutionRef: funeralHomeSolutionRefs.controlledAccess, customerConcernServed: funeralHomeConcernRefs.controlledAccess, evidenceRef: funeralHomeEvidenceRefs.east, installNotes: "Confirm door prep and lock compatibility onsite before final device selection.", dashboardNotes: "Show as controlled entry after final lock approval.", verificationStatus: "GPT Proposed", specialConsiderations: "First-floor only scope." },
+        { openingId: "OPEN-FUNERAL-SOUTH-ENTRY", label: "South entry", openingType: "Exterior Door", locationAreaRef: funeralHomeAreaRefs.mainEntrance, floorLevel: "First floor", wallOrientation: "South", openingGroup: "Exterior entrances", quantity: 1, protectionScope: "Included", plannedDeviceType: "Doorbell / Video Entry", catalogHardwareItemId: "video-doorbell", selectedSolutionRef: funeralHomeSolutionRefs.frontEntry, customerConcernServed: funeralHomeConcernRefs.doorbell, evidenceRef: funeralHomeEvidenceRefs.south, installNotes: "Doorbell scope is South Entry only; verify power, mounting, and network conditions.", dashboardNotes: "Create South Entry video/status tile after final device selection.", verificationStatus: "GPT Proposed", specialConsiderations: "No second-floor protection included." },
+        { openingId: "OPEN-FUNERAL-WEST-SERVICE", label: "West service entry", openingType: "Exterior Door", locationAreaRef: funeralHomeAreaRefs.rearEntrance, floorLevel: "First floor", wallOrientation: "West", openingGroup: "Exterior entrances", quantity: 1, protectionScope: "Included", plannedDeviceType: "Contact Sensor", catalogHardwareItemId: "door-window-sensor", selectedSolutionRef: funeralHomeSolutionRefs.entry, customerConcernServed: funeralHomeConcernRefs.openings, evidenceRef: funeralHomeEvidenceRefs.west, installNotes: "Verify service-door swing, trim, and sensor mounting location.", dashboardNotes: "Show service entry open/closed status.", verificationStatus: "GPT Proposed", specialConsiderations: "Existing camera system remains excluded." },
+        { openingId: "OPEN-FUNERAL-FIRST-FLOOR-WINDOWS", label: "Operable first-floor windows", openingType: "Double-Hung Window", locationAreaRef: funeralHomeAreaRefs.firstFloorWindows, floorLevel: "First floor", wallOrientation: "Multiple", openingGroup: "First-floor operable windows", quantity: 11, protectionScope: "Included", plannedDeviceType: "Contact Sensor", catalogHardwareItemId: "door-window-sensor", selectedSolutionRef: funeralHomeSolutionRefs.windowOpening, customerConcernServed: funeralHomeConcernRefs.openings, evidenceRef: funeralHomeEvidenceRefs.sketch, installNotes: "Split into individual sensor placements after faithful redraw review.", dashboardNotes: "Prepare grouped first-floor window status until individual naming is finalized.", verificationStatus: "GPT Proposed", specialConsiderations: "No HVAC or thermostat implication." },
+        { openingId: "OPEN-FUNERAL-CONFERENCE-FIXED-GLASS", label: "Conference-room fixed picture windows", openingType: "Fixed Window", locationAreaRef: funeralHomeAreaRefs.viewingRoom, floorLevel: "First floor", wallOrientation: "Verify onsite", openingGroup: "Fixed glass", quantity: 2, protectionScope: "Included", plannedDeviceType: "Glass-Break Coverage", catalogHardwareItemId: "", selectedSolutionRef: funeralHomeSolutionRefs.glassBreak, customerConcernServed: funeralHomeConcernRefs.glassBreak, evidenceRef: funeralHomeEvidenceRefs.interior, installNotes: "Cover fixed picture windows by glass-break strategy; no contact sensor assumed for fixed panes.", dashboardNotes: "Represent as glass-break coverage area, not an operable window contact.", verificationStatus: "GPT Proposed", specialConsiderations: "Fixed glass coverage only; final device location to be verified onsite." },
+        { openingId: "OPEN-FUNERAL-EXISTING-CAMERA-SYSTEM", label: "Existing camera system", openingType: "Other", locationAreaRef: funeralHomeAreaRefs.rearParkingLot, floorLevel: "First floor", wallOrientation: "Multiple", openingGroup: "Existing system", quantity: 1, protectionScope: "Existing System", plannedDeviceType: "Existing Camera / Existing System", catalogHardwareItemId: "", selectedSolutionRef: "", customerConcernServed: funeralHomeConcernRefs.doorbell, evidenceRef: funeralHomeEvidenceRefs.north, installNotes: "Existing camera system excluded unless operator adds a separate accepted scope.", dashboardNotes: "Do not add existing cameras to dashboard unless explicitly included.", verificationStatus: "Excluded", specialConsiderations: "Existing camera system excluded; no second-floor protection." },
+      ],
       bomLineItems: [
         [
           "BOM-FUNERAL-CONTROL-PLANE",

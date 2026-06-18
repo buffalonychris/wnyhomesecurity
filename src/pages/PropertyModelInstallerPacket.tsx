@@ -8,9 +8,14 @@ import {
   propertyEvidenceOrientationOptions,
   propertyEvidenceStatusOptions,
   propertyEvidenceTypeOptions,
+  propertyOpeningPlannedDeviceTypeOptions,
+  propertyOpeningProtectionScopeOptions,
+  propertyOpeningTypeOptions,
+  propertyOpeningVerificationStatusOptions,
   propertyQuoteStageOptions,
   redrawStatusOptions,
   type PropertyModelBomLineItem,
+  type PropertyModelOpening,
   type PropertyModelPricing,
   type PropertyModelRecord,
 } from "../lib/propertyModel";
@@ -110,15 +115,20 @@ const describeConcern = (record: PropertyModelRecord, concernRef: string) => {
   return concern?.text || concernRef;
 };
 
+const areaLabel = (record: PropertyModelRecord, areaRef: string) => {
+  if (!areaRef.trim()) return "Not entered";
+  const area = record.areas.find((candidate) =>
+    [candidate.id, candidate.label].includes(areaRef),
+  );
+  return area?.label || areaRef;
+};
+
 const describeArea = (
   record: PropertyModelRecord,
   item: PropertyModelBomLineItem,
 ) => {
   if (item.propertyAreaRef.trim()) {
-    const area = record.areas.find((candidate) =>
-      [candidate.id, candidate.label].includes(item.propertyAreaRef),
-    );
-    return area?.label || item.propertyAreaRef;
+    return areaLabel(record, item.propertyAreaRef);
   }
   return item.locationRef || "Not entered";
 };
@@ -217,6 +227,33 @@ const HardwareRow = ({
     <td>{item.installerNote || "Missing"}</td>
     <td>{item.dashboardPrepNote || "Missing"}</td>
     <td>{optionLabel(bomStatusOptions, item.bomStatus)}</td>
+  </tr>
+);
+
+
+const OpeningRow = ({
+  record,
+  opening,
+}: {
+  record: PropertyModelRecord;
+  opening: PropertyModelOpening;
+}) => (
+  <tr>
+    <td>{opening.label || opening.openingId}</td>
+    <td>{optionLabel(propertyOpeningTypeOptions, opening.openingType)}</td>
+    <td>{opening.quantity}</td>
+    <td>{areaLabel(record, opening.locationAreaRef)}</td>
+    <td>{opening.wallOrientation || "Not entered"}</td>
+    <td>{describeEvidence(record, opening.evidenceRef)}</td>
+    <td>{optionLabel(propertyOpeningPlannedDeviceTypeOptions, opening.plannedDeviceType)}</td>
+    <td>{opening.catalogHardwareItemId || "Not selected"}</td>
+    <td>{optionLabel(propertyOpeningProtectionScopeOptions, opening.protectionScope)}</td>
+    <td>{describeSolution(record, opening.selectedSolutionRef)}</td>
+    <td>{describeConcern(record, opening.customerConcernServed)}</td>
+    <td>{optionLabel(propertyOpeningVerificationStatusOptions, opening.verificationStatus)}</td>
+    <td>{opening.installNotes || "Not entered"}</td>
+    <td>{opening.dashboardNotes || "Not entered"}</td>
+    <td>{opening.specialConsiderations || "Not entered"}</td>
   </tr>
 );
 
@@ -364,7 +401,7 @@ const PropertyModelInstallerPacket = () => {
               { label: "Occupancy / context", value: textOrGap(record.propertyContext.occupancyContext) },
               { label: "Protected area notes", value: textOrGap(record.propertyContext.notes) },
               { label: "Customer / property notes", value: textOrGap(record.notes) },
-              { label: "Scope summary", value: record.proposedSolutions.length ? `${record.proposedSolutions.length} selected solution(s), ${record.bomLineItems.length} draft hardware/BOM line(s), ${record.areas.length} area(s).` : "No selected solutions entered yet." },
+              { label: "Scope summary", value: record.proposedSolutions.length ? `${record.proposedSolutions.length} selected solution(s), ${record.bomLineItems.length} draft hardware/BOM line(s), ${record.openings.length} opening record(s), ${record.areas.length} area(s).` : "No selected solutions entered yet." },
               { label: "Planning-only warning", value: "Local prototype packet only; do not treat as customer-facing approval, durable storage, fulfillment order, or schedule authority." },
             ]}
           />
@@ -436,7 +473,20 @@ const PropertyModelInstallerPacket = () => {
           ) : (
             <GapCard>No local property areas have been entered yet.</GapCard>
           )}
-          <GapCard>Structured opening inventory is not implemented yet.</GapCard>
+          {record.openings.length > 0 ? (
+            <div className="quote-print-table-wrap">
+              <table className="quote-print-table installer-packet-table">
+                <thead>
+                  <tr>
+                    <th>Opening</th><th>Type</th><th>Qty</th><th>Room / area</th><th>Wall</th><th>Evidence</th><th>Planned device</th><th>Catalog item</th><th>Scope</th><th>Solution</th><th>Concern</th><th>Verification</th><th>Install notes</th><th>Dashboard notes</th><th>Special considerations</th>
+                  </tr>
+                </thead>
+                <tbody>{record.openings.map((opening) => <OpeningRow key={opening.openingId} record={record} opening={opening} />)}</tbody>
+              </table>
+            </div>
+          ) : (
+            <GapCard>No structured opening records have been entered yet.</GapCard>
+          )}
         </section>
 
         <section className="quote-print-section">

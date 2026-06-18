@@ -87,3 +87,5 @@ None of those future areas are implemented or authorized by this map.
 - `docs/quotesystem/IMPLEMENTATION018_Internal_SOW_Installer_Packet_Alignment_REV01.md` — ACTIVE implementation record for aligning `/operator/property-model/installer-packet` to the Internal SOW Packet standard.
 - The route now follows the eleven-section internal technical planning structure while preserving localStorage-only records, `recordId` query behavior, and browser print behavior.
 - The implementation exposes internal SOW fields for evidence, redraw/photo analysis, hardware/BOM reconciliation, installer notes, dashboard planning, unresolved decisions, and payment/scheduling gate reminders while keeping customer-facing estimate output separate.
+
+| `IMPLEMENTATION019_Structured_Opening_Inventory_REV01.md` | Records the bounded local Property Model structured opening inventory runtime/data-model update and customer/internal packet surfacing. | ACTIVE |

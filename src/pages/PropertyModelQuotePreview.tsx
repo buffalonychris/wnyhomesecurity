@@ -8,6 +8,7 @@ import {
   redrawStatusOptions,
   type PropertyModelBomLineItem,
   type PropertyModelEvidenceItem,
+  type PropertyModelOpening,
   type PropertyModelPricing,
   type PropertyModelRecord,
   type PropertyModelSolution,
@@ -179,6 +180,38 @@ const executiveSummary = (record: PropertyModelRecord, address: string) => {
   const solutionCount = record.proposedSolutions.length;
   const areaCount = record.areas.length;
   return `This customer estimate summarizes the proposed WNY Home Security scope for ${target}. The proposal is based on the local Property Model record for this ${property}${areaCount > 0 ? ` with ${areaCount} identified protected area(s)` : ""}${solutionCount > 0 ? ` and ${solutionCount} selected solution component(s)` : ""}. Final installation details remain subject to operator review and accepted project terms.`;
+};
+
+const openingSummary = (openings: PropertyModelOpening[]) => {
+  const included = openings.filter((opening) => opening.protectionScope === "Included");
+  const sum = (items: PropertyModelOpening[]) =>
+    items.reduce((total, opening) => total + opening.quantity, 0);
+  const typeText = (opening: PropertyModelOpening) => opening.openingType.toLowerCase();
+  const deviceText = (opening: PropertyModelOpening) => opening.plannedDeviceType.toLowerCase();
+  return {
+    includedTotal: sum(included),
+    exteriorDoors: sum(included.filter((opening) => typeText(opening).includes("door"))),
+    operableWindows: sum(included.filter((opening) => typeText(opening).includes("window") && opening.openingType !== "Fixed Window")),
+    fixedGlass: sum(included.filter((opening) => opening.openingType === "Fixed Window" || opening.openingType === "Glass Panel" || deviceText(opening).includes("glass-break"))),
+    excludedNotes: openings.filter((opening) => ["Excluded", "Future Option", "Existing System"].includes(opening.protectionScope)).map((opening) => `${opening.label || opening.openingType}: ${opening.protectionScope}`),
+  };
+};
+
+const ProtectedOpeningsSummary = ({ record }: { record: PropertyModelRecord }) => {
+  const summary = openingSummary(record.openings);
+  if (record.openings.length === 0) return null;
+  return (
+    <div className="quote-print-placeholder-card">
+      <h3>Protected openings summary</h3>
+      <ul className="quote-print-check-list">
+        <li>Included doors/windows/openings: {summary.includedTotal}</li>
+        <li>Exterior doors included: {summary.exteriorDoors}</li>
+        <li>Operable windows included: {summary.operableWindows}</li>
+        <li>Fixed glass areas covered by glass-break strategy: {summary.fixedGlass}</li>
+        {summary.excludedNotes.slice(0, 5).map((note) => <li key={note}>{note}</li>)}
+      </ul>
+    </div>
+  );
 };
 
 const DeliverableList = ({ record }: { record: PropertyModelRecord }) => {
@@ -362,6 +395,7 @@ const PropertyModelQuotePreview = () => {
         <section className="quote-print-section">
           <p className="quote-print-section-label">Section 3</p>
           <h2>First Floor / Property Protection Layout</h2>
+          <ProtectedOpeningsSummary record={record} />
           <div className="quote-print-placeholder-card">
             <h3>First floor / protected area plan</h3>
             <p>No image is embedded in this local prototype preview.</p>
@@ -378,6 +412,7 @@ const PropertyModelQuotePreview = () => {
           <p className="quote-print-section-label">Section 4</p>
           <h2>System Deliverables</h2>
           <DeliverableList record={record} />
+          <ProtectedOpeningsSummary record={record} />
           <HardwareDeliverableRows record={record} />
         </section>
 

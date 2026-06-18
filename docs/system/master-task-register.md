@@ -4356,3 +4356,21 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** Prompt-created bounded work order, DESIGN001 REV01, SOLUTION001 REV01, CATALOG001 REV01, WNYHS-PUBLIC-MARKETING-VISUAL-PARITY-001, current governance authority chain, and `docs/system/step-current.md`.
 - **Operator Decision Required:** Review PR preview and approve visual parity.
 - **Completion Notes:** Migrated PackageDetail toward `.wnyhs-page`, `.wnyhs-shell`, `.wnyhs-section`, `.wnyhs-section-header`, `.wnyhs-card`, `.wnyhs-button`, `.wnyhs-price-chip`, and `.wnyhs-page-cta` primitives with token-backed package-detail utilities. Preserved package IDs, names, data sources, prices, tier logic, selected-tier behavior, vertical query behavior, CTA destinations, and protected runtime boundaries. No HubSpot, Stripe/payment, scheduling, lead-signal/requestId, support/contact form behavior, email/Resend, auth, durable storage, dependencies, package-lock, catalog schema, package pricing, quote-system, operator, quote preview, installer packet, import/export, or unrelated public-site changes were made. Version bumped to `v1.0.144`.
+
+### QUOTE-SYSTEM-STANDARD-004
+- **Task ID:** QUOTE-SYSTEM-STANDARD-004
+- **Task Name:** Structured Opening Inventory
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Make doors, windows, glass panels, garage doors, and other openings first-class local Property Model records for quote-system planning.
+- **Allowed Scope:** Local Property Model data model, operator workspace UI, customer estimate preview summaries, internal SOW / installer packet opening detail, Funeral Home Test Case opening records, implementation documentation, document map/catalog/manifest/register updates, and visible site version bump.
+- **Forbidden Scope:** No HubSpot, Stripe/payment, scheduling, Resend/email, lead-signal/requestId, public website pages, catalog schema, package data/pricing, auth, durable storage, dependencies, package-lock, quote PDF generation, image upload/processing, floorplan geometry editor, computer vision, inventory automation, ordering automation, persistent checklist state, or pricing engine changes.
+- **Target Files:** `src/lib/propertyModel.ts`; `src/pages/PropertyModelAdmin.tsx`; `src/pages/PropertyModelQuotePreview.tsx`; `src/pages/PropertyModelInstallerPacket.tsx`; `src/lib/siteVersion.ts`; `docs/quotesystem/IMPLEMENTATION019_Structured_Opening_Inventory_REV01.md`; `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Local operator Property Model workspace, local customer estimate preview, and local installer packet only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `npm run build`; targeted ESLint; diff checks; protected-system changed-file scan; forbidden-claim scan; CSS token scan if applicable.
+- **Exit Criteria:** Structured openings are normalized, editable, summarized for customer estimate use, detailed for internal SOW use, represented in the Funeral Home Test Case, and protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded work order and quote-system governance standards.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed for version `v1.0.156`.
