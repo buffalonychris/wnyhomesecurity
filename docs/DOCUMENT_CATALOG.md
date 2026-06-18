@@ -73,6 +73,23 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** Yes, only for bounded import-file alignment and future bounded import review tasks.
 - **Notes:** Does not authorize hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, installer automation, or product approval.
 
+
+### `/docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md`
+- **File path:** `docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md`
+- **Purpose / likely role:** Quote-system governance standard for the customer-facing estimate/proposal/acceptance packet, based on the approved Brian K. Lewis Funeral Home Customer Proposal REV04 model.
+- **Authority level:** **Quote-system governance / customer estimate packet standard**
+- **Customer-facing:** Yes, after operator review.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTE-SYSTEM-STANDARD-001. It does not authorize runtime UI, quote/PDF generation, HubSpot, Stripe/payment, scheduling, email, catalog schema, package pricing/data, auth, dependency, package-lock, or public website changes.
+
+### `/docs/quotesystem/QUOTE_INTERNAL_SOW_PACKET_STANDARD_REV01.md`
+- **File path:** `docs/quotesystem/QUOTE_INTERNAL_SOW_PACKET_STANDARD_REV01.md`
+- **Purpose / likely role:** Quote-system governance standard for the internal SOW/install-planning packet, preserving technical planning, BOM/order readiness, compatibility research, installer notes, dashboard planning, and QA detail.
+- **Authority level:** **Quote-system governance / internal fulfillment packet standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by QUOTE-SYSTEM-STANDARD-001. It does not authorize runtime UI, quote/PDF generation, HubSpot, Stripe/payment, scheduling, email, catalog schema, package pricing/data, auth, dependency, package-lock, or public website changes.
+
 ### `/docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
 - **File path:** `docs/catalog/IMPLEMENTATION001_Canonical_Runtime_Catalog_REV01.md`
 - **Purpose / likely role:** Implementation note for the first file-backed runtime catalog, including source inventory, promoted data, temporary data, deferred migrations, and next candidates.

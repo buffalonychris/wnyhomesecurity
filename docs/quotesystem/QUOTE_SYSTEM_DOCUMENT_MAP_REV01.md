@@ -21,6 +21,8 @@ This document maps the initial WNYHS quote-system governance document set create
 | --- | --- | --- |
 | `README.md` | Defines `/docs/quotesystem/` as the repository home for quote-system governance and summarizes the quote-system goal. | ACTIVE |
 | `QUOTE_SYSTEM_GOALS_REV01.md` | Defines quote-system purpose, inputs, outputs, quote package structure, Home Assistant compatibility, capability mapping, dashboard prep, and compliance review boundaries. | ACTIVE |
+| `QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md` | Defines the approved customer-facing proposal/acceptance packet standard based on the Brian K. Lewis Funeral Home Customer Proposal REV04 model, including page order, payment/acceptance fields, customer-safe visuals, and output-separation rules. | ACTIVE |
+| `QUOTE_INTERNAL_SOW_PACKET_STANDARD_REV01.md` | Defines the internal technical planning and fulfillment packet standard for SOW, BOM/order readiness, compatibility research, installer notes, dashboard planning, unresolved decisions, and output-separation rules. | ACTIVE |
 | `FLOORPLAN000_Field_Capture_Standard_REV01.md` | Defines required capture inputs, sketch primacy, exact orientation preservation, compass rules, exterior and interior photo expectations, field symbol language, door/threshold interpretation, and unambiguous sketch requirements. | ACTIVE |
 | `FLOORPLAN001_Professional_Redraw_Reconstruction_Standard_REV01.md` | Defines Trace Mode, professional replica rules, no redesign/inference/rotation/normalization rules, required preservation, overlay validation, redraw rejection, and base-redraw approval before overlays. | ACTIVE |
 | `FLOORPLAN002_Property_Photo_Validation_Standard_REV01.md` | Defines property photo validation during Trace Mode, compass-aware side mapping, conflict documentation, and photo limits before future expansion. | ACTIVE |
@@ -65,3 +67,11 @@ None of those future areas are implemented or authorized by this map.
 
 - `docs/quotesystem/FLOORPLAN004_Redraw_Photo_Analysis_Handoff_REV01.md` — ACTIVE governance for source hierarchy, professional redraw requirements, photo-analysis checklist, limited-evidence fallback, and required handoff outputs.
 - `docs/quotesystem/IMPLEMENTATION015_Redraw_Photo_Analysis_Handoff_REV01.md` — ACTIVE implementation note for local Property Model handoff fields and quote preview/installer packet compatibility.
+
+
+## QUOTE-SYSTEM-STANDARD-001 Addendum — Customer Estimate + Internal SOW Separation
+
+- `docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md` — ACTIVE governance for the customer-facing estimate/proposal/acceptance packet. It aligns Quote Preview and future customer PDFs to the approved proposal model and excludes internal technical planning fields.
+- `docs/quotesystem/QUOTE_INTERNAL_SOW_PACKET_STANDARD_REV01.md` — ACTIVE governance for the internal SOW/install-planning packet. It preserves technical planning, BOM/order readiness, compatibility, dashboard, installer, and QA detail for fulfillment use.
+- Key rule promoted: Customer-facing estimate = proposal/acceptance packet. Internal SOW = technical planning and fulfillment packet.
+- Future Quote Workspace generation should draw both artifacts from shared quote-system source data while enforcing audience-specific field exposure.
