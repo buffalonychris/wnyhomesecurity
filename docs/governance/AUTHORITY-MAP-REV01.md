@@ -64,6 +64,16 @@ Project KB controls ChatGPT behavior only.
 
 It does not authorize Codex to implement features.
 
+Chat-derived context becomes implementation authority only after it is promoted into repository docs, the Master Task Register, or an active bounded work order that is permitted by higher-authority governance.
+
+## ChatGPT GitHub Connector Role
+
+When user-authorized and governance-compliant, ChatGPT may use available GitHub connector tools to inspect repository files, read governance docs, create or update repository documentation, create branches, open pull requests, add pull-request comments, and inspect pull-request metadata.
+
+Connector access does not change the authority chain. Repository docs remain the durable implementation authority, operator review remains required, and Cloudflare deployment review remains manual.
+
+ChatGPT must not use connector access to bypass protected-system controls or expand Codex scope beyond a bounded work order.
+
 ## Repository Role
 
 Repository docs are the durable source of truth for:
