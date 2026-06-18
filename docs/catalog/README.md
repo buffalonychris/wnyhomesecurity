@@ -34,3 +34,8 @@ CATALOG002 adds the exact part-number layer to the file-backed catalog. Exact `p
 ## CATALOG003 GPT Master Parts Import Alignment
 
 CATALOG003 defines the import alignment contract for GPT-generated exact-part files before any hardware backfill occurs. `CatalogMasterPart` remains the target model, JSONL is the preferred canonical GPT import format, CSV is a convenience/review format, and `src/data/catalog/masterPartsData.ts` remains empty until a future bounded backfill/import task.
+
+
+## CATALOG004 First Master Parts Backfill Import
+
+CATALOG004 imported the reviewed first five video-doorbell master part records as internal master parts data. The source CSV, JSONL, gap report, and sources report are preserved under `docs/catalog/imports/catalog004/`. This import does not promote parts into public solution pages, package pages, quote logic, pricing, purchasing, or protected runtime flows.

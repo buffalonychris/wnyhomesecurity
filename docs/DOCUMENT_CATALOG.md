@@ -74,6 +74,31 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Does not authorize hardware backfill, new hardware evaluation, pricing changes, Stripe/payment changes, HubSpot changes, scheduling changes, quote runtime changes, public copy changes, inventory automation, installer automation, or product approval.
 
 
+### `/docs/catalog/imports/catalog004/README.md`
+- **File path:** `docs/catalog/imports/catalog004/README.md`
+- **Purpose / likely role:** CATALOG004 REV02 handoff evidence index for the first reviewed five-doorbell master parts backfill import.
+- **Authority level:** **Catalog import evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only as source evidence for the bounded CATALOG004 import.
+- **Notes:** Preserves the reviewed record set, status posture, validation snapshot, and import scope. Does not authorize public solution/package promotion, quote logic, pricing, Stripe/payment, HubSpot, scheduling, runtime, or funnel changes.
+
+### `/docs/catalog/imports/catalog004/wnyhs_master_parts_gap_report.md`
+- **File path:** `docs/catalog/imports/catalog004/wnyhs_master_parts_gap_report.md`
+- **Purpose / likely role:** CATALOG004 internal gap report for unresolved validation, support, and evidence questions in the first master parts backfill.
+- **Authority level:** **Catalog import evidence / internal gap report**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records import gaps only.
+- **Notes:** Supports future bounded validation/status-review tasks; it does not upgrade any part or authorize public/package/quote promotion.
+
+### `/docs/catalog/imports/catalog004/wnyhs_master_parts_sources.md`
+- **File path:** `docs/catalog/imports/catalog004/wnyhs_master_parts_sources.md`
+- **Purpose / likely role:** CATALOG004 source report preserving source references for the reviewed first five master part records.
+- **Authority level:** **Catalog import evidence / source report**
+- **Customer-facing:** No.
+- **Implementation authority:** No, preserves evidence sources only.
+- **Notes:** Supports auditability of the internal import and does not authorize new claims or public marketing copy.
+
+
 ### `/docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md`
 - **File path:** `docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md`
 - **Purpose / likely role:** Quote-system governance standard for the customer-facing estimate/proposal/acceptance packet, based on the approved Brian K. Lewis Funeral Home Customer Proposal REV04 model.

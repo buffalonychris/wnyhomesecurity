@@ -1,0 +1,14 @@
+{
+  "csv_rows": 5,
+  "csv_columns": 56,
+  "jsonl_records": 5,
+  "jsonl_fields_per_record": [
+    56
+  ],
+  "csv_jsonl_fields_match": true,
+  "part_id_populated": true,
+  "category_home_fields_present": false,
+  "legacy_188_field_signals_present": false,
+  "jsonl_arrays_are_arrays": true,
+  "tracking_params_present": false
+}
