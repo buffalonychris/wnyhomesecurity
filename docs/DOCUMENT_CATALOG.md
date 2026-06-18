@@ -99,6 +99,31 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Supports auditability of the internal import and does not authorize new claims or public marketing copy.
 
 
+### `/docs/catalog/imports/catalog005/README.md`
+- **File path:** `docs/catalog/imports/catalog005/README.md`
+- **Purpose / likely role:** CATALOG005 REV02 handoff evidence index for the reviewed 17-record Reolink core infrastructure and direct local Wi-Fi conditional master parts import.
+- **Authority level:** **Catalog import evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only as source evidence for the bounded CATALOG005 import.
+- **Notes:** Preserves the reviewed record set, validation snapshot, and import scope. Does not authorize public solution/package promotion, quote logic, pricing, Stripe/payment, HubSpot, scheduling, runtime, funnel changes, or hardware status upgrades.
+
+### `/docs/catalog/imports/catalog005/wnyhs_catalog005_reolink_gap_report.md`
+- **File path:** `docs/catalog/imports/catalog005/wnyhs_catalog005_reolink_gap_report.md`
+- **Purpose / likely role:** CATALOG005 internal gap report for unresolved validation, support, and evidence questions in the Reolink conditional master parts tranche.
+- **Authority level:** **Catalog import evidence / internal gap report**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records import gaps only.
+- **Notes:** Supports future bounded validation/status-review tasks; it does not upgrade any part or authorize public/package/quote promotion.
+
+### `/docs/catalog/imports/catalog005/wnyhs_catalog005_reolink_sources.md`
+- **File path:** `docs/catalog/imports/catalog005/wnyhs_catalog005_reolink_sources.md`
+- **Purpose / likely role:** CATALOG005 source report preserving source references for the reviewed 17 Reolink conditional master part records.
+- **Authority level:** **Catalog import evidence / source report**
+- **Customer-facing:** No.
+- **Implementation authority:** No, preserves evidence sources only.
+- **Notes:** Supports auditability of the internal import and does not authorize new claims or public marketing copy.
+
+
 ### `/docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md`
 - **File path:** `docs/quotesystem/QUOTE_CUSTOMER_ESTIMATE_PACKET_STANDARD_REV01.md`
 - **Purpose / likely role:** Quote-system governance standard for the customer-facing estimate/proposal/acceptance packet, based on the approved Brian K. Lewis Funeral Home Customer Proposal REV04 model.

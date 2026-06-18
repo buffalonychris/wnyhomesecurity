@@ -1,0 +1,46 @@
+{
+  "catalog_task": "CATALOG005",
+  "revision": "REV02",
+  "reason_for_revision": "Reordered CSV and JSONL fields to match repo-owned catalogMasterPartImportColumns exactly.",
+  "csv_record_count": 17,
+  "csv_field_count": 56,
+  "jsonl_record_count": 17,
+  "jsonl_field_counts": [
+    56
+  ],
+  "csv_field_order_matches_repo_contract": true,
+  "jsonl_field_order_matches_repo_contract": true,
+  "csv_jsonl_field_names_match": true,
+  "all_part_ids_populated": true,
+  "duplicate_part_ids": [],
+  "qualification_status_values": [
+    "conditional"
+  ],
+  "hard_gate_result_values": [
+    "PASS"
+  ],
+  "category_home_fields_present": [],
+  "legacy_188_field_signals_present": [],
+  "jsonl_array_fields_are_real_arrays": true,
+  "source_urls_have_tracking_parameters": false,
+  "rln12w_url_present_clean": true,
+  "expected_part_ids": [
+    "reolink-home-hub",
+    "reolink-home-hub-mini",
+    "reolink-home-hub-pro",
+    "reolink-rln8-410",
+    "reolink-rln12w",
+    "reolink-rln16-410",
+    "reolink-rln36",
+    "reolink-e1-outdoor-pro",
+    "reolink-elite-floodlight-wifi",
+    "reolink-fe-w",
+    "reolink-rlc-810wa",
+    "reolink-rlc-840wa",
+    "reolink-rp-wcb8mz",
+    "reolink-duo-3-wifi",
+    "reolink-elite-wifi",
+    "reolink-trackmix-wifi",
+    "reolink-trackflex-floodlight-wifi"
+  ]
+}
