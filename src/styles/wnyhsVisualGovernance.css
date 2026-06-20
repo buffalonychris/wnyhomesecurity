@@ -475,3 +475,177 @@
   color: var(--wnyhs-ink-muted);
   margin: 0;
 }
+
+.wnyhs-category-landing {
+  gap: 1rem;
+}
+
+.wnyhs-category-landing h1,
+.wnyhs-category-landing h2,
+.wnyhs-category-landing h3,
+.wnyhs-category-landing p {
+  margin: 0;
+}
+
+.wnyhs-category-hero,
+.wnyhs-category-core {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+  align-items: center;
+  gap: 1rem;
+  background: color-mix(in srgb, var(--wnyhs-charcoal) 94%, var(--wnyhs-gold) 6%);
+}
+
+.wnyhs-category-hero-copy,
+.wnyhs-category-copy,
+.wnyhs-category-core > div:first-child {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.wnyhs-category-hero .wnyhs-heading {
+  max-width: 15ch;
+  color: var(--wnyhs-dark-text);
+  font-size: clamp(2rem, 4vw, 3.1rem);
+}
+
+.wnyhs-category-hero .wnyhs-description,
+.wnyhs-category-core p,
+.wnyhs-category-core ul {
+  color: color-mix(in srgb, var(--wnyhs-dark-text) 78%, transparent);
+}
+
+.wnyhs-category-hero-media,
+.wnyhs-category-reveal-media {
+  margin: 0;
+}
+
+.wnyhs-category-hero-media img,
+.wnyhs-category-reveal-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.wnyhs-category-outcome-row,
+.wnyhs-category-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wnyhs-category-outcome-row span,
+.wnyhs-category-chip-grid span {
+  border: 1px solid var(--wnyhs-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--wnyhs-gold-soft) 24%, var(--wnyhs-surface));
+  color: var(--wnyhs-ink-secondary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.4rem 0.7rem;
+}
+
+.wnyhs-category-reveal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.wnyhs-category-reveal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.wnyhs-category-reveal-card {
+  align-content: end;
+  min-height: 130px;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.wnyhs-category-reveal-card:hover,
+.wnyhs-category-reveal-card:focus-within {
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 44%, var(--wnyhs-border));
+  box-shadow: var(--wnyhs-shadow-card);
+  transform: translateY(-2px);
+}
+
+.wnyhs-category-reveal-card span {
+  color: var(--wnyhs-gold-strong);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wnyhs-category-reveal-prompt {
+  color: var(--wnyhs-ink-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.wnyhs-category-card-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.wnyhs-category-card-grid--six {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wnyhs-category-card-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wnyhs-category-linked-card {
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.wnyhs-category-linked-card:hover {
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 44%, var(--wnyhs-border));
+  box-shadow: var(--wnyhs-shadow-card);
+  transform: translateY(-2px);
+}
+
+.wnyhs-category-core ul,
+.wnyhs-category-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.wnyhs-category-custom-cta {
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 82%, var(--wnyhs-gold-soft) 18%);
+  border-color: color-mix(in srgb, var(--wnyhs-gold) 32%, var(--wnyhs-border));
+}
+
+@media (max-width: 980px) {
+  .wnyhs-category-hero,
+  .wnyhs-category-core,
+  .wnyhs-category-reveal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wnyhs-category-card-grid--four,
+  .wnyhs-category-card-grid--six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .wnyhs-category-reveal-grid,
+  .wnyhs-category-card-grid--four,
+  .wnyhs-category-card-grid--six {
+    grid-template-columns: 1fr;
+  }
+
+  .wnyhs-category-hero .wnyhs-heading {
+    max-width: none;
+  }
+}

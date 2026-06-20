@@ -48,7 +48,7 @@ const categoryExplorer = [
     imageAlt: 'Smart home dashboard and automation controls for everyday routines',
     icon: '/images/home-security/homepage/icon-category-home-automation.png',
     iconAlt: 'Home automation category icon',
-    href: `${offeringsPath}#category-home-automation`,
+    href: '/home-automation',
   },
   {
     name: 'Home Lighting',
