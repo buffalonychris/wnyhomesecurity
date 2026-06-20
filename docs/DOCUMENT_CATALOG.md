@@ -702,6 +702,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Promoted by GOV009. Does not authorize category pages, navigation changes, search implementation, routing, source changes, or protected-system work.
 
+### `/docs/governance/CATEGORY002_WNYHS_CATEGORY_LANDING_PAGE_STRUCTURE_REV01.md`
+- **File path:** `docs/governance/CATEGORY002_WNYHS_CATEGORY_LANDING_PAGE_STRUCTURE_REV01.md`
+- **Purpose / likely role:** Working category landing page structure standard defining the Homepage -> Category -> Featured Solutions -> Full Solution Catalog -> Specific Solution Page -> Estimate / Consultation journey, required category landing page section order, reveal section, featured solutions rule, WNYHS Core requirement, custom solutions CTA, global CTA, visual/token requirements, claims guardrails, and relationship to CATEGORY001.
+- **Authority level:** **Working category landing-page governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No. Future category landing page implementation requires an ACTIVE Master Task Register task and bounded Codex work order.
+- **Notes:** Added by CATEGORY002-GOV-001 as docs-only governance. It does not authorize source, CSS, route, component, image, homepage link, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, Cloudflare config, dependency, package-lock, semantic token definition, deployment, or protected-system changes by itself.
+
 ### `/docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
 - **File path:** `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
 - **Purpose / likely role:** Working UX/page-structure standard for homepage and QR Landing purpose, hierarchy, search, content order, navigation expectations, visual alignment, and mockup-reference handling.
