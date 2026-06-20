@@ -114,7 +114,7 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Status:** ACTIVE
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Sequence bounded implementation of WNYHS public category landing pages under CATEGORY001 category governance, CATEGORY002 landing-page structure governance, and the governed WNYHS token visual system.
-- **Current Authorized Task:** CATEGORY-LANDING-001-A only.
+- **Current Authorized Task:** None. CATEGORY-LANDING-001-A is DONE; CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E remain READY only and require separate bounded implementation prompts before execution.
 - **Reserved Future Task:** CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E are READY only and require separate bounded implementation prompts before execution.
 - **Protected Boundaries:** No HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, lead-signal/requestId, quote/estimate runtime, protected operator routes, semantic token definition changes, package-lock/dependency changes, Cloudflare config changes, direct deployment, or unrelated page cleanup unless a future bounded task explicitly authorizes it.
 
@@ -126,7 +126,7 @@ Initiative records group bounded tasks but are not executable task records. Code
 ### CATEGORY-LANDING-001-A
 - **Task ID:** CATEGORY-LANDING-001-A
 - **Task Name:** Home Automation Category Landing Page
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Implement only the Home Automation public category landing page under CATEGORY001 and CATEGORY002 governance, using the governed WNYHS marketing layout and token visual system.
@@ -138,7 +138,8 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Validation Required:** `npm run build`; `git status`; `git diff --check`; `git diff --cached --check`; `git diff --name-only`; `git ls-files --deleted`; protected-file changed-file scan; forbidden-claim scan against touched public copy; token/CSS hardcoded-color scan for touched styling; route smoke check for the Home Automation category path if practical.
 - **Exit Criteria:** Home Automation category landing page exists and follows CATEGORY002 section order; exactly four featured solution cards are present; WNYHS Core, full solution catalog, custom solutions CTA, global primary CTA, and footer/trust surface are present; governed WNYHS primitives are used where practical; homepage link/card changes are limited to what is necessary; visible site version and implementation record are updated; protected systems remain untouched; validation passes or limitations are documented.
 - **Dependencies:** CATEGORY001 category standard, CATEGORY002 category landing page structure standard, PAGE_TOKEN_COMPLIANCE_GATE_REV01, DESIGN002 REV02, DESIGN003 REV01, DESIGN001 REV01, current WNYHS marketing layout/nav/footer, current solution/category content sources, and a separate bounded implementation prompt.
-- **Operator Decision Required:** Provide the separate bounded implementation prompt for CATEGORY-LANDING-001-A and review/merge the resulting PR if accepted.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Implemented the `/home-automation` public category landing page using the CATEGORY002 section order: Hero, Automation Reveal, What Life Could Be Like, exactly four Featured Solutions, WNYHS Core Foundation, Full Solution Catalog, Custom Solutions CTA, Global Primary CTA, and shared WNYHS footer. Reused the existing WNYHS marketing layout/header/footer and governed visual primitives, added minimal token-compatible `.wnyhs-category-*` selectors, updated the homepage Home Automation category card link to `/home-automation`, and bumped the visible site version to `v1.0.159`. Created `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01.md` and registered it in the document catalog and markdown manifest. No HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, Cloudflare config, environment, secrets, dependency, package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator route, QRLanding, Lead Signal/requestId, other category page, or unrelated homepage redesign changes were made.
 
 ### CATEGORY-LANDING-001-B
 - **Task ID:** CATEGORY-LANDING-001-B

@@ -185,6 +185,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, records the completed bounded footer navigation cleanup only.
 - **Notes:** Documents removal of extra footer links, preservation of About/Contact/Privacy/Terms/Support destinations, visible version `v1.0.149`, and protected-system exclusions.
 
+### `/docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01.md`
+- **File path:** `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01.md`
+- **Purpose / likely role:** Implementation note for CATEGORY-LANDING-001-A Home Automation category landing page.
+- **Authority level:** **Governance implementation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records the completed bounded Home Automation category landing page implementation only.
+- **Notes:** Documents `/home-automation` category page structure, homepage card link update, governed token/CSS compliance, image assets and image debt, protected-system exclusions, and version `v1.0.159`.
+
 ## `docs/solution-system/`
 
 ### `/docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`
