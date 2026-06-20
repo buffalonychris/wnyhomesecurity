@@ -112,6 +112,8 @@ A Category page should help a homeowner understand:
 - How this Category connects to other WNYHS capabilities
 - What action to take next
 
+Category landing page presentation flow is governed by `docs/governance/CATEGORY002_WNYHS_CATEGORY_LANDING_PAGE_STRUCTURE_REV01.md`. CATEGORY002 defines the landing-page structure standard and does not replace this CATEGORY001 category identity, metadata, relationship, and reuse standard.
+
 ---
 
 # Required Category Page Structure
