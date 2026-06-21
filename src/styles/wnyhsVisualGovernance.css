@@ -528,6 +528,12 @@
 
 .wnyhs-category-reveal-media {
   position: relative;
+  aspect-ratio: 1672 / 941;
+  outline: none;
+}
+
+.wnyhs-category-reveal-media:focus-visible {
+  box-shadow: var(--wnyhs-focus);
 }
 
 .wnyhs-category-hero-media img,
@@ -536,8 +542,34 @@
   width: 100%;
   height: 100%;
   min-height: 300px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+}
+
+.wnyhs-category-hero-media img {
+  aspect-ratio: 1604 / 980;
+}
+
+.wnyhs-category-reveal-image {
+  transition: opacity 180ms ease;
+}
+
+.wnyhs-category-reveal-image--base {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.wnyhs-category-reveal-media:hover .wnyhs-category-reveal-image--base,
+.wnyhs-category-reveal-media:focus-visible .wnyhs-category-reveal-image--base,
+.wnyhs-category-reveal-media:focus-within .wnyhs-category-reveal-image--base {
+  opacity: 1;
+}
+
+.wnyhs-category-reveal-media:hover .wnyhs-category-reveal-image--active,
+.wnyhs-category-reveal-media:focus-visible .wnyhs-category-reveal-image--active,
+.wnyhs-category-reveal-media:focus-within .wnyhs-category-reveal-image--active {
+  opacity: 0;
 }
 
 .wnyhs-category-reveal-label,
@@ -659,6 +691,34 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.wnyhs-category-control-proof {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 0.34fr);
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.wnyhs-category-proof-dashboard,
+.wnyhs-category-proof-phone {
+  margin: 0;
+}
+
+.wnyhs-category-proof-dashboard img,
+.wnyhs-category-proof-phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wnyhs-category-proof-dashboard {
+  aspect-ratio: 3 / 2;
+}
+
+.wnyhs-category-proof-phone {
+  aspect-ratio: 2 / 3;
+}
+
 .wnyhs-category-life-card {
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
@@ -703,7 +763,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .wnyhs-category-linked-card .wnyhs-card-copy {
@@ -743,6 +803,16 @@
   .wnyhs-category-card-grid--four,
   .wnyhs-category-card-grid--six {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wnyhs-category-control-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .wnyhs-category-proof-phone {
+    max-width: 360px;
+    justify-self: center;
+    width: 100%;
   }
 }
 

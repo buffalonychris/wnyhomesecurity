@@ -4,6 +4,22 @@ import { useLayoutConfig } from '../components/LayoutConfig';
 import { estimatePath, offeringsPath } from '../content/wnyhsOfferCatalog';
 import { buildTel, wnyhsContact } from '../content/wnyhsContact';
 
+const automationImageBase = '/images/category-pages/home-automation';
+
+const automationImages = {
+  hero: `${automationImageBase}/homeautomationhero.png`,
+  revealOn: `${automationImageBase}/neonimage.png`,
+  revealOff: `${automationImageBase}/neonimagenoneon.png`,
+  dashboard: `${automationImageBase}/fullsizehomeautomationdashboard.png`,
+  phone: `${automationImageBase}/cellphonedashhomeautomation.png`,
+  arrival: `${automationImageBase}/homearrivalscene.png`,
+  movieNight: `${automationImageBase}/movienightscene.png`,
+  goodNight: `${automationImageBase}/goodnightautomation.png`,
+  goodMorning: `${automationImageBase}/goodmorningautomation.png`,
+  vacation: `${automationImageBase}/vacationmodehomeautomation.png`,
+  wholeHome: `${automationImageBase}/wholehomeautomation.png`,
+} as const;
+
 const revealItems = [
   {
     label: 'Comfort',
@@ -39,40 +55,41 @@ const outcomes = [
 ] as const;
 
 const lifeCards = [
-  'The garage closed itself when you forgot.',
-  'Pathway lights guided you safely at night.',
-  'The thermostat adjusted before you noticed.',
-  'Your home knew the difference between empty and occupied.',
-  'Water leaks were caught before damage spread.',
-  'Routines happened automatically every day.',
+  'See the whole home from one clean dashboard.',
+  'Adjust supported devices from a phone view built for quick checks.',
+  'Routines can connect rooms, comfort, lighting, and awareness without visual clutter.',
 ] as const;
 
 const featuredSolutions = [
   {
-    title: 'SafePath Lighting',
-    body: 'Lights that respond to occupancy, time of day, and routines.',
-    imageSrc: '/images/home-security/homepage/solution-security-lighting.png',
+    title: 'Arrival Automation',
+    body: 'Lights, comfort, and supported access points prepare the home as you arrive.',
+    imageSrc: automationImages.arrival,
+    alt: 'Driveway arrival scene showing home automation preparing the house for a homeowner coming home',
     href: `${offeringsPath}#solution-entry-lighting-automation`,
     cta: 'Learn more',
   },
   {
-    title: 'Smart Entry & Garage Awareness',
-    body: 'Know the status of important entry points and simplify everyday access.',
-    imageSrc: '/images/solutions/connected-garage-workshop.png',
-    href: `${offeringsPath}#solution-garage-door-awareness`,
+    title: 'Movie Night Scenes',
+    body: 'Lighting and comfort can shift together for simple everyday moments.',
+    imageSrc: automationImages.movieNight,
+    alt: 'Living room movie night scene with lighting and comfort settings adjusted for the routine',
+    href: estimatePath,
     cta: 'Learn more',
   },
   {
-    title: 'Comfort Automation',
-    body: 'Temperature, fans, and shades work together for practical everyday comfort.',
-    imageSrc: '/images/home-security/homepage/category-home-automation.png',
+    title: 'Goodnight Routine',
+    body: 'Supported lights, locks, comfort, and awareness checks can settle the home for the night.',
+    imageSrc: automationImages.goodNight,
+    alt: 'Goodnight automation scene showing a calm home routine for evening shutdown',
     href: estimatePath,
     cta: 'Talk through this',
   },
   {
-    title: 'Arrival & Departure Automation',
-    body: 'Lights, locks, garage, and comfort settings respond automatically.',
-    imageSrc: '/images/home-security/homepage/category-home-automation.png',
+    title: 'Vacation Mode',
+    body: 'Away settings can coordinate lighting, comfort, and awareness while you are out.',
+    imageSrc: automationImages.vacation,
+    alt: 'Vacation mode automation scene showing a home set up for away routines and remote awareness',
     href: `${offeringsPath}#solution-away-night-vacation-modes`,
     cta: 'Learn more',
   },
@@ -135,10 +152,10 @@ const HomeAutomation = () => {
           </div>
           <figure className="wnyhs-category-hero-media wnyhs-card-media">
             <img
-              src="/images/home-security/homepage/category-home-automation.png"
-              alt="Smart home dashboard and automation controls for everyday routines"
-              width="1536"
-              height="1024"
+              src={automationImages.hero}
+              alt="Whole-home automation scene showing clean connected control for everyday routines"
+              width="1604"
+              height="980"
               loading="eager"
             />
           </figure>
@@ -158,13 +175,23 @@ const HomeAutomation = () => {
             ))}
           </div>
           <div className="wnyhs-category-reveal-layout">
-            <figure className="wnyhs-category-reveal-media wnyhs-card-media">
+            <figure className="wnyhs-category-reveal-media wnyhs-card-media" tabIndex={0}>
               <img
-                src="/images/home-security/homepage/category-home-automation.png"
-                alt="Living space with smart home automation dashboard and routine controls"
-                width="1536"
-                height="1024"
+                className="wnyhs-category-reveal-image wnyhs-category-reveal-image--active"
+                src={automationImages.revealOn}
+                alt="Home automation reveal showing highlighted opportunities around a clean living space"
+                width="1672"
+                height="941"
                 loading="lazy"
+              />
+              <img
+                className="wnyhs-category-reveal-image wnyhs-category-reveal-image--base"
+                src={automationImages.revealOff}
+                alt=""
+                width="1672"
+                height="941"
+                loading="lazy"
+                aria-hidden="true"
               />
               <figcaption className="wnyhs-category-reveal-label">
                 <span>What you see</span>
@@ -196,6 +223,26 @@ const HomeAutomation = () => {
               Small moments that make the home feel easier.
             </h2>
           </div>
+          <div className="wnyhs-category-control-proof">
+            <figure className="wnyhs-category-proof-dashboard wnyhs-card-media">
+              <img
+                src={automationImages.dashboard}
+                alt="Full-size home automation dashboard showing supported rooms and routines in one clean view"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              />
+            </figure>
+            <figure className="wnyhs-category-proof-phone wnyhs-card-media">
+              <img
+                src={automationImages.phone}
+                alt="Phone dashboard for quick homeowner control of supported automation routines"
+                width="1024"
+                height="1536"
+                loading="lazy"
+              />
+            </figure>
+          </div>
           <div className="wnyhs-category-card-grid wnyhs-category-card-grid--six">
             {lifeCards.map((item, index) => (
               <article key={item} className="wnyhs-card wnyhs-category-life-card">
@@ -218,7 +265,7 @@ const HomeAutomation = () => {
             {featuredSolutions.map((solution) => (
               <Link key={solution.title} className="wnyhs-card wnyhs-card--solution wnyhs-category-linked-card" to={solution.href}>
                 <figure className="wnyhs-card-media wnyhs-category-solution-media">
-                  <img src={solution.imageSrc} alt={`${solution.title} home automation solution`} loading="lazy" />
+                  <img src={solution.imageSrc} alt={solution.alt} loading="lazy" />
                 </figure>
                 <span className="wnyhs-eyebrow">Solution</span>
                 <h3 className="wnyhs-card-title">{solution.title}</h3>
@@ -246,19 +293,19 @@ const HomeAutomation = () => {
           </div>
           <figure className="hs-home-core-media" aria-label="WNYHS Core platform visuals">
             <img
-              className="hs-home-core-dashboard"
-              src="/images/home-security/homepage/WNYHSCoreDashboard.png"
-              alt="WNYHS Core dashboard for supported home systems"
+              className="hs-home-core-dashboard wnyhs-category-core-whole-home"
+              src={automationImages.wholeHome}
+              alt="Whole-property automation view showing connected rooms and supported home systems"
               width="1536"
               height="1024"
               loading="lazy"
             />
             <img
               className="hs-home-core-phone"
-              src="/images/home-security/homepage/WNYHSCorePhone.png"
-              alt="WNYHS Core phone view for homeowner system awareness"
-              width="1024"
-              height="1536"
+              src={automationImages.goodMorning}
+              alt="Good morning automation scene showing daily comfort and lighting routines starting cleanly"
+              width="1535"
+              height="1024"
               loading="lazy"
             />
             <img
