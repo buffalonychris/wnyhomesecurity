@@ -330,3 +330,13 @@ Use safer language:
 `CATEGORY002_WNYHS_CATEGORY_LANDING_PAGE_STRUCTURE_REV01.md` defines landing-page structure and presentation flow.
 
 CATEGORY002 does not replace CATEGORY001.
+
+## REV01 Polish Addendum - CATEGORY-LANDING-001-A-POLISH
+
+Home Automation polish review produced these refinements for remaining category pages:
+
+- Reveal sections should use a "what homeowner sees / what WNYHS sees" pattern where practical.
+- Reveal labels must remain outcome-first and should not collapse into simple device labels.
+- "What Life Could Be Like" bridge statements should use readable contrast and light icon/accent support.
+- Featured Solution cards should preferably include image/media, title, short outcome copy, and learn-more or CTA treatment.
+- Body text contrast must remain readable on light panels; avoid washed-out gray body text.

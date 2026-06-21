@@ -51,22 +51,30 @@ const featuredSolutions = [
   {
     title: 'SafePath Lighting',
     body: 'Lights that respond to occupancy, time of day, and routines.',
+    imageSrc: '/images/home-security/homepage/solution-security-lighting.png',
     href: `${offeringsPath}#solution-entry-lighting-automation`,
+    cta: 'Learn more',
   },
   {
     title: 'Smart Entry & Garage Awareness',
     body: 'Know the status of important entry points and simplify everyday access.',
+    imageSrc: '/images/solutions/connected-garage-workshop.png',
     href: `${offeringsPath}#solution-garage-door-awareness`,
+    cta: 'Learn more',
   },
   {
     title: 'Comfort Automation',
-    body: 'Temperature, fans, and shades work together for perfect comfort.',
+    body: 'Temperature, fans, and shades work together for practical everyday comfort.',
+    imageSrc: '/images/home-security/homepage/category-home-automation.png',
     href: estimatePath,
+    cta: 'Talk through this',
   },
   {
     title: 'Arrival & Departure Automation',
     body: 'Lights, locks, garage, and comfort settings respond automatically.',
+    imageSrc: '/images/home-security/homepage/category-home-automation.png',
     href: `${offeringsPath}#solution-away-night-vacation-modes`,
+    cta: 'Learn more',
   },
 ] as const;
 
@@ -158,14 +166,24 @@ const HomeAutomation = () => {
                 height="1024"
                 loading="lazy"
               />
+              <figcaption className="wnyhs-category-reveal-label">
+                <span>What you see</span>
+                A comfortable home.
+              </figcaption>
             </figure>
-            <div className="wnyhs-category-reveal-grid" aria-label="Automation opportunities">
-              {revealItems.map((item) => (
-                <article key={item.label} className="wnyhs-card wnyhs-category-reveal-card">
-                  <span>{item.label}</span>
-                  <p>{item.body}</p>
-                </article>
-              ))}
+            <div className="wnyhs-category-reveal-opportunities">
+              <div className="wnyhs-category-reveal-summary">
+                <span>What we see</span>
+                <p>Opportunities to simplify routines, improve awareness, and support comfort.</p>
+              </div>
+              <div className="wnyhs-category-reveal-grid" aria-label="Automation opportunities">
+                {revealItems.map((item) => (
+                  <article key={item.label} className="wnyhs-card wnyhs-category-reveal-card">
+                    <span>{item.label}</span>
+                    <p>{item.body}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
           <p className="wnyhs-category-reveal-prompt">Hover or tap to reveal automation opportunities.</p>
@@ -179,8 +197,9 @@ const HomeAutomation = () => {
             </h2>
           </div>
           <div className="wnyhs-category-card-grid wnyhs-category-card-grid--six">
-            {lifeCards.map((item) => (
-              <article key={item} className="wnyhs-card">
+            {lifeCards.map((item, index) => (
+              <article key={item} className="wnyhs-card wnyhs-category-life-card">
+                <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <p>{item}</p>
               </article>
             ))}
@@ -198,9 +217,13 @@ const HomeAutomation = () => {
           <div className="wnyhs-category-card-grid wnyhs-category-card-grid--four">
             {featuredSolutions.map((solution) => (
               <Link key={solution.title} className="wnyhs-card wnyhs-card--solution wnyhs-category-linked-card" to={solution.href}>
+                <figure className="wnyhs-card-media wnyhs-category-solution-media">
+                  <img src={solution.imageSrc} alt={`${solution.title} home automation solution`} loading="lazy" />
+                </figure>
                 <span className="wnyhs-eyebrow">Solution</span>
                 <h3 className="wnyhs-card-title">{solution.title}</h3>
                 <p className="wnyhs-card-copy">{solution.body}</p>
+                <span className="wnyhs-category-card-cta">{solution.cta}</span>
               </Link>
             ))}
           </div>
