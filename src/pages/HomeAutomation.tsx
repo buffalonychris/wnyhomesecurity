@@ -60,6 +60,34 @@ const lifeCards = [
   'Routines can connect rooms, comfort, lighting, and awareness without visual clutter.',
 ] as const;
 
+const automationScenes = [
+  {
+    title: 'Good Morning',
+    imageSrc: automationImages.goodMorning,
+    alt: 'Good morning automation scene showing daily comfort and lighting routines starting cleanly',
+  },
+  {
+    title: 'Arrival Automation',
+    imageSrc: automationImages.arrival,
+    alt: 'Driveway arrival automation scene preparing the home as a homeowner returns',
+  },
+  {
+    title: 'Movie Night',
+    imageSrc: automationImages.movieNight,
+    alt: 'Living room movie night automation scene with coordinated comfort and lighting',
+  },
+  {
+    title: 'Goodnight Routine',
+    imageSrc: automationImages.goodNight,
+    alt: 'Goodnight automation scene showing a calm home routine for evening shutdown',
+  },
+  {
+    title: 'Vacation Mode',
+    imageSrc: automationImages.vacation,
+    alt: 'Vacation mode automation scene showing away routines and remote awareness',
+  },
+] as const;
+
 const featuredSolutions = [
   {
     title: 'Arrival Automation',
@@ -242,6 +270,14 @@ const HomeAutomation = () => {
                 loading="lazy"
               />
             </figure>
+          </div>
+          <div className="wnyhs-category-scene-strip" aria-label="Automation scenes lifecycle">
+            {automationScenes.map((scene) => (
+              <figure key={scene.title} className="wnyhs-category-scene-card wnyhs-card-media">
+                <img src={scene.imageSrc} alt={scene.alt} loading="lazy" />
+                <figcaption>{scene.title}</figcaption>
+              </figure>
+            ))}
           </div>
           <div className="wnyhs-category-card-grid wnyhs-category-card-grid--six">
             {lifeCards.map((item, index) => (

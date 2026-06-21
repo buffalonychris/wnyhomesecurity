@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented; polished; image assets updated
+Status: Implemented; polished; image assets updated; image layout polished
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.161
+Version: v1.0.162
 
 ## Summary
 
@@ -143,5 +143,21 @@ Image assets used:
 - `vacationmodehomeautomation.png` - Vacation Mode featured solution.
 - `wholehomeautomation.png` - WNYHS Core whole-property platform view.
 - `goodmorningautomation.png` - WNYHS Core supporting routine image.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
+
+## Image Layout Polish Note - Prompt Follow-Up After PR #334
+
+The bounded follow-up polish pass updated `/home-automation` image layout only and kept CATEGORY-LANDING-001-A complete.
+
+Changes:
+
+- Enlarged the hero image through layout and spacing changes only, preserving the existing headline, copy, CTA, and contained image scaling.
+- Fixed the "What Life Could Be Like" dashboard/mobile proof layout so the dashboard and phone images use `minmax(0, ...)`, contained image scaling, and container overflow handling to avoid horizontal protrusion.
+- Added a compact five-scene lifecycle strip in the "What Life Could Be Like" section: Good Morning, Arrival Automation, Movie Night, Goodnight Routine, and Vacation Mode.
+- Increased the four Featured Solution card media areas by making the approved scene graphics more image-led while retaining exactly four featured solution cards.
+- Increased the Home Automation WNYHS Core whole-property image presence with page-scoped overrides to the shared Core media class.
+- Preserved the reveal hover and keyboard focus swap from `neonimage.png` to `neonimagenoneon.png`.
+- Bumped the visible site version to `v1.0.162`.
 
 Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
