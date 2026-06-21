@@ -149,11 +149,12 @@ const trustItems = [
 ] as const;
 
 const coreItems = [
-  'Home Assistant-based local control',
-  'Unified dashboard for supported systems',
-  'Customer-owned equipment and data',
-  'No vendor lock-in',
-  'Expansion-ready foundation',
+  'Start with one WNYHS solution',
+  'Add more supported solutions later',
+  'One dashboard for your supported systems',
+  'Local-first controls where supported',
+  'Built on Home Assistant',
+  'No unnecessary tech learning',
 ] as const;
 
 const whyItems = [
@@ -299,10 +300,21 @@ const HomeSecurityLanding = (_props: Props) => {
       <section id="wnyhs-core" className="wnyhs-section wnyhs-section--dark hs-home-core-section" aria-labelledby="wnyhs-core-heading">
         <div>
           <p className="wnyhs-eyebrow hs-premium-eyebrow">WNYHS Core</p>
-          <h2 id="wnyhs-core-heading">A local-first foundation for the solutions you choose.</h2>
+          <h2 id="wnyhs-core-heading">One Core System. Built To Grow With Your Home.</h2>
           <p>
-            WNYHS Core is the customer-owned platform layer behind supported solutions: local control, one dashboard,
-            no required monthly fees where selected hardware supports that path, and room to expand without starting over.
+            WNYHS Core is the customer-owned foundation behind every solution we install. Start with one WNYHS
+            solution, then add supported Home Security, Home Automation, Aging In Place, Home Safety, and Home
+            Lighting solutions later without replacing the whole infrastructure.
+          </p>
+          <p>
+            Your dashboard is built around the solutions you actually choose, with easy controls and no unnecessary
+            tech learning. Core is built on Home Assistant, a widely adopted smart-home platform used around the
+            world, with a local-first, privacy-conscious design. Supported local features do not require a cloud
+            connection, and supported local automations can continue running during an internet outage.
+          </p>
+          <p>
+            Where supported, the equipment and data stay customer-owned. Whether you start with security,
+            automation, lighting, aging-in-place, or home safety, Core gives future upgrades a place to connect.
           </p>
         </div>
         <figure className="hs-home-core-media" aria-label="WNYHS Core platform visuals">
