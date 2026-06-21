@@ -64,9 +64,18 @@ const outcomes = [
 ] as const;
 
 const lifeCards = [
-  'See the whole home from one clean dashboard.',
-  'Adjust supported devices from a phone view built for quick checks.',
-  'Routines can connect rooms, comfort, lighting, and awareness without visual clutter.',
+  {
+    title: 'Everything In One Place',
+    body: "See your home's security, lighting, comfort, cameras, and automation from a single dashboard.",
+  },
+  {
+    title: 'Stay Connected Anywhere',
+    body: "Check your home, make adjustments, and run routines from your phone whether you're home or away.",
+  },
+  {
+    title: 'Let Your Home Do More Automatically',
+    body: 'Simple routines can help lights, comfort settings, and awareness features work together for everyday convenience.',
+  },
 ] as const;
 
 const automationScenes = [
@@ -269,6 +278,10 @@ const HomeAutomation = () => {
                 height="1024"
                 loading="lazy"
               />
+              <figcaption className="wnyhs-category-proof-caption">
+                <strong>Whole Home Dashboard</strong>
+                <span>See security, comfort, lighting, cameras, and home status from one clean place.</span>
+              </figcaption>
             </figure>
             <figure className="wnyhs-category-proof-phone wnyhs-card-media">
               <img
@@ -278,7 +291,15 @@ const HomeAutomation = () => {
                 height="1536"
                 loading="lazy"
               />
+              <figcaption className="wnyhs-category-proof-caption">
+                <strong>Mobile App Access</strong>
+                <span>Check your home, adjust supported devices, and run routines from your phone.</span>
+              </figcaption>
             </figure>
+          </div>
+          <div className="wnyhs-category-routine-intro">
+            <h3>Popular Automation Routines</h3>
+            <p>Everyday routines can adjust lighting, comfort, awareness, and supported devices automatically.</p>
           </div>
           <div className="wnyhs-category-scene-strip" aria-label="Automation scenes lifecycle">
             {automationScenes.map((scene) => (
@@ -290,9 +311,12 @@ const HomeAutomation = () => {
           </div>
           <div className="wnyhs-category-card-grid wnyhs-category-card-grid--six">
             {lifeCards.map((item, index) => (
-              <article key={item} className="wnyhs-card wnyhs-category-life-card">
+              <article key={item.title} className="wnyhs-card wnyhs-category-life-card">
                 <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
               </article>
             ))}
           </div>

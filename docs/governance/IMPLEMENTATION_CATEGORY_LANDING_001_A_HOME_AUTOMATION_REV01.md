@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated; final image layout polished
+Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated; final image layout polished; life section polished
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.164
+Version: v1.0.165
 
 ## Summary
 
@@ -78,6 +78,21 @@ This task did not change:
 - QRLanding runtime
 - Lead Signal/requestId
 - Other category pages
+
+## Life Section Polish Note - Prompt Follow-Up
+
+The bounded follow-up updated only the `/home-automation` "What Life Could Be Like" section and kept CATEGORY-LANDING-001-A complete.
+
+Changes:
+
+- Added a "Whole Home Dashboard" caption under the primary dashboard visual with customer-friendly context for security, comfort, lighting, cameras, and home status.
+- Added a "Mobile App Access" caption under the phone visual with customer-friendly context for checking the home, adjusting supported devices, and running routines from a phone.
+- Reduced phone visual dominance by tightening the phone column and mobile max-width while keeping the phone image visible and responsive.
+- Added "Popular Automation Routines" context above the routine thumbnail strip without replacing, renaming, deleting, or regenerating approved thumbnail assets.
+- Replaced the three bridge benefit cards with clearer customer-friendly copy for dashboard control, mobile access, and routine automation.
+- Bumped the visible site version to `v1.0.165`.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
 
 ## Validation Results
 

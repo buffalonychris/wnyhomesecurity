@@ -704,15 +704,17 @@
 
 .wnyhs-category-control-proof {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, clamp(150px, 23%, 230px));
-  gap: clamp(0.65rem, 2vw, 0.95rem);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(128px, clamp(150px, 20vw, 210px));
+  gap: clamp(0.7rem, 2vw, 1rem);
+  align-items: start;
   min-width: 0;
   overflow: hidden;
 }
 
 .wnyhs-category-proof-dashboard,
 .wnyhs-category-proof-phone {
+  display: grid;
+  gap: 0.7rem;
   margin: 0;
   min-width: 0;
 }
@@ -726,14 +728,57 @@
 }
 
 .wnyhs-category-proof-dashboard {
-  aspect-ratio: 3 / 2;
+  grid-template-rows: minmax(0, 1fr) auto;
 }
 
 .wnyhs-category-proof-phone {
-  aspect-ratio: 2 / 3;
   width: 100%;
-  max-width: 230px;
+  max-width: 210px;
   justify-self: end;
+}
+
+.wnyhs-category-proof-dashboard img {
+  aspect-ratio: 3 / 2;
+}
+
+.wnyhs-category-proof-phone img {
+  aspect-ratio: 2 / 3;
+  max-height: 330px;
+}
+
+.wnyhs-category-proof-caption {
+  display: grid;
+  gap: 0.28rem;
+  color: var(--wnyhs-ink-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.wnyhs-category-proof-caption strong {
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.wnyhs-category-routine-intro {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 760px;
+}
+
+.wnyhs-category-routine-intro h3 {
+  margin: 0;
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.15;
+}
+
+.wnyhs-category-routine-intro p {
+  margin: 0;
+  color: var(--wnyhs-ink-secondary);
+  font-weight: 650;
 }
 
 .wnyhs-category-scene-strip {
@@ -786,8 +831,17 @@
 }
 
 .wnyhs-category-life-card p {
+  margin: 0;
   color: var(--wnyhs-ink-secondary);
   font-weight: 700;
+}
+
+.wnyhs-category-life-card h3 {
+  margin: 0 0 0.3rem;
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
+  font-size: 1.02rem;
+  line-height: 1.15;
 }
 
 .wnyhs-category-linked-card {
@@ -879,7 +933,7 @@
   }
 
   .wnyhs-category-proof-phone {
-    max-width: 360px;
+    max-width: min(300px, 72vw);
     justify-self: center;
     width: 100%;
   }
