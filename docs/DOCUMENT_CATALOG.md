@@ -191,7 +191,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Governance implementation record**
 - **Customer-facing:** No.
 - **Implementation authority:** No, records the completed bounded Home Automation category landing page implementation only.
-- **Notes:** Documents `/home-automation` category page structure, homepage card link update, governed token/CSS compliance, image assets and image debt, protected-system exclusions, and version `v1.0.159`.
+- **Notes:** Documents `/home-automation` category page structure, homepage card link update, governed token/CSS compliance, CATEGORY-LANDING-001-A-POLISH contrast/reveal/bridge/featured-card refinements, image/route debt, protected-system exclusions, and version `v1.0.160`.
 
 ## `docs/solution-system/`
 

@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented
+Status: Implemented; polished
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.159
+Version: v1.0.160
 
 ## Summary
 
@@ -96,3 +96,22 @@ This task did not change:
 
 - Dedicated reveal/lifestyle image asset for Home Automation page.
 - Dedicated solution detail routes for `Comfort Automation` and other automation catalog entries can be considered only through future bounded tasks.
+
+## Polish Note - CATEGORY-LANDING-001-A-POLISH
+
+The bounded polish pass updated `/home-automation` only and kept CATEGORY-LANDING-001-A in DONE status.
+
+Changes:
+
+- Improved contrast/readability for Custom Solutions CTA body copy, custom bullet copy, reveal card copy, bridge card copy, and featured solution card copy using governed WNYHS text tokens.
+- Strengthened the Automation Reveal section with a clearer "What you see: A comfortable home." and "What we see: Opportunities to simplify routines, improve awareness, and support comfort." split.
+- Improved "What Life Could Be Like" scanability with token-governed numbered accent markers and stronger text color.
+- Improved the four Featured Solution cards with existing image/media areas, titles, short outcome copy, and safe CTA/link treatments.
+- Bumped the visible site version to `v1.0.160`.
+
+Remaining debt:
+
+- Reveal and several featured solution cards still reuse closest existing approved imagery because no dedicated Home Automation reveal or complete solution-image set exists yet.
+- `Comfort Automation` still uses the estimate/contact CTA path because no dedicated solution detail route exists.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
