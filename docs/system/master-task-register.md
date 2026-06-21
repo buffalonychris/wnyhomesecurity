@@ -114,7 +114,7 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Status:** ACTIVE
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Sequence bounded implementation of WNYHS public category landing pages under CATEGORY001 category governance, CATEGORY002 landing-page structure governance, and the governed WNYHS token visual system.
-- **Current Authorized Task:** None. CATEGORY-LANDING-001-A is DONE; CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E remain READY only and require separate bounded implementation prompts before execution.
+- **Current Authorized Task:** None. CATEGORY-LANDING-001-A and CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH are DONE; CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E remain READY only and require separate bounded implementation prompts before execution.
 - **Reserved Future Task:** CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E are READY only and require separate bounded implementation prompts before execution.
 - **Protected Boundaries:** No HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, lead-signal/requestId, quote/estimate runtime, protected operator routes, semantic token definition changes, package-lock/dependency changes, Cloudflare config changes, direct deployment, or unrelated page cleanup unless a future bounded task explicitly authorizes it.
 
@@ -141,6 +141,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Implemented the `/home-automation` public category landing page using the CATEGORY002 section order: Hero, Automation Reveal, What Life Could Be Like, exactly four Featured Solutions, WNYHS Core Foundation, Full Solution Catalog, Custom Solutions CTA, Global Primary CTA, and shared WNYHS footer. Reused the existing WNYHS marketing layout/header/footer and governed visual primitives, added minimal token-compatible `.wnyhs-category-*` selectors, updated the homepage Home Automation category card link to `/home-automation`, and bumped the visible site version to `v1.0.159`. Created `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01.md` and registered it in the document catalog and markdown manifest. No HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, Cloudflare config, environment, secrets, dependency, package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator route, QRLanding, Lead Signal/requestId, other category page, or unrelated homepage redesign changes were made.
 - **Polish Note (CATEGORY-LANDING-001-A-POLISH):** Additively polished `/home-automation` without reactivating CATEGORY-LANDING-001-A and without activating CATEGORY-LANDING-001-B. Improved token-governed text contrast/readability, strengthened the reveal section with a homeowner/WNYHS split, added scannable accent markers to the "What Life Could Be Like" bridge cards, upgraded the four Featured Solution cards with existing media and safe CTA/link treatment, refined CATEGORY002 governance lessons, updated the implementation record, and bumped the visible site version to `v1.0.160`. Remaining debt: dedicated Home Automation reveal/solution imagery and dedicated solution routes for automation entries where no route exists. Protected systems and unrelated category pages remained untouched.
+- **Image Asset Polish Note (CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH):** Additively updated `/home-automation` with the approved local image assets from `public/images/category-pages/home-automation/`. Updated the hero, reveal, dashboard/mobile proof, four featured solution card visuals, and WNYHS Core whole-property/routine visuals; added hover and keyboard focus reveal swapping from `neonimage.png` to `neonimagenoneon.png`; used contained image scaling where important content must remain visible; updated the implementation record; and bumped the visible site version to `v1.0.161`. Protected systems and unrelated category pages remained untouched.
+
+### CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH
+- **Task ID:** CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH
+- **Task Name:** Home Automation Category Image Asset Polish
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Integrate the approved local Home Automation category image assets into the already-implemented `/home-automation` category landing page.
+- **Allowed Scope:** Update only the Home Automation category page imagery and token-compatible image styling; add the Automation Reveal hover/focus swap; use approved assets from `public/images/category-pages/home-automation/`; bump visible site version; update this register and the existing implementation record.
+- **Forbidden Scope:** No HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no Cloudflare config; no package/dependency changes; no quote/estimate runtime changes; no unrelated category pages; no new routes; no approved image filename changes; no raw color/token drift.
+- **Target Files:** `src/pages/HomeAutomation.tsx`, `src/styles/wnyhsVisualGovernance.css`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01.md`, and `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public Home Automation category page presentation only.
+- **Documentation Updates Required:** Existing implementation record and this register updated.
+- **Validation Required:** `git status --short --branch`; `git diff --check`; `git diff --cached --check` if staged; `git diff --name-only`; `git ls-files --deleted`; `npm run build`; source review that `/home-automation` still renders; confirm referenced image paths exist; confirm protected systems unchanged; confirm no raw color/token violations introduced in touched CSS; confirm important image content is not intentionally cropped by CSS.
+- **Exit Criteria:** Home Automation hero, reveal, dashboard/mobile proof, featured scenes, and whole-property visuals use approved assets; reveal image swaps from `neonimage.png` to `neonimagenoneon.png` on hover and keyboard focus; responsive scaling preserves important image content; version is bumped to `v1.0.161`; protected systems remain untouched.
+- **Dependencies:** CATEGORY-LANDING-001-A, CATEGORY001, CATEGORY002, PAGE_TOKEN_COMPLIANCE_GATE_REV01, current visual governance CSS, and bounded prompt-created image asset work order.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Completed for version `v1.0.161`.
 
 ### CATEGORY-LANDING-001-B
 - **Task ID:** CATEGORY-LANDING-001-B

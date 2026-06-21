@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented; polished
+Status: Implemented; polished; image assets updated
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.160
+Version: v1.0.161
 
 ## Summary
 
@@ -113,5 +113,35 @@ Remaining debt:
 
 - Reveal and several featured solution cards still reuse closest existing approved imagery because no dedicated Home Automation reveal or complete solution-image set exists yet.
 - `Comfort Automation` still uses the estimate/contact CTA path because no dedicated solution detail route exists.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
+
+## Image Asset Polish Note - CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH
+
+The bounded image asset polish pass updated `/home-automation` only and kept CATEGORY-LANDING-001-A complete.
+
+Changes:
+
+- Replaced the Home Automation hero image with `/images/category-pages/home-automation/homeautomationhero.png`.
+- Replaced the Automation Reveal image with `/images/category-pages/home-automation/neonimage.png`.
+- Added hover and keyboard focus behavior that swaps the reveal image to `/images/category-pages/home-automation/neonimagenoneon.png`.
+- Added the approved full dashboard and phone dashboard images inside the bridge section using contained scaling.
+- Updated the four Featured Solution cards with approved Home Automation scene imagery.
+- Updated the WNYHS Core visual stack with the whole-property platform image and a good-morning routine image.
+- Bumped the visible site version to `v1.0.161`.
+
+Image assets used:
+
+- `homeautomationhero.png` - Hero image.
+- `neonimage.png` - Default Automation Reveal image.
+- `neonimagenoneon.png` - Automation Reveal hover/focus image.
+- `fullsizehomeautomationdashboard.png` - Dashboard proof image in the bridge section.
+- `cellphonedashhomeautomation.png` - Mobile control proof image in the bridge section.
+- `homearrivalscene.png` - Arrival Automation featured solution.
+- `movienightscene.png` - Movie Night Scenes featured solution.
+- `goodnightautomation.png` - Goodnight Routine featured solution.
+- `vacationmodehomeautomation.png` - Vacation Mode featured solution.
+- `wholehomeautomation.png` - WNYHS Core whole-property platform view.
+- `goodmorningautomation.png` - WNYHS Core supporting routine image.
 
 Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
