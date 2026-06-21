@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented; polished; image assets updated; image layout polished
+Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.162
+Version: v1.0.163
 
 ## Summary
 
@@ -159,5 +159,19 @@ Changes:
 - Increased the Home Automation WNYHS Core whole-property image presence with page-scoped overrides to the shared Core media class.
 - Preserved the reveal hover and keyboard focus swap from `neonimage.png` to `neonimagenoneon.png`.
 - Bumped the visible site version to `v1.0.162`.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
+
+## Thumbnail JPG Update Note - Prompt Follow-Up
+
+The bounded follow-up updated `/home-automation` thumbnail imagery only and kept CATEGORY-LANDING-001-A complete.
+
+Changes:
+
+- Replaced the compact "What Life Could Be Like" scene-strip images with the approved thumbnail JPGs: `good-morning-thumb.jpg`, `arrival-automation-thumb.jpg`, `movie-night-thumb.jpg`, `goodnight-routine-thumb.jpg`, and `vacation-mode-thumb.jpg`.
+- Replaced the four "Most Popular Automation Solutions" card images with the approved solution thumbnail JPGs: `solution-arrival-automation-thumb.jpg`, `solution-movie-night-scenes-thumb.jpg`, `solution-goodnight-routine-thumb.jpg`, and `solution-vacation-mode-thumb.jpg`.
+- Preserved existing section copy, card titles, links, contained image scaling, responsive layout, and the existing larger PNG educational graphics.
+- Left reference/mockup files untouched.
+- Bumped the visible site version to `v1.0.163`.
 
 Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
