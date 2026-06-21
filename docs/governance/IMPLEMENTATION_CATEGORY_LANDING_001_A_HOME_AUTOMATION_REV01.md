@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated
+Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated; final image layout polished
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.163
+Version: v1.0.164
 
 ## Summary
 
@@ -143,6 +143,19 @@ Image assets used:
 - `vacationmodehomeautomation.png` - Vacation Mode featured solution.
 - `wholehomeautomation.png` - WNYHS Core whole-property platform view.
 - `goodmorningautomation.png` - WNYHS Core supporting routine image.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
+
+## Final Image Layout Polish Note - Prompt Follow-Up After PR #336
+
+The bounded follow-up updated `/home-automation` image layout only and kept CATEGORY-LANDING-001-A complete.
+
+Changes:
+
+- Fixed the hero media frame by moving the 1604 / 980 aspect ratio to the frame itself and letting the approved hero image fill that matching frame with `object-fit: cover`, removing excessive vertical letterboxing while preserving the rounded media card treatment.
+- Fixed the four "Most Popular Automation Solutions" media frames so the approved solution JPG thumbnails sit inside each card with zero figure margin, consistent 4 / 3 frame sizing, clipped overflow, and stable card grid rows.
+- Preserved all current copy, routes, CTAs, and approved image asset references.
+- Bumped the visible site version to `v1.0.164`.
 
 Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
 

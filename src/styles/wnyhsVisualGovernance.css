@@ -531,6 +531,10 @@
   min-width: 0;
 }
 
+.wnyhs-category-hero-media {
+  aspect-ratio: 1604 / 980;
+}
+
 .wnyhs-category-reveal-media {
   position: relative;
   aspect-ratio: 1672 / 941;
@@ -552,8 +556,8 @@
 }
 
 .wnyhs-category-hero-media img {
-  aspect-ratio: 1604 / 980;
-  min-height: clamp(340px, 34vw, 470px);
+  min-height: 0;
+  object-fit: cover;
 }
 
 .wnyhs-category-reveal-image {
@@ -789,6 +793,8 @@
 .wnyhs-category-linked-card {
   color: inherit;
   gap: 0.7rem;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  overflow: hidden;
   text-decoration: none;
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
@@ -800,8 +806,11 @@
 }
 
 .wnyhs-category-solution-media {
-  aspect-ratio: 1 / 1;
-  min-height: clamp(160px, 18vw, 230px);
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  min-height: clamp(150px, 15vw, 210px);
+  width: 100%;
 }
 
 .wnyhs-category-solution-media img {
