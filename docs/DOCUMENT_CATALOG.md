@@ -193,6 +193,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, records the completed bounded Home Automation category landing page implementation only.
 - **Notes:** Documents `/home-automation` category page structure, homepage card link update, governed token/CSS compliance, CATEGORY-LANDING-001-A-POLISH contrast/reveal/bridge/featured-card refinements, image/route debt, protected-system exclusions, and version `v1.0.160`.
 
+### `/docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_REMAINING_CATEGORIES_REV01.md`
+- **File path:** `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_REMAINING_CATEGORIES_REV01.md`
+- **Purpose / likely role:** Implementation note for CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E, covering Home Security, Aging In Place, Home Safety, and Home Lighting category landing pages.
+- **Authority level:** **Governance implementation record**
+- **Customer-facing:** No.
+- **Implementation authority:** No, records the completed bounded remaining category landing page implementation only.
+- **Notes:** Documents the four category landing routes, shared CATEGORY002/CATEGORY003 page structure, homepage category-card link updates, reused approved image assets, dedicated image asset debt, protected-system exclusions, and version `v1.0.167`.
+
 ## `docs/solution-system/`
 
 ### `/docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV01.md`
