@@ -26,7 +26,6 @@ const automationImages = {
   solutionMovieNightThumb: `${automationImageBase}/solution-movie-night-scenes-thumb.jpg`,
   solutionGoodNightThumb: `${automationImageBase}/solution-goodnight-routine-thumb.jpg`,
   solutionVacationThumb: `${automationImageBase}/solution-vacation-mode-thumb.jpg`,
-  wholeHome: `${automationImageBase}/wholehomeautomation.png`,
 } as const;
 
 const revealItems = [
@@ -142,11 +141,11 @@ const featuredSolutions = [
 ] as const;
 
 const coreItems = [
-  'Home Assistant-based local control',
-  'Unified dashboard for supported systems',
-  'Customer-owned equipment and data',
-  'No vendor lock-in',
-  'Expansion-ready foundation',
+  'Automation routines today',
+  'Future supported security, lighting, safety, and aging-in-place additions',
+  'Dashboard and mobile views built around your chosen solutions',
+  'Supported local routines can keep running during an internet interruption',
+  'Built to grow without starting over',
 ] as const;
 
 const catalogItems = [
@@ -349,10 +348,18 @@ const HomeAutomation = () => {
           <div>
             <p className="wnyhs-eyebrow hs-premium-eyebrow">WNYHS Core</p>
             <h2 id="automation-core-heading" className="wnyhs-heading">
-              A local-first foundation for the automations you choose.
+              Your Automation Can Grow Without Starting Over.
             </h2>
             <p>
-              WNYHS Core is the customer-owned platform layer behind supported automation solutions: local control, one dashboard, no required monthly fees where selected hardware supports that path, and room to expand without starting over.
+              Home Automation is one category powered by WNYHS Core. The same customer-owned foundation that runs
+              today's automation routines can support future WNYHS Home Security, Home Lighting, Aging In Place, and
+              Home Safety solutions later.
+            </p>
+            <p>
+              If you add supported smart locks, cameras, SafePath lighting, leak awareness, or aging-in-place
+              features, those solutions can connect back to the same Core foundation. Your dashboard and mobile view
+              are built around the solutions you actually choose, and supported local routines can keep running if
+              internet service is interrupted.
             </p>
             <ul>
               {coreItems.map((item) => (
@@ -363,8 +370,8 @@ const HomeAutomation = () => {
           <figure className="hs-home-core-media" aria-label="WNYHS Core platform visuals">
             <img
               className="hs-home-core-dashboard wnyhs-category-core-whole-home"
-              src={automationImages.wholeHome}
-              alt="Whole-property automation view showing connected rooms and supported home systems"
+              src={automationImages.dashboard}
+              alt="Home Automation dashboard showing supported rooms, routines, and controls in one clean view"
               width="1536"
               height="1024"
               loading="lazy"

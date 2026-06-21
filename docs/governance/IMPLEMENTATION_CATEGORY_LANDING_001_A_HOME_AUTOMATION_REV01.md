@@ -1,10 +1,10 @@
 # IMPLEMENTATION_CATEGORY_LANDING_001_A_HOME_AUTOMATION_REV01
 
-Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated; final image layout polished; life section polished
+Status: Implemented; polished; image assets updated; image layout polished; thumbnail JPGs updated; final image layout polished; life section polished; Core panel polished
 Task ID: CATEGORY-LANDING-001-A
 Task Name: Home Automation Category Landing Page
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-Version: v1.0.165
+Version: v1.0.166
 
 ## Summary
 
@@ -111,6 +111,21 @@ Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resen
 
 - Dedicated reveal/lifestyle image asset for Home Automation page.
 - Dedicated solution detail routes for `Comfort Automation` and other automation catalog entries can be considered only through future bounded tasks.
+- Future image-viewer/lightbox behavior remains out of scope for this Core panel polish and would require a separate bounded task.
+
+## Core Panel Polish Note - Prompt Follow-Up
+
+The bounded follow-up polished WNYHS Core messaging on the homepage and `/home-automation` while preserving the existing section rhythm and token-governed visual system.
+
+Changes:
+
+- Reframed the homepage Core panel as the platform-wide customer-owned foundation behind every WNYHS solution category.
+- Reframed the Home Automation Core panel as the category-specific Core foundation for automation routines and future supported additions.
+- Replaced the Home Automation Core whole-property infographic with the approved dashboard-focused image `fullsizehomeautomationdashboard.png`.
+- Preserved the existing homepage Core dashboard/phone imagery.
+- Bumped the visible site version to `v1.0.166`.
+
+Protected systems remained untouched: HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, Cloudflare config, environment/secrets, dependencies/package-lock, quote/estimate runtime, catalog schema, package pricing, protected operator routes, QRLanding, Lead Signal/requestId, and other category pages.
 
 ## Polish Note - CATEGORY-LANDING-001-A-POLISH
 
