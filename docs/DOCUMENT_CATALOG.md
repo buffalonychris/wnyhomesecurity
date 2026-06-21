@@ -718,6 +718,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No. Future category landing page implementation requires an ACTIVE Master Task Register task and bounded Codex work order.
 - **Notes:** Added by CATEGORY002-GOV-001 as docs-only governance. It does not authorize source, CSS, route, component, image, homepage link, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, Cloudflare config, dependency, package-lock, semantic token definition, deployment, or protected-system changes by itself.
 
+### `/docs/governance/CATEGORY003_WNYHS_CATEGORY_PAGE_IMAGE_AND_VISUAL_PARITY_STANDARD_REV01.md`
+- **File path:** `docs/governance/CATEGORY003_WNYHS_CATEGORY_PAGE_IMAGE_AND_VISUAL_PARITY_STANDARD_REV01.md`
+- **Purpose / likely role:** Active category landing page image and visual parity standard capturing the approved Home Automation category page as the reference implementation for future category pages, including asset classes, thumbnail rules, dashboard/mobile/routine proof hierarchy, WNYHS Core image/copy behavior, visual parity rules, and repeatable asset packages.
+- **Authority level:** **Active category image and visual parity governance standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No. Future category page implementation, CSS changes, image generation, asset replacement, route changes, or runtime changes require a separate bounded task and work order.
+- **Notes:** Added by CATEGORY003-GOV-001 as docs-only governance. It does not authorize source, CSS, route, component, image, homepage, `/home-automation`, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, Cloudflare config, dependency, package-lock, semantic token definition, deployment, or protected-system changes by itself.
+
 ### `/docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
 - **File path:** `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
 - **Purpose / likely role:** Working UX/page-structure standard for homepage and QR Landing purpose, hierarchy, search, content order, navigation expectations, visual alignment, and mockup-reference handling.

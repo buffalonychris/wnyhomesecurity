@@ -166,6 +166,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Completed for version `v1.0.161`.
 
+### CATEGORY003-GOV-001
+- **Task ID:** CATEGORY003-GOV-001
+- **Task Name:** Category Page Image And Visual Parity Governance
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create docs-only CATEGORY003 governance that captures the approved Home Automation category landing page as the reusable image, visual parity, section-purpose, thumbnail, dashboard/mobile/routine, WNYHS Core, and asset-package standard for future category landing pages.
+- **Allowed Scope:** Create `docs/governance/CATEGORY003_WNYHS_CATEGORY_PAGE_IMAGE_AND_VISUAL_PARITY_STANDARD_REV01.md`; update this task register; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md`; leave public site version unchanged unless repo convention requires otherwise.
+- **Forbidden Scope:** No application source code; no CSS; no images; no homepage; no `/home-automation`; no HubSpot; no Stripe/payment; no scheduling/calendar; no Resend/email; no APIs/backend; no Cloudflare config; no `package.json` or `package-lock`; no quote/estimate runtime; no new category pages; no deployment.
+- **Target Files:** `docs/governance/CATEGORY003_WNYHS_CATEGORY_PAGE_IMAGE_AND_VISUAL_PARITY_STANDARD_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance update.
+- **Documentation Updates Required:** CATEGORY003 governance standard, document catalog entry, markdown manifest addendum, and this task record.
+- **Validation Required:** `git status --short --branch`; `git diff --check`; `git diff --cached --check` if staged; `git diff --name-only`; `git ls-files --deleted`; confirm CATEGORY003 doc exists; confirm catalog and manifest updates; confirm no source/CSS/image/runtime/protected files changed; `npm run build` optional and not required for this docs-only task.
+- **Exit Criteria:** CATEGORY003 exists with required sections; Home Automation reference image filenames are listed; CATEGORY001/CATEGORY002 relationship is documented; repository indexes are updated; task register records completion; validation passes; public site version remains unchanged; protected systems remain untouched.
+- **Dependencies:** CATEGORY001, CATEGORY002, CATEGORY-LANDING-001-A through related image/layout/life/Core polish notes, PAGE_TOKEN_COMPLIANCE_GATE_REV01, DESIGN002 REV02, DESIGN003 REV01, and the bounded prompt-created docs-only work order.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created CATEGORY003 as docs-only governance for category page image classes, visual parity rules, section purpose, thumbnails, dashboard/mobile/routine hierarchy, WNYHS Core homepage/category distinction, future category asset packages, compliance checklist, and Home Automation reference filenames. Updated `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this register. Public site version left unchanged. Protected systems and application/runtime files remained untouched.
+
 ### CATEGORY-LANDING-001-B
 - **Task ID:** CATEGORY-LANDING-001-B
 - **Task Name:** Home Security Category Landing Page
