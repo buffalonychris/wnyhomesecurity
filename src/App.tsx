@@ -16,6 +16,9 @@ const About = lazy(() => import('./pages/About'));
 const OurWork = lazy(() => import('./pages/OurWork'));
 const Discovery = lazy(() => import('./pages/Discovery'));
 const HomeAutomation = lazy(() => import('./pages/HomeAutomation'));
+const AgingInPlace = lazy(() => import('./pages/AgingInPlace'));
+const HomeSafety = lazy(() => import('./pages/HomeSafety'));
+const HomeLighting = lazy(() => import('./pages/HomeLighting'));
 const ElderCareTech = lazy(() => import('./pages/ElderCare'));
 const Packages = lazy(() => import('./pages/Packages'));
 const PackageDetail = lazy(() => import('./pages/PackageDetail'));
@@ -186,6 +189,9 @@ const App = () => {
               element={<Navigate to="/reliability?vertical=home-security" replace />}
             />
             <Route path="/home-automation" element={<HomeAutomation />} />
+            <Route path="/aging-in-place" element={<AgingInPlace />} />
+            <Route path="/home-safety" element={<HomeSafety />} />
+            <Route path="/home-lighting" element={<HomeLighting />} />
             <Route path="/home-automation/packages" element={<Navigate to="/packages" replace />} />
             <Route path="/home-automation/add-ons" element={<Navigate to="/quote#addons" replace />} />
             <Route path="/home-automation/how-it-works" element={<Navigate to="/reliability" replace />} />

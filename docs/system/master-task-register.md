@@ -114,8 +114,8 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Status:** ACTIVE
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Sequence bounded implementation of WNYHS public category landing pages under CATEGORY001 category governance, CATEGORY002 landing-page structure governance, and the governed WNYHS token visual system.
-- **Current Authorized Task:** None. CATEGORY-LANDING-001-A and CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH are DONE; CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E remain READY only and require separate bounded implementation prompts before execution.
-- **Reserved Future Task:** CATEGORY-LANDING-001-B through CATEGORY-LANDING-001-E are READY only and require separate bounded implementation prompts before execution.
+- **Current Authorized Task:** None. CATEGORY-LANDING-001-A through CATEGORY-LANDING-001-E and CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH are DONE.
+- **Reserved Future Task:** Dedicated CATEGORY003 image asset packages for category pages require separate bounded tasks and operator approval.
 - **Protected Boundaries:** No HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, lead-signal/requestId, quote/estimate runtime, protected operator routes, semantic token definition changes, package-lock/dependency changes, Cloudflare config changes, direct deployment, or unrelated page cleanup unless a future bounded task explicitly authorizes it.
 
 ---
@@ -187,70 +187,74 @@ Initiative records group bounded tasks but are not executable task records. Code
 ### CATEGORY-LANDING-001-B
 - **Task ID:** CATEGORY-LANDING-001-B
 - **Task Name:** Home Security Category Landing Page
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Prepare a bounded future task to implement only the Home Security public category landing page under CATEGORY001 and CATEGORY002 governance.
-- **Allowed Scope:** Future implementation may create/update only the Home Security category page route/component, use existing WNYHS marketing layout/nav/footer, use governed token CSS primitives, add minimal token-compatible page-specific selectors only if necessary, bump visible site version, create an implementation record, and update required docs. Execution requires a separate bounded implementation prompt.
-- **Forbidden Scope:** No execution while READY; no HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment; no other category page implementation.
-- **Target Files:** To be finalized by a separate bounded implementation work order for Home Security only.
-- **Runtime Systems Affected:** None while READY. Future authorized scope may affect public Home Security category page presentation/routing only.
-- **Documentation Updates Required:** Future implementation record, task-register update, catalog entry, and manifest entry if implementation occurs.
-- **Validation Required:** Future implementation must run `npm run build`, diff checks, protected-file scan, forbidden-claim scan, token/CSS scan for touched styling, and route smoke check if practical.
-- **Exit Criteria:** Not executable while READY. Future exit criteria must confirm CATEGORY002 compliance, protected systems untouched, and validation results.
+- **Allowed Scope:** Completed as part of the prompt-approved one-pass implementation for the remaining four category landing pages: updated the existing `/home-security` route/component, reused existing WNYHS marketing layout/nav/footer and governed category primitives, bumped visible site version, created an implementation record, updated homepage category-card links, and updated required docs.
+- **Forbidden Scope:** No HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment.
+- **Target Files:** `src/pages/CategoryLandingPage.tsx`, `src/pages/HomeSecurity.tsx`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/App.tsx`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_REMAINING_CATEGORIES_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public Home Security category page presentation/routing only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `git status --short --branch`; `git diff --check`; `git diff --cached --check` if staged; `git diff --name-only`; `git ls-files --deleted`; `npm run build`; source review for category routes; referenced image path check; protected-system changed-file scan; forbidden-claim scan; token/CSS hardcoded color scan.
+- **Exit Criteria:** Home Security category landing page follows CATEGORY002/CATEGORY003 structure with four featured solutions, category-specific WNYHS Core, broader solution catalog, custom solutions CTA, global CTA, governed primitives, version bump, documentation record, and protected systems untouched.
 - **Dependencies:** CATEGORY001, CATEGORY002, PAGE_TOKEN_COMPLIANCE_GATE_REV01, DESIGN002 REV02, DESIGN003 REV01, DESIGN001 REV01, and a separate bounded implementation prompt.
-- **Operator Decision Required:** Promote/execute through a separate bounded implementation prompt before any Home Security category page work.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Implemented `/home-security` as the Home Security category landing page in the approved four-category pass. Version bumped to `v1.0.167`. Protected systems remained untouched.
 
 ### CATEGORY-LANDING-001-C
 - **Task ID:** CATEGORY-LANDING-001-C
 - **Task Name:** Aging-In-Place Category Landing Page
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Prepare a bounded future task to implement only the Aging-In-Place public category landing page under CATEGORY001 and CATEGORY002 governance.
-- **Allowed Scope:** Future implementation may create/update only the Aging-In-Place category page route/component, use existing WNYHS marketing layout/nav/footer, use governed token CSS primitives, add minimal token-compatible page-specific selectors only if necessary, bump visible site version, create an implementation record, and update required docs. Execution requires a separate bounded implementation prompt.
-- **Forbidden Scope:** No execution while READY; no HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment; no other category page implementation.
-- **Target Files:** To be finalized by a separate bounded implementation work order for Aging-In-Place only.
-- **Runtime Systems Affected:** None while READY. Future authorized scope may affect public Aging-In-Place category page presentation/routing only.
-- **Documentation Updates Required:** Future implementation record, task-register update, catalog entry, and manifest entry if implementation occurs.
-- **Validation Required:** Future implementation must run `npm run build`, diff checks, protected-file scan, forbidden-claim scan, token/CSS scan for touched styling, and route smoke check if practical.
-- **Exit Criteria:** Not executable while READY. Future exit criteria must confirm CATEGORY002 compliance, protected systems untouched, and validation results.
+- **Allowed Scope:** Completed as part of the prompt-approved one-pass implementation for the remaining four category landing pages: created the `/aging-in-place` route/component, reused existing WNYHS marketing layout/nav/footer and governed category primitives, bumped visible site version, created an implementation record, updated homepage category-card links, and updated required docs.
+- **Forbidden Scope:** No HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment.
+- **Target Files:** `src/pages/CategoryLandingPage.tsx`, `src/pages/AgingInPlace.tsx`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/App.tsx`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_REMAINING_CATEGORIES_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public Aging-In-Place category page presentation/routing only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `git status --short --branch`; `git diff --check`; `git diff --cached --check` if staged; `git diff --name-only`; `git ls-files --deleted`; `npm run build`; source review for category routes; referenced image path check; protected-system changed-file scan; forbidden-claim scan; token/CSS hardcoded color scan.
+- **Exit Criteria:** Aging-In-Place category landing page follows CATEGORY002/CATEGORY003 structure with four featured solutions, category-specific WNYHS Core, broader solution catalog, custom solutions CTA, global CTA, governed primitives, version bump, documentation record, and protected systems untouched.
 - **Dependencies:** CATEGORY001, CATEGORY002, PAGE_TOKEN_COMPLIANCE_GATE_REV01, DESIGN002 REV02, DESIGN003 REV01, DESIGN001 REV01, and a separate bounded implementation prompt.
-- **Operator Decision Required:** Promote/execute through a separate bounded implementation prompt before any Aging-In-Place category page work.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Implemented `/aging-in-place` as the Aging-In-Place category landing page in the approved four-category pass. Version bumped to `v1.0.167`. Protected systems remained untouched.
 
 ### CATEGORY-LANDING-001-D
 - **Task ID:** CATEGORY-LANDING-001-D
 - **Task Name:** Environmental Safety Category Landing Page
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Prepare a bounded future task to implement only the Environmental Safety public category landing page under CATEGORY001 and CATEGORY002 governance.
-- **Allowed Scope:** Future implementation may create/update only the Environmental Safety category page route/component, use existing WNYHS marketing layout/nav/footer, use governed token CSS primitives, add minimal token-compatible page-specific selectors only if necessary, bump visible site version, create an implementation record, and update required docs. Execution requires a separate bounded implementation prompt.
-- **Forbidden Scope:** No execution while READY; no HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment; no other category page implementation.
-- **Target Files:** To be finalized by a separate bounded implementation work order for Environmental Safety only.
-- **Runtime Systems Affected:** None while READY. Future authorized scope may affect public Environmental Safety category page presentation/routing only.
-- **Documentation Updates Required:** Future implementation record, task-register update, catalog entry, and manifest entry if implementation occurs.
-- **Validation Required:** Future implementation must run `npm run build`, diff checks, protected-file scan, forbidden-claim scan, token/CSS scan for touched styling, and route smoke check if practical.
-- **Exit Criteria:** Not executable while READY. Future exit criteria must confirm CATEGORY002 compliance, protected systems untouched, and validation results.
+- **Allowed Scope:** Completed as part of the prompt-approved one-pass implementation for the remaining four category landing pages: created the `/home-safety` route/component, reused existing WNYHS marketing layout/nav/footer and governed category primitives, bumped visible site version, created an implementation record, updated homepage category-card links, and updated required docs.
+- **Forbidden Scope:** No HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment.
+- **Target Files:** `src/pages/CategoryLandingPage.tsx`, `src/pages/HomeSafety.tsx`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/App.tsx`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_REMAINING_CATEGORIES_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public Home Safety / Environmental Safety category page presentation/routing only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `git status --short --branch`; `git diff --check`; `git diff --cached --check` if staged; `git diff --name-only`; `git ls-files --deleted`; `npm run build`; source review for category routes; referenced image path check; protected-system changed-file scan; forbidden-claim scan; token/CSS hardcoded color scan.
+- **Exit Criteria:** Home Safety category landing page follows CATEGORY002/CATEGORY003 structure with four featured solutions, category-specific WNYHS Core, broader solution catalog, custom solutions CTA, global CTA, governed primitives, version bump, documentation record, and protected systems untouched.
 - **Dependencies:** CATEGORY001, CATEGORY002, PAGE_TOKEN_COMPLIANCE_GATE_REV01, DESIGN002 REV02, DESIGN003 REV01, DESIGN001 REV01, and a separate bounded implementation prompt.
-- **Operator Decision Required:** Promote/execute through a separate bounded implementation prompt before any Environmental Safety category page work.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Implemented `/home-safety` as the Home Safety / Environmental Safety category landing page in the approved four-category pass. Version bumped to `v1.0.167`. Protected systems remained untouched.
 
 ### CATEGORY-LANDING-001-E
 - **Task ID:** CATEGORY-LANDING-001-E
 - **Task Name:** Home Lighting Category Landing Page
-- **Status:** READY
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Prepare a bounded future task to implement only the Home Lighting public category landing page under CATEGORY001 and CATEGORY002 governance.
-- **Allowed Scope:** Future implementation may create/update only the Home Lighting category page route/component, use existing WNYHS marketing layout/nav/footer, use governed token CSS primitives, add minimal token-compatible page-specific selectors only if necessary, bump visible site version, create an implementation record, and update required docs. Execution requires a separate bounded implementation prompt.
-- **Forbidden Scope:** No execution while READY; no HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment; no other category page implementation.
-- **Target Files:** To be finalized by a separate bounded implementation work order for Home Lighting only.
-- **Runtime Systems Affected:** None while READY. Future authorized scope may affect public Home Lighting category page presentation/routing only.
-- **Documentation Updates Required:** Future implementation record, task-register update, catalog entry, and manifest entry if implementation occurs.
-- **Validation Required:** Future implementation must run `npm run build`, diff checks, protected-file scan, forbidden-claim scan, token/CSS scan for touched styling, and route smoke check if practical.
-- **Exit Criteria:** Not executable while READY. Future exit criteria must confirm CATEGORY002 compliance, protected systems untouched, and validation results.
+- **Allowed Scope:** Completed as part of the prompt-approved one-pass implementation for the remaining four category landing pages: created the `/home-lighting` route/component, reused existing WNYHS marketing layout/nav/footer and governed category primitives, bumped visible site version, created an implementation record, updated homepage category-card links, and updated required docs.
+- **Forbidden Scope:** No HubSpot; no Stripe/payment; no scheduling; no Resend/email; no APIs/backend; no quote/estimate runtime behavior changes; no package pricing; no catalog schema changes; no protected operator routes; no semantic token definition changes; no dependency/package-lock changes; no global redesign; no unrelated page cleanup; no Cloudflare config changes; no direct deployment.
+- **Target Files:** `src/pages/CategoryLandingPage.tsx`, `src/pages/HomeLighting.tsx`, `src/components/homeSecurity/HomeSecurityLanding.tsx`, `src/App.tsx`, `src/lib/siteVersion.ts`, `docs/governance/IMPLEMENTATION_CATEGORY_LANDING_001_REMAINING_CATEGORIES_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** Public Home Lighting category page presentation/routing only.
+- **Documentation Updates Required:** Completed.
+- **Validation Required:** `git status --short --branch`; `git diff --check`; `git diff --cached --check` if staged; `git diff --name-only`; `git ls-files --deleted`; `npm run build`; source review for category routes; referenced image path check; protected-system changed-file scan; forbidden-claim scan; token/CSS hardcoded color scan.
+- **Exit Criteria:** Home Lighting category landing page follows CATEGORY002/CATEGORY003 structure with four featured solutions, category-specific WNYHS Core, broader solution catalog, custom solutions CTA, global CTA, governed primitives, version bump, documentation record, and protected systems untouched.
 - **Dependencies:** CATEGORY001, CATEGORY002, PAGE_TOKEN_COMPLIANCE_GATE_REV01, DESIGN002 REV02, DESIGN003 REV01, DESIGN001 REV01, and a separate bounded implementation prompt.
-- **Operator Decision Required:** Promote/execute through a separate bounded implementation prompt before any Home Lighting category page work.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Implemented `/home-lighting` as the Home Lighting category landing page in the approved four-category pass. Version bumped to `v1.0.167`. Protected systems remained untouched.
 
 ### QUOTE-SYSTEM-STANDARD-001
 - **Task ID:** QUOTE-SYSTEM-STANDARD-001
