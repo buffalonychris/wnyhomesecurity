@@ -4680,3 +4680,22 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** Prompt-created bounded work order and quote-system governance standards.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Completed for version `v1.0.156`.
+
+
+### T-SITEARCH001-001
+- **Task ID:** T-SITEARCH001-001
+- **Task Name:** Complete Public Site Architecture Audit
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create one authoritative docs-only audit of current public-facing route, ownership, navigation, embedded-link, search, demo/dashboard, SEO, package, WNYHS Core, and route-conflict state before future architecture decisions.
+- **Allowed Scope:** Inspect route definitions, page components, navigation/footer components, public link sources, sitemap/robots/SEO policy, and public demo files; create `docs/site-architecture/SITEARCH001_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_AUDIT_REV01.md`; update this register; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md`.
+- **Forbidden Scope:** No route renames, route moves, redirects, search implementation, navigation changes, footer changes, page-content changes, category-page changes, solution-page changes, image generation, image pipeline changes, HubSpot changes, Stripe/payment changes, scheduling changes, planner changes, quote-flow changes, backend/API runtime changes, Resend/email changes, Cloudflare config changes, environment/secret changes, dependency changes, or package-lock changes.
+- **Target Files:** `docs/site-architecture/SITEARCH001_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_AUDIT_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only audit.
+- **Documentation Updates Required:** SITEARCH001 audit report, this task-register record, document catalog entry, and markdown manifest addendum.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`.
+- **Exit Criteria:** Audit report identifies route inventory, owners, page/component owners, navigation, embedded links, search status, demo/dashboard route, SEO/canonical observations, package/Core visibility, route conflicts, recommended decisions, and next tasks; only allowed documentation files are changed; protected systems remain untouched; build passes or unrelated failure is reported.
+- **Dependencies:** Prompt-created bounded work order; repository governance documents; current route tree; current sitemap/robots/SEO policy; current WNYHS navigation and page standards.
+- **Operator Decision Required:** Review audit findings and decide which future architecture task to activate next.
+- **Completion Notes:** Created the SITEARCH001 docs-only public information architecture audit. Found 117 React route declarations in `src/App.tsx` plus one static public dashboard demo HTML file. Identified `/home-security` as currently owned by `src/pages/HomeSecurity.tsx` and `src/components/homeSecurity/HomeSecurityLanding.tsx`, with an unresolved homepage/category ownership conflict. Located dashboard/demo surfaces at `/home-security/dashboard`, `/newsite/demos/ha-gold-dashboard`, `/demo`, `/5-day-demo`, `/newsite/demos`, and `public/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html`. Confirmed current search is placeholder/anchor access at `/home-security#home-search`, not a functional search route. No source, route, nav, footer, search, category, solution, image, protected runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, or secret files were changed.

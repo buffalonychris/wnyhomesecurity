@@ -25,6 +25,16 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Customer-facing:** No.
 - **Notes:** Supports future Codex planning and is a required review aid before high-risk workflow changes; it does not replace higher-authority governance, runtime contracts, HubSpot REV03, or task-specific instructions.
 
+## `docs/site-architecture/`
+
+### `/docs/site-architecture/SITEARCH001_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_AUDIT_REV01.md`
+- **File path:** `docs/site-architecture/SITEARCH001_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_AUDIT_REV01.md`
+- **Purpose / likely role:** Docs-only public information architecture audit for current WNYHS route ownership, page/component ownership, navigation, embedded links, search status, demo/dashboard routes, SEO/canonical observations, package visibility, WNYHS Core visibility, route conflicts, and recommended future architecture decisions.
+- **Authority level:** **Architecture audit / governance evidence / documentation-only**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SITEARCH001-001`. Does not authorize source, route, navigation, footer, search, page-content, category, solution, image, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or deployment-config changes by itself.
+
 ## `docs/seo/`
 
 ### `/docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`
