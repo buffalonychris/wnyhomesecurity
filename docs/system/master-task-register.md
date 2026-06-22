@@ -4737,3 +4737,22 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** Prompt-created bounded work order; repository governance documents; SITEARCH001 audit; SITEARCH002 decision standard; current category-page standards; current solution-page standards; current funnel/navigation standards.
 - **Operator Decision Required:** Review the implementation plan and activate the first bounded implementation task when ready.
 - **Completion Notes:** Created the SITEARCH003 docs-only public architecture implementation plan. Documented Phase 0 prechecks, Phase 1 canonical category route creation, Phase 2 legacy flat-route redirect/alias handling, Phase 3 navigation correction, Phase 4 footer and embedded link correction, Phase 5 search implementation, Phase 6 demo/dashboard cleanup, Phase 7 sitemap/robots/canonical cleanup, Phase 8 SEO preparation, and Phase 9 image workflow reintegration. Added the required future task list and recommended `T-SITEARCH002-001 - Canonical Category Route Creation` as the first implementation task after prechecks. Updated document catalog and markdown manifest addenda. No source, route, nav, footer, breadcrumb, search, page-content, category, solution, image, protected runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, or secret files were changed.
+
+### T-SITEARCH002-001
+- **Task ID:** T-SITEARCH002-001
+- **Task Name:** Canonical Category Route Creation
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Tags:** Site Architecture / Category Routes / Additive Routing
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add canonical `/categories/<category-slug>` category routes from SITEARCH002/SITEARCH003 without removing, redirecting, or changing existing flat category routes.
+- **Allowed Scope:** Add route declarations for `/categories/home-security`, `/categories/home-automation`, `/categories/home-safety`, `/categories/home-lighting`, and `/categories/aging-in-place`; reuse existing category page components; bump visible site version; update this task record with implementation evidence.
+- **Forbidden Scope:** No deletion or redirect of existing flat routes; no `/home-security` homepage behavior change; no homepage, category, solution, navigation, footer, breadcrumb, search, sitemap, robots, canonical, image, HubSpot, Stripe/payment, scheduling, planner, quote-flow, API/backend, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes.
+- **Target Files:** `src/App.tsx`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public React route availability for canonical category URLs only.
+- **Documentation Updates Required:** This task-register evidence entry.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`; route declaration verification.
+- **Exit Criteria:** All five canonical category routes render the existing category page components; existing flat routes remain declared and unchanged; `/home-security` behavior remains declared and unchanged; no redirects or forbidden-scope changes are introduced; visible site version is bumped; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded work order; SITEARCH001 audit; SITEARCH002 decision standard; SITEARCH003 implementation plan; current category route components.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Added canonical category route declarations for `/categories/home-security`, `/categories/home-automation`, `/categories/home-safety`, `/categories/home-lighting`, and `/categories/aging-in-place`, each reusing the existing category page component already used by the corresponding flat route. Preserved existing flat route declarations for `/home-security`, `/home-automation`, `/home-safety`, `/home-lighting`, and `/aging-in-place`; preserved `/home-security` homepage/restored behavior by leaving the existing route and `HomeRoute` redirect unchanged; added no redirects. Bumped visible site version to `v1.0.168`. No navigation, footer, breadcrumb, search, sitemap, robots, canonical tag, homepage content, category content, solution content, image, HubSpot, Stripe/payment, scheduling, planner, quote-flow, API/backend, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret files were changed.
