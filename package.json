@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -p tsconfig.app.json && vite build",
     "fixtures:security": "node src/lib/fixtures/security/generateScenarioMatrix.security.v1.js && node src/lib/fixtures/security/generateFixtures.security.v1.js",
+    "images:generate": "node scripts/image-generation/generate-category-assets.mjs",
+    "images:generate:dry-run": "node scripts/image-generation/generate-category-assets.mjs --category home-security --dry-run",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",

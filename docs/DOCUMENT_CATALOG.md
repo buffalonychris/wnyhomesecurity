@@ -495,6 +495,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by T-IMG-PIPELINE001-001 as a governance-only setup plan. It does not authorize OpenAI API implementation, image generation, image file additions or replacements, scripts, package scripts, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
 
+### `/scripts/image-generation/README.md`
+- **File path:** `scripts/image-generation/README.md`
+- **Purpose / likely role:** Local image generation pipeline README documenting dry-run-first command usage, Home Security-only structured config source model, environment variables, and draft/review output safety rules.
+- **Authority level:** **Script documentation / local developer workflow reference**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by T-IMG-PIPELINE001-002 alongside the local script scaffold. It does not authorize executing write mode, calling the OpenAI API, generating image assets, committing candidate images, replacing approved production assets, weakening claim guardrails, modifying `.env` files, adding secrets, or changing protected systems.
+
 ### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **Purpose / likely role:** REV02 governed sitewide WNYHS visual token system standard for public marketing pages, including Manrope headings, Inter body/UI, shared CSS primitives, pricing boundary, catalog boundary, claims-safe copy posture, and protected-system exclusions.
