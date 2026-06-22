@@ -43,6 +43,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by `T-SITEARCH001-002`. Does not authorize source, route, navigation, footer, breadcrumb, search, page-content, category, solution, image, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or deployment-config changes by itself.
 
+### `/docs/site-architecture/SITEARCH003_WNYHS_PUBLIC_ARCHITECTURE_IMPLEMENTATION_PLAN_REV01.md`
+- **File path:** `docs/site-architecture/SITEARCH003_WNYHS_PUBLIC_ARCHITECTURE_IMPLEMENTATION_PLAN_REV01.md`
+- **Purpose / likely role:** Docs-only public architecture implementation plan translating SITEARCH001 audit findings and SITEARCH002 decisions into a phased sequence for canonical category routes, legacy route handling, navigation correction, footer and embedded link correction, search planning and implementation, demo/dashboard cleanup, sitemap/robots/canonical alignment, SEO preparation, and image workflow reintegration.
+- **Authority level:** **Architecture implementation plan / governance / documentation-only**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SITEARCH001-003`. Does not authorize source, route, navigation, footer, breadcrumb, search, page-content, category, solution, image, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or deployment-config changes by itself.
+
 ## `docs/seo/`
 
 ### `/docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`
