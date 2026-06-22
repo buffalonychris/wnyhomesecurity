@@ -471,6 +471,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by T-IMG-CATEGORY002-001 as a governance-only artifact. It does not authorize image generation, image file additions or replacements, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
 
+### `/docs/design-system/IMG-CATEGORY003_WNYHS_CATEGORY_ASSET_SOURCE_MANIFEST_REV01.md`
+- **File path:** `docs/design-system/IMG-CATEGORY003_WNYHS_CATEGORY_ASSET_SOURCE_MANIFEST_REV01.md`
+- **Purpose / likely role:** Concrete category asset source manifest defining planned baseline asset records by category, including asset IDs, filenames, folder paths, asset class, priority, visual requirements, hardware cluster requirements, dashboard/Core requirements, approval status, generation status, naming review, readiness checklist, and future task routing.
+- **Authority level:** **Design-system governance / category asset source manifest / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by T-IMG-CATEGORY003-001 as a governance-only artifact. It does not authorize image generation, image file additions or replacements, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
+
 ### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **Purpose / likely role:** REV02 governed sitewide WNYHS visual token system standard for public marketing pages, including Manrope headings, Inter body/UI, shared CSS primitives, pricing boundary, catalog boundary, claims-safe copy posture, and protected-system exclusions.
