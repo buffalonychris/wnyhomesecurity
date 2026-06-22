@@ -184,6 +184,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created CATEGORY003 as docs-only governance for category page image classes, visual parity rules, section purpose, thumbnails, dashboard/mobile/routine hierarchy, WNYHS Core homepage/category distinction, future category asset packages, compliance checklist, and Home Automation reference filenames. Updated `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`, and this register. Public site version left unchanged. Protected systems and application/runtime files remained untouched.
 
+### T-IMG-CATEGORY001-001
+- **Task ID:** T-IMG-CATEGORY001-001
+- **Task Name:** Category Asset Production Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create docs-only governance for official WNYHS category-level visual asset production, approval, organization, usage, rejection, and future AI-assisted image workflows.
+- **Allowed Scope:** Create `docs/design-system/IMG-CATEGORY001_WNYHS_CATEGORY_ASSET_PRODUCTION_STANDARD_REV01.md`; add this task record to the Master Task Register; update `docs/DOCUMENT_CATALOG.md` because design-system governance documents are tracked there; use claim-safe substitutes for risk terms.
+- **Forbidden Scope:** No image generation; no image file additions, removals, or replacements; no public category page implementation; no CSS, token, component, route, or layout changes; no Stripe/payment changes; no HubSpot changes; no scheduling, planner, quote, runtime, environment, deployment, API/backend, Resend/email, dependency, package-lock, or protected-system changes; no new categories; no change to approved category strategy.
+- **Target Files:** `docs/design-system/IMG-CATEGORY001_WNYHS_CATEGORY_ASSET_PRODUCTION_STANDARD_REV01.md`, `docs/system/master-task-register.md`, and `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance update.
+- **Documentation Updates Required:** IMG-CATEGORY001 governance standard, this Master Task Register entry, and Document Catalog entry.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; forbidden-claim scan against touched files; `npm run build` because root execution rules require build before completion.
+- **Exit Criteria:** IMG-CATEGORY001 exists with required sections covering category heroes, lower-right hardware clusters, dashboards, mobile dashboards, WNYHS Core images, reveal/explainer images, solution thumbnails, routine thumbnails, future AI-assisted production workflows, file naming, folder structure, exports, manifest, approval checklist, rejected-asset workflow, future catalog integration, Codex restrictions, and success criteria; task register and document catalog are updated; no forbidden claim terms are added; protected systems remain untouched.
+- **Dependencies:** Prompt-created bounded work order, claim-safe resolution for T-IMG-CATEGORY001-001, DESIGN001 REV01, CATEGORY003 REV01, SOLUTION001 REV02, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created IMG-CATEGORY001 as docs-only governance for category-level visual asset production standards, using claim-safe substitutes for dashboard, Core, Home Safety, and asset workflow language. Updated this register and `docs/DOCUMENT_CATALOG.md`. No image assets, application source, CSS/tokens/components, routes/layouts, runtime, HubSpot, Stripe/payment, scheduling, planner, quote, APIs/backend, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or protected-system files were modified.
+
 ### CATEGORY-LANDING-001-B
 - **Task ID:** CATEGORY-LANDING-001-B
 - **Task Name:** Home Security Category Landing Page

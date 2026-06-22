@@ -455,6 +455,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by DESIGN001-A for operator review. It defines a future reuse target but does not authorize implementation, page changes, CSS changes, semantic token changes, global navigation changes, protected-system changes, or a visible site version bump.
 
+### `/docs/design-system/IMG-CATEGORY001_WNYHS_CATEGORY_ASSET_PRODUCTION_STANDARD_REV01.md`
+- **File path:** `docs/design-system/IMG-CATEGORY001_WNYHS_CATEGORY_ASSET_PRODUCTION_STANDARD_REV01.md`
+- **Purpose / likely role:** Category-level visual asset production standard defining official production, approval, organization, usage, file naming, folder structure, export, manifest, rejected-asset, future catalog-integration, and Codex restriction rules for WNYHS category assets.
+- **Authority level:** **Design-system governance / category asset production standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by T-IMG-CATEGORY001-001 as a governance-only artifact. It does not authorize image generation, image file additions or replacements, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
+
 ### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **Purpose / likely role:** REV02 governed sitewide WNYHS visual token system standard for public marketing pages, including Manrope headings, Inter body/UI, shared CSS primitives, pricing boundary, catalog boundary, claims-safe copy posture, and protected-system exclusions.
