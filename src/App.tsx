@@ -192,6 +192,11 @@ const App = () => {
             <Route path="/aging-in-place" element={<AgingInPlace />} />
             <Route path="/home-safety" element={<HomeSafety />} />
             <Route path="/home-lighting" element={<HomeLighting />} />
+            <Route path="/categories/home-security" element={<HomeSecurity />} />
+            <Route path="/categories/home-automation" element={<HomeAutomation />} />
+            <Route path="/categories/home-safety" element={<HomeSafety />} />
+            <Route path="/categories/home-lighting" element={<HomeLighting />} />
+            <Route path="/categories/aging-in-place" element={<AgingInPlace />} />
             <Route path="/home-automation/packages" element={<Navigate to="/packages" replace />} />
             <Route path="/home-automation/add-ons" element={<Navigate to="/quote#addons" replace />} />
             <Route path="/home-automation/how-it-works" element={<Navigate to="/reliability" replace />} />
