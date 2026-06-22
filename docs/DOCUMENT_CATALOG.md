@@ -487,6 +487,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by T-IMG-CATEGORY004-001 as a governance-only prompt-and-production plan. It does not authorize image generation, image file additions or replacements, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
 
+### `/docs/design-system/IMG-PIPELINE001_OPENAI_IMAGE_GENERATION_PIPELINE_SETUP_PLAN_REV01.md`
+- **File path:** `docs/design-system/IMG-PIPELINE001_OPENAI_IMAGE_GENERATION_PIPELINE_SETUP_PLAN_REV01.md`
+- **Purpose / likely role:** Setup plan for a future repo-side OpenAI Image API generation pipeline that consumes IMG-CATEGORY003 source manifest records and IMG-CATEGORY004-style category generation plans while preserving dry-run prompt preview, draft/review/approved output separation, overwrite protection, cost controls, claim-safe language, and visual standards.
+- **Authority level:** **Design-system governance / image generation pipeline setup planning / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by T-IMG-PIPELINE001-001 as a governance-only setup plan. It does not authorize OpenAI API implementation, image generation, image file additions or replacements, scripts, package scripts, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
+
 ### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **Purpose / likely role:** REV02 governed sitewide WNYHS visual token system standard for public marketing pages, including Manrope headings, Inter body/UI, shared CSS primitives, pricing boundary, catalog boundary, claims-safe copy posture, and protected-system exclusions.
