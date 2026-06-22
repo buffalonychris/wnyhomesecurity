@@ -122,6 +122,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 ## Active Tasks (Execution Driver)
 
+### T-SEO-BASELINE001-001
+- **Task ID:** T-SEO-BASELINE001-001
+- **Task Name:** Public Route Inventory and SEO Baseline Audit
+- **Status:** DONE
+- **Category:** QA
+- **Tags:** SEO / Audit / Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a baseline inventory of public routes, sitemap state, robots.txt state, and SEO readiness before any sitemap, metadata, schema, or page remediation work.
+- **Allowed Scope:** Inspect repo route/page/navigation/sitemap/robots/metadata/schema/image patterns; create `docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`; update this Master Task Register; update `docs/DOCUMENT_CATALOG.md`.
+- **Forbidden Scope:** No source code edits; no route changes; no sitemap.xml changes; no robots.txt changes; no metadata implementation; no schema implementation; no image edits; no content rewrites; no UI changes; no HubSpot changes; no Stripe/payment changes; no scheduling changes; no planner changes; no runtime behavior changes; no environment variable changes; no secrets; no dependency changes; no package-lock changes; no deployment config changes.
+- **Target Files:** `docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** None. Documentation-only audit.
+- **Documentation Updates Required:** SEO baseline audit report, this task record, and Document Catalog entry.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `npm run build`.
+- **Exit Criteria:** Audit report lists discovered routes, sitemap inventory, robots inventory, metadata/crawlability/schema/image/internal-linking baselines, sitemap gaps, robots review recommendations, remediation backlog, and recommended next bounded tasks; only allowed target files are changed; protected systems remain untouched; build passes or unrelated failure is reported.
+- **Dependencies:** Prompt-created bounded work order; repository governance documents; current route tree; current sitemap and robots files.
+- **Operator Decision Required:** Review audit findings and decide which recommended SEO remediation task to activate next.
+- **Completion Notes:** Created the docs-only SEO baseline audit report. Discovered 118 React route declarations and 1 static public HTML file candidate. Current sitemap contains 7 URLs; 22 likely indexable route rows are missing from sitemap, including one dynamic package-detail route family; 6 sitemap URLs are marked legacy/review/remove. Major risks recorded: current WNYHS routes mostly fall through to client-side `noindex, nofollow`; sitemap is legacy; SPA built HTML lacks route-specific content/metadata; route-specific metadata and structured data are mostly absent. No source code, sitemap, robots, metadata, schema, page content, UI, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, dependency, package-lock, environment, secret, or deployment-config files were changed.
+
 
 ### CATEGORY-LANDING-001-A
 - **Task ID:** CATEGORY-LANDING-001-A
