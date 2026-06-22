@@ -479,6 +479,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by T-IMG-CATEGORY003-001 as a governance-only artifact. It does not authorize image generation, image file additions or replacements, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
 
+### `/docs/design-system/IMG-CATEGORY004_HOME_SECURITY_ASSET_GENERATION_PLAN_REV01.md`
+- **File path:** `docs/design-system/IMG-CATEGORY004_HOME_SECURITY_ASSET_GENERATION_PLAN_REV01.md`
+- **Purpose / likely role:** Home Security category asset generation plan converting the ten planned Home Security rows from IMG-CATEGORY003 into reusable prompt packages, output filenames, folder path, visual requirements, review criteria, sequencing, rejection/revision workflow, and future generation-task routing.
+- **Authority level:** **Design-system governance / Home Security asset generation planning / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by T-IMG-CATEGORY004-001 as a governance-only prompt-and-production plan. It does not authorize image generation, image file additions or replacements, category page implementation, CSS/token/component/route/layout changes, HubSpot changes, Stripe/payment changes, scheduling/planner/quote/runtime changes, protected-system changes, dependencies, package-lock, environment changes, secrets, Cloudflare config changes, or deployment.
+
 ### `/docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **File path:** `docs/governance/DESIGN002_WNYHS_VISUAL_SYSTEM_STANDARD_REV02.md`
 - **Purpose / likely role:** REV02 governed sitewide WNYHS visual token system standard for public marketing pages, including Manrope headings, Inter body/UI, shared CSS primitives, pricing boundary, catalog boundary, claims-safe copy posture, and protected-system exclusions.

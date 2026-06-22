@@ -238,6 +238,24 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created IMG-CATEGORY003 as a docs-only source manifest for 50 baseline planned category assets across Home Security, Home Automation, Aging In Place, Home Safety, and Home Lighting. Recorded asset IDs, classes, filenames, folder paths, priorities, required visual content, hardware cluster requirements, dashboard/Core requirements, planned approval status, and not-started generation status. Updated this register and `docs/DOCUMENT_CATALOG.md`. No image assets, application source, CSS/tokens/components, routes/layouts, runtime, HubSpot, Stripe/payment, scheduling, planner, quote, APIs/backend, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or protected-system files were modified.
 
+### T-IMG-CATEGORY004-001
+- **Task ID:** T-IMG-CATEGORY004-001
+- **Task Name:** Home Security Category Asset Generation Plan
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only Home Security category asset generation plan that converts the Home Security rows from IMG-CATEGORY003 into a concrete prompt-and-production plan for later asset generation.
+- **Allowed Scope:** Create `docs/design-system/IMG-CATEGORY004_HOME_SECURITY_ASSET_GENERATION_PLAN_REV01.md`; add this task record to the Master Task Register; update `docs/DOCUMENT_CATALOG.md` because design-system governance documents are tracked there; use claim-safe language only.
+- **Forbidden Scope:** No image generation; no image file additions, removals, or replacements; no public category page implementation; no CSS, token, component, route, or layout changes; no Stripe/payment changes; no HubSpot changes; no scheduling, planner, quote, runtime, environment, deployment, API/backend, Resend/email, dependency, package-lock, or protected-system changes; no new categories; no change to approved category strategy; no IMG-CATEGORY001, IMG-CATEGORY002, or IMG-CATEGORY003 changes except catalog references if required.
+- **Target Files:** `docs/design-system/IMG-CATEGORY004_HOME_SECURITY_ASSET_GENERATION_PLAN_REV01.md`, `docs/system/master-task-register.md`, and `docs/DOCUMENT_CATALOG.md`.
+- **Runtime Systems Affected:** None. Documentation-only planning update.
+- **Documentation Updates Required:** IMG-CATEGORY004 Home Security generation plan, this Master Task Register entry, and Document Catalog entry.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; forbidden-claim scan against touched files; `npm run build` unless repository guidance says docs-only changes do not require it.
+- **Exit Criteria:** IMG-CATEGORY004 exists with required sections covering purpose, authority, relationship to IMG-CATEGORY001/002/003, scope, Home Security asset list, visual direction, hero hardware cluster standard, dashboard/Core content requirements, asset-by-asset prompt package, output checklist, generation sequence, review checklist, rejection/revision workflow, future task routing, Codex restrictions, and success criteria; all ten planned Home Security assets from IMG-CATEGORY003 are included; task register and document catalog are updated; no forbidden claim terms are added in new task content; no image assets or application/runtime/protected-system files are modified.
+- **Dependencies:** Prompt-created bounded work order, IMG-CATEGORY001 REV01, IMG-CATEGORY002 REV01, IMG-CATEGORY003 REV01, DESIGN001 REV01, current brand/funnel standards, current governance authority chain, and `docs/system/step-current.md`.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created IMG-CATEGORY004 as a docs-only Home Security prompt-and-production plan for the ten planned Home Security category assets from IMG-CATEGORY003. Documented visual direction, hero hardware cluster requirements, dashboard/Core content requirements, prompt packages, output checklist, generation sequence, review checklist, rejection/revision workflow, and future routing to `T-IMG-CATEGORY005-001`. Updated `docs/DOCUMENT_CATALOG.md`. No image assets, application source, CSS/tokens/components, routes/layouts, runtime, HubSpot, Stripe/payment, scheduling, planner, quote, APIs/backend, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or protected-system files were modified.
+
 ### CATEGORY-LANDING-001-B
 - **Task ID:** CATEGORY-LANDING-001-B
 - **Task Name:** Home Security Category Landing Page
