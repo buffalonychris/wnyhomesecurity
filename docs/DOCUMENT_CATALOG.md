@@ -35,6 +35,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by `T-SITEARCH001-001`. Does not authorize source, route, navigation, footer, search, page-content, category, solution, image, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or deployment-config changes by itself.
 
+### `/docs/site-architecture/SITEARCH002_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_DECISION_STANDARD_REV01.md`
+- **File path:** `docs/site-architecture/SITEARCH002_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_DECISION_STANDARD_REV01.md`
+- **Purpose / likely role:** Docs-only public information architecture decision standard converting SITEARCH001 findings into formal decisions for homepage ownership, category and solution route patterns, package visibility, WNYHS Core visibility, search ownership, demo/dashboard ownership, campaign ownership, support/about/our-work/contact ownership, legal/system route ownership, navigation, footer, breadcrumbs, internal linking, canonical/redirect posture, SEO indexing, route conflicts, and future implementation sequencing.
+- **Authority level:** **Architecture decision standard / governance / documentation-only**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SITEARCH001-002`. Does not authorize source, route, navigation, footer, breadcrumb, search, page-content, category, solution, image, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or deployment-config changes by itself.
+
 ## `docs/seo/`
 
 ### `/docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`
