@@ -25,6 +25,16 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Customer-facing:** No.
 - **Notes:** Supports future Codex planning and is a required review aid before high-risk workflow changes; it does not replace higher-authority governance, runtime contracts, HubSpot REV03, or task-specific instructions.
 
+## `docs/seo/`
+
+### `/docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`
+- **File path:** `docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`
+- **Purpose / likely role:** Docs-only baseline audit inventorying current public-facing route candidates, sitemap URLs, robots.txt rules, index/sitemap classification, metadata coverage, crawlability, internal linking, image/media SEO signals, schema absence, sitemap gaps, and next bounded SEO remediation tasks.
+- **Authority level:** **SEO audit / baseline assessment / documentation-only evidence**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SEO-BASELINE001-001`. Does not authorize source code, route, sitemap, robots, metadata, schema, image, page-content, UI, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, dependency, package-lock, environment, secret, or deployment-config changes by itself.
+
 
 
 ## `docs/automation-system/`
