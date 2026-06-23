@@ -63,6 +63,30 @@ const routeMetadata = {
       'Explore aging-in-place smart-property support for Western New York homes, with simple controls, awareness tools, lighting, and family visibility.',
     image: '/images/home-security/homepage/category-aging-in-place.png',
   },
+  '/solutions/senior-safety': {
+    title: 'Senior Safety Support | WNY Home Security',
+    description:
+      'Plan aging-in-place awareness for Western New York homes with smart entry, lighting, activity cues, and family check-in visibility built around the household.',
+    image: '/images/home-security/solutions/solutions-aging-hero.png',
+  },
+  '/solutions/water-protection': {
+    title: 'Water Leak Awareness | WNY Home Security',
+    description:
+      'Plan water leak, freeze, sump, and utility-area awareness for Western New York homes with practical alerts around the places that matter most.',
+    image: '/images/home-security/solutions/solutions-water-hero.png',
+  },
+  '/solutions/family-awareness': {
+    title: 'Family Awareness | WNY Home Security',
+    description:
+      'Coordinate smart entry, package visibility, driveway awareness, and routine alerts for busy Western New York households using customer-owned controls.',
+    image: '/images/home-security/solutions/solutions-awareness-hero.png',
+  },
+  '/solutions/vacation-homes': {
+    title: 'Vacation Home Awareness | WNY Home Security',
+    description:
+      'Keep practical remote awareness for a seasonal or second home with smart access, water, temperature, and property visibility planning.',
+    image: '/images/home-security/solutions/solutions-vacation-hero.png',
+  },
 } satisfies Record<
   string,
   {
@@ -79,6 +103,10 @@ const scopedIndexablePaths = new Set([
   '/categories/home-safety',
   '/categories/home-lighting',
   '/categories/aging-in-place',
+  '/solutions/senior-safety',
+  '/solutions/water-protection',
+  '/solutions/family-awareness',
+  '/solutions/vacation-homes',
 ]);
 
 const CATEGORY_A_PATHS = new Set<string>([
