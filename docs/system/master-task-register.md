@@ -160,6 +160,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Operator Decision Required:** Review audit findings and decide which recommended SEO remediation task to activate next.
 - **Completion Notes:** Created the docs-only SEO baseline audit report. Discovered 118 React route declarations and 1 static public HTML file candidate. Current sitemap contains 7 URLs; 22 likely indexable route rows are missing from sitemap, including one dynamic package-detail route family; 6 sitemap URLs are marked legacy/review/remove. Major risks recorded: current WNYHS routes mostly fall through to client-side `noindex, nofollow`; sitemap is legacy; SPA built HTML lacks route-specific content/metadata; route-specific metadata and structured data are mostly absent. No source code, sitemap, robots, metadata, schema, page content, UI, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, dependency, package-lock, environment, secret, or deployment-config files were changed.
 
+### T-SEO001-001
+- **Task ID:** T-SEO001-001
+- **Task Name:** SEO Foundation Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Tags:** SEO / Governance / Foundation
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the WNYHS SEO foundation governance standard so future SEO remediation tasks have route classification, ownership, index, sitemap, robots, metadata, canonical, schema, image, internal-linking, search inclusion, package visibility, local SEO, measurement, and pre-merge checklist rules before implementation begins.
+- **Allowed Scope:** Create `docs/seo/SEO001_WNYHS_SEO_FOUNDATION_STANDARD_REV01.md`; update this Master Task Register; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md` if repository convention requires it.
+- **Forbidden Scope:** No metadata changes; no title tag changes; no meta description changes; no canonical tag changes; no sitemap changes; no robots changes; no structured data implementation; no route changes; no navigation changes; no search implementation changes; no category page content changes; no solution page content changes; no package content changes; no image changes; no generated images; no HubSpot; no Stripe/payment; no scheduling; no planner; no quote flow; no backend/API runtime; no Resend/email; no Cloudflare config; no `.env` or secrets; no dependency or package-lock changes.
+- **Target Files:** `docs/seo/SEO001_WNYHS_SEO_FOUNDATION_STANDARD_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only SEO governance standard.
+- **Documentation Updates Required:** SEO001 foundation standard, this task-register record, Document Catalog entry, and Markdown Manifest addendum.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`.
+- **Exit Criteria:** SEO001 exists with required sections; known baseline findings are documented as risks/gaps/future remediation tracks without remediation; route classification model is added; new-route SEO checklist is added; future implementation tasks are listed; only allowed documentation files changed; protected systems remain untouched; build passes.
+- **Dependencies:** Prompt-created bounded work order; current governance authority chain; `SEO-BASELINE001`; `SITEARCH001`; `SITEARCH002`; `SEARCH001`; current operational context.
+- **Operator Decision Required:** Review draft PR and decide whether to merge or activate future SEO remediation tasks.
+- **Completion Notes:** Created the docs-only SEO foundation standard. Documented known baseline risks, route classification model, index/noindex governance, sitemap governance, robots review governance, metadata governance, canonical URL governance, structured data governance, image SEO governance, internal linking governance, site search inclusion governance, package SEO visibility, QR/campaign treatment, demo/interactive treatment, local SEO, service-area strategy, SPA crawlability risk management, measurement/reporting standards, forbidden SEO shortcuts, new-route pre-merge SEO checklist, future remediation tracks, required future implementation tasks, Codex restrictions, and success criteria. No metadata, title tag, canonical, sitemap, robots, schema, route, navigation, search implementation, category content, solution content, package content, image, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, environment, secret, dependency, or package-lock changes were made.
+
 
 ### CATEGORY-LANDING-001-A
 - **Task ID:** CATEGORY-LANDING-001-A

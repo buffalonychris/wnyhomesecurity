@@ -77,6 +77,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by `T-SEO-BASELINE001-001`. Does not authorize source code, route, sitemap, robots, metadata, schema, image, page-content, UI, HubSpot, Stripe/payment, scheduling, Resend/email, API/backend, dependency, package-lock, environment, secret, or deployment-config changes by itself.
 
+### `/docs/seo/SEO001_WNYHS_SEO_FOUNDATION_STANDARD_REV01.md`
+- **File path:** `docs/seo/SEO001_WNYHS_SEO_FOUNDATION_STANDARD_REV01.md`
+- **Purpose / likely role:** SEO foundation governance standard defining WNYHS route classification, index/noindex, sitemap, robots review, metadata, canonical, structured data, image SEO, internal linking, search inclusion, package visibility, QR/campaign, demo, local SEO, service-area, measurement, forbidden shortcut, new-route checklist, and future remediation task rules.
+- **Authority level:** **SEO governance standard / documentation-only foundation**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SEO001-001`. Does not authorize metadata, title tag, canonical, sitemap, robots, schema, route, navigation, search, page-content, image, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, environment, secret, dependency, or package-lock changes by itself.
+
 
 
 ## `docs/automation-system/`
