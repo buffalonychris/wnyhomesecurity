@@ -184,20 +184,20 @@ const HomeSecurityLanding = (_props: Props) => {
         <div>
           <p className="wnyhs-eyebrow hs-premium-eyebrow">Search Access</p>
           <h2 id="home-search-heading">Find the right starting point in your own words.</h2>
-          <p>
-            Use these examples as a starting point while we finish building full site search.
-          </p>
+          <p>Use these examples as a starting point for public WNYHS search.</p>
         </div>
-        <div className="hs-home-search-box" role="search" aria-label="Search placeholder">
+        <Link className="hs-home-search-box" to="/search" aria-label="Open WNYHS public search">
           <span>Search WNYHS</span>
           <div className="hs-home-search-input" aria-hidden="true">
             Try: {searchExamples[0]}
           </div>
-          <p>Full search is coming soon.</p>
-        </div>
+          <p>Open public site search.</p>
+        </Link>
         <div className="hs-home-search-examples" aria-label="Example search terms">
           {searchExamples.map((term) => (
-            <span key={term}>{term}</span>
+            <Link key={term} to={`/search?q=${encodeURIComponent(term)}`}>
+              {term}
+            </Link>
           ))}
         </div>
       </section>
