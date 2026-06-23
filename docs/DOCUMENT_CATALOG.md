@@ -670,7 +670,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **System governance / Codex work-order efficiency standard**
 - **Customer-facing:** No.
 - **Implementation authority:** No, not by itself. Consumed by future bounded Codex work orders.
-- **Notes:** Added by OPS003-CODEX-CONTEXT-EFFICIENCY-001 as docs-only governance. It improves context efficiency without weakening authority-chain enforcement, bounded task execution, protected-system boundaries, claims guardrails, or validation discipline.
+- **Notes:** Added by OPS003-CODEX-CONTEXT-EFFICIENCY-001 as docs-only governance and updated by T-OPS001-002 to require targeted-read efficiency instructions and ChatGPT post-run summary review. It improves context efficiency without weakening authority-chain enforcement, bounded task execution, protected-system boundaries, claims guardrails, or validation discipline.
 
 ### `/docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **File path:** `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
@@ -698,7 +698,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **File path:** `docs/system/agent.md`
 - **Purpose / likely role:** Codex agent operating standards and execution expectations.
 - **Authority level:** **System governance**
-- **Notes:** Explicitly authoritative per root instructions.
+- **Notes:** Explicitly authoritative per root instructions. Updated by T-OPS001-002 to point future work orders to model/reasoning guidance and ChatGPT context-efficiency review duties.
 
 ### `/docs/system/plan.md`
 - **File path:** `docs/system/plan.md`
@@ -740,7 +740,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Active Codex governance contract**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Required review/load document for future Codex tasks; does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
+- **Notes:** Required review/load document for future Codex tasks; updated by T-OPS001-002 to require model/reasoning guidance in work orders and ChatGPT post-run summary review. It does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
 
 ### `/docs/codex/CODEX_TASK_REGISTER_RULES.md`
 - **File path:** `docs/codex/CODEX_TASK_REGISTER_RULES.md`

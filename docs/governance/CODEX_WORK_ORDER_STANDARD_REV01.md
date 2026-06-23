@@ -26,6 +26,29 @@ It does not authorize implementation by itself. Every task still requires a curr
 
 Future Codex work orders should include these sections in this order unless the operator intentionally marks a section as not applicable.
 
+### RECOMMENDED CODEX MODEL
+
+Every future Codex work order must include:
+
+```text
+Recommended Codex model:
+- Model:
+- Reasoning:
+- Why:
+```
+
+Default guidance:
+
+- Model: GPT-5.5
+- Reasoning: Medium
+- Why: Standard bounded repo task with governance constraints.
+
+Use Reasoning: High for runtime bugs, route failures, protected systems, architecture conflicts, large refactors, and payment/scheduling/API work.
+
+Use Reasoning: Medium for docs, governance, small route/link changes, search planning, CSS/token cleanup, and bounded component edits.
+
+Do not use Mini for WNYHS repo work.
+
 ### SYSTEM CONTEXT
 
 Define the repository, current operational context, controlling Step or context document, protected-system posture, and any execution constraints.
@@ -123,6 +146,19 @@ Require Codex to confirm:
 - no unauthorized PR or merge occurred
 - any unresolved issue is clearly stated
 
+### CHATGPT POST-RUN REVIEW
+
+After each Codex run, ChatGPT must evaluate the Codex summary for:
+
+- Scope compliance
+- Validation evidence
+- Protected-system compliance
+- Context Efficiency Report
+- Prompt improvement lesson
+- Whether governance should be updated
+
+ChatGPT should use that review to tighten the next work order and promote repeated guidance into repository docs when patterns repeat.
+
 ---
 
 ## 4. Branch Rules
@@ -206,9 +242,11 @@ Codex must stop execution and request operator revision or clarification when an
 
 ## 9. Model Guidance
 
-- Use the strongest available reasoning/coding model for governance, runtime, CRM, payment, protected-system, and multi-file implementation tasks.
-- A lighter or faster model may be used for simple single-file docs or copy cleanup when protected systems are not implicated.
-- When a task has uncertain authority, protected-system overlap, or multi-step validation, prefer the stronger model.
+- Every work order must include the required `Recommended Codex model` block from Section 3.
+- The default model guidance is GPT-5.5 with Medium reasoning for standard bounded repository tasks with governance constraints.
+- Use High reasoning for runtime bugs, route failures, protected systems, architecture conflicts, large refactors, and payment/scheduling/API work.
+- Use Medium reasoning for docs, governance, small route/link changes, search planning, CSS/token cleanup, and bounded component edits.
+- Do not use Mini for WNYHS repo work.
 
 ---
 
@@ -230,6 +268,11 @@ Required authority docs:
 - docs/system/step-current.md
 - docs/system/master-task-register.md
 - [additional locked specs/contracts, if any]
+
+Recommended Codex model:
+- Model: GPT-5.5
+- Reasoning: Medium
+- Why: Standard bounded repo task with governance constraints.
 
 TASK ID / TASK NAME
 
@@ -270,6 +313,14 @@ REFERENCE ONLY FILES
 Codex may read but must not edit:
 - [path]
 - [path]
+
+CONTEXT EFFICIENCY INSTRUCTION
+
+Use targeted reads after confirming governing authority.
+Prefer rg/search for task-specific sections.
+Do not read full large docs unless needed.
+Report any redundant context loads.
+Report a shorter future prompt pattern when useful.
 
 FORBIDDEN MODIFICATIONS
 
