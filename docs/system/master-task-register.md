@@ -122,6 +122,25 @@ Initiative records group bounded tasks but are not executable task records. Code
 
 ## Active Tasks (Execution Driver)
 
+### T-DEPLOY-REDIRECT001-002
+- **Task ID:** T-DEPLOY-REDIRECT001-002
+- **Task Name:** Fix Cloudflare Pages Redirects and SPA Fallback
+- **Status:** DONE
+- **Category:** QA
+- **Tags:** Deployment / Cloudflare Pages / Redirects / SPA Fallback
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Fix the deployment issue causing blank pages on the `www` hostname by removing unsupported Cloudflare Pages redirect syntax while preserving route architecture work completed in `T-SITEARCH002-001`.
+- **Allowed Scope:** Modify `public/_redirects`; bump the visible site version; update this task-register record; inspect deployment fallback and build configuration files as needed.
+- **Forbidden Scope:** No category route changes; no solution route changes; no navigation changes; no footer link changes; no search changes; no sitemap changes; no robots changes; no canonical strategy changes; no category or solution content changes; no image generation pipeline changes; no HubSpot, Stripe/payment, scheduling, planner, quote flow, APIs/backend, Resend/email, package-lock, dependency, environment variable, Cloudflare DNS, or Cloudflare dashboard changes.
+- **Target Files:** `public/_redirects`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Cloudflare Pages static redirect/fallback behavior only.
+- **Documentation Updates Required:** This task-register record only.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`; inspect generated `dist/_redirects`.
+- **Exit Criteria:** Unsupported domain-level redirect is removed from `_redirects`; `/api/*` pass-through remains; SPA fallback to `/index.html` remains; generated `dist/_redirects` matches the valid redirect configuration; version is bumped; protected systems and route architecture files remain untouched.
+- **Dependencies:** Prompt-created bounded work order; `T-DEPLOY-REDIRECT001-001` diagnosis; completed `T-SITEARCH002-001` category route work.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Removed the unsupported domain-level redirect from `public/_redirects`, preserving `/api/*  /api/:splat  200` and the SPA fallback `/*      /index.html 200`. Confirmed `npm run build` passed and generated `dist/_redirects` contains only the valid API pass-through and SPA fallback. Bumped visible site version to `v1.0.169`. No category routes, flat routes, homepage behavior, navigation, footer links, search, sitemap, robots, canonical strategy, category content, solution content, image generation pipeline, HubSpot, Stripe/payment, scheduling, planner, quote flow, APIs/backend, Resend/email, package-lock, dependencies, environment variables, Cloudflare DNS, or Cloudflare dashboard settings were changed.
+
 ### T-SEO-BASELINE001-001
 - **Task ID:** T-SEO-BASELINE001-001
 - **Task Name:** Public Route Inventory and SEO Baseline Audit
