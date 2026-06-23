@@ -3136,6 +3136,24 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### T-SEO001-002
+- **Task ID:** T-SEO001-002
+- **Task Name:** Metadata and Canonical Audit
+- **Status:** DONE
+- **Category:** SEO / GOV / AUDIT
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Audit current WNYHS title, description, canonical, Open Graph/social, robots, index/noindex, route metadata, generic app-shell metadata, and public route ownership gaps before implementation.
+- **Allowed Scope:** Create `docs/seo/SEO002_WNYHS_METADATA_AND_CANONICAL_AUDIT_REV01.md`; inspect route definitions, metadata utilities/components, `index.html`, sitemap, robots, public search, package/solution route sources, and static demo HTML; update this Master Task Register, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md`.
+- **Forbidden Scope:** No metadata changes, title tag changes, meta description changes, canonical tag changes, sitemap changes, robots changes, structured data implementation, route changes, navigation changes, search implementation changes, category/solution/package content changes, image changes, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env` or secrets, dependency changes, or package-lock changes.
+- **Target Files:** `docs/seo/SEO002_WNYHS_METADATA_AND_CANONICAL_AUDIT_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only audit.
+- **Documentation Updates Required:** SEO002 audit document, this task-register record, Document Catalog entry, and Markdown Manifest addendum.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`.
+- **Exit Criteria:** SEO002 exists with required sections; metadata system overview and route inventory are documented; critical/high priority findings and next implementation tasks are listed; only allowed documentation files changed; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** SEO001 foundation standard, SITEARCH001 audit, SITEARCH002 decision standard, SEARCH001 search architecture/index plan, current governance authority chain, and prompt-created bounded work order.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created SEO002 as an audit-only metadata and canonical review. The audit found current WNYHS metadata is mostly global/app-shell plus client-side `Seo` policy; priority WNYHS homepage/category/solution/marketing routes generally lack route-specific titles and descriptions, fall through to noindex/nofollow, lack Open Graph/Twitter metadata, and have canonical/sitemap hostname and legacy-route alignment gaps. No source, route, metadata, sitemap, robots, schema, image, runtime, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API, Resend/email, Cloudflare, dependency, or package-lock files were changed.
+
 ### QUOTESYSTEM-014
 - **Task ID:** QUOTESYSTEM-014
 - **Task Name:** Funeral Home Test Case

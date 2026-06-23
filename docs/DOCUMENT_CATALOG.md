@@ -85,6 +85,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by `T-SEO001-001`. Does not authorize metadata, title tag, canonical, sitemap, robots, schema, route, navigation, search, page-content, image, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, environment, secret, dependency, or package-lock changes by itself.
 
+### `/docs/seo/SEO002_WNYHS_METADATA_AND_CANONICAL_AUDIT_REV01.md`
+- **File path:** `docs/seo/SEO002_WNYHS_METADATA_AND_CANONICAL_AUDIT_REV01.md`
+- **Purpose / likely role:** Audit-only metadata and canonical review documenting current WNYHS app-shell/client-side SEO system, route metadata inventory, homepage/category/solution/search/marketing/campaign/package/legal/demo findings, canonical conflicts, Open Graph/social gaps, index/noindex posture, SPA crawlability risk, risk ranking, and future implementation task sequence.
+- **Authority level:** **SEO audit / documentation-only implementation planning input**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SEO001-002`. Does not authorize metadata changes, title tag changes, meta description changes, canonical changes, sitemap changes, robots changes, schema implementation, route changes, navigation changes, search implementation, page-content changes, image changes, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, environment, secret, dependency, or package-lock changes by itself.
+
 
 
 ## `docs/automation-system/`
