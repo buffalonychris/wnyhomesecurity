@@ -125,3 +125,9 @@ Implementation responses must include:
 6. Confirmed untouched protected systems
 7. Any unresolved issues
 
+## 9. Codex Work Order and Context Efficiency Rules
+
+Future Codex work orders must follow the current Codex run contract and work-order standard, including required model/reasoning guidance and context-efficiency instructions.
+
+ChatGPT must review each Codex completion summary for scope compliance, validation evidence, protected-system compliance, context-efficiency reporting, prompt-improvement lessons, and whether repeated patterns should be promoted into repository governance.
+

@@ -870,6 +870,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Completed docs-only governance creation for OPS003. Created the context efficiency standard, registered it in the document catalog, added the manifest addendum, and recorded OPS003-CODEX-CONTEXT-EFFICIENCY-001 as DONE without editing source, CSS, app, runtime, HubSpot, Stripe/payment, protected-system, asset, dependency, package-lock, or version files.
 
+### T-OPS001-002
+- **Task ID:** T-OPS001-002
+- **Task Name:** Add Codex Model Selection and Context Efficiency Guidance
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add governance requiring future Codex work orders to include model/reasoning guidance and requiring ChatGPT to evaluate Codex Context Efficiency Reports after each run.
+- **Allowed Scope:** Docs-only governance update to Codex run/work-order/context-efficiency owner docs, agent governance pointer, Master Task Register, Document Catalog, and Markdown Manifest.
+- **Forbidden Scope:** No app/source code changes; no routes; no navigation; no search implementation; no category pages; no solution pages; no image generation; no HubSpot; no Stripe/payment; no scheduling; no planner; no quote flow; no backend/API runtime; no Resend/email; no Cloudflare config; no environment variables or secrets; no dependencies; no package-lock.
+- **Target Files:** `docs/codex/CODEX_RUN_CONTRACT.md`, `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`, `docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md`, `docs/system/agent.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Add model/reasoning guidance, ChatGPT post-run review duties, targeted context-efficiency instruction, catalog/manifest traceability, and this task-register record.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`.
+- **Exit Criteria:** Future work orders require the Recommended Codex model block; default/High/Medium/Mini guidance is documented; ChatGPT post-run review requirements are documented; context-efficiency instruction is documented; Master Task Register, Document Catalog, and Markdown Manifest are updated; only allowed docs files changed; protected systems remain untouched; build passes or unrelated failure is reported.
+- **Dependencies:** Prompt-created bounded T-OPS001-002 work order, CODEX-CONTRACT001, OPS003-CODEX-CONTEXT-EFFICIENCY-001, current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Added required future work-order model/reasoning guidance to the Codex run contract and work-order standard, including default GPT-5.5 Medium guidance, High/Medium task-type guidance, and the rule not to use Mini for WNYHS repo work. Added ChatGPT post-run review duties for scope compliance, validation evidence, protected-system compliance, Context Efficiency Report quality, prompt-improvement lessons, and governance-update need. Added the targeted context-efficiency instruction to OPS003 and the work-order template. Updated the agent governance pointer, document catalog, markdown manifest, and this task-register record. No app/source/runtime/routes/navigation/search/category/solution/image-generation/HubSpot/Stripe/payment/scheduling/planner/quote-flow/backend/API/Resend/email/Cloudflare/env/secret/dependency/package-lock files were changed.
+
 ### DESIGN-TOKEN-SYSTEM-002
 - **Task ID:** DESIGN-TOKEN-SYSTEM-002
 - **Task Name:** Public Visual QA Cleanup After v1.0.121

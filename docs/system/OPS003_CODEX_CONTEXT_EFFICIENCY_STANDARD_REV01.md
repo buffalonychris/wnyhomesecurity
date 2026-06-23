@@ -147,6 +147,18 @@ Avoid broad searches unless needed and explain any broad search you perform.
 If additional scope appears necessary, stop and report the proposed follow-up instead of expanding the task.
 ```
 
+Future Codex work orders should also include this shorter task instruction when a full efficiency block would be redundant:
+
+```text
+CONTEXT EFFICIENCY INSTRUCTION
+
+Use targeted reads after confirming governing authority.
+Prefer rg/search for task-specific sections.
+Do not read full large docs unless needed.
+Report any redundant context loads.
+Report a shorter future prompt pattern when useful.
+```
+
 ## Required Codex Summary Efficiency Block
 
 Codex final summaries should include:
@@ -158,6 +170,25 @@ Context efficiency notes:
 - Files inspected beyond target files, if any:
 - Token usage, if available:
 - Any governance that should be promoted to reduce future prompt size:
+```
+
+After each run, ChatGPT must evaluate the Codex summary and Context Efficiency Report for:
+
+1. Scope compliance
+2. Validation evidence
+3. Protected-system compliance
+4. Context Efficiency Report quality
+5. Prompt improvement lesson
+6. Whether governance should be updated
+
+This creates the recursive improvement loop:
+
+```text
+Codex summary
+-> Context Efficiency Report
+-> ChatGPT extracts lesson
+-> next prompt gets shorter/tighter
+-> repo governance updates when patterns repeat
 ```
 
 ## Relationship to OPS002
@@ -204,3 +235,5 @@ A Codex prompt is OPS003-compliant when:
 6. It defines validation.
 7. It requires Codex to report token usage if available.
 8. It stops rather than expanding scope.
+9. It includes model/reasoning guidance or references the required work-order model block.
+10. It gives ChatGPT enough summary structure to evaluate scope, validation, protected systems, context efficiency, prompt lessons, and governance-update need after the run.

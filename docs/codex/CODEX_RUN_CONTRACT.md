@@ -49,6 +49,42 @@ Individual prompts must add only the specific runtime, specification, audit, cat
 
 Task-specific review documents do not expand scope by themselves. They provide context and constraints for the explicitly named task.
 
+## 4A. Required Model and Reasoning Guidance
+Every future Codex work order must include this block:
+
+```text
+Recommended Codex model:
+- Model:
+- Reasoning:
+- Why:
+```
+
+Default guidance:
+
+- Model: GPT-5.5
+- Reasoning: Medium
+- Why: Standard bounded repo task with governance constraints.
+
+Use Reasoning: High for:
+
+- runtime bugs
+- route failures
+- protected systems
+- architecture conflicts
+- large refactors
+- payment/scheduling/API work
+
+Use Reasoning: Medium for:
+
+- docs
+- governance
+- small route/link changes
+- search planning
+- CSS/token cleanup
+- bounded component edits
+
+Do not use Mini for WNYHS repo work.
+
 ## 5. Master Task Register Rules
 - Codex may execute only the task explicitly named in the current prompt.
 - ACTIVE status is authorization, not permission to bundle.
@@ -233,6 +269,15 @@ Every Codex task must return:
 8. Known pre-existing failures separated from task regressions
 9. Self-check
 
+ChatGPT must evaluate every Codex summary for:
+
+1. Scope compliance
+2. Validation evidence
+3. Protected-system compliance
+4. Context Efficiency Report
+5. Prompt improvement lesson
+6. Whether governance should be updated
+
 ## 25. Stop Conditions
 Codex must stop and request revision when any of these conditions apply:
 
@@ -257,8 +302,20 @@ Future prompts can use this compact pattern:
 SYSTEM CONTEXT:
 Load and follow /docs/codex/CODEX_RUN_CONTRACT.md.
 
+Recommended Codex model:
+- Model:
+- Reasoning:
+- Why:
+
 TASK ID:
 ...
+
+CONTEXT EFFICIENCY INSTRUCTION:
+Use targeted reads after confirming governing authority.
+Prefer rg/search for task-specific sections.
+Do not read full large docs unless needed.
+Report any redundant context loads.
+Report a shorter future prompt pattern when useful.
 
 TASK-SPECIFIC REVIEW DOCS:
 ...
