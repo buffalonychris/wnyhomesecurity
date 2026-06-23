@@ -16,6 +16,26 @@ const ensureTag = <T extends HTMLElement>(selector: string, create: () => T): T 
   return element;
 };
 
+const setMetaTag = (selector: string, attribute: 'name' | 'property', key: string, content?: string) => {
+  const existing = document.head.querySelector<HTMLMetaElement>(selector);
+
+  if (!content) {
+    existing?.remove();
+    return;
+  }
+
+  const tag =
+    existing ??
+    (() => {
+      const element = document.createElement('meta');
+      element.setAttribute(attribute, key);
+      document.head.appendChild(element);
+      return element;
+    })();
+
+  tag.setAttribute('content', content);
+};
+
 const Seo = ({ title, description }: SeoProps) => {
   const location = useLocation();
 
@@ -33,21 +53,26 @@ const Seo = ({ title, description }: SeoProps) => {
       link.setAttribute('rel', 'canonical');
       return link;
     });
-    canonicalLink.setAttribute('href', buildCanonicalUrl(policy.canonicalPath));
+    const canonicalUrl = buildCanonicalUrl(policy.canonicalPath);
+    canonicalLink.setAttribute('href', canonicalUrl);
 
-    const finalTitle = title ?? document.title ?? brandSite;
+    const finalTitle = title ?? policy.title ?? brandSite;
     if (finalTitle) {
       document.title = finalTitle;
     }
 
-    if (description) {
-      const descriptionTag = ensureTag('meta[name="description"]', () => {
-        const tag = document.createElement('meta');
-        tag.setAttribute('name', 'description');
-        return tag;
-      });
-      descriptionTag.setAttribute('content', description);
-    }
+    const finalDescription = description ?? policy.description;
+    setMetaTag('meta[name="description"]', 'name', 'description', finalDescription);
+
+    setMetaTag('meta[property="og:title"]', 'property', 'og:title', policy.openGraph?.title);
+    setMetaTag('meta[property="og:description"]', 'property', 'og:description', policy.openGraph?.description);
+    setMetaTag('meta[property="og:url"]', 'property', 'og:url', policy.openGraph ? canonicalUrl : undefined);
+    setMetaTag('meta[property="og:image"]', 'property', 'og:image', policy.openGraph?.image);
+
+    setMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', policy.twitter?.card);
+    setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', policy.twitter?.title);
+    setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', policy.twitter?.description);
+    setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', policy.twitter?.image);
   }, [location.pathname, title, description]);
 
   return null;
