@@ -3154,6 +3154,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created SEO002 as an audit-only metadata and canonical review. The audit found current WNYHS metadata is mostly global/app-shell plus client-side `Seo` policy; priority WNYHS homepage/category/solution/marketing routes generally lack route-specific titles and descriptions, fall through to noindex/nofollow, lack Open Graph/Twitter metadata, and have canonical/sitemap hostname and legacy-route alignment gaps. No source, route, metadata, sitemap, robots, schema, image, runtime, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API, Resend/email, Cloudflare, dependency, or package-lock files were changed.
 
+### T-SEO001-003
+- **Task ID:** T-SEO001-003
+- **Task Name:** Metadata Implementation Plan
+- **Status:** DONE
+- **Category:** SEO / GOV / PLAN
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only implementation plan for future route-level metadata, canonical policy, index/noindex remediation, and Open Graph/Twitter metadata work based on SEO001 and SEO002.
+- **Allowed Scope:** Create `docs/seo/SEO003_WNYHS_METADATA_IMPLEMENTATION_PLAN_REV01.md`; update this Master Task Register, `docs/DOCUMENT_CATALOG.md`, and `docs/MARKDOWN_MANIFEST.md` if repository convention requires it.
+- **Forbidden Scope:** No metadata changes, title tag changes, meta description changes, canonical tag changes, robots/index behavior changes, sitemap changes, robots changes, structured data implementation, route changes, navigation changes, search implementation changes, category/solution/package content changes, image changes, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env` or secrets, dependency changes, or package-lock changes.
+- **Target Files:** `docs/seo/SEO003_WNYHS_METADATA_IMPLEMENTATION_PLAN_REV01.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only implementation plan.
+- **Documentation Updates Required:** SEO003 implementation plan, this task-register record, Document Catalog entry, and Markdown Manifest addendum.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`.
+- **Exit Criteria:** SEO003 exists with required sections; canonical domain recommendation is documented; index/noindex policy decision is documented; metadata field requirements and page-group implementation order are documented; future implementation tasks are listed; only allowed documentation files changed; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** SEO001 foundation standard, SEO002 metadata and canonical audit, SITEARCH002 decision standard, SEARCH001 search architecture/index plan, current governance authority chain, and prompt-created bounded work order.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Created SEO003 as a docs-only metadata implementation plan. Recommended `https://www.wnyhomesecurity.com` as the future canonical domain to align canonical URLs with the current sitemap hostname unless a separate domain/deployment task changes public hostname strategy first. Documented public priority page indexability after classification, noindex/review/protected treatment for transaction/payment/print/admin/tokenized/test/prototype/internal/legacy review routes, noindex handling for search query-result URLs, required metadata fields, route-group implementation order, future bounded tasks, validation, rollback, and Codex restrictions. No source, route, metadata, sitemap, robots, schema, image, runtime, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API, Resend/email, Cloudflare, dependency, or package-lock files were changed.
+
 ### QUOTESYSTEM-014
 - **Task ID:** QUOTESYSTEM-014
 - **Task Name:** Funeral Home Test Case
