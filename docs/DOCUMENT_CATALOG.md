@@ -59,6 +59,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by `T-SITEARCH002-002`. Does not authorize redirects, route changes, navigation changes, footer changes, breadcrumb changes, search changes, sitemap changes, robots changes, canonical tag changes, page-content changes, category changes, solution changes, image work, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or deployment-config changes by itself.
 
+### `/docs/site-architecture/SEARCH001_WNYHS_PUBLIC_SITE_SEARCH_ARCHITECTURE_AND_INDEX_PLAN_REV01.md`
+- **File path:** `docs/site-architecture/SEARCH001_WNYHS_PUBLIC_SITE_SEARCH_ARCHITECTURE_AND_INDEX_PLAN_REV01.md`
+- **Purpose / likely role:** Docs-only public-site search architecture and index plan defining search ownership, searchable and non-searchable content models, result object fields, ranking, UI behavior, route recommendation, index-source options, category/solution/page/package/demo/campaign/legal indexing rules, protected-system restrictions, and future implementation tasks.
+- **Authority level:** **Search architecture and index plan / governance / documentation-only**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SEARCH001-001`. Does not authorize search implementation, `/search` route creation, header/homepage search UI changes, navigation changes, route changes, page-content changes, category changes, solution changes, package changes, sitemap changes, robots changes, canonical tag changes, runtime, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API, Resend/email, Cloudflare, dependency, package-lock, environment, secret, or image changes by itself.
+
 ## `docs/seo/`
 
 ### `/docs/seo/SEO-BASELINE001_WNYHS_PUBLIC_ROUTE_INVENTORY_AND_SEO_BASELINE_REV01.md`
