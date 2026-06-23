@@ -224,6 +224,105 @@
   color: var(--wnyhs-dark-muted);
 }
 
+.wnyhs-search-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.wnyhs-search-hero {
+  background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
+}
+
+.wnyhs-search-form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.wnyhs-search-label {
+  color: var(--wnyhs-ink);
+  font-weight: 800;
+}
+
+.wnyhs-search-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.wnyhs-search-input-row input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.72rem 0.85rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-surface);
+  color: var(--wnyhs-ink);
+  font: inherit;
+}
+
+.wnyhs-search-input-row input:focus {
+  border-color: var(--wnyhs-gold);
+  outline: none;
+  box-shadow: var(--wnyhs-focus);
+}
+
+.wnyhs-search-suggestions,
+.wnyhs-search-actions,
+.wnyhs-search-results-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.wnyhs-search-results-head {
+  justify-content: space-between;
+}
+
+.wnyhs-search-result-groups,
+.wnyhs-search-result-group,
+.wnyhs-search-empty {
+  display: grid;
+  gap: 1rem;
+}
+
+.wnyhs-search-group-title,
+.wnyhs-search-empty h3 {
+  margin: 0;
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
+  letter-spacing: 0;
+}
+
+.wnyhs-search-result-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+}
+
+.wnyhs-search-result-card {
+  align-content: start;
+}
+
+.wnyhs-search-category,
+.wnyhs-search-empty p {
+  margin: 0;
+  color: var(--wnyhs-ink-secondary);
+}
+
+@media (max-width: 640px) {
+  .wnyhs-search-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .wnyhs-search-input-row .wnyhs-button,
+  .wnyhs-search-results-head .wnyhs-button,
+  .wnyhs-search-actions .wnyhs-button {
+    width: 100%;
+  }
+}
+
 .hs-premium-shell--home-redesign {
   --hs-home-bg: var(--wnyhs-canvas);
   --hs-home-panel: var(--wnyhs-surface);

@@ -2192,6 +2192,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--hs-home-gold) 45%, var(--hs-home-border));
   background: var(--hs-home-panel);
+  text-decoration: none;
 }
 
 .hs-home-search-box > span {
@@ -2232,6 +2233,7 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
 }
 
 .hs-home-search-examples span,
+.hs-home-search-examples a,
 .hs-home-trust-bar span {
   border-radius: 999px;
   border: 1px solid var(--hs-home-border);
@@ -2239,10 +2241,12 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   font-weight: 800;
 }
 
-.hs-home-search-examples span {
+.hs-home-search-examples span,
+.hs-home-search-examples a {
   padding: 0.3rem 0.6rem;
   background: var(--hs-home-panel-soft);
   color: var(--hs-home-muted);
+  text-decoration: none;
 }
 
 .hs-home-hero {
