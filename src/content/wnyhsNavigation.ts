@@ -19,6 +19,7 @@ export type FunnelStepDefinition = {
 export const HOME_SECURITY_ROUTES = {
   home: '/home-security',
   search: '/home-security#home-search',
+  homeSecurityCategory: '/categories/home-security',
   packages: '/packages?vertical=home-security',
   comparison: '/comparison?vertical=home-security',
   whatsIncluded: '/home-security/whats-included',
@@ -34,7 +35,7 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
   primary: [
     { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/home-security' },
     { id: 'search', label: 'Search', href: HOME_SECURITY_ROUTES.search, matchPath: '/home-security', matchHash: '#home-search' },
-    { id: 'packages', label: 'Solutions', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
+    { id: 'solutions', label: 'Solutions', href: HOME_SECURITY_ROUTES.homeSecurityCategory, matchPath: '/categories/home-security' },
     { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
     { id: 'estimate', label: 'Estimate', href: '/contact?vertical=home-security', matchPath: '/contact' },
     { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },

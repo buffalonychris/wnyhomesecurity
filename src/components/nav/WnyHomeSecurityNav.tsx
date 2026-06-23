@@ -54,7 +54,7 @@ const WnyHomeSecurityNav = ({ pathParam = '' }: WnyHomeSecurityNavProps) => {
           <NavLink to="/home-security" className={navLinkClass}>
             Home
           </NavLink>
-          <NavLink to="/packages?vertical=home-security" className={navLinkClass}>
+          <NavLink to="/categories/home-security" className={navLinkClass}>
             Solutions
           </NavLink>
           <NavLink to={fitCheckLink} className={navLinkClass}>
