@@ -18,7 +18,7 @@ const categoryExplorer = [
     imageAlt: 'Exterior home entry with smart property awareness equipment',
     icon: '/images/home-security/homepage/icon-category-home-security.png',
     iconAlt: 'Home security category icon',
-    href: '/home-security',
+    href: '/categories/home-security',
   },
   {
     name: 'Aging-In-Place',
@@ -28,7 +28,7 @@ const categoryExplorer = [
     imageAlt: 'Comfortable home interior planned for family awareness and independence',
     icon: '/images/home-security/homepage/icon-category-aging-in-place.png',
     iconAlt: 'Aging-in-place category icon',
-    href: '/aging-in-place',
+    href: '/categories/aging-in-place',
   },
   {
     name: 'Environmental Safety',
@@ -38,7 +38,7 @@ const categoryExplorer = [
     imageAlt: 'Home utility area with environmental safety awareness equipment',
     icon: '/images/home-security/homepage/icon-category-environmental-safety.png',
     iconAlt: 'Environmental safety category icon',
-    href: '/home-safety',
+    href: '/categories/home-safety',
   },
   {
     name: 'Home Automation',
@@ -48,7 +48,7 @@ const categoryExplorer = [
     imageAlt: 'Smart home dashboard and automation controls for everyday routines',
     icon: '/images/home-security/homepage/icon-category-home-automation.png',
     iconAlt: 'Home automation category icon',
-    href: '/home-automation',
+    href: '/categories/home-automation',
   },
   {
     name: 'Home Lighting',
@@ -58,7 +58,7 @@ const categoryExplorer = [
     imageAlt: 'Home exterior with planned lighting for arrival and outdoor visibility',
     icon: '/images/home-security/homepage/icon-category-home-lighting.png',
     iconAlt: 'Home lighting category icon',
-    href: '/home-lighting',
+    href: '/categories/home-lighting',
   },
 ] as const;
 

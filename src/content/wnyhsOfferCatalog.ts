@@ -37,6 +37,14 @@ export const offeringsPath = '/packages?vertical=home-security';
 export const fitCheckPath = '/discovery?vertical=home-security';
 export const estimatePath = '/contact?vertical=home-security';
 
+export const categoryPaths = {
+  homeSecurity: '/categories/home-security',
+  homeAutomation: '/categories/home-automation',
+  homeSafety: '/categories/home-safety',
+  homeLighting: '/categories/home-lighting',
+  agingInPlace: '/categories/aging-in-place',
+} as const;
+
 export const offerAnchors = {
   core: `${offeringsPath}#wnyhs-core`,
   categories: `${offeringsPath}#offer-categories`,
@@ -67,31 +75,31 @@ export const offerCategories: OfferCategory[] = [
     id: 'home-security',
     name: 'Home Security',
     outcome: 'Entry, package-area, garage, driveway, and perimeter awareness for the everyday parts of the property people ask about most.',
-    anchor: fitCheckPath,
+    anchor: categoryPaths.homeSecurity,
   },
   {
     id: 'environmental-safety',
     name: 'Home Safety / Environmental Safety',
     outcome: 'Water, temperature, sump, basement, and utility-room visibility for selected areas.',
-    anchor: fitCheckPath,
+    anchor: categoryPaths.homeSafety,
   },
   {
     id: 'home-lighting',
     name: 'Home Lighting',
     outcome: 'Everyday lighting, entry lighting, night paths, and routines where circuits and supported equipment allow it.',
-    anchor: fitCheckPath,
+    anchor: categoryPaths.homeLighting,
   },
   {
     id: 'home-automation',
     name: 'Home Automation',
     outcome: 'Modes, notification routing, dashboard views, scenes, and routines for supported devices and integrations.',
-    anchor: fitCheckPath,
+    anchor: categoryPaths.homeAutomation,
   },
   {
     id: 'aging-in-place',
     name: 'Aging-in-Place / Elder Care',
     outcome: 'Non-medical home awareness, family visibility, entry and exit awareness, and selected notifications.',
-    anchor: fitCheckPath,
+    anchor: categoryPaths.agingInPlace,
   },
   {
     id: 'vault',
