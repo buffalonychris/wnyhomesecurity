@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { categoryPaths } from '../../content/wnyhsOfferCatalog';
 import { SITE_BUILD_LABEL } from '../../lib/siteVersion';
 import '../../styles/homeSecurityPremium.css';
 
@@ -16,6 +17,11 @@ const WnyhsSiteFooter = () => {
           <NavLink to="/privacy?vertical=home-security">Privacy</NavLink>
           <NavLink to="/terms?vertical=home-security">Terms</NavLink>
           <NavLink to="/support?vertical=home-security">Support</NavLink>
+          <NavLink to={categoryPaths.homeSecurity}>Home Security</NavLink>
+          <NavLink to={categoryPaths.homeAutomation}>Home Automation</NavLink>
+          <NavLink to={categoryPaths.homeSafety}>Home Safety</NavLink>
+          <NavLink to={categoryPaths.homeLighting}>Home Lighting</NavLink>
+          <NavLink to={categoryPaths.agingInPlace}>Aging In Place</NavLink>
         </nav>
         <div className="wnyhs-marketing-footer-column wnyhs-marketing-footer-company">
           <span>WNY Home Security</span>
