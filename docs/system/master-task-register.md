@@ -3172,6 +3172,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Created SEO003 as a docs-only metadata implementation plan. Recommended `https://www.wnyhomesecurity.com` as the future canonical domain to align canonical URLs with the current sitemap hostname unless a separate domain/deployment task changes public hostname strategy first. Documented public priority page indexability after classification, noindex/review/protected treatment for transaction/payment/print/admin/tokenized/test/prototype/internal/legacy review routes, noindex handling for search query-result URLs, required metadata fields, route-group implementation order, future bounded tasks, validation, rollback, and Codex restrictions. No source, route, metadata, sitemap, robots, schema, image, runtime, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API, Resend/email, Cloudflare, dependency, or package-lock files were changed.
 
+### T-SEO001-004
+- **Task ID:** T-SEO001-004
+- **Task Name:** Homepage and Category Metadata Implementation
+- **Status:** DONE
+- **Category:** SEO / IMPLEMENTATION
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement route-level metadata for the WNYHS homepage and canonical category pages only.
+- **Allowed Scope:** Existing SEO metadata utilities/components/policies; route-level metadata config; homepage/category page wrappers only if needed to attach metadata; tests if existing conventions support them; this Master Task Register; `src/lib/siteVersion.ts`.
+- **Forbidden Scope:** No visible page copy changes, visual layout changes, category page content changes, solution metadata or solution page changes, package metadata, sitemap, robots.txt, structured data, route changes, navigation changes, search implementation, image changes, image generation, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env` or secrets, dependency changes, or package-lock changes.
+- **Target Files:** `src/components/Seo.tsx`, `src/lib/seoPolicy.ts`, `src/lib/siteVersion.ts`, optional focused SEO tests, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public client-side SEO metadata for scoped homepage/category routes only.
+- **Documentation Updates Required:** Add this bounded task-register entry before implementation and mark complete after validation.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`; run focused SEO tests if added or existing.
+- **Exit Criteria:** Homepage and canonical category metadata includes title, description, canonical URL using `https://www.wnyhomesecurity.com`, robots/index policy, Open Graph title/description/URL/image decision, and Twitter card metadata when supported; `/home-security` is handled consistently with current ownership and SEO003; visible site version is bumped by one patch; no forbidden scope is touched; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** SEO001 foundation standard, SEO002 metadata/canonical audit, SEO003 metadata implementation plan, SITEARCH002 decision standard, current governance authority chain, and prompt-created bounded work order.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added scoped route-level metadata through the existing SEO policy/component for `/`, `/home-security`, and canonical category routes only. Canonical URLs now use `https://www.wnyhomesecurity.com`; `/`, `/categories/home-security`, `/categories/home-automation`, `/categories/home-safety`, `/categories/home-lighting`, and `/categories/aging-in-place` are `index, follow`; legacy `/home-security` is `noindex, follow` and canonicalizes to `/` per SEO003 homepage ownership. Open Graph and Twitter tags are emitted only for the scoped policy-backed routes and use approved existing repo imagery; no image files were changed. Added focused SEO policy tests and bumped visible site version to `v1.0.174`. No visible page copy, layout, category content, solution metadata/pages, package metadata, sitemap, robots.txt, schema, routes, navigation, search, images, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env`, dependencies, or package-lock files were changed. `npx vitest run src/lib/__tests__/seoPolicy.test.ts` and `npm run build` passed.
+
 ### QUOTESYSTEM-014
 - **Task ID:** QUOTESYSTEM-014
 - **Task Name:** Funeral Home Test Case
