@@ -31,6 +31,29 @@ describe('seoPolicy route metadata', () => {
     }
   });
 
+  it('indexes current route-backed solution pages with social metadata', () => {
+    const paths = [
+      '/solutions/senior-safety',
+      '/solutions/water-protection',
+      '/solutions/family-awareness',
+      '/solutions/vacation-homes',
+    ];
+
+    for (const path of paths) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('index, follow');
+      expect(policy.canonicalPath).toBe(path);
+      expect(policy.title).toContain('WNY Home Security');
+      expect(policy.description).toBeTruthy();
+      expect(policy.openGraph?.title).toBe(policy.title);
+      expect(policy.openGraph?.description).toBe(policy.description);
+      expect(policy.openGraph?.image).toMatch(/^https:\/\/www\.wnyhomesecurity\.com\/images\/home-security\/solutions\//);
+      expect(policy.twitter?.card).toBe('summary_large_image');
+      expect(policy.twitter?.title).toBe(policy.title);
+      expect(policy.twitter?.description).toBe(policy.description);
+    }
+  });
+
   it('keeps the legacy home-security route from competing with the root homepage', () => {
     const policy = getSeoPolicy('/home-security');
 
