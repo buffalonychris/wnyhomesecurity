@@ -62,6 +62,22 @@ describe('seoPolicy route metadata', () => {
     expect(policy.title).toBe('WNY Home Security | Western New York Smart Property Integrator');
   });
 
+  it('keeps legacy flat category routes noindex while canonicalizing to approved destinations', () => {
+    const policies = [
+      ['/home-automation', '/categories/home-automation'],
+      ['/home-safety', '/categories/home-safety'],
+      ['/home-lighting', '/categories/home-lighting'],
+      ['/aging-in-place', '/categories/aging-in-place'],
+    ] as const;
+
+    for (const [path, canonicalPath] of policies) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('noindex, follow');
+      expect(policy.canonicalPath).toBe(canonicalPath);
+      expect(policy.noindexReason).toBe('Legacy category route canonicalizes to the approved public route');
+    }
+  });
+
   it('indexes scoped marketing support and search page metadata', () => {
     const paths = ['/about', '/our-work', '/contact', '/support', '/search'];
 
@@ -103,5 +119,91 @@ describe('seoPolicy route metadata', () => {
 
     expect(getSeoPolicy('/qrlanding').canonicalPath).toBe('/qrlanding');
     expect(getSeoPolicy('/qrlanding.htm').canonicalPath).toBe('/qrlanding');
+  });
+
+  it('keeps package routes accessible but out of public search indexing', () => {
+    const paths = ['/packages', '/packages/a1', '/home-security/packages', '/newsite/home-security/packages/gold'];
+
+    for (const path of paths) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('noindex, follow');
+      expect(policy.canonicalPath).toBe(path);
+      expect(policy.noindexReason).toBe('Package route pending SEO visibility approval');
+    }
+  });
+
+  it('keeps demo and experience routes in public review noindex policy', () => {
+    const paths = [
+      '/home-security/dashboard',
+      '/demo',
+      '/5-day-demo',
+      '/newsite/demos/ha-gold-dashboard',
+      '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html',
+    ];
+
+    for (const path of paths) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('noindex, follow');
+      expect(policy.canonicalPath).toBe(path);
+      expect(policy.noindexReason).toBe('Public review or demo route pending SEO visibility approval');
+    }
+  });
+
+  it('keeps transaction payment schedule and checkout routes noindex follow', () => {
+    const paths = [
+      '/quote',
+      '/quoteReview',
+      '/agreement',
+      '/agreementReview',
+      '/esign',
+      '/checkout',
+      '/halo/checkout',
+      '/payment',
+      '/payment-processing',
+      '/home-security/pay-deposit',
+      '/home-security/payment/success',
+      '/home-security/payment/canceled',
+      '/home-security/payment/cancel',
+      '/schedule',
+      '/resume',
+      '/resume-verify',
+      '/newsite/quote/review',
+      '/newsite/agreement/review',
+      '/newsite/home-security/payment/success',
+      '/newsite/schedule',
+    ];
+
+    for (const path of paths) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('noindex, follow');
+      expect(policy.canonicalPath).toBe(path);
+      expect(policy.noindexReason).toBe('Transactional journey');
+    }
+  });
+
+  it('keeps tokenized print operator prototype and certificate routes protected from indexing', () => {
+    const paths = [
+      '/verify',
+      '/quotePrint',
+      '/agreementPrint',
+      '/newsite/quote/print',
+      '/newsite/agreement/print',
+      '/uat',
+      '/launchUat',
+      '/sicar',
+      '/certificate',
+      '/operator',
+      '/operator/property-model/quote-preview',
+      '/admin/review',
+      '/prototype/sample',
+      '/test/route',
+      '/newsite',
+    ];
+
+    for (const path of paths) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('noindex, nofollow');
+      expect(policy.canonicalPath).toBe(path);
+    }
   });
 });

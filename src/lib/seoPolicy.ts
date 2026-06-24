@@ -169,6 +169,30 @@ const scopedIndexablePaths = new Set([
   '/search',
 ]);
 
+const legacyCategoryCanonicalPaths: Record<string, string> = {
+  '/home-security': '/',
+  '/home-automation': '/categories/home-automation',
+  '/home-safety': '/categories/home-safety',
+  '/home-lighting': '/categories/home-lighting',
+  '/aging-in-place': '/categories/aging-in-place',
+};
+
+const packageReviewPrefixes = ['/packages', '/home-security/packages', '/newsite/home-security/packages'];
+
+const publicReviewPaths = new Set<string>([
+  '/demo',
+  '/5-day-demo',
+  '/home-security/dashboard',
+  '/home-security/legacy',
+  '/home-security/legacy-premium',
+  '/home-security/whats-included',
+  '/newsite/demos',
+  '/newsite/demos/ha-gold-dashboard',
+  '/demos/ha-gold-dashboard/HA_Gold_Dashboard_Demo_REV01.html',
+]);
+
+const plannerReviewPrefixes = ['/home-security/planner', '/newsite/home-security/planner'];
+
 const CATEGORY_A_PATHS = new Set<string>([
   '/',
   '/halo',
@@ -176,7 +200,6 @@ const CATEGORY_A_PATHS = new Set<string>([
   '/halo/support',
   '/halo/privacy',
   '/halo/terms',
-  '/halo/checkout',
   '/halo-pushbutton',
   '/halo-package',
   '/vendors',
@@ -188,11 +211,30 @@ const CATEGORY_A_PATHS = new Set<string>([
 const CATEGORY_B_PATHS = new Set<string>([
   '/quote',
   '/quoteReview',
+  '/agreement',
   '/agreementReview',
+  '/esign',
+  '/checkout',
+  '/halo/checkout',
   '/payment',
+  '/payment-processing',
+  '/home-security/pay-deposit',
+  '/home-security/payment/success',
+  '/home-security/payment/canceled',
+  '/home-security/payment/cancel',
   '/schedule',
   '/resume',
   '/resume-verify',
+  '/newsite/quote',
+  '/newsite/quote/review',
+  '/newsite/agreement/review',
+  '/newsite/home-security/pay-deposit',
+  '/newsite/home-security/payment/success',
+  '/newsite/home-security/payment/cancel',
+  '/newsite/schedule',
+  '/newsite/contact',
+  '/newsite/callback',
+  '/newsite/on-site-quote',
   '/vendors/apply',
 ]);
 
@@ -200,14 +242,25 @@ const CATEGORY_B2_PATHS = new Set<string>([
   '/verify',
   '/quotePrint',
   '/agreementPrint',
+  '/newsite/quote/print',
+  '/newsite/agreement/print',
   '/uat',
+  '/launchUat',
+  '/sicar',
   '/certificate',
 ]);
+
+const protectedPrefixes = ['/operator', '/admin', '/review', '/prototype', '/test', '/newsite'];
 
 const normalizePathname = (pathname: string) => {
   if (pathname === '/') return '/';
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 };
+
+const matchesPrefix = (pathname: string, prefix: string) => pathname === prefix || pathname.startsWith(`${prefix}/`);
+
+const matchesAnyPrefix = (pathname: string, prefixes: string[]) =>
+  prefixes.some((prefix) => matchesPrefix(pathname, prefix));
 
 export const getSeoPolicy = (pathname: string, search = ''): SeoPolicy => {
   const normalized = normalizePathname(pathname || '/');
@@ -245,6 +298,39 @@ export const getSeoPolicy = (pathname: string, search = ''): SeoPolicy => {
     };
   }
 
+  const legacyCanonicalPath = legacyCategoryCanonicalPaths[normalized];
+  if (legacyCanonicalPath) {
+    return {
+      robots: 'noindex, follow',
+      canonicalPath: legacyCanonicalPath,
+      noindexReason: 'Legacy category route canonicalizes to the approved public route',
+    };
+  }
+
+  if (matchesAnyPrefix(normalized, packageReviewPrefixes)) {
+    return {
+      robots: 'noindex, follow',
+      canonicalPath: normalized,
+      noindexReason: 'Package route pending SEO visibility approval',
+    };
+  }
+
+  if (publicReviewPaths.has(normalized)) {
+    return {
+      robots: 'noindex, follow',
+      canonicalPath: normalized,
+      noindexReason: 'Public review or demo route pending SEO visibility approval',
+    };
+  }
+
+  if (matchesAnyPrefix(normalized, plannerReviewPrefixes)) {
+    return {
+      robots: 'noindex, follow',
+      canonicalPath: normalized,
+      noindexReason: 'Planner route remains public review and is not a search destination',
+    };
+  }
+
   if (CATEGORY_A_PATHS.has(normalized)) {
     return { robots: 'index, follow', canonicalPath: normalized };
   }
@@ -255,6 +341,10 @@ export const getSeoPolicy = (pathname: string, search = ''): SeoPolicy => {
 
   if (CATEGORY_B2_PATHS.has(normalized)) {
     return { robots: 'noindex, nofollow', canonicalPath: normalized, noindexReason: 'Tokenized or internal' };
+  }
+
+  if (matchesAnyPrefix(normalized, protectedPrefixes)) {
+    return { robots: 'noindex, nofollow', canonicalPath: normalized, noindexReason: 'Internal, prototype, or review tool' };
   }
 
   return { robots: 'noindex, nofollow', canonicalPath: normalized, noindexReason: 'Unclassified route' };
