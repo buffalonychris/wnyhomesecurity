@@ -22,7 +22,14 @@ const CANONICAL_BASE_URL = 'https://www.wnyhomesecurity.com';
 const homepageDescription =
   'WNY Home Security is a Western New York smart-property integrator for customer-owned control across security, automation, safety, lighting, and aging-in-place needs.';
 
-const routeMetadata = {
+type RouteMetadata = {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  image?: string;
+};
+
+const routeMetadata: Record<string, RouteMetadata> = {
   '/': {
     title: 'WNY Home Security | Western New York Smart Property Integrator',
     description: homepageDescription,
@@ -87,14 +94,62 @@ const routeMetadata = {
       'Keep practical remote awareness for a seasonal or second home with smart access, water, temperature, and property visibility planning.',
     image: '/images/home-security/solutions/solutions-vacation-hero.png',
   },
-} satisfies Record<
-  string,
-  {
-    title: string;
-    description: string;
-    image?: string;
-  }
->;
+  '/about': {
+    title: 'About WNY Home Security | Local Smart Property Planning',
+    description:
+      'Learn about WNY Home Security, a local smart-property integrator helping Western New York homeowners plan practical security, automation, safety, and lighting systems.',
+    image: '/images/home-security/homepage/WNYHSCoreDashboard.png',
+  },
+  '/our-work': {
+    title: 'Our Work | WNY Home Security',
+    description:
+      'Review WNY Home Security project examples and smart-property planning ideas for cameras, sensors, lighting, water awareness, access, and customer-owned control.',
+    image: '/images/home-security/homepage/WNYHSCoreDashboard.png',
+  },
+  '/contact': {
+    title: 'Contact WNY Home Security | Request a Smart Property Estimate',
+    description:
+      'Contact WNY Home Security to request a local smart-property estimate for security, automation, safety, lighting, or aging-in-place planning.',
+    image: '/images/home-security/homepage/WNYHSCorePhone.png',
+  },
+  '/support': {
+    title: 'Support | WNY Home Security',
+    description:
+      'Get WNY Home Security support for customer-owned smart-property systems, project questions, service planning, and next-step coordination.',
+    image: '/images/home-security/homepage/WNYHSCorePhone.png',
+  },
+  '/search': {
+    title: 'Search WNY Home Security | Smart Property Pages',
+    description:
+      'Search WNY Home Security pages for local smart-property categories, solutions, support, contact information, and project planning topics.',
+    image: '/images/home-security/homepage/WNYHSCoreDashboard.png',
+  },
+  '/qrlanding': {
+    title: 'WNY Home Security Scan Page | Local Smart Property Planning',
+    description:
+      'Open the WNY Home Security scan page for local smart-property planning, estimate requests, and direct next steps from a printed campaign code.',
+    image: '/images/home-security/homepage/WNYHSCorePhone.png',
+  },
+  '/qrlanding.htm': {
+    title: 'WNY Home Security Scan Page | Local Smart Property Planning',
+    description:
+      'Open the WNY Home Security scan page for local smart-property planning, estimate requests, and direct next steps from a printed campaign code.',
+    canonicalPath: '/qrlanding',
+    image: '/images/home-security/homepage/WNYHSCorePhone.png',
+  },
+  '/privacy': {
+    title: 'Privacy Policy | WNY Home Security',
+    description:
+      'Read the WNY Home Security privacy policy for information about website, estimate, and customer inquiry data handling.',
+    image: '/images/home-security/homepage/WNYHSCoreDashboard.png',
+  },
+  '/terms': {
+    title: 'Terms | WNY Home Security',
+    description:
+      'Read the WNY Home Security terms for website use, estimate requests, and customer-facing smart-property planning information.',
+    image: '/images/home-security/homepage/WNYHSCoreDashboard.png',
+  },
+};
 
 const scopedIndexablePaths = new Set([
   '/',
@@ -107,6 +162,11 @@ const scopedIndexablePaths = new Set([
   '/solutions/water-protection',
   '/solutions/family-awareness',
   '/solutions/vacation-homes',
+  '/about',
+  '/our-work',
+  '/contact',
+  '/support',
+  '/search',
 ]);
 
 const CATEGORY_A_PATHS = new Set<string>([
@@ -149,19 +209,26 @@ const normalizePathname = (pathname: string) => {
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 };
 
-export const getSeoPolicy = (pathname: string): SeoPolicy => {
+export const getSeoPolicy = (pathname: string, search = ''): SeoPolicy => {
   const normalized = normalizePathname(pathname || '/');
   const metadata = routeMetadata[normalized as keyof typeof routeMetadata];
 
   if (metadata) {
-    const canonicalPath = normalized === '/home-security' ? '/' : normalized;
-    const robots = scopedIndexablePaths.has(normalized) ? 'index, follow' : 'noindex, follow';
+    const canonicalPath = normalized === '/home-security' ? '/' : metadata.canonicalPath ?? normalized;
+    const hasQuery = search.length > 0;
+    const isSearchQueryUrl = normalized === '/search' && hasQuery;
+    const robots = scopedIndexablePaths.has(normalized) && !isSearchQueryUrl ? 'index, follow' : 'noindex, follow';
     const image = metadata.image ? buildCanonicalUrl(metadata.image) : undefined;
 
     return {
       robots,
       canonicalPath,
-      noindexReason: normalized === '/home-security' ? 'Legacy homepage route canonicalizes to root' : undefined,
+      noindexReason:
+        normalized === '/home-security'
+          ? 'Legacy homepage route canonicalizes to root'
+          : isSearchQueryUrl
+            ? 'Search query URL canonicalizes to the main search page'
+            : undefined,
       title: metadata.title,
       description: metadata.description,
       openGraph: {

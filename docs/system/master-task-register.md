@@ -3208,6 +3208,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review and merge PR if accepted.
 - **Completion Notes:** Added scoped route-level metadata through the existing SEO policy for `/solutions/senior-safety`, `/solutions/water-protection`, `/solutions/family-awareness`, and `/solutions/vacation-homes` only. Canonical URLs use `https://www.wnyhomesecurity.com`; all four solution routes are `index, follow`; Open Graph and Twitter tags use route-specific title/description and existing approved solution hero images. Added focused SEO policy test coverage and bumped visible site version to `v1.0.175`. No new solution routes, visible page copy, layout, category metadata, package metadata/pages, sitemap, robots.txt, schema, routes, navigation, search, images, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env`, dependencies, or package-lock files were changed. `npx vitest run src/lib/__tests__/seoPolicy.test.ts` and `npm run build` passed.
 
+### T-SEO001-006
+- **Task ID:** T-SEO001-006
+- **Task Name:** Marketing/Search/Support Metadata Implementation
+- **Status:** DONE
+- **Category:** SEO / IMPLEMENTATION
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement route-level metadata for WNYHS marketing, search, support, trust, legal, and QR/campaign public pages only.
+- **Allowed Scope:** Existing SEO metadata utilities/components/policies; route-level metadata config; page wrappers only if needed to attach metadata; tests if existing conventions support them; this Master Task Register; `src/lib/siteVersion.ts`.
+- **Forbidden Scope:** No new routes, visible page copy changes, visual layout changes, category metadata, solution metadata, package metadata, package pages, demo/experience metadata, sitemap, robots.txt, structured data, route changes, navigation changes, search implementation, search index changes, image changes, image generation, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env` or secrets, dependency changes, or package-lock changes.
+- **Target Files:** `src/components/Seo.tsx`, `src/lib/seoPolicy.ts`, `src/lib/__tests__/seoPolicy.test.ts`, `src/lib/siteVersion.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Public client-side SEO metadata for scoped marketing/search/support/legal/QR routes only.
+- **Documentation Updates Required:** Add this bounded task-register entry and completion evidence.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run test -- --run src/lib/__tests__/seoPolicy.test.ts`; `npm run build`.
+- **Exit Criteria:** Existing scoped route metadata includes title, description, canonical URL using `https://www.wnyhomesecurity.com`, robots/index policy, Open Graph title/description/URL/image decision, and Twitter card metadata when supported; search query URLs are handled conservatively if current SEO system can safely distinguish them; visible site version is bumped by one patch; no forbidden scope is touched; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** SEO001 foundation standard, SEO002 metadata/canonical audit, SEO003 metadata implementation plan, SITEARCH002 decision standard, SEARCH001 search architecture/index plan, current governance authority chain, and prompt-created bounded work order.
+- **Operator Decision Required:** Review and merge PR if accepted.
+- **Completion Notes:** Added scoped route-level metadata through the existing SEO policy for `/about`, `/our-work`, `/contact`, `/support`, `/search`, `/qrlanding`, `/qrlanding.htm`, `/privacy`, and `/terms` only. Canonical URLs use `https://www.wnyhomesecurity.com`; marketing/trust/support and the main `/search` page are `index, follow`; `/search?q=...` query URLs are `noindex, follow` and canonicalize to `/search`; `/qrlanding` and `/qrlanding.htm` are `noindex, follow` with the alias canonicalizing to `/qrlanding`; `/privacy` and `/terms` are `noindex, follow`. Open Graph and Twitter tags use route-specific title/description and existing approved repo imagery; no image files were changed. Added focused SEO policy test coverage and bumped visible site version to `v1.0.176`. No new routes, visible page copy, layout, category metadata, solution metadata, package metadata/pages, demo metadata, sitemap, robots.txt, schema, routes, navigation, search implementation, search index, images, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, `.env`, dependencies, or package-lock files were changed.
+
 ### QUOTESYSTEM-014
 - **Task ID:** QUOTESYSTEM-014
 - **Task Name:** Funeral Home Test Case
