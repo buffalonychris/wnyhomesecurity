@@ -101,6 +101,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by `T-SEO001-003`. Does not authorize metadata changes, title tag changes, meta description changes, canonical changes, robots/index behavior changes, sitemap changes, robots changes, schema implementation, route changes, navigation changes, search implementation, page-content changes, image changes, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, environment, secret, dependency, or package-lock changes by itself.
 
+### `/docs/seo/SEO004_WNYHS_SEO_STATUS_AND_CONTINUATION_HANDOFF_REV01.md`
+- **File path:** `docs/seo/SEO004_WNYHS_SEO_STATUS_AND_CONTINUATION_HANDOFF_REV01.md`
+- **Purpose / likely role:** Docs-only SEO status and continuation handoff summarizing the current SEO state after SEO001-SEO003 and T-SEO001-004 through T-SEO001-008, including canonical domain, sitemap URLs, noindex/review/protected route groups, metadata coverage, policy state, remaining gaps, and future bootstrap guidance.
+- **Authority level:** **SEO continuation checkpoint / documentation-only handoff**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by `T-SEO001-009`. Does not authorize metadata changes, sitemap changes, robots changes, canonical/noindex policy changes, schema implementation, route changes, navigation changes, search changes, page content/layout changes, image changes, HubSpot, Stripe/payment, scheduling, planner, quote flow, backend/API runtime, Resend/email, Cloudflare config, environment, secret, dependency, or package-lock changes by itself.
+
 
 
 ## `docs/automation-system/`
