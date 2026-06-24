@@ -40,7 +40,7 @@ const Seo = ({ title, description }: SeoProps) => {
   const location = useLocation();
 
   useEffect(() => {
-    const policy = getSeoPolicy(location.pathname);
+    const policy = getSeoPolicy(location.pathname, location.search);
     const robotsTag = ensureTag('meta[name="robots"]', () => {
       const tag = document.createElement('meta');
       tag.setAttribute('name', 'robots');
@@ -73,7 +73,7 @@ const Seo = ({ title, description }: SeoProps) => {
     setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', policy.twitter?.title);
     setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', policy.twitter?.description);
     setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', policy.twitter?.image);
-  }, [location.pathname, title, description]);
+  }, [location.pathname, location.search, title, description]);
 
   return null;
 };

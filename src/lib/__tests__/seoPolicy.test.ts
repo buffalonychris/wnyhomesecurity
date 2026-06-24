@@ -61,4 +61,47 @@ describe('seoPolicy route metadata', () => {
     expect(policy.canonicalPath).toBe('/');
     expect(policy.title).toBe('WNY Home Security | Western New York Smart Property Integrator');
   });
+
+  it('indexes scoped marketing support and search page metadata', () => {
+    const paths = ['/about', '/our-work', '/contact', '/support', '/search'];
+
+    for (const path of paths) {
+      const policy = getSeoPolicy(path);
+      expect(policy.robots).toBe('index, follow');
+      expect(policy.canonicalPath).toBe(path);
+      expect(policy.title).toContain('WNY Home Security');
+      expect(policy.description).toBeTruthy();
+      expect(policy.openGraph?.title).toBe(policy.title);
+      expect(policy.openGraph?.description).toBe(policy.description);
+      expect(policy.openGraph?.image).toMatch(/^https:\/\/www\.wnyhomesecurity\.com\/images\//);
+      expect(policy.twitter?.card).toBe('summary_large_image');
+    }
+  });
+
+  it('keeps search query URLs out of the index while canonicalizing to search', () => {
+    const policy = getSeoPolicy('/search', '?q=water');
+
+    expect(policy.robots).toBe('noindex, follow');
+    expect(policy.canonicalPath).toBe('/search');
+    expect(policy.noindexReason).toBe('Search query URL canonicalizes to the main search page');
+  });
+
+  it('keeps QR campaign and legal routes accessible without indexing them', () => {
+    const policies = [
+      getSeoPolicy('/qrlanding'),
+      getSeoPolicy('/privacy'),
+      getSeoPolicy('/terms'),
+    ];
+
+    for (const policy of policies) {
+      expect(policy.robots).toBe('noindex, follow');
+      expect(policy.title).toContain('WNY Home Security');
+      expect(policy.description).toBeTruthy();
+      expect(policy.openGraph?.title).toBe(policy.title);
+      expect(policy.twitter?.title).toBe(policy.title);
+    }
+
+    expect(getSeoPolicy('/qrlanding').canonicalPath).toBe('/qrlanding');
+    expect(getSeoPolicy('/qrlanding.htm').canonicalPath).toBe('/qrlanding');
+  });
 });
