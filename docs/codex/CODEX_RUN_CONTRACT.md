@@ -42,6 +42,7 @@ Every Codex task must load and follow these documents before implementation or d
 - `/docs/MARKDOWN_MANIFEST.md`
 - `/docs/system/document_status_reconciliation_rev01.md`
 - `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`
+- `/docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`
 
 If any required document is unavailable, Codex must stop and request a governance/context revision.
 
@@ -88,7 +89,7 @@ Do not use Mini for WNYHS repo work.
 
 ## 4B. Required Workstream Context Routing
 
-Before ChatGPT creates a Codex work order, and before Codex edits files, the task must be classified under `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`.
+Before ChatGPT creates a Codex work order, and before Codex edits files, the task must be classified under `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`. When current-state workstream context is needed, ChatGPT/Codex must then check `/docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md` before loading deeper owner documents.
 
 Required routing output:
 
@@ -100,6 +101,8 @@ Required routing output:
 - forbidden scope
 
 OPS004 does not authorize implementation by itself. It tells ChatGPT/Codex where to look before applying this run contract, active task scope, owner standards, protected-system rules, and validation requirements.
+
+OPS005 does not authorize implementation by itself. It records current workstream status, completed work, outstanding work, governing docs, related workstreams, and protected-system concerns after OPS004 classification.
 
 ## 5. Master Task Register Rules
 - Codex may execute only the task explicitly named in the current prompt.

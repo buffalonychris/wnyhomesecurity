@@ -926,6 +926,24 @@ This section is the dispatch board for executable registered tasks. Codex may ex
 - **Follow-up Task:** T-OPS001-004 - Workstream Status Board. Create the current-state board for each workstream so future chats can quickly determine completed work, outstanding work, required docs, and related workstreams.
 - **Completion Notes:** Created OPS004 as the workstream context routing standard, updated the Codex run contract and agent rules to require workstream classification before task execution, registered OPS004 in the catalog and manifest, and listed T-OPS001-004 as the follow-up status-board task. No app/source/runtime/routes/navigation/SEO implementation/search implementation/category/solution/page content/image/HubSpot/Stripe/payment/scheduling/planner/quote-flow/backend/API/Resend/email/Cloudflare/env/secret/dependency/package-lock files were changed.
 
+### T-OPS001-004
+- **Task ID:** T-OPS001-004
+- **Task Name:** Workstream Status Board
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the project-wide current-state board that records status, completed work, outstanding work, required docs, related workstreams, protected-system concerns, and next recommended tasks for each major WNYHS workstream.
+- **Allowed Scope:** Docs-only governance; create OPS005; update Codex run contract if appropriate; update agent governance pointer if appropriate; update Master Task Register; update Document Catalog; update Markdown Manifest if repository convention requires it.
+- **Forbidden Scope:** No app/source code changes; no routes; no navigation; no SEO implementation; no search implementation; no images; no category/solution/page content; no HubSpot; no Stripe/payment; no scheduling; no planner; no quote flow; no backend/API runtime; no Resend/email; no Cloudflare config; no `.env` or secrets; no dependencies; no package-lock.
+- **Target Files:** `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`, `docs/codex/CODEX_RUN_CONTRACT.md`, `docs/system/agent.md`, `docs/system/master-task-register.md`, `docs/DOCUMENT_CATALOG.md`, `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance.
+- **Documentation Updates Required:** Create OPS005, reference OPS005 from the Codex run contract and agent rules, add task-register record, catalog OPS005, and add Markdown Manifest addendum.
+- **Validation Required:** `git diff --stat`; `git diff --name-only`; `git diff --check`; `git diff --cached --stat`; `git diff --cached --name-only`; `git diff --cached --check`; `npm run build`.
+- **Exit Criteria:** OPS005 exists with required sections; exactly the 22 OPS004 workstreams are included; known current-state highlights are captured; only allowed documentation files changed; protected systems remain untouched; PR targets `main` without merge.
+- **Dependencies:** Prompt-created bounded T-OPS001-004 work order, T-OPS001-003, CODEX-CONTRACT001, OPS003-CODEX-CONTEXT-EFFICIENCY-001, OPS004, current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created OPS005 as the project-wide workstream status board, including all 22 OPS004 workstreams with current state, completed work, outstanding work, required current-state docs, governing docs, related workstreams, protected-system concerns, next recommended tasks, and notes/risks. Updated the Codex run contract and agent rules to reference OPS005 after OPS004 routing when current-state workstream context is needed. Registered OPS005 in the document catalog and markdown manifest. No app/source/runtime/routes/navigation/SEO implementation/search implementation/category/solution/page content/image/HubSpot/Stripe/payment/scheduling/planner/quote-flow/backend/API/Resend/email/Cloudflare/env/secret/dependency/package-lock files were changed.
+
 ### DESIGN-TOKEN-SYSTEM-002
 - **Task ID:** DESIGN-TOKEN-SYSTEM-002
 - **Task Name:** Public Visual QA Cleanup After v1.0.121
