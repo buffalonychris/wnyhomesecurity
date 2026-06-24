@@ -704,6 +704,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, not by itself. Consumed by future bounded Codex work orders.
 - **Notes:** Added by OPS003-CODEX-CONTEXT-EFFICIENCY-001 as docs-only governance and updated by T-OPS001-002 to require targeted-read efficiency instructions and ChatGPT post-run summary review. It improves context efficiency without weakening authority-chain enforcement, bounded task execution, protected-system boundaries, claims guardrails, or validation discipline.
 
+### `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`
+- **File path:** `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`
+- **Purpose / likely role:** Project-wide workstream routing standard requiring ChatGPT/Codex to classify each task by primary and related workstreams, load current-state/status docs, load owner docs, and check protected systems before task discussion or execution continues.
+- **Authority level:** **System governance / workstream routing standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. It routes context for future bounded tasks.
+- **Notes:** Added by T-OPS001-003 as docs-only governance. It does not replace owner standards and does not authorize source, CSS, route, page, runtime, API, HubSpot, Stripe/payment, Resend/email, scheduling, Cloudflare, secrets, assets, dependencies, package-lock, implementation, pricing, claims, or protected-system changes by itself.
+
 ### `/docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **File path:** `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **Purpose / likely role:** Planning/dispatch task pack listing next public page token-compliance tasks, including solution detail parity, media section, Vault image system, Solutions card density polish, and final governance update.
@@ -730,7 +738,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **File path:** `docs/system/agent.md`
 - **Purpose / likely role:** Codex agent operating standards and execution expectations.
 - **Authority level:** **System governance**
-- **Notes:** Explicitly authoritative per root instructions. Updated by T-OPS001-002 to point future work orders to model/reasoning guidance and ChatGPT context-efficiency review duties.
+- **Notes:** Explicitly authoritative per root instructions. Updated by T-OPS001-002 to point future work orders to model/reasoning guidance and ChatGPT context-efficiency review duties. Updated by T-OPS001-003 to require OPS004 workstream classification before implementation or documentation edits.
 
 ### `/docs/system/plan.md`
 - **File path:** `docs/system/plan.md`
@@ -772,7 +780,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **Active Codex governance contract**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Required review/load document for future Codex tasks; updated by T-OPS001-002 to require model/reasoning guidance in work orders and ChatGPT post-run summary review. It does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
+- **Notes:** Required review/load document for future Codex tasks; updated by T-OPS001-002 to require model/reasoning guidance in work orders and ChatGPT post-run summary review. Updated by T-OPS001-003 to require OPS004 workstream context routing before task execution. It does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
 
 ### `/docs/codex/CODEX_TASK_REGISTER_RULES.md`
 - **File path:** `docs/codex/CODEX_TASK_REGISTER_RULES.md`

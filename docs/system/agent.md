@@ -127,7 +127,9 @@ Implementation responses must include:
 
 ## 9. Codex Work Order and Context Efficiency Rules
 
-Future Codex work orders must follow the current Codex run contract and work-order standard, including required model/reasoning guidance and context-efficiency instructions.
+Future Codex work orders must follow the current Codex run contract, workstream context routing standard, and work-order standard, including required model/reasoning guidance and context-efficiency instructions.
+
+Before implementation or documentation edits, the agent must classify the task under `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`, identify related workstreams, load required current-state/status docs when present, and confirm owner/governing docs and protected-system boundaries.
 
 ChatGPT must review each Codex completion summary for scope compliance, validation evidence, protected-system compliance, context-efficiency reporting, prompt-improvement lessons, and whether repeated patterns should be promoted into repository governance.
 
