@@ -2,7 +2,12 @@ User-agent: *
 Allow: /
 
 # Internal / Operational Only
-Disallow: /uat
+Disallow: /admin
 Disallow: /certificate
+Disallow: /operator
+Disallow: /prototype
+Disallow: /review
+Disallow: /test
+Disallow: /uat
 
 Sitemap: https://www.wnyhomesecurity.com/sitemap.xml

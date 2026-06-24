@@ -1,5 +1,61 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { buildCanonicalUrl, getSeoPolicy } from '../seoPolicy';
+
+const canonicalSitemapUrls = [
+  'https://www.wnyhomesecurity.com/',
+  'https://www.wnyhomesecurity.com/categories/home-security',
+  'https://www.wnyhomesecurity.com/categories/home-automation',
+  'https://www.wnyhomesecurity.com/categories/home-safety',
+  'https://www.wnyhomesecurity.com/categories/home-lighting',
+  'https://www.wnyhomesecurity.com/categories/aging-in-place',
+  'https://www.wnyhomesecurity.com/solutions/senior-safety',
+  'https://www.wnyhomesecurity.com/solutions/water-protection',
+  'https://www.wnyhomesecurity.com/solutions/family-awareness',
+  'https://www.wnyhomesecurity.com/solutions/vacation-homes',
+  'https://www.wnyhomesecurity.com/about',
+  'https://www.wnyhomesecurity.com/our-work',
+  'https://www.wnyhomesecurity.com/contact',
+  'https://www.wnyhomesecurity.com/support',
+  'https://www.wnyhomesecurity.com/search',
+];
+
+const excludedSitemapUrls = [
+  'https://www.wnyhomesecurity.com/home-security',
+  'https://www.wnyhomesecurity.com/home-automation',
+  'https://www.wnyhomesecurity.com/home-safety',
+  'https://www.wnyhomesecurity.com/home-lighting',
+  'https://www.wnyhomesecurity.com/aging-in-place',
+  'https://www.wnyhomesecurity.com/search?q=water',
+  'https://www.wnyhomesecurity.com/qrlanding',
+  'https://www.wnyhomesecurity.com/qrlanding.htm',
+  'https://www.wnyhomesecurity.com/privacy',
+  'https://www.wnyhomesecurity.com/terms',
+  'https://www.wnyhomesecurity.com/packages',
+  'https://www.wnyhomesecurity.com/home-security/dashboard',
+  'https://www.wnyhomesecurity.com/demo',
+  'https://www.wnyhomesecurity.com/5-day-demo',
+  'https://www.wnyhomesecurity.com/newsite/demos/ha-gold-dashboard',
+  'https://www.wnyhomesecurity.com/payment',
+  'https://www.wnyhomesecurity.com/checkout',
+  'https://www.wnyhomesecurity.com/agreementReview',
+  'https://www.wnyhomesecurity.com/schedule',
+  'https://www.wnyhomesecurity.com/quoteReview',
+  'https://www.wnyhomesecurity.com/home-security/planner',
+  'https://www.wnyhomesecurity.com/operator',
+  'https://www.wnyhomesecurity.com/admin',
+  'https://www.wnyhomesecurity.com/review',
+  'https://www.wnyhomesecurity.com/verify',
+  'https://www.wnyhomesecurity.com/quotePrint',
+  'https://www.wnyhomesecurity.com/certificate',
+  'https://www.wnyhomesecurity.com/halo-pushbutton',
+  'https://www.wnyhomesecurity.com/vendors',
+];
+
+const excludedSitemapFragments = ['https://wnyhomesecurity.com', '/search?q=', '/newsite/'];
+
+const readRepoFile = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf8');
 
 describe('seoPolicy route metadata', () => {
   it('uses the www canonical host', () => {
@@ -204,6 +260,38 @@ describe('seoPolicy route metadata', () => {
       const policy = getSeoPolicy(path);
       expect(policy.robots).toBe('noindex, nofollow');
       expect(policy.canonicalPath).toBe(path);
+    }
+  });
+
+  it('keeps the sitemap aligned to approved canonical indexable routes only', () => {
+    const sitemap = readRepoFile('public/sitemap.xml');
+    const locs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+
+    expect(locs).toEqual(canonicalSitemapUrls);
+    expect(locs.every((url) => url.startsWith('https://www.wnyhomesecurity.com'))).toBe(true);
+
+    for (const excluded of excludedSitemapUrls) {
+      expect(locs).not.toContain(excluded);
+    }
+
+    for (const excluded of excludedSitemapFragments) {
+      expect(sitemap).not.toContain(excluded);
+    }
+  });
+
+  it('points robots to the canonical sitemap without blocking approved sitemap URLs', () => {
+    const robots = readRepoFile('public/robots.txt');
+    const robotsLines = robots
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    expect(robots).toContain('Allow: /');
+    expect(robots).toContain('Sitemap: https://www.wnyhomesecurity.com/sitemap.xml');
+
+    for (const url of canonicalSitemapUrls) {
+      const path = new URL(url).pathname;
+      expect(robotsLines).not.toContain(`Disallow: ${path}`);
     }
   });
 });
