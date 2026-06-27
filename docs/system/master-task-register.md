@@ -252,19 +252,20 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### KAOS001-BPROC001
 - **Task ID:** KAOS001-BPROC001
 - **Task Name:** Business Process Registry
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Promote business processes to first-class governance objects with owners, boundaries, inputs, outputs, and protected systems.
-- **Allowed Scope:** Future docs-only business process registry work after activation.
-- **Forbidden Scope:** No runtime/source changes, process automation, protected-system changes, customer workflow rewrites, historical deletion, or candidate task completion.
-- **Target Files:** Future scoped KAOS documentation only.
+- **Allowed Scope:** Create the docs-only KAOS001 Business Process Registry foundation; update the KAOS README link; update only this task record in the Master Task Register.
+- **Forbidden Scope:** No runtime/source changes, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, process automation, customer workflow rewrites, historical deletion/move/rename, RSI register docs, decision register docs, hook docs, graph visualization files, unrelated future task status changes, PR merge, or version bump.
+- **Target Files:** `docs/kaos/KAOS001_BUSINESS_PROCESS_REGISTRY_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future business process registry documentation and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** Business process registry schema and initial seed scope are documented.
-- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001.
-- **Operator Decision Required:** Approve first-class business process object model before activation.
+- **Documentation Updates Required:** Create the Business Process Registry REV01; link it from the KAOS README; record this task as DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `Business Process Registry`, `PROCESS-LEAD001`, `PROCESS-QUOTE001`, `PROCESS-INSTALL001`, `PROCESS-CERT001`, `BP-L7`, `KAOS-complete`, `protected systems touched`, and `KAOS001-BPROC001` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** Business Process Registry exists; README links the registry; process schema, lifecycle, relationship integration, impact analysis, seed candidate map, artifact types, protected process rules, maturity model, record template, prohibited behavior, and future-use boundaries are documented; seed processes remain candidates only; only allowed docs changed; no automation, runtime/source files, protected systems, historical docs, version files, RSI register, decision register, hook docs, or unrelated future task statuses changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001; REPO001-REV03-001; OPS003; OPS004; OPS005; current governance authority chain; prompt-created bounded `KAOS001-BPROC001` work order.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/KAOS001_BUSINESS_PROCESS_REGISTRY_REV01.md` defining business processes as first-class KAOS Knowledge Objects, including process definition, required schema fields, lifecycle stages, relationship integration, four-question impact analysis, seed candidate process map, artifact types, protected process rules, BP-L0 through BP-L7 maturity model, record template, prohibited behavior, and future-use boundaries. Updated `/docs/kaos/README.md` to link the registry. Seed processes remain `Candidate` only and are not active operating authority. No source/runtime files, protected systems, automation, HubSpot, Stripe/payment, scheduling, quote/catalog/dashboard behavior, RSI register docs, decision register docs, hook docs, historical docs, version files, or unrelated future task statuses were changed.
 
 ### KAOS001-RSI001
 - **Task ID:** KAOS001-RSI001
