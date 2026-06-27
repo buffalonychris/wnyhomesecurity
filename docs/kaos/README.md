@@ -43,6 +43,7 @@ Current higher-authority docs remain:
 - `/docs/kaos/HOOKCAT001_KAOS_HOOK_CATALOG_REV01.md`
 - `/docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`
 - `/docs/qa/SITE001_SITES_LIVE_SITE_QA_INTEGRATION_STANDARD_REV01.md`
+- `/docs/qa/SITEQA001_PLAYWRIGHT_SITE_QA_HARNESS_SPECIFICATION_REV01.md`
 
 ## Explicit Non-Authority
 
