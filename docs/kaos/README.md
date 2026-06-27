@@ -34,6 +34,7 @@ Current higher-authority docs remain:
 - `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_SCHEMA_REV01.md`
 - `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_REGISTRY_REV01.md`
 - `/docs/kaos/KAOS001_INTAKE_AND_PROMOTION_WORKFLOW_REV01.md`
+- `/docs/kaos/KAOS001_RELATIONSHIP_AND_DEPENDENCY_MODEL_REV01.md`
 
 ## Explicit Non-Authority
 
@@ -44,6 +45,6 @@ This folder does not authorize:
 - business process registry docs
 - RSI register docs
 - decision register docs
-- dependency map docs
+- additional relationship/dependency docs without bounded task authorization
 - hook docs
 - automatic promotion of chat-derived or inferred knowledge into active authority

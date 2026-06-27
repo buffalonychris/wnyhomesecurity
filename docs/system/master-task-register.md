@@ -233,20 +233,21 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ### KAOS001-DEPMAP001
 - **Task ID:** KAOS001-DEPMAP001
-- **Task Name:** Governance Dependency Map
-- **Status:** BACKLOG
+- **Task Name:** Relationship & Dependency Model
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Map authority, standards, runtime contracts, workstreams, and task board dependencies.
-- **Allowed Scope:** Future docs-only dependency map seeded from active governance and status-board inputs.
-- **Forbidden Scope:** No runtime/source changes, protected-system changes, dependency rewrites, historical deletion, or broad document restructuring.
-- **Target Files:** Future scoped KAOS documentation only.
+- **Purpose:** Define the canonical KAOS relationship language used to connect Knowledge Objects, support impact analysis, route future tasks, and prepare later process, RSI, hook, and graph work without implementing those future systems.
+- **Allowed Scope:** Create `/docs/kaos/KAOS001_RELATIONSHIP_AND_DEPENDENCY_MODEL_REV01.md`; update `/docs/kaos/README.md`; update only this task record in the Master Task Register.
+- **Forbidden Scope:** No source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, business process registry docs, RSI register docs, decision register docs, hook docs, graph visualization files, automation, historical deletion/move/rename, broad governance rewrites, unrelated future task status changes, PR merge, or version bump.
+- **Target Files:** `docs/kaos/KAOS001_RELATIONSHIP_AND_DEPENDENCY_MODEL_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future dependency map documentation and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** Governance dependencies are documented with owner/source references.
-- **Dependencies:** KAOS001-REGISTRY001; OPS004; OPS005; runtime ownership map as reference.
-- **Operator Decision Required:** Approve dependency-map scope before activation.
+- **Documentation Updates Required:** Create the relationship/dependency model; link it from the KAOS README; record this task as DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `Relationship & Dependency Model`, `parent_authority`, `depends_on`, `required_by`, `affected_by`, `Impact Analysis Mapping`, `Relationship Quality Levels`, `R5: Automation-ready`, and `KAOS001-DEPMAP001` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** Relationship model exists; README links the model; canonical relationship types, impact analysis mapping, relationship templates, WNYHS example maps, relationship quality levels, prohibited behavior, and future use boundaries are documented; only allowed docs changed; no business process registry, RSI register, decision register, hook docs, graph visualization files, automation, runtime/source files, protected systems, historical docs, version files, or unrelated future backlog task statuses changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001; REPO001-REV03-001; OPS003; OPS004; OPS005; current governance authority chain; prompt-created bounded `KAOS001-DEPMAP001` work order.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/KAOS001_RELATIONSHIP_AND_DEPENDENCY_MODEL_REV01.md` defining relationship categories, canonical relationship types, dependency-vs-relationship boundaries, impact analysis mapping, relationship record templates, object-level relationship blocks, WNYHS example maps, relationship quality levels, prohibited behavior, and future-use boundaries. Updated `/docs/kaos/README.md` to link the model. No source/runtime files, protected systems, business process registry docs, RSI register docs, decision register docs, hook docs, graph visualization files, automation, historical docs, version files, or unrelated future task statuses were changed.
 
 ### KAOS001-BPROC001
 - **Task ID:** KAOS001-BPROC001
