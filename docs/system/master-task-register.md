@@ -177,6 +177,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** None for this bounded normalization; future task activation requires operator authorization.
 - **Completion Notes:** Added REPO001 and KAOS001 initiative records plus the immediate REPO001/KAOS001/HOOK001 task queue without deleting, moving, or rewriting historical task records. Future queue tasks remain BACKLOG and non-executable. No implementation files, protected systems, KAOS registry docs, hook docs, RSI docs, or business process registry docs were created.
 
+### REPO001-REV03-001
+- **Task ID:** REPO001-REV03-001
+- **Task Name:** KAOS Operating System Master Control REV03
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add the REPO001 / KAOS001 Operating System Master Control REV03 planning and control document to the KAOS documentation set without promoting it above higher-authority system governance.
+- **Allowed Scope:** Create `/docs/kaos/WNYHS_REPO001_KAOS_OPERATING_SYSTEM_MASTER_CONTROL_REV03.md`; add a KAOS README link if needed; add or update this bounded task record in the Master Task Register.
+- **Forbidden Scope:** No source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, relationship model docs, business process registry docs, RSI register docs, decision register docs, hook docs, automation, existing governance rewrites, historical doc deletion/move/rename, unrelated future backlog completion, PR merge, or version bump.
+- **Target Files:** `docs/kaos/WNYHS_REPO001_KAOS_OPERATING_SYSTEM_MASTER_CONTROL_REV03.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Create the REV03 master control document; link it from the KAOS README; record this bounded task as DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `KAOS-complete`, `Architecture Maturity Dashboard`, `Impact Analysis Framework`, `Task Register Efficiency Principle`, `Operating System Health Score`, and `REPO001-REV03-001` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** REV03 master control document exists; KAOS README links REV03; this register contains `REPO001-REV03-001`; only allowed docs changed; no implementation files or protected systems touched; no future backlog tasks marked DONE; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `REPO001-REV03-001` work order; REPO001-MTR001; KAOS001-REGISTRY001; KAOS001-INTAKE001; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/WNYHS_REPO001_KAOS_OPERATING_SYSTEM_MASTER_CONTROL_REV03.md` as a non-authoritative executive planning/control document for REPO001 / KAOS001 maturity, including maturity dashboard, operating principles, KAOS-complete test, roadmap, lifecycle, relationship/dependency model, impact framework, business process philosophy, workflow event architecture, task register efficiency, continuous knowledge capture, health score, vision, current roadmap, and long-term objective. Updated `/docs/kaos/README.md` with a REV03 link. No implementation files, protected systems, new relationship model docs, business process registry docs, RSI register docs, decision register docs, hook docs, automation, historical docs, version files, or unrelated future backlog task statuses were changed.
+
 ### KAOS001-REGISTRY001
 - **Task ID:** KAOS001-REGISTRY001
 - **Task Name:** Knowledge Object Schema and Registry

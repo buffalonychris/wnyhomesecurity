@@ -30,6 +30,7 @@ Current higher-authority docs remain:
 
 ## Current KAOS001 Foundation Docs
 
+- `/docs/kaos/WNYHS_REPO001_KAOS_OPERATING_SYSTEM_MASTER_CONTROL_REV03.md`
 - `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_SCHEMA_REV01.md`
 - `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_REGISTRY_REV01.md`
 - `/docs/kaos/KAOS001_INTAKE_AND_PROMOTION_WORKFLOW_REV01.md`
