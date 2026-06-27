@@ -180,19 +180,20 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### KAOS001-REGISTRY001
 - **Task ID:** KAOS001-REGISTRY001
 - **Task Name:** Knowledge Object Schema and Registry
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Define object types, required fields, status labels, owner docs, source links, and promotion states for KAOS001 knowledge objects.
-- **Allowed Scope:** Future docs-only schema and registry work after activation.
-- **Forbidden Scope:** No source/runtime changes, protected-system changes, automation, broad register rewrite, historical deletion, or candidate task completion.
-- **Target Files:** Future scoped KAOS documentation only.
+- **Allowed Scope:** Create `/docs/kaos/README.md`, `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_SCHEMA_REV01.md`, and `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_REGISTRY_REV01.md`; update this task status only.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, automation, intake workflow docs, business process registry docs, RSI register docs, decision register docs, dependency map docs, hook docs, broad register rewrite, historical deletion, unrelated task status changes, or candidate task completion.
+- **Target Files:** `docs/kaos/README.md`; `docs/kaos/KAOS001_KNOWLEDGE_OBJECT_SCHEMA_REV01.md`; `docs/kaos/KAOS001_KNOWLEDGE_OBJECT_REGISTRY_REV01.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future KAOS registry/schema documentation and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** Knowledge object schema and registry location are approved and documented.
+- **Documentation Updates Required:** Create the initial KAOS documentation folder and the REV01 Knowledge Object schema and registry foundation; update this task status.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `KAOS001-REGISTRY001`, `Knowledge Object`, `source_classification`, `promotion_recommendation`, `KAOS-RSI`, `KAOS-BPROC`, and `KAOS-DEC` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** KAOS schema exists; KAOS registry foundation exists; only allowed docs changed; no intake workflow, RSI register, business process registry, decision register, dependency map, hook docs, historical doc movement, or future backlog completion; validation passes; draft PR is opened without merge.
 - **Dependencies:** REPO001-MTR001; DOCSYNC ownership decision as applicable.
-- **Operator Decision Required:** Approve registry location, object types, and promotion states before activation.
+- **Operator Decision Required:** None for this bounded REV01 foundation; later KAOS records and related registries require separate task activation.
+- **Completion Notes:** Created `/docs/kaos/` with the KAOS001 README, Knowledge Object Schema REV01, and Knowledge Object Registry REV01. Defined object types, required fields, relationship fields, source classifications, authority levels, status values, promotion recommendations, validation expectations, and prohibited behavior. Seeded registry namespaces only; no historical object import, intake workflow, business process registry, RSI register, decision register, dependency map, hook docs, source/runtime changes, or protected-system changes were made.
 
 ### KAOS001-INTAKE001
 - **Task ID:** KAOS001-INTAKE001
