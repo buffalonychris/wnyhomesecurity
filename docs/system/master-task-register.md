@@ -198,19 +198,20 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### KAOS001-INTAKE001
 - **Task ID:** KAOS001-INTAKE001
 - **Task Name:** Intake and Promotion Workflow
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Define how chat-derived, audit-derived, runtime-derived, and business-process knowledge becomes durable repository knowledge.
-- **Allowed Scope:** Future docs-only intake and promotion standard after activation.
-- **Forbidden Scope:** No runtime/source changes, protected-system changes, direct automation, deletion of historical records, or promotion of chat-derived items without documented criteria.
-- **Target Files:** Future scoped KAOS documentation only.
+- **Allowed Scope:** Create `/docs/kaos/KAOS001_INTAKE_AND_PROMOTION_WORKFLOW_REV01.md`; update `/docs/kaos/README.md`; update this task status and completion record only.
+- **Forbidden Scope:** No runtime/source changes, protected-system changes, direct automation, deletion of historical records, promotion of chat-derived items without documented criteria, business process registry docs, RSI register docs, decision register docs, dependency map docs, hook docs, future task activation, broad register rewrite, or historical doc movement.
+- **Target Files:** `docs/kaos/KAOS001_INTAKE_AND_PROMOTION_WORKFLOW_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future intake/promotion workflow documentation and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** Source classification and promotion workflow are documented with clear authority boundaries.
+- **Documentation Updates Required:** Create the KAOS intake and promotion workflow REV01; update the KAOS README link; update this task record.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `Existing Object Check`, `Reconsideration Check`, `Impact Analysis`, `system_interdependencies`, `downstream_impacts`, `data_dependencies`, `ripple_risks`, `Promotion Decision`, and `KAOS001-INTAKE001` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** Intake workflow exists; source channels, lifecycle, existing-object check, reconsideration check, impact analysis fields, classification, promotion decisions, routing rules, task creation rules, validation rules, intake template, prohibited behavior, and future hook relationship are documented with clear authority boundaries; only allowed docs changed; no runtime/source changes, protected-system changes, business process registry, RSI register, decision register, dependency map, hook docs, automation, historical deletion/rename, or future backlog completion; validation passes; draft PR is opened without merge.
 - **Dependencies:** KAOS001-REGISTRY001.
-- **Operator Decision Required:** Approve promotion states and source classification rules before activation.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/KAOS001_INTAKE_AND_PROMOTION_WORKFLOW_REV01.md` defining the manual governed KAOS intake lifecycle, non-authority rule, source channels, existing-object check, reconsideration check, impact analysis, classification, promotion decisions, routing rules, task creation rules, validation rules, intake record template, prohibited behavior, and future HOOK001 relationship without implementing hooks or automation. Updated `/docs/kaos/README.md` to link the workflow. No source/runtime files, protected systems, business process registry docs, RSI register docs, decision register docs, dependency map docs, hook docs, historical docs, or future backlog task statuses were changed.
 
 ### KAOS001-DEPMAP001
 - **Task ID:** KAOS001-DEPMAP001

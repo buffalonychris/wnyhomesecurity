@@ -32,6 +32,7 @@ Current higher-authority docs remain:
 
 - `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_SCHEMA_REV01.md`
 - `/docs/kaos/KAOS001_KNOWLEDGE_OBJECT_REGISTRY_REV01.md`
+- `/docs/kaos/KAOS001_INTAKE_AND_PROMOTION_WORKFLOW_REV01.md`
 
 ## Explicit Non-Authority
 
@@ -39,7 +40,6 @@ This folder does not authorize:
 
 - source, runtime, route, style, public content, catalog, package, quote, planner, or deployment changes
 - HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, API, environment, secret, dependency, or package-lock changes
-- intake workflow docs
 - business process registry docs
 - RSI register docs
 - decision register docs
