@@ -38,6 +38,7 @@ Current higher-authority docs remain:
 - `/docs/kaos/KAOS001_BUSINESS_PROCESS_REGISTRY_REV01.md`
 - `/docs/kaos/KAOS001_DECISION_REGISTER_REV01.md`
 - `/docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md`
+- `/docs/kaos/EVENT001_WORKFLOW_EVENT_ARCHITECTURE_REV01.md`
 
 ## Explicit Non-Authority
 
