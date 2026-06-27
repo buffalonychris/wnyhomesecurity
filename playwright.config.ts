@@ -10,10 +10,10 @@ export default defineConfig({
   reporter: 'list',
   webServer: shouldStartLocalPreview
     ? {
-        command: 'npm run build && node ./node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173',
+        command: 'node ./scripts/site-qa-preview-server.mjs',
         url: localPreviewURL,
         reuseExistingServer: true,
-        gracefulShutdown: { signal: 'SIGINT', timeout: 500 },
+        gracefulShutdown: { signal: 'SIGTERM', timeout: 5_000 },
         timeout: 120_000,
       }
     : undefined,
