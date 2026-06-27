@@ -408,20 +408,21 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ### HOOK001
 - **Task ID:** HOOK001
-- **Task Name:** Workflow Event and KAOS Hook Architecture Standard
-- **Status:** BACKLOG
+- **Task Name:** KAOS Hook Subscription Architecture
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Define future workflow event and KAOS hook architecture as specification work before any implementation.
-- **Allowed Scope:** Future docs-only architecture/specification standard after activation.
-- **Forbidden Scope:** No hook implementation, automation, runtime/source changes, protected-system changes, new integrations, scheduler setup, event processing, historical deletion, or candidate task completion.
-- **Target Files:** Future scoped governance documentation only.
+- **Purpose:** Define the KAOS Hook Subscription Architecture foundation for future governed subscribers to Codex lifecycle events and WNYHS workflow events before any implementation.
+- **Allowed Scope:** Create `docs/kaos/HOOK001_KAOS_HOOK_SUBSCRIPTION_ARCHITECTURE_REV01.md`; update `docs/kaos/README.md`; update this HOOK001 task record only.
+- **Forbidden Scope:** No hook implementation, hooks.json, config.toml hook configuration, hook scripts, automation, runtime/source changes, protected-system changes, new integrations, scheduler setup, event processing, Playwright installation, Sites configuration, dependency changes, package-lock changes, historical deletion, unrelated task status changes, future backlog task completion, PR merge, or site version bump.
+- **Target Files:** `docs/kaos/HOOK001_KAOS_HOOK_SUBSCRIPTION_ARCHITECTURE_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future hook architecture standard and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** Hook architecture is specified as future work without implementing workflow events.
-- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001.
-- **Operator Decision Required:** Approve hook architecture scope and implementation boundary before activation.
+- **Documentation Updates Required:** Add the Hook Subscription Architecture document, link it from the KAOS README, and record HOOK001 completion here.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; `rg -n "KAOS Hook Subscription Architecture|Event vs Hook|SessionStart|UserPromptSubmit|PreToolUse|PermissionRequest|PostToolUse|Stop|HOOK-KAOS-INTAKE001|HOOK-PROTECTED001|HOOK001" docs/kaos docs/system/master-task-register.md`; docs lint if available.
+- **Exit Criteria:** Hook Subscription Architecture exists; README links the architecture; Codex hook events and candidate subscriptions are mapped; trust/safety, protected-system rules, maturity levels, and prohibited behavior are documented; only allowed docs changed; no hook implementation, automation, runtime/source files, protected systems, hooks.json, hook scripts, Playwright, Sites, dependencies, package-lock, or future backlog task statuses changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded HOOK001 work order; EVENT001; KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001; KAOS001-BPROC001; KAOS001-DECISION001; KAOS001-RSI001; REPO001-REV03-001.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/HOOK001_KAOS_HOOK_SUBSCRIPTION_ARCHITECTURE_REV01.md` as docs-only KAOS architecture. The document distinguishes events, hooks, automation, candidate outputs, operator review, and repository promotion; maps Codex hook events including SessionStart, UserPromptSubmit, PreToolUse, PermissionRequest, PostToolUse, PreCompact, PostCompact, Stop, SubagentStart, and SubagentStop; defines hook categories, review levels, candidate subscriptions, allowed/prohibited outputs, trust and safety rules, protected-system rules, maturity levels, example flows, prohibited behavior, and future use. Updated the KAOS README link. No hooks were implemented, no hooks.json or hook scripts were created, no automation was configured, no Playwright or Sites work was performed, no source/runtime files or protected systems were changed, and no future backlog tasks were marked DONE.
 
 ---
 

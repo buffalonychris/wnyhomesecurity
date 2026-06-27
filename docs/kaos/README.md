@@ -39,6 +39,7 @@ Current higher-authority docs remain:
 - `/docs/kaos/KAOS001_DECISION_REGISTER_REV01.md`
 - `/docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md`
 - `/docs/kaos/EVENT001_WORKFLOW_EVENT_ARCHITECTURE_REV01.md`
+- `/docs/kaos/HOOK001_KAOS_HOOK_SUBSCRIPTION_ARCHITECTURE_REV01.md`
 
 ## Explicit Non-Authority
 
@@ -50,5 +51,4 @@ This folder does not authorize:
 - additional RSI register docs
 - additional decision register docs
 - additional relationship/dependency docs without bounded task authorization
-- hook docs
 - automatic promotion of chat-derived or inferred knowledge into active authority
