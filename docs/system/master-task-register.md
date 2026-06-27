@@ -536,6 +536,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR and decide whether to merge.
 - **Completion Notes:** Added `playwright.config.ts` for the governed Site QA Harness using `SITE_QA_BASE_URL` with local preview fallback, `tests/site-qa` as the future test directory, Chromium baseline, Firefox project, mobile Chromium profile, and simple repo-safe output/report paths. No Playwright tests, `tests/` directory, screenshots, baselines, reports, Sites configuration, hooks, browser QA execution, source/runtime files, website pages, routes, CSS/tokens, SEO files, HubSpot, Stripe/payment, Resend/email, Cloudflare config, environment files, secrets, dependency files, package-lock, automation, version files, or future task statuses were changed.
 
+### PLAY003
+- **Task ID:** PLAY003
+- **Task Name:** Add Route Smoke Tests
+- **Status:** BLOCKED
+- **Category:** QA / Tooling
+- **Tags:** Playwright / Site QA / Route Smoke / Local Preview
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add the first governed Playwright route smoke tests for the WNYHS Site QA Harness against local/default preview only, without production QA, source/runtime changes, visual baselines, screenshots, metadata tests, Sites configuration, hooks, or dependency changes.
+- **Allowed Scope:** Create `tests/site-qa/routes/public-routes.spec.ts`; update only this Master Task Register record.
+- **Forbidden Scope:** No source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files or secrets, Playwright config changes, visual baseline tests, screenshot assertions, metadata tests, production URL defaults, Sites configuration, hooks.json, `.codex/config.toml`, hook scripts, dependency changes, package-lock changes, activation or completion of PLAY004, PLAY005, SITEQA002, HOOK-SITEQA001, or later tasks, merge, or version bump.
+- **Target Files:** `tests/site-qa/routes/public-routes.spec.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Dev QA test creation only.
+- **Documentation Updates Required:** Add this bounded task-register record and mark DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; `npm run build`; `npx playwright test --list`; `npm run qa:site -- --project=chromium` using local/default base URL only.
+- **Exit Criteria:** Route smoke spec exists under `tests/site-qa/routes`; initial public route list includes `/`, canonical category routes, `/about`, `/contact`, `/support`, and `/search`; each route navigates with Playwright, verifies a non-failed page response, visible body, and at least one visible heading or landmark; nonexistent route behavior is captured as explicit not-found handling or marked `test.fixme` with a governance note when the app exposes SPA fallback; no screenshots, visual baselines, metadata tests, production URL defaults, source/runtime/customer-facing changes, protected-system changes, Playwright config changes, dependency changes, or future task completions are introduced; validation passes or browser-binary absence is reported with the exact install command needed; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `PLAY003` work order; PLAY001; PLAY002; SITE001; SITEQA001; CODEX001; CODEX run contract; OPS003; OPS004; OPS005; current governance authority chain.
+- **Operator Decision Required:** Install Playwright browser binaries with `npx playwright install`, then rerun `npm run qa:site -- --project=chromium` before marking DONE.
+- **Blocking Notes:** Created `tests/site-qa/routes/public-routes.spec.ts` with initial local-preview public route smoke coverage for `/`, `/categories/home-security`, `/categories/home-automation`, `/categories/home-safety`, `/categories/home-lighting`, `/categories/aging-in-place`, `/about`, `/contact`, `/support`, and `/search`. Each route asserts a non-failed response, visible body, and visible heading or landmark. Added a nonexistent-route soft-404 check that marks `test.fixme` when the current app resolves unknown paths to the SPA shell/layout without an explicit not-found state. `npm run build` and `npx playwright test --list` passed, but `npm run qa:site -- --project=chromium` could not complete because Chromium browser binaries are missing; Playwright reported `npx playwright install` as the required install command. No source/runtime files, Playwright config, screenshots, visual baselines, metadata tests, production URL defaults, Sites configuration, hooks, protected systems, dependencies, package-lock, version files, or future task statuses were changed.
+
 ---
 
 ## Active Tasks (Execution Driver)
