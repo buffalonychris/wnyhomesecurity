@@ -88,6 +88,28 @@ Every actionable task record must include:
 
 Initiative records group bounded tasks but are not executable task records. Codex may execute only task records promoted to `ACTIVE` in Active Tasks or explicitly bounded prompt-created work orders permitted by higher-authority governance.
 
+### REPO001
+- **Initiative ID:** REPO001
+- **Initiative Name:** WNYHS Operating System Reconstruction / Knowledge Architecture Evolution
+- **Status:** ACTIVE
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Coordinate the evolution from current repo-centered governance into the KAOS001 knowledge architecture and operating system.
+- **Current Authorized Task:** None. `REPO001-MTR001` is DONE.
+- **Lineage Reference:** `docs/audits/WNYHS_Current_Governance_Model_Assessment_REV01.md`
+- **Reserved Future Task:** REPO001 follow-up work requires separate bounded task records and operator authorization.
+- **Protected Boundaries:** Governance evolution only. Do not delete or move historical task records, change source/runtime files, modify protected systems, or treat chat-derived KAOS items as authority until promoted into repository docs.
+
+### KAOS001
+- **Initiative ID:** KAOS001
+- **Initiative Name:** WNYHS Knowledge Architecture & Operating System
+- **Status:** ACTIVE
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define the knowledge object model, registries, source classification, intake/promotion workflow, dependency map, and continuous knowledge capture layer.
+- **Current Authorized Task:** None. KAOS001 is represented as a parent initiative; child work remains non-executable until separately activated.
+- **Lineage Reference:** `docs/audits/WNYHS_Current_Governance_Model_Assessment_REV01.md`
+- **Reserved Future Task:** KAOS registry, intake, dependency map, business process, RSI, decision, Project KB, and hook architecture work require separate bounded task records.
+- **Protected Boundaries:** KAOS001 is the target knowledge architecture layer. This initiative record does not create new registries, hook docs, RSI docs, business process docs, runtime workflows, automation, or source changes.
+
 ### SOLUTION001
 - **Initiative ID:** SOLUTION001
 - **Initiative Name:** WNYHS Solution Page Standardization
@@ -117,6 +139,247 @@ Initiative records group bounded tasks but are not executable task records. Code
 - **Current Authorized Task:** None. CATEGORY-LANDING-001-A through CATEGORY-LANDING-001-E and CATEGORY-LANDING-001-A-IMAGE-ASSET-POLISH are DONE.
 - **Reserved Future Task:** Dedicated CATEGORY003 image asset packages for category pages require separate bounded tasks and operator approval.
 - **Protected Boundaries:** No HubSpot, Stripe/payment, scheduling, Resend/email, APIs/backend, lead-signal/requestId, quote/estimate runtime, protected operator routes, semantic token definition changes, package-lock/dependency changes, Cloudflare config changes, direct deployment, or unrelated page cleanup unless a future bounded task explicitly authorizes it.
+
+---
+
+## Governance Evolution Workstream (REPO001 / KAOS001)
+
+This workstream records REPO001 / KAOS001 governance evolution tasks without treating proposed knowledge architecture as active authority before promotion.
+
+### Workstream Notes
+
+- This is governance evolution, not destructive reconciliation.
+- Do not delete or move historical task records.
+- Do not treat chat-derived KAOS items as authority until promoted into repository docs.
+- REPO001 is the active reconstruction/evolution project.
+- KAOS001 is the target knowledge architecture and operating system layer.
+- Hooks are future architecture/specification work, not implementation in `REPO001-MTR001`.
+- Business processes should become first-class governance objects in a later task.
+- RSI means Recursive Self Improvement and should be formalized before automation.
+- Lineage reference: `docs/audits/WNYHS_Current_Governance_Model_Assessment_REV01.md`
+- Future REPO001/KAOS001 Codex tasks should include a Context Efficiency Report and follow `docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md`.
+
+### REPO001-MTR001
+- **Task ID:** REPO001-MTR001
+- **Task Name:** Master Task Register Normalization
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create durable controlling task records for REPO001 / KAOS001 and the immediate task queue.
+- **Allowed Scope:** Update only `docs/system/master-task-register.md` to add or normalize REPO001 / KAOS001 initiative records, this task record, future task records, lineage notes, and context-efficiency expectations.
+- **Forbidden Scope:** No source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, new KAOS registry docs, hook docs, RSI docs, business process registry docs, broad register rewrite, historical record deletion, task renames, PR merge, or candidate task completion.
+- **Target Files:** `docs/system/master-task-register.md`
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add/normalize REPO001 and KAOS001 initiative records; add this REPO001-MTR001 record; add immediate REPO001/KAOS001/HOOK001 task queue records; preserve lineage and scope notes.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for REPO001/KAOS001 task IDs in this register; docs lint if available.
+- **Exit Criteria:** Only this Master Task Register changes; REPO001 and KAOS001 are represented; future queue tasks are non-executable; no historical records are deleted or moved; no implementation or protected-system files change; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `REPO001-MTR001` work order; `docs/system/project.md`; `docs/system/guardrails.md`; `docs/system/agent.md`; `docs/system/step-current.md`; `docs/codex/CODEX_RUN_CONTRACT.md`; `docs/codex/CODEX_TASK_REGISTER_RULES.md`; `docs/system/OPS003_CODEX_CONTEXT_EFFICIENCY_STANDARD_REV01.md`; `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`; `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`; `docs/audits/WNYHS_Current_Governance_Model_Assessment_REV01.md`.
+- **Operator Decision Required:** None for this bounded normalization; future task activation requires operator authorization.
+- **Completion Notes:** Added REPO001 and KAOS001 initiative records plus the immediate REPO001/KAOS001/HOOK001 task queue without deleting, moving, or rewriting historical task records. Future queue tasks remain BACKLOG and non-executable. No implementation files, protected systems, KAOS registry docs, hook docs, RSI docs, or business process registry docs were created.
+
+### KAOS001-REGISTRY001
+- **Task ID:** KAOS001-REGISTRY001
+- **Task Name:** Knowledge Object Schema and Registry
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define object types, required fields, status labels, owner docs, source links, and promotion states for KAOS001 knowledge objects.
+- **Allowed Scope:** Future docs-only schema and registry work after activation.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, automation, broad register rewrite, historical deletion, or candidate task completion.
+- **Target Files:** Future scoped KAOS documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future KAOS registry/schema documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Knowledge object schema and registry location are approved and documented.
+- **Dependencies:** REPO001-MTR001; DOCSYNC ownership decision as applicable.
+- **Operator Decision Required:** Approve registry location, object types, and promotion states before activation.
+
+### KAOS001-INTAKE001
+- **Task ID:** KAOS001-INTAKE001
+- **Task Name:** Intake and Promotion Workflow
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define how chat-derived, audit-derived, runtime-derived, and business-process knowledge becomes durable repository knowledge.
+- **Allowed Scope:** Future docs-only intake and promotion standard after activation.
+- **Forbidden Scope:** No runtime/source changes, protected-system changes, direct automation, deletion of historical records, or promotion of chat-derived items without documented criteria.
+- **Target Files:** Future scoped KAOS documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future intake/promotion workflow documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Source classification and promotion workflow are documented with clear authority boundaries.
+- **Dependencies:** KAOS001-REGISTRY001.
+- **Operator Decision Required:** Approve promotion states and source classification rules before activation.
+
+### KAOS001-DEPMAP001
+- **Task ID:** KAOS001-DEPMAP001
+- **Task Name:** Governance Dependency Map
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Map authority, standards, runtime contracts, workstreams, and task board dependencies.
+- **Allowed Scope:** Future docs-only dependency map seeded from active governance and status-board inputs.
+- **Forbidden Scope:** No runtime/source changes, protected-system changes, dependency rewrites, historical deletion, or broad document restructuring.
+- **Target Files:** Future scoped KAOS documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future dependency map documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Governance dependencies are documented with owner/source references.
+- **Dependencies:** KAOS001-REGISTRY001; OPS004; OPS005; runtime ownership map as reference.
+- **Operator Decision Required:** Approve dependency-map scope before activation.
+
+### KAOS001-BPROC001
+- **Task ID:** KAOS001-BPROC001
+- **Task Name:** Business Process Registry
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Promote business processes to first-class governance objects with owners, boundaries, inputs, outputs, and protected systems.
+- **Allowed Scope:** Future docs-only business process registry work after activation.
+- **Forbidden Scope:** No runtime/source changes, process automation, protected-system changes, customer workflow rewrites, historical deletion, or candidate task completion.
+- **Target Files:** Future scoped KAOS documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future business process registry documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Business process registry schema and initial seed scope are documented.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001.
+- **Operator Decision Required:** Approve first-class business process object model before activation.
+
+### KAOS001-RSI001
+- **Task ID:** KAOS001-RSI001
+- **Task Name:** RSI Register and Intake Model
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define Recursive Self Improvement meaning, schema, capture source, owner, status, and promotion path before automation.
+- **Allowed Scope:** Future docs-only RSI definition and register model after activation.
+- **Forbidden Scope:** No automation, runtime/source changes, protected-system changes, recurring task setup, historical deletion, or candidate task completion.
+- **Target Files:** Future scoped KAOS documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future RSI register/intake model documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** RSI is defined and governed before any automation work is proposed.
+- **Dependencies:** KAOS001-REGISTRY001; operator definition of RSI.
+- **Operator Decision Required:** Approve RSI meaning, capture model, and automation boundary before activation.
+
+### KAOS001-DECISION001
+- **Task ID:** KAOS001-DECISION001
+- **Task Name:** Decision Register
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Centralize durable decisions currently embedded across standards, audits, and task records.
+- **Allowed Scope:** Future docs-only decision register schema and initial seed after activation.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, destructive reconciliation, historical deletion, or decision reinterpretation without source evidence.
+- **Target Files:** Future scoped KAOS documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future decision register documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Decision register schema and seed rules are documented with lineage references.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-DEPMAP001.
+- **Operator Decision Required:** Approve decision-record schema before activation.
+
+### KAOS001-PROJECT-KB001
+- **Task ID:** KAOS001-PROJECT-KB001
+- **Task Name:** Project KB Alignment Pack
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Produce a compact Project KB replacement set aligned to active repository authority.
+- **Allowed Scope:** Future docs-only Project KB alignment pack after activation.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, repository authority bypass, Project KB as direct Codex implementation authority, historical deletion, or broad governance rewrite.
+- **Target Files:** Future scoped KAOS/Project KB documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future Project KB alignment documentation and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Project KB alignment pack references active repo authority and excludes unsupported prompt-only authority.
+- **Dependencies:** KAOS001-INTAKE001; KAOS001-DEPMAP001; REPO001-DOCSYNC001.
+- **Operator Decision Required:** Approve Project KB replacement scope before activation.
+
+### REPO001-DOCSYNC001
+- **Task ID:** REPO001-DOCSYNC001
+- **Task Name:** Catalog / Manifest Ownership Decision
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Decide curated catalog vs exhaustive manifest roles and update rules for REPO001/KAOS001 governance work.
+- **Allowed Scope:** Future docs-only ownership decision and bounded catalog/manifest rule updates after activation.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, document deletion, document renaming, document consolidation, broad manifest rewrite, or candidate task completion.
+- **Target Files:** Future scoped governance docs; `docs/DOCUMENT_CATALOG.md` and `docs/MARKDOWN_MANIFEST.md` only if activated and explicitly scoped.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future catalog/manifest ownership rule and related register updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Future tasks can determine catalog and manifest update responsibility.
+- **Dependencies:** Existing DOCSYNC001; REPO001-MTR001.
+- **Operator Decision Required:** Approve relationship to existing DOCSYNC001 before activation.
+
+### REPO001-DOCSTATUS002
+- **Task ID:** REPO001-DOCSTATUS002
+- **Task Name:** Proposed / Superseded Document Classification
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Classify proposed, superseded, duplicate, and unknown governance docs without deletion.
+- **Allowed Scope:** Future docs-only classification work after activation.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, document deletion, document renaming, destructive consolidation, historical audit rewrites, or candidate task completion.
+- **Target Files:** Future scoped governance docs only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future proposed/superseded classification notes and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, no-delete/no-rename verification, and no-implementation-file verification.
+- **Exit Criteria:** Candidate governance docs have explicit non-destructive status labels.
+- **Dependencies:** REPO001-DOCSYNC001; existing DOCSTATUS002.
+- **Operator Decision Required:** Approve relationship to existing DOCSTATUS002 before activation.
+
+### REPO001-OPS001-PROMOTE
+- **Task ID:** REPO001-OPS001-PROMOTE
+- **Task Name:** Operator Workflow Promotion or Supersession Decision
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Decide whether OPS001 becomes active, is superseded, or remains evidence.
+- **Allowed Scope:** Future docs-only promotion/classification decision after activation.
+- **Forbidden Scope:** No source/runtime changes, protected-system changes, direct workflow implementation, historical deletion, broad governance rewrite, or candidate task completion.
+- **Target Files:** Future scoped governance docs only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future OPS001 promotion/supersession notes and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** OPS001 status is decided and recorded without destructive cleanup.
+- **Dependencies:** REPO001-DOCSTATUS002.
+- **Operator Decision Required:** Approve OPS001 promotion, supersession, or evidence-only classification before activation.
+
+### REPO001-RUNTIME-MAP001
+- **Task ID:** REPO001-RUNTIME-MAP001
+- **Task Name:** Runtime Owner Map Refresh
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Refresh runtime ownership map after inventories and source/referral docs expanded.
+- **Allowed Scope:** Future docs-only runtime ownership map refresh after activation.
+- **Forbidden Scope:** No runtime implementation, source changes, protected-system behavior changes, secrets exposure, environment changes, Cloudflare config changes, HubSpot/Stripe/Scheduling/Resend changes, historical deletion, or candidate task completion.
+- **Target Files:** Future scoped runtime documentation only.
+- **Runtime Systems Affected:** None until separately authorized; documentation only.
+- **Documentation Updates Required:** Future runtime owner map updates and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, protected-system boundary verification, and no-implementation-file verification.
+- **Exit Criteria:** Runtime ownership map reflects current protected-system docs without changing runtime behavior.
+- **Dependencies:** Runtime current inventories; protected runtime contract; KAOS001-DEPMAP001 as applicable.
+- **Operator Decision Required:** Approve refresh scope before activation.
+
+### HOOK001
+- **Task ID:** HOOK001
+- **Task Name:** Workflow Event and KAOS Hook Architecture Standard
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define future workflow event and KAOS hook architecture as specification work before any implementation.
+- **Allowed Scope:** Future docs-only architecture/specification standard after activation.
+- **Forbidden Scope:** No hook implementation, automation, runtime/source changes, protected-system changes, new integrations, scheduler setup, event processing, historical deletion, or candidate task completion.
+- **Target Files:** Future scoped governance documentation only.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Future hook architecture standard and related register/catalog updates if activated.
+- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
+- **Exit Criteria:** Hook architecture is specified as future work without implementing workflow events.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001.
+- **Operator Decision Required:** Approve hook architecture scope and implementation boundary before activation.
 
 ---
 
