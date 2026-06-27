@@ -40,6 +40,7 @@ Current higher-authority docs remain:
 - `/docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md`
 - `/docs/kaos/EVENT001_WORKFLOW_EVENT_ARCHITECTURE_REV01.md`
 - `/docs/kaos/HOOK001_KAOS_HOOK_SUBSCRIPTION_ARCHITECTURE_REV01.md`
+- `/docs/kaos/HOOKCAT001_KAOS_HOOK_CATALOG_REV01.md`
 
 ## Explicit Non-Authority
 
