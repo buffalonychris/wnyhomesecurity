@@ -287,19 +287,20 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### KAOS001-DECISION001
 - **Task ID:** KAOS001-DECISION001
 - **Task Name:** Decision Register
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Centralize durable decisions currently embedded across standards, audits, and task records.
-- **Allowed Scope:** Future docs-only decision register schema and initial seed after activation.
-- **Forbidden Scope:** No source/runtime changes, protected-system changes, destructive reconciliation, historical deletion, or decision reinterpretation without source evidence.
-- **Target Files:** Future scoped KAOS documentation only.
+- **Purpose:** Create the KAOS001 Decision Register foundation for capturing, classifying, relating, and promoting WNYHS decision records and decision candidates without creating new business decisions or implementation authority.
+- **Allowed Scope:** Create `/docs/kaos/KAOS001_DECISION_REGISTER_REV01.md`; update `/docs/kaos/README.md`; update only this task record in the Master Task Register.
+- **Forbidden Scope:** No source/runtime changes, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, RSI register docs, hook docs, graph visualization files, automation, historical decision import, broad historical classification, destructive reconciliation, historical deletion/move/rename, unrelated future task status changes, PR merge, or version bump.
+- **Target Files:** `docs/kaos/KAOS001_DECISION_REGISTER_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future decision register documentation and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** Decision register schema and seed rules are documented with lineage references.
-- **Dependencies:** KAOS001-REGISTRY001; KAOS001-DEPMAP001.
-- **Operator Decision Required:** Approve decision-record schema before activation.
+- **Documentation Updates Required:** Create the Decision Register REV01; link it from the KAOS README; record this task as DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `Decision Register`, `DECISION-KAOS001`, `DECISION-CODEX001`, `DECISION-BPROC001`, `DECISION-CATALOG001`, `Existing Decision Check`, `Protected Decision Rules`, and `KAOS001-DECISION001` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** Decision Register exists; README links the register; decision purpose, definition, types, schema, lifecycle, existing-decision check, impact analysis, protected decision rules, authority rules, seed candidate decision map, record template, prohibited behavior, and future-use boundaries are documented; seed decisions remain candidates only; only allowed docs changed; no automation, runtime/source files, protected systems, historical docs, version files, RSI register, hook docs, graph visualization files, or unrelated future task statuses changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001; KAOS001-BPROC001; REPO001-REV03-001; OPS003; OPS004; OPS005; current governance authority chain; prompt-created bounded `KAOS001-DECISION001` work order.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/KAOS001_DECISION_REGISTER_REV01.md` defining decisions as first-class KAOS Knowledge Objects, including decision definition, decision types, required schema, lifecycle stages, existing-decision check, four-question impact analysis, protected decision rules, authority rules, seed candidate decision map, record template, prohibited behavior, and future-use boundaries. Updated `/docs/kaos/README.md` to link the register. Seed decisions remain `Candidate` only and are not active authority. No source/runtime files, protected systems, automation, HubSpot, Stripe/payment, scheduling, quote/catalog/dashboard/SEO behavior, RSI register docs, hook docs, graph visualization files, historical docs, version files, or unrelated future task statuses were changed.
 
 ### KAOS001-PROJECT-KB001
 - **Task ID:** KAOS001-PROJECT-KB001
