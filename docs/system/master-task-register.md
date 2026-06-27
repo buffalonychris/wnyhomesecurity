@@ -517,6 +517,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR and decide whether to merge.
 - **Completion Notes:** Installed `@playwright/test` as a dev dependency for future governed Site QA harness work and added the minimal `qa:site` npm script. `package-lock.json` changed only for the Playwright dependency tree. No Playwright config, tests, screenshots, baselines, reports, hooks, Sites configuration, browser QA execution, source/runtime files, website pages, routes, CSS/tokens, SEO files, HubSpot, Stripe/payment, Resend/email, Cloudflare config, environment files, secrets, automation, version files, or future task statuses were changed.
 
+### PLAY002
+- **Task ID:** PLAY002
+- **Task Name:** Add Playwright Configuration
+- **Status:** DONE
+- **Category:** QA / Tooling
+- **Tags:** Playwright / Site QA / Configuration / Tooling
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add the initial governed Playwright TypeScript configuration for the WNYHS Site QA Harness without creating tests, running browser QA, configuring Sites, creating hooks, or changing source/runtime/customer-facing behavior.
+- **Allowed Scope:** Create `playwright.config.ts`; update only this Master Task Register record.
+- **Forbidden Scope:** No Playwright tests, `tests/` directory, screenshots, baselines, reports, Sites configuration, hooks.json, config.toml hook configuration, hook scripts, browser QA execution, production QA, source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files, secrets, dependency changes, package-lock changes, automation, activation or completion of PLAY003, PLAY004, SITEQA002, or hook tasks, merge, or version bump.
+- **Target Files:** `playwright.config.ts`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Dev QA tooling configuration only.
+- **Documentation Updates Required:** Add this bounded task-register record and mark DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; `npm run build`; `npx playwright --version`; `npx playwright test --list`.
+- **Exit Criteria:** `playwright.config.ts` exists; config uses Playwright TypeScript config; default test directory is `tests/site-qa`; Chromium is configured as the required baseline browser; Firefox is configured; a mobile viewport profile is configured; base URL uses `SITE_QA_BASE_URL` with a safe local default; output/report paths are repo-safe; no tests, screenshots, reports, baselines, Sites config, hooks, source/runtime/customer-facing changes, dependency changes, or future task completions are introduced; validation passes or no-tests list behavior is reported as expected for config-only setup; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `PLAY002` work order; PLAY001; SITE001; SITEQA001; CODEX001; CODEX run contract; OPS003; OPS004; OPS005; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Added `playwright.config.ts` for the governed Site QA Harness using `SITE_QA_BASE_URL` with local preview fallback, `tests/site-qa` as the future test directory, Chromium baseline, Firefox project, mobile Chromium profile, and simple repo-safe output/report paths. No Playwright tests, `tests/` directory, screenshots, baselines, reports, Sites configuration, hooks, browser QA execution, source/runtime files, website pages, routes, CSS/tokens, SEO files, HubSpot, Stripe/payment, Resend/email, Cloudflare config, environment files, secrets, dependency files, package-lock, automation, version files, or future task statuses were changed.
+
 ---
 
 ## Active Tasks (Execution Driver)
