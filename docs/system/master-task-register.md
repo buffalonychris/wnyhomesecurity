@@ -303,6 +303,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR and decide whether to merge.
 - **Completion Notes:** Created `/docs/kaos/KAOS001_DECISION_REGISTER_REV01.md` defining decisions as first-class KAOS Knowledge Objects, including decision definition, decision types, required schema, lifecycle stages, existing-decision check, four-question impact analysis, protected decision rules, authority rules, seed candidate decision map, record template, prohibited behavior, and future-use boundaries. Updated `/docs/kaos/README.md` to link the register. Seed decisions remain `Candidate` only and are not active authority. No source/runtime files, protected systems, automation, HubSpot, Stripe/payment, scheduling, quote/catalog/dashboard/SEO behavior, RSI register docs, hook docs, graph visualization files, historical docs, version files, or unrelated future task statuses were changed.
 
+### EVENT001
+- **Task ID:** EVENT001
+- **Task Name:** Workflow Event Architecture
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the docs-only KAOS workflow event architecture foundation defining immutable workflow events, canonical event types, event records, review levels, KAOS routing relationships, example flows, and prohibited behavior before any hook or automation work.
+- **Allowed Scope:** Create `/docs/kaos/EVENT001_WORKFLOW_EVENT_ARCHITECTURE_REV01.md`; update `/docs/kaos/README.md`; update only this `EVENT001` task record in the Master Task Register.
+- **Forbidden Scope:** No source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, hook implementation, hook docs except future references, automation, Playwright installation, Sites configuration, graph visualization files, broad governance rewrites, historical deletion/move/rename, unrelated future task status changes, PR merge, or version bump.
+- **Target Files:** `docs/kaos/EVENT001_WORKFLOW_EVENT_ARCHITECTURE_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance architecture.
+- **Documentation Updates Required:** Create the Workflow Event Architecture REV01; link it from the KAOS README; add and complete this bounded task record after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `Workflow Event Architecture`, `Event vs Hook`, `TASK_ACTIVATED`, `PR_MERGED`, `DEPLOYMENT_VERIFIED`, `MAIN_SYNC_COMPLETED`, `RSI_CANDIDATE_IDENTIFIED`, and `EVENT001` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** Workflow Event Architecture exists; README links the architecture; this register contains `EVENT001`; event purpose, event definition, event-vs-hook distinction, categories, canonical event types, event record schema, lifecycle, review levels, event-to-KAOS routing model, example flows, prohibited behavior, and future use are documented; only allowed docs changed; no source/runtime files, protected systems, hook implementation, automation, Playwright installation, Sites configuration, graph visualization files, historical docs, version files, or unrelated future task statuses changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `EVENT001` work order; REPO001-REV03-001; KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001; KAOS001-BPROC001; KAOS001-DECISION001; KAOS001-RSI001; OPS003; OPS004; OPS005; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/EVENT001_WORKFLOW_EVENT_ARCHITECTURE_REV01.md` defining workflow events as immutable facts, distinct from hooks, automation, review, and evidence. Defined event categories, canonical event types, event record schema, lifecycle stages, review levels, future event-to-KAOS routing, example flows, prohibited behavior, and future-use boundaries. Updated `/docs/kaos/README.md` to link the architecture. No source/runtime files, protected systems, hook implementation, automation, Playwright installation, Sites configuration, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, quote/catalog/dashboard/SEO behavior, graph visualization files, historical docs, version files, or unrelated future task statuses were changed.
+
 ### KAOS001-PROJECT-KB001
 - **Task ID:** KAOS001-PROJECT-KB001
 - **Task Name:** Project KB Alignment Pack
