@@ -37,6 +37,7 @@ Current higher-authority docs remain:
 - `/docs/kaos/KAOS001_RELATIONSHIP_AND_DEPENDENCY_MODEL_REV01.md`
 - `/docs/kaos/KAOS001_BUSINESS_PROCESS_REGISTRY_REV01.md`
 - `/docs/kaos/KAOS001_DECISION_REGISTER_REV01.md`
+- `/docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md`
 
 ## Explicit Non-Authority
 
@@ -45,7 +46,7 @@ This folder does not authorize:
 - source, runtime, route, style, public content, catalog, package, quote, planner, or deployment changes
 - HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, API, environment, secret, dependency, or package-lock changes
 - additional business process registry docs without bounded task authorization
-- RSI register docs
+- additional RSI register docs
 - additional decision register docs
 - additional relationship/dependency docs without bounded task authorization
 - hook docs

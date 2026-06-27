@@ -270,19 +270,20 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### KAOS001-RSI001
 - **Task ID:** KAOS001-RSI001
 - **Task Name:** RSI Register and Intake Model
-- **Status:** BACKLOG
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
-- **Purpose:** Define Recursive Self Improvement meaning, schema, capture source, owner, status, and promotion path before automation.
-- **Allowed Scope:** Future docs-only RSI definition and register model after activation.
-- **Forbidden Scope:** No automation, runtime/source changes, protected-system changes, recurring task setup, historical deletion, or candidate task completion.
-- **Target Files:** Future scoped KAOS documentation only.
+- **Purpose:** Define Recursive Self Improvement meaning, schema, candidate types, lifecycle, maturity, seed candidate map, owner path, and promotion boundaries before any automation.
+- **Allowed Scope:** Create `/docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md`; update `/docs/kaos/README.md`; update only this task record in the Master Task Register.
+- **Forbidden Scope:** No automation, runtime/source changes, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files/secrets, dependencies, package-lock, Sites configuration, Playwright installation, hook docs, graph visualization files, broad historical RSI import, historical deletion/move/rename, unrelated future task status changes, PR merge, or version bump.
+- **Target Files:** `docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md`; `docs/kaos/README.md`; `docs/system/master-task-register.md`.
 - **Runtime Systems Affected:** None.
-- **Documentation Updates Required:** Future RSI register/intake model documentation and related register/catalog updates if activated.
-- **Validation Required:** Future docs diff, traceability grep, and no-implementation-file verification.
-- **Exit Criteria:** RSI is defined and governed before any automation work is proposed.
-- **Dependencies:** KAOS001-REGISTRY001; operator definition of RSI.
-- **Operator Decision Required:** Approve RSI meaning, capture model, and automation boundary before activation.
+- **Documentation Updates Required:** Create the Recursive Self Improvement Register REV01; link it from the KAOS README; record this task as DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted `rg` for `Recursive Self Improvement`, `RSI-SITEQA001`, `RSI-SITEQA002`, `RSI-CLAIMS001`, `RSI-MTR001`, `RSI-L7`, `KAOS001-RSI001`, and `Prohibited Behavior` in `docs/kaos` and this register; docs lint if available.
+- **Exit Criteria:** RSI Register exists; README links the register; RSI purpose, definition, candidate types, record schema, lifecycle, intake rules, impact analysis, maturity levels, seed candidate map, prohibited behavior, and future-use boundaries are documented; seed candidates remain `Candidate` only; only allowed docs changed; no automation, Playwright installation, Sites configuration, runtime/source files, protected systems, hook docs, graph visualization files, historical docs, version files, or unrelated future task statuses changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** KAOS001-REGISTRY001; KAOS001-INTAKE001; KAOS001-DEPMAP001; KAOS001-BPROC001; KAOS001-DECISION001; REPO001-REV03-001; OPS003; OPS004; OPS005; current governance authority chain; prompt-created bounded `KAOS001-RSI001` work order.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `/docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md` defining Recursive Self Improvement as a candidate improvement loop with candidate types, required schema, lifecycle, intake rules, four-question impact analysis, RSI-L0 through RSI-L7 maturity, seed candidate map, record template, prohibited behavior, and future-use boundaries. Updated `/docs/kaos/README.md` to link the register. Seed RSI entries remain `Candidate` only and are not active authority. No source/runtime files, protected systems, automation, Playwright installation, Sites configuration, HubSpot, Stripe/payment, scheduling, quote/catalog/dashboard/SEO behavior, hook docs, graph visualization files, historical docs, version files, or unrelated future task statuses were changed.
 
 ### KAOS001-DECISION001
 - **Task ID:** KAOS001-DECISION001
