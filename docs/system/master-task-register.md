@@ -498,6 +498,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR and decide whether to merge.
 - **Completion Notes:** Created `/docs/qa/SITEQA001_PLAYWRIGHT_SITE_QA_HARNESS_SPECIFICATION_REV01.md` as a docs-only QA tooling specification. The document defines the future Playwright harness role, explicit environment model, future repository layout targets, browser and viewport matrices, route coverage, deployment verification checks, SEO/metadata checks, claims/copy candidate checks, visual/responsive checks, console/network capture, evidence artifacts, run modes, pass/warning/fail policy, EVENT001/HOOK001/HOOKCAT001 relationship, future implementation plan, prohibited behavior, and future-use boundaries. Updated the KAOS README link. No Playwright, Sites configuration, tests, hooks, automation, source/runtime files, protected systems, SEO metadata, sitemap, robots, dependencies, package-lock, version files, or unrelated future backlog task statuses were changed.
 
+### PLAY001
+- **Task ID:** PLAY001
+- **Task Name:** Install Playwright Dependency
+- **Status:** DONE
+- **Category:** QA / Tooling
+- **Tags:** Playwright / Site QA / Dependency / Tooling
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Install the Playwright test dependency needed for the future governed WNYHS Site QA Harness without creating tests, config, hooks, Sites configuration, or runtime behavior.
+- **Allowed Scope:** Add `@playwright/test` as a dev dependency using repository npm conventions; update `package.json` and `package-lock.json` as required by the install; add a minimal `qa:site` npm script if non-invasive; update only this Master Task Register record.
+- **Forbidden Scope:** No `playwright.config.ts`; no tests or `tests/` directories; no screenshots, baselines, reports, hooks, Sites config, browser QA execution, source code, runtime files, website pages, routes, CSS/tokens, catalog imports, SEO metadata, sitemap, robots.txt, quote flow, planner, scheduling, HubSpot/CRM files, Stripe/payment files, Resend/email files, Cloudflare config, environment files, secrets, automation, future task activation, future backlog task completion, merge, or version bump.
+- **Target Files:** `package.json`, `package-lock.json`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Dev dependency/tooling setup only.
+- **Documentation Updates Required:** Add this bounded task-register record and mark DONE after validation.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; npm install validation result; `npm run build`; `npm ls @playwright/test`; `npx playwright --version`.
+- **Exit Criteria:** `@playwright/test` is installed or confirmed present as a dev dependency; package-lock changes are attributable to the Playwright dependency installation; optional script is limited to `qa:site`; no Playwright config, tests, Sites config, hooks, source/runtime, protected-system, or customer-facing behavior changes are introduced; future Playwright/Site QA tasks remain inactive; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `PLAY001` work order; SITE001; SITEQA001; CODEX001; CODEX run contract; OPS003; OPS004; OPS005; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Installed `@playwright/test` as a dev dependency for future governed Site QA harness work and added the minimal `qa:site` npm script. `package-lock.json` changed only for the Playwright dependency tree. No Playwright config, tests, screenshots, baselines, reports, hooks, Sites configuration, browser QA execution, source/runtime files, website pages, routes, CSS/tokens, SEO files, HubSpot, Stripe/payment, Resend/email, Cloudflare config, environment files, secrets, automation, version files, or future task statuses were changed.
+
 ---
 
 ## Active Tasks (Execution Driver)
