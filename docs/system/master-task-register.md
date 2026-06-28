@@ -881,6 +881,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### VISPARITY001
+- **Task ID:** VISPARITY001
+- **Task Name:** Public Route and Visual Element Discovery Inventory
+- **Status:** DONE
+- **Category:** QA
+- **Tags:** Visual System / Site Architecture / Public Routes / Discovery / Documentation
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a discovery inventory of the current public-facing WNYHS website routes and visual elements so later tasks can standardize visual parity, structural parity, token usage, image usage, and accessibility.
+- **Allowed Scope:** Create `docs/design-system/visual-parity/VISPARITY001_PUBLIC_ROUTE_ELEMENT_DISCOVERY_REV01.md`; create `docs/design-system/visual-parity/README.md` if needed; update only this task-register record; inspect current route, navigation, footer, sitemap, search, SEO, visual, image, token, and governance evidence; document current-state discovery only.
+- **Forbidden Scope:** No source code edits, route edits, CSS edits, token edits, UI/component edits, image/asset edits, sitemap edits, robots edits, runtime/API edits, HubSpot edits, Stripe/payment edits, scheduling edits, Cloudflare config edits, dependency or package-lock edits, Playwright tests, hooks, QA checks, visual-standard approval, Active KAOS Rule creation, merge, or version bump.
+- **Target Files:** `docs/design-system/visual-parity/VISPARITY001_PUBLIC_ROUTE_ELEMENT_DISCOVERY_REV01.md`; `docs/design-system/visual-parity/README.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation/discovery only.
+- **Documentation Updates Required:** Add this bounded VISPARITY001 tracking record because it was missing from the Master Task Register but explicitly authorized by the prompt; create the discovery inventory and visual-parity index README.
+- **Validation Required:** `git diff --check`; targeted `rg` for VISPARITY001 required discovery phrases in `docs/design-system` and `docs/system`; merge-conflict marker scan in `docs`; `npm run build`.
+- **Exit Criteria:** Discovery document exists; candidate complete public route list is documented; route source evidence, status, layout families, repeated visual elements, unique elements, image usage candidates, CSS/token evidence, accessibility risks, governance docs, gaps, and recommended next task sequence are recorded; document clearly states current-state discovery only and no approval/implementation authority; only allowed files changed; protected systems untouched; validation passes; draft PR opened without merge.
+- **Dependencies:** Prompt-created bounded VISPARITY001 work order; PR #419 / KAOS-HOOK005 merged; repo-local `.codex/` present; current governance authority chain; `docs/codex/CODEX_RUN_CONTRACT.md`; OPS004; OPS005; visual, site architecture, SEO, search, image, and hook governance docs discovered by targeted reads.
+- **Operator Decision Required:** Review draft PR and decide whether to activate a later bounded VISPARITY follow-up task.
+- **Completion Notes:** Added this VISPARITY001 tracking record as directed by the prompt after confirming it was missing from the register. Created `docs/design-system/visual-parity/` with a README and current-state discovery inventory. The inventory documents the route discovery method, candidate public route list, source evidence from route declarations, nav/footer, sitemap, search index, SEO policy, embedded links, and QR route context; records public/private/review/protected status where discoverable; inventories repeated visual elements, page/layout families, unique page-specific elements, image usage candidates, CSS/token/style evidence, accessibility risks, governance docs, gaps, and recommended next VISPARITY task sequence. No source/runtime/UI/routes/CSS/tokens/images/assets/sitemap/robots/hooks/QA checks/protected systems/dependencies/package-lock/version files were changed.
+
 ### KAOS-BP005B
 - **Task ID:** KAOS-BP005B
 - **Task Name:** Reconcile BP001 Register Labels Against Source Manifest
