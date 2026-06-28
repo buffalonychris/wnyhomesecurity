@@ -33,6 +33,16 @@ If this workspace conflicts with higher-authority governance, protected-system c
 - `HOOK_CANDIDATE_REGISTRY.md` records candidate hook ideas seeded from BP001 source artifacts and current KAOS context.
 - `HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md` defines the Windows-aware Codex hook runtime standard, including repo-local/shared hook locations, configuration boundaries, Windows command requirements, trust review, advisory-first behavior, safe path rules, and future implementation constraints.
 
+## Current Sequence
+
+- `KAOS-HOOK001` completed the hook framework and candidate registry.
+- `KAOS-HOOK002` completed the Windows-aware hook runtime standard.
+- `KAOS-HOOK003` refreshes next-step alignment only.
+- `KAOS-HOOK004` is the recommended next task for the first advisory hook specification.
+- `KAOS-HOOK005` may implement the first advisory hook only if separately approved.
+
+The first implementation path must remain Windows-aware, repo-local unless otherwise approved, advisory-only, trust-reviewed through Codex `/hooks`, and non-blocking unless a later bounded task explicitly approves blocking behavior.
+
 ## Candidate-Only Rule
 
 All entries in this workspace are candidate-only unless a later bounded task explicitly promotes them.
