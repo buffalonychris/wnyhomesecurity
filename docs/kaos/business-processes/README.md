@@ -52,6 +52,7 @@ The detailed lifecycle, operator decisions, evidence requirements, register upda
 - `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md` defines the candidate-to-active review lifecycle, metadata, operator actions, evidence requirements, register recording rules, and activation boundary.
 - `BP_CANDIDATE_INTAKE_REGISTER.md` records candidate packages and future candidate rows before approval.
 - `BP_OPERATOR_REVIEW_TEMPLATE.md` provides a one-process review template for operator decision-making.
+- `candidate-artifacts/bp001-source-package/` stores the repo-hosted source package for the WNYHS BP001A-BP001K candidate extraction artifacts imported by KAOS-BP005A. These files remain Candidate Only, not repository authority, not implementation authority, and not active KAOS rules.
 
 ## Backlog Boundary
 
