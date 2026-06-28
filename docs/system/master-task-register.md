@@ -460,6 +460,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR and decide whether to merge.
 - **Completion Notes:** Created `/docs/kaos/HOOKCAT001_KAOS_HOOK_CATALOG_REV01.md` as docs-only KAOS architecture. The document defines the governed Hook Catalog, its non-authority relationship to HOOK001, hook record schema, lifecycle stages, maturity levels, priority levels, candidate records for thirteen hooks, input/output contract rules, trust/review rules, protected-system hook rules, first implementation candidates, prohibited behavior, and future-use boundaries. Updated the KAOS README link. No hooks were implemented, no hooks.json or hook scripts were created, no automation was configured, no Playwright or Sites work was performed, no source/runtime files or protected systems were changed, and no future backlog tasks were marked DONE.
 
+### KAOS-HOOK002
+- **Task ID:** KAOS-HOOK002
+- **Task Name:** Codex Windows Hook Runtime Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Tags:** KAOS / Hooks / Codex / Windows / Runtime Standard
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define the Windows-aware Codex hook runtime standard for WNYHS before any hook implementation, including repo-local and shared hook locations, configuration boundaries, Windows command requirements, trust review, advisory-first behavior, runtime constraints, and safe path rules.
+- **Allowed Scope:** Create `docs/kaos/hooks/HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md`; update `docs/kaos/hooks/README.md` to link the standard; update this Master Task Register record. Treat the Master Task Register as a tracking board for this prompt-created bounded work order.
+- **Forbidden Scope:** No `.codex/` directory creation, hook scripts, `hooks.json`, `config.toml`, hook implementation, hook approval, blocking hook, active KAOS rule, QA checks, source code, routes, UI, runtime/API files, Stripe/payment behavior, HubSpot behavior, scheduling, Cloudflare config, dependencies, package-lock, PR merge, or protected-system changes.
+- **Target Files:** `docs/kaos/hooks/README.md`; `docs/kaos/hooks/HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance/runtime standard.
+- **Documentation Updates Required:** Add the Windows-aware hook runtime standard; link it from the KAOS hook README; record this bounded task as DONE after validation.
+- **Validation Required:** `git diff --check`; `rg -n "KAOS-HOOK002|Codex Windows|commandWindows|command_windows|py -3|C:\\\\dev\\\\wnyhomesecurity|C:\\\\dev\\\\codex|/hooks|advisory|blocking" docs/kaos docs/system`; `rg -n "hooks.json|config.toml|HOOK_RUNTIME_STANDARD_WINDOWS_REV01" docs/kaos/hooks docs/system`; `rg -n "^(<<<<<<<|=======|>>>>>>>)" docs`; `npm run build`.
+- **Exit Criteria:** Windows hook runtime standard exists; KAOS hook README links it; no `.codex/` files, hook scripts, hook configs, hook implementation, blocking hook, active KAOS rule, source/runtime/UI files, protected-system files, dependencies, package-lock, or Cloudflare config are created or changed; formatting is normalized; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `KAOS-HOOK002` work order; PR #415 / KAOS-HOOK001 merged; HOOK001; HOOKCAT001; `docs/kaos/hooks/HOOK_LIFECYCLE_STANDARD_REV01.md`; `docs/kaos/hooks/HOOK_CANDIDATE_REGISTRY.md`; CODEX run contract; OPS004; OPS005; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future hook implementation requires a separate bounded task and explicit operator approval before any blocking behavior.
+- **Completion Notes:** Created `docs/kaos/hooks/HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md` as a docs-only Windows-aware Codex hook runtime standard. The standard documents repo-local hook location `C:\dev\wnyhomesecurity\.codex\`, shared utility location `C:\dev\codex\`, prohibited locations, repo-local `.codex/hooks.json` and `.codex/config.toml` boundaries, Windows command fields `commandWindows` and `command_windows`, `py -3` preference, git-root-stable path guidance, `/hooks` trust review, concurrent/multiple hook runtime constraints, PostToolUse side-effect limits, advisory-first WNYHS posture, and future implementation restrictions. Updated `docs/kaos/hooks/README.md` with the new standard link. No `.codex/` directory, hook scripts, hook config files, hook implementation, blocking hook, active KAOS rule, QA checks, source/runtime/UI files, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or protected systems were changed.
+
 ### CODEX001
 - **Task ID:** CODEX001
 - **Task Name:** Codex Work Order Specification
