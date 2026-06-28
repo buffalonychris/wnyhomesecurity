@@ -37,7 +37,7 @@ Unless a row explicitly says otherwise:
 - `implementation_status`: Not implemented
 - `trust_review_required`: Yes before implementation
 - `source_confidence`: Candidate source supported
-- `approved_hook_spec`: No
+- `approved_hook_spec`: No, except `KAOS-HOOK-ARTIFACT-AUTHORITY-001` has an Approved Hook Spec in `HOOK_SPEC_ARTIFACT_AUTHORITY_ADVISORY_REV01.md`
 - `implemented_hook`: No
 - `enforced_hook`: No
 - `blocking_hook`: No
@@ -56,12 +56,14 @@ Unless a row explicitly says otherwise:
 | `KAOS-HOOK-COPY-LOCK-001` | Copy lock scanner | copy / claims | Medium | advisory | Flag candidate edits to locked or owner-controlled copy surfaces for review. | Public-copy edit review or future content-validation event. | Changed files, owner docs, task scope, copy lock records when present. | Copy-lock warning, operator review request, candidate task. | Automatic copy revert, copy approval, blocking without later approval. | Public content owner docs and future hook spec. | Public claim surfaces if implemented later. | WNYHS-BP001F, WNYHS-BP001G-012, BP-I-058. | Define what counts as locked copy and how owner exceptions are recorded. | Candidate only; no copy lock registry is created by this task. |
 | `KAOS-HOOK-RUNTIME-SECRETS-001` | Runtime env/secrets exposure check | runtime / environment | Protected | advisory | Flag candidate changes or command outputs that risk exposing secrets, environment values, or private runtime URLs. | Pre-tool review, post-tool review, permission request, closeout review. | Proposed commands, changed files, outputs, task scope, protected-system list. | Secret-risk warning, operator decision request, validation warning. | Secret disclosure, automatic redaction rewrite, protected-system change, blocking without later approval. | Codex run contract, guardrails, runtime docs, future hook spec. | Runtime/API, environment, secrets, Cloudflare, dependencies when implicated. | WNYHS-BP001G-011, WNYHS-BP001G-013. | Define safe pattern classes without storing secret values; define redaction and evidence rules. | Candidate only; no command hook or scan script is created. |
 | `KAOS-HOOK-DOCS-OWNER-001` | Missing owner-doc / task-reference check | docs / governance | Medium | advisory | Flag task or document candidates that lack owner-doc references, task IDs, or authority boundaries. | Session start, task closeout, governance doc review. | Task scope, changed docs, MTR record, owner-doc references, closeout summary. | Governance warning, candidate register update, operator review request. | Automatic task activation, owner-doc rewrite, DONE status, blocking without later approval. | Master Task Register, Codex run contract, future hook spec. | None by default. | WNYHS-BP001G-004, WNYHS-BP001G-005, BP-I-001 through BP-I-006. | Define required fields by document type and exception handling for candidate source artifacts. | Candidate only; MTR remains tracking board for this task. |
-| `KAOS-HOOK-ARTIFACT-AUTHORITY-001` | Candidate artifact authority-boundary check | docs / governance | Medium | advisory | Flag candidate artifacts that might be mistaken for active authority without clear status labels. | Candidate artifact import/review, closeout review. | Candidate artifact files, README/index docs, intake register, task scope. | Authority-boundary warning, candidate cleanup task, operator review request. | Artifact promotion, automatic approval, active rule creation, blocking without later approval. | KAOS intake/business-process docs and future hook spec. | None by default; protected systems only if artifact content proposes them. | WNYHS-BP001G-004, WNYHS-BP001K, BP-I-002, BP-I-011. | Define required candidate labels, source-package exception rules, and promotion boundary checks. | Seeded because BP001 source artifacts are explicitly candidate-only. |
+| `KAOS-HOOK-ARTIFACT-AUTHORITY-001` | Candidate artifact authority-boundary check | docs / governance | Medium | advisory | Flag candidate artifacts that might be mistaken for active authority without clear status labels. | Candidate artifact import/review, closeout review. | Candidate artifact files, README/index docs, intake register, task scope. | Authority-boundary warning, candidate cleanup task, operator review request. | Artifact promotion, automatic approval, active rule creation, blocking without later approval. | `HOOK_SPEC_ARTIFACT_AUTHORITY_ADVISORY_REV01.md`; KAOS intake/business-process docs. | None by default; protected systems only if artifact content proposes them. | WNYHS-BP001G-004, WNYHS-BP001K, BP-I-002, BP-I-011. | Future implementation must follow the approved advisory spec, Windows runtime standard, trust review through Codex `/hooks`, and non-blocking posture. | Approved Hook Spec exists; not implemented, not enforced, and not blocking. |
 | `KAOS-HOOK-CODEX-SCOPE-001` | Codex forbidden-scope check | Codex workflow | High | advisory | Flag candidate Codex runs where changed files, commands, or closeout claims may exceed active task scope. | Pre-tool review, post-tool review, closeout review, permission request. | Active task, allowed files, forbidden scope, changed files, commands, validation results. | Scope warning, operator decision request, candidate remediation task. | Automatic revert, task expansion, task activation, blocking without later approval. | Codex run contract, root AGENTS.md, task register, future hook spec. | All protected systems when scope touches them. | WNYHS-BP001G-005, WNYHS-BP001G-006, WNYHS-BP001G-007, BP-I-005, BP-I-006. | Define scope comparison inputs, severity levels, false-positive handling, and operator override path. | Candidate only; no Codex hook implementation is created. |
 
 ## 5. Approval and Enforcement Status
 
-No hook in this registry is an approved hook spec.
+`KAOS-HOOK-ARTIFACT-AUTHORITY-001` now has an Approved Hook Spec in `HOOK_SPEC_ARTIFACT_AUTHORITY_ADVISORY_REV01.md`.
+
+No other hook in this registry is an approved hook spec.
 
 No hook in this registry is implemented.
 
@@ -77,12 +79,12 @@ Current completed sequence:
 
 - `KAOS-HOOK001` completed the hook framework and candidate registry.
 - `KAOS-HOOK002` completed the Windows-aware hook runtime standard in `HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md`.
-- `KAOS-HOOK003` refreshes this registry alignment only and does not create a hook spec or implementation.
+- `KAOS-HOOK003` refreshed this registry alignment only and did not create a hook spec or implementation.
+- `KAOS-HOOK004` created the first approved advisory hook specification for `KAOS-HOOK-ARTIFACT-AUTHORITY-001` without implementation.
 
 Recommended next implementation path:
 
-1. `KAOS-HOOK004` - create the first advisory hook specification without implementation.
-2. `KAOS-HOOK005` - implement the first advisory hook only if separately approved by a bounded implementation task.
+1. `KAOS-HOOK005` - implement the first advisory hook only if separately approved by a bounded implementation task.
 
 Recommended first candidates:
 
@@ -98,4 +100,4 @@ Any first implementation candidate must follow `HOOK_RUNTIME_STANDARD_WINDOWS_RE
 - Trust-reviewed through Codex `/hooks` before trusted use.
 - Non-blocking unless a separate bounded task explicitly approves blocking behavior.
 
-Do not implement scripts, hook configuration, hook specs, enforcement, QA checks, or blocking behavior in `KAOS-HOOK003`.
+Do not implement scripts, hook configuration, enforcement, QA checks, or blocking behavior from `KAOS-HOOK004`.
