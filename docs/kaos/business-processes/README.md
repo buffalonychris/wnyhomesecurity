@@ -35,16 +35,21 @@ The required lifecycle is:
 ```text
 Candidate
 -> Needs Operator Review
+-> Operator Revision Requested
 -> Approved Candidate
 -> Active KAOS Rule
--> Revised / Superseded / Deprecated / Retired
+-> Superseded
+-> Deprecated
+-> Retired
 ```
 
-The detailed lifecycle and metadata requirements are defined in `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`.
+The detailed lifecycle, operator decisions, evidence requirements, register update rules, and BP001A-K review-pilot rules are defined in `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`.
+
+`Approved Candidate` is not the same as `Active KAOS Rule`. Approved candidates require a later bounded activation task before they can become active KAOS authority.
 
 ## Current Files
 
-- `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md` defines the candidate-to-active review lifecycle, metadata, and operator actions.
+- `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md` defines the candidate-to-active review lifecycle, metadata, operator actions, evidence requirements, register recording rules, and activation boundary.
 - `BP_CANDIDATE_INTAKE_REGISTER.md` records candidate packages and future candidate rows before approval.
 - `BP_OPERATOR_REVIEW_TEMPLATE.md` provides a one-process review template for operator decision-making.
 

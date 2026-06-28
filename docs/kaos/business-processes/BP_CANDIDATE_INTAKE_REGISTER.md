@@ -4,6 +4,7 @@ Status: Initial candidate intake register
 Customer-facing: No
 Implementation authority: No
 Task ID: KAOS-BP001
+Workflow Detail Added By: KAOS-BP003
 
 ## 1. Purpose
 
@@ -75,8 +76,31 @@ Before a future row can move beyond `Candidate`:
 2. Complete metadata required by `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`.
 3. Identify related runtime contracts, QA candidates, hook candidates, and SOP candidates.
 4. Record operator decision.
-5. Promote only through bounded repository governance.
+5. Record evidence reviewed, required edits, prior lifecycle stage, new lifecycle stage, approval status, activation requirement, and any supersession, deprecation, or retirement reason.
+6. Promote only through bounded repository governance.
+7. Treat `Approved Candidate` as review approval only, not as `Active KAOS Rule`.
+8. Create `Active KAOS Rule` status only through a separate bounded activation task.
 
-## 7. No Approved Process Rules
+## 7. Review Decision Recording
 
-As of KAOS-BP002, no WNYHS BP001A-BP001K process is approved, no candidate has been promoted, and no Active KAOS Rule has been created.
+Future review tasks must update this register, or a later approved successor register, with:
+
+- candidate process or artifact ID
+- prior lifecycle stage
+- new lifecycle stage
+- operator decision
+- decision date
+- evidence reviewed
+- required edits or revision request
+- approval status
+- activation required
+- activation task or owner-document path
+- supersedes / superseded-by relationship, if applicable
+- deprecation or retirement reason, if applicable
+- confirmation whether an Active KAOS Rule was created
+
+If this register does not yet have columns for the needed fields, the bounded review task may add them before recording the decision.
+
+## 8. No Approved Process Rules
+
+As of KAOS-BP003, no WNYHS BP001A-BP001K process has been reviewed, approved, promoted, activated, deprecated, superseded, or retired by this workflow-standard task, and no Active KAOS Rule has been created.
