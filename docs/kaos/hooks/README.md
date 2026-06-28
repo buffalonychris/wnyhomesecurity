@@ -32,13 +32,14 @@ If this workspace conflicts with higher-authority governance, protected-system c
 - `HOOK_LIFECYCLE_STANDARD_REV01.md` defines hook terminology, lifecycle states, candidate fields, categories, risk levels, enforcement levels, and approval rules.
 - `HOOK_CANDIDATE_REGISTRY.md` records candidate hook ideas seeded from BP001 source artifacts and current KAOS context.
 - `HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md` defines the Windows-aware Codex hook runtime standard, including repo-local/shared hook locations, configuration boundaries, Windows command requirements, trust review, advisory-first behavior, safe path rules, and future implementation constraints.
+- `HOOK_SPEC_ARTIFACT_AUTHORITY_ADVISORY_REV01.md` defines the first Approved Hook Spec for `KAOS-HOOK-ARTIFACT-AUTHORITY-001` as advisory-only and not blocking.
 
 ## Current Sequence
 
 - `KAOS-HOOK001` completed the hook framework and candidate registry.
 - `KAOS-HOOK002` completed the Windows-aware hook runtime standard.
-- `KAOS-HOOK003` refreshes next-step alignment only.
-- `KAOS-HOOK004` is the recommended next task for the first advisory hook specification.
+- `KAOS-HOOK003` refreshed next-step alignment only.
+- `KAOS-HOOK004` creates the first advisory hook specification without implementation.
 - `KAOS-HOOK005` may implement the first advisory hook only if separately approved.
 
 The first implementation path must remain Windows-aware, repo-local unless otherwise approved, advisory-only, trust-reviewed through Codex `/hooks`, and non-blocking unless a later bounded task explicitly approves blocking behavior.
