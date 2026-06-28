@@ -862,6 +862,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### KAOS-BP004
+- **Task ID:** KAOS-BP004
+- **Task Name:** First Process Review Pilot: BOM Parts Qualification
+- **Status:** DONE
+- **Category:** GOV
+- **Tags:** KAOS / Business Process / BOM / Hardware / Catalog / Review Pilot
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Run the first bounded operator-review pilot using the KAOS business-process review workflow created by KAOS-BP003 for exactly one candidate process area: BOM Parts Qualification.
+- **Allowed Scope:** Create a narrowly scoped BOM Parts Qualification review record under `docs/kaos/business-processes/`; update `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md` only as needed to reflect the review-pilot status for WNYHS-BP001E; update this Master Task Register record only as needed for activation, progress, status, and completion notes; use repository authority and candidate-register metadata only if the exact source candidate content is missing.
+- **Forbidden Scope:** No source code, routes, UI, Stripe/payment logic, HubSpot logic, scheduling logic, APIs/runtime behavior, Cloudflare config, package dependencies, package-lock, QA checks, hooks, SOPs, BPM manuals, package pricing, customer-facing hardware claims, process approval, Active KAOS Rule activation, PR merge, unrelated task edits, unrelated future task status changes, or version bump.
+- **Target Files:** `docs/kaos/business-processes/BP_REVIEW_KAOS_BP004_BOM_PARTS_QUALIFICATION_REV01.md`; `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance review pilot.
+- **Documentation Updates Required:** Add/promote KAOS-BP004 as `ACTIVE` for this bounded run if missing; create the BOM Parts Qualification review record; update the candidate intake register for WNYHS-BP001E review-pilot status; mark KAOS-BP004 `DONE` only after validation.
+- **Validation Required:** `git diff --check`; `rg -n "KAOS-BP004|BOM Parts Qualification|WNYHS-BP001E|Active KAOS Rule|Approved Candidate|Operator Revision Requested|Needs Operator Review" docs/kaos docs/system`; scan docs for merge-conflict markers; run added-line forbidden claim scan if repo tooling exists; `npm run build` because root `AGENTS.md` requires build before completion.
+- **Exit Criteria:** KAOS-BP004 exists in this register; exactly one candidate area is reviewed; a BOM Parts Qualification review record exists; WNYHS-BP001E register status reflects review-pilot outcome; lifecycle is not moved to Approved Candidate; no Active KAOS Rule is created; no process is activated; activation task is not created; only allowed documentation files changed; protected systems remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Operator authorization in current Codex thread to add missing KAOS-BP004 task record and execute it in the same bounded run; KAOS-BP001; KAOS-BP002; KAOS-BP003; current governance authority chain; `docs/system/step-current.md`; `docs/kaos/business-processes/README.md`; `docs/kaos/business-processes/BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`; `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/kaos/business-processes/BP_OPERATOR_REVIEW_TEMPLATE.md`; catalog and BOM/package authority docs found by targeted search; CODEX run contract; OPS003; OPS004; OPS005.
+- **Operator Decision Required:** Review the pilot review record and decide whether to provide source candidate text, revise the candidate, approve a later candidate, or activate a separate future bounded promotion task.
+- **Completion Notes:** Operator authorized adding the planned but missing KAOS-BP004 record as `ACTIVE` before execution in the same bounded run; the task was then completed and marked `DONE`. Created `docs/kaos/business-processes/BP_REVIEW_KAOS_BP004_BOM_PARTS_QUALIFICATION_REV01.md` as the first KAOS business-process review pilot for BOM Parts Qualification only. Updated WNYHS-BP001E and the future candidate table in `BP_CANDIDATE_INTAKE_REGISTER.md` to record `Operator Revision Requested` because the exact external candidate source content is missing and repository authority supports only a candidate interpretation. No process was approved, no process was activated, no Active KAOS Rule was created, no activation task was created, and no source/runtime/customer-facing files, protected systems, package pricing, customer-facing hardware claims, SOPs, QA checks, hooks, dependencies, package-lock, Cloudflare config, HubSpot, Stripe/payment, scheduling, APIs, or unrelated tasks were changed.
+
 ### KAOS-BP003
 - **Task ID:** KAOS-BP003
 - **Task Name:** Operator Review Workflow Standard
