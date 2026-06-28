@@ -31,6 +31,7 @@ If this workspace conflicts with higher-authority governance, protected-system c
 
 - `HOOK_LIFECYCLE_STANDARD_REV01.md` defines hook terminology, lifecycle states, candidate fields, categories, risk levels, enforcement levels, and approval rules.
 - `HOOK_CANDIDATE_REGISTRY.md` records candidate hook ideas seeded from BP001 source artifacts and current KAOS context.
+- `HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md` defines the Windows-aware Codex hook runtime standard, including repo-local/shared hook locations, configuration boundaries, Windows command requirements, trust review, advisory-first behavior, safe path rules, and future implementation constraints.
 
 ## Candidate-Only Rule
 
