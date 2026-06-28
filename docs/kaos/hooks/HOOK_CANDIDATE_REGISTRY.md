@@ -71,9 +71,18 @@ No hook in this registry is blocking.
 
 Any future movement beyond candidate status requires a separate bounded task, owner-document review, validation, trust review where applicable, and explicit operator approval before blocking behavior.
 
-## 6. Recommended Next Task
+## 6. Recommended Next Path
 
-Recommended next task: `KAOS-HOOK002` - select one low-risk advisory candidate and create an approved hook specification without implementation.
+Current completed sequence:
+
+- `KAOS-HOOK001` completed the hook framework and candidate registry.
+- `KAOS-HOOK002` completed the Windows-aware hook runtime standard in `HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md`.
+- `KAOS-HOOK003` refreshes this registry alignment only and does not create a hook spec or implementation.
+
+Recommended next implementation path:
+
+1. `KAOS-HOOK004` - create the first advisory hook specification without implementation.
+2. `KAOS-HOOK005` - implement the first advisory hook only if separately approved by a bounded implementation task.
 
 Recommended first candidates:
 
@@ -81,4 +90,12 @@ Recommended first candidates:
 - `KAOS-HOOK-ARTIFACT-AUTHORITY-001`
 - `KAOS-HOOK-CODEX-SCOPE-001`
 
-Do not implement scripts or enforcement in `KAOS-HOOK002` unless the future task explicitly authorizes implementation.
+Any first implementation candidate must follow `HOOK_RUNTIME_STANDARD_WINDOWS_REV01.md` and remain:
+
+- Windows-aware.
+- Repo-local unless a future bounded task explicitly approves shared utility use.
+- Advisory-only.
+- Trust-reviewed through Codex `/hooks` before trusted use.
+- Non-blocking unless a separate bounded task explicitly approves blocking behavior.
+
+Do not implement scripts, hook configuration, hook specs, enforcement, QA checks, or blocking behavior in `KAOS-HOOK003`.
