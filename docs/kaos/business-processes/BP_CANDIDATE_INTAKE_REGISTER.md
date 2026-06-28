@@ -39,15 +39,35 @@ Candidate source references must identify the artifact or package when available
 - **Operator approval status:** Pending
 - **Approved process rules:** None
 - **Active KAOS rules created:** None
-- **Notes:** Full artifact contents are intentionally not imported by KAOS-BP001. Individual process candidates require operator review before approval or promotion.
+- **Notes:** Full artifact contents are intentionally not imported by KAOS-BP001 or KAOS-BP002. Individual process candidates require operator review before approval or promotion.
 
-## 4. Future Candidate Table
+## 4. BP001A-BP001K Candidate Artifact Manifest
+
+The following rows record the known BP001A-BP001K candidate artifact inventory only.
+
+These entries are not approved process rules, not active KAOS authority, not SOP authority, not QA authority, not hook authority, and not implementation authorization. Each artifact remains in the `Candidate` lifecycle state from `BP_REVIEW_LIFECYCLE_STANDARD_REV01.md` until operator review is completed through a future bounded review task.
+
+| Artifact ID | Artifact Name / Title | Status | Lifecycle State | Source Type | Intended Review Domain | Authority Status | Operator Review Required | Approval Status | Notes / Dependencies |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| WNYHS-BP001A | WNYHS Business Process Discovery Sweep | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Project Governance / KAOS discovery | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; depends on operator review before any promotion. |
+| WNYHS-BP001B | Governance / Authority / Decision Flow Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Governance / authority / decision flow | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; check against system governance before any future approval. |
+| WNYHS-BP001C | Website / Funnel / Route / SEO Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Website / funnel / route / SEO | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must preserve route, SEO, claims, and funnel guardrails. |
+| WNYHS-BP001D | Sales / Lead / Qualification / Quote Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Sales / lead / qualification / quote | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must check lead-signal, requestId, quote, CRM, and protected runtime boundaries. |
+| WNYHS-BP001E | Package / Offer / BOM / Hardware Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Package / offer / BOM / hardware | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must check catalog, package, BOM, pricing, and public-claim boundaries. |
+| WNYHS-BP001F | Payment / Deposit / Stripe Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Payment / deposit / Stripe | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must preserve server-side Stripe/payment verification. |
+| WNYHS-BP001G | Scheduling / Install / Field Delivery Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Scheduling / install / field delivery | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must preserve owner-confirmed scheduling authority unless separately approved. |
+| WNYHS-BP001H | CRM / HubSpot / Revenue Records Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | CRM / HubSpot / revenue records | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must follow HubSpot REV03 and `/api/lead-signal` write boundaries. |
+| WNYHS-BP001I | Customer Handoff / Support / Warranty Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Customer handoff / support / warranty | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; any future review must check support, warranty, public-claim, and customer communication boundaries. |
+| WNYHS-BP001J | QA / Playwright / Evidence Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | QA / Playwright / evidence | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; no QA checks are created by this register entry. |
+| WNYHS-BP001K | Hooks / Runtime Enforcement / Codex Workflow Candidate Extract | Candidate / Pending Operator Review | Candidate | Operator-provided external candidate extraction artifact | Hooks / runtime enforcement / Codex workflow | Not repository authority; no active KAOS authority | Yes | Not approved | Inventory row only; no hooks, automations, or runtime enforcement are created by this register entry. |
+
+## 5. Future Candidate Table
 
 | Process ID | Process Name | Domain | Business Capability | Business Function | Lifecycle Stage | Source Artifact | Source Confidence | Status | Owner | Operator Approval Status | Approval Date | Current Version | Supersedes | Superseded By | Change Reason | Retirement Reason | Related Runtime Contracts | Related QA Candidates | Related Hook Candidates | Related SOP Candidates | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | BP001-PACKAGE | WNYHS BP001A-BP001K Candidate Package | Project Governance / KAOS | Business process discovery | Candidate package intake | Candidate | External BP001A-BP001K extraction package | Operator-provided package reference; contents not imported | Candidate Package Received / Pending Review | Operator review required | Pending | Not approved | REV01 intake placeholder | None | None | Initial candidate package received for review structure setup | Not retired | Unknown until individual process review | None approved | Candidate only; no hook spec created | Candidate only; no SOP created | Placeholder package row only; no individual process rule is approved. |
 
-## 5. Review Requirements
+## 6. Review Requirements
 
 Before a future row can move beyond `Candidate`:
 
@@ -57,6 +77,6 @@ Before a future row can move beyond `Candidate`:
 4. Record operator decision.
 5. Promote only through bounded repository governance.
 
-## 6. No Approved Process Rules
+## 7. No Approved Process Rules
 
-As of this initial register, no WNYHS BP001A-BP001K process is approved, no candidate has been promoted, and no Active KAOS Rule has been created.
+As of KAOS-BP002, no WNYHS BP001A-BP001K process is approved, no candidate has been promoted, and no Active KAOS Rule has been created.
