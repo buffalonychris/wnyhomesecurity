@@ -862,6 +862,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### KAOS-BP005B
+- **Task ID:** KAOS-BP005B
+- **Task Name:** Reconcile BP001 Register Labels Against Source Manifest
+- **Status:** DONE
+- **Category:** GOV
+- **Tags:** KAOS / Business Process / Candidate Register / Source Manifest / Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reconcile BP001A-K labels in the KAOS candidate intake register against the repo-hosted BP001 source package `MANIFEST.md` so the register consistently reflects source-package artifact names without approving, activating, rewriting, or reinterpreting candidate artifacts.
+- **Allowed Scope:** Update `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md` to align BP001A-K artifact names, domains, and notes with `docs/kaos/business-processes/candidate-artifacts/bp001-source-package/MANIFEST.md`; update `docs/kaos/business-processes/README.md` only if needed to clarify MANIFEST-controlled naming; update this Master Task Register record only for activation, progress, status, and completion notes.
+- **Forbidden Scope:** No candidate source package file edits, source code, routes, UI, runtime/API files, Stripe/payment logic, HubSpot logic, scheduling logic, Cloudflare config, dependency or package-lock changes, candidate artifact approval, Active KAOS Rule activation, SOPs, BPM manuals, QA checks, hooks, merge, unrelated task edits, unrelated future task status changes, or version bump.
+- **Target Files:** `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/kaos/business-processes/README.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation/governance reconciliation only.
+- **Documentation Updates Required:** Add this bounded task-register record as `ACTIVE` because it was missing but explicitly operator-authorized in the current prompt; reconcile BP001A-K register labels to the repo-hosted source package `MANIFEST.md`; mark `DONE` only after validation.
+- **Validation Required:** `git diff --check`; targeted `rg` for `WNYHS-BP001A` through `WNYHS-BP001K` in the candidate register and MANIFEST; targeted `rg` for `KAOS-BP005B`, `MANIFEST`, `source-package naming`, `preliminary label`, and `Active KAOS Rule` in `docs/kaos` and `docs/system`; scan docs for merge-conflict markers; `npm run build`.
+- **Exit Criteria:** KAOS-BP005B exists in this register; PR #413 / KAOS-BP005A is merged; BP001 source package exists; MANIFEST lists BP001A through BP001K; BP001A-K register names, domains, and notes consistently reflect MANIFEST names; prior KAOS-BP004/BOM Parts Qualification mismatch is preserved as historical lineage; candidate source package files are untouched; no process is approved; no Active KAOS Rule is created; only allowed files changed; protected systems remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Operator authorization in current Codex thread to add missing KAOS-BP005B task record and execute it in the same bounded run; merged KAOS-BP005A PR #413; KAOS-BP001; KAOS-BP002; KAOS-BP003; KAOS-BP004; current governance authority chain; `docs/system/step-current.md`; `docs/kaos/business-processes/README.md`; `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/kaos/business-processes/candidate-artifacts/bp001-source-package/MANIFEST.md`; CODEX run contract; OPS003; OPS004; OPS005.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future BP001A-BP001K process review, approval, SOP, QA, hook, runtime, automation, or active-rule promotion requires separate bounded task authorization.
+- **Completion Notes:** Operator authorized adding missing KAOS-BP005B as `ACTIVE` in this bounded run; the task was then completed and marked `DONE` after validation. Confirmed PR #413 / KAOS-BP005A was merged, the BP001 source package exists, and `MANIFEST.md` lists WNYHS-BP001A through WNYHS-BP001K. Updated the KAOS candidate intake register so BP001A-K artifact names, source file references, domains, and notes consistently reflect MANIFEST-controlled source-package naming. Documented that prior BP001 labels were preliminary labels and that MANIFEST names now control BP001 source-package naming. Preserved the KAOS-BP004 BOM Parts Qualification pilot mismatch as historical lineage from the earlier preliminary BP001E label mapping; no process was approved and no Active KAOS Rule was created. Updated the KAOS business-process README only to clarify that the source package `MANIFEST.md` controls BP001 source-package naming. Candidate source package files were not edited. No SOPs, BPM manuals, QA checks, hooks, runtime/API work, automation, source files, UI/routes, protected systems, dependencies, package-lock, Cloudflare config, HubSpot, Stripe/payment, scheduling, or unrelated tasks were changed.
+
 ### KAOS-BP005A
 - **Task ID:** KAOS-BP005A
 - **Task Name:** Import BP001 Candidate Artifact Source Package
