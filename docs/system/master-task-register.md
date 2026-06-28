@@ -862,6 +862,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### KAOS-BP002
+- **Task ID:** KAOS-BP002
+- **Task Name:** Import WNYHS BP001A-K Artifact Manifest/Register
+- **Status:** DONE
+- **Category:** GOV
+- **Tags:** KAOS / Business Process / Candidate Intake / Register
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Import the known WNYHS BP001A through BP001K business-process candidate artifact inventory into the KAOS business-process candidate intake/register structure created by KAOS-BP001 without approving, activating, rewriting, normalizing, or converting any process into active KAOS authority.
+- **Allowed Scope:** Update `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; update existing business-process manifest/index docs under `docs/kaos/business-processes/` only if the existing structure clearly needs it; update this Master Task Register record only as needed for activation, progress, status, and completion notes.
+- **Forbidden Scope:** No source code, routes, UI, Stripe/payment logic, HubSpot logic, scheduling logic, APIs/runtime behavior, Cloudflare config, package dependencies, QA checks, hooks, SOPs, BPM manuals, process approval, Active KAOS Rule activation, PR merge, unrelated task edits, unrelated future task status changes, or version bump.
+- **Target Files:** `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only candidate register update.
+- **Documentation Updates Required:** Add BP001A-BP001K candidate artifact inventory rows to the existing candidate intake/register; keep all entries candidate-only and pending operator review; record this bounded task in the Master Task Register because it was planned but missing.
+- **Validation Required:** `git diff --check`; `rg -n "WNYHS-BP001A|WNYHS-BP001B|WNYHS-BP001C|WNYHS-BP001D|WNYHS-BP001E|WNYHS-BP001F|WNYHS-BP001G|WNYHS-BP001H|WNYHS-BP001I|WNYHS-BP001J|WNYHS-BP001K" docs/kaos docs/system`; `rg -n "Active KAOS Rule|Approved Candidate" docs/kaos/business-processes`; scan docs for merge-conflict markers; run `npm run build` only if repo standard requires broader validation after docs-only work.
+- **Exit Criteria:** KAOS-BP002 exists in this register; BP001A-BP001K are listed as candidate artifacts with artifact ID, artifact name/title, status, lifecycle state, source type, intended review domain, authority status, operator review required, approval status, and notes/dependencies; all entries remain candidate-only; no active KAOS rule is created; no business process is approved; only allowed files changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** Operator authorization in current Codex thread to add missing KAOS-BP002 task record and execute it in the same bounded run; KAOS-BP001; current governance authority chain; `docs/system/step-current.md`; `docs/kaos/business-processes/README.md`; `docs/kaos/business-processes/BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`; `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/kaos/business-processes/BP_OPERATOR_REVIEW_TEMPLATE.md`; CODEX run contract; OPS003; OPS004; OPS005.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future BP001A-BP001K process review, approval, SOP, QA, hook, runtime, automation, or active-rule promotion requires separate bounded task authorization.
+- **Completion Notes:** Operator authorized adding the planned but missing KAOS-BP002 record as `ACTIVE` before execution in the same bounded run; the task was then completed and marked `DONE`. Updated `BP_CANDIDATE_INTAKE_REGISTER.md` with a BP001A-BP001K candidate artifact manifest listing each known artifact ID/title, candidate status, Candidate lifecycle state, source type, intended review domain, not-authority status, operator-review requirement, not-approved approval status, and notes/dependencies. No candidate process was approved, no candidate was promoted, no Active KAOS Rule was created, no SOP/QA/hook/runtime/automation work was created, and no source/runtime/customer-facing files, protected systems, version files, dependencies, package-lock, Cloudflare config, HubSpot, Stripe/payment, scheduling, APIs, or unrelated tasks were changed.
+
 ### T-DEPLOY-REDIRECT001-002
 - **Task ID:** T-DEPLOY-REDIRECT001-002
 - **Task Name:** Fix Cloudflare Pages Redirects and SPA Fallback
