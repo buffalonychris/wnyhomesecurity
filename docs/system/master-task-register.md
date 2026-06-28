@@ -862,6 +862,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### KAOS-BP003
+- **Task ID:** KAOS-BP003
+- **Task Name:** Operator Review Workflow Standard
+- **Status:** DONE
+- **Category:** GOV
+- **Tags:** KAOS / Business Process / Operator Review / Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Define the operator review workflow standard for business-process candidates before any candidate can become active KAOS authority.
+- **Allowed Scope:** Update `docs/kaos/business-processes/BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`, `docs/kaos/business-processes/BP_OPERATOR_REVIEW_TEMPLATE.md`, `docs/kaos/business-processes/README.md`, `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md` only if needed for cross-reference, and this Master Task Register record.
+- **Forbidden Scope:** No source code, routes, UI, Stripe/payment logic, HubSpot logic, scheduling logic, APIs/runtime behavior, Cloudflare config, package dependencies, package-lock, QA checks, hooks, SOPs, BPM manuals, BP001A-K review, process approval, Active KAOS Rule activation, PR merge, unrelated task edits, unrelated future task status changes, or version bump.
+- **Target Files:** `docs/kaos/business-processes/BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`; `docs/kaos/business-processes/BP_OPERATOR_REVIEW_TEMPLATE.md`; `docs/kaos/business-processes/README.md`; `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance standard.
+- **Documentation Updates Required:** Add the operator review workflow details, required review stages, allowed decisions, evidence requirements, review-record fields, lifecycle movement rules, Approved Candidate vs Active KAOS Rule boundary, separate activation requirement, register recording rules, and BP001A-K pilot usage rules.
+- **Validation Required:** `git diff --check`; targeted `rg` for KAOS-BP003 and review lifecycle terms in `docs/kaos` and `docs/system`; scan docs for merge-conflict markers; run `npm run build` because root `AGENTS.md` requires build before completion.
+- **Exit Criteria:** KAOS-BP003 exists in this register; workflow standard is defined in the existing KAOS business-process docs; allowed operator decisions include approve, edit/revise, reject, defer, supersede, deprecate, and retire; evidence and review-record fields are documented; Approved Candidate is explicitly not Active KAOS Rule; Active KAOS Rule requires separate bounded activation; candidate register recording rules are documented; BP001A-K pilot usage is documented; no BP001A-K artifact is reviewed, approved, or activated; only allowed files changed; validation passes; draft PR is opened without merge.
+- **Dependencies:** Operator authorization in current Codex thread to add missing KAOS-BP003 task record and execute it in the same bounded run; KAOS-BP001; KAOS-BP002; current governance authority chain; `docs/system/step-current.md`; `docs/kaos/business-processes/README.md`; `docs/kaos/business-processes/BP_REVIEW_LIFECYCLE_STANDARD_REV01.md`; `docs/kaos/business-processes/BP_CANDIDATE_INTAKE_REGISTER.md`; `docs/kaos/business-processes/BP_OPERATOR_REVIEW_TEMPLATE.md`; CODEX run contract; OPS003; OPS004; OPS005.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future BP001A-BP001K pilot reviews, approvals, SOPs, QA checks, hooks, runtime work, automation, or active-rule promotion require separate bounded task authorization.
+- **Completion Notes:** Operator authorized adding the planned but missing KAOS-BP003 record as `ACTIVE` before execution in the same bounded run; the task was then completed and marked `DONE`. Updated the existing KAOS business-process review docs with an operator review workflow, required stages, allowed decisions, evidence requirements, review-record fields, register recording rules, explicit Approved Candidate versus Active KAOS Rule separation, separate bounded activation requirement, and BP001A-K pilot usage rules. No BP001A-K artifact was reviewed, approved, promoted, activated, superseded, deprecated, or retired. No SOPs, QA checks, hooks, runtime/API work, automation, source files, UI/routes, protected systems, version files, dependencies, package-lock, Cloudflare config, HubSpot, Stripe/payment, scheduling, or unrelated tasks were changed.
+
 ### KAOS-BP002
 - **Task ID:** KAOS-BP002
 - **Task Name:** Import WNYHS BP001A-K Artifact Manifest/Register
