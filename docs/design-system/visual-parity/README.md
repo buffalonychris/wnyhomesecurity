@@ -7,3 +7,4 @@ This folder contains current-state discovery inventories for public-route and vi
 Documents in this folder do not create standards, approve visual components, change public pages, activate hooks, or authorize source/runtime implementation.
 
 - `VISPARITY001_PUBLIC_ROUTE_ELEMENT_DISCOVERY_REV01.md` - current public route and visual element discovery inventory.
+- `VISPARITY002_PUBLIC_MARKETING_VISUAL_PARITY_TARGET_MATRIX_REV01.md` - target matrix for public marketing visual, structural, token, image, accessibility, and page-family parity.
