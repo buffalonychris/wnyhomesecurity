@@ -4382,6 +4382,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review draft PR and decide whether to merge. Visual Freeze approval, review packet artifact generation, visual artifacts, and implementation require separate bounded authorization.
 - **Completion Notes:** Created the docs-only Visual Freeze Approval Standard. The standard defines Visual Freeze as a future formal operator approval gate, records prerequisites, required approval evidence, approval decision rules, blocking conditions, future artifact outputs, implementation handoff rules, drift prevention rules, future VISUALART/VISUALFREEZE/VISPARITY sequence, non-authority statements, and VISUALART001 as the recommended next task. No source/runtime/UI/routes/CSS/tokens/images/assets/screenshots/visual boards/generated images/PDFs/review packet artifacts/Playwright/hooks/QA checks, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, final visual approval, proposed visual standard approval, Visual Freeze triggering, Active KAOS Rule, or merge were changed or created.
 
+### VISUALART001
+- **Task ID:** VISUALART001
+- **Task Name:** Generate Current State Visual Board
+- **Status:** DONE
+- **Category:** QA / VISUAL / ARTIFACT
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Generate current-state public website visual evidence artifacts for operator review using Playwright/Chromium local capture without changing website implementation.
+- **Allowed Scope:** Create current-state artifact README, screenshot manifest, component inventory, page inventory, board PNGs, screenshots, and component crops under `docs/design-system/visual-parity/artifacts/current-state/`; update `docs/design-system/visual-parity/README.md`; update this tracking record.
+- **Forbidden Scope:** No source code, route files, CSS, tokens, UI components, public image replacements, runtime/API files, Stripe/payment behavior, HubSpot behavior, scheduling behavior, Cloudflare config, dependencies, package-lock, proposed visual boards, operator review packet PDF, Playwright test enforcement, hooks, QA checks, final visual implementation approval, proposed visual standard approval, Visual Freeze triggering, Active KAOS Rule activation, PR merge, or version bump.
+- **Target Files:** `docs/design-system/visual-parity/artifacts/current-state/**`, `docs/design-system/visual-parity/README.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Local read-only rendering and artifact generation only.
+- **Documentation Updates Required:** Create current-state artifact README and REV01 manifests; link the artifact folder from the visual-parity README; add this tracking record because VISUALART001 was missing and the bounded prompt explicitly authorized adding/updating it.
+- **Validation Required:** `git diff --check`; targeted `rg` checks for VISUALART001, current-state visual evidence, board filenames, manifest filenames, viewport contract, non-authority statements, and merge markers; `npm run build`; verify board PNGs exist; verify screenshot manifest references existing files; verify no forbidden source/runtime/system files changed.
+- **Exit Criteria:** Current-state artifact structure exists; six required board PNGs exist; screenshot, component, and page REV01 manifests exist; artifact README exists; all artifacts remain under the allowed current-state artifact folder; README and MTR are updated; forbidden systems and source surfaces remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Bounded VISUALART001 prompt-created work order; latest `main`; merged PR #434 / VISUALFREEZE001; VISPARITY001 through VISPARITY007G; VISUALFREEZE001; DESIGN002; PAGE_TOKEN_COMPLIANCE_GATE; CATEGORY003; public funnel, QR funnel, brand asset, page layout, and header/footer standards; Playwright Chromium availability.
+- **Operator Decision Required:** Review generated current-state boards and decide whether to authorize VISUALART002.
+- **Completion Notes:** Generated current-state visual evidence artifacts under `docs/design-system/visual-parity/artifacts/current-state/`. Captured 23 selected public WNYHS routes locally with Playwright Chromium, produced 70 full-page screenshot records, 19 component/state PNG files, and six current-state board PNGs. Created REV01 screenshot, component, and page manifests plus the artifact README. No source/runtime/UI/routes/CSS/tokens/public images/API files, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, proposed visual boards, operator packet PDFs, Playwright tests, hooks, QA checks, Visual Freeze approval, proposed visual standard approval, Active KAOS Rule, merge, or version bump were changed or created.
+
 ### T-SEO001-002
 - **Task ID:** T-SEO001-002
 - **Task Name:** Metadata and Canonical Audit
