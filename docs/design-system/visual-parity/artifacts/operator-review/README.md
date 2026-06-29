@@ -27,7 +27,7 @@ The packet was assembled from existing repository-local visual parity artifacts 
 ## Source Artifact Folders
 
 - `docs/design-system/visual-parity/artifacts/current-state/`
-- `docs/design-system/visual-parity/artifacts/proposed/`
+- `docs/design-system/visual-parity/artifacts/proposed/` (proposed boards revised by VISUALREV001)
 
 ## Packet Files
 
@@ -44,7 +44,7 @@ The packet was assembled from existing repository-local visual parity artifacts 
 ## Optional PDF / Thumbnails Status
 
 - PDF: Not generated. No existing no-dependency markdown-to-PDF workflow was identified for this packet during this task.
-- Thumbnails: Generated from existing current-state and proposed board PNGs under `thumbnails/` using local Windows image tooling without adding dependencies.
+- Thumbnails: Generated from current-state board PNGs and refreshed VISUALREV001 proposed board PNGs under `thumbnails/` without adding dependencies.
 
 ## Operator Review Workflow
 

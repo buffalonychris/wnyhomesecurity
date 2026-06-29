@@ -1,7 +1,7 @@
 # PROPOSED_VISUAL_BOARD_MANIFEST_REV01
 
-Task ID: VISUALART002
-Status: Proposed visual board manifest
+Task ID: VISUALREV001
+Status: Revised proposed visual board manifest
 Customer-facing: No
 Implementation authority: No
 
@@ -12,9 +12,12 @@ Implementation authority: No
 - They do not authorize implementation.
 - They do not replace CSS/token governance.
 - They do not trigger Visual Freeze.
+- They do not approve image assets or page copy.
 
 ## Source Docs
 
+- `docs/design-system/DESIGN003_WNYHS_LIGHT_CANVAS_VISUAL_LANGUAGE_STANDARD_REV01.md`
+- `docs/design-system/DESIGN004_WNYHS_COMPONENT_CATALOG_REV01.md`
 - `docs/design-system/visual-parity/VISPARITY003_VISUAL_COMPONENT_NAMING_STANDARD_REV01.md`
 - `docs/design-system/visual-parity/VISPARITY007C_PROPOSED_VISUAL_STANDARD_REFERENCE_REV01.md`
 - `docs/design-system/visual-parity/VISPARITY007F_PROPOSED_VISUAL_BOARD_SPEC_REV01.md`
@@ -39,6 +42,15 @@ Implementation authority: No
 | 04 | `../boards/proposed-board-04-forms.png` | Proposed Forms | Form Shell; Form Field; Form Label; Help Text; Error Text; Select Field; Textarea Field; Submit Button; Validation states | Confirm label/help/error hierarchy and form-state clarity. | Field surface; focus ring; error/success/loading/disabled states; submit surface. | Proposed / Needs Operator Review |
 | 05 | `../boards/proposed-board-05-images-assets-proof.png` | Proposed Images / Assets / Proof | Hero Image role; Category Image role; Solution Image role; Proof Image role; QR Image role; Logo Mark; Icon Mark; Dashboard Preview Block; Category Image Block; Solution Scenario Block; Our Work Gallery Block; QR Campaign Block | Confirm image role hierarchy and proof-safe posture. | Final image assets; image crop/aspect decisions; QR web/print separation; logo/icon placement. | Proposed / Needs Operator Review |
 | 06 | `../boards/proposed-board-06-accessibility-states.png` | Proposed Accessibility / States | Focus; Hover; Active; Disabled; Error; Success; Loading; Mobile tap targets; Text contrast examples; proposed low-contrast risk resolution | Confirm priority of contrast and state fixes for future implementation. | Focus family; contrast thresholds; status-state token roles; mobile target treatment. | Proposed / Needs Operator Review |
+
+## VISUALREV001 Revision Notes
+
+- Regenerated all six proposed board PNGs as concrete component/page design-review boards using DESIGN003 and DESIGN004.
+- Refreshed the six proposed-board thumbnails used by the operator-review artifacts.
+- Preserved the review-only posture: Proposed / Needs Operator Review.
+- Preserved image boundary: image role containers and placeholders only.
+- Preserved implementation boundary: no source, CSS, token, route, UI, runtime, image-asset, page-copy, package-copy, pricing, SEO, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, or Visual Freeze authority.
+- Future implementation remains blocked until VISUALFREEZE002 and later bounded VISPARITY008+ tasks.
 
 ## Design Direction Coverage
 
