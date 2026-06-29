@@ -4,44 +4,95 @@
     sans-serif;
   --wnyhs-font-heading: "Manrope", "Inter", system-ui, sans-serif;
 
-  --wnyhs-canvas: #f8f6f1;
+  --wnyhs-canvas-primary: #faf8f4;
+  --wnyhs-canvas-alternate: #f4f1eb;
+  --wnyhs-surface-primary: #ffffff;
+  --wnyhs-surface-elevated: #fffdf8;
+  --wnyhs-trust-navy: #18283b;
+  --wnyhs-premium-gold: #d4a52f;
+  --wnyhs-premium-gold-hover: #b98915;
+  --wnyhs-text-charcoal: #1f2328;
+  --wnyhs-text-secondary: #5c6670;
+  --wnyhs-text-muted: #848c95;
+  --wnyhs-border-warm: #e6ded1;
+  --wnyhs-success: #2e8b57;
+  --wnyhs-warning: #e3a008;
+  --wnyhs-error: #c74646;
+  --wnyhs-info: #356ca5;
+  --wnyhs-success-soft: color-mix(in srgb, var(--wnyhs-success) 12%, var(--wnyhs-surface-elevated));
+  --wnyhs-warning-soft: color-mix(in srgb, var(--wnyhs-warning) 14%, var(--wnyhs-surface-elevated));
+  --wnyhs-error-soft: color-mix(in srgb, var(--wnyhs-error) 10%, var(--wnyhs-surface-elevated));
+  --wnyhs-info-soft: color-mix(in srgb, var(--wnyhs-info) 10%, var(--wnyhs-surface-elevated));
+
+  --wnyhs-canvas: var(--wnyhs-canvas-primary);
   --wnyhs-surface: #ffffff;
-  --wnyhs-surface-raised: #fdfbf7;
-  --wnyhs-surface-soft: #f0ece3;
-  --wnyhs-ink: #111111;
-  --wnyhs-ink-secondary: #4a4a4a;
-  --wnyhs-ink-muted: #6b6b6b;
-  --wnyhs-border: #d9d6cf;
-  --wnyhs-border-strong: #beb8ac;
-  --wnyhs-charcoal: #111111;
-  --wnyhs-charcoal-soft: #1a1815;
-  --wnyhs-gold: #b88a2e;
-  --wnyhs-gold-strong: #8c671d;
-  --wnyhs-gold-soft: #e8d7a8;
-  --wnyhs-success: #2f6f4e;
-  --wnyhs-danger: #a63a32;
+  --wnyhs-surface-raised: var(--wnyhs-surface-elevated);
+  --wnyhs-surface-soft: var(--wnyhs-canvas-alternate);
+  --wnyhs-ink: var(--wnyhs-text-charcoal);
+  --wnyhs-ink-secondary: var(--wnyhs-text-secondary);
+  --wnyhs-ink-muted: var(--wnyhs-text-muted);
+  --wnyhs-border: var(--wnyhs-border-warm);
+  --wnyhs-border-strong: #d5cbbb;
+  --wnyhs-charcoal: var(--wnyhs-text-charcoal);
+  --wnyhs-charcoal-soft: #2b3036;
+  --wnyhs-gold: var(--wnyhs-premium-gold);
+  --wnyhs-gold-strong: var(--wnyhs-premium-gold-hover);
+  --wnyhs-gold-soft: #f2e3b8;
+  --wnyhs-danger: var(--wnyhs-error);
 
   --wnyhs-radius-shell: 18px;
-  --wnyhs-radius-card: 14px;
+  --wnyhs-radius-card: 12px;
   --wnyhs-radius-media: 16px;
-  --wnyhs-shadow-soft: 0 18px 44px
-    color-mix(in srgb, var(--wnyhs-charcoal) 14%, transparent);
+  --wnyhs-radius-standard: 12px;
+  --wnyhs-radius-large: 18px;
+  --wnyhs-radius-pill: 999px;
+  --wnyhs-shadow-soft: 0 10px 35px
+    color-mix(in srgb, var(--wnyhs-charcoal) 6%, transparent);
   --wnyhs-shadow-card: 0 12px 28px
-    color-mix(in srgb, var(--wnyhs-charcoal) 10%, transparent);
+    color-mix(in srgb, var(--wnyhs-charcoal) 8%, transparent);
+  --wnyhs-shadow-panel: var(--wnyhs-shadow-soft);
   --wnyhs-focus: 0 0 0 3px
-    color-mix(in srgb, var(--wnyhs-gold) 36%, transparent);
+    color-mix(in srgb, var(--wnyhs-gold) 42%, transparent);
+  --wnyhs-focus-ring: var(--wnyhs-focus);
 
-  --wnyhs-dark-surface: #111111;
-  --wnyhs-dark-panel: #1a1815;
+  --wnyhs-dark-surface: var(--wnyhs-trust-navy);
+  --wnyhs-dark-panel: #22334a;
   --wnyhs-dark-text: #f8f6f1;
   --wnyhs-dark-muted: #d8d0c1;
   --wnyhs-dark-border: color-mix(in srgb, var(--wnyhs-gold) 24%, transparent);
+
+  --background: var(--wnyhs-canvas-primary);
+  --foreground: var(--wnyhs-text-charcoal);
+  --card: var(--wnyhs-surface-primary);
+  --card-foreground: var(--wnyhs-text-charcoal);
+  --popover: var(--wnyhs-surface-elevated);
+  --popover-foreground: var(--wnyhs-text-charcoal);
+  --primary: var(--wnyhs-premium-gold);
+  --primary-foreground: var(--wnyhs-text-charcoal);
+  --secondary: var(--wnyhs-canvas-alternate);
+  --secondary-foreground: var(--wnyhs-text-secondary);
+  --muted: var(--wnyhs-canvas-alternate);
+  --muted-foreground: var(--wnyhs-text-muted);
+  --accent: var(--wnyhs-premium-gold);
+  --accent-foreground: var(--wnyhs-text-charcoal);
+  --border: var(--wnyhs-border-warm);
+  --input: var(--wnyhs-surface-primary);
+  --ring: var(--wnyhs-premium-gold);
+  --destructive: var(--wnyhs-error);
+  --warning: var(--wnyhs-warning);
+  --success: var(--wnyhs-success);
 }
 
 .wnyhs-page {
   background: var(--wnyhs-canvas);
   color: var(--wnyhs-ink);
   font-family: var(--wnyhs-font-body);
+}
+
+.wnyhs-page :focus-visible {
+  outline: 2px solid var(--wnyhs-gold);
+  outline-offset: 3px;
+  box-shadow: var(--wnyhs-focus-ring);
 }
 
 .wnyhs-shell {
@@ -51,7 +102,7 @@
   border: 1px solid var(--wnyhs-border-strong);
   border-radius: var(--wnyhs-radius-shell);
   background: var(--wnyhs-canvas);
-  box-shadow: var(--wnyhs-shadow-soft);
+  box-shadow: var(--wnyhs-shadow-panel);
 }
 
 .wnyhs-section {
@@ -183,6 +234,73 @@
   color: var(--wnyhs-gold-strong);
   font-size: 0.78rem;
   font-weight: 800;
+}
+
+.wnyhs-panel,
+.wnyhs-surface {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-large);
+  background: var(--wnyhs-surface-elevated);
+  color: var(--wnyhs-ink);
+  box-shadow: var(--wnyhs-shadow-panel);
+}
+
+.wnyhs-field,
+.wnyhs-input,
+.wnyhs-textarea,
+.wnyhs-select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.72rem 0.85rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-standard);
+  background: var(--wnyhs-surface);
+  color: var(--wnyhs-ink);
+  font: inherit;
+}
+
+.wnyhs-field:focus,
+.wnyhs-field:focus-visible,
+.wnyhs-input:focus,
+.wnyhs-input:focus-visible,
+.wnyhs-textarea:focus,
+.wnyhs-textarea:focus-visible,
+.wnyhs-select:focus,
+.wnyhs-select:focus-visible {
+  outline: none;
+  border-color: var(--wnyhs-gold);
+  box-shadow: var(--wnyhs-focus-ring);
+}
+
+.wnyhs-status {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-standard);
+  background: var(--wnyhs-surface-elevated);
+  color: var(--wnyhs-ink-secondary);
+}
+
+.wnyhs-status--success {
+  border-color: color-mix(in srgb, var(--wnyhs-success) 44%, var(--wnyhs-border));
+  background: var(--wnyhs-success-soft);
+}
+
+.wnyhs-status--warning {
+  border-color: color-mix(in srgb, var(--wnyhs-warning) 52%, var(--wnyhs-border));
+  background: var(--wnyhs-warning-soft);
+}
+
+.wnyhs-status--error {
+  border-color: color-mix(in srgb, var(--wnyhs-error) 46%, var(--wnyhs-border));
+  background: var(--wnyhs-error-soft);
+}
+
+.wnyhs-status--info {
+  border-color: color-mix(in srgb, var(--wnyhs-info) 44%, var(--wnyhs-border));
+  background: var(--wnyhs-info-soft);
 }
 
 .wnyhs-button {
