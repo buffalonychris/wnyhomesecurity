@@ -13,3 +13,4 @@ Documents in this folder do not create standards, approve visual components, cha
 - `VISPARITY005_IMAGE_PARITY_AND_ASSET_USAGE_REGISTER_REV01.md` - image parity and asset usage register for public marketing image roles, current asset references, alt-text evidence, and future parity gaps.
 - `VISPARITY006_PUBLIC_MARKETING_PAGE_COMPLIANCE_PLAN_REV01.md` - page-family and route-by-route public marketing compliance plan for future implementation batches.
 - `VISPARITY007_KITCHEN_SINK_VISUAL_QA_REFERENCE_PAGE_SPEC_REV01.md` - kitchen-sink visual QA reference page specification for future screenshot, accessibility, token, image-role, and component coverage baselines.
+- `VISPARITY007A_VISUAL_BASELINE_SCREENSHOT_MATRIX_REV01.md` - visual baseline screenshot matrix defining future viewport, region, state, filename, priority, storage, and before/after comparison rules.
