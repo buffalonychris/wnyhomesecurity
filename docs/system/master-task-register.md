@@ -4292,6 +4292,24 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### VISPARITY007D
+- **Task ID:** VISPARITY007D
+- **Task Name:** Before/After Visual Comparison Matrix
+- **Status:** DONE
+- **Category:** QA / GOV / VISUAL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the docs-only Before/After Visual Comparison Matrix mapping VISPARITY007B current-state evidence to VISPARITY007C proposed visual standard evidence for every canonical VISPARITY003 component, and define visual-board, image-generation, operator-review, Visual Freeze, and VISPARITY008+ sequencing.
+- **Allowed Scope:** Create `docs/design-system/visual-parity/VISPARITY007D_BEFORE_AFTER_VISUAL_COMPARISON_MATRIX_REV01.md`; update `docs/design-system/visual-parity/README.md`; update this VISPARITY007D task record in the Master Task Register.
+- **Forbidden Scope:** No source code, route files, CSS, tokens, UI components, images/assets, screenshots, visual boards, PDFs, Playwright tests, baseline folders, hooks, QA checks, sitemap, robots, runtime/API files, Stripe/payment behavior, HubSpot behavior, scheduling, Cloudflare config, dependencies, package-lock, final visual implementation approval, Active KAOS Rule activation, PR merge, or version bump.
+- **Target Files:** `docs/design-system/visual-parity/VISPARITY007D_BEFORE_AFTER_VISUAL_COMPARISON_MATRIX_REV01.md`, `docs/design-system/visual-parity/README.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only visual comparison and approval orchestration.
+- **Documentation Updates Required:** Create VISPARITY007D, link it from the visual-parity README, and record this task in the Master Task Register.
+- **Validation Required:** `git diff --check`; targeted `rg` checks for VISPARITY007D, current/proposed references, visual-board plan, image-generation contract, operator-review workflow, Visual Freeze, future sequence, canonical component coverage, decision vocabulary, non-authority statements, boundary phrases, and merge markers; `npm run build`.
+- **Exit Criteria:** VISPARITY007D exists; every canonical VISPARITY003 component is covered; Visual Board Generation Plan, Image Generation Contract, Operator Review Workflow, Visual Freeze milestone, future task sequence, non-authority statement, and recommended next task are documented; README and this register are updated only as needed; only allowed files changed; forbidden systems and artifacts remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `VISPARITY007D` work order; VISPARITY001 through VISPARITY007C; DESIGN002; PAGE_TOKEN_COMPLIANCE_GATE; CATEGORY003; public funnel, QR funnel, brand asset, page layout, and header/footer standards; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future visual boards, visual artifacts, Visual Freeze, and implementation require separate bounded authorization.
+- **Completion Notes:** Created the docs-only VISPARITY007D Before/After Visual Comparison Matrix and visual-approval orchestration plan. The matrix maps every canonical VISPARITY003 component from VISPARITY007B current-state evidence to VISPARITY007C proposed visual standard evidence, records business, UX, accessibility, and psychological goals, and marks operator approval and implementation blocking for every component. Documented boards VISPARITY007E through VISPARITY007F, VISPARITY007G operator review workflow, Visual Freeze, and controlled VISPARITY008+ sequencing. No source/runtime/UI/routes/CSS/tokens/images/assets/screenshots/visual boards/PDFs/Playwright/hooks/QA checks, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, final visual approval, Active KAOS Rule, or merge were changed or created.
+
 ### T-SEO001-002
 - **Task ID:** T-SEO001-002
 - **Task Name:** Metadata and Canonical Audit
