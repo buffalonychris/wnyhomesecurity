@@ -15,3 +15,4 @@ Documents in this folder do not create standards, approve visual components, cha
 - `VISPARITY007_KITCHEN_SINK_VISUAL_QA_REFERENCE_PAGE_SPEC_REV01.md` - kitchen-sink visual QA reference page specification for future screenshot, accessibility, token, image-role, and component coverage baselines.
 - `VISPARITY007A_VISUAL_BASELINE_SCREENSHOT_MATRIX_REV01.md` - visual baseline screenshot matrix defining future viewport, region, state, filename, priority, storage, and before/after comparison rules.
 - `VISPARITY007B_CURRENT_STATE_REFERENCE_REV01.md` - current-state visual reference and before-reference for future VISPARITY007C comparison.
+- `VISPARITY007C_PROPOSED_VISUAL_STANDARD_REFERENCE_REV01.md` - proposed visual standard reference and after reference for future VISPARITY007D before/after comparison.
