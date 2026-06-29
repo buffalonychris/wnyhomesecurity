@@ -16,3 +16,4 @@ Documents in this folder do not create standards, approve visual components, cha
 - `VISPARITY007A_VISUAL_BASELINE_SCREENSHOT_MATRIX_REV01.md` - visual baseline screenshot matrix defining future viewport, region, state, filename, priority, storage, and before/after comparison rules.
 - `VISPARITY007B_CURRENT_STATE_REFERENCE_REV01.md` - current-state visual reference and before-reference for future VISPARITY007C comparison.
 - `VISPARITY007C_PROPOSED_VISUAL_STANDARD_REFERENCE_REV01.md` - proposed visual standard reference and after reference for future VISPARITY007D before/after comparison.
+- `VISPARITY007D_BEFORE_AFTER_VISUAL_COMPARISON_MATRIX_REV01.md` - before/after visual comparison matrix and visual-approval orchestration plan for VISPARITY007E, VISPARITY007F, VISPARITY007G, Visual Freeze, and controlled VISPARITY008+ implementation.
