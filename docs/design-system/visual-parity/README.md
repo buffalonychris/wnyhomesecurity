@@ -8,3 +8,4 @@ Documents in this folder do not create standards, approve visual components, cha
 
 - `VISPARITY001_PUBLIC_ROUTE_ELEMENT_DISCOVERY_REV01.md` - current public route and visual element discovery inventory.
 - `VISPARITY002_PUBLIC_MARKETING_VISUAL_PARITY_TARGET_MATRIX_REV01.md` - target matrix for public marketing visual, structural, token, image, accessibility, and page-family parity.
+- `VISPARITY003_VISUAL_COMPONENT_NAMING_STANDARD_REV01.md` - canonical visual component and element naming standard for later CSS/token, image, QA, and hook mapping tasks.
