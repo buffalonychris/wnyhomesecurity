@@ -4310,6 +4310,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review draft PR and decide whether to merge. Future visual boards, visual artifacts, Visual Freeze, and implementation require separate bounded authorization.
 - **Completion Notes:** Created the docs-only VISPARITY007D Before/After Visual Comparison Matrix and visual-approval orchestration plan. The matrix maps every canonical VISPARITY003 component from VISPARITY007B current-state evidence to VISPARITY007C proposed visual standard evidence, records business, UX, accessibility, and psychological goals, and marks operator approval and implementation blocking for every component. Documented boards VISPARITY007E through VISPARITY007F, VISPARITY007G operator review workflow, Visual Freeze, and controlled VISPARITY008+ sequencing. No source/runtime/UI/routes/CSS/tokens/images/assets/screenshots/visual boards/PDFs/Playwright/hooks/QA checks, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, final visual approval, Active KAOS Rule, or merge were changed or created.
 
+### VISPARITY007E
+- **Task ID:** VISPARITY007E
+- **Task Name:** Current State Visual Board
+- **Status:** DONE
+- **Category:** QA / GOV / VISUAL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the docs-only Current State Visual Board specification for WNYHS visual parity, converting VISPARITY007B current evidence and VISPARITY007D board planning into the before board artifact plan for VISPARITY007G operator review.
+- **Allowed Scope:** Create `docs/design-system/visual-parity/VISPARITY007E_CURRENT_STATE_VISUAL_BOARD_SPEC_REV01.md`; update `docs/design-system/visual-parity/README.md`; update this VISPARITY007E task record in the Master Task Register.
+- **Forbidden Scope:** No source code, route files, CSS, tokens, UI components, images/assets, screenshots, visual boards, generated images, PDFs, Playwright tests, baseline folders, hooks, QA checks, sitemap, robots, runtime/API files, Stripe/payment behavior, HubSpot behavior, scheduling, Cloudflare config, dependencies, package-lock, final visual implementation approval, Active KAOS Rule activation, PR merge, or version bump.
+- **Target Files:** `docs/design-system/visual-parity/VISPARITY007E_CURRENT_STATE_VISUAL_BOARD_SPEC_REV01.md`, `docs/design-system/visual-parity/README.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only current-state visual board specification.
+- **Documentation Updates Required:** Create VISPARITY007E, link it from the visual-parity README, and record this task in the Master Task Register.
+- **Validation Required:** `git diff --check`; targeted `rg` checks for VISPARITY007E, Current State Visual Board, before board, Board 01 through Board 06, VISPARITY007F, current-state visual style rules, future artifact plan, component coverage, boundary phrases, and merge markers; `npm run build`.
+- **Exit Criteria:** VISPARITY007E exists; Purpose, Boundary, Source inputs, Current State Board Set, Board Layout Specification, Current State Visual Style Rules, Current Board Artifact Plan, Current Board Data Requirements, Limitations, and recommended next task are documented; README and this register are updated only as needed; only allowed files changed; forbidden systems and artifacts remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `VISPARITY007E` work order; latest `main`; merged PR #430 / VISPARITY007D; VISPARITY001 through VISPARITY007D; DESIGN002; PAGE_TOKEN_COMPLIANCE_GATE; CATEGORY003; public funnel, QR funnel, brand asset, page layout, and header/footer standards; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. VISPARITY007F Proposed Visual Board, VISPARITY007G Operator Review Packet, Visual Freeze, artifacts, and implementation require separate bounded authorization.
+- **Completion Notes:** Created the docs-only VISPARITY007E Current State Visual Board specification. The spec defines six current-state boards for Navigation/Shell/Hero, Typography/Actions, Containers/Cards/Tiles, Forms, Images/Assets/Proof, and Accessibility/States; defines board layout fields, current-state visual style rules, future artifact plan, component data requirements, limitations, and VISPARITY007F as the recommended next task. No source/runtime/UI/routes/CSS/tokens/images/assets/screenshots/visual boards/generated images/PDFs/Playwright/hooks/QA checks, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, final visual approval, Active KAOS Rule, or merge were changed or created.
+
 ### T-SEO001-002
 - **Task ID:** T-SEO001-002
 - **Task Name:** Metadata and Canonical Audit
