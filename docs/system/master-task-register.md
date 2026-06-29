@@ -4400,6 +4400,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review generated current-state boards and decide whether to authorize VISUALART002.
 - **Completion Notes:** Generated current-state visual evidence artifacts under `docs/design-system/visual-parity/artifacts/current-state/`. Captured 23 selected public WNYHS routes locally with Playwright Chromium, produced 70 full-page screenshot records, 19 component/state PNG files, and six current-state board PNGs. Created REV01 screenshot, component, and page manifests plus the artifact README. No source/runtime/UI/routes/CSS/tokens/public images/API files, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, proposed visual boards, operator packet PDFs, Playwright tests, hooks, QA checks, Visual Freeze approval, proposed visual standard approval, Active KAOS Rule, merge, or version bump were changed or created.
 
+### VISUALART002
+- **Task ID:** VISUALART002
+- **Task Name:** Generate Proposed Visual Board
+- **Status:** DONE
+- **Category:** QA / VISUAL / ARTIFACT
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Generate the proposed-state visual board PNG artifacts for operator review using approved VISPARITY proposed-standard documents without changing website implementation.
+- **Allowed Scope:** Create proposed artifact README, proposed visual board manifest, proposed component inventory, and six proposed board PNGs under `docs/design-system/visual-parity/artifacts/proposed/`; update `docs/design-system/visual-parity/README.md`; add/update this tracking record.
+- **Forbidden Scope:** No source code, route files, CSS, tokens, UI components, public image replacements, runtime/API files, Stripe/payment behavior, HubSpot behavior, scheduling behavior, Cloudflare config, dependencies, package-lock, operator review packet PDF, Playwright tests, hooks, QA automation, final visual implementation approval, proposed visual standard approval, Visual Freeze triggering, Active KAOS Rule activation, PR merge, or version bump.
+- **Target Files:** `docs/design-system/visual-parity/artifacts/proposed/**`, `docs/design-system/visual-parity/README.md`, `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Static proposed visual artifact generation only.
+- **Documentation Updates Required:** Create proposed artifact README and REV01 manifests; link the proposed artifact folder from the visual-parity README; add this tracking record because VISUALART002 was executed from a bounded prompt-created work order.
+- **Validation Required:** `git diff --check`; targeted `rg` checks for VISUALART002, proposed visual direction, Needs Operator Review, VISUALART003, required board filenames, non-authority statements, proposed manifests, design psychology phrases, and merge markers; `npm run build`; verify six proposed board PNG files exist; verify proposed manifest references existing board files; verify component inventory covers VISPARITY003 canonical components; verify no forbidden source/runtime/UI/CSS/token/route/protected-system/dependency files changed.
+- **Exit Criteria:** Proposed artifact structure exists; six required proposed board PNGs exist; proposed visual board manifest and proposed component inventory exist; artifact README exists; all generated board artifacts remain under the proposed artifact folder; README and MTR are updated; forbidden systems and source surfaces remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Bounded VISUALART002 prompt-created work order; latest `main`; merged PR #435 / VISUALART001; VISUALART001 current-state artifacts; VISPARITY007C; VISPARITY007D; VISPARITY007F; VISPARITY007G; VISUALFREEZE001; DESIGN002; PAGE_TOKEN_COMPLIANCE_GATE; CATEGORY003; public funnel, QR funnel, brand asset, page layout, and header/footer standards.
+- **Operator Decision Required:** Review generated proposed boards and decide whether to authorize VISUALART003.
+- **Completion Notes:** Generated proposed visual board artifacts under `docs/design-system/visual-parity/artifacts/proposed/`. Produced six proposed-state board PNGs, a proposed visual board manifest, a proposed component inventory covering 52 canonical VISPARITY003 components and state roles, and a proposed artifact README. These artifacts show proposed visual direction only and remain Proposed / Needs Operator Review. No source/runtime/UI/routes/CSS/tokens/public images/API files, HubSpot, Stripe/payment, scheduling, Cloudflare config, dependencies, package-lock, operator review packet PDF, Playwright tests, hooks, QA automation, Visual Freeze approval, proposed visual standard approval, Active KAOS Rule, merge, or version bump were changed or created.
+
 ### T-SEO001-002
 - **Task ID:** T-SEO001-002
 - **Task Name:** Metadata and Canonical Audit
