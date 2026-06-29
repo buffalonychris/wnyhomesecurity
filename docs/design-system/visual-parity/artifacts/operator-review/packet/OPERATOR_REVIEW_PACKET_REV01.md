@@ -65,7 +65,7 @@ Key current visual risks:
 
 ## 3. Proposed Standard Overview
 
-VISUALART002 proposed board list:
+VISUALREV001 revised proposed board list:
 
 | Board | Proposed board reference |
 | --- | --- |
@@ -76,7 +76,7 @@ VISUALART002 proposed board list:
 | Board 05 - Images / Assets / Proof | `../proposed/boards/proposed-board-05-images-assets-proof.png` |
 | Board 06 - Accessibility / States | `../proposed/boards/proposed-board-06-accessibility-states.png` |
 
-Proposed design psychology:
+Revised proposed design psychology:
 
 - trust
 - safety
@@ -86,7 +86,7 @@ Proposed design psychology:
 - local reliability
 - technology made simple
 
-Proposed component coverage: 61 component/state rows from the VISUALART002 component inventory table. Note: the VISUALART002 inventory summary says 52 rows, but the table contains 61 rows; this packet covers all 61 table rows.
+Proposed component coverage: 61 component/state rows from the proposed component inventory table. Note: the prior VISUALART002 inventory summary says 52 rows, but the table contains 61 rows; this packet covers all 61 table rows.
 
 Pending decisions:
 
@@ -97,7 +97,7 @@ Pending decisions:
 - Core Panel and Vault Tile direction
 - operator approval for each board and component
 
-Proposed status remains: Needs Operator Review.
+Proposed status remains: Needs Operator Review. The VISUALREV001 boards are revised review artifacts only and do not approve Visual Freeze, implementation, image assets, or page copy.
 
 ## 4. Board-by-Board Comparison
 

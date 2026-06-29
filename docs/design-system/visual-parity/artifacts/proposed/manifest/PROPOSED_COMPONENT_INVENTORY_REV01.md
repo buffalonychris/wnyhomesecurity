@@ -1,7 +1,7 @@
 # PROPOSED_COMPONENT_INVENTORY_REV01
 
-Task ID: VISUALART002
-Status: Proposed component inventory
+Task ID: VISUALREV001
+Status: Revised proposed component inventory reference
 Customer-facing: No
 Implementation authority: No
 
@@ -12,13 +12,16 @@ Implementation authority: No
 - They do not authorize implementation.
 - They do not replace CSS/token governance.
 - They do not trigger Visual Freeze.
+- They do not approve image assets or page copy.
 
 ## Inventory Summary
 
 - Canonical VISPARITY003 component/state rows covered: 52
 - Approval status for all rows: Proposed / Needs Operator Review
-- Primary visual direction sources: VISPARITY007C and VISPARITY007F
+- Primary visual direction sources: DESIGN003, DESIGN004, VISPARITY003, VISPARITY007C, and VISPARITY007F
 - Proposed visual direction themes: trust; safety; intelligence; premium quality; comfort; local reliability; technology made simple
+
+VISUALREV001 did not change the component decision rows. It regenerated the proposed board PNGs and refreshed proposed thumbnails so operator review can evaluate the DESIGN003/DESIGN004 light-canvas component direction before VISUALFREEZE002.
 
 ## Component Inventory
 
