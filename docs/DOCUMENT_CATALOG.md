@@ -720,6 +720,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No, not by itself. It summarizes status for future bounded tasks after OPS004 routing.
 - **Notes:** Added by T-OPS001-004 as docs-only governance. It does not authorize source, CSS, route, page, runtime, API, HubSpot, Stripe/payment, Resend/email, scheduling, Cloudflare, secrets, assets, dependencies, package-lock, implementation, pricing, claims, or protected-system changes by itself.
 
+### `/docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`
+- **File path:** `docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`
+- **Purpose / likely role:** Codex workflow and RSI governance standard defining operator, ChatGPT, Codex, GitHub, and deployment responsibilities; lightweight prerequisite verification; targeted-read allowance conditions; missing-task handling; Windows Codex hook guidance; RSI/context-efficiency and token/context usage reporting; and semantic-token/theme-readiness reporting.
+- **Authority level:** **System governance / Codex workflow and context-efficiency standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No, not by itself. It governs future Codex workflow posture only.
+- **Notes:** Added by OPS009 as docs-only governance. It does not authorize source, CSS, route, page, runtime, API, HubSpot, Stripe/payment, Resend/email, scheduling, Cloudflare, secrets, assets, dependencies, package-lock, THEME implementation, INSTALL implementation, hooks, automation, implementation, pricing, claims, or protected-system changes by itself.
+
 ### `/docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **File path:** `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **Purpose / likely role:** Planning/dispatch task pack listing next public page token-compliance tasks, including solution detail parity, media section, Vault image system, Solutions card density polish, and final governance update.
