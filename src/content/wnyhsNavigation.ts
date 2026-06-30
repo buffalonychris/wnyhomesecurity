@@ -38,7 +38,6 @@ export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: Mark
     { id: 'solutions', label: 'Solutions', href: HOME_SECURITY_ROUTES.homeSecurityCategory, matchPath: '/categories/home-security' },
     { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
     { id: 'estimate', label: 'Estimate', href: '/contact?vertical=home-security', matchPath: '/contact' },
-    { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
     { id: 'our-work-primary', label: 'Our Work', href: '/our-work?vertical=home-security', matchPath: '/our-work' },
   ],
   more: [
