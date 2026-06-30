@@ -131,6 +131,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL001 as a docs-only governance architecture artifact. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation implementation, customer-specific install documentation, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, secret, or future INSTALL task activation changes by itself.
 
+### `/docs/installer/INSTALL002_BENCH_BUILD_CHECKLIST_REV01.md`
+- **File path:** `docs/installer/INSTALL002_BENCH_BUILD_CHECKLIST_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Bench Build Checklist for preparing Home Assistant-based customer controllers before onsite installation, including required checklist fields, 15 bench build phases, dashboard placeholder readiness, funeral home pilot relevance, expected bench output artifacts, future INSTALL003/004/005/006/008 planning notes, and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / bench checklist standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL002 as a docs-only checklist artifact. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, customer-specific install documentation, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, secret, or future INSTALL task activation changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
