@@ -4311,6 +4311,24 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### VISQA001
+- **Task ID:** VISQA001
+- **Task Name:** Token / CSS Compliance Hooks
+- **Status:** DONE
+- **Category:** QA / GOV / VISUAL
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a bounded automated token/CSS compliance hook for WNYHS public UI work so future NAV, IA, and public-page edits can detect visual-system drift before PR review.
+- **Allowed Scope:** Inspect existing validation scripts and package scripts; add a bounded token/CSS compliance script under repo validation conventions; wire an npm command; baseline pre-existing findings if needed; document the check in the token compliance owner doc; update this task record with completion evidence.
+- **Forbidden Scope:** No public page redesign, NAV/IA changes, public copy changes, route changes, Packages/Solutions/category cleanup, broad CSS cleanup, new visual primitives, Stripe/payment changes, HubSpot changes, scheduling changes, Resend/email changes, backend/API runtime changes, Cloudflare config changes, dependencies, package-lock, secrets/env changes, assets, merge, or ready-for-review PR.
+- **Target Files:** `docs/system/master-task-register.md`, `package.json`, `scripts/checks/check-token-compliance.mjs`, `scripts/checks/token-compliance-baseline.json`, `docs/governance/PAGE_TOKEN_COMPLIANCE_GATE_REV01.md`.
+- **Runtime Systems Affected:** None. Tooling and governance documentation only.
+- **Documentation Updates Required:** Add/register this bounded task as `ACTIVE` because it was missing but explicitly operator-authorized in the VISQA001 prompt; document the `npm run check:tokens` command, scanned paths, allowlisted token/theme files, violation types, and baseline behavior; mark `DONE` only after validation.
+- **Validation Required:** `npm run build`; `npm run check:tokens`; `git diff --check`; conflict-marker scan; protected-system changed-file scan; targeted scan confirming HubSpot, Stripe/payment, scheduling, Resend/email, backend/API runtime, Cloudflare config, dependencies, package-lock, secrets/env, assets, routes, public copy, and public UI pages were untouched.
+- **Exit Criteria:** `npm run check:tokens` exists and scans `src/**/*.css`, `src/**/*.ts`, and `src/**/*.tsx`; raw hex, rgb/rgba, hsl/hsla, named CSS color literals, inline visual styles, non-token font-family declarations, suspicious button/card classes, and visual constants are reported with file, line, type, snippet/value, and hint; governed token/theme files are allowlisted; current violations are documented as pre-existing through a baseline/new-violation model; future NAV/page tasks can run the hook; validation is complete; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded VISQA001 work order; current governance authority chain; `docs/system/step-current.md`; OPS009; PAGE_TOKEN_COMPLIANCE_GATE; DESIGN001; DESIGN002; VISPARITY004; current visual QA implementation record.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future token cleanup or theme work requires a separate bounded task.
+- **Completion Notes:** Added VISQA001 to the Active Tasks execution section as an explicitly operator-authorized bounded work order, then completed it after validation. Added `npm run check:tokens` backed by `scripts/checks/check-token-compliance.mjs` and a committed baseline at `scripts/checks/token-compliance-baseline.json`. The check scans `src/**/*.css`, `src/**/*.ts`, and `src/**/*.tsx`; allowlists governed token/theme files; reports raw hex, rgb/rgba, hsl/hsla, named CSS color literals, inline visual style properties, non-token font-family declarations, suspicious button/card/tile/panel classes, and visual constants with path, line, type, snippet/value, and remediation hint; and fails only findings not present in the baseline. Baseline generation found 2,532 pre-existing findings and normal validation reported zero new actionable findings. Documented the command, scanned paths, allowlists, violation types, and baseline/new-violation model in `PAGE_TOKEN_COMPLIANCE_GATE_REV01`. `npm run build`, `npm run check:tokens`, `git diff --check`, conflict-marker scan, and protected-system changed-file scan passed. No public redesign, NAV/IA, public copy, route, broad CSS cleanup, visual primitive, asset, dependency, package-lock, HubSpot, Stripe/payment, scheduling, Resend/email, backend/API runtime, Cloudflare config, secrets/env, merge, or ready-for-review PR changes were made.
+
 ### VISPARITY007D
 - **Task ID:** VISPARITY007D
 - **Task Name:** Before/After Visual Comparison Matrix

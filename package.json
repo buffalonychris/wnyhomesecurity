@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -p tsconfig.app.json && vite build",
+    "check:tokens": "node scripts/checks/check-token-compliance.mjs",
     "fixtures:security": "node src/lib/fixtures/security/generateScenarioMatrix.security.v1.js && node src/lib/fixtures/security/generateFixtures.security.v1.js",
     "images:generate": "node scripts/image-generation/generate-category-assets.mjs",
     "images:generate:dry-run": "node scripts/image-generation/generate-category-assets.mjs --category home-security --dry-run",

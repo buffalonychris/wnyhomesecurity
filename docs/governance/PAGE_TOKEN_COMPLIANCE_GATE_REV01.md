@@ -279,3 +279,47 @@ docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md
 That file records the next intended page-level tasks that should consume this compliance gate.
 
 This document is the reusable compliance standard. The task-pack is the dispatch planning aid.
+
+---
+
+## 13. Automated Token / CSS Compliance Check
+
+VISQA001 added a baseline-aware token/CSS compliance check for future public UI work:
+
+```powershell
+npm run check:tokens
+```
+
+The check scans:
+
+- `src/**/*.css`
+- `src/**/*.ts`
+- `src/**/*.tsx`
+
+The check reports file path, line number, violation type, matched value/snippet, and a remediation hint for:
+
+- raw hex colors
+- `rgb()` / `rgba()`
+- `hsl()` / `hsla()`
+- named CSS color literals on visual CSS properties
+- inline TSX visual style properties such as `color`, `background`, `borderColor`, `boxShadow`, and `fontFamily`
+- non-token `font-family` declarations outside token/theme files
+- suspicious page-specific button/card/tile/panel classes that may bypass WNYHS primitives
+- visual style constants in TS/TSX
+
+Raw color values are allowlisted only for governed token/theme files where literal values are expected:
+
+- `src/styles/wnyhsVisualGovernance.css`
+- `src/index.css`
+- `src/newsite/theme/tokens.css`
+- `src/newsite/theme/presets/**`
+
+The committed baseline is:
+
+```text
+scripts/checks/token-compliance-baseline.json
+```
+
+That baseline records pre-existing findings as of VISQA001. Normal runs fail only findings not present in the baseline, so future NAV, IA, and public-page tasks can detect newly introduced drift without requiring broad cleanup of existing legacy styles.
+
+Future page tasks should run `npm run check:tokens` with their validation set. Updating the baseline is allowed only through a separately bounded governance or token-cleanup task, not as a routine bypass.
