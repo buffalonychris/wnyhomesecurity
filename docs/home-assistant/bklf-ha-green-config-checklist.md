@@ -33,7 +33,7 @@ Explicit exclusions:
 - No second-floor coverage
 - No third-party response-center service
 - No public-safety agency response workflow
-- No claim that the system prevents break-ins, theft, damage, or other events
+- No prevention guarantee language
 - Existing camera systems are excluded unless separately approved
 
 ---
@@ -144,6 +144,35 @@ Pair and verify devices in this exact order:
 8. Motion sensors
 
 For each device, assign the correct area, label the device, verify the main entities, and record any duplicate or disabled entities that require cleanup.
+
+Confirmed sensor inventory before pairing:
+
+- 14 Sonoff SenseGuard Gen 2 contact sensors confirmed on hand.
+- 2 Sonoff SNZB-03P motion sensors confirmed on hand.
+
+Contact sensor allocation before pairing:
+
+- East Wall double door: 2 contact sensors, one per door leaf.
+- South Wall door: 1 contact sensor.
+- West Wall door: 1 contact sensor.
+- North Wall operable windows: 5 contact sensors assigned for initial coverage.
+- South Wall operable windows: 5 contact sensors assigned for initial coverage.
+- East Wall operable window: deferred until additional contact sensors arrive.
+- West Wall operable window: deferred until additional contact sensors arrive.
+
+Motion sensor allocation before pairing:
+
+- Main Hallway Motion 01: planned hallway placement.
+- Viewing Room Motion 01: planned viewing-room placement.
+- Purpose: cover the most vulnerable interior movement paths/areas.
+
+Deferred and future coverage rules:
+
+- Deferred operable-window contacts should be documented as planned/deferred coverage, not paired as active sensors.
+- Building Secure status during initial deployment must account for installed sensors only.
+- 2 East Wall fixed picture windows are planned for future impact/shock-type sensors.
+- Fixed picture windows are not contact-sensor windows.
+- No glass-break sensors in the active deployment.
 
 ---
 
@@ -293,7 +322,7 @@ This deployment excludes:
 - Prepare for Funeral option
 - Third-party response-center service
 - Public-safety agency response workflow
-- Any claim that the system prevents break-ins, theft, damage, or emergencies
+- No prevention guarantee language
 - Existing camera systems, unless separately approved
 
 Any change to these exclusions requires a separate bounded task or documented approval before configuration work proceeds.
