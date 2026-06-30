@@ -257,7 +257,7 @@ function scanFile(filePath) {
 
 function createFinding({ relPath, lineNumber, type, value, snippet, hint }) {
   const normalizedSnippet = snippet.trim().replace(/\s+/g, " ");
-  const key = `${type}|${relPath}|${lineNumber}|${value}|${normalizedSnippet}`;
+  const key = `${type}|${relPath}|${value}|${normalizedSnippet}`;
 
   return {
     key,
