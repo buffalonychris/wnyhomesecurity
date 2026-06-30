@@ -793,7 +793,7 @@ header.hide-when-print {
 
 .packages-core-card,
 .packages-vault-card {
-  border: 1px solid color-mix(in srgb, var(--wnyhs-gold-soft) 34%, var(--kaec-border));
+  border: 1px solid color-mix(in srgb, var(--wnyhs-gold-soft) 34%, var(--wnyhs-border));
   background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-gold-soft) 12%);
   color: var(--wnyhs-ink);
 }
@@ -843,7 +843,7 @@ header.hide-when-print {
 }
 
 .packages-category-card {
-  border: 1px solid var(--kaec-border);
+  border: 1px solid var(--wnyhs-border);
   background: color-mix(in srgb, var(--wnyhs-surface-raised) 88%, var(--wnyhs-surface-soft) 12%);
   color: var(--wnyhs-ink);
 }
@@ -860,7 +860,7 @@ header.hide-when-print {
 }
 
 .packages-category-card:hover {
-  border-color: color-mix(in srgb, var(--kaec-border) 55%, var(--kaec-accent) 45%);
+  border-color: color-mix(in srgb, var(--wnyhs-border) 55%, var(--wnyhs-gold) 45%);
 }
 
 .packages-signature-card small,
@@ -873,7 +873,7 @@ header.hide-when-print {
 }
 
 .packages-signature-card p:last-of-type {
-  border-top: 1px solid var(--kaec-border);
+  border-top: 1px solid var(--wnyhs-border);
   padding-top: 0.65rem;
 }
 
@@ -1126,11 +1126,11 @@ header.hide-when-print {
 .wnyhs-solutions-hero {
   align-items: stretch;
   padding: 1.15rem;
-  border: 1px solid var(--wnyhs-border);
-  border-radius: 20px;
+  border: 1px solid var(--wnyhs-border-warm);
+  border-radius: var(--wnyhs-radius-shell);
   background:
     radial-gradient(circle at top right, color-mix(in srgb, var(--wnyhs-gold-soft) 24%, transparent), transparent 42%),
-    color-mix(in srgb, var(--wnyhs-surface-raised) 82%, var(--wnyhs-surface-soft) 18%);
+    color-mix(in srgb, var(--wnyhs-surface-elevated) 82%, var(--wnyhs-canvas-alternate) 18%);
   box-shadow: var(--wnyhs-shadow-card);
 }
 
@@ -1143,7 +1143,7 @@ header.hide-when-print {
 }
 
 .wnyhs-solution-panel {
-  background: color-mix(in srgb, var(--wnyhs-surface-raised) 86%, var(--wnyhs-surface-soft) 14%);
+  background: color-mix(in srgb, var(--wnyhs-surface-elevated) 86%, var(--wnyhs-canvas-alternate) 14%);
 }
 
 .wnyhs-solution-grid {
@@ -1158,17 +1158,18 @@ header.hide-when-print {
   gap: 0.75rem;
   min-height: 100%;
   padding: 0.9rem;
-  border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--wnyhs-border) 78%, var(--wnyhs-gold-soft) 22%);
-  background: color-mix(in srgb, var(--wnyhs-surface-raised) 90%, var(--wnyhs-gold-soft) 10%);
+  border-radius: var(--wnyhs-radius-card);
+  border: 1px solid color-mix(in srgb, var(--wnyhs-border-warm) 78%, var(--wnyhs-gold-soft) 22%);
+  background: color-mix(in srgb, var(--wnyhs-surface-elevated) 90%, var(--wnyhs-gold-soft) 10%);
   color: var(--wnyhs-ink);
   text-decoration: none;
   box-shadow: var(--wnyhs-shadow-card);
   transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
-.wnyhs-solution-card:hover {
-  border-color: color-mix(in srgb, var(--wnyhs-gold) 42%, var(--wnyhs-border));
+.wnyhs-solution-card:hover,
+.wnyhs-solution-card:focus-visible {
+  border-color: color-mix(in srgb, var(--wnyhs-premium-gold) 42%, var(--wnyhs-border-warm));
   box-shadow: var(--wnyhs-shadow-panel);
   transform: translateY(-2px);
 }
@@ -1180,9 +1181,9 @@ header.hide-when-print {
   height: auto;
   object-fit: cover;
   object-position: center;
-  border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--wnyhs-border) 72%, transparent);
-  background: color-mix(in srgb, var(--wnyhs-surface-soft) 72%, var(--wnyhs-surface-raised) 28%);
+  border-radius: var(--wnyhs-radius-card);
+  border: 1px solid color-mix(in srgb, var(--wnyhs-border-warm) 72%, transparent);
+  background: color-mix(in srgb, var(--wnyhs-canvas-alternate) 72%, var(--wnyhs-surface-elevated) 28%);
 }
 
 .wnyhs-solution-card-meta {
@@ -1215,7 +1216,7 @@ header.hide-when-print {
 }
 
 .wnyhs-solution-card-meta strong {
-  color: var(--wnyhs-charcoal);
+  color: var(--wnyhs-text-charcoal);
   font-size: 0.88rem;
 }
 
