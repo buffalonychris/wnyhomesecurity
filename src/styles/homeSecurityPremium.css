@@ -2549,6 +2549,100 @@ details.hs-premium-legacy-accordion summary.hs-premium-legacy-toggle::-webkit-de
   box-shadow: var(--wnyhs-shadow-soft);
 }
 
+/* VISPARITY011 package light-canvas adoption */
+.hs-premium-package-card {
+  border: 1px solid var(--wnyhs-border-warm);
+  border-radius: var(--wnyhs-radius-large);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-primary) 88%,
+    var(--wnyhs-canvas-alternate) 12%
+  );
+  color: var(--wnyhs-text-charcoal);
+  box-shadow: var(--wnyhs-shadow-soft);
+}
+
+.hs-premium-package-card:hover,
+.hs-premium-package-card:focus-within {
+  border-color: color-mix(in srgb, var(--wnyhs-premium-gold) 38%, var(--wnyhs-border-warm));
+  box-shadow: var(--wnyhs-shadow-card);
+}
+
+.hs-premium-package-media {
+  border-bottom: 1px solid var(--wnyhs-border-warm);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-canvas-alternate) 76%,
+    var(--wnyhs-surface-primary) 24%
+  );
+}
+
+.hs-premium-package-media img {
+  background: var(--wnyhs-surface-elevated);
+}
+
+.hs-premium-package-caption {
+  border: 1px solid color-mix(in srgb, var(--wnyhs-premium-gold) 34%, var(--wnyhs-border-warm));
+  background: color-mix(in srgb, var(--wnyhs-surface-elevated) 88%, var(--wnyhs-gold-soft) 12%);
+  color: var(--wnyhs-text-secondary);
+  box-shadow: var(--wnyhs-shadow-soft);
+}
+
+.hs-premium-package-tier {
+  color: var(--wnyhs-premium-gold-hover);
+}
+
+.hs-premium-package-header h3 {
+  color: var(--wnyhs-text-charcoal);
+  font-family: var(--wnyhs-font-heading);
+  letter-spacing: 0;
+}
+
+.hs-premium-package-price {
+  color: var(--wnyhs-premium-gold-hover);
+}
+
+.hs-premium-package-for,
+.hs-premium-package-summary,
+.hs-premium-package-highlights,
+.hs-premium-package-list,
+.hs-premium-package-meta {
+  color: var(--wnyhs-text-secondary);
+}
+
+.hs-premium-package-accordion {
+  border-color: var(--wnyhs-border-warm);
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-elevated) 88%,
+    var(--wnyhs-canvas-alternate) 12%
+  );
+}
+
+.hs-premium-package-accordion[open] {
+  background: color-mix(
+    in srgb,
+    var(--wnyhs-surface-elevated) 80%,
+    var(--wnyhs-gold-soft) 20%
+  );
+}
+
+.hs-premium-package-accordion summary {
+  color: var(--wnyhs-trust-navy);
+}
+
+.hs-premium-package-link {
+  color: var(--wnyhs-premium-gold-hover);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--wnyhs-premium-gold) 42%, transparent);
+  text-underline-offset: 0.18em;
+}
+
+.hs-premium-package-link:hover,
+.hs-premium-package-link:focus-visible {
+  color: var(--wnyhs-trust-navy);
+}
+
 .hs-premium-shell--home-redesign h1,
 .hs-premium-shell--home-redesign h2,
 .hs-premium-shell--home-redesign h3 {
