@@ -147,6 +147,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL003 as a docs-only standard artifact. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, backup automation, customer-specific install documentation, funeral-home-specific configuration, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL004_DEVICE_NAMING_STANDARD_REV01.md`
+- **File path:** `docs/installer/INSTALL004_DEVICE_NAMING_STANDARD_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Device Naming Standard defining clear, stable, supportable physical device names for Home Assistant-based installs during bench adoption and field placement, including naming principles, recommended pattern, internal versus customer-visible naming, bench workflow, physical labeling, device naming sheet fields, examples, anti-patterns, funeral home pilot relevance, future INSTALL005/006/008 planning notes, and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / device naming standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL004 as a docs-only physical device naming standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, entity naming, area naming, customer-specific install documentation, funeral-home-specific configuration, device inventory data, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
