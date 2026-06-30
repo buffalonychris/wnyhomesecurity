@@ -1,15 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
-import { getAllHomeSecurityNavItems, HOME_SECURITY_ROUTES, homeSecurityMarketingNav } from '../../content/wnyhsNavigation';
+import {
+  getAllHomeSecurityNavItems,
+  HOME_SECURITY_ROUTES,
+  homeSecurityMarketingNav,
+} from '../../content/wnyhsNavigation';
+import type { MarketingNavItem } from '../../content/wnyhsNavigation';
 import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 
 type WnyhsTopNavProps = {
   ctaLink?: string;
   ctaLabel?: string;
+  primaryItems?: MarketingNavItem[];
+  drawerItems?: MarketingNavItem[];
 };
 
-const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = 'Request Estimate' }: WnyhsTopNavProps) => {
+const WnyhsTopNav = ({
+  ctaLink = '/contact?vertical=home-security',
+  ctaLabel = 'Request Estimate',
+  primaryItems = homeSecurityMarketingNav.primary,
+  drawerItems = getAllHomeSecurityNavItems(),
+}: WnyhsTopNavProps) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
@@ -18,10 +30,7 @@ const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = '
     setMenuOpen(false);
   }, [location.pathname, location.search, location.hash]);
 
-  const drawerItems = getAllHomeSecurityNavItems();
-  type NavItem = ReturnType<typeof getAllHomeSecurityNavItems>[number];
-
-  const isActiveLink = (item: NavItem) => {
+  const isActiveLink = (item: MarketingNavItem) => {
     if (item.external || item.href.startsWith('http') || item.href.startsWith('mailto:')) {
       return false;
     }
@@ -29,6 +38,26 @@ const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = '
     const pathMatches = location.pathname === matchPath || location.pathname.startsWith(`${matchPath}/`);
     if (!item.matchHash) return pathMatches;
     return pathMatches && location.hash === item.matchHash;
+  };
+
+  const renderNavItem = (item: MarketingNavItem, onClick?: () => void) => {
+    const active = isActiveLink(item);
+    const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
+    const isExternal = item.external || item.href.startsWith('http') || item.href.startsWith('mailto:') || item.href.startsWith('tel:');
+
+    if (isExternal) {
+      return (
+        <a key={item.id} className={className} href={item.href} onClick={onClick}>
+          {item.label}
+        </a>
+      );
+    }
+
+    return (
+      <NavLink key={item.id} className={className} to={item.href} onClick={onClick}>
+        {item.label}
+      </NavLink>
+    );
   };
 
   return (
@@ -42,15 +71,7 @@ const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = '
         </Link>
 
         <nav className="wnyhs-top-nav-links" aria-label="WNY Home Security">
-          {homeSecurityMarketingNav.primary.map((item) => {
-            const active = isActiveLink(item);
-            const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
-            return (
-              <NavLink key={item.id} className={className} to={item.href}>
-                {item.label}
-              </NavLink>
-            );
-          })}
+          {primaryItems.map((item) => renderNavItem(item))}
         </nav>
 
         <div className="wnyhs-top-nav-actions">
@@ -81,13 +102,7 @@ const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = '
                 Call/Text {wnyhsContact.phone.display}
               </a>
               {drawerItems.map((item) => {
-                const active = isActiveLink(item);
-                const className = ['wnyhs-top-nav-link', active ? 'is-active' : null].filter(Boolean).join(' ');
-                return (
-                  <NavLink key={item.id} className={className} to={item.href} onClick={() => setMenuOpen(false)}>
-                    {item.label}
-                  </NavLink>
-                );
+                return renderNavItem(item, () => setMenuOpen(false));
               })}
             </div>
           </div>

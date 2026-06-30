@@ -1,8 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
+import WnyhsTopNav from '../components/homeSecurity/WnyhsTopNav';
 import WnyhsSiteFooter from '../components/homeSecurity/WnyhsSiteFooter';
 import { buildTel } from '../content/wnyhsContact';
+import type { MarketingNavItem } from '../content/wnyhsNavigation';
 import '../styles/qrLanding.css';
 
 const REQUEST_ID_STORAGE_KEY = 'qrlanding_request_id_v1';
@@ -23,6 +25,30 @@ const QrLanding = () => {
     return allowedSrcValues.has(src) ? src : 'QR_SCAN_GENERAL';
   }, [searchParams]);
   const callbackHref = `/contact?vertical=home-security&source=${encodeURIComponent(normalizedSource)}`;
+  const qrNavItems: MarketingNavItem[] = useMemo(
+    () => [
+      {
+        id: 'qr-packages',
+        label: 'View Packages',
+        href: '/packages?vertical=home-security',
+        matchPath: '/packages',
+      },
+      {
+        id: 'qr-work',
+        label: 'See Our Work',
+        href: '/our-work?vertical=home-security',
+        matchPath: '/our-work',
+      },
+      {
+        id: 'qr-call',
+        label: 'Call/Text',
+        href: buildTel(),
+        external: true,
+      },
+    ],
+    []
+  );
+  const qrDrawerItems = useMemo(() => qrNavItems.filter((item) => item.id !== 'qr-call'), [qrNavItems]);
 
   useEffect(() => {
     const timestamp = new Date().toISOString();
@@ -30,19 +56,13 @@ const QrLanding = () => {
   }, [qrRequestId]);
 
   return (
-    <div className="qr-page-shell">
-      <header className="qr-topbar">
-        <a href="/" className="qr-brand">
-          <img src="/brand/crest-system/IconizedLogo.png" alt="WNY Home Security" />
-          <span>WNY Home Security</span>
-        </a>
-        <nav>
-          <a href="/packages?vertical=home-security">View Packages</a>
-          <a href="/our-work?vertical=home-security">See Our Work</a>
-          <a href={buildTel()}>Call/Text 716-201-0364</a>
-          <a href={callbackHref}>Schedule Estimate</a>
-        </nav>
-      </header>
+    <div className="wnyhs-page wnyhs-page-layout wnyhs-page-layout--marketing qr-page-shell">
+      <WnyhsTopNav
+        ctaLink={callbackHref}
+        ctaLabel="Schedule Estimate"
+        primaryItems={qrNavItems}
+        drawerItems={qrDrawerItems}
+      />
       <main className="qr-landing">
         <section className="qr-panel qr-hero">
           <div className="qr-hero-copy">
