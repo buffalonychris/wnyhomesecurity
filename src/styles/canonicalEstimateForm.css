@@ -27,11 +27,12 @@
 }
 
 .contact-intake-panel.qr-panel {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: var(--wnyhs-surface-elevated);
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-large);
   padding: 1.1rem;
   margin: 0;
+  box-shadow: var(--wnyhs-shadow-soft);
 }
 
 .estimate-form-shell {
@@ -39,6 +40,7 @@
   gap: 0.85rem;
   max-width: 900px;
   margin: 0 auto;
+  color: var(--wnyhs-ink);
 }
 
 .estimate-form-shell--deferred {
@@ -46,21 +48,25 @@
 }
 
 .estimate-form-shell .qr-section {
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-large);
   padding: 1rem;
   margin: 0;
+  background: var(--wnyhs-surface);
 }
 
 .estimate-form-shell .qr-section legend {
   padding: 0 0.4rem;
   font-weight: 800;
+  color: var(--wnyhs-ink);
+  font-family: var(--wnyhs-font-heading);
 }
 
 .estimate-form-shell .qr-section.estimate-form-stage {
-  background: color-mix(in oklab, var(--card), black 12%);
-  border-color: color-mix(in oklab, var(--border), white 8%);
+  background: color-mix(in srgb, var(--wnyhs-surface-elevated) 88%, var(--wnyhs-canvas-alternate) 12%);
+  border-color: var(--wnyhs-border);
   padding: 1.1rem;
+  box-shadow: var(--wnyhs-shadow-soft);
 }
 
 .estimate-form-shell .intake-path-stage {
@@ -76,7 +82,8 @@
   display: block;
   font-size: 0.9rem;
   margin-bottom: 0.4rem;
-  color: var(--muted-foreground);
+  color: var(--wnyhs-ink-secondary);
+  font-weight: 750;
 }
 
 .estimate-field input,
@@ -85,10 +92,11 @@
   width: 100%;
   min-height: 46px;
   padding: 0.72rem;
-  border-radius: 10px;
-  border: 1px solid color-mix(in oklab, var(--border), white 6%);
-  background: color-mix(in oklab, var(--secondary), black 10%);
-  color: var(--foreground);
+  border-radius: var(--wnyhs-radius-standard);
+  border: 1px solid var(--wnyhs-border);
+  background: var(--wnyhs-surface-primary);
+  color: var(--wnyhs-ink);
+  font: inherit;
 }
 
 .estimate-field textarea { min-height: 112px; resize: vertical; }
@@ -96,8 +104,8 @@
 .estimate-field textarea:focus,
 .estimate-field select:focus {
   outline: none;
-  border-color: color-mix(in oklab, var(--primary), white 15%);
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary), transparent 78%);
+  border-color: var(--wnyhs-premium-gold);
+  box-shadow: var(--wnyhs-focus-ring);
 }
 
 .estimate-form-grid-2 {
@@ -123,10 +131,10 @@
   gap: 0.65rem;
   min-height: 54px;
   padding: 0.75rem 0.85rem;
-  border: 1px solid color-mix(in oklab, var(--border), white 8%);
-  border-radius: 10px;
-  background: color-mix(in oklab, var(--secondary), black 10%);
-  color: var(--foreground);
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-standard);
+  background: var(--wnyhs-surface-primary);
+  color: var(--wnyhs-ink);
 }
 
 .estimate-form-shell .qr-choice input[type='checkbox'] {
@@ -136,9 +144,9 @@
   min-height: auto;
   margin: 0;
   appearance: none;
-  border: 1px solid color-mix(in oklab, var(--border), white 18%);
+  border: 1px solid var(--wnyhs-border-strong);
   border-radius: 4px;
-  background: color-mix(in oklab, var(--background), white 6%);
+  background: var(--wnyhs-surface);
   display: grid;
   place-items: center;
 }
@@ -148,14 +156,14 @@
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 2px;
-  background: var(--primary);
+  background: var(--wnyhs-premium-gold-hover);
   transform: scale(0);
   transition: transform 120ms ease;
 }
 
 .estimate-form-shell .qr-choice input[type='checkbox']:checked {
-  border-color: color-mix(in oklab, var(--primary), white 8%);
-  background: color-mix(in oklab, var(--primary), black 18%);
+  border-color: var(--wnyhs-premium-gold);
+  background: color-mix(in srgb, var(--wnyhs-gold-soft) 58%, var(--wnyhs-surface) 42%);
 }
 
 .estimate-form-shell .qr-choice input[type='checkbox']:checked::before {
@@ -166,15 +174,15 @@
 .intake-path-option:focus-visible,
 .estimate-submit:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary), transparent 72%);
+  box-shadow: var(--wnyhs-focus-ring);
 }
 
 .estimate-form-shell .qr-choice span {
   margin: 0;
-  color: var(--foreground);
+  color: var(--wnyhs-ink);
 }
 
-.estimate-choice { background: color-mix(in oklab, var(--secondary), black 10%); }
+.estimate-choice { background: var(--wnyhs-surface-primary); }
 
 .estimate-submit {
   width: 100%;
@@ -186,11 +194,16 @@
   border: 0;
   border-radius: 999px;
   padding: 0.85rem 1.1rem;
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: linear-gradient(135deg, var(--wnyhs-premium-gold), var(--wnyhs-gold-soft));
+  color: var(--wnyhs-text-charcoal);
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 14px 30px color-mix(in oklab, var(--primary), transparent 82%);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--wnyhs-premium-gold) 24%, transparent);
+}
+
+.estimate-submit:hover:not(:disabled) {
+  background: var(--wnyhs-premium-gold-hover);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--wnyhs-premium-gold) 30%, transparent);
 }
 
 .estimate-submit:disabled {
@@ -199,7 +212,7 @@
 }
 
 .estimate-stage-note {
-  color: var(--muted-foreground);
+  color: var(--wnyhs-ink-secondary);
   line-height: 1.45;
   margin: 0 0 0.85rem;
 }
@@ -215,10 +228,10 @@
   gap: 0.35rem;
   min-height: 116px;
   padding: 1rem;
-  border: 1px solid color-mix(in oklab, var(--border), white 8%);
-  border-radius: 10px;
-  background: color-mix(in oklab, var(--secondary), black 12%);
-  color: var(--foreground);
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-standard);
+  background: var(--wnyhs-surface-primary);
+  color: var(--wnyhs-ink);
   text-align: left;
   cursor: pointer;
 }
@@ -229,13 +242,14 @@
 }
 
 .intake-path-option small {
-  color: var(--muted-foreground);
+  color: var(--wnyhs-ink-secondary);
   line-height: 1.45;
 }
 
 .intake-path-option.is-active {
-  border-color: color-mix(in oklab, var(--primary), white 14%);
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary), transparent 78%);
+  border-color: color-mix(in srgb, var(--wnyhs-premium-gold) 44%, var(--wnyhs-border));
+  background: color-mix(in srgb, var(--wnyhs-surface-elevated) 78%, var(--wnyhs-gold-soft) 22%);
+  box-shadow: var(--wnyhs-focus-ring);
 }
 
 .communication-method-list {
