@@ -163,6 +163,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL005 as a docs-only entity and area standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, customer-specific install documentation, funeral-home-specific configuration, customer-specific device/entity/area data, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`
+- **File path:** `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Dashboard Architecture Standard defining Customer, Installer, and Service Dashboard classes; recommended views; status hierarchy; customer personalization placeholders; card grouping, navigation, access/visibility, mobile/tablet, and theme-readiness principles; Dashboard Readiness Sheet fields; examples; anti-patterns; funeral home pilot relevance; future INSTALL007/008/009/010 planning notes; and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / dashboard architecture standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL006 as a docs-only dashboard architecture standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard YAML, Lovelace card implementation, frontend assets, theme implementation, automation/script implementation, customer-specific dashboards, customer-specific install files, actual customer dashboard data, funeral-home-specific configuration, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
