@@ -38,24 +38,33 @@ The register records physical hardware, expected Home Assistant entities, area a
 | BKLF-SW-002 | Kwikset Home Connect 620 Z-Wave Plus LR Smart Lock | South Wall Lock | South Wall | Door Lock, Z-Wave, Critical, Exterior | Z-Wave JS UI | Battery | Entrances, Security, Overview | South Entrance owner-managed access workflow, auto-relock, access event logging | Confirmed on hand | Primary remote-entry lock |
 | BKLF-SW-003 | Door Contact Sensor | South Wall Door Contact | South Wall | Door Contact, Exterior | TBD | Battery | Entrances, Security, Overview | South Entrance workflow, building secure status | Planned | Sensor type pending final hardware |
 | BKLF-SW-004 | Reolink Dual-Lens PoE Camera | South Wall Corner Camera | South Wall | Camera, PoE, Ethernet, Critical, Exterior | Reolink | PoE | Cameras, Exterior, Overview | South Wall exterior activity awareness | Confirmed on hand | Added outside original proposal scope |
-| BKLF-SW-005 through BKLF-SW-007 | Window Contact Sensors | South Wall Window 01 through South Wall Window 03 | South Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | Final window count/location to verify onsite |
+| BKLF-SW-005 through BKLF-SW-009 | Window Contact Sensors | South Wall Window 01 through South Wall Window 05 | South Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | 5 operable South Wall windows; final onsite numbering to verify |
 | BKLF-NW-001 through BKLF-NW-005 | Window Contact Sensors | North Wall Window 01 through North Wall Window 05 | North Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | Final window count/location to verify onsite |
 | BKLF-EW-001 | Door Contact Sensor | East Wall Door Contact | East Wall | Door Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | East exterior entrance |
-| BKLF-EW-002 through BKLF-EW-004 | Window Contact Sensors | East Wall Window 01 through East Wall Window 03 | East Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | Final window count/location to verify onsite |
+| BKLF-EW-002 | Window Contact Sensor | East Wall Window 01 | East Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | 1 operable East Wall window; final onsite numbering to verify |
 | BKLF-WW-001 | Door Contact Sensor | West Wall Door Contact | West Wall | Door Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | West service entrance |
 | BKLF-WW-002 | Window Contact Sensor | West Wall Window 01 | West Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | Final window count/location to verify onsite |
 | BKLF-INT-001 | Motion Sensor | Viewing Room Motion 01 | Viewing Room | Motion Sensor, Interior | TBD | Battery | Security, Activity, Overview | Interior activity awareness | Planned | Final placement to verify onsite |
 | BKLF-INT-002 | Motion Sensor | Main Hallway Motion 01 | Main Hallway | Motion Sensor, Interior | TBD | Battery | Security, Activity, Overview | Interior activity awareness | Planned | Final placement to verify onsite |
-| BKLF-FIXED-001 | Fixed Picture Window | Conference Room Fixed Picture Window 01 | East Wall / Conference Room | Exterior, Fixed Window | None | None | Exterior, Security Notes | Awareness only | Existing building feature | No contact sensor; no glass-break sensor in active deployment |
-| BKLF-FIXED-002 | Fixed Picture Window | Conference Room Fixed Picture Window 02 | East Wall / Conference Room | Exterior, Fixed Window | None | None | Exterior, Security Notes | Awareness only | Existing building feature | No contact sensor; no glass-break sensor in active deployment |
+| BKLF-FIXED-001 | Fixed Picture Window | Conference Room Fixed Picture Window 01 | East Wall / Conference Room | Exterior, Fixed Window | Future impact/shock-type sensor placeholder | None | Exterior, Security Notes | Future impact/shock-type sensor placeholder | Existing building feature | East Wall fixed picture window; no contact sensor; no glass-break sensor in active deployment |
+| BKLF-FIXED-002 | Fixed Picture Window | Conference Room Fixed Picture Window 02 | East Wall / Conference Room | Exterior, Fixed Window | Future impact/shock-type sensor placeholder | None | Exterior, Security Notes | Future impact/shock-type sensor placeholder | Existing building feature | East Wall fixed picture window; no contact sensor; no glass-break sensor in active deployment |
 
 Count summary:
 
+- 14 total windows documented.
 - 12 operable windows planned for contact sensors.
 - 3 exterior doors planned for contact sensors.
 - 2 motion sensors planned.
-- 2 fixed picture windows documented for awareness only.
+- 2 fixed picture windows planned for future impact/shock-type sensors.
 - No glass-break sensors in the active deployment.
+
+Corrected window distribution:
+
+- South Wall: 5 operable windows.
+- North Wall: 5 operable windows.
+- East Wall: 1 operable window.
+- West Wall: 1 operable window.
+- East Wall: 2 fixed picture windows.
 
 ---
 
@@ -79,7 +88,7 @@ Count summary:
 | Dashboard Panel | Devices / Entities Included | Purpose |
 |---|---|---|
 | Overview | South Wall doorbell, South Wall lock, exterior contact status, motion summary, camera status, infrastructure status | High-level first-floor status and owner-priority summary |
-| Exterior | North Wall, South Wall, East Wall, and West Wall door/window contacts; South Wall corner camera; fixed picture window notes | Building-envelope status by wall orientation |
+| Exterior | North Wall, South Wall, East Wall, and West Wall door/window contacts; South Wall corner camera; East Wall fixed picture window future sensor placeholders | Building-envelope status by wall orientation |
 | Entrances | South Wall doorbell, South Wall lock, South Wall door contact, East Wall door contact, West Wall door contact | Exterior entry status and owner-managed South Entrance access workflow |
 | Cameras | Reolink PoE Video Doorbell, Reolink Dual-Lens PoE Camera | Camera live view, camera status, and camera-related activity |
 | Security | Door contacts, window contacts, motion sensors, lock status, battery status | Owner-managed first-floor security and opening-state review |
@@ -105,7 +114,8 @@ Count summary:
 ## 7. Open Verification Items
 
 - Confirm final contact sensor model/protocol.
-- Confirm final window numbering onsite.
+- Confirm final onsite window numbering.
+- Confirm final impact/shock sensor model for fixed picture windows.
 - Confirm final motion sensor placement.
 - Confirm South Wall corner camera exact model.
 - Confirm whether second Kwikset lock is installed in scope or retained as spare/future expansion.
