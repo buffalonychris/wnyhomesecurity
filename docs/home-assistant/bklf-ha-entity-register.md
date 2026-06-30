@@ -24,6 +24,22 @@ The register records physical hardware, expected Home Assistant entities, area a
 - No generic entity names should remain in the final system.
 - Do not rename entities after automations or dashboards are built unless the change is recorded here.
 - This register is the source of truth for dashboard and automation mapping.
+- Confirmed contact sensor model: Sonoff SenseGuard Gen 2.
+- Confirmed motion sensor model: Sonoff SNZB-03P.
+- Deferred operable-window contacts remain planned coverage and are not active sensors until additional contact sensors arrive.
+- Fixed picture windows are future impact/shock-type sensor placeholders, not contact-sensor windows.
+
+## Confirmed Sensor Inventory
+
+- 14 Sonoff SenseGuard Gen 2 contact sensors confirmed on hand.
+- 2 Sonoff SNZB-03P motion sensors confirmed on hand.
+- 16 total contact sensors are needed for full exterior door + operable-window contact coverage:
+  - 4 exterior door contacts
+  - 12 operable window contacts
+- 14 contact sensors are currently on hand:
+  - 4 assigned to exterior doors
+  - 10 assigned to initial operable-window coverage
+- 2 operable-window contact sensors are deferred.
 
 ---
 
@@ -36,25 +52,33 @@ The register records physical hardware, expected Home Assistant entities, area a
 | BKLF-INF-003 | Sonoff Zigbee 3.0 USB Dongle Plus-E / ZBDongle-E | Network Closet Zigbee Controller | Network Closet | Infrastructure, Critical, Zigbee | Zigbee2MQTT preferred / ZHA acceptable | USB | Infrastructure / Administration | Zigbee network health | Confirmed on hand | Substitute for Home Assistant Connect ZBT-2 |
 | BKLF-SW-001 | Reolink PoE Video Doorbell | South Wall Doorbell | South Wall | Camera, PoE, Ethernet, Critical, Exterior | Reolink | PoE | Entrances, Cameras, Overview | South Entrance owner-managed access workflow | Confirmed on hand | Primary visitor awareness and remote entry camera |
 | BKLF-SW-002 | Kwikset Home Connect 620 Z-Wave Plus LR Smart Lock | South Wall Lock | South Wall | Door Lock, Z-Wave, Critical, Exterior | Z-Wave JS UI | Battery | Entrances, Security, Overview | South Entrance owner-managed access workflow, auto-relock, access event logging | Confirmed on hand | Primary remote-entry lock |
-| BKLF-SW-003 | Door Contact Sensor | South Wall Door Contact | South Wall | Door Contact, Exterior | TBD | Battery | Entrances, Security, Overview | South Entrance workflow, building secure status | Planned | Sensor type pending final hardware |
+| BKLF-SW-003 | Sonoff SenseGuard Gen 2 Contact Sensor | South Wall Door Contact | South Wall | Door Contact, Exterior | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Entrances, Security, Overview | South Entrance workflow, building secure status | Confirmed on hand / assigned | South Wall exterior door contact |
 | BKLF-SW-004 | Reolink Dual-Lens PoE Camera | South Wall Corner Camera | South Wall | Camera, PoE, Ethernet, Critical, Exterior | Reolink | PoE | Cameras, Exterior, Overview | South Wall exterior activity awareness | Confirmed on hand | Added outside original proposal scope |
-| BKLF-SW-005 through BKLF-SW-009 | Window Contact Sensors | South Wall Window 01 through South Wall Window 05 | South Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | 5 operable South Wall windows; final onsite numbering to verify |
-| BKLF-NW-001 through BKLF-NW-005 | Window Contact Sensors | North Wall Window 01 through North Wall Window 05 | North Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | Final window count/location to verify onsite |
-| BKLF-EW-001 | Door Contact Sensor | East Wall Door Contact | East Wall | Door Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | East exterior entrance |
-| BKLF-EW-002 | Window Contact Sensor | East Wall Window 01 | East Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | 1 operable East Wall window; final onsite numbering to verify |
-| BKLF-WW-001 | Door Contact Sensor | West Wall Door Contact | West Wall | Door Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | West service entrance |
-| BKLF-WW-002 | Window Contact Sensor | West Wall Window 01 | West Wall | Window Contact, Exterior | TBD | Battery | Exterior, Security, Overview | Building secure status | Planned | Final window count/location to verify onsite |
-| BKLF-INT-001 | Motion Sensor | Viewing Room Motion 01 | Viewing Room | Motion Sensor, Interior | TBD | Battery | Security, Activity, Overview | Interior activity awareness | Planned | Final placement to verify onsite |
-| BKLF-INT-002 | Motion Sensor | Main Hallway Motion 01 | Main Hallway | Motion Sensor, Interior | TBD | Battery | Security, Activity, Overview | Interior activity awareness | Planned | Final placement to verify onsite |
+| BKLF-SW-005 through BKLF-SW-009 | Sonoff SenseGuard Gen 2 Contact Sensors | South Wall Window 01 through South Wall Window 05 | South Wall | Window Contact, Exterior | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security, Overview | Building secure status | Confirmed on hand / assigned | 5 operable South Wall windows included in initial operable-window coverage; final onsite numbering to verify |
+| BKLF-NW-001 through BKLF-NW-005 | Sonoff SenseGuard Gen 2 Contact Sensors | North Wall Window 01 through North Wall Window 05 | North Wall | Window Contact, Exterior | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security, Overview | Building secure status | Confirmed on hand / assigned | 5 operable North Wall windows included in initial operable-window coverage; final onsite numbering to verify |
+| BKLF-EW-001 | Sonoff SenseGuard Gen 2 Contact Sensor | East Wall Double Door Left Contact | East Wall | Door Contact, Exterior | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security, Overview | Building secure status | Confirmed on hand / assigned | East Wall double door; one contact sensor on left door leaf |
+| BKLF-EW-002 | Sonoff SenseGuard Gen 2 Contact Sensor | East Wall Double Door Right Contact | East Wall | Door Contact, Exterior | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security, Overview | Building secure status | Confirmed on hand / assigned | East Wall double door; one contact sensor on right door leaf |
+| BKLF-EW-003 | Sonoff SenseGuard Gen 2 Contact Sensor | East Wall Window 01 | East Wall | Window Contact, Exterior, Deferred | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security Notes | Deferred coverage | Deferred | 1 operable East Wall window; contact sensor deferred until additional contact sensors arrive |
+| BKLF-WW-001 | Sonoff SenseGuard Gen 2 Contact Sensor | West Wall Door Contact | West Wall | Door Contact, Exterior | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security, Overview | Building secure status | Confirmed on hand / assigned | West service entrance |
+| BKLF-WW-002 | Sonoff SenseGuard Gen 2 Contact Sensor | West Wall Window 01 | West Wall | Window Contact, Exterior, Deferred | Zigbee / Sonoff SenseGuard Gen 2 | Battery | Exterior, Security Notes | Deferred coverage | Deferred | 1 operable West Wall window; contact sensor deferred until additional contact sensors arrive |
+| BKLF-INT-001 | Sonoff SNZB-03P Motion Sensor | Viewing Room Motion 01 | Viewing Room | Motion Sensor, Interior | Zigbee / Sonoff SNZB-03P | Battery | Security, Activity, Overview | Interior activity awareness | Confirmed on hand / assigned | Planned viewing-room placement; covers a vulnerable interior movement area |
+| BKLF-INT-002 | Sonoff SNZB-03P Motion Sensor | Main Hallway Motion 01 | Main Hallway | Motion Sensor, Interior | Zigbee / Sonoff SNZB-03P | Battery | Security, Activity, Overview | Interior activity awareness | Confirmed on hand / assigned | Planned hallway placement; covers a vulnerable interior movement path |
 | BKLF-FIXED-001 | Fixed Picture Window | Conference Room Fixed Picture Window 01 | East Wall / Conference Room | Exterior, Fixed Window | Future impact/shock-type sensor placeholder | None | Exterior, Security Notes | Future impact/shock-type sensor placeholder | Existing building feature | East Wall fixed picture window; no contact sensor; no glass-break sensor in active deployment |
 | BKLF-FIXED-002 | Fixed Picture Window | Conference Room Fixed Picture Window 02 | East Wall / Conference Room | Exterior, Fixed Window | Future impact/shock-type sensor placeholder | None | Exterior, Security Notes | Future impact/shock-type sensor placeholder | Existing building feature | East Wall fixed picture window; no contact sensor; no glass-break sensor in active deployment |
 
 Count summary:
 
-- 14 total windows documented.
-- 12 operable windows planned for contact sensors.
-- 3 exterior doors planned for contact sensors.
-- 2 motion sensors planned.
+- 14 total windows exist.
+- 12 operable windows require contact sensors for full operable-window coverage.
+- 2 fixed picture windows are planned for future impact/shock-type sensors.
+- 16 total contact sensors are needed for full exterior door + operable-window contact coverage:
+  - 4 exterior door contacts
+  - 12 operable window contacts
+- 14 contact sensors are currently on hand:
+  - 4 assigned to exterior doors
+  - 10 assigned to initial operable-window coverage
+- 2 operable-window contact sensors are deferred.
+- 2 Sonoff SNZB-03P motion sensors confirmed on hand.
 - 2 fixed picture windows planned for future impact/shock-type sensors.
 - No glass-break sensors in the active deployment.
 
@@ -65,6 +89,20 @@ Corrected window distribution:
 - East Wall: 1 operable window.
 - West Wall: 1 operable window.
 - East Wall: 2 fixed picture windows.
+
+Contact sensor allocation:
+
+- Exterior doors:
+  - East Wall double door: 2 contact sensors, one per door leaf.
+  - South Wall door: 1 contact sensor.
+  - West Wall door: 1 contact sensor.
+- Operable windows:
+  - 10 contact sensors available for initial North Wall and South Wall operable-window coverage.
+  - 2 additional operable-window contact sensors are deferred until additional contact sensors arrive.
+- Future fixed picture window sensors:
+  - 2 East Wall fixed picture windows are planned for future impact/shock-type sensors.
+  - Fixed picture windows are not contact-sensor windows.
+  - Fixed picture windows are not glass-break sensors in the active deployment.
 
 ---
 
@@ -87,11 +125,11 @@ Corrected window distribution:
 
 | Dashboard Panel | Devices / Entities Included | Purpose |
 |---|---|---|
-| Overview | South Wall doorbell, South Wall lock, exterior contact status, motion summary, camera status, infrastructure status | High-level first-floor status and owner-priority summary |
-| Exterior | North Wall, South Wall, East Wall, and West Wall door/window contacts; South Wall corner camera; East Wall fixed picture window future sensor placeholders | Building-envelope status by wall orientation |
-| Entrances | South Wall doorbell, South Wall lock, South Wall door contact, East Wall door contact, West Wall door contact | Exterior entry status and owner-managed South Entrance access workflow |
+| Overview | South Wall doorbell, South Wall lock, installed exterior contact status, deferred coverage summary, motion summary, camera status, infrastructure status | High-level first-floor status and owner-priority summary |
+| Exterior | Active South Wall and North Wall window contacts, active exterior door contacts, deferred East/West operable-window contacts, South Wall corner camera, East Wall fixed picture window future sensor placeholders | Building-envelope status by wall orientation with Active / Deferred distinction |
+| Entrances | South Wall doorbell, South Wall lock, South Wall door contact, East Wall double-door contacts, West Wall door contact | Exterior entry status and owner-managed South Entrance access workflow |
 | Cameras | Reolink PoE Video Doorbell, Reolink Dual-Lens PoE Camera | Camera live view, camera status, and camera-related activity |
-| Security | Door contacts, window contacts, motion sensors, lock status, battery status | Owner-managed first-floor security and opening-state review |
+| Security | Active door contacts, active window contacts, deferred window contacts as planned coverage, motion sensors, lock status, battery status | Owner-managed first-floor security and opening-state review |
 | Activity | Doorbell events, lock events, door contact events, window contact events, motion events, relevant availability events | Recent activity history for owner and service review |
 | Infrastructure / Administration | Home Assistant Green, Z-Wave controller, Zigbee controller, network/PoE hardware when visible, backups, integration health | System administration, support, and backup readiness |
 
@@ -103,7 +141,7 @@ Corrected window distribution:
 |---|---|---|---|
 | South Entrance owner-managed access workflow | South Wall Doorbell, South Wall Lock, South Wall Door Contact | Visitor awareness, owner review, remote unlock, access event logging, and door state confirmation | Planned |
 | Door re-lock timer | South Wall Lock, South Wall Door Contact | Return the South Entrance lock to locked state after the configured owner-approved interval | Planned |
-| Building secure status | South Wall Door Contact, East Wall Door Contact, West Wall Door Contact, all operable window contacts | Summarize first-floor opening status for owner review | Planned |
+| Building secure status | South Wall Door Contact, East Wall Double Door Left Contact, East Wall Double Door Right Contact, West Wall Door Contact, active South Wall Window 01-05, active North Wall Window 01-05 | Summarize installed first-floor opening status for owner review; deferred operable-window contacts are excluded until installed | Planned |
 | After-hours activity notification | Viewing Room Motion 01, Main Hallway Motion 01, exterior door contacts, South Wall Doorbell | Notify owner of relevant after-hours activity based on final schedule settings | Planned |
 | Device offline notification | Home Assistant Green, Z-Wave controller, Zigbee controller, Reolink cameras, paired battery sensors when available | Surface device availability problems for owner or service review | Planned |
 | Low battery notification | South Wall Lock, door contacts, window contacts, motion sensors | Surface low-battery devices before failure | Planned |
