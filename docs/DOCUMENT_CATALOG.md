@@ -139,6 +139,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL002 as a docs-only checklist artifact. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, customer-specific install documentation, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, secret, or future INSTALL task activation changes by itself.
 
+### `/docs/installer/INSTALL003_GOLDEN_HOME_ASSISTANT_BUILD_STANDARD_REV01.md`
+- **File path:** `docs/installer/INSTALL003_GOLDEN_HOME_ASSISTANT_BUILD_STANDARD_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Golden Home Assistant Build Standard defining the reusable baseline controller state before customer-specific customization, required baseline categories, Golden versus customer-specific boundary, bench checklist relationship, backup/restore expectations, theme-readiness posture, funeral home pilot relevance, future INSTALL004-INSTALL008 planning notes, and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / Golden Build standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL003 as a docs-only standard artifact. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, backup automation, customer-specific install documentation, funeral-home-specific configuration, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
