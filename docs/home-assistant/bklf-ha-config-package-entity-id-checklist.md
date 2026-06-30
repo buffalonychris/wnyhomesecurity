@@ -31,12 +31,19 @@ Use this checklist before final package or dashboard binding. Expected entity ID
 | M01 Main Hallway Motion | `binary_sensor.m01_main_hallway_motion` |  |  | Active motion sensor on hand |
 | M02 Viewing Room Motion | `binary_sensor.m02_viewing_room_motion` |  |  | Active motion sensor on hand |
 | South Wall Lock | `lock.south_wall_lock` |  |  | Placeholder until Z-Wave lock entity is verified |
+| South Wall Lock Battery | `sensor.south_wall_lock_battery` |  |  | Expected if exposed by Z-Wave JS after secure inclusion |
+| South Wall Lock Status | `sensor.south_wall_lock_status` |  |  | Expected if exposed by Z-Wave JS after secure inclusion |
 | South Wall Doorbell | `camera.south_wall_doorbell` |  |  | Placeholder until Reolink doorbell entity is verified |
+| South Wall Doorbell Visitor/Button | `binary_sensor.south_wall_doorbell_visitor` |  |  | Expected if exposed by Reolink integration |
+| South Wall Doorbell Motion | `binary_sensor.south_wall_doorbell_motion` |  |  | Expected if exposed by Reolink integration |
 | South Wall Corner Camera | `camera.south_wall_corner_camera` |  |  | Placeholder until Reolink camera entity is verified |
+| South Wall Corner Camera Motion | `binary_sensor.south_wall_corner_camera_motion` |  |  | Expected if exposed by Reolink integration |
+| South Wall Corner Camera Person | `binary_sensor.south_wall_corner_camera_person` |  |  | Expected if exposed by Reolink integration |
 | East Wall Window 01 Deferred Contact | `binary_sensor.east_wall_window_01_contact` |  |  | Deferred operable-window contact; not active until sensor is installed |
 | West Wall Window 01 Deferred Contact | `binary_sensor.west_wall_window_01_contact` |  |  | Deferred operable-window contact; not active until sensor is installed |
 | East Wall Fixed Picture Window Future Sensor 01 | `binary_sensor.east_wall_fixed_picture_window_01_impact` |  |  | Future impact/shock sensor placeholder |
 | East Wall Fixed Picture Window Future Sensor 02 | `binary_sensor.east_wall_fixed_picture_window_02_impact` |  |  | Future impact/shock sensor placeholder |
+| Mobile App Notify Service | `notify.mobile_app_OWNER_DEVICE_TO_REPLACE` |  |  | Replace in notification package import copy only after mobile app target is verified |
 
 ## Verification Rules
 
