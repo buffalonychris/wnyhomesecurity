@@ -4688,6 +4688,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review draft PR and decide whether to merge. Recommended next task after merge: `INSTALL002 - Bench Build Checklist`.
 - **Completion Notes:** Created the initial docs-only WNYHS Installer Platform architecture covering the repeatable Home Assistant controller appliance model, platform layers, Customer/Installer/Service Dashboard classes, theme-readiness planning, bench workflow phases, near-term funeral home pilot relevance, future INSTALL002-INSTALL010 planning notes, and protected-system exclusions. No source, routes, UI, styles, public assets, Home Assistant config, dashboards, automations, customer-specific install docs, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or future task activations were changed.
 
+### INSTALL002
+- **Task ID:** INSTALL002
+- **Task Name:** Bench Build Checklist
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the initial WNYHS Bench Build Checklist for preparing Home Assistant-based customer controllers before onsite installation.
+- **Allowed Scope:** Docs/checklist only; create `docs/installer/INSTALL002_BENCH_BUILD_CHECKLIST_REV01.md`; add this bounded Master Task Register record because INSTALL002 was missing; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md` if required by repo registration pattern.
+- **Forbidden Scope:** No source, routes, UI, styles, public assets, runtime code, Home Assistant configuration implementation, dashboards, automations, scripts, customer-specific install docs, hardware purchasing, inventory automation, ordering automation, HubSpot changes, Stripe/payment changes, scheduling changes, Resend/email changes, Cloudflare config, environment files/secrets, dependencies, package-lock, public claims, task activation for future INSTALL tasks, PR merge, or ready-for-review PR marking.
+- **Target Files:** `docs/installer/INSTALL002_BENCH_BUILD_CHECKLIST_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only bench checklist.
+- **Documentation Updates Required:** Create INSTALL002 checklist; add bounded task-register record because INSTALL002 was missing; register the document in catalog and manifest addendum.
+- **Validation Required:** `git diff --check`; `git diff --cached --check` if staged; targeted `rg` for `INSTALL002`, `Bench Build Checklist`, `Hardware inventory`, `Device naming`, `Entity cleanup`, `Customer Dashboard`, `Installer Dashboard`, `Service Dashboard`, `backup record`, and `exception log` in docs; merge-marker scan in docs; `npx tsc -p tsconfig.app.json --noEmit`; `cmd /c npm run build`; `git ls-files --deleted`; `git status --short`.
+- **Exit Criteria:** Bench Build Checklist REV01 exists and covers purpose, 15 bench build phases, required checklist fields, dashboard preparation placeholders, funeral home pilot use, output artifacts, future INSTALL003/004/005/006/008 planning notes, and protected-system boundaries; only allowed documentation files changed; protected systems untouched; validation passes; draft PR opened without merge.
+- **Dependencies:** Prompt-created bounded `INSTALL002` work order; INSTALL001 merged and current `main` synced; CODEX run contract; OPS009 workflow; current governance authority chain; `docs/system/step-current.md`; targeted Master Task Register review; `docs/installer/INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md`.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Recommended next task after merge: `INSTALL003 - Golden Home Assistant Build Standard`.
+- **Completion Notes:** Created the initial docs-only WNYHS Bench Build Checklist for repeatable Home Assistant controller bench preparation, including job intake readiness, hardware inventory, controller readiness, network readiness, area/room planning, device naming, device pairing/adoption, entity cleanup, dashboard preparation placeholders, automation preparation, backup creation, bench validation, install kit staging, exceptions/deferred items, and installer handoff. Defined expected bench outputs and future INSTALL003/004/005/006/008 planning notes. No source, routes, UI, styles, public assets, Home Assistant config, dashboards, automations, scripts, customer-specific install docs, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or future task activations were changed.
+
 ### T-SEO001-002
 - **Task ID:** T-SEO001-002
 - **Task Name:** Metadata and Canonical Audit
