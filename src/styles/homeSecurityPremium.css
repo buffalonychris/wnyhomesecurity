@@ -840,18 +840,24 @@
 }
 
 .hs-premium-shell--solution-detail {
-  color: var(--hs-home-ink);
+  color: var(--wnyhs-text-charcoal);
 }
 
 .opportunity-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
   gap: clamp(1rem, 2vw, 1.35rem);
-  border-radius: 20px;
+  border-radius: var(--wnyhs-radius-shell);
   padding: clamp(1rem, 2vw, 1.35rem);
-  background: var(--hs-home-charcoal);
-  border: 1px solid color-mix(in srgb, var(--hs-home-gold) 30%, transparent);
+  background:
+    linear-gradient(
+      135deg,
+      var(--wnyhs-trust-navy),
+      color-mix(in srgb, var(--wnyhs-trust-navy) 88%, var(--wnyhs-premium-gold) 12%)
+    );
+  border: 1px solid var(--wnyhs-dark-border);
   color: var(--wnyhs-dark-text);
+  box-shadow: var(--wnyhs-shadow-panel);
 }
 
 .opportunity-hero-copy {
@@ -886,31 +892,32 @@
   margin-top: 0;
   padding: 0.75rem;
   justify-content: center;
-  background: var(--hs-home-panel);
-  border-color: var(--hs-home-border);
+  background: var(--wnyhs-surface-elevated);
+  border-color: var(--wnyhs-border-warm);
 }
 
 .opportunity-hero-proof-strip span {
   padding: 0.4rem 0.7rem;
-  border-color: var(--hs-home-border);
-  background: color-mix(in srgb, var(--hs-home-gold) 14%, var(--hs-home-panel));
-  color: var(--hs-home-ink);
+  border-color: var(--wnyhs-border-warm);
+  background: color-mix(in srgb, var(--wnyhs-premium-gold) 14%, var(--wnyhs-surface-elevated));
+  color: var(--wnyhs-text-charcoal);
 }
 
 .opportunity-hero-media {
   margin: 0;
   min-height: 100%;
   aspect-ratio: 16 / 11;
-  border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--hs-home-gold) 34%, transparent);
-  background: color-mix(in srgb, var(--hs-home-charcoal) 88%, var(--hs-home-gold) 12%);
+  border-radius: var(--wnyhs-radius-media);
+  border: 1px solid color-mix(in srgb, var(--wnyhs-premium-gold) 34%, transparent);
+  background: color-mix(in srgb, var(--wnyhs-trust-navy) 88%, var(--wnyhs-premium-gold) 12%);
 }
 
 .opportunity-section {
   gap: 1rem;
   padding: 1rem;
-  background: var(--hs-home-panel);
-  border-color: var(--hs-home-border);
+  background: var(--wnyhs-surface-primary);
+  border-color: var(--wnyhs-border-warm);
+  box-shadow: var(--wnyhs-shadow-card);
 }
 
 .opportunity-section .hs-premium-eyebrow,
@@ -919,11 +926,11 @@
 }
 
 .opportunity-section .hs-premium-eyebrow {
-  color: var(--hs-home-gold-strong);
+  color: var(--wnyhs-premium-gold-hover);
 }
 
 .opportunity-section .hs-premium-section-header p {
-  color: var(--hs-home-muted);
+  color: var(--wnyhs-text-secondary);
 }
 
 .opportunity-three-up,
@@ -941,8 +948,8 @@
   gap: 0.5rem;
   min-height: 100%;
   padding: 0.9rem;
-  border-color: var(--hs-home-border);
-  background: color-mix(in srgb, var(--hs-home-panel) 86%, var(--hs-home-panel-soft) 14%);
+  border-color: var(--wnyhs-border-warm);
+  background: color-mix(in srgb, var(--wnyhs-surface-primary) 86%, var(--wnyhs-canvas-alternate) 14%);
 }
 
 .opportunity-three-up h3,
@@ -951,12 +958,12 @@
 }
 
 .opportunity-three-up h3 {
-  color: var(--hs-home-ink);
+  color: var(--wnyhs-text-charcoal);
   font-size: 1.05rem;
 }
 
 .opportunity-three-up p {
-  color: var(--hs-home-muted);
+  color: var(--wnyhs-text-secondary);
 }
 
 .opportunity-feature-grid {
@@ -967,10 +974,10 @@
   display: grid;
   align-items: center;
   min-height: 100%;
-  border-radius: 14px;
-  border-color: var(--hs-home-border);
-  background: color-mix(in srgb, var(--hs-home-panel) 86%, var(--hs-home-panel-soft) 14%);
-  color: var(--hs-home-ink);
+  border-radius: var(--wnyhs-radius-card);
+  border-color: var(--wnyhs-border-warm);
+  background: color-mix(in srgb, var(--wnyhs-surface-primary) 86%, var(--wnyhs-canvas-alternate) 14%);
+  color: var(--wnyhs-text-charcoal);
   font-weight: 700;
   padding: 0.75rem 0.85rem;
 }
@@ -978,8 +985,8 @@
 .opportunity-scenario {
   grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
   align-items: center;
-  border-color: var(--hs-home-border);
-  background: color-mix(in srgb, var(--hs-home-panel-soft) 78%, var(--hs-home-panel) 22%);
+  border-color: var(--wnyhs-border-warm);
+  background: color-mix(in srgb, var(--wnyhs-canvas-alternate) 78%, var(--wnyhs-surface-elevated) 22%);
 }
 
 .opportunity-scenario-copy {
@@ -989,10 +996,10 @@
 .opportunity-sample-media {
   margin: 0;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--hs-home-border) 72%, transparent);
-  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--wnyhs-border-warm) 72%, transparent);
+  border-radius: var(--wnyhs-radius-media);
   aspect-ratio: 4 / 3;
-  background: color-mix(in srgb, var(--hs-home-panel-soft) 76%, var(--hs-home-panel) 24%);
+  background: color-mix(in srgb, var(--wnyhs-canvas-alternate) 76%, var(--wnyhs-surface-elevated) 24%);
 }
 
 .opportunity-sample-media img {
@@ -1005,8 +1012,8 @@
 
 .opportunity-links {
   gap: 1rem;
-  background: color-mix(in srgb, var(--hs-home-panel-soft) 78%, var(--hs-home-panel) 22%);
-  border-color: var(--hs-home-border);
+  background: color-mix(in srgb, var(--wnyhs-canvas-alternate) 78%, var(--wnyhs-surface-elevated) 22%);
+  border-color: var(--wnyhs-border-warm);
 }
 
 .hs-premium-hero-media {
@@ -1028,7 +1035,7 @@
 .opportunity-hero-media img {
   object-fit: cover;
   object-position: center;
-  background: color-mix(in srgb, var(--hs-home-charcoal) 88%, var(--hs-home-gold) 12%);
+  background: color-mix(in srgb, var(--wnyhs-trust-navy) 88%, var(--wnyhs-premium-gold) 12%);
 }
 
 .hs-premium-hero-overlay {
