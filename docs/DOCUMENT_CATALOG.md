@@ -203,6 +203,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL009 as docs-only customer handoff package standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard YAML, Lovelace card implementation, frontend assets, theme implementation, automation/script implementation, customer-specific handoff docs, actual customer records, customer data, PDFs, emails, portal files, funeral-home-specific records, HubSpot schema/properties/objects/workflows, direct HubSpot writes, APIs, durable storage, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL010_SERVICE_DASHBOARD_AND_REMOTE_SUPPORT_STANDARD_REV01.md`
+- **File path:** `docs/installer/INSTALL010_SERVICE_DASHBOARD_AND_REMOTE_SUPPORT_STANDARD_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Service Dashboard and Remote Support Standard defining post-handoff service dashboard purpose, remote support posture, support-safe diagnostics, support status categories, Service Dashboard Readiness Sheet fields, remote support authorization fields, warranty/support handoff relationships, privacy/claim guardrails, funeral home pilot relevance, and future HUBSPOT-INSTALL001/PORTAL001/ASSET001/WARRANTY001/SUPPORT001/THEME001 planning notes for Home Assistant-based installs.
+- **Authority level:** **Installer-platform governance / service dashboard and remote support standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL010 as docs-only service dashboard and remote support standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard YAML, Lovelace card implementation, frontend assets, theme implementation, automation/script implementation, customer-specific service dashboards, actual customer records, customer data, remote access credentials, private URLs, portal files, funeral-home-specific records, HubSpot schema/properties/objects/workflows, direct HubSpot writes, APIs, durable storage, support tickets, warranty records, asset records, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
