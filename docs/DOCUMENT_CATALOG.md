@@ -187,6 +187,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL007 as docs-only theme-readiness architecture. It does not authorize Home Assistant theme files, theme YAML, dashboard YAML, Lovelace card implementation, frontend assets, CSS, automations, scripts, customer-specific dashboards, funeral-home-specific themes, source, routes, UI, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL008_BENCH_TESTING_AND_COMMISSIONING_CHECKLIST_REV01.md`
+- **File path:** `docs/installer/INSTALL008_BENCH_TESTING_AND_COMMISSIONING_CHECKLIST_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Bench Testing and Commissioning Checklist defining bench validation, onsite commissioning, evidence/proof standards, commissioning status categories, critical blockers, exception handling fields, shared data model relationship, funeral home pilot relevance, and future INSTALL009/INSTALL010 planning notes for Home Assistant-based installs.
+- **Authority level:** **Installer-platform governance / bench testing and commissioning checklist / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL008 as docs-only checklist governance. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard YAML, Lovelace card implementation, frontend assets, theme implementation, automation/script implementation, customer-specific install docs, actual customer records, customer data, funeral-home-specific records, HubSpot schema/properties/objects/workflows, direct HubSpot writes, APIs, portal screens, durable storage, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
