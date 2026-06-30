@@ -32,7 +32,7 @@ const QrLanding = () => {
   return (
     <div className="qr-page-shell">
       <header className="qr-topbar">
-        <a href="/qrlanding" className="qr-brand">
+        <a href="/" className="qr-brand">
           <img src="/brand/crest-system/IconizedLogo.png" alt="WNY Home Security" />
           <span>WNY Home Security</span>
         </a>

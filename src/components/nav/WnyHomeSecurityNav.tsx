@@ -23,7 +23,7 @@ const WnyHomeSecurityNav = ({ pathParam = '' }: WnyHomeSecurityNavProps) => {
   return (
     <header className="wny-hs-nav">
       <div className="wny-hs-nav-bar">
-        <NavLink to="/home-security" className="wny-hs-brand" aria-label={`${brandHomeSecurity} home`}>
+        <NavLink to="/" className="wny-hs-brand" aria-label={`${brandHomeSecurity} home`}>
           <span className="wny-hs-brand-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" role="img" focusable="false">
               <path
@@ -51,7 +51,7 @@ const WnyHomeSecurityNav = ({ pathParam = '' }: WnyHomeSecurityNavProps) => {
       </div>
       <div id="wny-hs-nav-menu" className={`wny-hs-nav-menu${menuOpen ? ' is-open' : ''}`}>
         <nav className="wny-hs-nav-primary" aria-label="Home Security primary navigation">
-          <NavLink to="/home-security" className={navLinkClass}>
+          <NavLink to="/" className={navLinkClass}>
             Home
           </NavLink>
           <NavLink to="/categories/home-security" className={navLinkClass}>

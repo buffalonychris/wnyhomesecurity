@@ -70,7 +70,7 @@ const Packages = () => {
     <div className={isHomeSecurity ? 'wnyhs-page wnyhs-marketing-stack wnyhs-solutions-listing' : 'container section'}>
       {isHomeSecurity && (
         <div className="wnyhs-inline-actions">
-          <Link className="wnyhs-button wnyhs-button--secondary" to="/home-security">
+          <Link className="wnyhs-button wnyhs-button--secondary" to="/">
             Back to overview
           </Link>
         </div>

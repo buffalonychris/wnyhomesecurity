@@ -117,7 +117,7 @@ const marketingSearchItems: PublicSearchItem[] = [
     id: 'marketing-homepage',
     title: 'Homepage',
     type: 'marketing',
-    route: '/home-security',
+    route: '/',
     summary: 'Start with WNY Home Security categories, solutions, local approach, and next steps.',
     keywords: ['home', 'homepage', 'wny home security', 'start', 'categories', 'solutions'],
     priority: 98,

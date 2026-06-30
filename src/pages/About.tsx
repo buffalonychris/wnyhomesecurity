@@ -13,7 +13,7 @@ const About = () => {
     showBreadcrumbs: isHomeSecurity,
     breadcrumb: isHomeSecurity
       ? [
-          { label: 'Home Security', href: '/home-security' },
+          { label: 'Home Security', href: '/' },
           { label: 'About Us' },
         ]
       : [],

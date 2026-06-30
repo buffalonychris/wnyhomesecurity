@@ -7,7 +7,7 @@ const HomeSecurityDashboard = () => {
     layoutVariant: 'funnel',
     showBreadcrumbs: true,
     breadcrumb: [
-      { label: 'Home Security', href: '/home-security' },
+      { label: 'Home Security', href: '/' },
       { label: 'Dashboard Preview' },
     ],
   });

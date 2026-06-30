@@ -17,7 +17,7 @@ export type FunnelStepDefinition = {
 };
 
 export const HOME_SECURITY_ROUTES = {
-  home: '/home-security',
+  home: '/',
   search: '/search',
   homeSecurityCategory: '/categories/home-security',
   packages: '/packages?vertical=home-security',
@@ -33,12 +33,11 @@ export const HOME_SECURITY_ROUTES = {
 
 export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: MarketingNavItem[] } = {
   primary: [
-    { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/home-security' },
+    { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/' },
     { id: 'search', label: 'Search', href: HOME_SECURITY_ROUTES.search, matchPath: '/search' },
     { id: 'solutions', label: 'Solutions', href: HOME_SECURITY_ROUTES.homeSecurityCategory, matchPath: '/categories/home-security' },
     { id: 'fit-check', label: 'Fit Check', href: HOME_SECURITY_ROUTES.discovery, matchPath: '/discovery' },
     { id: 'estimate', label: 'Estimate', href: '/contact?vertical=home-security', matchPath: '/contact' },
-    { id: 'support', label: 'Support', href: '/support?vertical=home-security', matchPath: '/support' },
     { id: 'our-work-primary', label: 'Our Work', href: '/our-work?vertical=home-security', matchPath: '/our-work' },
   ],
   more: [
