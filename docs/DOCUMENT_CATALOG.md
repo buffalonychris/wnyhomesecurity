@@ -155,6 +155,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL004 as a docs-only physical device naming standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, entity naming, area naming, customer-specific install documentation, funeral-home-specific configuration, device inventory data, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL005_ENTITY_AND_AREA_STANDARDS_REV01.md`
+- **File path:** `docs/installer/INSTALL005_ENTITY_AND_AREA_STANDARDS_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Entity and Area Standards defining Home Assistant area categories, plain-language area naming, device-to-area assignment, entity naming, entity cleanup workflow, visibility classes, review-sheet fields, examples, anti-patterns, funeral home pilot relevance, future INSTALL006/007/008/010 planning notes, and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / entity and area standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL005 as a docs-only entity and area standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation/script implementation, customer-specific install documentation, funeral-home-specific configuration, customer-specific device/entity/area data, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
