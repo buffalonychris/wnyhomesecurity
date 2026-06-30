@@ -881,6 +881,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### NAV001
+- **Task ID:** NAV001
+- **Task Name:** Canonical Homepage + HOME Navigation Reconciliation
+- **Status:** DONE
+- **Category:** FUNNEL
+- **Tags:** Site Architecture / Navigation / Homepage / QR / Redirect Audit
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Make `/` the canonical WNY Home Security homepage using the current `/home-security` content, preserve `/home-security` as a temporary reachable legacy alias, and reconcile public HOME navigation destinations.
+- **Allowed Scope:** Register this missing bounded task record; update homepage route rendering for `/`; preserve `/home-security` route access; update public HOME navigation links and QR landing top-brand HOME destination to `/`; remove repo-controlled `/` to `/home-security` redirects if present; bump visible site version; run targeted route/config/link audits and build validation.
+- **Forbidden Scope:** No Packages IA, Solutions IA, category-route cleanup, quote, agreement, payment, schedule, support flow, HubSpot/CRM, Stripe/payment, scheduling, Resend/email, backend/API runtime, dependency, package-lock, secret, environment, Cloudflare dashboard, sitemap, robots, metadata policy, broad refactor, unrelated visual-system, public-claim expansion, merge, or direct push to main changes.
+- **Target Files:** `docs/system/master-task-register.md`; `src/App.tsx`; `src/content/wnyhsNavigation.ts`; `src/content/wnyhsContact.ts`; `src/components/homeSecurity/WnyhsTopNav.tsx`; `src/components/homeSecurity/WnyhsPageLayout.tsx`; `src/components/nav/WnyHomeSecurityNav.tsx`; `src/components/Layout.tsx`; `src/components/RouteTransitionManager.tsx`; `src/pages/QrLanding.tsx`; `src/pages/Packages.tsx`; public homepage-intent breadcrumb/search references if required; `src/lib/siteVersion.ts`; repo-controlled redirect/config files only if a `/` to `/home-security` rule is found.
+- **Runtime Systems Affected:** Public SPA routing and public navigation only. No API, CRM, payment, scheduling, email, or protected runtime system changes.
+- **Documentation Updates Required:** Add this bounded NAV001 task-register record because it was missing and the operator explicitly instructed registration before continuing; record completion evidence after validation if needed by repo convention.
+- **Validation Required:** `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; `npm run build`; targeted search for HOME links still pointing to `/home-security`; targeted search for redirect rules sending `/` to `/home-security`; conflict-marker scan.
+- **Exit Criteria:** `/` renders the current Home Security homepage content; `/home-security` remains reachable as a temporary legacy alias; public HOME nav links point to `/`; QR landing top-brand HOME destination points to `/` while QR-specific content and attribution behavior remain intact; repo-controlled `/` to `/home-security` redirects are removed or reported absent; Cloudflare dashboard-only redirect risk is documented as a manual check; protected systems and forbidden scopes remain untouched; build passes or any failure is honestly reported; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded NAV001 work order; operator instruction to register NAV001 if missing; current governance authority chain; SITEARCH002; SITEARCH004; SEO004; QR funnel standards; public funnel standards; header/footer standards.
+- **Operator Decision Required:** Review draft PR and perform any Cloudflare dashboard redirect-rule check if repo search cannot inspect dashboard-only rules.
+- **Completion Notes:** Registered missing NAV001 task record per operator instruction, then reconciled canonical homepage routing so `/` renders the existing Home Security homepage component while `/home-security` remains declared and reachable as a temporary legacy alias. Updated public HOME destinations in the active WNYHS navigation constants, top nav brand link, older WNYHS nav component, funnel/homepage-intent breadcrumbs, Packages overview link, public search homepage result, and QR landing brand link to `/`. Removed the in-app root redirect from `/` to `/home-security`; no repo-controlled `_redirects`, Vite, or static redirect rule sending `/` to `/home-security` was found. Bumped visible site version to `v1.0.186`. No HubSpot, Stripe/payment, scheduling, Resend/email, backend/API runtime, dependencies, package-lock, secrets/env files, sitemap, robots, metadata policy, Cloudflare config, package/category/solution IA, quote, agreement, payment, schedule, or support flow changes were made. `npm run build`, focused SEO/search tests, `npm run typecheck:test`, `git diff --check`, targeted HOME-link search, targeted root-redirect search, and conflict-marker scan passed. `npm run lint` and `npm run typecheck:api` still fail on existing unrelated baseline issues outside NAV001 scope.
+
 ### VISPARITY001
 - **Task ID:** VISPARITY001
 - **Task Name:** Public Route and Visual Element Discovery Inventory

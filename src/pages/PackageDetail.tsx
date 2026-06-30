@@ -68,7 +68,7 @@ const PackageDetail = () => {
     showBreadcrumbs: isHomeSecurityPdp,
     breadcrumb: isHomeSecurityPdp
       ? [
-          { label: 'Home Security', href: '/home-security' },
+          { label: 'Home Security', href: '/' },
           { label: 'Packages', href: '/packages?vertical=home-security' },
           { label: tierLabel },
         ]

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { brandHomeSecurity } from '../../lib/brand';
-import { getAllHomeSecurityNavItems, homeSecurityMarketingNav } from '../../content/wnyhsNavigation';
+import { getAllHomeSecurityNavItems, HOME_SECURITY_ROUTES, homeSecurityMarketingNav } from '../../content/wnyhsNavigation';
 import { buildTel, wnyhsContact } from '../../content/wnyhsContact';
 
 type WnyhsTopNavProps = {
@@ -34,7 +34,7 @@ const WnyhsTopNav = ({ ctaLink = '/contact?vertical=home-security', ctaLabel = '
   return (
     <header ref={navRef} className="wnyhs-top-nav">
       <div className="wnyhs-top-nav-inner">
-        <Link to="/home-security" className="wnyhs-top-nav-brand" aria-label={`${brandHomeSecurity} home`}>
+        <Link to={HOME_SECURITY_ROUTES.home} className="wnyhs-top-nav-brand" aria-label={`${brandHomeSecurity} home`}>
           <span className="wnyhs-top-nav-icon" aria-hidden="true">
             <img src="/brand/crest-system/IconizedLogo.png" alt="" loading="eager" />
           </span>

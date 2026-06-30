@@ -17,15 +17,19 @@ const Layout = () => {
   const isHub = location.pathname === '/';
   const isFunnel = layoutConfig.layoutVariant === 'funnel';
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
-  const storedFlow = useMemo(() => loadRetailFlow(), [location.pathname, location.search]);
+  const storedFlow = loadRetailFlow();
   const verticalParam = searchParams.get('vertical');
   const storedVertical = storedFlow.quote?.vertical ?? (storedFlow.homeSecurity ? 'home-security' : null);
   const isHomeSecurityVertical =
-    verticalParam === 'home-security' || storedVertical === 'home-security' || location.pathname.startsWith('/home-security');
+    location.pathname === '/' ||
+    verticalParam === 'home-security' ||
+    storedVertical === 'home-security' ||
+    location.pathname.startsWith('/home-security');
   const isNewSite = location.pathname.startsWith('/newsite');
-  const isHomeSecurityLanding = location.pathname === '/home-security';
+  const isHomeSecurityLanding = location.pathname === '/' || location.pathname === '/home-security';
   const isHomeSecurityMarketingRoute = useMemo(() => {
     const marketingRoutes = new Set([
+      '/',
       '/home-security',
       '/packages',
       '/discovery',
@@ -63,7 +67,7 @@ const Layout = () => {
     isFunnel &&
     (location.pathname.startsWith('/home-security') || location.search.includes('vertical=home-security'));
   const hideFunnelHeader = isHomeSecurityVertical;
-  const brandLink = isHomeSecurityFunnel ? '/home-security' : '/';
+  const brandLink = '/';
   const supportLink = isHomeSecurityFunnel ? '/support?vertical=home-security' : '/support';
   const contactLink = isHomeSecurityFunnel ? '/contact?vertical=home-security' : '/contact';
 

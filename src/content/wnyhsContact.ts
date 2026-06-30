@@ -188,7 +188,7 @@ export const buildInstallMailto = (context?: { pageRoute?: string }) => {
 };
 
 export const HOME_SECURITY_ROUTES = {
-  home: '/home-security',
+  home: '/',
   packages: '/packages?vertical=home-security',
   comparison: '/comparison?vertical=home-security',
   whatsIncluded: '/home-security/whats-included',
@@ -202,7 +202,7 @@ export const HOME_SECURITY_ROUTES = {
 
 export const homeSecurityMarketingNav: { primary: MarketingNavItem[]; more: MarketingNavItem[] } = {
   primary: [
-    { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/home-security' },
+    { id: 'home', label: 'Home', href: HOME_SECURITY_ROUTES.home, matchPath: '/' },
     { id: 'packages', label: 'Solutions', href: HOME_SECURITY_ROUTES.packages, matchPath: '/packages' },
     { id: 'comparison', label: 'Comparison', href: HOME_SECURITY_ROUTES.comparison, matchPath: '/comparison' },
     {

@@ -14,7 +14,7 @@ const Reliability = () => {
     showBreadcrumbs: isHomeSecurity,
     breadcrumb: isHomeSecurity
       ? [
-          { label: 'Home Security', href: '/home-security' },
+          { label: 'Home Security', href: '/' },
           { label: 'How it works' },
         ]
       : [],

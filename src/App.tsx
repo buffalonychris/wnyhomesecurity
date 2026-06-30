@@ -5,7 +5,6 @@ import DefaultLayout from './layouts/DefaultLayout';
 import OperatorLayout from './layouts/OperatorLayout';
 
 const Home = lazy(() => import('./pages/Home'));
-const RetailLanding = lazy(() => import('./pages/RetailLanding'));
 const HomeSecurity = lazy(() => import('./pages/HomeSecurity'));
 const HomeSecurityLegacy = lazy(() => import('./pages/HomeSecurityLegacy'));
 const HomeSecurityLegacyPremium = lazy(() => import('./pages/HomeSecurityLegacyPremium'));
@@ -109,12 +108,6 @@ const NewSiteSchedule = lazy(() => import('./newsite/pages/NewSiteSchedule'));
 const QrLanding = lazy(() => import('./pages/QrLanding'));
 const QrLandingAlias = lazy(() => import('./pages/QrLanding').then((m) => ({ default: m.QrLandingAlias })));
 
-const HomeRoute = () => {
-  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
-  const isHomeSecurityHost = hostname.includes('wnyhomesecurity.com');
-  return isHomeSecurityHost ? <Navigate to="/home-security" replace /> : <RetailLanding />;
-};
-
 const App = () => {
   return (
     <Suspense
@@ -127,7 +120,7 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route element={<DefaultLayout />}>
-            <Route path="/" element={<HomeRoute />} />
+            <Route path="/" element={<HomeSecurity />} />
             <Route path="/halo-splash" element={<Home />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/packages/:id" element={<PackageDetail />} />
