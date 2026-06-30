@@ -881,6 +881,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### WNYHS-COMMERCIAL-HA-STANDARD-001
+- **Task ID:** WNYHS-COMMERCIAL-HA-STANDARD-001
+- **Task Name:** Commercial Home Assistant Area Standard and BKLF First-Floor Plan
+- **Status:** DONE
+- **Category:** Documentation / Home Assistant / Commercial Deployment Standard
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Capture the Brian K. Lewis Funeral Home Home Assistant deployment architecture and establish a reusable commercial area/dashboard standard for future WNYHS installs.
+- **Allowed Scope:** Add documentation under `docs/home-assistant/`; update this Master Task Register record only.
+- **Forbidden Scope:** No app code changes; no website copy changes; no route changes; no Stripe/payment changes; no dashboard implementation code; no customer proposal modification; no HubSpot/CRM changes; no scheduling changes; no customer-facing page changes.
+- **Target Files:** `docs/home-assistant/commercial-area-standard.md`; `docs/home-assistant/bklf-first-floor-ha-plan.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only Home Assistant deployment planning.
+- **Documentation Updates Required:** Create reusable commercial Home Assistant area/dashboard standard; create BKLF first-floor Home Assistant deployment plan; record this bounded task in the Master Task Register.
+- **Validation Required:** Confirm docs exist; confirm terminology is consistent; confirm only allowed documentation files were modified; run `git diff --check`; run targeted scans for changed files and forbidden implementation-scope drift.
+- **Exit Criteria:** Commercial Home Assistant standard exists; BKLF first-floor plan exists; task register entry exists and is marked DONE after validation; no implementation files, website routes, customer-facing pages, Stripe/payment files, HubSpot/CRM files, scheduling files, dashboard implementation code, or customer proposal files are modified.
+- **Dependencies:** Prompt-created bounded `WNYHS-COMMERCIAL-HA-STANDARD-001` work order; current governance authority chain; `docs/system/project.md`; `docs/system/guardrails.md`; `docs/system/agent.md`; `docs/system/plan.md`; `docs/system/step-current.md`; Active Tasks review in this register.
+- **Operator Decision Required:** Review the documentation and decide whether future deployment implementation, dashboard buildout, or customer proposal updates should be separately authorized.
+- **Completion Notes:** Created `docs/home-assistant/commercial-area-standard.md` documenting the reusable Exterior / Interior / Infrastructure model, standard exterior wall areas, interior room/support-area rules, infrastructure operational separation, and dashboard section standard. Created `docs/home-assistant/bklf-first-floor-ha-plan.md` documenting the Brian K. Lewis Funeral Home first-floor-only deployment, confirmed HA controller/version/storage, network closet physical location, confirmed hardware, contact and motion sensor scope, area plan, South Wall devices, South Entrance owner-managed access workflow, dashboard panels, and exclusions. No implementation files, website routes, customer-facing pages, dashboard implementation code, customer proposal files, HubSpot/CRM, Stripe/payment, scheduling, Resend/email, backend/API runtime, Cloudflare config, dependencies, package-lock, environment, or secrets were changed.
+
 ### NAV001
 - **Task ID:** NAV001
 - **Task Name:** Canonical Homepage + HOME Navigation Reconciliation
