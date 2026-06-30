@@ -121,6 +121,16 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by T-AUTOMATION001-001 as a docs-only governance artifact. It does not authorize app/source changes, runtime automations, C.A.F.E. installation, HACS installation, Node-RED installation, Homey installation, customer dashboards, final SafePath BOM/pricing/hardware standards, HubSpot changes, Stripe/payment changes, scheduling changes, quote/estimate runtime changes, package/catalog behavior, dependency changes, environment changes, secrets, or deployment changes by itself.
 
+## `docs/installer/`
+
+### `/docs/installer/INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md`
+- **File path:** `docs/installer/INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Installer Platform architecture defining the repeatable Home Assistant controller appliance model, platform layers, Customer/Installer/Service Dashboard audience classes, theme-readiness posture, bench workflow phases, funeral home pilot relevance, future INSTALL002-INSTALL010 planning notes, and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / architecture standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL001 as a docs-only governance architecture artifact. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard implementation, automation implementation, customer-specific install documentation, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, secret, or future INSTALL task activation changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`

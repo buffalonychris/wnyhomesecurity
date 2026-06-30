@@ -4670,6 +4670,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review draft PR and decide whether to merge. Recommended next task after merge: `INSTALL001 - Installer Platform Architecture`.
 - **Completion Notes:** Created the docs-only OPS009 Codex workflow and RSI governance standard. Updated the Codex run contract narrowly so current full-read behavior remains the default while future targeted reads become allowed only under OPS009 conditions after merge. Added this bounded tracking record and catalog/manifest references. No source, runtime, route, style, page copy, public asset, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, THEME implementation, INSTALL implementation, hooks, or automation files were changed.
 
+### INSTALL001
+- **Task ID:** INSTALL001
+- **Task Name:** Installer Platform Architecture
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the initial WNYHS Installer Platform architecture document for bench-building, preconfiguring, testing, installing, supporting, and handing off Home Assistant-based customer systems.
+- **Allowed Scope:** Docs/governance architecture only; create `docs/installer/INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md`; create `docs/installer/` if missing; update this Master Task Register record; update `docs/DOCUMENT_CATALOG.md`; update `docs/MARKDOWN_MANIFEST.md` if required by repo registration pattern.
+- **Forbidden Scope:** No source, routes, UI, styles, public assets, runtime code, Home Assistant configuration implementation, dashboards, automations, customer-specific install docs, hardware purchasing, inventory automation, ordering automation, HubSpot changes, Stripe/payment changes, scheduling changes, Resend/email changes, Cloudflare config, environment files/secrets, dependencies, package-lock, public claims, task activation for INSTALL002-INSTALL010, PR merge, or ready-for-review PR marking.
+- **Target Files:** `docs/installer/INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation-only installer platform architecture.
+- **Documentation Updates Required:** Create INSTALL001 architecture; add bounded task-register record because INSTALL001 was missing; register the document in catalog and manifest addendum.
+- **Validation Required:** `git diff --check`; `git diff --cached --check` if staged; targeted `rg` for `INSTALL001`, `Installer Platform`, `Golden Home Assistant`, `Customer Dashboard`, `Installer Dashboard`, `Service Dashboard`, `theme readiness`, `bench testing`, and `commissioning` in docs; merge-marker scan in docs; `npx tsc -p tsconfig.app.json --noEmit`; `cmd /c npm run build`; `git ls-files --deleted`; `git status --short`.
+- **Exit Criteria:** Architecture document exists and defines purpose, platform layers, dashboard audience classes, theme-readiness posture, hardware bench workflow phases, funeral home pilot relevance, future INSTALL002-INSTALL010 planning notes, and protected-system boundaries; future INSTALL tasks remain planning notes only; only allowed documentation files changed; protected systems untouched; validation passes; draft PR opened without merge.
+- **Dependencies:** Prompt-created bounded `INSTALL001` work order; CODEX run contract; OPS009 workflow; current governance authority chain; `docs/system/step-current.md`; targeted Master Task Register review; AUTOMATION001 Home Assistant automation standard; quote-system dashboard/hardware placeholders.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Recommended next task after merge: `INSTALL002 - Bench Build Checklist`.
+- **Completion Notes:** Created the initial docs-only WNYHS Installer Platform architecture covering the repeatable Home Assistant controller appliance model, platform layers, Customer/Installer/Service Dashboard classes, theme-readiness planning, bench workflow phases, near-term funeral home pilot relevance, future INSTALL002-INSTALL010 planning notes, and protected-system exclusions. No source, routes, UI, styles, public assets, Home Assistant config, dashboards, automations, customer-specific install docs, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or future task activations were changed.
+
 ### T-SEO001-002
 - **Task ID:** T-SEO001-002
 - **Task Name:** Metadata and Canonical Audit
