@@ -429,6 +429,24 @@
   color: var(--wnyhs-ink-secondary);
 }
 
+.wnyhs-info-page {
+  margin-block: clamp(1rem, 2vw, 1.5rem);
+}
+
+.wnyhs-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+}
+
+.wnyhs-list-reset {
+  margin: 0;
+}
+
+.wnyhs-list-reset li span:last-child {
+  color: var(--wnyhs-ink-secondary);
+}
+
 @media (max-width: 640px) {
   .wnyhs-search-input-row {
     grid-template-columns: 1fr;
