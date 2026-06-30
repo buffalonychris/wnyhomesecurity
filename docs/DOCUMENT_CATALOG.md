@@ -179,6 +179,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL006A as docs-only data architecture. It does not authorize HubSpot field creation, HubSpot object creation, HubSpot schema/property/pipeline/workflow changes, direct HubSpot writes, portal implementation, runtime sync, scripts, APIs, source code, database changes, Home Assistant configuration, customer-specific install files, actual customer data, inventory automation, ordering automation, Stripe/payment sync, scheduling sync, Resend/email changes, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`
+- **File path:** `docs/installer/INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Dashboard Theme Readiness Standard defining how Customer, Installer, and Service dashboards remain ready for Default Light, Default Dark, High Contrast, Seasonal / Holiday, Brand / Premium, Customer-selected, and Installer / Service diagnostic themes without dashboard rewrites.
+- **Authority level:** **Installer-platform governance / dashboard theme-readiness standard / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL007 as docs-only theme-readiness architecture. It does not authorize Home Assistant theme files, theme YAML, dashboard YAML, Lovelace card implementation, frontend assets, CSS, automations, scripts, customer-specific dashboards, funeral-home-specific themes, source, routes, UI, runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
