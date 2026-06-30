@@ -1,0 +1,100 @@
+# BKLF notification automation skeletons.
+#
+# Repo scaffold only. Verify entity IDs and replace notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+# before enabling in Home Assistant. Automations are disabled by default.
+
+automation:
+  - id: bklf_south_entrance_active_notification
+    alias: BKLF South Entrance Active Notification
+    description: "Skeleton notification when the South Entrance contact becomes active."
+    mode: single
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.bklf_south_entrance_active
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+        data:
+          title: "BKLF South Entrance"
+          message: "South Entrance is active. Review the dashboard for current status."
+
+  - id: bklf_after_hours_activity_notification
+    alias: BKLF After-Hours Activity Notification
+    description: "Skeleton notification for owner-reviewable after-hours activity."
+    mode: single
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.bklf_south_entrance_active
+          - binary_sensor.bklf_interior_motion_active
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_select.bklf_building_mode
+        state: "Closed"
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+        data:
+          title: "BKLF Activity"
+          message: "After-hours activity is present. Review the dashboard for current status."
+
+  - id: bklf_low_battery_notification
+    alias: BKLF Low Battery Notification
+    description: "Skeleton notification for low battery review."
+    mode: single
+    initial_state: false
+    trigger:
+      # Replace with final battery sensor entity IDs after pairing.
+      - platform: numeric_state
+        entity_id: sensor.BATTERY_ENTITY_TO_REPLACE
+        below: 20
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+        data:
+          title: "BKLF Battery Review"
+          message: "A battery-powered device needs review. Check the dashboard battery section."
+
+  - id: bklf_device_offline_notification
+    alias: BKLF Device Offline Notification
+    description: "Skeleton notification for unavailable device review."
+    mode: single
+    initial_state: false
+    trigger:
+      # Replace with final critical device entity IDs after pairing.
+      - platform: state
+        entity_id:
+          - binary_sensor.c01_south_entrance_door
+          - binary_sensor.m01_main_hallway_motion
+        to: "unavailable"
+        for: "00:15:00"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+        data:
+          title: "BKLF Device Review"
+          message: "A device is unavailable. Check the dashboard infrastructure and device status sections."
