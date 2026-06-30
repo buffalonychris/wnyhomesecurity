@@ -29,7 +29,9 @@ Codex must follow the authority chain defined by repository governance:
 If any lower-authority instruction conflicts with higher-authority governance, the higher-authority source controls.
 
 ## 3. Required Documents To Load For Every Codex Task
-Every Codex task must load and follow these documents before implementation or documentation changes:
+Every Codex task must load and follow these documents before implementation or documentation changes unless a newer higher-authority governance update explicitly permits targeted reads for the task type.
+
+The default remains full-file loading of this required set. Targeted reads of large required documents are allowed only after OPS009 is merged and only under `/docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md` conditions. If targeted search fails, task authority is ambiguous, or protected-system scope is implicated, Codex must fall back to the full required read or stop and request clarification.
 
 - `/AGENTS.md`
 - `/docs/system/project.md`
@@ -109,6 +111,7 @@ OPS005 does not authorize implementation by itself. It records current workstrea
 - ACTIVE status is authorization, not permission to bundle.
 - If the requested task conflicts with the controlling context or register rules, Codex must stop and request revision.
 - Prompt-created bounded tasks are allowed only when higher governance permits them.
+- If a prompt-created bounded task is permitted by higher governance and the prompt explicitly authorizes adding a missing task record, Codex may add a bounded record for that task only instead of stopping solely because the task is missing.
 - DONE status requires required validation plus exit-criteria satisfaction.
 
 ## 6. Current Context Rules
@@ -287,6 +290,7 @@ Every Codex task must return:
 7. Build/test result
 8. Known pre-existing failures separated from task regressions
 9. Self-check
+10. RSI / Context Efficiency Report, including token/context usage categories when available
 
 ChatGPT must evaluate every Codex summary for:
 
@@ -296,6 +300,8 @@ ChatGPT must evaluate every Codex summary for:
 4. Context Efficiency Report
 5. Prompt improvement lesson
 6. Whether governance should be updated
+
+Future visual task summaries must also report semantic-token adoption quality and theme-readiness when visual or CSS/token surfaces are touched.
 
 ## 25. Stop Conditions
 Codex must stop and request revision when any of these conditions apply:
