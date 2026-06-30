@@ -171,6 +171,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Implementation authority:** No.
 - **Notes:** Added by INSTALL006 as a docs-only dashboard architecture standard. It does not authorize source, route, UI, CSS, public asset, runtime, Home Assistant configuration, dashboard YAML, Lovelace card implementation, frontend assets, theme implementation, automation/script implementation, customer-specific dashboards, customer-specific install files, actual customer dashboard data, funeral-home-specific configuration, hardware purchasing, inventory automation, ordering automation, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
 
+### `/docs/installer/INSTALL006A_SHARED_JOB_DATA_MODEL_AND_HUBSPOT_FIELD_ARCHITECTURE_REV01.md`
+- **File path:** `docs/installer/INSTALL006A_SHARED_JOB_DATA_MODEL_AND_HUBSPOT_FIELD_ARCHITECTURE_REV01.md`
+- **Purpose / likely role:** Initial WNYHS Shared Job Data Model and HubSpot Field Architecture defining candidate shared record chain, upstream/downstream workflow model, candidate HubSpot object/record architecture, candidate property groups, candidate field inventory, private installer/admin portal screen architecture, business process stages, open questions, future task roadmap, and protected-system boundaries.
+- **Authority level:** **Installer-platform governance / shared job data architecture / docs-only planning**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Added by INSTALL006A as docs-only data architecture. It does not authorize HubSpot field creation, HubSpot object creation, HubSpot schema/property/pipeline/workflow changes, direct HubSpot writes, portal implementation, runtime sync, scripts, APIs, source code, database changes, Home Assistant configuration, customer-specific install files, actual customer data, inventory automation, ordering automation, Stripe/payment sync, scheduling sync, Resend/email changes, Cloudflare config, dependency, package-lock, environment, or secret changes by itself.
+
 ## `docs/catalog/`
 
 ### `/docs/catalog/README.md`
