@@ -899,6 +899,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review the documentation and decide whether future deployment implementation, dashboard buildout, or customer proposal updates should be separately authorized.
 - **Completion Notes:** Created `docs/home-assistant/commercial-area-standard.md` documenting the reusable Exterior / Interior / Infrastructure model, standard exterior wall areas, interior room/support-area rules, infrastructure operational separation, and dashboard section standard. Created `docs/home-assistant/bklf-first-floor-ha-plan.md` documenting the Brian K. Lewis Funeral Home first-floor-only deployment, confirmed HA controller/version/storage, network closet physical location, confirmed hardware, contact and motion sensor scope, area plan, South Wall devices, South Entrance owner-managed access workflow, dashboard panels, and exclusions. No implementation files, website routes, customer-facing pages, dashboard implementation code, customer proposal files, HubSpot/CRM, Stripe/payment, scheduling, Resend/email, backend/API runtime, Cloudflare config, dependencies, package-lock, environment, or secrets were changed.
 
+### BKLF-HA-CONFIG-001
+- **Task ID:** BKLF-HA-CONFIG-001
+- **Task Name:** BKLF Home Assistant Green Configuration Checklist
+- **Status:** DONE
+- **Category:** Documentation / Home Assistant / Customer Deployment
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create the physical Home Assistant Green configuration checklist for the Brian K. Lewis Funeral Home deployment and establish the repeatable WNYHS commercial Home Assistant setup sequence.
+- **Allowed Scope:** Add `docs/home-assistant/bklf-ha-green-config-checklist.md`; update this Master Task Register record only.
+- **Forbidden Scope:** No app code changes; no website copy changes; no route changes; no Stripe/payment changes; no scheduling changes; no API/backend changes; no customer proposal modification; no live Home Assistant config files unless already present and explicitly authorized; no HubSpot/CRM changes; no dashboard implementation code; no dependencies or package-lock changes.
+- **Target Files:** `docs/home-assistant/bklf-ha-green-config-checklist.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only Home Assistant deployment checklist.
+- **Documentation Updates Required:** Create the BKLF Home Assistant Green configuration checklist; add this bounded task-register record and mark DONE after validation.
+- **Validation Required:** `git diff --check`; `git diff --cached --check`; `npm run build`; confirm only allowed files changed; confirm protected systems untouched; confirm checklist aligns with `docs/home-assistant/commercial-area-standard.md` and `docs/home-assistant/bklf-first-floor-ha-plan.md`.
+- **Exit Criteria:** Checklist document exists with deployment context, initial setup steps, required areas, labels, integration install order, device pairing order, naming convention, South Entrance owner-managed workflow, dashboard panel plan, backup/handoff checklist, and exclusions; this task-register entry is recorded as DONE; only allowed documentation files changed; no protected systems touched; validation passes; draft PR opened without merge.
+- **Dependencies:** Prompt-created bounded `BKLF-HA-CONFIG-001` work order; completed `WNYHS-COMMERCIAL-HA-STANDARD-001`; current governance authority chain; `docs/system/project.md`; `docs/system/guardrails.md`; `docs/system/agent.md`; `docs/system/plan.md`; `docs/system/step-current.md`; Active Tasks review in this register; `docs/home-assistant/commercial-area-standard.md`; `docs/home-assistant/bklf-first-floor-ha-plan.md`.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Any live Home Assistant configuration, customer proposal update, dashboard implementation, or runtime integration work requires a separate bounded task.
+- **Completion Notes:** Created `docs/home-assistant/bklf-ha-green-config-checklist.md` as the initial physical Home Assistant Green configuration checklist for the Brian K. Lewis Funeral Home first-floor deployment. Documented deployment context, initial HA Green setup, required areas, reusable labels, integration order, device pairing order, naming convention, South Entrance owner-managed access workflow, dashboard panel plan, backup/handoff checkpoints, and scope exclusions. No app code, website routes, customer-facing copy, live Home Assistant config files, dashboard implementation code, customer proposal files, HubSpot/CRM, Stripe/payment, scheduling, Resend/email, backend/API runtime, Cloudflare config, dependencies, package-lock, environment, or secrets were changed.
+
 ### NAV001
 - **Task ID:** NAV001
 - **Task Name:** Canonical Homepage + HOME Navigation Reconciliation
