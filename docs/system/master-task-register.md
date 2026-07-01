@@ -881,6 +881,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### BKLF-HA-CUSTOMER-DASHBOARD-FINAL-POLISH-001
+- **Task ID:** BKLF-HA-CUSTOMER-DASHBOARD-FINAL-POLISH-001
+- **Task Name:** BKLF Home Assistant Customer Dashboard Final Polish
+- **Status:** DONE
+- **Category:** QA / Home Assistant / Customer Deployment
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Finalize the Brian K. Lewis Funeral Home Home Assistant dashboards and automations for customer handoff with a clean, customer-friendly, non-technical dashboard and safe disabled notification automations.
+- **Allowed Scope:** Update only the BKLF Home Assistant package YAML, notification YAML, customer dashboard YAML, BKLF HA import/runbook doc, BKLF onsite placement sheet, and this task-register record. Hide or remove deferred C09, C12, C13, and C14 from customer-facing active status. Remove unreliable Home Assistant internals from customer-facing health/status. Keep notifications disabled unless a valid private `notify.mobile_app_*` service is inserted onsite.
+- **Forbidden Scope:** No website files, Stripe/payment files, HubSpot files, scheduling files, API/backend files, secrets/env files, Cloudflare config, package-lock/dependencies, route changes, public-site copy changes, new integrations, live Home Assistant access, direct connected-service changes, customer claims expansion, or PR merge.
+- **Target Files:** `home-assistant/bklf/packages/bklf_security.yaml`; `home-assistant/bklf/packages/bklf_notifications.yaml`; `home-assistant/bklf/dashboards/bklf-main-dashboard.yaml`; `docs/home-assistant/bklf-ha-import-bench-test-backup-runbook.md`; `docs/home-assistant/bklf-ha-onsite-install-placement-sheet.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Source-controlled Home Assistant handoff YAML only. No live Home Assistant instance was modified by repository edits.
+- **Documentation Updates Required:** Update the runbook and placement sheet so C09, C12, C13, and C14 are deferred from customer handoff and onsite validation checks focus on installed active devices.
+- **Validation Required:** YAML parse changed YAML; scan changed files for forbidden claims; scan dashboard/package/notification YAML for deferred sensor active references; scan dashboard for customer-facing Home Assistant internals and missing-card text; `git diff --check`; `npm run build`.
+- **Exit Criteria:** Customer dashboard views are clean and use plain language; C09, C12, C13, and C14 do not affect Building Secure, Exterior Secure, door/window summary, health/status, or notifications; customer-facing cards do not include known Entity not found or Configuration error text; notifications remain disabled by default and safe for future mobile notify insertion; protected systems remain untouched; build passes; draft PR opens without merge.
+- **Dependencies:** Prompt-created bounded `BKLF-HA-CUSTOMER-DASHBOARD-FINAL-POLISH-001` work order; current governance authority chain; Home Assistant dashboard/entity docs; Automation System standard.
+- **Operator Decision Required:** Review draft PR, merge if acceptable, copy updated YAML to HA Green via Samba, check configuration, restart Home Assistant, verify customer dashboard views, and create the final HA backup.
+- **Completion Notes:** Customer dashboard YAML was rebuilt around Overview, Cameras, Doorbell, Entrances, Motion, Lock, and System Ready views; deferred C09/C12/C13/C14 were removed from active dashboard/status/notification references; customer-facing Home Assistant internals were removed from System Ready; notifications remain disabled pending onsite private mobile notify service insertion; runbook and placement sheet now treat C09/C12/C13/C14 as deferred.
+
 ### WNYHS-COMMERCIAL-HA-STANDARD-001
 - **Task ID:** WNYHS-COMMERCIAL-HA-STANDARD-001
 - **Task Name:** Commercial Home Assistant Area Standard and BKLF First-Floor Plan

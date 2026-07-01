@@ -7,8 +7,8 @@
 
 automation:
   - id: bklf_cam01_after_hours_person_notification
-    alias: BKLF CAM01 After-Hours Person Notification
-    description: "Disabled by default. Notifies onsite owner/operator after CAM01 person detection while the building mode is Closed or After Hours."
+    alias: BKLF Parking Lot After-Hours Person Notification
+    description: "Disabled by default. Notifies onsite owner/operator after parking lot person detection while the building mode is Closed or After Hours."
     mode: single
     initial_state: false
     trigger:
@@ -30,8 +30,8 @@ automation:
       # Replace this service with the verified private notify.mobile_app_* service before enabling.
       - service: persistent_notification.create
         data:
-          title: "BKLF CAM01 Person"
-          message: "CAM01 detected a person while the building mode was Closed or After Hours. Review the BKLF dashboard for current status."
+          title: "BKLF Parking Lot Person"
+          message: "Parking lot camera detected a person while the building mode was Closed or After Hours. Review the BKLF dashboard for current status."
 
   - id: bklf_south_entrance_doorbell_visitor_notification
     alias: BKLF South Entrance Doorbell Visitor Notification
@@ -95,12 +95,8 @@ automation:
           - sensor.c06_north_wall_window_2_battery
           - sensor.c07_north_wall_window_3_battery
           - sensor.c08_north_wall_window_4_battery
-          - sensor.c09_north_wall_window_5_battery
           - sensor.c10_south_wall_window_1_battery
           - sensor.c11_south_wall_window_2_battery
-          - sensor.c12_south_wall_window_3_battery
-          - sensor.c13_south_wall_window_4_battery
-          - sensor.c14_south_wall_window_5_battery
           - sensor.m01_main_hallway_motion_battery
           - sensor.m02_viewing_room_motion_battery
           - sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
@@ -138,17 +134,7 @@ automation:
           - lock.south_wall_home_connect_620_connected_smart_lock
           - camera.south_wall_south_entrance_doorbell_fluent
           - camera.south_wall_cam01_southwest_corner_parking_lot_fluent
-          - binary_sensor.z_wave_js_running
-          - binary_sensor.matter_server_running
-          - binary_sensor.samba_share_running
         to: "unavailable"
-        for: "00:15:00"
-      - platform: state
-        entity_id:
-          - binary_sensor.z_wave_js_running
-          - binary_sensor.matter_server_running
-          - binary_sensor.samba_share_running
-        to: "off"
         for: "00:15:00"
     condition:
       - condition: state
@@ -162,4 +148,4 @@ automation:
       - service: persistent_notification.create
         data:
           title: "BKLF Device Review"
-          message: "A BKLF device or service needs review. Open System Health for current status."
+          message: "A BKLF installed device needs review. Open System Ready for current status."
