@@ -90,13 +90,13 @@ Use the live Home Assistant entity registry as the authority.
 2. Search each C01-C14 and M01-M02 friendly name.
 3. Record the actual entity IDs.
 4. Compare actual IDs with the expected IDs used in `bklf_security.yaml` and `bklf-main-dashboard.yaml`.
-5. If actual IDs differ, update the local import-copy YAML before import.
+5. If actual IDs differ from the live-export-backed repo files, update the local import-copy YAML before import.
 6. Do not assume entity IDs match friendly names.
 
 | Device label | Friendly name | Expected entity ID | Actual entity ID | Verified | Action needed |
 |---|---|---|---|---|---|
 | C01 | C01 South Entrance Door | `binary_sensor.c01_south_entrance_door` |  |  |  |
-| C02 | C02 East Door Left | `binary_sensor.c02_east_door_left` |  |  |  |
+| C02 | C02 East Door Left | `binary_sensor.east_door_left` |  |  |  |
 | C03 | C03 East Door Right | `binary_sensor.c03_east_door_right` |  |  |  |
 | C04 | C04 West Door | `binary_sensor.c04_west_door` |  |  |  |
 | C05 | C05 North Wall Window 1 | `binary_sensor.c05_north_wall_window_1` |  |  |  |
@@ -131,7 +131,7 @@ Record:
 
 | Device | Expected primary entity | Actual primary entity | Supporting entities | Live view verified |
 |---|---|---|---|---|
-| South Wall Doorbell | `camera.south_wall_doorbell` |  |  |  |
+| South Wall Doorbell | `camera.south_wall_south_entrance_doorbell_fluent` |  | Person, motion, visitor, vehicle, pet sensors |  |
 
 ---
 
@@ -151,7 +151,7 @@ Record:
 
 | Device | Expected primary entity | Actual primary entity | Supporting entities | Live view verified |
 |---|---|---|---|---|
-| South Wall Corner Camera | `camera.south_wall_corner_camera` |  |  |  |
+| South Wall Corner Camera | `camera.south_wall_cam01_southwest_corner_parking_lot_fluent` |  | Person, vehicle, motion, animal, and linger-area sensors |  |
 
 ---
 
@@ -173,7 +173,7 @@ Record:
 
 | Device | Expected primary entity | Actual primary entity | Supporting entities | Bench test result |
 |---|---|---|---|---|
-| South Wall Lock | `lock.south_wall_lock` |  | Battery/status entities if exposed |  |
+| South Wall Lock | `lock.south_wall_home_connect_620_connected_smart_lock` |  | Battery level, node status, last seen, jammed, and battery-warning entities |  |
 
 ---
 
@@ -185,7 +185,7 @@ Record:
 4. Confirm the mobile device appears in Home Assistant.
 5. Identify the notify service under Developer Tools > Services.
 6. Record notify service name in private operator notes.
-7. Replace placeholder `notify.mobile_app_OWNER_DEVICE_TO_REPLACE` in the local import-copy `bklf_notifications.yaml`.
+7. Replace the `persistent_notification.create` actions in the local import-copy `bklf_notifications.yaml` with the verified private `notify.mobile_app_*` service.
 8. Send a test notification.
 9. Confirm the notification is received.
 
@@ -193,7 +193,7 @@ Record:
 
 | Item | Placeholder | Actual service recorded privately | Verified | Notes |
 |---|---|---|---|---|
-| Mobile notify service | `notify.mobile_app_OWNER_DEVICE_TO_REPLACE` |  |  | Do not store private phone details in the repo. |
+| Mobile notify service | `notify.mobile_app_*` |  |  | Do not store private phone details in the repo. |
 
 ---
 
@@ -251,12 +251,13 @@ homeassistant:
 4. Do not edit `.storage` directly.
 5. Confirm dashboard views exist:
    - Overview
-   - Exterior
-   - Entrances
    - Cameras
-   - Security
-   - Activity
-   - Infrastructure
+   - Entrances
+   - Motion
+   - System Health
+   - Doorbell
+   - Lock
+   - Building Status
 6. Verify every card resolves.
 7. Fix missing entity IDs in dashboard YAML or UI cards.
 
@@ -283,7 +284,7 @@ homeassistant:
 - [ ] C12 South Wall Window 3 open/closed.
 - [ ] C13 South Wall Window 4 open/closed.
 - [ ] C14 South Wall Window 5 open/closed.
-- [ ] Confirm deferred operable window placeholders are not treated as active sensors.
+- [ ] Confirm deferred operable window notes are not treated as active sensors.
 
 ### Motion
 
@@ -292,8 +293,8 @@ homeassistant:
 
 ### Cameras
 
-- [ ] South Wall Doorbell live view loads.
-- [ ] South Wall Corner Camera live view loads.
+- [ ] South Wall Doorbell live view loads using `camera.south_wall_south_entrance_doorbell_fluent`.
+- [ ] CAM01 Southwest Corner Parking Lot live view loads using `camera.south_wall_cam01_southwest_corner_parking_lot_fluent`.
 
 ### Lock
 
@@ -308,12 +309,13 @@ homeassistant:
 ### Dashboard
 
 - [ ] Overview loads.
-- [ ] Exterior loads.
-- [ ] Entrances loads.
 - [ ] Cameras loads.
-- [ ] Security loads.
-- [ ] Activity loads.
-- [ ] Infrastructure loads.
+- [ ] Entrances loads.
+- [ ] Motion loads.
+- [ ] System Health loads.
+- [ ] Doorbell loads.
+- [ ] Lock loads.
+- [ ] Building Status loads.
 - [ ] Building Secure changes correctly based on installed sensors only.
 
 ### South Entrance Workflow
@@ -391,6 +393,6 @@ Deferred:
 - No Prepare for Funeral mode.
 - No third-party response-center service.
 - No public-safety agency response workflow.
-- No prevention guarantee language.
+- No outcome-promise language.
 - Existing camera systems remain outside this deployment unless separately approved.
 - No glass-break sensors in the active deployment.

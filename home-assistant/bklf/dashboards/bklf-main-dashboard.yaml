@@ -9,73 +9,132 @@ views:
         entities:
           - entity: binary_sensor.bklf_building_secure
             name: Building Secure
+          - entity: binary_sensor.bklf_exterior_secure
+            name: Exterior Secure
+          - entity: binary_sensor.bklf_interior_motion_active
+            name: Interior Motion
+          - entity: binary_sensor.bklf_cam01_person_active
+            name: CAM01 Person
           - entity: input_select.bklf_building_mode
             name: Building Mode
           - entity: input_boolean.bklf_building_armed
             name: Building Armed
-          - entity: binary_sensor.bklf_south_entrance_active
-            name: South Entrance
       - type: glance
         title: Door and Window Summary
+        columns: 4
         entities:
-          - binary_sensor.bklf_exterior_secure
-          - binary_sensor.c01_south_entrance_door
-          - binary_sensor.c02_east_door_left
-          - binary_sensor.c03_east_door_right
-          - binary_sensor.c04_west_door
+          - entity: binary_sensor.c01_south_entrance_door
+            name: South Door
+          - entity: binary_sensor.east_door_left
+            name: East Left
+          - entity: binary_sensor.c03_east_door_right
+            name: East Right
+          - entity: binary_sensor.c04_west_door
+            name: West Door
+          - entity: binary_sensor.c05_north_wall_window_1
+            name: N Window 1
+          - entity: binary_sensor.c06_north_wall_window_2
+            name: N Window 2
+          - entity: binary_sensor.c07_north_wall_window_3
+            name: N Window 3
+          - entity: binary_sensor.c08_north_wall_window_4
+            name: N Window 4
+          - entity: binary_sensor.c09_north_wall_window_5
+            name: N Window 5
+          - entity: binary_sensor.c10_south_wall_window_1
+            name: S Window 1
+          - entity: binary_sensor.c11_south_wall_window_2
+            name: S Window 2
+          - entity: binary_sensor.c12_south_wall_window_3
+            name: S Window 3
+          - entity: binary_sensor.c13_south_wall_window_4
+            name: S Window 4
+          - entity: binary_sensor.c14_south_wall_window_5
+            name: S Window 5
       - type: glance
         title: Motion Summary
         entities:
-          - binary_sensor.bklf_interior_motion_active
-          - binary_sensor.m01_main_hallway_motion
-          - binary_sensor.m02_viewing_room_motion
-      - type: markdown
-        title: Recent Activity
-        content: >
-          Recent activity placeholder. Add final logbook/history cards after live
-          entity IDs are verified.
-      - type: markdown
-        title: System Health
-        content: >
-          System health placeholder for Home Assistant Green, radios, backups,
-          network, and UPS status.
-
-  - title: Exterior
-    path: exterior
-    icon: mdi:home-group
-    cards:
+          - entity: binary_sensor.bklf_interior_motion_active
+            name: Any Motion
+          - entity: binary_sensor.m01_main_hallway_motion
+            name: Main Hallway
+          - entity: binary_sensor.m02_viewing_room_motion
+            name: Viewing Room
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_motion
+            name: Doorbell
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_motion
+            name: CAM01
       - type: entities
-        title: North Wall Windows
+        title: South Entrance
         entities:
-          - binary_sensor.c05_north_wall_window_1
-          - binary_sensor.c06_north_wall_window_2
-          - binary_sensor.c07_north_wall_window_3
-          - binary_sensor.c08_north_wall_window_4
-          - binary_sensor.c09_north_wall_window_5
-      - type: entities
-        title: South Wall Door and Windows
+          - entity: binary_sensor.bklf_south_entrance_active
+            name: Entrance Active
+          - entity: binary_sensor.c01_south_entrance_door
+            name: Door Contact
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_visitor
+            name: Doorbell Visitor
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_person
+            name: Doorbell Person
+          - entity: lock.south_wall_home_connect_620_connected_smart_lock
+            name: Lock
+      - type: logbook
+        title: Recent Activity
+        hours_to_show: 12
         entities:
           - binary_sensor.c01_south_entrance_door
-          - binary_sensor.c10_south_wall_window_1
-          - binary_sensor.c11_south_wall_window_2
-          - binary_sensor.c12_south_wall_window_3
-          - binary_sensor.c13_south_wall_window_4
-          - binary_sensor.c14_south_wall_window_5
-      - type: entities
-        title: East Wall Double Door
-        entities:
-          - binary_sensor.c02_east_door_left
+          - binary_sensor.east_door_left
           - binary_sensor.c03_east_door_right
-      - type: entities
-        title: West Wall Door
-        entities:
           - binary_sensor.c04_west_door
-      - type: markdown
-        title: Deferred and Future Sensors
-        content: >
-          East Wall Window 01 and West Wall Window 01 are deferred operable-window
-          contact placeholders. Two East Wall fixed picture windows are future
-          impact/shock sensor placeholders. Verify entity IDs before final use.
+          - binary_sensor.m01_main_hallway_motion
+          - binary_sensor.m02_viewing_room_motion
+          - binary_sensor.south_wall_south_entrance_doorbell_visitor
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+          - lock.south_wall_home_connect_620_connected_smart_lock
+
+  - title: Cameras
+    path: cameras
+    icon: mdi:cctv
+    cards:
+      - type: picture-entity
+        title: Doorbell Camera
+        entity: camera.south_wall_south_entrance_doorbell_fluent
+        camera_view: live
+        show_state: true
+        show_name: true
+      - type: picture-entity
+        title: CAM01 Southwest Corner Parking Lot
+        entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+        camera_view: live
+        show_state: true
+        show_name: true
+      - type: entities
+        title: Camera Detection
+        entities:
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_visitor
+            name: Doorbell Visitor
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_person
+            name: Doorbell Person
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_motion
+            name: Doorbell Motion
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+            name: CAM01 Person
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
+            name: CAM01 Vehicle
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_motion
+            name: CAM01 Motion
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person
+            name: CAM01 Linger Person
+      - type: entities
+        title: Camera Controls
+        entities:
+          - entity: switch.south_wall_south_entrance_doorbell_privacy_mode
+            name: Doorbell Privacy Mode
+          - entity: switch.south_wall_south_entrance_doorbell_record
+            name: Doorbell Record
+          - entity: switch.south_wall_cam01_southwest_corner_parking_lot_record
+            name: CAM01 Record
+          - entity: light.south_wall_cam01_southwest_corner_parking_lot_floodlight
+            name: CAM01 Floodlight
 
   - title: Entrances
     path: entrances
@@ -84,123 +143,258 @@ views:
       - type: entities
         title: South Entrance
         entities:
-          - binary_sensor.c01_south_entrance_door
-          - lock.south_wall_lock
-          - camera.south_wall_doorbell
+          - entity: binary_sensor.bklf_south_entrance_active
+            name: Entrance Active
+          - entity: binary_sensor.c01_south_entrance_door
+            name: Door Contact
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_visitor
+            name: Doorbell Visitor
+          - entity: camera.south_wall_south_entrance_doorbell_fluent
+            name: Doorbell Camera
+          - entity: lock.south_wall_home_connect_620_connected_smart_lock
+            name: Lock
+      - type: lock
+        entity: lock.south_wall_home_connect_620_connected_smart_lock
+        name: South Entrance Lock
       - type: entities
         title: East and West Entrances
         entities:
-          - binary_sensor.c02_east_door_left
-          - binary_sensor.c03_east_door_right
-          - binary_sensor.c04_west_door
-      - type: markdown
-        title: Remote Entry Notes
-        content: >
-          Remote-entry cards are placeholders until the South Wall lock,
-          doorbell, and final mobile app workflow are verified in live Home Assistant.
-
-  - title: Cameras
-    path: cameras
-    icon: mdi:cctv
-    cards:
-      - type: tile
-        entity: camera.south_wall_doorbell
-        name: South Wall Doorbell
-      - type: tile
-        entity: camera.south_wall_corner_camera
-        name: South Wall Corner Camera
-      - type: markdown
-        title: Existing Camera Systems
-        content: >
-          Existing camera systems are excluded unless separately approved. This
-          dashboard scaffold uses only the planned South Wall camera placeholders.
-
-  - title: Security
-    path: security
-    icon: mdi:shield-home
-    cards:
-      - type: entities
-        title: Door Contacts
-        entities:
-          - binary_sensor.c01_south_entrance_door
-          - binary_sensor.c02_east_door_left
-          - binary_sensor.c03_east_door_right
-          - binary_sensor.c04_west_door
-      - type: entities
-        title: Active Window Contacts
-        entities:
-          - binary_sensor.c05_north_wall_window_1
-          - binary_sensor.c06_north_wall_window_2
-          - binary_sensor.c07_north_wall_window_3
-          - binary_sensor.c08_north_wall_window_4
-          - binary_sensor.c09_north_wall_window_5
-          - binary_sensor.c10_south_wall_window_1
-          - binary_sensor.c11_south_wall_window_2
-          - binary_sensor.c12_south_wall_window_3
-          - binary_sensor.c13_south_wall_window_4
-          - binary_sensor.c14_south_wall_window_5
-      - type: entities
-        title: Motion Sensors
-        entities:
-          - binary_sensor.m01_main_hallway_motion
-          - binary_sensor.m02_viewing_room_motion
-      - type: glance
-        title: Summary Sensors
-        entities:
-          - binary_sensor.bklf_building_secure
-          - binary_sensor.bklf_exterior_secure
-          - binary_sensor.bklf_interior_motion_active
-
-  - title: Activity
-    path: activity
-    icon: mdi:history
-    cards:
+          - entity: binary_sensor.east_door_left
+            name: East Door Left
+          - entity: binary_sensor.c03_east_door_right
+            name: East Door Right
+          - entity: binary_sensor.c04_west_door
+            name: West Door
       - type: history-graph
-        title: Door and Window History
-        hours_to_show: 24
+        title: Entrance Activity
+        hours_to_show: 12
         entities:
           - binary_sensor.c01_south_entrance_door
-          - binary_sensor.c02_east_door_left
+          - binary_sensor.east_door_left
           - binary_sensor.c03_east_door_right
           - binary_sensor.c04_west_door
-          - binary_sensor.c05_north_wall_window_1
-          - binary_sensor.c10_south_wall_window_1
+
+  - title: Motion
+    path: motion
+    icon: mdi:motion-sensor
+    cards:
+      - type: entities
+        title: Interior Motion
+        entities:
+          - entity: binary_sensor.bklf_interior_motion_active
+            name: Any Interior Motion
+          - entity: binary_sensor.m01_main_hallway_motion
+            name: Main Hallway
+          - entity: binary_sensor.m02_viewing_room_motion
+            name: Viewing Room
+      - type: entities
+        title: Camera Motion
+        entities:
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_motion
+            name: Doorbell Motion
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_motion
+            name: CAM01 Motion
+          - entity: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+            name: CAM01 Person
+          - entity: binary_sensor.bklf_cam01_person_active
+            name: CAM01 Person Summary
       - type: history-graph
         title: Motion History
         hours_to_show: 24
         entities:
           - binary_sensor.m01_main_hallway_motion
           - binary_sensor.m02_viewing_room_motion
-      - type: logbook
-        title: Lock and Doorbell Activity
-        entities:
-          - lock.south_wall_lock
-          - camera.south_wall_doorbell
-      - type: markdown
-        title: Activity Notes
-        content: >
-          Add final lock, doorbell, and camera event entities after live entity
-          verification.
+          - binary_sensor.south_wall_south_entrance_doorbell_motion
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_motion
 
-  - title: Infrastructure
-    path: infrastructure
-    icon: mdi:server-network
+  - title: System Health
+    path: system-health
+    icon: mdi:heart-pulse
     cards:
-      - type: markdown
+      - type: entities
         title: Home Assistant Green
-        content: >
-          Home Assistant Green status placeholder. Record backup checkpoints and
-          update status during bench validation.
-      - type: markdown
-        title: Zigbee Coordinator
-        content: >
-          Sonoff Zigbee 3.0 USB Dongle Plus-E / ZBDongle-E status placeholder.
-      - type: markdown
-        title: Z-Wave Controller
-        content: >
-          Zooz ZST39 800LR controller status placeholder.
-      - type: markdown
-        title: Network and UPS
-        content: >
-          Network, PoE switch, local access, and UPS placeholders. Do not store
-          secrets, passwords, private URLs, or credential values in dashboard notes.
+        entities:
+          - entity: sensor.home_assistant_core_cpu_percent
+            name: Core CPU
+          - entity: sensor.home_assistant_core_memory_percent
+            name: Core Memory
+          - entity: sensor.home_assistant_supervisor_cpu_percent
+            name: Supervisor CPU
+          - entity: sensor.home_assistant_supervisor_memory_percent
+            name: Supervisor Memory
+          - entity: sensor.home_assistant_host_disk_free
+            name: Host Disk Free
+          - entity: update.home_assistant_core_update
+            name: Core Update
+          - entity: update.home_assistant_operating_system_update
+            name: OS Update
+          - entity: update.home_assistant_supervisor_update
+            name: Supervisor Update
+      - type: entities
+        title: Add-ons and Radios
+        entities:
+          - entity: binary_sensor.z_wave_js_running
+            name: Z-Wave JS Running
+          - entity: binary_sensor.matter_server_running
+            name: Matter Server Running
+          - entity: binary_sensor.samba_share_running
+            name: Samba Share Running
+          - entity: binary_sensor.file_editor_running
+            name: File Editor Running
+          - entity: sensor.sonoff_zbdongle_e_unicast_tx_success
+            name: Zigbee TX Success
+          - entity: sensor.sonoff_zbdongle_e_unicast_rx
+            name: Zigbee RX
+      - type: entities
+        title: Battery Levels
+        entities:
+          - sensor.c01_south_entrance_door_battery
+          - sensor.east_door_left_battery
+          - sensor.c03_east_door_right_battery
+          - sensor.c04_west_door_battery
+          - sensor.c05_north_wall_window_1_battery
+          - sensor.c06_north_wall_window_2_battery
+          - sensor.c07_north_wall_window_3_battery
+          - sensor.c08_north_wall_window_4_battery
+          - sensor.c09_north_wall_window_5_battery
+          - sensor.c10_south_wall_window_1_battery
+          - sensor.c11_south_wall_window_2_battery
+          - sensor.c12_south_wall_window_3_battery
+          - sensor.c13_south_wall_window_4_battery
+          - sensor.c14_south_wall_window_5_battery
+          - sensor.m01_main_hallway_motion_battery
+          - sensor.m02_viewing_room_motion_battery
+          - sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
+      - type: entities
+        title: Lock Health
+        entities:
+          - entity: sensor.south_wall_home_connect_620_connected_smart_lock_node_status
+            name: Node Status
+          - entity: sensor.south_wall_home_connect_620_connected_smart_lock_last_seen
+            name: Last Seen
+          - entity: binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed
+            name: Lock Jammed
+          - entity: binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon
+            name: Replace Battery Soon
+          - entity: binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now
+            name: Replace Battery Now
+
+  - title: Doorbell
+    path: doorbell
+    icon: mdi:doorbell-video
+    cards:
+      - type: picture-entity
+        title: South Entrance Doorbell
+        entity: camera.south_wall_south_entrance_doorbell_fluent
+        camera_view: live
+        show_state: true
+        show_name: true
+      - type: entities
+        title: Doorbell Status
+        entities:
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_visitor
+            name: Visitor
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_person
+            name: Person
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_motion
+            name: Motion
+          - entity: binary_sensor.south_wall_south_entrance_doorbell_vehicle
+            name: Vehicle
+          - entity: sensor.south_wall_south_entrance_doorbell_day_night_state
+            name: Day/Night
+          - entity: switch.south_wall_south_entrance_doorbell_doorbell_button_sound
+            name: Button Sound
+      - type: logbook
+        title: Doorbell Activity
+        hours_to_show: 12
+        entities:
+          - binary_sensor.south_wall_south_entrance_doorbell_visitor
+          - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.south_wall_south_entrance_doorbell_motion
+
+  - title: Lock
+    path: lock
+    icon: mdi:lock-smart
+    cards:
+      - type: lock
+        entity: lock.south_wall_home_connect_620_connected_smart_lock
+        name: South Entrance Lock
+      - type: entities
+        title: Lock and Door Status
+        entities:
+          - entity: lock.south_wall_home_connect_620_connected_smart_lock
+            name: Lock State
+          - entity: binary_sensor.c01_south_entrance_door
+            name: Door Contact
+          - entity: sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
+            name: Battery Level
+          - entity: binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed
+            name: Lock Jammed
+          - entity: binary_sensor.south_wall_home_connect_620_connected_smart_lock_tampering_product_cover_removed
+            name: Cover Removed
+      - type: history-graph
+        title: Lock and Door History
+        hours_to_show: 12
+        entities:
+          - lock.south_wall_home_connect_620_connected_smart_lock
+          - binary_sensor.c01_south_entrance_door
+
+  - title: Building Status
+    path: building-status
+    icon: mdi:office-building
+    cards:
+      - type: entities
+        title: Building Mode and Controls
+        entities:
+          - entity: input_select.bklf_building_mode
+            name: Building Mode
+          - entity: input_boolean.bklf_building_armed
+            name: Building Armed
+          - entity: input_boolean.bklf_maintenance_mode
+            name: Maintenance Mode
+          - entity: input_boolean.bklf_installer_mode
+            name: Installer Mode
+      - type: glance
+        title: Secure Summary
+        entities:
+          - entity: binary_sensor.bklf_building_secure
+            name: Building
+          - entity: binary_sensor.bklf_exterior_secure
+            name: Exterior
+          - entity: binary_sensor.bklf_interior_motion_active
+            name: Motion
+          - entity: binary_sensor.bklf_south_entrance_active
+            name: Entrance
+          - entity: binary_sensor.bklf_cam01_person_active
+            name: CAM01
+      - type: entities
+        title: Door and Window Detail
+        entities:
+          - entity: binary_sensor.c01_south_entrance_door
+            name: South Entrance Door
+          - entity: binary_sensor.east_door_left
+            name: East Door Left
+          - entity: binary_sensor.c03_east_door_right
+            name: East Door Right
+          - entity: binary_sensor.c04_west_door
+            name: West Door
+          - entity: binary_sensor.c05_north_wall_window_1
+            name: North Window 1
+          - entity: binary_sensor.c06_north_wall_window_2
+            name: North Window 2
+          - entity: binary_sensor.c07_north_wall_window_3
+            name: North Window 3
+          - entity: binary_sensor.c08_north_wall_window_4
+            name: North Window 4
+          - entity: binary_sensor.c09_north_wall_window_5
+            name: North Window 5
+          - entity: binary_sensor.c10_south_wall_window_1
+            name: South Window 1
+          - entity: binary_sensor.c11_south_wall_window_2
+            name: South Window 2
+          - entity: binary_sensor.c12_south_wall_window_3
+            name: South Window 3
+          - entity: binary_sensor.c13_south_wall_window_4
+            name: South Window 4
+          - entity: binary_sensor.c14_south_wall_window_5
+            name: South Window 5

@@ -63,8 +63,9 @@ This install sheet covers the first floor only. No second-floor device coverage 
 
 | Device | Placement | Area | Installed | Tested | Notes |
 |---|---|---|---|---|---|
-| South Wall Doorbell | South Entrance / South Wall | South Wall |  |  | Confirm live view after final network placement |
-| South Wall Lock | South Entrance / South Wall | South Wall |  |  | Confirm lock/unlock and state updates |
+| South Wall Doorbell | South Entrance / South Wall | South Wall |  |  | Confirm `camera.south_wall_south_entrance_doorbell_fluent` live view after final network placement |
+| CAM01 Southwest Corner Parking Lot | Southwest Corner / Parking Lot view | South Wall |  |  | Confirm `camera.south_wall_cam01_southwest_corner_parking_lot_fluent` live view after final network placement |
+| South Wall Lock | South Entrance / South Wall | South Wall |  |  | Confirm `lock.south_wall_home_connect_620_connected_smart_lock` lock/unlock and state updates |
 | C01 South Wall Door Contact | South Entrance / South Wall door | South Wall |  |  | Confirm contact opens/closes after mounting |
 
 ---
@@ -99,7 +100,7 @@ This install sheet covers the first floor only. No second-floor device coverage 
 - No Prepare for Funeral mode.
 - No third-party response-center service.
 - No public-safety agency response workflow.
-- No prevention guarantee language.
+- No outcome-promise language.
 - Existing camera systems remain outside this deployment unless separately approved.
 - No glass-break sensors in the active deployment.
 
