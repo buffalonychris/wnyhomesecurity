@@ -1,7 +1,8 @@
 # BKLF security helpers and template status package.
 #
-# Repo scaffold only. Verify all live entity IDs in Home Assistant before
-# production use. Home Assistant may create different IDs during pairing.
+# Live entity IDs are sourced from the exported BKLF Home Assistant registry.
+# Deferred/future physical sensors remain documented only and are not referenced
+# by active templates or dashboards.
 
 input_boolean:
   bklf_building_armed:
@@ -20,6 +21,7 @@ input_select:
     icon: mdi:office-building-cog
     options:
       - Closed
+      - After Hours
       - Open
       - Cleaning
       - Service
@@ -27,20 +29,13 @@ input_select:
 
 template:
   - binary_sensor:
-      # Expected active contact IDs. Verify against live Home Assistant before production use.
-      # Deferred operable-window contacts:
-      # - East Wall Window 01 contact is deferred until additional contact sensors arrive.
-      # - West Wall Window 01 contact is deferred until additional contact sensors arrive.
-      # Future East Wall fixed picture window placeholders:
-      # - Future impact/shock sensor placeholder 01.
-      # - Future impact/shock sensor placeholder 02.
       - name: BKLF Exterior Secure
         unique_id: bklf_exterior_secure
         device_class: safety
         state: >
           {% set active_contacts = [
             'binary_sensor.c01_south_entrance_door',
-            'binary_sensor.c02_east_door_left',
+            'binary_sensor.east_door_left',
             'binary_sensor.c03_east_door_right',
             'binary_sensor.c04_west_door',
             'binary_sensor.c05_north_wall_window_1',
@@ -55,13 +50,15 @@ template:
             'binary_sensor.c14_south_wall_window_5'
           ] %}
           {{ expand(active_contacts)
-            | selectattr('state', 'eq', 'on')
+            | rejectattr('state', 'eq', 'off')
             | list
             | count == 0 }}
         attributes:
-          note: "Uses expected active contact entity IDs only. Verify live IDs before production use."
-          deferred_operable_window_contacts: "East Wall Window 01 and West Wall Window 01"
-          future_impact_shock_placeholders: "Two East Wall fixed picture windows"
+          included_contacts: >
+            C01 South Entrance, East Door Left, C03 East Door Right, C04 West Door,
+            C05-C09 North Wall Windows, C10-C14 South Wall Windows.
+          deferred_contacts: "Two operable-window contacts are deferred and not part of active secure status."
+          future_window_sensors: "Two East Wall fixed picture windows are future sensor locations."
 
       - name: BKLF Interior Motion Active
         unique_id: bklf_interior_motion_active
@@ -76,21 +73,41 @@ template:
             | list
             | count > 0 }}
         attributes:
-          note: "Uses expected motion entity IDs. Verify live IDs before production use."
+          included_motion_sensors: "M01 Main Hallway Motion and M02 Viewing Room Motion."
 
       - name: BKLF South Entrance Active
         unique_id: bklf_south_entrance_active
         device_class: opening
         state: >
-          {{ is_state('binary_sensor.c01_south_entrance_door', 'on') }}
+          {{ is_state('binary_sensor.c01_south_entrance_door', 'on')
+            or is_state('binary_sensor.south_wall_south_entrance_doorbell_visitor', 'on')
+            or is_state('binary_sensor.south_wall_south_entrance_doorbell_person', 'on')
+            or is_state('binary_sensor.south_wall_south_entrance_doorbell_motion', 'on') }}
         attributes:
-          note: "Uses expected South Entrance contact entity ID. Verify live ID before production use."
+          door_contact: binary_sensor.c01_south_entrance_door
+          doorbell_visitor: binary_sensor.south_wall_south_entrance_doorbell_visitor
+          doorbell_person: binary_sensor.south_wall_south_entrance_doorbell_person
+          doorbell_motion: binary_sensor.south_wall_south_entrance_doorbell_motion
+
+      - name: BKLF CAM01 Person Active
+        unique_id: bklf_cam01_person_active
+        device_class: motion
+        state: >
+          {{ is_state('binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person', 'on')
+            or is_state('binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person', 'on') }}
+        attributes:
+          camera: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+          person_sensor: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+          linger_area_person_sensor: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person
 
       - name: BKLF Building Secure
         unique_id: bklf_building_secure
         device_class: safety
         state: >
           {{ is_state('binary_sensor.bklf_exterior_secure', 'on')
-            and is_state('binary_sensor.bklf_interior_motion_active', 'off') }}
+            and is_state('binary_sensor.bklf_interior_motion_active', 'off')
+            and is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}
         attributes:
-          note: "Initial status accounts for installed/assigned sensors only. Deferred and future sensors are documented placeholders."
+          lock: lock.south_wall_home_connect_620_connected_smart_lock
+          exterior_status: binary_sensor.bklf_exterior_secure
+          motion_status: binary_sensor.bklf_interior_motion_active

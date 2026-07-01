@@ -1,12 +1,64 @@
-# BKLF notification automation skeletons.
+# BKLF notification automations.
 #
-# Repo scaffold only. Verify entity IDs and replace notify.mobile_app_OWNER_DEVICE_TO_REPLACE
-# before enabling in Home Assistant. Automations are disabled by default.
+# Automations are disabled by default because the exported registry does not
+# include a real mobile notify service. When the Home Assistant mobile app is
+# installed onsite, replace persistent_notification.create actions with the
+# verified private notify.mobile_app_* service and enable only after testing.
 
 automation:
+  - id: bklf_cam01_after_hours_person_notification
+    alias: BKLF CAM01 After-Hours Person Notification
+    description: "Disabled by default. Notifies onsite owner/operator after CAM01 person detection while the building mode is Closed or After Hours."
+    mode: single
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person
+        to: "on"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      # Replace this service with the verified private notify.mobile_app_* service before enabling.
+      - service: persistent_notification.create
+        data:
+          title: "BKLF CAM01 Person"
+          message: "CAM01 detected a person while the building mode was Closed or After Hours. Review the BKLF dashboard for current status."
+
+  - id: bklf_south_entrance_doorbell_visitor_notification
+    alias: BKLF South Entrance Doorbell Visitor Notification
+    description: "Disabled by default. Notifies onsite owner/operator when the South Entrance doorbell visitor sensor activates."
+    mode: single
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.south_wall_south_entrance_doorbell_visitor
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      # Replace this service with the verified private notify.mobile_app_* service before enabling.
+      - service: persistent_notification.create
+        data:
+          title: "BKLF Doorbell"
+          message: "South Entrance doorbell visitor detected. Open the Doorbell view for live status."
+
   - id: bklf_south_entrance_active_notification
     alias: BKLF South Entrance Active Notification
-    description: "Skeleton notification when the South Entrance contact becomes active."
+    description: "Disabled by default. Notifies onsite owner/operator when the South Entrance combined status becomes active."
     mode: single
     initial_state: false
     trigger:
@@ -21,70 +73,82 @@ automation:
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+      # Replace this service with the verified private notify.mobile_app_* service before enabling.
+      - service: persistent_notification.create
         data:
           title: "BKLF South Entrance"
-          message: "South Entrance is active. Review the dashboard for current status."
-
-  - id: bklf_after_hours_activity_notification
-    alias: BKLF After-Hours Activity Notification
-    description: "Skeleton notification for owner-reviewable after-hours activity."
-    mode: single
-    initial_state: false
-    trigger:
-      - platform: state
-        entity_id:
-          - binary_sensor.bklf_south_entrance_active
-          - binary_sensor.bklf_interior_motion_active
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: input_select.bklf_building_mode
-        state: "Closed"
-      - condition: state
-        entity_id: input_boolean.bklf_maintenance_mode
-        state: "off"
-      - condition: state
-        entity_id: input_boolean.bklf_installer_mode
-        state: "off"
-    action:
-      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
-        data:
-          title: "BKLF Activity"
-          message: "After-hours activity is present. Review the dashboard for current status."
+          message: "South Entrance is active. Review the Doorbell or Lock view for current status."
 
   - id: bklf_low_battery_notification
     alias: BKLF Low Battery Notification
-    description: "Skeleton notification for low battery review."
+    description: "Disabled by default. Notifies onsite owner/operator when a battery-powered device reports low battery."
     mode: single
     initial_state: false
     trigger:
-      # Replace with final battery sensor entity IDs after pairing.
       - platform: numeric_state
-        entity_id: sensor.BATTERY_ENTITY_TO_REPLACE
+        entity_id:
+          - sensor.c01_south_entrance_door_battery
+          - sensor.east_door_left_battery
+          - sensor.c03_east_door_right_battery
+          - sensor.c04_west_door_battery
+          - sensor.c05_north_wall_window_1_battery
+          - sensor.c06_north_wall_window_2_battery
+          - sensor.c07_north_wall_window_3_battery
+          - sensor.c08_north_wall_window_4_battery
+          - sensor.c09_north_wall_window_5_battery
+          - sensor.c10_south_wall_window_1_battery
+          - sensor.c11_south_wall_window_2_battery
+          - sensor.c12_south_wall_window_3_battery
+          - sensor.c13_south_wall_window_4_battery
+          - sensor.c14_south_wall_window_5_battery
+          - sensor.m01_main_hallway_motion_battery
+          - sensor.m02_viewing_room_motion_battery
+          - sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
         below: 20
+      - platform: state
+        entity_id:
+          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now
+          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon
+        to: "on"
     condition:
       - condition: state
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+      # Replace this service with the verified private notify.mobile_app_* service before enabling.
+      - service: persistent_notification.create
         data:
           title: "BKLF Battery Review"
-          message: "A battery-powered device needs review. Check the dashboard battery section."
+          message: "A battery-powered BKLF device needs review. Open System Health for details."
 
   - id: bklf_device_offline_notification
     alias: BKLF Device Offline Notification
-    description: "Skeleton notification for unavailable device review."
+    description: "Disabled by default. Notifies onsite owner/operator when a critical live entity becomes unavailable."
     mode: single
     initial_state: false
     trigger:
-      # Replace with final critical device entity IDs after pairing.
       - platform: state
         entity_id:
           - binary_sensor.c01_south_entrance_door
+          - binary_sensor.east_door_left
+          - binary_sensor.c03_east_door_right
+          - binary_sensor.c04_west_door
           - binary_sensor.m01_main_hallway_motion
+          - binary_sensor.m02_viewing_room_motion
+          - lock.south_wall_home_connect_620_connected_smart_lock
+          - camera.south_wall_south_entrance_doorbell_fluent
+          - camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+          - binary_sensor.z_wave_js_running
+          - binary_sensor.matter_server_running
+          - binary_sensor.samba_share_running
         to: "unavailable"
+        for: "00:15:00"
+      - platform: state
+        entity_id:
+          - binary_sensor.z_wave_js_running
+          - binary_sensor.matter_server_running
+          - binary_sensor.samba_share_running
+        to: "off"
         for: "00:15:00"
     condition:
       - condition: state
@@ -94,7 +158,8 @@ automation:
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      - service: notify.mobile_app_OWNER_DEVICE_TO_REPLACE
+      # Replace this service with the verified private notify.mobile_app_* service before enabling.
+      - service: persistent_notification.create
         data:
           title: "BKLF Device Review"
-          message: "A device is unavailable. Check the dashboard infrastructure and device status sections."
+          message: "A BKLF device or service needs review. Open System Health for current status."
