@@ -2,7 +2,7 @@
 
 Status: Active
 Customer: Brian K. Lewis Funeral Home
-Scope: First-floor install-ready Home Assistant operator runbook
+Scope: BKLF install-ready Home Assistant operator runbook for first-floor devices plus Upstairs Back Porch Door
 
 ---
 
@@ -24,10 +24,14 @@ This is documentation/runbook work only. It does not modify live Home Assistant 
 - Areas are created.
 - Labels are created.
 - 14 Sonoff SenseGuard Gen 2 contact sensors are paired and labeled C01-C14.
-- C09, C12, C13, and C14 are intentionally deferred for customer handoff and must not appear as active dashboard issues.
+- C09 is being installed as West Service Door.
+- C10 is installed and working as Front Double Door - Left.
+- C11 is installed and working as Front Double Door - Right.
+- C12 is being installed as Upstairs Back Porch Door.
+- C13 and C14 are intentionally deferred for customer handoff and must not appear as active dashboard issues.
 - 2 Sonoff SNZB-03P motion sensors are paired and labeled M01-M02.
 - Basic open/close and motion testing was completed during pairing.
-- Remaining: Reolink doorbell, Reolink South Wall corner camera, Kwikset lock, mobile app, entity verification, package import, dashboard import, bench test, backup, onsite install.
+- Remaining: Reolink doorbell, Reolink South Wall corner camera, South Entrance Kwikset lock, mobile app, entity verification, package import, dashboard import, bench test, backup, onsite install. A second Kwikset/Home Connect 620 lock is planned for the front double-door entrance after pairing and must not be wired as active yet.
 
 ---
 
@@ -88,7 +92,7 @@ Fallback method:
 Use the live Home Assistant entity registry as the authority.
 
 1. Go to Settings > Devices & Services > Entities.
-2. Search active installed devices: C01-C08, C10-C11, and M01-M02. Record C09, C12, C13, and C14 as intentionally deferred.
+2. Search active installed devices: C01, C05-C12, and M01-M02. Record C13 and C14 as intentionally deferred.
 3. Record the actual entity IDs.
 4. Compare actual IDs with the expected IDs used in `bklf_security.yaml` and `bklf-main-dashboard.yaml`.
 5. If actual IDs differ from the live-export-backed repo files, update the local import-copy YAML before import.
@@ -97,17 +101,17 @@ Use the live Home Assistant entity registry as the authority.
 | Device label | Friendly name | Expected entity ID | Actual entity ID | Verified | Action needed |
 |---|---|---|---|---|---|
 | C01 | C01 South Entrance Door | `binary_sensor.c01_south_entrance_door` |  |  |  |
-| C02 | C02 East Door Left | `binary_sensor.east_door_left` |  |  |  |
-| C03 | C03 East Door Right | `binary_sensor.c03_east_door_right` |  |  |  |
-| C04 | C04 West Door | `binary_sensor.c04_west_door` |  |  |  |
+| C02 | Deferred spare contact | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
+| C03 | Deferred spare contact | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
+| C04 | Deferred spare contact | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
 | C05 | C05 North Wall Window 1 | `binary_sensor.c05_north_wall_window_1` |  |  |  |
 | C06 | C06 North Wall Window 2 | `binary_sensor.c06_north_wall_window_2` |  |  |  |
 | C07 | C07 North Wall Window 3 | `binary_sensor.c07_north_wall_window_3` |  |  |  |
 | C08 | C08 North Wall Window 4 | `binary_sensor.c08_north_wall_window_4` |  |  |  |
-| C09 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
-| C10 | C10 South Wall Window 1 | `binary_sensor.c10_south_wall_window_1` |  |  |  |
-| C11 | C11 South Wall Window 2 | `binary_sensor.c11_south_wall_window_2` |  |  |  |
-| C12 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
+| C09 | C09 West Service Door | `binary_sensor.c09_west_service_door` |  |  | Rename before dashboard import if needed. |
+| C10 | C10 Front Double Door - Left | `binary_sensor.c10_south_wall_window_1` |  |  | Existing exported ID; customer label is Front Double Door - Left. |
+| C11 | C11 Front Double Door - Right | `binary_sensor.c11_south_wall_window_2` |  |  | Existing exported ID; customer label is Front Double Door - Right. |
+| C12 | C12 Upstairs Back Porch Door | `binary_sensor.c12_upstairs_back_porch_door` |  |  | Rename before dashboard import if needed. |
 | C13 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
 | C14 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
 | M01 | M01 Main Hallway Motion | `binary_sensor.m01_main_hallway_motion` |  |  |  |
@@ -175,6 +179,11 @@ Record:
 | Device | Expected primary entity | Actual primary entity | Supporting entities | Bench test result |
 |---|---|---|---|---|
 | South Wall Lock | `lock.south_wall_home_connect_620_connected_smart_lock` |  | Battery level, node status, last seen, jammed, and battery-warning entities |  |
+
+Future/deferred lock placeholder:
+
+- A second Kwikset/Home Connect 620 lock is planned for the front double-door entrance.
+- Do not add it to `bklf_security.yaml`, `bklf-main-dashboard.yaml`, automations, secure-status helpers, or notifications until it is paired, named, tested, and explicitly approved in a later bounded task.
 
 ---
 
@@ -268,9 +277,10 @@ homeassistant:
 ### Doors
 
 - [ ] C01 South Entrance Door open/closed.
-- [ ] C02 East Door Left open/closed.
-- [ ] C03 East Door Right open/closed.
-- [ ] C04 West Door open/closed.
+- [ ] C09 West Service Door open/closed.
+- [ ] C10 Front Double Door - Left open/closed.
+- [ ] C11 Front Double Door - Right open/closed.
+- [ ] C12 Upstairs Back Porch Door open/closed.
 
 ### Windows
 
@@ -278,9 +288,7 @@ homeassistant:
 - [ ] C06 North Wall Window 2 open/closed.
 - [ ] C07 North Wall Window 3 open/closed.
 - [ ] C08 North Wall Window 4 open/closed.
-- [ ] C10 South Wall Window 1 open/closed.
-- [ ] C11 South Wall Window 2 open/closed.
-- [ ] Confirm C09, C12, C13, and C14 remain deferred and do not appear as active customer-facing issues.
+- [ ] Confirm C13 and C14 remain deferred and do not appear as active customer-facing issues.
 
 ### Motion
 
@@ -342,17 +350,17 @@ Use `/docs/home-assistant/bklf-ha-onsite-install-placement-sheet.md` as the sepa
 Install placement:
 
 - C01: South Wall Door Contact
-- C02: East Wall Door Contact Left
-- C03: East Wall Door Contact Right
-- C04: West Wall Door Contact
+- C02: Deferred spare contact
+- C03: Deferred spare contact
+- C04: Deferred spare contact
 - C05: North Wall Window 1
 - C06: North Wall Window 2
 - C07: North Wall Window 3
 - C08: North Wall Window 4
-- C09: Deferred
-- C10: South Wall Window 1
-- C11: South Wall Window 2
-- C12: Deferred
+- C09: West Service Door
+- C10: Front Double Door - Left
+- C11: Front Double Door - Right
+- C12: Upstairs Back Porch Door
 - C13: Deferred
 - C14: Deferred
 - M01: Main Hallway Motion
@@ -360,7 +368,7 @@ Install placement:
 
 Deferred:
 
-- C09, C12, C13, and C14 are deferred from customer handoff.
+- C13 and C14 are deferred from customer handoff.
 - 2 additional operable-window contact sensors pending future sensors.
 - East Wall fixed picture window 1 future impact/shock sensor.
 - East Wall fixed picture window 2 future impact/shock sensor.
@@ -384,7 +392,7 @@ Deferred:
 ## 19. Safe Scope Boundaries
 
 - First-floor deployment only.
-- No second-floor device coverage in this deployment.
+- No additional upstairs device coverage beyond the Upstairs Back Porch Door contact.
 - No HVAC or thermostat automation in this deployment.
 - No lighting automation in this deployment.
 - No Prepare for Funeral mode.
