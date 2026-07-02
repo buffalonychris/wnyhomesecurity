@@ -24,6 +24,7 @@ This is documentation/runbook work only. It does not modify live Home Assistant 
 - Areas are created.
 - Labels are created.
 - 14 Sonoff SenseGuard Gen 2 contact sensors are paired and labeled C01-C14.
+- C09, C12, C13, and C14 are intentionally deferred for customer handoff and must not appear as active dashboard issues.
 - 2 Sonoff SNZB-03P motion sensors are paired and labeled M01-M02.
 - Basic open/close and motion testing was completed during pairing.
 - Remaining: Reolink doorbell, Reolink South Wall corner camera, Kwikset lock, mobile app, entity verification, package import, dashboard import, bench test, backup, onsite install.
@@ -87,7 +88,7 @@ Fallback method:
 Use the live Home Assistant entity registry as the authority.
 
 1. Go to Settings > Devices & Services > Entities.
-2. Search each C01-C14 and M01-M02 friendly name.
+2. Search active installed devices: C01-C08, C10-C11, and M01-M02. Record C09, C12, C13, and C14 as intentionally deferred.
 3. Record the actual entity IDs.
 4. Compare actual IDs with the expected IDs used in `bklf_security.yaml` and `bklf-main-dashboard.yaml`.
 5. If actual IDs differ from the live-export-backed repo files, update the local import-copy YAML before import.
@@ -103,12 +104,12 @@ Use the live Home Assistant entity registry as the authority.
 | C06 | C06 North Wall Window 2 | `binary_sensor.c06_north_wall_window_2` |  |  |  |
 | C07 | C07 North Wall Window 3 | `binary_sensor.c07_north_wall_window_3` |  |  |  |
 | C08 | C08 North Wall Window 4 | `binary_sensor.c08_north_wall_window_4` |  |  |  |
-| C09 | C09 North Wall Window 5 | `binary_sensor.c09_north_wall_window_5` |  |  |  |
+| C09 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
 | C10 | C10 South Wall Window 1 | `binary_sensor.c10_south_wall_window_1` |  |  |  |
 | C11 | C11 South Wall Window 2 | `binary_sensor.c11_south_wall_window_2` |  |  |  |
-| C12 | C12 South Wall Window 3 | `binary_sensor.c12_south_wall_window_3` |  |  |  |
-| C13 | C13 South Wall Window 4 | `binary_sensor.c13_south_wall_window_4` |  |  |  |
-| C14 | C14 South Wall Window 5 | `binary_sensor.c14_south_wall_window_5` |  |  |  |
+| C12 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
+| C13 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
+| C14 | Deferred | Not active for customer handoff |  | Deferred | Do not add to customer dashboard or secure-status helpers. |
 | M01 | M01 Main Hallway Motion | `binary_sensor.m01_main_hallway_motion` |  |  |  |
 | M02 | M02 Viewing Room Motion | `binary_sensor.m02_viewing_room_motion` |  |  |  |
 
@@ -254,10 +255,9 @@ homeassistant:
    - Cameras
    - Entrances
    - Motion
-   - System Health
+   - System Ready
    - Doorbell
    - Lock
-   - Building Status
 6. Verify every card resolves.
 7. Fix missing entity IDs in dashboard YAML or UI cards.
 
@@ -278,13 +278,9 @@ homeassistant:
 - [ ] C06 North Wall Window 2 open/closed.
 - [ ] C07 North Wall Window 3 open/closed.
 - [ ] C08 North Wall Window 4 open/closed.
-- [ ] C09 North Wall Window 5 open/closed.
 - [ ] C10 South Wall Window 1 open/closed.
 - [ ] C11 South Wall Window 2 open/closed.
-- [ ] C12 South Wall Window 3 open/closed.
-- [ ] C13 South Wall Window 4 open/closed.
-- [ ] C14 South Wall Window 5 open/closed.
-- [ ] Confirm deferred operable window notes are not treated as active sensors.
+- [ ] Confirm C09, C12, C13, and C14 remain deferred and do not appear as active customer-facing issues.
 
 ### Motion
 
@@ -312,11 +308,11 @@ homeassistant:
 - [ ] Cameras loads.
 - [ ] Entrances loads.
 - [ ] Motion loads.
-- [ ] System Health loads.
+- [ ] System Ready loads.
 - [ ] Doorbell loads.
 - [ ] Lock loads.
-- [ ] Building Status loads.
 - [ ] Building Secure changes correctly based on installed sensors only.
+- [ ] No customer-facing card displays Entity not found or Configuration error.
 
 ### South Entrance Workflow
 
@@ -353,17 +349,18 @@ Install placement:
 - C06: North Wall Window 2
 - C07: North Wall Window 3
 - C08: North Wall Window 4
-- C09: North Wall Window 5
+- C09: Deferred
 - C10: South Wall Window 1
 - C11: South Wall Window 2
-- C12: South Wall Window 3
-- C13: South Wall Window 4
-- C14: South Wall Window 5
+- C12: Deferred
+- C13: Deferred
+- C14: Deferred
 - M01: Main Hallway Motion
 - M02: Viewing Room Motion
 
 Deferred:
 
+- C09, C12, C13, and C14 are deferred from customer handoff.
 - 2 additional operable-window contact sensors pending future sensors.
 - East Wall fixed picture window 1 future impact/shock sensor.
 - East Wall fixed picture window 2 future impact/shock sensor.
@@ -372,7 +369,7 @@ Deferred:
 
 ## 18. Onsite Final Test
 
-- [ ] Mount sensors.
+- [ ] Mount active sensors only.
 - [ ] Confirm each contact opens/closes correctly after mounting.
 - [ ] Confirm magnets align correctly.
 - [ ] Confirm motion sensors detect expected paths.

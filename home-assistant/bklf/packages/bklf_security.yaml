@@ -2,7 +2,7 @@
 #
 # Live entity IDs are sourced from the exported BKLF Home Assistant registry.
 # Deferred/future physical sensors remain documented only and are not referenced
-# by active templates or dashboards.
+# by active customer-facing templates or dashboards.
 
 input_boolean:
   bklf_building_armed:
@@ -42,12 +42,8 @@ template:
             'binary_sensor.c06_north_wall_window_2',
             'binary_sensor.c07_north_wall_window_3',
             'binary_sensor.c08_north_wall_window_4',
-            'binary_sensor.c09_north_wall_window_5',
             'binary_sensor.c10_south_wall_window_1',
-            'binary_sensor.c11_south_wall_window_2',
-            'binary_sensor.c12_south_wall_window_3',
-            'binary_sensor.c13_south_wall_window_4',
-            'binary_sensor.c14_south_wall_window_5'
+            'binary_sensor.c11_south_wall_window_2'
           ] %}
           {{ expand(active_contacts)
             | rejectattr('state', 'eq', 'off')
@@ -56,8 +52,8 @@ template:
         attributes:
           included_contacts: >
             C01 South Entrance, East Door Left, C03 East Door Right, C04 West Door,
-            C05-C09 North Wall Windows, C10-C14 South Wall Windows.
-          deferred_contacts: "Two operable-window contacts are deferred and not part of active secure status."
+            C05-C08 North Wall Windows, C10-C11 South Wall Windows.
+          deferred_contacts: "C09, C12, C13, and C14 are intentionally deferred and not part of active secure status."
           future_window_sensors: "Two East Wall fixed picture windows are future sensor locations."
 
       - name: BKLF Interior Motion Active
