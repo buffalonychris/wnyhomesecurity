@@ -3,6 +3,8 @@ views:
   - title: Home
     path: home
     icon: mdi:home
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         name: WNY Home Security
@@ -151,10 +153,13 @@ views:
                   card:
                     - min-height: 64px
                     - border-radius: 18px
-                    - background: var(--wnyhs-primary-button-background)
-                    - color: var(--wnyhs-primary-button-text)
+                    - background: var(--wnyhs-gold)
+                    - color: var(--wnyhs-near-black)
+                  name:
+                    - color: var(--wnyhs-near-black)
+                    - font-weight: 800
                   icon:
-                    - color: var(--wnyhs-primary-button-text)
+                    - color: var(--wnyhs-near-black)
               - type: custom:button-card
                 name: Unlock
                 icon: mdi:lock-open-variant
@@ -261,10 +266,13 @@ views:
               card:
                 - min-height: 58px
                 - border-radius: 18px
-                - background: var(--wnyhs-secondary-button-background)
-                - color: var(--wnyhs-secondary-button-text)
+                - background: var(--wnyhs-gold)
+                - color: var(--wnyhs-near-black)
+              name:
+                - color: var(--wnyhs-near-black)
+                - font-weight: 800
               icon:
-                - color: var(--wnyhs-secondary-button-text)
+                - color: var(--wnyhs-near-black)
 
       - type: custom:mushroom-template-card
         primary: Building Summary
@@ -315,14 +323,15 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: &nav_button
+            styles: &nav_active
               card:
                 - min-height: 58px
                 - border-radius: 18px
-                - background: var(--wnyhs-card-background)
-                - border: 1px solid var(--wnyhs-card-border)
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-navigation-active)
               name:
                 - font-size: 12px
+                - font-weight: 800
                 - color: var(--wnyhs-navigation-active)
               icon:
                 - color: var(--wnyhs-navigation-active)
@@ -332,32 +341,44 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: &nav_inactive
+              card:
+                - min-height: 58px
+                - border-radius: 18px
+                - background: var(--wnyhs-card-background)
+                - border: 1px solid var(--wnyhs-card-border)
+              name:
+                - font-size: 12px
+                - color: var(--wnyhs-navigation-inactive)
+              icon:
+                - color: var(--wnyhs-navigation-inactive)
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_inactive
 
   - title: Doorbell
     path: doorbell
     icon: mdi:doorbell-video
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         name: Front Door
@@ -423,10 +444,13 @@ views:
               card:
                 - min-height: 64px
                 - border-radius: 18px
-                - background: var(--wnyhs-primary-button-background)
-                - color: var(--wnyhs-primary-button-text)
+                - background: var(--wnyhs-gold)
+                - color: var(--wnyhs-near-black)
+              name:
+                - color: var(--wnyhs-near-black)
+                - font-weight: 800
               icon:
-                - color: var(--wnyhs-primary-button-text)
+                - color: var(--wnyhs-near-black)
           - type: custom:button-card
             name: View
             icon: mdi:fullscreen
@@ -519,39 +543,41 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: *nav_active
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_inactive
 
   - title: Cameras
     path: cameras
     icon: mdi:cctv
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         name: Cameras
@@ -616,10 +642,13 @@ views:
               card:
                 - min-height: 48px
                 - border-radius: 999px
-                - background: var(--wnyhs-primary-button-background)
-                - color: var(--wnyhs-primary-button-text)
+                - background: var(--wnyhs-gold)
+                - color: var(--wnyhs-near-black)
+              name:
+                - color: var(--wnyhs-near-black)
+                - font-weight: 800
               icon:
-                - color: var(--wnyhs-primary-button-text)
+                - color: var(--wnyhs-near-black)
 
       - type: picture-entity
         entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
@@ -687,39 +716,41 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_active
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_inactive
 
   - title: Locks
     path: locks
     icon: mdi:lock
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         entity: lock.south_wall_home_connect_620_connected_smart_lock
@@ -837,39 +868,41 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_active
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_inactive
 
   - title: Security
     path: security
     icon: mdi:shield-check
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         entity: binary_sensor.bklf_building_secure
@@ -912,14 +945,10 @@ views:
         entities:
           - entity: binary_sensor.c01_south_entrance_door
             name: South Entrance
-          - entity: binary_sensor.c09_west_service_door
-            name: West Service Door
           - entity: binary_sensor.c10_south_wall_window_1
             name: Front Double Door - Left
           - entity: binary_sensor.c11_south_wall_window_2
             name: Front Double Door - Right
-          - entity: binary_sensor.c12_upstairs_back_porch_door
-            name: Upstairs Back Porch Door
 
       - type: entities
         title: Windows
@@ -934,16 +963,31 @@ views:
           - entity: binary_sensor.c08_north_wall_window_4
             name: North Window 4
 
-      - type: entities
-        title: Motion
-        show_header_toggle: false
-        entities:
-          - entity: binary_sensor.bklf_interior_motion_active
-            name: No Motion
-          - entity: binary_sensor.m01_main_hallway_motion
-            name: Main Hallway
-          - entity: binary_sensor.m02_viewing_room_motion
-            name: Viewing Room
+      - type: custom:mushroom-template-card
+        primary: >-
+          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            Motion Detected
+          {% else %}
+            No Motion
+          {% endif %}
+        secondary: >-
+          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            Attention
+          {% else %}
+            Clear
+          {% endif %}
+        icon: >-
+          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            mdi:motion-sensor
+          {% else %}
+            mdi:shield-check
+          {% endif %}
+        icon_color: >-
+          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            amber
+          {% else %}
+            green
+          {% endif %}
 
       - type: entities
         title: Locks
@@ -978,39 +1022,41 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_active
 
   - title: Activity
     path: activity
     icon: mdi:history
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         name: Activity
@@ -1057,39 +1103,41 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_active
 
   - title: More
     path: more
     icon: mdi:dots-horizontal-circle
+    type: masonry
+    max_columns: 1
     cards:
       - type: custom:button-card
         name: WNY Home Security
@@ -1180,32 +1228,32 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/home
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
               navigation_path: /bklf-main/doorbell
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
               navigation_path: /bklf-main/locks
-            styles: *nav_button
+            styles: *nav_inactive
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
               navigation_path: /bklf-main/more
-            styles: *nav_button
+            styles: *nav_active

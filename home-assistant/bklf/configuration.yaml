@@ -4,6 +4,10 @@ frontend:
 homeassistant:
   packages: !include_dir_named packages
 
+logbook:
+
+history:
+
 lovelace:
   resource_mode: yaml
   resources:
