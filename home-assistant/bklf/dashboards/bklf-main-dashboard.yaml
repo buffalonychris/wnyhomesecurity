@@ -11,7 +11,7 @@ views:
         show_label: true
         tap_action:
           action: navigate
-          navigation_path: /lovelace/more
+          navigation_path: /bklf-main/more
         styles:
           card:
             - min-height: 96px
@@ -74,7 +74,7 @@ views:
         show_label: true
         tap_action:
           action: navigate
-          navigation_path: /lovelace/security
+          navigation_path: /bklf-main/security
         styles:
           card:
             - min-height: 176px
@@ -229,7 +229,7 @@ views:
               {% endif %}
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
 
       - type: vertical-stack
         title: Cameras
@@ -256,7 +256,7 @@ views:
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles:
               card:
                 - min-height: 58px
@@ -286,7 +286,7 @@ views:
           {% endif %}
         tap_action:
           action: navigate
-          navigation_path: /lovelace/security
+          navigation_path: /bklf-main/security
         card_mod:
           style: |
             ha-card {
@@ -314,7 +314,7 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: &nav_button
               card:
                 - min-height: 58px
@@ -331,28 +331,28 @@ views:
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
 
   - title: Doorbell
@@ -518,35 +518,35 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: *nav_button
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
 
   - title: Cameras
@@ -686,35 +686,35 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: *nav_button
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
 
   - title: Locks
@@ -836,35 +836,35 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: *nav_button
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
 
   - title: Security
@@ -977,35 +977,35 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: *nav_button
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
 
   - title: Activity
@@ -1056,35 +1056,35 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: *nav_button
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
 
   - title: More
@@ -1128,7 +1128,7 @@ views:
         icon_color: green
         tap_action:
           action: navigate
-          navigation_path: /lovelace/security
+          navigation_path: /bklf-main/security
 
       - type: custom:mushroom-template-card
         primary: Activity
@@ -1137,7 +1137,7 @@ views:
         icon_color: amber
         tap_action:
           action: navigate
-          navigation_path: /lovelace/activity
+          navigation_path: /bklf-main/activity
 
       - type: custom:mushroom-template-card
         primary: Settings
@@ -1179,33 +1179,33 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: /lovelace/home
+              navigation_path: /bklf-main/home
             styles: *nav_button
           - type: custom:button-card
             name: Doorbell
             icon: mdi:doorbell-video
             tap_action:
               action: navigate
-              navigation_path: /lovelace/doorbell
+              navigation_path: /bklf-main/doorbell
             styles: *nav_button
           - type: custom:button-card
             name: Cameras
             icon: mdi:cctv
             tap_action:
               action: navigate
-              navigation_path: /lovelace/cameras
+              navigation_path: /bklf-main/cameras
             styles: *nav_button
           - type: custom:button-card
             name: Locks
             icon: mdi:lock
             tap_action:
               action: navigate
-              navigation_path: /lovelace/locks
+              navigation_path: /bklf-main/locks
             styles: *nav_button
           - type: custom:button-card
             name: More
             icon: mdi:dots-horizontal
             tap_action:
               action: navigate
-              navigation_path: /lovelace/more
+              navigation_path: /bklf-main/more
             styles: *nav_button
