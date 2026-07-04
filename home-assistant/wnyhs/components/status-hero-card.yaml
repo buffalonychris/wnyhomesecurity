@@ -1,0 +1,94 @@
+# WNYHS Customer Control Center - Status Hero Card
+# Reusable top reassurance panel examples.
+# Replace placeholder entities and actions only inside a future bounded dashboard task.
+
+type: vertical-stack
+cards:
+  - type: custom:button-card
+    name: Everything Looks Good
+    label: Nothing requires your attention.
+    icon: mdi:shield-check
+    show_label: true
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/security
+    styles:
+      card:
+        - min-height: 168px
+        - border-radius: 24px
+        - padding: 22px
+        - background: var(--ha-card-background)
+        - border: 1px solid var(--wnyhs-card-border)
+        - box-shadow: var(--ha-card-box-shadow)
+      grid:
+        - grid-template-areas: '"i" "n" "l"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: min-content min-content min-content
+      icon:
+        - width: 46px
+        - color: var(--wnyhs-lock-color)
+      name:
+        - justify-self: start
+        - font-size: 28px
+        - font-weight: 700
+        - color: var(--primary-text-color)
+      label:
+        - justify-self: start
+        - font-size: 15px
+        - color: var(--secondary-text-color)
+
+  - type: custom:button-card
+    name: Please Check the Building
+    label: A door or lock may need review.
+    icon: mdi:shield-alert
+    show_label: true
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/security
+    styles:
+      card:
+        - min-height: 168px
+        - border-radius: 24px
+        - padding: 22px
+        - background: linear-gradient(180deg, rgba(241, 185, 40, 0.16), var(--wnyhs-card-background))
+        - border: 1px solid var(--warning-color)
+      icon:
+        - width: 46px
+        - color: var(--warning-color)
+      name:
+        - justify-self: start
+        - font-size: 26px
+        - font-weight: 700
+        - color: var(--primary-text-color)
+      label:
+        - justify-self: start
+        - font-size: 15px
+        - color: var(--secondary-text-color)
+
+  - type: custom:button-card
+    name: Check Now
+    label: Review cameras and security details.
+    icon: mdi:alert-octagon
+    show_label: true
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/security
+    styles:
+      card:
+        - min-height: 168px
+        - border-radius: 24px
+        - padding: 22px
+        - background: var(--wnyhs-emergency-background)
+        - border: 1px solid var(--wnyhs-emergency-border)
+      icon:
+        - width: 48px
+        - color: var(--wnyhs-emergency-border)
+      name:
+        - justify-self: start
+        - font-size: 30px
+        - font-weight: 800
+        - color: var(--wnyhs-emergency-text)
+      label:
+        - justify-self: start
+        - font-size: 15px
+        - color: var(--wnyhs-emergency-text)

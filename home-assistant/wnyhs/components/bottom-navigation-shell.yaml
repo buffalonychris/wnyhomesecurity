@@ -1,0 +1,38 @@
+# WNYHS Customer Control Center - Bottom Navigation Shell
+# Five primary mobile tabs. Use as an example for future dashboard assembly.
+
+type: custom:bubble-card
+card_type: horizontal-buttons-stack
+1_name: Home
+1_icon: mdi:home
+1_link: /lovelace/home
+2_name: Doorbell
+2_icon: mdi:doorbell-video
+2_link: /lovelace/doorbell
+3_name: Cameras
+3_icon: mdi:cctv
+3_link: /lovelace/cameras
+4_name: Locks
+4_icon: mdi:lock
+4_link: /lovelace/locks
+5_name: More
+5_icon: mdi:dots-horizontal-circle
+5_link: /lovelace/more
+card_mod:
+  style: |
+    ha-card {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      border-radius: 22px 22px 0 0;
+      border: 1px solid var(--wnyhs-card-border);
+      background: var(--wnyhs-card-background);
+      box-shadow: 0 -12px 28px rgba(0, 0, 0, 0.28);
+    }
+    .bubble-button {
+      min-height: 56px;
+      color: var(--wnyhs-navigation-inactive);
+    }
+    .bubble-button-active {
+      color: var(--wnyhs-navigation-active);
+    }

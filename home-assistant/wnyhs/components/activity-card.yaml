@@ -1,0 +1,23 @@
+# WNYHS Customer Control Center - Activity Card
+# Short customer-meaningful activity feed.
+# Replace examples with controlled events in a future bounded dashboard task.
+
+type: custom:mushroom-template-card
+primary: Recent Activity
+secondary: |-
+  Visitor at front entry
+  Front door locked
+  Parking lot activity
+icon: mdi:history
+icon_color: amber
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/activity
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 22px;
+      border: 1px solid var(--wnyhs-card-border);
+      background: var(--wnyhs-card-background);
+      min-height: 128px;
+    }

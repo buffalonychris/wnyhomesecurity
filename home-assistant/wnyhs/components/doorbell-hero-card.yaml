@@ -1,0 +1,116 @@
+# WNYHS Customer Control Center - Doorbell Hero Card
+# Doorbell-first front-entry interaction component.
+# Replace placeholder camera, lock, and script entities in a future bounded dashboard task.
+# Do not add unsupported two-way-audio service calls here.
+
+type: vertical-stack
+cards:
+  - type: picture-entity
+    entity: camera.front_entry_doorbell_placeholder
+    name: Doorbell
+    camera_view: live
+    show_state: false
+    show_name: false
+    aspect_ratio: 16x9
+    tap_action:
+      action: more-info
+    card_mod:
+      style: |
+        ha-card {
+          border-radius: 24px;
+          overflow: hidden;
+          border: 1px solid var(--wnyhs-card-border);
+          background: var(--wnyhs-card-background);
+          box-shadow: var(--ha-card-box-shadow);
+        }
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        name: Talk
+        icon: mdi:microphone
+        tap_action:
+          action: more-info
+          entity: camera.front_entry_doorbell_placeholder
+        styles:
+          card:
+            - min-height: 64px
+            - border-radius: 18px
+            - background: var(--wnyhs-primary-button-background)
+            - color: var(--wnyhs-primary-button-text)
+          icon:
+            - color: var(--wnyhs-primary-button-text)
+      - type: custom:button-card
+        name: Speak
+        icon: mdi:account-voice
+        tap_action:
+          action: more-info
+          entity: camera.front_entry_doorbell_placeholder
+        styles:
+          card:
+            - min-height: 64px
+            - border-radius: 18px
+            - background: var(--wnyhs-secondary-button-background)
+            - color: var(--wnyhs-secondary-button-text)
+          icon:
+            - color: var(--wnyhs-secondary-button-text)
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        name: Lock
+        icon: mdi:lock
+        tap_action:
+          action: call-service
+          service: lock.lock
+          target:
+            entity_id: lock.front_entry_lock_placeholder
+        styles:
+          card:
+            - min-height: 60px
+            - border-radius: 18px
+            - background: var(--wnyhs-secondary-button-background)
+            - border: 1px solid var(--wnyhs-card-border)
+          icon:
+            - color: var(--wnyhs-lock-color)
+      - type: custom:button-card
+        name: Unlock
+        icon: mdi:lock-open-variant
+        confirmation:
+          text: Unlock the front entry?
+        tap_action:
+          action: call-service
+          service: lock.unlock
+          target:
+            entity_id: lock.front_entry_lock_placeholder
+        styles:
+          card:
+            - min-height: 60px
+            - border-radius: 18px
+            - background: var(--wnyhs-emergency-background)
+            - border: 1px solid var(--wnyhs-unlock-color)
+          icon:
+            - color: var(--wnyhs-unlock-color)
+      - type: custom:button-card
+        name: View
+        icon: mdi:fullscreen
+        tap_action:
+          action: more-info
+          entity: camera.front_entry_doorbell_placeholder
+        styles:
+          card:
+            - min-height: 60px
+            - border-radius: 18px
+            - background: var(--wnyhs-card-background)
+            - border: 1px solid var(--wnyhs-card-border)
+          icon:
+            - color: var(--wnyhs-gold)
+
+  - type: custom:mushroom-template-card
+    primary: Doorbell Ready
+    secondary: Use Talk or Speak in the supported doorbell app if direct audio is not available here.
+    icon: mdi:doorbell-video
+    icon_color: amber
+    tap_action:
+      action: more-info
+      entity: camera.front_entry_doorbell_placeholder

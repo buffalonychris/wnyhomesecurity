@@ -1,0 +1,68 @@
+# WNYHS Customer Control Center - More / About Panel
+# Identity, settings, health, technician-mode, and optional module entry points.
+
+type: vertical-stack
+cards:
+  - type: custom:button-card
+    name: WNY Home Security
+    label: Customer Control Center
+    icon: mdi:shield-home
+    show_label: true
+    styles:
+      card:
+        - min-height: 128px
+        - border-radius: 24px
+        - padding: 20px
+        - background: var(--ha-card-background)
+        - border: 1px solid var(--wnyhs-card-border)
+      icon:
+        - width: 42px
+        - color: var(--wnyhs-gold)
+      name:
+        - justify-self: start
+        - font-size: 24px
+        - font-weight: 800
+        - color: var(--primary-text-color)
+      label:
+        - justify-self: start
+        - font-size: 14px
+        - color: var(--secondary-text-color)
+
+  - type: custom:mushroom-template-card
+    primary: Site Name
+    secondary: Replace with approved customer or property label.
+    icon: mdi:map-marker-radius
+    icon_color: amber
+
+  - type: custom:mushroom-template-card
+    primary: Settings
+    secondary: Customer preferences and display options.
+    icon: mdi:cog
+    icon_color: amber
+    tap_action:
+      action: navigate
+      navigation_path: /profile
+
+  - type: custom:mushroom-template-card
+    primary: System Health
+    secondary: System Online
+    icon: mdi:heart-pulse
+    icon_color: green
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/system
+
+  - type: custom:mushroom-template-card
+    primary: Technician Mode
+    secondary: Setup and service details stay separate from customer views.
+    icon: mdi:tools
+    icon_color: grey
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/technician
+
+  - type: custom:mushroom-template-card
+    primary: Optional Installed Modules
+    secondary: Lighting, climate, utilities, and other approved modules appear here when installed.
+    icon: mdi:view-grid-plus
+    icon_color: amber
