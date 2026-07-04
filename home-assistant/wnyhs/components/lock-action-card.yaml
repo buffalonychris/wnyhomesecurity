@@ -1,0 +1,83 @@
+# WNYHS Customer Control Center - Lock Action Card
+# Reusable lock control component.
+# Replace placeholder lock and door sensor entities in a future bounded dashboard task.
+
+type: vertical-stack
+cards:
+  - type: custom:mushroom-template-card
+    primary: Front Entry
+    secondary: >-
+      {% if is_state('lock.front_entry_lock_placeholder', 'locked') %}
+        Locked
+      {% else %}
+        Unlocked
+      {% endif %}
+      - Door:
+      {% if is_state('binary_sensor.front_entry_door_placeholder', 'off') %}
+        Closed
+      {% else %}
+        Open
+      {% endif %}
+    icon: >-
+      {% if is_state('lock.front_entry_lock_placeholder', 'locked') %}
+        mdi:lock
+      {% else %}
+        mdi:lock-open-variant
+      {% endif %}
+    icon_color: >-
+      {% if is_state('lock.front_entry_lock_placeholder', 'locked') %}
+        green
+      {% else %}
+        red
+      {% endif %}
+    tap_action:
+      action: more-info
+      entity: lock.front_entry_lock_placeholder
+    card_mod:
+      style: |
+        ha-card {
+          border-radius: 22px;
+          border: 1px solid var(--wnyhs-card-border);
+          background: var(--wnyhs-card-background);
+          min-height: 104px;
+        }
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        name: Lock
+        icon: mdi:lock
+        tap_action:
+          action: call-service
+          service: lock.lock
+          target:
+            entity_id: lock.front_entry_lock_placeholder
+        styles:
+          card:
+            - min-height: 64px
+            - border-radius: 18px
+            - background: var(--wnyhs-secondary-button-background)
+            - border: 1px solid var(--wnyhs-card-border)
+          icon:
+            - color: var(--wnyhs-lock-color)
+      - type: custom:button-card
+        name: Unlock
+        icon: mdi:lock-open-variant
+        confirmation:
+          text: Unlock the front entry?
+        tap_action:
+          action: call-service
+          service: lock.unlock
+          target:
+            entity_id: lock.front_entry_lock_placeholder
+        styles:
+          card:
+            - min-height: 64px
+            - border-radius: 18px
+            - background: var(--wnyhs-emergency-background)
+            - border: 1px solid var(--wnyhs-unlock-color)
+          name:
+            - color: var(--wnyhs-emergency-text)
+            - font-weight: 800
+          icon:
+            - color: var(--wnyhs-unlock-color)

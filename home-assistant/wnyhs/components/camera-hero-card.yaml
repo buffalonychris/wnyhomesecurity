@@ -1,0 +1,81 @@
+# WNYHS Customer Control Center - Camera Hero Card
+# Reusable large camera preview component.
+# Replace the placeholder camera entity in a future bounded dashboard task.
+
+type: vertical-stack
+cards:
+  - type: custom:button-card
+    name: Live
+    icon: mdi:record-circle
+    show_icon: true
+    show_name: true
+    tap_action:
+      action: more-info
+      entity: camera.primary_camera_placeholder
+    styles:
+      card:
+        - width: 86px
+        - min-height: 34px
+        - border-radius: 999px
+        - background: var(--wnyhs-camera-live-badge)
+        - color: var(--mdc-theme-on-primary)
+        - box-shadow: none
+      grid:
+        - grid-template-areas: '"i n"'
+        - grid-template-columns: 24px 1fr
+      icon:
+        - width: 16px
+        - color: var(--mdc-theme-on-primary)
+      name:
+        - font-size: 13px
+        - font-weight: 700
+
+  - type: picture-entity
+    entity: camera.primary_camera_placeholder
+    name: Cameras
+    camera_view: live
+    show_state: false
+    show_name: true
+    aspect_ratio: 16x9
+    tap_action:
+      action: more-info
+    card_mod:
+      style: |
+        ha-card {
+          border-radius: 24px;
+          overflow: hidden;
+          border: 1px solid var(--wnyhs-card-border);
+          background: var(--wnyhs-card-background);
+          box-shadow: var(--ha-card-box-shadow);
+        }
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        name: View
+        icon: mdi:fullscreen
+        tap_action:
+          action: more-info
+          entity: camera.primary_camera_placeholder
+        styles:
+          card:
+            - min-height: 58px
+            - border-radius: 18px
+            - background: var(--wnyhs-primary-button-background)
+            - color: var(--wnyhs-primary-button-text)
+          icon:
+            - color: var(--wnyhs-primary-button-text)
+      - type: custom:button-card
+        name: Cameras
+        icon: mdi:cctv
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/cameras
+        styles:
+          card:
+            - min-height: 58px
+            - border-radius: 18px
+            - background: var(--wnyhs-secondary-button-background)
+            - color: var(--wnyhs-secondary-button-text)
+          icon:
+            - color: var(--wnyhs-secondary-button-text)

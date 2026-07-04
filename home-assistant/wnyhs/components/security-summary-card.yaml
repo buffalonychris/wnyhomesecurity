@@ -1,0 +1,28 @@
+# WNYHS Customer Control Center - Security Summary Card
+# Outcome-based customer summary. Replace placeholder entities in a future bounded dashboard task.
+
+type: custom:mushroom-template-card
+primary: Building Summary
+secondary: Doors Secure - Lock Ready - No Motion - System Online
+icon: mdi:shield-home
+icon_color: green
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/security
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 22px;
+      border: 1px solid var(--wnyhs-card-border);
+      background: var(--wnyhs-card-background);
+      padding: 8px 0;
+    }
+    ha-card:after {
+      content: "Doors Secure\A Lock Ready\A No Motion\A System Online";
+      white-space: pre-line;
+      display: block;
+      margin: 8px 18px 16px 72px;
+      color: var(--secondary-text-color);
+      font-size: 15px;
+      line-height: 1.7;
+    }
