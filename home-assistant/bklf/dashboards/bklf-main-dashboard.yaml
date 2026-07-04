@@ -19,8 +19,9 @@ views:
             - min-height: 96px
             - border-radius: 24px
             - padding: 18px
-            - background: var(--ha-card-background)
-            - border: 1px solid var(--wnyhs-card-border)
+            - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+            - border: 1px solid var(--wnyhs-gold)
+            - border-left: 5px solid var(--wnyhs-gold)
             - box-shadow: var(--ha-card-box-shadow)
           grid:
             - grid-template-areas: '"i n" "i l"'
@@ -88,7 +89,7 @@ views:
                   const mode = states['input_select.bklf_building_mode']?.state || '';
                   if (motion && (mode === 'Closed' || mode === 'After Hours')) return 'var(--wnyhs-emergency-background)';
                   if (entity.state === 'on') return 'var(--wnyhs-secondary-button-background)';
-                  return 'var(--ha-card-background)';
+                  return 'linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))';
                 ]]]
             - border: >-
                 [[[
@@ -96,7 +97,15 @@ views:
                   const mode = states['input_select.bklf_building_mode']?.state || '';
                   if (motion && (mode === 'Closed' || mode === 'After Hours')) return '1px solid var(--wnyhs-emergency-border)';
                   if (entity.state === 'on') return '1px solid var(--warning-color)';
-                  return '1px solid var(--wnyhs-lock-color)';
+                  return '2px solid var(--wnyhs-lock-color)';
+                ]]]
+            - border-left: >-
+                [[[
+                  const motion = states['binary_sensor.bklf_interior_motion_active']?.state === 'on';
+                  const mode = states['input_select.bklf_building_mode']?.state || '';
+                  if (motion && (mode === 'Closed' || mode === 'After Hours')) return '6px solid var(--wnyhs-unlock-color)';
+                  if (entity.state === 'on') return '6px solid var(--wnyhs-gold)';
+                  return '6px solid var(--wnyhs-lock-color)';
                 ]]]
             - box-shadow: var(--ha-card-box-shadow)
           grid:
@@ -142,7 +151,7 @@ views:
                 ha-card {
                   border-radius: 28px;
                   overflow: hidden;
-                  border: 1px solid var(--wnyhs-card-border);
+                  border: 1px solid var(--wnyhs-gold);
                   background: var(--wnyhs-card-background);
                   box-shadow: var(--ha-card-box-shadow);
                 }
@@ -154,18 +163,19 @@ views:
                 tap_action:
                   action: more-info
                   entity: camera.south_wall_south_entrance_doorbell_fluent
-                styles: &gold_button
+                styles: &positive_button
                   card:
                     - min-height: 68px
                     - border-radius: 20px
-                    - background: var(--wnyhs-gold)
-                    - color: var(--wnyhs-near-black)
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-lock-color)
+                    - color: var(--primary-text-color)
                     - box-shadow: var(--ha-card-box-shadow)
                   name:
-                    - color: var(--wnyhs-near-black)
+                    - color: var(--primary-text-color)
                     - font-weight: 800
                   icon:
-                    - color: var(--wnyhs-near-black)
+                    - color: var(--wnyhs-lock-color)
               - type: custom:button-card
                 name: Unlock
                 icon: mdi:lock-open-variant
@@ -182,6 +192,7 @@ views:
                     - border-radius: 20px
                     - background: var(--wnyhs-emergency-background)
                     - border: 1px solid var(--wnyhs-unlock-color)
+                    - border-left: 5px solid var(--wnyhs-unlock-color)
                     - box-shadow: var(--ha-card-box-shadow)
                   name:
                     - color: var(--wnyhs-emergency-text)
@@ -204,6 +215,7 @@ views:
                     - border-radius: 20px
                     - background: var(--wnyhs-secondary-button-background)
                     - border: 1px solid var(--wnyhs-lock-color)
+                    - box-shadow: var(--ha-card-box-shadow)
                   name:
                     - color: var(--primary-text-color)
                     - font-weight: 800
@@ -221,6 +233,7 @@ views:
                     - border-radius: 20px
                     - background: var(--wnyhs-secondary-button-background)
                     - border: 1px solid var(--wnyhs-gold)
+                    - box-shadow: var(--ha-card-box-shadow)
                   name:
                     - color: var(--primary-text-color)
                     - font-weight: 800
@@ -253,6 +266,7 @@ views:
                 ha-card {
                   border-radius: 22px;
                   border: 1px solid var(--wnyhs-card-border);
+                  border-left: 5px solid var(--wnyhs-gold);
                   background: var(--wnyhs-card-background);
                   min-height: 92px;
                   box-shadow: var(--ha-card-box-shadow);
@@ -284,7 +298,18 @@ views:
             tap_action:
               action: navigate
               navigation_path: /bklf-main/cameras
-            styles: *gold_button
+            styles: &gold_button
+              card:
+                - min-height: 68px
+                - border-radius: 20px
+                - background: var(--wnyhs-gold)
+                - color: var(--wnyhs-near-black)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--wnyhs-near-black)
+                - font-weight: 800
+              icon:
+                - color: var(--wnyhs-near-black)
 
       - type: custom:mushroom-template-card
         primary: System Status
@@ -324,7 +349,8 @@ views:
           style: &activity_card_style |
             ha-card {
               border-radius: 24px;
-              border: 1px solid var(--wnyhs-card-border);
+              border: 1px solid var(--wnyhs-gold);
+              border-left: 5px solid var(--wnyhs-gold);
               background: var(--wnyhs-card-background);
               box-shadow: var(--ha-card-box-shadow);
             }
@@ -345,8 +371,9 @@ views:
             - min-height: 112px
             - border-radius: 26px
             - padding: 22px
-            - background: var(--ha-card-background)
-            - border: 1px solid var(--wnyhs-card-border)
+            - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+            - border: 1px solid var(--wnyhs-gold)
+            - border-left: 5px solid var(--wnyhs-gold)
             - box-shadow: var(--ha-card-box-shadow)
           icon:
             - width: 46px
@@ -370,7 +397,7 @@ views:
             ha-card {
               border-radius: 30px;
               overflow: hidden;
-              border: 1px solid var(--wnyhs-card-border);
+              border: 1px solid var(--wnyhs-gold);
               background: var(--wnyhs-card-background);
               box-shadow: var(--ha-card-box-shadow);
             }
@@ -383,7 +410,7 @@ views:
             tap_action:
               action: more-info
               entity: camera.south_wall_south_entrance_doorbell_fluent
-            styles: *gold_button
+            styles: *positive_button
           - type: custom:button-card
             name: View
             icon: mdi:fullscreen
@@ -464,8 +491,9 @@ views:
             - min-height: 112px
             - border-radius: 26px
             - padding: 22px
-            - background: var(--ha-card-background)
-            - border: 1px solid var(--wnyhs-card-border)
+            - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+            - border: 1px solid var(--wnyhs-gold)
+            - border-left: 5px solid var(--wnyhs-gold)
             - box-shadow: var(--ha-card-box-shadow)
           icon:
             - width: 46px
@@ -489,7 +517,7 @@ views:
             ha-card {
               border-radius: 28px;
               overflow: hidden;
-              border: 1px solid var(--wnyhs-card-border);
+              border: 1px solid var(--wnyhs-gold);
               background: var(--wnyhs-card-background);
               box-shadow: var(--ha-card-box-shadow);
             }
@@ -506,18 +534,21 @@ views:
               card:
                 - min-height: 54px
                 - border-radius: 999px
-                - background: var(--wnyhs-camera-live-badge)
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-lock-color)
+                - box-shadow: var(--ha-card-box-shadow)
               name:
+                - color: var(--primary-text-color)
                 - font-weight: 800
               icon:
-                - color: var(--mdc-theme-on-primary)
+                - color: var(--wnyhs-lock-color)
           - type: custom:button-card
             name: Talk
             icon: mdi:microphone
             tap_action:
               action: more-info
               entity: camera.south_wall_south_entrance_doorbell_fluent
-            styles: *gold_button
+            styles: *positive_button
 
       - type: picture-entity
         entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
@@ -592,7 +623,7 @@ views:
             - background: >-
                 [[[
                   return entity.state === 'locked'
-                    ? 'var(--ha-card-background)'
+                    ? 'linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))'
                     : 'var(--wnyhs-emergency-background)';
                 ]]]
             - border: >-
@@ -600,6 +631,12 @@ views:
                   return entity.state === 'locked'
                     ? '1px solid var(--wnyhs-lock-color)'
                     : '1px solid var(--wnyhs-unlock-color)';
+                ]]]
+            - border-left: >-
+                [[[
+                  return entity.state === 'locked'
+                    ? '6px solid var(--wnyhs-lock-color)'
+                    : '6px solid var(--wnyhs-unlock-color)';
                 ]]]
             - box-shadow: var(--ha-card-box-shadow)
           icon:
@@ -705,11 +742,17 @@ views:
             - padding: 26px
             - background: >-
                 [[[
-                  return entity.state === 'on' ? 'var(--wnyhs-secondary-button-background)' : 'var(--ha-card-background)';
+                  return entity.state === 'on'
+                    ? 'var(--wnyhs-secondary-button-background)'
+                    : 'linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))';
                 ]]]
             - border: >-
                 [[[
                   return entity.state === 'on' ? '1px solid var(--warning-color)' : '1px solid var(--wnyhs-lock-color)';
+                ]]]
+            - border-left: >-
+                [[[
+                  return entity.state === 'on' ? '6px solid var(--wnyhs-gold)' : '6px solid var(--wnyhs-lock-color)';
                 ]]]
             - box-shadow: var(--ha-card-box-shadow)
           icon:
@@ -899,8 +942,9 @@ views:
             - min-height: 112px
             - border-radius: 26px
             - padding: 22px
-            - background: var(--ha-card-background)
-            - border: 1px solid var(--wnyhs-card-border)
+            - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+            - border: 1px solid var(--wnyhs-gold)
+            - border-left: 5px solid var(--wnyhs-gold)
             - box-shadow: var(--ha-card-box-shadow)
           icon:
             - width: 46px
@@ -949,8 +993,9 @@ views:
             - min-height: 132px
             - border-radius: 30px
             - padding: 24px
-            - background: var(--ha-card-background)
-            - border: 1px solid var(--wnyhs-card-border)
+            - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+            - border: 1px solid var(--wnyhs-gold)
+            - border-left: 5px solid var(--wnyhs-gold)
             - box-shadow: var(--ha-card-box-shadow)
           icon:
             - width: 58px
@@ -1103,4 +1148,5 @@ views:
               border-radius: 22px;
               border: 1px solid var(--wnyhs-card-border);
               background: var(--wnyhs-card-background);
+              box-shadow: var(--ha-card-box-shadow);
             }
