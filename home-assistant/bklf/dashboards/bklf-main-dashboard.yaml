@@ -8,7 +8,7 @@ views:
     cards:
       - type: custom:button-card
         name: WNY Home Security
-        label: BK Lewis Funeral Home - Customer Control Center
+        label: BK Lewis Funeral Home
         icon: mdi:shield-home
         show_label: true
         tap_action:
@@ -16,27 +16,27 @@ views:
           navigation_path: /bklf-main/more
         styles:
           card:
-            - min-height: 116px
-            - border-radius: 28px
-            - padding: 22px
+            - min-height: 96px
+            - border-radius: 24px
+            - padding: 18px
             - background: var(--ha-card-background)
             - border: 1px solid var(--wnyhs-card-border)
             - box-shadow: var(--ha-card-box-shadow)
           grid:
             - grid-template-areas: '"i n" "i l"'
-            - grid-template-columns: 64px 1fr
+            - grid-template-columns: 56px 1fr
             - grid-template-rows: min-content min-content
           icon:
-            - width: 48px
+            - width: 42px
             - color: var(--wnyhs-gold)
           name:
             - justify-self: start
-            - font-size: 25px
+            - font-size: 23px
             - font-weight: 800
             - color: var(--primary-text-color)
           label:
             - justify-self: start
-            - font-size: 13px
+            - font-size: 14px
             - color: var(--secondary-text-color)
 
       - type: custom:button-card
@@ -79,8 +79,8 @@ views:
           navigation_path: /bklf-main/security
         styles:
           card:
-            - min-height: 220px
-            - border-radius: 30px
+            - min-height: 204px
+            - border-radius: 32px
             - padding: 28px
             - background: >-
                 [[[
@@ -104,8 +104,8 @@ views:
             - grid-template-columns: 1fr
             - grid-template-rows: min-content min-content min-content
           icon:
-            - width: 74px
-            - margin-bottom: 12px
+            - width: 70px
+            - margin-bottom: 10px
             - color: >-
                 [[[
                   const motion = states['binary_sensor.bklf_interior_motion_active']?.state === 'on';
@@ -116,12 +116,14 @@ views:
                 ]]]
           name:
             - justify-self: start
-            - font-size: 32px
+            - font-size: 31px
             - font-weight: 800
+            - line-height: 1.05
             - color: var(--primary-text-color)
           label:
             - justify-self: start
             - font-size: 16px
+            - line-height: 1.35
             - color: var(--secondary-text-color)
 
       - type: vertical-stack
@@ -154,7 +156,7 @@ views:
                   entity: camera.south_wall_south_entrance_doorbell_fluent
                 styles: &gold_button
                   card:
-                    - min-height: 66px
+                    - min-height: 68px
                     - border-radius: 20px
                     - background: var(--wnyhs-gold)
                     - color: var(--wnyhs-near-black)
@@ -176,7 +178,7 @@ views:
                     entity_id: lock.south_wall_home_connect_620_connected_smart_lock
                 styles: &caution_button
                   card:
-                    - min-height: 66px
+                    - min-height: 68px
                     - border-radius: 20px
                     - background: var(--wnyhs-emergency-background)
                     - border: 1px solid var(--wnyhs-unlock-color)
@@ -198,7 +200,7 @@ views:
                     entity_id: lock.south_wall_home_connect_620_connected_smart_lock
                 styles: &safe_button
                   card:
-                    - min-height: 60px
+                    - min-height: 62px
                     - border-radius: 20px
                     - background: var(--wnyhs-secondary-button-background)
                     - border: 1px solid var(--wnyhs-lock-color)
@@ -215,7 +217,7 @@ views:
                   entity: camera.south_wall_south_entrance_doorbell_fluent
                 styles: &neutral_gold_button
                   card:
-                    - min-height: 60px
+                    - min-height: 62px
                     - border-radius: 20px
                     - background: var(--wnyhs-secondary-button-background)
                     - border: 1px solid var(--wnyhs-gold)
@@ -252,7 +254,8 @@ views:
                   border-radius: 22px;
                   border: 1px solid var(--wnyhs-card-border);
                   background: var(--wnyhs-card-background);
-                  min-height: 96px;
+                  min-height: 92px;
+                  box-shadow: var(--ha-card-box-shadow);
                 }
 
       - type: vertical-stack
@@ -284,7 +287,7 @@ views:
             styles: *gold_button
 
       - type: custom:mushroom-template-card
-        primary: System Health
+        primary: System Status
         secondary: >-
           {% set exterior_attention = is_state('binary_sensor.bklf_exterior_secure', 'on') %}
           {% set motion_active = is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
@@ -317,6 +320,14 @@ views:
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
+        card_mod:
+          style: &activity_card_style |
+            ha-card {
+              border-radius: 24px;
+              border: 1px solid var(--wnyhs-card-border);
+              background: var(--wnyhs-card-background);
+              box-shadow: var(--ha-card-box-shadow);
+            }
 
   - title: Doorbell
     path: doorbell
@@ -326,12 +337,12 @@ views:
     cards:
       - type: custom:button-card
         name: Front Door
-        label: Live camera, talk, view, lock, and unlock
+        label: Doorbell, talk, and front entry access
         icon: mdi:doorbell-video
         show_label: true
         styles:
           card:
-            - min-height: 104px
+            - min-height: 112px
             - border-radius: 26px
             - padding: 22px
             - background: var(--ha-card-background)
@@ -351,7 +362,7 @@ views:
         camera_view: live
         show_name: false
         show_state: false
-        aspect_ratio: 16x9
+        aspect_ratio: 4x3
         tap_action:
           action: more-info
         card_mod:
@@ -434,6 +445,8 @@ views:
           - binary_sensor.south_wall_south_entrance_doorbell_person
           - binary_sensor.south_wall_south_entrance_doorbell_motion
           - lock.south_wall_home_connect_620_connected_smart_lock
+        card_mod:
+          style: *activity_card_style
 
   - title: Cameras
     path: cameras
@@ -443,12 +456,12 @@ views:
     cards:
       - type: custom:button-card
         name: Cameras
-        label: Front door and parking lot
+        label: Doorbell first, parking lot next
         icon: mdi:cctv
         show_label: true
         styles:
           card:
-            - min-height: 104px
+            - min-height: 112px
             - border-radius: 26px
             - padding: 22px
             - background: var(--ha-card-background)
@@ -474,7 +487,7 @@ views:
         card_mod:
           style: &camera_card_style |
             ha-card {
-              border-radius: 30px;
+              border-radius: 28px;
               overflow: hidden;
               border: 1px solid var(--wnyhs-card-border);
               background: var(--wnyhs-card-background);
@@ -491,7 +504,7 @@ views:
               entity: camera.south_wall_south_entrance_doorbell_fluent
             styles: &live_badge
               card:
-                - min-height: 48px
+                - min-height: 54px
                 - border-radius: 999px
                 - background: var(--wnyhs-camera-live-badge)
               name:
@@ -543,6 +556,8 @@ views:
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
           - binary_sensor.bklf_cam01_person_active
+        card_mod:
+          style: *activity_card_style
 
   - title: Locks
     path: locks
@@ -559,7 +574,7 @@ views:
         label: >-
           [[[
             return entity.state === 'locked'
-              ? 'Door is closed and locked.'
+              ? 'South Entrance is closed and locked.'
               : 'Please check the front entry.';
           ]]]
         icon: >-
@@ -571,7 +586,7 @@ views:
           action: more-info
         styles:
           card:
-            - min-height: 240px
+            - min-height: 220px
             - border-radius: 32px
             - padding: 30px
             - background: >-
@@ -599,6 +614,7 @@ views:
             - color: var(--primary-text-color)
           label:
             - font-size: 16px
+            - line-height: 1.35
             - color: var(--secondary-text-color)
 
       - type: custom:mushroom-template-card
@@ -657,6 +673,8 @@ views:
         entities:
           - lock.south_wall_home_connect_620_connected_smart_lock
           - binary_sensor.c01_south_entrance_door
+        card_mod:
+          style: *activity_card_style
 
   - title: Security
     path: security
@@ -674,7 +692,7 @@ views:
           [[[
             return entity.state === 'on'
               ? 'One or more areas need attention.'
-              : 'Doors, windows, locks, and motion are normal.';
+              : 'Reviewed areas are secure and motion is clear.';
           ]]]
         icon: mdi:shield-check
         show_label: true
@@ -716,7 +734,7 @@ views:
               {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %}
                 Please Check the Building
               {% else %}
-                All Closed
+                All reviewed openings secure
               {% endif %}
             icon: mdi:door-closed-lock
             icon_color: >-
@@ -776,7 +794,7 @@ views:
                 or is_state('binary_sensor.c08_north_wall_window_4', 'on') %}
                 Please Check the Building
               {% else %}
-                All Closed
+                All reviewed windows secure
               {% endif %}
             icon: mdi:window-closed-variant
             icon_color: >-
@@ -828,7 +846,7 @@ views:
           {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on') %}
             Lock needs review
           {% elif is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
-            All Locked
+            Locked
           {% else %}
             Please check the front entry.
           {% endif %}
@@ -848,12 +866,12 @@ views:
           style: *status_card_style
 
       - type: custom:mushroom-template-card
-        primary: System
+        primary: System Status
         secondary: >-
           {% if is_state('binary_sensor.bklf_building_secure', 'on') %}
             Please Check the Building
           {% else %}
-            All Systems Normal
+            Ready for normal use
           {% endif %}
         icon: mdi:shield-home
         icon_color: >-
@@ -873,12 +891,12 @@ views:
     cards:
       - type: custom:button-card
         name: Recent Activity
-        label: Visitor, camera, lock, and door events
+        label: Visitor, camera, lock, and door activity
         icon: mdi:history
         show_label: true
         styles:
           card:
-            - min-height: 104px
+            - min-height: 112px
             - border-radius: 26px
             - padding: 22px
             - background: var(--ha-card-background)
@@ -910,13 +928,7 @@ views:
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
         card_mod:
-          style: |
-            ha-card {
-              border-radius: 24px;
-              border: 1px solid var(--wnyhs-card-border);
-              background: var(--wnyhs-card-background);
-              box-shadow: var(--ha-card-box-shadow);
-            }
+          style: *activity_card_style
 
   - title: More
     path: more
@@ -934,7 +946,7 @@ views:
           navigation_path: /bklf-main/home
         styles:
           card:
-            - min-height: 150px
+            - min-height: 132px
             - border-radius: 30px
             - padding: 24px
             - background: var(--ha-card-background)
@@ -1025,7 +1037,7 @@ views:
           style: *status_card_style
 
       - type: vertical-stack
-        title: System Health
+        title: System Status
         cards:
           - type: custom:mushroom-template-card
             primary: Building Status
@@ -1050,7 +1062,7 @@ views:
               {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %}
                 Please Check the Building
               {% else %}
-                All Closed
+                All reviewed openings secure
               {% endif %}
             icon: mdi:door-closed-lock
             icon_color: >-
