@@ -881,6 +881,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### DASHBOARD-DESIGN-STANDARD-001
+- **Task ID:** DASHBOARD-DESIGN-STANDARD-001
+- **Task Name:** WNYHS Customer Dashboard Design Standard REV01
+- **Status:** DONE
+- **Category:** Documentation / Design System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a docs-only WNYHS Customer Dashboard Design Standard before any Home Assistant YAML or customer-dashboard implementation work begins.
+- **Allowed Scope:** Create `docs/design-system/customer-dashboard-design-standard-rev01.md`; update this bounded task-register record only; document the WNYHS Customer Control Center product/design direction, required screen architecture, optional module architecture, mobile-first rules, Home screen UX, doorbell-first priority, action and information hierarchy, light/dark theme parity, WNYHS gold emblem usage, no Home Assistant branding standard, touch targets, card/layout standards, accessibility, technician separation, BK Lewis design direction, implementation rules, and future bounded tasks.
+- **Forbidden Scope:** No Home Assistant YAML changes; no BK Lewis dashboard implementation; no customer dashboard file changes; no source UI/CSS/token implementation; no route changes; no runtime/API changes; no HubSpot changes; no Stripe/payment changes; no scheduling changes; no Cloudflare config changes; no dependencies/package-lock changes; no secrets/env changes; no public claim expansion; no funnel changes; no PR merge or ready-for-review marking.
+- **Target Files:** `docs/design-system/customer-dashboard-design-standard-rev01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only design-system authority.
+- **Documentation Updates Required:** Create Customer Dashboard Design Standard REV01; add this bounded task-register record.
+- **Validation Required:** Confirm only allowed files changed; confirm new markdown document exists; `git diff --check`; available markdown validation if present; targeted `rg` checks for required standard terms; `npm run build`; `npm run lint` if normally required, with unrelated pre-existing failures documented separately.
+- **Exit Criteria:** Customer Dashboard Design Standard REV01 exists and covers the required product concept, screen/module architecture, mobile-first layout, Home UX, doorbell priority, action and information hierarchy, light/dark parity, WNYHS gold emblem usage, no Home Assistant branding, touch targets, card/layout standards, accessibility, technician separation, BK Lewis direction, implementation boundaries, and future work; only allowed files changed; protected systems untouched; validation completed; draft PR opened without merge.
+- **Dependencies:** Prompt-created bounded `DASHBOARD-DESIGN-STANDARD-001` work order; PR #483 merged; current `main` synced; `docs/design-system/customer-dashboard-philosophy.md`; `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`; `docs/installer/INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`; current governance authority chain; CODEX run contract; OPS004; OPS005.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future dashboard wireframe or implementation work requires separate bounded task activation.
+- **Completion Notes:** Created `docs/design-system/customer-dashboard-design-standard-rev01.md` as a docs-only WNYHS Customer Dashboard Design Standard. The standard defines the WNYHS Customer Control Center product concept, required screens, optional modules, mobile-first layout rules, Home screen UX, doorbell-first priority, action and information hierarchy, light/dark theme parity, WNYHS gold emblem usage, no Home Assistant branding, touch targets, card/layout standards, accessibility rules, technician separation, BK Lewis design direction, implementation boundaries, and future bounded tasks. Validation confirmed the new markdown document exists, only the allowed docs were changed, required target terms are present, `git diff --check` passed, no markdown validation command was found, forbidden-claim scan of the new standard returned no matches, and `npm run build` passed. `npm run lint` was run and failed on pre-existing `src/` issues unrelated to this docs-only task. No Home Assistant YAML, customer dashboard files, source UI/CSS/tokens, routes, runtime/API files, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment files, secrets, PR merge, or ready-for-review changes were made.
+
 ### BKLF-HA-CUSTOMER-DASHBOARD-FINAL-POLISH-001
 - **Task ID:** BKLF-HA-CUSTOMER-DASHBOARD-FINAL-POLISH-001
 - **Task Name:** BKLF Home Assistant Customer Dashboard Final Polish
