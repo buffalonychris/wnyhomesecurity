@@ -497,6 +497,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR and decide whether to merge.
 - **Completion Notes:** Created `/docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md` as a docs-only Codex / KAOS operating standard. The specification defines bounded work orders, required sections, scope rules, context-efficiency rules, EVENT001 lifecycle alignment, hook-readiness posture for candidate hooks, compact templates for docs-only, source/site, protected-system, QA, and hook-candidate work, closeout summary requirements, protected-system confirmation language, PR/merge boundaries, version rules, prohibited behavior, and future-use boundaries. Existing predecessor work-order standard `/docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md` was found and referenced rather than destructively rewritten. Updated the KAOS README link. No source/runtime files, protected systems, hooks, automation, Playwright, Sites, dependencies, package-lock, version files, graph visualization files, historical docs, or unrelated future task statuses were changed.
 
+### CODEX-MULTIMODAL-REFERENCE-STANDARD-001
+- **Task ID:** CODEX-MULTIMODAL-REFERENCE-STANDARD-001
+- **Task Name:** Codex Multimodal Reference Standard
+- **Status:** DONE
+- **Category:** Codex / Governance / KAOS
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded docs-only governance work order.
+- **Purpose:** Create a reusable governance standard defining how WNYHS / KAOS Codex work orders should use visual and formatted reference artifacts when output appearance, formatting, layout, or visual parity matters.
+- **Allowed Scope:** Create `docs/codex/CODEX_MULTIMODAL_REFERENCE_STANDARD_REV01.md`; update this task register with the bounded task record only.
+- **Forbidden Scope:** No website implementation, Home Assistant YAML changes, dashboard/theme/component changes, image generation, live Home Assistant changes, scripts, Cloudflare changes, notification changes, runtime/API changes, HubSpot changes, Stripe changes, scheduling changes, Resend/email changes, funnel changes, dependency changes, package-lock changes, environment changes, secret exposure, PR merge, or marking the PR ready for review.
+- **Target Files:** `docs/codex/CODEX_MULTIMODAL_REFERENCE_STANDARD_REV01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation/governance only.
+- **Documentation Updates Required:** Create the CODEX Multimodal Reference Standard REV01 and record this task in the Master Task Register.
+- **Validation Required:** Confirm only allowed files changed; confirm the new standard exists; run `git diff --check`; run markdown validation if available; run targeted `rg` checks for `multimodal`, `reference artifact`, `visual/formatting authority`, `visual parity`, `KAOS`, `screenshots`, `mockups`, `PDFs`, `DOCX`, `dashboard`, and `website`; run `npm run build` because root governance requires build before completion; run `npm run lint` if normally required and document unrelated pre-existing failures separately.
+- **Exit Criteria:** New standard exists with required sections; task register contains this bounded record; only allowed files changed; no implementation, runtime, protected-system, generated image, Home Assistant, Cloudflare, dependency, package-lock, environment, or secret files changed; validation passes or any pre-existing unrelated failures are documented; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `CODEX-MULTIMODAL-REFERENCE-STANDARD-001` work order; `AGENTS.md`; `docs/system/project.md`; `docs/system/guardrails.md`; `docs/system/agent.md`; `docs/system/plan.md`; `docs/system/step-current.md`; `docs/codex/CODEX_RUN_CONTRACT.md`; OPS004; OPS005; customer dashboard philosophy, design standard, and mobile wireframe docs for related visual-reference context.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Recommended next task after this standard is accepted: `BKLF-DASHBOARD-STYLING-001`.
+- **Completion Notes:** Created `docs/codex/CODEX_MULTIMODAL_REFERENCE_STANDARD_REV01.md` as a docs-only Codex / KAOS governance standard for using visual and formatted reference artifacts as visual/formatting authority while preserving repository governance, bounded work-order scope, protected-system boundaries, and text-controlled constraints. No source/runtime files, website pages, Home Assistant YAML, dashboards, themes, components, scripts, image assets, generated images, Cloudflare config, HubSpot, Stripe/payment, scheduling, Resend/email, funnel behavior, dependencies, package-lock, environment files, or secrets were changed.
+
 ### SITE001
 - **Task ID:** SITE001
 - **Task Name:** Sites / Live Site QA Integration Standard
