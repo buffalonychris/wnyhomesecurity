@@ -4582,6 +4582,24 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 
 Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
+### DASHBOARD-PHILOSOPHY-001
+- **Task ID:** DASHBOARD-PHILOSOPHY-001
+- **Task Name:** WNYHS Customer Dashboard Philosophy
+- **Status:** DONE
+- **Category:** Documentation / Design System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create a reusable WNYHS customer dashboard product philosophy before any future customer dashboard implementation work begins, based on the BK Lewis Funeral Home Home Assistant dashboard review.
+- **Allowed Scope:** Create `docs/design-system/customer-dashboard-philosophy.md`; update this bounded Master Task Register record only; document reassurance-first dashboard philosophy, plain-language standards, severity model, information hierarchy, doorbell-first priority, progressive disclosure, customer versus technician dashboard separation, layout expectations, BK Lewis dashboard notes, and implementation boundaries.
+- **Forbidden Scope:** No Home Assistant YAML changes, customer dashboard files, dashboard implementation, UI changes, route changes, CSS/token changes, source/runtime/API changes, Stripe/payment changes, HubSpot/CRM changes, scheduling changes, Resend/email changes, Cloudflare config changes, dependencies, package-lock, environment files, secrets, public claim expansion, funnel changes, PR merge, or ready-for-review PR.
+- **Target Files:** `docs/design-system/customer-dashboard-philosophy.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only design-system philosophy.
+- **Documentation Updates Required:** Create the dashboard philosophy document and record this documentation task in the Master Task Register.
+- **Validation Required:** Confirm Markdown file exists; review document for required sections; `git diff --check`; targeted `rg` checks for reassurance dashboard philosophy, doorbell-first priority, plain-language standard, severity model, customer versus technician separation, no implementation authority, and protected-system boundaries; confirm no Home Assistant YAML, runtime, funnel, payment, HubSpot, Cloudflare, dependency, package-lock, or implementation files changed; run available markdown/lint checks if present, otherwise state no project markdown validation command was found; run `npm run build` because root governance requires build before completion.
+- **Exit Criteria:** `docs/design-system/customer-dashboard-philosophy.md` exists and is readable; the document clearly establishes WNYHS customer dashboards as reassurance dashboards; doorbell-first priority is documented; customer-facing language and avoided technical language are documented; four severity levels are documented; customer and technician dashboard separation is documented; implementation requires a future bounded task; only allowed files are changed; protected systems remain untouched; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `DASHBOARD-PHILOSOPHY-001` work order; current governance authority chain; `docs/system/step-current.md`; `docs/codex/CODEX_RUN_CONTRACT.md`; OPS004; OPS005; `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`; `docs/installer/INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`; BK Lewis dashboard review context supplied in the bounded work order.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. Future graphic design or dashboard implementation work requires a separate bounded task.
+- **Completion Notes:** Created the docs-only WNYHS Customer Dashboard Philosophy. The document defines reassurance dashboards, customer-safe plain language, avoided Home Assistant technical vocabulary, Normal/Information/Attention/Critical severity levels, customer-facing information hierarchy, doorbell-first priority, progressive disclosure, customer versus technician dashboard separation, layout expectations, BK Lewis dashboard notes, and a no-implementation rule requiring future bounded task-register authorization. `git diff --check`, targeted content checks, changed-file scope checks, forbidden-claim checks on the new/added content, and `npm run build` passed. No markdown-specific validation command was found in `package.json`; `npm run lint` was run and failed on pre-existing `src/` errors unrelated to this docs-only change. No Home Assistant YAML, customer dashboard files, source/runtime/UI/routes/CSS/tokens, funnel code, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment files, secrets, PR merge, or ready-for-review changes were made.
+
 ### VISQA001
 - **Task ID:** VISQA001
 - **Task Name:** Token / CSS Compliance Hooks
