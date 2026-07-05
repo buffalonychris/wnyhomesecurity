@@ -24,7 +24,10 @@ This is documentation and specification only. It does not authorize app code cha
 - Controller: Home Assistant Green
 - Current BKLF reference hardware: Home Assistant Green
 - Supported installation model: Home Assistant OS / Supervisor
-- Home Assistant version: HA 16.3
+- Home Assistant Core: 2026.6.4
+- Home Assistant Supervisor: 2026.6.2
+- Home Assistant OS: 16.3
+- Home Assistant Frontend: 20260527.7
 - Network Closet: Physically located in the Conference Room
 - Primary owner-managed remote-entry workflow: South Entrance
 - South Wall exterior devices: Reolink PoE Doorbell and South Wall Corner Camera
