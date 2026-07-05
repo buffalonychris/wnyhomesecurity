@@ -28,6 +28,8 @@ Normal customer-facing dashboards must not show Home Assistant branding, vocabul
 
 The customer should not need to understand Home Assistant concepts to answer basic daily-use questions such as whether the building is okay, who is at the door, whether a door is unlocked, or whether something needs attention.
 
+The customer does not receive a generic Home Assistant dashboard. The customer receives a WNY Home Security control experience powered by Home Assistant. The product layer must hide Home Assistant implementation vocabulary unless the customer intentionally enters an approved technician/service surface.
+
 ## 3. Required Screen Architecture
 
 The baseline customer shell should define these required screens when supported by installed hardware:
@@ -43,6 +45,8 @@ The baseline customer shell should define these required screens when supported 
 Not every customer gets every optional module. Required screens are the baseline customer shell where the installed hardware and approved customer scope support them. If a required screen is not supported by the customer system, implementation tasks must document the omission and the reason.
 
 The required screen set should keep navigation predictable across WNYHS customer installs while allowing each customer dashboard to reflect the actual installed system.
+
+Customer dashboards must include only installed, approved, customer-relevant capabilities. Do not show placeholder, future-feature, unused, or speculative panels in normal customer dashboards.
 
 ## 4. Optional Module Architecture
 
@@ -162,7 +166,9 @@ Normal customer dashboards should hide:
 
 - battery percentages unless attention is needed
 - signal strength
+- RSSI
 - firmware
+- logs
 - raw entity names
 - diagnostic entities
 - integration internals
@@ -172,7 +178,9 @@ Customer-facing information should be progressive. Show normal summaries when ev
 
 ## 10. Light/Dark Theme Parity
 
-Every customer gets light and dark modes.
+Every customer dashboard must provide persistent Light, Dark, and Auto theme control from every customer-facing screen.
+
+Theme control must be one-tap or immediately accessible, not buried in settings. Customers must be able to switch presentation quickly in bright light, low light, normal daily use, and security-concern conditions.
 
 Light and dark modes must preserve:
 
@@ -251,6 +259,7 @@ Button rules:
 - Primary action buttons should be visually distinct.
 - Destructive or risky actions such as Unlock must be clear and deliberate.
 - Emergency/critical controls must not be visually confused with normal actions.
+- Do not use green for risky actions such as unlocking or disabling protection.
 
 Touch targets should remain usable on phones in the Companion App. Primary actions should not depend on precise taps, small rows, or hidden overflow menus.
 
@@ -280,9 +289,22 @@ Customer dashboards must support:
 - Avoid tiny text.
 - Avoid overloaded pages.
 - Support broad daylight and dark-room use.
+- Support bright light, low light, security-concern conditions, and normal use.
 - Keep urgent states visually obvious but not chaotic.
+- Use plain language and large touch targets.
 
 Accessibility is part of product quality. Dashboard status must remain understandable for customers who glance quickly, use the dashboard in poor lighting, or cannot rely on color-only meaning.
+
+## 15A. Semantic Color Rules
+
+Customer dashboard color semantics:
+
+- Green means safe, normal, locked, secure, or all clear.
+- Red/burgundy means caution, alert, destructive, unlock, or security-sensitive action.
+- Gold means WNYHS brand, navigation, section accent, or premium emphasis.
+- Gray/black/white surfaces are theme-controlled.
+
+Color must support meaning, not carry meaning alone. Text and icons must remain present for customer-facing status and controls.
 
 ## 16. Technician Mode Separation
 

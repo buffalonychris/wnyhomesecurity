@@ -52,11 +52,18 @@ Future dashboard planning should follow these principles:
 - Status meaning must not be color-only.
 - Layout must remain stable across themes.
 - The Customer Dashboard must stay readable in light and dark modes.
+- Customer dashboards must support Light, Dark, and Auto theme control.
+- Theme control must be persistent from every customer-facing screen and immediately accessible.
 - Installer and Service diagnostics must remain readable in high-density views.
 - Seasonal themes must not change operational meaning.
 - Customer-selected themes must not expose setup-only or service-only surfaces.
 - Theme changes should affect presentation, not dashboard structure, permissions, navigation, or status definitions.
 - Dashboard labels should remain plain-language and readable independent of theme choice.
+- Green means safe, normal, locked, secure, or all clear.
+- Red/burgundy means caution, alert, destructive, unlock, or security-sensitive action.
+- Gold means WNYHS brand, navigation, section accent, or premium emphasis.
+- Gray/black/white surfaces are controlled by the active theme.
+- Green must not be used for risky actions such as unlocking or disabling protection.
 
 ## 4. Supported Future Theme Classes
 
@@ -66,6 +73,7 @@ The following candidate theme classes are planning only. They do not authorize t
 | --- | --- | --- |
 | Default Light | Standard bright daily-use presentation for customer and internal dashboards. | Planning only. |
 | Default Dark | Standard low-light daily-use presentation for customer and internal dashboards. | Planning only. |
+| Auto | Customer-selected automatic light/dark behavior where Home Assistant and device settings support it. | Planning only. |
 | High Contrast | Accessibility-oriented treatment for stronger text, border, focus, and status separation. | Planning only. |
 | Seasonal / Holiday | Optional presentation layer that may change decorative values without changing status meaning. | Planning only. |
 | Brand / Premium | Optional branded or premium presentation layer that preserves dashboard structure and status semantics. | Planning only. |
@@ -126,6 +134,7 @@ Future Home Assistant dashboard theme work should define its own Home Assistant-
 | Warning | Needs attention, deferred, or caution state. |
 | Error / critical | Blocked, failed, or service-critical state. |
 | Success / healthy | Confirmed ready, normal, or healthy state. |
+| Secure / locked | Customer-safe secure, locked, or all-clear state. |
 | Info | Neutral information or context. |
 | Disabled / unavailable | Disabled, unavailable, offline, or not applicable state. |
 | Focus / selected | Keyboard focus, selected tab, active view, or chosen control. |

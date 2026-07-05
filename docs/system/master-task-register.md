@@ -899,6 +899,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### HA-BASELINE-GOVERNANCE-001
+- **Task ID:** HA-BASELINE-GOVERNANCE-001
+- **Task Name:** Promote Home Assistant Baseline Governance
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded documentation work order.
+- **Purpose:** Promote the WNYHS Home Assistant baseline platform, baseline apps, HACS stack, customer dashboard philosophy, dashboard classes, responsive requirements, semantic color rules, backup/key handling, and safety constraints into existing repository governance documentation.
+- **Allowed Scope:** Update existing Home Assistant, installer-platform, and customer-dashboard governance docs where owner docs already exist; update this task-register record only; create no duplicate parallel governance docs unless no owner doc exists.
+- **Forbidden Scope:** No dashboard YAML changes; no Home Assistant runtime files; no website routes; no Stripe/payment code; no HubSpot code; no package/dependency files; no implementation beyond documentation and task-register updates; no new products, pricing, claims, or service-authority language; no PR merge or ready-for-review marking.
+- **Target Files:** `docs/system/master-task-register.md`; `docs/installer/INSTALL008_HA_GREEN_BOOTSTRAP_STANDARD_REV01.md`; `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`; `docs/installer/INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`; `docs/design-system/customer-dashboard-philosophy.md`; `docs/design-system/customer-dashboard-design-standard-rev01.md`; `docs/home-assistant/bklf-ha-dashboard-and-entity-spec.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance update.
+- **Documentation Updates Required:** Add or update this bounded task-register record; promote baseline HA Green platform, HA OS / Supervisor model, current app and HACS stack, File Editor path model, backup/key handling, customer dashboard product philosophy, dashboard classes, theme/accessibility requirements, responsive behavior, semantic color rules, and protected action constraints into existing owner docs.
+- **Validation Required:** Confirm clean pre-work status; confirm only docs/task-register files changed; `git diff --check`; targeted `rg` checks for baseline platform/app/HACS/path/theme/responsive/protected-action terms; targeted changed-file scan for forbidden claim terms; confirm no dashboard/runtime implementation files changed.
+- **Exit Criteria:** Existing owner docs are updated instead of creating duplicate parallel docs; task register contains this bounded record; only allowed docs are changed; no dashboard YAML, Home Assistant runtime files, website routes, HubSpot, Stripe/payment, dependencies, package-lock, environment, or secrets are changed; validation passes; draft PR opens without merge.
+- **Dependencies:** Prompt-created bounded `HA-BASELINE-GOVERNANCE-001` work order; current governance authority chain; CODEX run contract; OPS004; OPS005; existing Home Assistant and dashboard owner docs.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Promoted the Home Assistant Green / HA OS baseline, baseline apps, required HACS frontend stack, repo-to-HA Green file paths, File Editor root note, encrypted backup and emergency key handling, AI Assist protected-action constraint, customer dashboard product philosophy, dashboard classes, responsive/device requirements, persistent Light/Dark/Auto theme control, semantic color rules, and customer-safe dashboard constraints into existing owner docs. No duplicate parallel governance doc was created.
+
 ### WNYHS-UI-THEME-001
 - **Task ID:** WNYHS-UI-THEME-001
 - **Task Name:** WNYHS Customer Control Center Light/Dark Theme Foundation
