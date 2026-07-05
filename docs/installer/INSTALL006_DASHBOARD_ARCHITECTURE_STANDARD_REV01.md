@@ -67,26 +67,29 @@ It should be:
 
 The Customer Dashboard may include status and controls for supported areas such as security, cameras, doors, locks, lighting, water/leak, climate/environment, utilities, modes, and support/help. It must not include customer secrets, setup-only diagnostics, or unsupported service promises.
 
-### 3.2 Installer Dashboard
+### 3.2 Installer / Commissioning Dashboard
 
-The Installer Dashboard is the bench setup, onsite commissioning, and validation surface.
+The Installer / Commissioning Dashboard is the temporary setup, pairing, validation, signal-check, and acceptance-testing surface.
 
 It should support:
 
 - bench setup
 - onsite commissioning
 - device, entity, and area validation
+- pairing
+- signal checks
 - automation testing
 - network and controller readiness
 - adoption review
 - exception tracking
+- acceptance testing
 - backup and restore readiness review
 
-The Installer Dashboard is not the customer's daily-use surface. It may include setup detail, diagnostic state, temporary bench placeholders, and test-oriented groupings that would be inappropriate for normal customer use.
+The Installer / Commissioning Dashboard is not the customer's daily-use surface. It may include setup detail, diagnostic state, temporary bench placeholders, and test-oriented groupings that would be inappropriate for normal customer use. It must be hidden or removed from customer-facing use after commissioning.
 
-### 3.3 Service Dashboard
+### 3.3 Operator Dashboard
 
-The Service Dashboard is the support review surface.
+The Operator Dashboard is the diagnostics, maintenance, and support review surface.
 
 It should support review of:
 
@@ -94,11 +97,14 @@ It should support review of:
 - low batteries
 - failed automations
 - integration health
+- entity health
+- battery and signal data
 - backup and update status
+- logs
 - support notes
 - items that may require onsite follow-up
 
-The Service Dashboard is internal unless explicitly authorized for a specific customer support posture. It should help a support reviewer find actionable service state without exposing unnecessary private detail or implying unsupported service obligations.
+The Operator Dashboard is not customer-facing by default. It should help a support reviewer find actionable service state without exposing unnecessary private detail or implying unsupported service obligations.
 
 ## 4. Recommended Customer Dashboard Views
 
@@ -244,13 +250,28 @@ Expectations:
 
 Installer and Service dashboards may be denser than customer dashboards, but they should still preserve scanability and clear priority.
 
+Customer dashboards must render properly on:
+
+- phone portrait
+- tablet portrait
+- tablet landscape
+- desktop browser
+- Home Assistant Companion App
+
+Standard responsive behavior:
+
+- Phone: single-column, large controls, minimal scroll.
+- Tablet: two-column where appropriate, larger camera/status cards.
+- Desktop: wider layout without information overload.
+- Navigation, terminology, colors, and control meaning remain consistent across device classes.
+
 ## 12. Access / Visibility Posture
 
 The Customer Dashboard is the normal customer-facing surface.
 
-The Installer Dashboard is a bench, commissioning, and internal setup surface.
+The Installer / Commissioning Dashboard is a bench, commissioning, and internal setup surface.
 
-The Service Dashboard is a support/internal surface unless explicitly authorized for a specific customer posture.
+The Operator Dashboard is a support/internal surface unless explicitly authorized for a specific customer posture.
 
 Rules:
 
@@ -279,6 +300,8 @@ Theme readiness means dashboard architecture should separate:
 When dashboards are implemented later, they should rely on Home Assistant theme tokens, style variables, or equivalent theme-ready mechanisms. Status meaning should not depend on hardcoded one-off colors or dark-only assumptions.
 
 This task does not implement themes, theme files, dashboard CSS, card styling, icon libraries, color palettes, seasonal visuals, or theme switching.
+
+Customer dashboards must plan for persistent Light, Dark, and Auto theme control from every customer-facing screen. Theme control must be one-tap or immediately accessible and must not be buried in settings.
 
 ## 14. Dashboard Readiness Sheet
 

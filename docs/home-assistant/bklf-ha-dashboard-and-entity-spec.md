@@ -22,12 +22,23 @@ This is documentation and specification only. It does not authorize app code cha
 - Address: 2528 Bailey Ave Suite 1, Buffalo, NY 14215
 - Deployment boundary: First-floor-only deployment
 - Controller: Home Assistant Green
+- Current BKLF reference hardware: Home Assistant Green
+- Supported installation model: Home Assistant OS / Supervisor
 - Home Assistant version: HA 16.3
 - Network Closet: Physically located in the Conference Room
 - Primary owner-managed remote-entry workflow: South Entrance
 - South Wall exterior devices: Reolink PoE Doorbell and South Wall Corner Camera
 
 The Network Closet remains operationally separate for dashboard and administration purposes even though the hardware is physically located inside the Conference Room.
+
+Current file placement:
+
+- Repo dashboard file path: `home-assistant/bklf/dashboards/bklf-main-dashboard.yaml`
+- HA Green dashboard destination: `homeassistant/dashboards/bklf-main-dashboard.yaml`
+- Repo config file path: `home-assistant/bklf/configuration.yaml`
+- HA Green config destination: `homeassistant/configuration.yaml`
+
+The File Editor visible root is `homeassistant/`. HA 2026 UI navigation may differ from older Add-ons documentation, so live setup notes should record the current UI path used for add-ons, dashboard resources, backup, and validation.
 
 ---
 
@@ -122,6 +133,10 @@ The Home Assistant dashboard should use these panels:
 The panels should favor owner and service clarity: high-priority state appears in Overview, physical envelope state appears by wall, and support hardware appears in Infrastructure / Administration.
 
 The dashboard should distinguish Active / Deferred sensors. Active sensors are installed or assigned from confirmed on-hand hardware. Deferred sensors are planned coverage and should not be treated as live device state.
+
+The customer-facing BKLF dashboard must remain a WNY Home Security Customer Control Center experience powered by Home Assistant, not a generic Home Assistant dashboard. It must show only installed, customer-relevant capabilities and avoid placeholder, future-feature, unused, raw diagnostic, firmware, RSSI, log, entity ID, and YAML-oriented panels in normal customer use.
+
+AI Assist, if evaluated later, must not control locks, alarms, security-sensitive actions, access workflows, or other protected actions unless governance later authorizes that exact behavior.
 
 ---
 
@@ -350,6 +365,28 @@ Planning-level tablet wireframe:
 - Admin section behind secondary navigation
 
 Tablet layout should support quick owner review while preserving enough space for wall-level status summaries.
+
+## 17A. Responsive and Theme Requirements
+
+Customer-facing dashboard behavior:
+
+- Phone portrait: single-column, large controls, minimal scroll.
+- Tablet portrait: two-column where appropriate with larger status and camera cards.
+- Tablet landscape: wider layout without hiding the South Entrance workflow.
+- Desktop browser: wider layout without information overload.
+- Home Assistant Companion App: primary validation target for normal daily use.
+
+Navigation, terminology, colors, and control meaning must remain consistent across device classes.
+
+Every customer-facing screen must provide persistent Light, Dark, and Auto theme control. Theme control must be one-tap or immediately accessible, not buried in settings.
+
+Semantic color rules:
+
+- Green means safe, normal, locked, secure, or all clear.
+- Red/burgundy means caution, alert, destructive, unlock, or security-sensitive action.
+- Gold means WNYHS brand, navigation, section accent, or premium emphasis.
+- Gray/black/white surfaces are theme-controlled.
+- Do not use green for risky actions such as unlocking or disabling protection.
 
 ---
 

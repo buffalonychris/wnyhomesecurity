@@ -27,8 +27,8 @@ The initial goal is a repeatable technician checklist, not a one-click installer
 Standard bootstrap target:
 
 - Home Assistant Green.
-- Home Assistant OS.
-- Supervisor available.
+- Home Assistant Green is the current BKLF reference hardware.
+- Home Assistant OS / Supervisor is the current supported installation model.
 - Customer deployment model.
 - WNYHS admin account.
 - Technician accounts for setup and service work.
@@ -36,20 +36,34 @@ Standard bootstrap target:
 
 Account setup must keep technician and customer visibility separate. Customer accounts should receive only the dashboards, controls, and settings appropriate to the approved customer scope.
 
+Home Assistant UI navigation changes over time. Technicians must treat older Add-ons documentation as reference only when the live HA 2026 UI differs, and should record the current navigation path used during bootstrap or recovery.
+
+File Editor visible root note:
+
+- In the File Editor add-on, the visible root is `homeassistant/`.
+- Repo config source: `home-assistant/bklf/configuration.yaml`.
+- HA Green config destination: `homeassistant/configuration.yaml`.
+- Repo BKLF dashboard source: `home-assistant/bklf/dashboards/bklf-main-dashboard.yaml`.
+- HA Green dashboard destination: `homeassistant/dashboards/bklf-main-dashboard.yaml`.
+
 ## 4. Required HA Apps / Add-ons
 
-Standard Home Assistant apps and add-ons:
+Standard required/current Home Assistant apps and add-ons:
 
 | App / add-on | Purpose | Notes |
 | --- | --- | --- |
 | File Editor | In-browser configuration file review and controlled edits. | Install early so configuration files can be inspected without external file access. |
+| Matter Server | Matter device support when applicable. | Keep available as part of the baseline platform even when no Matter device is active yet. |
 | Samba Share | Local network file access for controlled technician file transfer. | Use only on trusted setup networks; do not expose credentials in repo docs. |
 | Terminal & SSH | Command-line access for HACS installation and technician diagnostics. | Required before HACS installation. |
 | Z-Wave JS | Z-Wave controller integration when Z-Wave hardware is used. | Install only for systems with Z-Wave scope. |
-| Matter Server | Matter device support when applicable. | Install only when Matter devices are part of the customer scope. |
-| Zigbee Home Automation or selected Zigbee stack | Zigbee coordinator and device integration. | Confirm the selected stack before pairing devices. |
 | Backup | Manual and scheduled backup foundation. | Create a backup after bootstrap validation. |
 | Home Assistant Cloud | Temporary remote access when Nabu Casa is used. | Temporary access only; future target remains controlled remote access through approved WNYHS infrastructure. |
+
+Future candidate / optional apps:
+
+- Frigate and MQTT may be evaluated later when an approved architecture requires local camera/event processing or message-bus behavior.
+- Candidate apps must not become baseline requirements without a later bounded governance update.
 
 ## 5. Required Built-In Integrations
 
@@ -87,14 +101,15 @@ The approved WNYHS Customer Control Center UI stack is:
 
 | HACS package | Purpose | Why WNYHS uses it | Notes / cautions |
 | --- | --- | --- | --- |
+| HACS | HACS management foundation. | Enables governed custom frontend resources. | Install before the frontend stack and document package versions in the customer install record. |
 | Mushroom | Clean, mobile-friendly dashboard cards. | Supports calm customer controls with readable state and actions. | Keep customer cards simple; avoid exposing technical state. |
-| Button Card | Highly configurable action and status buttons. | Supports large task-based controls for locks, views, modes, and key actions. | Do not make status meaning color-only. |
 | Bubble Card | Mobile-friendly navigation and compact controls. | Supports app-like customer navigation and quick interaction surfaces. | Validate behavior in the Home Assistant Companion App. |
-| Card Mod | Controlled card styling. | Enables WNYHS product polish when theme-ready styling is needed. | Use carefully; avoid fragile one-off styling. |
-| Layout Card | Responsive card layout control. | Supports predictable mobile-first dashboard structure. | Validate no horizontal scrolling or zoom dependency. |
+| button-card | Highly configurable action and status buttons. | Supports large task-based controls for locks, views, modes, and key actions. | Do not make status meaning color-only. |
+| auto-entities | Dynamic entity lists for controlled internal views. | Supports installer and operator views that collect relevant states. | Avoid exposing noisy dynamic lists in normal customer dashboards. |
+| card-mod | Controlled card styling. | Enables WNYHS product polish when theme-ready styling is needed. | Use carefully; avoid fragile one-off styling. |
+| layout-card | Responsive card layout control. | Supports predictable mobile-first dashboard structure. | Validate no horizontal scrolling or zoom dependency. |
 | Swipe Card | Swipeable camera or status groups. | Supports compact mobile review where useful. | Do not hide primary actions behind swipe-only interaction. |
-| Browser Mod | Browser/device-aware dashboard behavior. | Supports display-specific behavior and customer experience refinement. | Add the Browser Mod integration after restart. |
-| Auto-Entities | Dynamic entity lists for controlled internal views. | Supports installer and service views that collect relevant states. | Avoid exposing noisy dynamic lists in normal customer dashboards. |
+| browser_mod | Browser/device-aware dashboard behavior. | Supports display-specific behavior and customer experience refinement. | Add the browser_mod integration after restart. |
 
 These packages support the WNYHS Customer Control Center product layer. They do not by themselves authorize any customer dashboard implementation.
 
@@ -115,7 +130,16 @@ Current manual order:
 11. Add Browser Mod integration after restart.
 12. Verify resources loaded.
 13. Verify dashboard still loads.
-14. Create backup.
+14. Create encrypted backup.
+15. Record emergency key handling in the customer install record.
+
+Encrypted backup workflow:
+
+- Create an encrypted backup after initial bootstrap, after dashboard/config validation, and after onsite customer validation.
+- Store backup evidence and restore notes in the customer install record.
+- Do not store backup passwords, encryption keys, emergency keys, private URLs, or credential values in repository docs.
+- Emergency key handling must be documented for the customer/job record before handoff so recovery does not depend on installer memory.
+- Any backup restore or destructive recovery step requires operator confirmation and a current backup.
 
 ## 9. Future Automation / Scripting Plan
 
@@ -169,6 +193,12 @@ Optional modules are installed only by customer need and approved scope:
 
 Optional modules must not appear as active customer features unless the related devices, integrations, dashboard controls, and support posture are actually present.
 
+Customer-facing AI Assist constraint:
+
+- AI Assist may be evaluated later for customer-readable help, status explanation, or guided navigation only.
+- AI Assist must not control locks, alarms, security-sensitive actions, shutoff devices, access workflows, or other protected actions unless later explicitly authorized by governance.
+- AI Assist must not become a substitute for customer confirmation, installer commissioning, or operator-approved safety checks.
+
 ## 12. Validation Checklist
 
 Bootstrap validation must confirm:
@@ -182,7 +212,8 @@ Bootstrap validation must confirm:
 - No red configuration errors.
 - Mobile Companion App loads dashboard.
 - No horizontal scrolling or zoom dependency.
-- Backup created.
+- Encrypted backup created.
+- Emergency key handling documented outside repository docs.
 
 Validation evidence should be captured in the customer install record or installer notes, not as secrets or customer-private values in repository docs.
 

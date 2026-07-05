@@ -25,6 +25,16 @@ Customers should see a clear summary first. The first screen should make the cur
 
 Technical state should be hidden unless it is needed for customer action or the user intentionally enters a details or technician-facing view.
 
+The customer does not receive a generic Home Assistant dashboard. The customer receives a WNY Home Security control experience powered by Home Assistant.
+
+Customer dashboards must be simple, non-technical, task-based, and outcome-based. They should show only installed capabilities that benefit that customer. They must not include placeholder panels, future-feature panels, unused modules, entity IDs, raw diagnostics, RSSI, firmware details, logs, YAML concepts, or irrelevant Home Assistant features.
+
+The main dashboard should answer three questions:
+
+1. Is my property okay?
+2. Do I need to do anything?
+3. What are my most common actions?
+
 ## 3. Reassurance-First Language Model
 
 Preferred customer-facing language:
@@ -111,6 +121,8 @@ Individual sensors and diagnostic details should appear only when:
 
 Progressive disclosure keeps the customer dashboard calm during normal operation and makes exceptions easier to notice when they occur.
 
+Customer-facing detail should appear only when it helps a customer understand or act on the current state. Installer/service detail belongs outside the normal customer dashboard.
+
 ## 8. Customer vs Technician Dashboard Separation
 
 Customer dashboard content should include:
@@ -144,8 +156,16 @@ Customer dashboard cards should prioritize:
 - mobile-first layout
 - consistent page order
 - consistent light/dark layout
+- phone portrait, tablet portrait, tablet landscape, desktop browser, and Home Assistant Companion App compatibility
 
 Colors and styling may change between themes, but layout, interaction model, status meaning, and customer language should remain stable.
+
+Responsive behavior:
+
+- Phone: single-column, large controls, minimal scroll.
+- Tablet: two-column where appropriate, larger camera/status cards.
+- Desktop: wider layout without information overload.
+- Navigation, terminology, colors, and control meaning must remain consistent across device classes.
 
 ## 10. BK Lewis Dashboard Notes
 
