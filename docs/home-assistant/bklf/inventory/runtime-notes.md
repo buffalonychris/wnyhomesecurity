@@ -61,3 +61,9 @@ The current customer-priority workflow is South Entrance / Front Door with Talk,
 ## Validation Boundary
 
 These notes are restore-state and source-observation documentation only. They do not prove current live state and do not authorize live Home Assistant changes, dashboard YAML changes, package changes, theme changes, automation changes, or customer handoff changes.
+
+## Follow-Up Notes
+
+Live Companion App phone observations from the current BKLF customer dashboard are preserved in `docs/home-assistant/bklf/BKLF_DASHBOARD_FOLLOWUP_NOTES_REV01.md`.
+
+That follow-up document is documentation/planning only. It records mobile dashboard strengths, screenshot observations, and future bounded task recommendations without changing or authorizing changes to live Home Assistant, dashboard YAML, packages, themes, automations, or customer handoff behavior.

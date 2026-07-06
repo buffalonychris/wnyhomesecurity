@@ -54,3 +54,4 @@ These 17 entities are referenced by the customer dashboard source according to `
 - Doorbell and parking lot camera streams are explicit customer dashboard entities.
 - The lock, lock jam status, door contact, visitor/person status, building mode, exterior secure, interior motion, and building secure composites are dashboard dependencies.
 - Broader HA entity inventory is documented separately in `entity-inventory.md` so customer-facing dashboard dependencies remain distinct from service, diagnostic, and integration-created entities.
+- BKLF mobile dashboard follow-up notes are preserved in `docs/home-assistant/bklf/BKLF_DASHBOARD_FOLLOWUP_NOTES_REV01.md` as documentation/planning only. They do not authorize dashboard YAML, live Home Assistant, package, theme, automation, or customer handoff changes.
