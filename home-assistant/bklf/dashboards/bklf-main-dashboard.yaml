@@ -1,8 +1,8 @@
 title: WNYHS Customer Control Center
 views:
-  - title: Home
+  - title: South Entrance
     path: home
-    icon: mdi:home
+    icon: mdi:doorbell-video
     type: masonry
     max_columns: 1
     cards:
@@ -39,6 +39,47 @@ views:
             - justify-self: start
             - font-size: 14px
             - color: var(--secondary-text-color)
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: &theme_button
+              card:
+                - min-height: 54px
+                - border-radius: 18px
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-gold)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--primary-text-color)
+                - font-weight: 800
+              icon:
+                - color: var(--wnyhs-gold)
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
 
       - type: custom:button-card
         entity: binary_sensor.bklf_building_secure
@@ -136,7 +177,7 @@ views:
             - color: var(--secondary-text-color)
 
       - type: vertical-stack
-        title: Front Door
+        title: South Entrance / Front Door
         cards:
           - type: picture-entity
             entity: camera.south_wall_south_entrance_doorbell_fluent
@@ -168,14 +209,14 @@ views:
                     - min-height: 68px
                     - border-radius: 20px
                     - background: var(--wnyhs-secondary-button-background)
-                    - border: 1px solid var(--wnyhs-lock-color)
+                    - border: 1px solid var(--wnyhs-gold)
                     - color: var(--primary-text-color)
                     - box-shadow: var(--ha-card-box-shadow)
                   name:
                     - color: var(--primary-text-color)
                     - font-weight: 800
                   icon:
-                    - color: var(--wnyhs-lock-color)
+                    - color: var(--wnyhs-gold)
               - type: custom:button-card
                 name: Unlock
                 icon: mdi:lock-open-variant
@@ -202,26 +243,6 @@ views:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                name: Lock
-                icon: mdi:lock
-                tap_action:
-                  action: call-service
-                  service: lock.lock
-                  target:
-                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-                styles: &safe_button
-                  card:
-                    - min-height: 62px
-                    - border-radius: 20px
-                    - background: var(--wnyhs-secondary-button-background)
-                    - border: 1px solid var(--wnyhs-lock-color)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--primary-text-color)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-lock-color)
-              - type: custom:button-card
                 name: View
                 icon: mdi:fullscreen
                 tap_action:
@@ -239,6 +260,49 @@ views:
                     - font-weight: 800
                   icon:
                     - color: var(--wnyhs-gold)
+              - type: custom:button-card
+                name: Snapshot
+                icon: mdi:camera
+                tap_action:
+                  action: call-service
+                  service: camera.snapshot
+                  target:
+                    entity_id: camera.south_wall_south_entrance_doorbell_fluent
+                  data:
+                    filename: /config/www/bklf-south-entrance-snapshot.jpg
+                styles: &snapshot_button
+                  card:
+                    - min-height: 62px
+                    - border-radius: 20px
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-gold)
+                    - border-left: 5px solid var(--wnyhs-gold)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--primary-text-color)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-gold)
+          - type: custom:button-card
+            name: Lock
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: &safe_button
+              card:
+                - min-height: 62px
+                - border-radius: 20px
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-lock-color)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--primary-text-color)
+                - font-weight: 800
+              icon:
+                - color: var(--wnyhs-lock-color)
           - type: custom:mushroom-template-card
             primary: Door is closed and locked
             secondary: >-
@@ -384,6 +448,36 @@ views:
           label:
             - color: var(--secondary-text-color)
 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
+
       - type: picture-entity
         entity: camera.south_wall_south_entrance_doorbell_fluent
         camera_view: live
@@ -412,16 +506,6 @@ views:
               entity: camera.south_wall_south_entrance_doorbell_fluent
             styles: *positive_button
           - type: custom:button-card
-            name: View
-            icon: mdi:fullscreen
-            tap_action:
-              action: more-info
-              entity: camera.south_wall_south_entrance_doorbell_fluent
-            styles: *neutral_gold_button
-
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
             name: Unlock
             icon: mdi:lock-open-variant
             confirmation:
@@ -432,15 +516,36 @@ views:
               target:
                 entity_id: lock.south_wall_home_connect_620_connected_smart_lock
             styles: *caution_button
+      - type: horizontal-stack
+        cards:
           - type: custom:button-card
-            name: Lock
-            icon: mdi:lock
+            name: View
+            icon: mdi:fullscreen
+            tap_action:
+              action: more-info
+              entity: camera.south_wall_south_entrance_doorbell_fluent
+            styles: *neutral_gold_button
+          - type: custom:button-card
+            name: Snapshot
+            icon: mdi:camera
             tap_action:
               action: call-service
-              service: lock.lock
+              service: camera.snapshot
               target:
-                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-            styles: *safe_button
+                entity_id: camera.south_wall_south_entrance_doorbell_fluent
+              data:
+                filename: /config/www/bklf-south-entrance-snapshot.jpg
+            styles: *snapshot_button
+
+      - type: custom:button-card
+        name: Lock
+        icon: mdi:lock
+        tap_action:
+          action: call-service
+          service: lock.lock
+          target:
+            entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+        styles: *safe_button
 
       - type: custom:mushroom-template-card
         primary: >-
@@ -521,6 +626,36 @@ views:
               background: var(--wnyhs-card-background);
               box-shadow: var(--ha-card-box-shadow);
             }
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
 
       - type: horizontal-stack
         cards:
@@ -654,6 +789,36 @@ views:
             - line-height: 1.35
             - color: var(--secondary-text-color)
 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
+
       - type: custom:mushroom-template-card
         primary: >-
           {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
@@ -767,6 +932,36 @@ views:
           label:
             - font-size: 15px
             - color: var(--secondary-text-color)
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
 
       - type: vertical-stack
         title: Doors And Windows
@@ -955,6 +1150,36 @@ views:
           label:
             - color: var(--secondary-text-color)
 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
+
       - type: logbook
         title: Today
         hours_to_show: 24
@@ -1007,6 +1232,36 @@ views:
           label:
             - justify-self: start
             - color: var(--secondary-text-color)
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
 
       - type: vertical-stack
         title: App Menu
