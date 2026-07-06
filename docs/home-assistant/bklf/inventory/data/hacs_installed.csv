@@ -1,0 +1,10 @@
+full_name,category,domain,version_installed,description
+bramkragten/swipe-card,plugin,,v5.0.0,Card that allows you to swipe throught multiple cards for Home Assistant Lovelace
+Clooos/Bubble-Card,plugin,,v3.2.4,Bubble Card is a minimalist card collection for Home Assistant with a nice pop-up touch.
+custom-cards/button-card,plugin,,v7.0.1,❇️ Lovelace button-card for home assistant
+hacs/integration,integration,hacs,2.0.5,HACS gives you a powerful UI to handle downloads of all your custom needs.
+piitaya/lovelace-mushroom,plugin,,v5.1.1,Build a beautiful Home Assistant dashboard easily
+thomasloven/hass-browser_mod,integration,browser_mod,v3.0.0,🔹 A Home Assistant integration to turn your browser into a controllable entity and media player
+thomasloven/lovelace-auto-entities,plugin,,v1.16.1,🔹Automatically populate the entities-list of lovelace cards
+thomasloven/lovelace-card-mod,plugin,,v4.2.1,🔹 Add CSS styles to (almost) any lovelace card
+thomasloven/lovelace-layout-card,plugin,,v2.4.7,🔹 Get more control over the placement of lovelace cards.

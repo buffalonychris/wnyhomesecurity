@@ -1,0 +1,52 @@
+id,name,name_by_user,manufacturer,model,model_id,hw_version,sw_version,area_id,disabled_by,entry_type
+0dab21a581c5e68584cc30df97c09239,800 Series Long Range USB Controller,,Zooz,ZST39 LR,,,1.60,network_closet,,
+778b999e19ae3a31360ec1399ad69be9,Backup,,Home Assistant,Home Assistant Backup,,,2026.6.4,,,service
+a59fc0f4f4785d96f385916415af6055,Bubble Card,,Clooos,plugin,,,,,,service
+430164a064e604570d9ea9816ca0a4d7,SONOFF SNZB-04PR2,C01 South Entrance Door,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+785e479597ffb8089508f31d1e79b385,SONOFF SNZB-04PR2,C02 South Wall Window 2,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+d6fa5c68ba774edc52551beca93e768d,SONOFF SNZB-04PR2,C03 South Wall Window 3,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+754e6cb02d3110c2285962b6b78868e4,SONOFF SNZB-04PR2,C04 South Wall Window 4,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+daa1fe23aafeed8570e27a46cd2a2edd,SONOFF SNZB-04PR2,C05 South Wall Window 5,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+a4062d86605b1f335892c2d4155787be,SONOFF SNZB-04PR2,C06 North Wall Window 2,SONOFF,SNZB-04PR2,,,0x00001001,north_wall,,
+91c7405e18c81d53159201908d0584d4,SONOFF SNZB-04PR2,C07 North Wall Window 3,SONOFF,SNZB-04PR2,,,0x00001001,north_wall,,
+baeeab17a3eddef5f6f361392066ef56,SONOFF SNZB-04PR2,C08 North Wall Window 4,SONOFF,SNZB-04PR2,,,0x00001001,north_wall,,
+6a1413dbf8c06f498dfc4051ebbc5b92,SONOFF SNZB-04PR2,C09 North Wall Window 5,SONOFF,SNZB-04PR2,,,0x00001001,north_wall,,
+0808fb7b97611a30712fe4e567ebffc2,SONOFF SNZB-04PR2,C10 South Wall Window 1,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,SONOFF SNZB-04PR2,C11 South Wall Window 2,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+818bf2df3306a9c6bc6066460c51d6de,SONOFF SNZB-04PR2,C12 South Wall Window 3,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+cd0a18145e4fbf2088c029e21fbf1513,SONOFF SNZB-04PR2,C13 South Wall Window 4,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+f4f983048c19e5efef8fb87278133b15,SONOFF SNZB-04PR2,C14 South Wall Window 5,SONOFF,SNZB-04PR2,,,0x00001001,south_wall,,
+4b575486d3abc505e940e0ec6df9a7eb,Parking Lot,CAM01 Southwest corner Parking Lot,Reolink,Reolink Duo 3 PoE,P750,IPC_NT15NA416MP,v3.0.0.4867_2505072124,south_wall,,
+c3273c4a604f70c2094561b0e7c3a29b,Chris Cell,,motorola,moto g play - 2024,,,34,,,
+d924db4acce2013caac2ab8e2a26ac09,File editor,,Official apps,Home Assistant App,,,6.0.0,,,service
+239b2786d88af256849d7f30c1328385,Forecast,,Met.no,Forecast,,,,,,service
+6c372760a6cff24f8e039b1919cfb5bf,Google Translate en com,,Google,Google Translate TTS,,,,,,service
+a61c37be91706a8d3036ded61c276e2b,HACS,,hacs.xyz,,,,2.0.5,,,service
+ad6497948030bdd57a554e3f8bb1a2bb,Home Assistant Core,,Home Assistant,Home Assistant Core,,,2026.6.4,,,service
+49082fc8e5861c097a21fc97fdbf33ed,Home Assistant Host,,Home Assistant,Home Assistant Host,,,,,,service
+37bd085578bd41374bdbea330e91e239,Home Assistant Operating System,,Home Assistant,Home Assistant Operating System,,,16.3,,,service
+13c58899b701d2a6dc5170c9941f094c,Home Assistant Supervisor,,Home Assistant,Home Assistant Supervisor,,,2026.06.2,,,service
+b447c85e4ab7dc3a694466a383503efd,Home Connect 620 Connected Smart Lock,Home Connect 620 Connected Smart Lock,Kwikset,HC620,,,7.23.4,south_wall,,
+0ff792bcb474fa80208d959ae9d70674,Living Room TV 4,,Unknown manufacturer,onn. Full HD Streaming Device,,,,,,
+43e82081d5161bed65cacde839d21668,Living Room TV 4,,onn,onn. Full HD Streaming Device,,,,,,
+a5adb4b0fbd855d62443726b466c6f44,Luis Cell,,samsung,SM-F966U,,,36,,,
+9269abc2968c77a923e341c565936281,eWeLink SNZB-03P,M01 Main Hallway Motion,eWeLink,SNZB-03P,,,0x00002201,main_hallway,,
+a6490a4e4f585647d6a86c181fbebede,eWeLink SNZB-03P,M02 Viewing Room Motion,eWeLink,SNZB-03P,,,0x00002201,viewing_room,,
+f0c66eac5eab77b3a59a8214d96624bd,Matter Server,,Official apps,Home Assistant App,,,9.0.3,,,service
+fc435c53636563035d322700f0f260a5,Me Lewis Cell,,samsung,SM-S938U,,,36,,,
+c8f4ca7de3d2481f4a1efe38c7a231d1,Mushroom,,piitaya,plugin,,,,,,service
+a1113bf537bc78b9a9dc476972cdbf3a,SONOFF ZBDongle-E,Network Closet Zigbee Coordinator,SONOFF,ZBDongle-E,,,,network_closet,,
+6a3faa95f62b2223187c0584ba9f9d2b,SWTV-23AE-4KR3,,skyworth,SWTV-23NA-4KR3,,,,,,
+1f98aaa620f4a89f5a36f4312bf2e67b,Samba share,,Official apps,Home Assistant App,,,12.7.1,,,service
+d87ab3eea62f95bb66bb534ea4bbc100,Reolink Chime,South Entrance Chime,Reolink,Reolink Chime,,,,conference_room,,
+732c0afb4c814fdfa7b5a98f6c4f3d3d,Driveway,South Entrance Doorbell,Reolink,Reolink Video Doorbell PoE,D340P,DB_566128M5MP_P,v3.0.0.6460_2605211898,south_wall,,
+971f9995614876bb2633a596d00b88bd,Sun,,,,,,,,,service
+bdce6c6b5a254e1e823d45cad8105e4a,Swipe Card,,bramkragten,plugin,,,,,,service
+4c4a87a7a7d26ccf955239f7ffc71e64,Terminal & SSH,,Official apps,Home Assistant App,,,10.3.0,,,service
+bbb5147db9e649cacbd9ad8cda73eaca,Z-Wave JS,,Official apps,Home Assistant App,,,1.5.0,,,service
+e59ee7255ebcfa9a7dbfdb61b537abe0,[LG] webOS TV QNED85AUA,,LGE,86QNED85AUA.BUSFLKR,,,,,,
+0ff1ee2b45b0460cbd793f489d08347f,auto-entities,,thomasloven,plugin,,,,,,service
+e57ec752a161e2c995cce20ef030cbd6,browser_mod,,thomasloven,integration,,,,,,service
+10067a5d2d971f63b7b58e299f5f7f37,button-card,,custom-cards,plugin,,,,,,service
+b908b04080dc45126dc1824637a00357,card-mod,,thomasloven,plugin,,,,,,service
+92de86822b1c924a26bd72c83d4e9eba,layout-card,,thomasloven,plugin,,,,,,service

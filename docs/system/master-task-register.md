@@ -899,6 +899,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### BKLF-HA-INVENTORY-001
+- **Task ID:** BKLF-HA-INVENTORY-001
+- **Task Name:** BKLF Home Assistant Sanitized Inventory Documentation
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded documentation work order.
+- **Purpose:** Create sanitized BKLF Home Assistant inventory documentation in the repository from the provided sanitized source markdown and CSV files.
+- **Allowed Scope:** Documentation and sanitized inventory artifacts only under `docs/home-assistant/bklf/inventory/**`; preserve sanitized CSV files under `docs/home-assistant/bklf/inventory/data/`; update this bounded task-register record only.
+- **Forbidden Scope:** No dashboard YAML changes, Home Assistant config YAML changes, package changes, theme changes, website files, runtime/source code, package/dependency files, Stripe, HubSpot, scheduling, Cloudflare config, APIs, raw backups, secrets, credentials, databases, logs, auth files, cloud files, private URLs, or invented devices/entities/runtime state.
+- **Target Files:** `docs/home-assistant/bklf/inventory/**`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only sanitized inventory. No live Home Assistant instance, dashboard/config/package/theme runtime, website runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, API, dependency, package-lock, environment, or secret system was modified.
+- **Documentation Updates Required:** Create inventory README, system, dashboard, entity, device, integration, HACS, package/template, runtime notes, security exclusions, and sanitized CSV data artifacts.
+- **Validation Required:** `git diff --check`; confirm only `docs/home-assistant/bklf/inventory/**` and `docs/system/master-task-register.md` changed; confirm no raw backup/secrets/database/log/auth files were added; confirm no dashboard/config/package/theme/runtime/source files changed; run build before completion per root execution rules.
+- **Exit Criteria:** Sanitized inventory document set exists; useful CSV source artifacts are preserved under `data/`; dashboard entities are documented separately from broader HA entities; installed HACS repositories, integrations, devices, helpers, automations/scripts/scenes status, packages, themes, dashboard views/routes, restore-state observations, composite sensor behavior, current South Entrance / Front Door workflow, and security exclusions are documented; protected systems remain untouched; validation passes; draft PR opens without merge.
+- **Dependencies:** Prompt-created bounded `BKLF-HA-INVENTORY-001` work order; sanitized source files supplied by operator; current governance authority chain; CODEX run contract; OPS004; OPS005; Home Assistant automation and installer-platform owner docs.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Created `docs/home-assistant/bklf/inventory/` as a sanitized BKLF Home Assistant inventory document set with preserved sanitized CSV extracts under `data/`. Documented HA Core 2026.6.4, Supervisor 2026.6.2, OS 16.3, Frontend 20260527.7, Home Assistant Green hardware, installed add-ons, HACS repositories, integrations, dashboard views/routes, dashboard-referenced entities, devices, broader entities, helpers, automations, scripts/scenes status, packages, themes, components, restore-state observations, composite `binary_sensor.bklf_building_secure` behavior, current South Entrance / Front Door workflow, and security exclusions. No raw backups, secrets, auth/cloud files, databases, logs, live Home Assistant files, dashboard/config/package/theme runtime files, website/source/runtime/API files, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependencies, package-lock, environment, or private credential material were changed or added.
+
 ### HA-BASELINE-GOVERNANCE-001
 - **Task ID:** HA-BASELINE-GOVERNANCE-001
 - **Task Name:** Promote Home Assistant Baseline Governance
