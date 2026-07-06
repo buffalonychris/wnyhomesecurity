@@ -1,0 +1,791 @@
+entity_id,platform,device_class,area_id,device_id,entity_category,disabled_by,hidden_by,original_name,name,unit_of_measurement
+automation.bklf_after_hours_activity_notification,automation,,,,,,,BKLF After-Hours Activity Notification,,
+automation.bklf_cam01_after_hours_person_notification,automation,,,,,,,BKLF Parking Lot After-Hours Person Notification,,
+automation.bklf_device_offline_notification,automation,,,,,,,BKLF Device Offline Notification,,
+automation.bklf_low_battery_notification,automation,,,,,,,BKLF Low Battery Notification,,
+automation.bklf_south_entrance_active_notification,automation,,,,,,,BKLF South Entrance Active Notification,,
+automation.bklf_south_entrance_doorbell_visitor_notification,automation,,,,,,,BKLF South Entrance Doorbell Visitor Notification,,
+binary_sensor.bklf_building_secure,template,,,,,,,BKLF Building Secure,,
+binary_sensor.bklf_cam01_person_active,template,,,,,,,BKLF CAM01 Person Active,,
+binary_sensor.bklf_exterior_secure,template,,,,,,,BKLF Exterior Secure,,
+binary_sensor.bklf_interior_motion_active,template,,,,,,,BKLF Interior Motion Active,,
+binary_sensor.bklf_south_entrance_active,template,,,,,,,BKLF South Entrance Active,,
+binary_sensor.c01_south_entrance_door,zha,,,430164a064e604570d9ea9816ca0a4d7,,,,,,
+binary_sensor.c03_east_door_right,zha,,,d6fa5c68ba774edc52551beca93e768d,,,,,,
+binary_sensor.c04_west_door,zha,,,754e6cb02d3110c2285962b6b78868e4,,,,,,
+binary_sensor.c05_north_wall_window_1,zha,,,daa1fe23aafeed8570e27a46cd2a2edd,,,,,,
+binary_sensor.c06_north_wall_window_2,zha,,,a4062d86605b1f335892c2d4155787be,,,,,,
+binary_sensor.c07_north_wall_window_3,zha,,,91c7405e18c81d53159201908d0584d4,,,,,,
+binary_sensor.c08_north_wall_window_4,zha,,,baeeab17a3eddef5f6f361392066ef56,,,,,,
+binary_sensor.c09_north_wall_window_5,zha,,,6a1413dbf8c06f498dfc4051ebbc5b92,,,,,,
+binary_sensor.c10_south_wall_window_1,zha,,,0808fb7b97611a30712fe4e567ebffc2,,,,,,
+binary_sensor.c11_south_wall_window_2,zha,,,2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,,,,,,
+binary_sensor.c12_south_wall_window_3,zha,,,818bf2df3306a9c6bc6066460c51d6de,,,,,,
+binary_sensor.c13_south_wall_window_4,zha,,,cd0a18145e4fbf2088c029e21fbf1513,,,,,,
+binary_sensor.c14_south_wall_window_5,zha,,,f4f983048c19e5efef8fb87278133b15,,,,,,
+binary_sensor.chris_cell_android_auto,mobile_app,connectivity,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Android Auto,,
+binary_sensor.chris_cell_app_inactive,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell App inactive,,
+binary_sensor.chris_cell_bluetooth_state,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Bluetooth state,,
+binary_sensor.chris_cell_device_locked,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Device locked,,
+binary_sensor.chris_cell_device_secure,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Device secure,,
+binary_sensor.chris_cell_doze_mode,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Doze mode,,
+binary_sensor.chris_cell_headphones,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Headphones,,
+binary_sensor.chris_cell_hotspot_state,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Hotspot state,,
+binary_sensor.chris_cell_interactive,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Interactive,,
+binary_sensor.chris_cell_is_charging,mobile_app,plug,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Is charging,,
+binary_sensor.chris_cell_[REDACTED_FIELD],mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell [REDACTED_FIELD] locked,,
+binary_sensor.chris_cell_[REDACTED_FIELD],mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell [REDACTED_FIELD] secure,,
+binary_sensor.chris_cell_mic_muted,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Mic muted,,
+binary_sensor.chris_cell_mobile_data,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Mobile data,,
+binary_sensor.chris_cell_mobile_data_roaming,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Mobile data roaming,,
+binary_sensor.chris_cell_music_active,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Music active,,
+binary_sensor.chris_cell_power_save,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Power save,,
+binary_sensor.chris_cell_speakerphone,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Speakerphone,,
+binary_sensor.chris_cell_wi_fi_state,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi state,,
+binary_sensor.chris_cell_work_profile,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Work profile,,
+binary_sensor.east_door_left,zha,,,785e479597ffb8089508f31d1e79b385,,,,,,
+binary_sensor.file_editor_running,hassio,,,d924db4acce2013caac2ab8e2a26ac09,,integration,,Running,,
+binary_sensor.luis_cell_android_auto,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Android Auto,,
+binary_sensor.luis_cell_app_inactive,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell App inactive,,
+binary_sensor.luis_cell_bluetooth_state,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Bluetooth state,,
+binary_sensor.luis_cell_device_locked,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Device locked,,
+binary_sensor.luis_cell_device_secure,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Device secure,,
+binary_sensor.luis_cell_doze_mode,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Doze mode,,
+binary_sensor.luis_cell_headphones,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Headphones,,
+binary_sensor.luis_cell_hotspot_state,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Hotspot state,,
+binary_sensor.luis_cell_interactive,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Interactive,,
+binary_sensor.luis_cell_is_charging,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Is charging,,
+binary_sensor.luis_cell_[REDACTED_FIELD],mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell [REDACTED_FIELD] locked,,
+binary_sensor.luis_cell_[REDACTED_FIELD],mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell [REDACTED_FIELD] secure,,
+binary_sensor.luis_cell_mic_muted,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Mic muted,,
+binary_sensor.luis_cell_mobile_data,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Mobile data,,
+binary_sensor.luis_cell_mobile_data_roaming,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Mobile data roaming,,
+binary_sensor.luis_cell_music_active,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Music active,,
+binary_sensor.luis_cell_nfc_state,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell NFC state,,
+binary_sensor.luis_cell_power_save,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Power save,,
+binary_sensor.luis_cell_speakerphone,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Speakerphone,,
+binary_sensor.luis_cell_wi_fi_state,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi state,,
+binary_sensor.luis_cell_work_profile,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Work profile,,
+binary_sensor.m01_main_hallway_motion,zha,,,9269abc2968c77a923e341c565936281,,,,,,
+binary_sensor.m01_main_hallway_motion_occupancy,zha,,,9269abc2968c77a923e341c565936281,,,,Occupancy,,
+binary_sensor.m02_viewing_room_motion,zha,,,a6490a4e4f585647d6a86c181fbebede,,,,,,
+binary_sensor.m02_viewing_room_motion_occupancy,zha,,,a6490a4e4f585647d6a86c181fbebede,,,,Occupancy,,
+binary_sensor.matter_server_running,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,,integration,,Running,,
+binary_sensor.me_lewis_cell_android_auto,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Android Auto,,
+binary_sensor.me_lewis_cell_app_inactive,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell App inactive,,
+binary_sensor.me_lewis_cell_bluetooth_state,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Bluetooth state,,
+binary_sensor.me_lewis_cell_device_locked,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Device locked,,
+binary_sensor.me_lewis_cell_device_secure,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Device secure,,
+binary_sensor.me_lewis_cell_doze_mode,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Doze mode,,
+binary_sensor.me_lewis_cell_headphones,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Headphones,,
+binary_sensor.me_lewis_cell_hotspot_state,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Hotspot state,,
+binary_sensor.me_lewis_cell_interactive,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Interactive,,
+binary_sensor.me_lewis_cell_is_charging,mobile_app,plug,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Is charging,,
+binary_sensor.me_lewis_cell_[REDACTED_FIELD],mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell [REDACTED_FIELD] locked,,
+binary_sensor.me_lewis_cell_[REDACTED_FIELD],mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell [REDACTED_FIELD] secure,,
+binary_sensor.me_lewis_cell_mic_muted,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Mic muted,,
+binary_sensor.me_lewis_cell_mobile_data,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Mobile data,,
+binary_sensor.me_lewis_cell_mobile_data_roaming,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Mobile data roaming,,
+binary_sensor.me_lewis_cell_music_active,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Music active,,
+binary_sensor.me_lewis_cell_nfc_state,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell NFC state,,
+binary_sensor.me_lewis_cell_power_save,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Power save,,
+binary_sensor.me_lewis_cell_speakerphone,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Speakerphone,,
+binary_sensor.me_lewis_cell_wi_fi_state,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi state,,
+binary_sensor.me_lewis_cell_work_profile,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Work profile,,
+binary_sensor.remote_ui,cloud,,,,diagnostic,,,Remote UI,,
+binary_sensor.samba_share_running,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,,integration,,Running,,
+binary_sensor.south_wall_cam01_southwest_corner_parking_lot_animal,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Animal,,
+binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Linger Area 1 person,,
+binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_vehicle,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Linger Area 1 vehicle,,
+binary_sensor.south_wall_cam01_southwest_corner_parking_lot_motion,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Motion,,
+binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Person,,
+binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Vehicle,,
+binary_sensor.south_wall_home_connect_620_connected_smart_lock_[REDACTED_FIELD],zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,[REDACTED_FIELD] temporary disabled,,
+binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,Lock jammed,,
+binary_sensor.south_wall_home_connect_620_connected_smart_lock_power_has_been_applied,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,,,Power has been applied,,
+binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,Replace battery now,,
+binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,Replace battery soon,,
+binary_sensor.south_wall_home_connect_620_connected_smart_lock_tampering_product_cover_removed,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,"Tampering, product cover removed",,
+binary_sensor.south_wall_south_entrance_doorbell_motion,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Motion,,
+binary_sensor.south_wall_south_entrance_doorbell_person,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Person,,
+binary_sensor.south_wall_south_entrance_doorbell_pet,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Pet,,
+binary_sensor.south_wall_south_entrance_doorbell_vehicle,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Vehicle,,
+binary_sensor.south_wall_south_entrance_doorbell_visitor,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Visitor,,
+binary_sensor.sun_solar_rising,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,integration,,Solar rising,,
+binary_sensor.terminal_ssh_running,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,,integration,,Running,,
+binary_sensor.z_wave_js_running,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,,integration,,Running,,
+button.c01_south_entrance_door_identify,zha,,,430164a064e604570d9ea9816ca0a4d7,diagnostic,,,Identify,,
+button.c03_east_door_right_identify,zha,,,d6fa5c68ba774edc52551beca93e768d,diagnostic,,,Identify,,
+button.c04_west_door_identify,zha,,,754e6cb02d3110c2285962b6b78868e4,diagnostic,,,Identify,,
+button.c05_north_wall_window_1_identify,zha,,,daa1fe23aafeed8570e27a46cd2a2edd,diagnostic,,,Identify,,
+button.c06_north_wall_window_2_identify,zha,,,a4062d86605b1f335892c2d4155787be,diagnostic,,,Identify,,
+button.c07_north_wall_window_3_identify,zha,,,91c7405e18c81d53159201908d0584d4,diagnostic,,,Identify,,
+button.c08_north_wall_window_4_identify,zha,,,baeeab17a3eddef5f6f361392066ef56,diagnostic,,,Identify,,
+button.c09_north_wall_window_5_identify,zha,,,6a1413dbf8c06f498dfc4051ebbc5b92,diagnostic,,,Identify,,
+button.c10_south_wall_window_1_identify,zha,,,0808fb7b97611a30712fe4e567ebffc2,diagnostic,,,Identify,,
+button.c11_south_wall_window_2_identify,zha,,,2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,diagnostic,,,Identify,,
+button.c12_south_wall_window_3_identify,zha,,,818bf2df3306a9c6bc6066460c51d6de,diagnostic,,,Identify,,
+button.c13_south_wall_window_4_identify,zha,,,cd0a18145e4fbf2088c029e21fbf1513,diagnostic,,,Identify,,
+button.c14_south_wall_window_5_identify,zha,,,f4f983048c19e5efef8fb87278133b15,diagnostic,,,Identify,,
+button.driveway_restart,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Restart,,
+button.east_door_left_identify,zha,,,785e479597ffb8089508f31d1e79b385,diagnostic,,,Identify,,
+button.m01_main_hallway_motion_identify,zha,,,9269abc2968c77a923e341c565936281,diagnostic,,,Identify,,
+button.m02_viewing_room_motion_identify,zha,,,a6490a4e4f585647d6a86c181fbebede,diagnostic,,,Identify,,
+button.parking_lot_restart,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Restart,,
+button.south_wall_home_connect_620_connected_smart_lock_identify,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,,,Identify,,
+button.south_wall_home_connect_620_connected_smart_lock_idle_access_control_[REDACTED_FIELD],zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,integration,,Idle Access Control [REDACTED_FIELD] state,,
+button.south_wall_home_connect_620_connected_smart_lock_idle_home_security_cover_status,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,integration,,Idle Home Security Cover status,,
+button.south_wall_home_connect_620_connected_smart_lock_idle_power_management_battery_maintenance_status,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,integration,,Idle Power Management Battery maintenance status,,
+button.south_wall_home_connect_620_connected_smart_lock_idle_power_management_power_status,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,integration,,Idle Power Management Power status,,
+button.south_wall_home_connect_620_connected_smart_lock_ping,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,,,Ping,,
+camera.driveway_clear,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,integration,,Clear,,
+camera.driveway_snapshots_clear,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,integration,,Snapshots clear,,
+camera.driveway_snapshots_fluent,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,integration,,Snapshots fluent,,
+camera.parking_lot_clear,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,integration,,Clear,,
+camera.parking_lot_snapshots_clear,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,integration,,Snapshots clear,,
+camera.parking_lot_snapshots_fluent,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,integration,,Snapshots fluent,,
+camera.south_wall_cam01_southwest_corner_parking_lot_fluent,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Fluent,,
+camera.south_wall_south_entrance_doorbell_fluent,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Fluent,,
+device_tracker.chris_cell,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,,,Chris Cell,,
+device_tracker.luis_cell,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,,,Luis Cell,,
+device_tracker.me_lewis_cell,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,,,Me Lewis Cell,,
+event.backup_automatic_backup,backup,,,778b999e19ae3a31360ec1399ad69be9,,,,Automatic backup,,
+input_boolean.bklf_building_armed,input_boolean,,,,,,,BKLF Building Armed,,
+input_boolean.bklf_installer_mode,input_boolean,,,,,,,BKLF Installer Mode,,
+input_boolean.bklf_maintenance_mode,input_boolean,,,,,,,BKLF Maintenance Mode,,
+input_select.bklf_building_mode,input_select,,,,,,,BKLF Building Mode,,
+light.south_wall_cam01_southwest_corner_parking_lot_floodlight,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Floodlight,,
+lock.south_wall_home_connect_620_connected_smart_lock,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,,,,,
+media_player.lg_webos_tv_qned85aua,cast,,,e59ee7255ebcfa9a7dbfdb61b537abe0,,,,,,
+media_player.living_room_tv_4,cast,,,43e82081d5161bed65cacde839d21668,,,,,,
+media_player.living_room_tv_4_2,cast,,,0ff792bcb474fa80208d959ae9d70674,,,,,,
+media_player.swtv_23ae_4kr3,cast,,,6a3faa95f62b2223187c0584ba9f9d2b,,,,,,
+notify.chris_cell,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,,,,,
+notify.luis_cell,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,,,,,
+notify.me_lewis_cell,mobile_app,,,fc435c53636563035d322700f0f260a5,,,,,,
+number.conference_room_south_entrance_chime_silent_time,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Silent time,,min
+number.conference_room_south_entrance_chime_volume,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Volume,,
+number.driveway_ai_person_delay,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,AI person delay,,s
+number.driveway_ai_pet_delay,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,AI pet delay,,s
+number.driveway_ai_vehicle_delay,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,AI vehicle delay,,s
+number.driveway_day_night_switch_threshold,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Day night switch threshold,,
+number.driveway_image_brightness,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Image brightness,,
+number.driveway_image_contrast,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Image contrast,,
+number.driveway_image_saturation,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Image saturation,,
+number.driveway_image_sharpness,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Image sharpness,,
+number.parking_lot_ai_animal_delay,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,AI animal delay,,s
+number.parking_lot_ai_person_delay,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,AI person delay,,s
+number.parking_lot_ai_vehicle_delay,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,AI vehicle delay,,s
+number.parking_lot_audio_noise_reduction,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Audio noise reduction,,
+number.parking_lot_day_night_switch_threshold,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Day night switch threshold,,
+number.parking_lot_floodlight_turn_on_brightness,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Floodlight turn on brightness,,
+number.parking_lot_image_brightness,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Image brightness,,
+number.parking_lot_image_contrast,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Image contrast,,
+number.parking_lot_image_saturation,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Image saturation,,
+number.parking_lot_image_sharpness,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Image sharpness,,
+number.south_wall_cam01_southwest_corner_parking_lot_ai_animal_sensitivity,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,AI animal sensitivity,,
+number.south_wall_cam01_southwest_corner_parking_lot_ai_linger_area_1_delay,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,AI linger Area 1 delay,,s
+number.south_wall_cam01_southwest_corner_parking_lot_ai_linger_area_1_sensitivity,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,AI linger Area 1 sensitivity,,
+number.south_wall_cam01_southwest_corner_parking_lot_ai_person_sensitivity,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,AI person sensitivity,,
+number.south_wall_cam01_southwest_corner_parking_lot_ai_vehicle_sensitivity,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,AI vehicle sensitivity,,
+number.south_wall_cam01_southwest_corner_parking_lot_motion_sensitivity,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Motion sensitivity,,
+number.south_wall_cam01_southwest_corner_parking_lot_volume,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Volume,,
+number.south_wall_home_connect_620_connected_smart_lock_indicator_value,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,integration,,Indicator value,,
+number.south_wall_south_entrance_doorbell_ai_person_sensitivity,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,AI person sensitivity,,
+number.south_wall_south_entrance_doorbell_ai_pet_sensitivity,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,AI pet sensitivity,,
+number.south_wall_south_entrance_doorbell_ai_vehicle_sensitivity,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,AI vehicle sensitivity,,
+number.south_wall_south_entrance_doorbell_auto_quick_reply_time,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Auto quick reply time,,s
+number.south_wall_south_entrance_doorbell_doorbell_volume,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Doorbell volume,,
+number.south_wall_south_entrance_doorbell_motion_sensitivity,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Motion sensitivity,,
+number.south_wall_south_entrance_doorbell_speak_volume,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Speak volume,,
+number.south_wall_south_entrance_doorbell_volume,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Volume,,
+person.blewis,person,,,,,,,BLewis,,
+person.wny_home_security,person,,,,,,,WNY Home Security,,
+select.conference_room_south_entrance_chime_motion_ringtone,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Motion ringtone,,
+select.conference_room_south_entrance_chime_person_ringtone,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Person ringtone,,
+select.conference_room_south_entrance_chime_pet_ringtone,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Pet ringtone,,
+select.conference_room_south_entrance_chime_vehicle_ringtone,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Vehicle ringtone,,
+select.conference_room_south_entrance_chime_visitor_ringtone,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,Visitor ringtone,,
+select.driveway_clear_bit_rate,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Clear bit rate,,kbit/s
+select.driveway_clear_frame_rate,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Clear frame rate,,Hz
+select.driveway_fluent_bit_rate,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Fluent bit rate,,kbit/s
+select.driveway_fluent_frame_rate,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Fluent frame rate,,Hz
+select.driveway_hdr,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,HDR,,
+select.driveway_post_recording_time,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,integration,,Post-recording time,,
+select.parking_lot_clear_bit_rate,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Clear bit rate,,kbit/s
+select.parking_lot_clear_frame_rate,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Clear frame rate,,Hz
+select.parking_lot_fluent_bit_rate,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Fluent bit rate,,kbit/s
+select.parking_lot_fluent_frame_rate,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Fluent frame rate,,Hz
+select.parking_lot_post_recording_time,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,integration,,Post-recording time,,
+select.south_wall_cam01_southwest_corner_parking_lot_day_night_mode,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Day night mode,,
+select.south_wall_cam01_southwest_corner_parking_lot_floodlight_mode,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Floodlight mode,,
+select.south_wall_home_connect_620_connected_smart_lock_current_lock_mode,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,,,Current lock mode,,
+select.south_wall_home_connect_620_connected_smart_lock_lock_direction,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,integration,,Lock Direction,,
+select.south_wall_south_entrance_doorbell_auto_quick_reply_message,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Auto quick reply message,,
+select.south_wall_south_entrance_doorbell_day_night_mode,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Day night mode,,
+select.south_wall_south_entrance_doorbell_doorbell_led,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Doorbell LED,,
+select.south_wall_south_entrance_doorbell_play_quick_reply_message,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Play quick reply message,,
+sensor.800_series_long_range_usb_controller_avg_signal_noise_channel_0,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Avg. signal noise (channel 0),,dBm
+sensor.800_series_long_range_usb_controller_avg_signal_noise_channel_1,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Avg. signal noise (channel 1),,dBm
+sensor.800_series_long_range_usb_controller_avg_signal_noise_channel_2,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Avg. signal noise (channel 2),,dBm
+sensor.800_series_long_range_usb_controller_avg_signal_noise_channel_3,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Avg. signal noise (channel 3),,dBm
+sensor.800_series_long_range_usb_controller_collisions,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Collisions,,
+sensor.800_series_long_range_usb_controller_messages_dropped_rx,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Messages dropped (RX),,
+sensor.800_series_long_range_usb_controller_messages_dropped_tx,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Messages dropped (TX),,
+sensor.800_series_long_range_usb_controller_messages_not_accepted,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Messages not accepted,,
+sensor.800_series_long_range_usb_controller_missing_acks,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Missing ACKs,,
+sensor.800_series_long_range_usb_controller_signal_noise_channel_0,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Signal noise (channel 0),,dBm
+sensor.800_series_long_range_usb_controller_signal_noise_channel_1,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Signal noise (channel 1),,dBm
+sensor.800_series_long_range_usb_controller_signal_noise_channel_2,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Signal noise (channel 2),,dBm
+sensor.800_series_long_range_usb_controller_signal_noise_channel_3,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Signal noise (channel 3),,dBm
+sensor.800_series_long_range_usb_controller_status,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,,,Status,,
+sensor.800_series_long_range_usb_controller_successful_messages_rx,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Successful messages (RX),,
+sensor.800_series_long_range_usb_controller_successful_messages_tx,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Successful messages (TX),,
+sensor.800_series_long_range_usb_controller_timed_out_callbacks,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Timed out callbacks,,
+sensor.800_series_long_range_usb_controller_timed_out_responses,zwave_js,,,0dab21a581c5e68584cc30df97c09239,diagnostic,integration,,Timed out responses,,
+sensor.backup_backup_manager_state,backup,,,778b999e19ae3a31360ec1399ad69be9,,,,Backup Manager state,,
+sensor.backup_last_attempted_automatic_backup,backup,,,778b999e19ae3a31360ec1399ad69be9,,,,Last attempted automatic backup,,
+sensor.backup_last_successful_automatic_backup,backup,,,778b999e19ae3a31360ec1399ad69be9,,,,Last successful automatic backup,,
+sensor.backup_next_scheduled_automatic_backup,backup,,,778b999e19ae3a31360ec1399ad69be9,,,,Next scheduled automatic backup,,
+sensor.c01_south_entrance_door_battery,zha,,,430164a064e604570d9ea9816ca0a4d7,diagnostic,,,Battery,,%
+sensor.c01_south_entrance_door_lqi,zha,,,430164a064e604570d9ea9816ca0a4d7,diagnostic,integration,,LQI,,
+sensor.c01_south_entrance_door_rssi,zha,,,430164a064e604570d9ea9816ca0a4d7,diagnostic,integration,,RSSI,,dBm
+sensor.c03_east_door_right_battery,zha,,,d6fa5c68ba774edc52551beca93e768d,diagnostic,,,Battery,,%
+sensor.c03_east_door_right_lqi,zha,,,d6fa5c68ba774edc52551beca93e768d,diagnostic,integration,,LQI,,
+sensor.c03_east_door_right_rssi,zha,,,d6fa5c68ba774edc52551beca93e768d,diagnostic,integration,,RSSI,,dBm
+sensor.c04_west_door_battery,zha,,,754e6cb02d3110c2285962b6b78868e4,diagnostic,,,Battery,,%
+sensor.c04_west_door_lqi,zha,,,754e6cb02d3110c2285962b6b78868e4,diagnostic,integration,,LQI,,
+sensor.c04_west_door_rssi,zha,,,754e6cb02d3110c2285962b6b78868e4,diagnostic,integration,,RSSI,,dBm
+sensor.c05_north_wall_window_1_battery,zha,,,daa1fe23aafeed8570e27a46cd2a2edd,diagnostic,,,Battery,,%
+sensor.c05_north_wall_window_1_lqi,zha,,,daa1fe23aafeed8570e27a46cd2a2edd,diagnostic,integration,,LQI,,
+sensor.c05_north_wall_window_1_rssi,zha,,,daa1fe23aafeed8570e27a46cd2a2edd,diagnostic,integration,,RSSI,,dBm
+sensor.c06_north_wall_window_2_battery,zha,,,a4062d86605b1f335892c2d4155787be,diagnostic,,,Battery,,%
+sensor.c06_north_wall_window_2_lqi,zha,,,a4062d86605b1f335892c2d4155787be,diagnostic,integration,,LQI,,
+sensor.c06_north_wall_window_2_rssi,zha,,,a4062d86605b1f335892c2d4155787be,diagnostic,integration,,RSSI,,dBm
+sensor.c07_north_wall_window_3_battery,zha,,,91c7405e18c81d53159201908d0584d4,diagnostic,,,Battery,,%
+sensor.c07_north_wall_window_3_lqi,zha,,,91c7405e18c81d53159201908d0584d4,diagnostic,integration,,LQI,,
+sensor.c07_north_wall_window_3_rssi,zha,,,91c7405e18c81d53159201908d0584d4,diagnostic,integration,,RSSI,,dBm
+sensor.c08_north_wall_window_4_battery,zha,,,baeeab17a3eddef5f6f361392066ef56,diagnostic,,,Battery,,%
+sensor.c08_north_wall_window_4_lqi,zha,,,baeeab17a3eddef5f6f361392066ef56,diagnostic,integration,,LQI,,
+sensor.c08_north_wall_window_4_rssi,zha,,,baeeab17a3eddef5f6f361392066ef56,diagnostic,integration,,RSSI,,dBm
+sensor.c09_north_wall_window_5_battery,zha,,,6a1413dbf8c06f498dfc4051ebbc5b92,diagnostic,,,Battery,,%
+sensor.c09_north_wall_window_5_lqi,zha,,,6a1413dbf8c06f498dfc4051ebbc5b92,diagnostic,integration,,LQI,,
+sensor.c09_north_wall_window_5_rssi,zha,,,6a1413dbf8c06f498dfc4051ebbc5b92,diagnostic,integration,,RSSI,,dBm
+sensor.c10_south_wall_window_1_battery,zha,,,0808fb7b97611a30712fe4e567ebffc2,diagnostic,,,Battery,,%
+sensor.c10_south_wall_window_1_lqi,zha,,,0808fb7b97611a30712fe4e567ebffc2,diagnostic,integration,,LQI,,
+sensor.c10_south_wall_window_1_rssi,zha,,,0808fb7b97611a30712fe4e567ebffc2,diagnostic,integration,,RSSI,,dBm
+sensor.c11_south_wall_window_2_battery,zha,,,2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,diagnostic,,,Battery,,%
+sensor.c11_south_wall_window_2_lqi,zha,,,2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,diagnostic,integration,,LQI,,
+sensor.c11_south_wall_window_2_rssi,zha,,,2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,diagnostic,integration,,RSSI,,dBm
+sensor.c12_south_wall_window_3_battery,zha,,,818bf2df3306a9c6bc6066460c51d6de,diagnostic,,,Battery,,%
+sensor.c12_south_wall_window_3_lqi,zha,,,818bf2df3306a9c6bc6066460c51d6de,diagnostic,integration,,LQI,,
+sensor.c12_south_wall_window_3_rssi,zha,,,818bf2df3306a9c6bc6066460c51d6de,diagnostic,integration,,RSSI,,dBm
+sensor.c13_south_wall_window_4_battery,zha,,,cd0a18145e4fbf2088c029e21fbf1513,diagnostic,,,Battery,,%
+sensor.c13_south_wall_window_4_lqi,zha,,,cd0a18145e4fbf2088c029e21fbf1513,diagnostic,integration,,LQI,,
+sensor.c13_south_wall_window_4_rssi,zha,,,cd0a18145e4fbf2088c029e21fbf1513,diagnostic,integration,,RSSI,,dBm
+sensor.c14_south_wall_window_5_battery,zha,,,f4f983048c19e5efef8fb87278133b15,diagnostic,,,Battery,,%
+sensor.c14_south_wall_window_5_lqi,zha,,,f4f983048c19e5efef8fb87278133b15,diagnostic,integration,,LQI,,
+sensor.c14_south_wall_window_5_rssi,zha,,,f4f983048c19e5efef8fb87278133b15,diagnostic,integration,,RSSI,,dBm
+sensor.chris_cell_accent_color,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Accent color,,
+sensor.chris_cell_active_calories_burned,mobile_app,energy,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Active calories burned,,kcal
+sensor.chris_cell_app_importance,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell App importance,,
+sensor.chris_cell_app_memory,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell App memory,,GB
+sensor.chris_cell_app_rx_gb,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell App Rx GB,,GB
+sensor.chris_cell_app_standby_bucket,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell App standby bucket,,
+sensor.chris_cell_app_tx_gb,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell App Tx GB,,GB
+sensor.chris_cell_audio_mode,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Audio mode,,
+sensor.chris_cell_basal_body_temperature,mobile_app,temperature,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Basal body temperature,,°C
+sensor.chris_cell_basal_metabolic_rate,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Basal metabolic rate,,kcal/day
+sensor.chris_cell_battery_cycle_count,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Battery cycle count,,
+sensor.chris_cell_battery_health,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Battery health,,
+sensor.chris_cell_battery_level,mobile_app,battery,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,,,Chris Cell Battery level,,%
+sensor.chris_cell_battery_power,mobile_app,power,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Battery power,,W
+sensor.chris_cell_battery_state,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,,,Chris Cell Battery state,,
+sensor.chris_cell_battery_temperature,mobile_app,temperature,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Battery temperature,,°C
+sensor.chris_cell_beacon_monitor,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Beacon monitor,,
+sensor.chris_cell_ble_transmitter,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell BLE transmitter,,
+sensor.chris_cell_blood_glucose,mobile_app,blood_glucose_concentration,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Blood glucose,,mg/dL
+sensor.chris_cell_bluetooth_connection,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Bluetooth connection,,connection(s)
+sensor.chris_cell_body_fat,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Body fat,,%
+sensor.chris_cell_body_temperature,mobile_app,temperature,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Body temperature,,°C
+sensor.chris_cell_body_water_mass,mobile_app,weight,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Body water mass,,g
+sensor.chris_cell_bone_mass,mobile_app,weight,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Bone mass,,g
+sensor.chris_cell_car_battery,mobile_app,battery,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Car battery,,%
+sensor.chris_cell_car_charging_status,mobile_app,plug,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Car charging status,,
+sensor.chris_cell_car_ev_connector_type,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Car EV connector type,,
+sensor.chris_cell_car_fuel,mobile_app,battery,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Car fuel,,%
+sensor.chris_cell_car_fuel_type,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Car fuel type,,
+sensor.chris_cell_car_name,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Car name,,
+sensor.chris_cell_car_odometer,mobile_app,distance,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Car odometer,,m
+sensor.chris_cell_car_range_remaining,mobile_app,distance,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Car range remaining,,m
+sensor.chris_cell_car_speed,mobile_app,speed,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Car speed,,m/s
+sensor.chris_cell_charger_type,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,,,Chris Cell Charger type,,
+sensor.chris_cell_current_time_zone,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Current time zone,,
+sensor.chris_cell_current_version,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Current version,,
+sensor.chris_cell_daily_distance,mobile_app,distance,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Daily distance,,m
+sensor.chris_cell_daily_elevation_gained,mobile_app,distance,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Daily elevation gained,,m
+sensor.chris_cell_daily_floors,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Daily floors,,floors
+sensor.chris_cell_daily_hydration,mobile_app,volume,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Daily hydration,,mL
+sensor.chris_cell_daily_steps,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Daily steps,,steps
+sensor.chris_cell_data_network_type_sim_1,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Data network type (SIM 1),,
+sensor.chris_cell_data_network_type_sim_2,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Data network type (SIM 2),,
+sensor.chris_cell_detected_activity,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Detected activity,,
+sensor.chris_cell_diastolic_blood_pressure,mobile_app,pressure,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Diastolic blood pressure,,mmHg
+sensor.chris_cell_do_not_disturb_sensor,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Do Not Disturb sensor,,
+sensor.chris_cell_external_storage,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell External storage,,%
+sensor.chris_cell_geocoded_location,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Geocoded location,,
+sensor.chris_cell_heart_rate,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Heart rate,,bpm
+sensor.chris_cell_heart_rate_variability,mobile_app,duration,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Heart rate variability,,ms
+sensor.chris_cell_height,mobile_app,distance,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Height,,m
+sensor.chris_cell_internal_storage,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Internal storage,,%
+sensor.chris_cell_ipv6_addresses,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell IPv6 addresses,,address(es)
+sensor.chris_cell_last_reboot,mobile_app,timestamp,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Last reboot,,
+sensor.chris_cell_last_used_app,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Last used app,,
+sensor.chris_cell_lean_body_mass,mobile_app,weight,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Lean body mass,,g
+sensor.chris_cell_light_sensor,mobile_app,illuminance,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Light sensor,,lx
+sensor.chris_cell_media_session,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Media session,,
+sensor.chris_cell_mobile_rx_gb,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Mobile Rx GB,,GB
+sensor.chris_cell_mobile_tx_gb,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Mobile Tx GB,,GB
+sensor.chris_cell_network_type,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Network type,,
+sensor.chris_cell_next_alarm,mobile_app,timestamp,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Next alarm,,
+sensor.chris_cell_os_version,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell OS version,,
+sensor.chris_cell_oxygen_saturation,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Oxygen saturation,,%
+sensor.chris_cell_phone_state,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Phone state,,
+sensor.chris_cell_pressure_sensor,mobile_app,atmospheric_pressure,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Pressure sensor,,hPa
+sensor.chris_cell_proximity_sensor,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Proximity sensor,,
+sensor.chris_cell_public_ip_address,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Public IP address,,
+sensor.chris_cell_remaining_charge_time,mobile_app,duration,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Remaining charge time,,min
+sensor.chris_cell_respiratory_rate,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Respiratory rate,,bpm
+sensor.chris_cell_resting_heart_rate,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Resting heart rate,,bpm
+sensor.chris_cell_ringer_mode,mobile_app,enum,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Ringer mode,,
+sensor.chris_cell_screen_brightness,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Screen brightness,,
+sensor.chris_cell_screen_off_timeout,mobile_app,duration,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Screen off timeout,,ms
+sensor.chris_cell_screen_orientation,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Screen orientation,,
+sensor.chris_cell_screen_rotation,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Screen rotation,,°
+sensor.chris_cell_security_patch,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Security patch,,
+sensor.chris_cell_signal_strength_sim_1,mobile_app,signal_strength,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Signal strength (SIM 1),,dBm
+sensor.chris_cell_signal_strength_sim_2,mobile_app,signal_strength,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Signal strength (SIM 2),,dBm
+sensor.chris_cell_sim_1,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell SIM 1,,
+sensor.chris_cell_sim_2,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell SIM 2,,
+sensor.chris_cell_sleep_confidence,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Sleep confidence,,%
+sensor.chris_cell_sleep_duration,mobile_app,duration,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Sleep duration,,min
+sensor.chris_cell_sleep_segment,mobile_app,duration,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Sleep segment,,ms
+sensor.chris_cell_steps_sensor,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,,integration,,Chris Cell Steps sensor,,steps
+sensor.chris_cell_systolic_blood_pressure,mobile_app,pressure,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Systolic blood pressure,,mmHg
+sensor.chris_cell_total_calories_burned,mobile_app,energy,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Total calories burned,,kcal
+sensor.chris_cell_total_rx_gb,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Total Rx GB,,GB
+sensor.chris_cell_total_tx_gb,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Total Tx GB,,GB
+sensor.chris_cell_vo2_max,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell VO2 max,,mL/kg/min
+sensor.chris_cell_volume_level_accessibility,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level accessibility,,
+sensor.chris_cell_volume_level_alarm,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level alarm,,
+sensor.chris_cell_volume_level_call,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level call,,
+sensor.chris_cell_volume_level_dtmf,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level DTMF,,
+sensor.chris_cell_volume_level_music,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level music,,
+sensor.chris_cell_volume_level_notification,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level notification,,
+sensor.chris_cell_volume_level_ringer,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level ringer,,
+sensor.chris_cell_volume_level_system,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Volume level system,,
+sensor.chris_cell_weight,mobile_app,weight,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Weight,,g
+sensor.chris_cell_wi_fi_bssid,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi BSSID,,
+sensor.chris_cell_wi_fi_connection,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi connection,,
+sensor.chris_cell_wi_fi_frequency,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi frequency,,MHz
+sensor.chris_cell_wi_fi_ip_address,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi IP address,,
+sensor.chris_cell_wi_fi_link_speed,mobile_app,,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi link speed,,Mbps
+sensor.chris_cell_wi_fi_signal_strength,mobile_app,signal_strength,,c3273c4a604f70c2094561b0e7c3a29b,diagnostic,integration,,Chris Cell Wi-Fi signal strength,,dBm
+sensor.driveway_cpu_usage,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,diagnostic,integration,,CPU usage,,%
+sensor.east_door_left_battery,zha,,,785e479597ffb8089508f31d1e79b385,diagnostic,,,Battery,,%
+sensor.east_door_left_lqi,zha,,,785e479597ffb8089508f31d1e79b385,diagnostic,integration,,LQI,,
+sensor.east_door_left_rssi,zha,,,785e479597ffb8089508f31d1e79b385,diagnostic,integration,,RSSI,,dBm
+sensor.file_editor_cpu_percent,hassio,,,d924db4acce2013caac2ab8e2a26ac09,,integration,,CPU percent,,%
+sensor.file_editor_memory_percent,hassio,,,d924db4acce2013caac2ab8e2a26ac09,,integration,,Memory percent,,%
+sensor.file_editor_newest_version,hassio,,,d924db4acce2013caac2ab8e2a26ac09,,integration,,Newest version,,
+sensor.file_editor_version,hassio,,,d924db4acce2013caac2ab8e2a26ac09,,integration,,Version,,
+sensor.home_assistant_core_cpu_percent,hassio,,,ad6497948030bdd57a554e3f8bb1a2bb,,integration,,CPU percent,,%
+sensor.home_assistant_core_memory_percent,hassio,,,ad6497948030bdd57a554e3f8bb1a2bb,,integration,,Memory percent,,%
+sensor.home_assistant_host_apparmor_version,hassio,,,49082fc8e5861c097a21fc97fdbf33ed,diagnostic,integration,,AppArmor version,,
+sensor.home_assistant_host_disk_free,hassio,,,49082fc8e5861c097a21fc97fdbf33ed,diagnostic,integration,,Disk free,,GB
+sensor.home_assistant_host_disk_total,hassio,,,49082fc8e5861c097a21fc97fdbf33ed,diagnostic,integration,,Disk total,,GB
+sensor.home_assistant_host_disk_used,hassio,,,49082fc8e5861c097a21fc97fdbf33ed,diagnostic,integration,,Disk used,,GB
+sensor.home_assistant_host_os_agent_version,hassio,,,49082fc8e5861c097a21fc97fdbf33ed,diagnostic,integration,,OS Agent version,,
+sensor.home_assistant_operating_system_newest_version,hassio,,,37bd085578bd41374bdbea330e91e239,,integration,,Newest version,,
+sensor.home_assistant_operating_system_version,hassio,,,37bd085578bd41374bdbea330e91e239,,integration,,Version,,
+sensor.home_assistant_supervisor_cpu_percent,hassio,,,13c58899b701d2a6dc5170c9941f094c,,integration,,CPU percent,,%
+sensor.home_assistant_supervisor_memory_percent,hassio,,,13c58899b701d2a6dc5170c9941f094c,,integration,,Memory percent,,%
+sensor.luis_cell_accent_color,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Accent color,,
+sensor.luis_cell_active_calories_burned,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Active calories burned,,kcal
+sensor.luis_cell_app_importance,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell App importance,,
+sensor.luis_cell_app_memory,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell App memory,,GB
+sensor.luis_cell_app_rx_gb,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell App Rx GB,,GB
+sensor.luis_cell_app_standby_bucket,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell App standby bucket,,
+sensor.luis_cell_app_tx_gb,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell App Tx GB,,GB
+sensor.luis_cell_audio_mode,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Audio mode,,
+sensor.luis_cell_basal_body_temperature,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Basal body temperature,,°F
+sensor.luis_cell_basal_metabolic_rate,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Basal metabolic rate,,kcal/day
+sensor.luis_cell_battery_cycle_count,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Battery cycle count,,
+sensor.luis_cell_battery_health,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Battery health,,
+sensor.luis_cell_battery_level,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,,,Luis Cell Battery level,,%
+sensor.luis_cell_battery_power,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Battery power,,W
+sensor.luis_cell_battery_state,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,,,Luis Cell Battery state,,
+sensor.luis_cell_battery_temperature,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Battery temperature,,°F
+sensor.luis_cell_beacon_monitor,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Beacon monitor,,
+sensor.luis_cell_ble_transmitter,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell BLE transmitter,,
+sensor.luis_cell_blood_glucose,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Blood glucose,,mg/dL
+sensor.luis_cell_bluetooth_connection,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Bluetooth connection,,connection(s)
+sensor.luis_cell_body_fat,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Body fat,,%
+sensor.luis_cell_body_temperature,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Body temperature,,°F
+sensor.luis_cell_body_water_mass,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Body water mass,,g
+sensor.luis_cell_bone_mass,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Bone mass,,g
+sensor.luis_cell_car_battery,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Car battery,,%
+sensor.luis_cell_car_charging_status,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Car charging status,,
+sensor.luis_cell_car_ev_connector_type,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Car EV connector type,,
+sensor.luis_cell_car_fuel,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Car fuel,,%
+sensor.luis_cell_car_fuel_type,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Car fuel type,,
+sensor.luis_cell_car_name,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Car name,,
+sensor.luis_cell_car_odometer,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Car odometer,,ft
+sensor.luis_cell_car_range_remaining,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Car range remaining,,ft
+sensor.luis_cell_car_speed,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Car speed,,mph
+sensor.luis_cell_charger_type,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,,,Luis Cell Charger type,,
+sensor.luis_cell_current_time_zone,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Current time zone,,
+sensor.luis_cell_current_version,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Current version,,
+sensor.luis_cell_daily_distance,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Daily distance,,ft
+sensor.luis_cell_daily_elevation_gained,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Daily elevation gained,,ft
+sensor.luis_cell_daily_floors,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Daily floors,,floors
+sensor.luis_cell_daily_hydration,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Daily hydration,,fl. oz.
+sensor.luis_cell_daily_steps,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Daily steps,,steps
+sensor.luis_cell_data_network_type_sim_1,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Data network type (SIM 1),,
+sensor.luis_cell_data_network_type_sim_2,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Data network type (SIM 2),,
+sensor.luis_cell_detected_activity,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Detected activity,,
+sensor.luis_cell_diastolic_blood_pressure,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Diastolic blood pressure,,inHg
+sensor.luis_cell_do_not_disturb_sensor,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Do Not Disturb sensor,,
+sensor.luis_cell_external_storage,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell External storage,,%
+sensor.luis_cell_geocoded_location,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Geocoded location,,
+sensor.luis_cell_heart_rate,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Heart rate,,bpm
+sensor.luis_cell_heart_rate_variability,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Heart rate variability,,ms
+sensor.luis_cell_height,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Height,,ft
+sensor.luis_cell_internal_storage,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Internal storage,,%
+sensor.luis_cell_ipv6_addresses,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell IPv6 addresses,,address(es)
+sensor.luis_cell_last_reboot,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Last reboot,,
+sensor.luis_cell_last_used_app,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Last used app,,
+sensor.luis_cell_lean_body_mass,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Lean body mass,,g
+sensor.luis_cell_light_sensor,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Light sensor,,lx
+sensor.luis_cell_media_session,mobile_app,enum,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Media session,,
+sensor.luis_cell_mobile_rx_gb,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Mobile Rx GB,,GB
+sensor.luis_cell_mobile_tx_gb,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Mobile Tx GB,,GB
+sensor.luis_cell_network_type,mobile_app,enum,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Network type,,
+sensor.luis_cell_next_alarm,mobile_app,timestamp,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Next alarm,,
+sensor.luis_cell_os_version,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell OS version,,
+sensor.luis_cell_oxygen_saturation,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Oxygen saturation,,%
+sensor.luis_cell_phone_state,mobile_app,enum,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Phone state,,
+sensor.luis_cell_pressure_sensor,mobile_app,atmospheric_pressure,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Pressure sensor,,hPa
+sensor.luis_cell_proximity_sensor,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Proximity sensor,,
+sensor.luis_cell_public_ip_address,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Public IP address,,
+sensor.luis_cell_remaining_charge_time,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Remaining charge time,,min
+sensor.luis_cell_respiratory_rate,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Respiratory rate,,bpm
+sensor.luis_cell_resting_heart_rate,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Resting heart rate,,bpm
+sensor.luis_cell_ringer_mode,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Ringer mode,,
+sensor.luis_cell_screen_brightness,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Screen brightness,,
+sensor.luis_cell_screen_off_timeout,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Screen off timeout,,ms
+sensor.luis_cell_screen_orientation,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Screen orientation,,
+sensor.luis_cell_screen_rotation,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Screen rotation,,°
+sensor.luis_cell_security_patch,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Security patch,,
+sensor.luis_cell_signal_strength_sim_1,mobile_app,signal_strength,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Signal strength (SIM 1),,dBm
+sensor.luis_cell_signal_strength_sim_2,mobile_app,signal_strength,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Signal strength (SIM 2),,dBm
+sensor.luis_cell_sim_1,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell SIM 1,,
+sensor.luis_cell_sim_2,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell SIM 2,,
+sensor.luis_cell_sleep_confidence,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Sleep confidence,,%
+sensor.luis_cell_sleep_duration,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Sleep duration,,min
+sensor.luis_cell_sleep_segment,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Sleep segment,,ms
+sensor.luis_cell_steps_sensor,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,,integration,,Luis Cell Steps sensor,,steps
+sensor.luis_cell_systolic_blood_pressure,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Systolic blood pressure,,inHg
+sensor.luis_cell_total_calories_burned,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Total calories burned,,kcal
+sensor.luis_cell_total_rx_gb,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Total Rx GB,,GB
+sensor.luis_cell_total_tx_gb,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Total Tx GB,,GB
+sensor.luis_cell_vo2_max,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell VO2 max,,mL/kg/min
+sensor.luis_cell_volume_level_accessibility,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level accessibility,,
+sensor.luis_cell_volume_level_alarm,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level alarm,,
+sensor.luis_cell_volume_level_call,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level call,,
+sensor.luis_cell_volume_level_dtmf,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level DTMF,,
+sensor.luis_cell_volume_level_music,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level music,,
+sensor.luis_cell_volume_level_notification,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level notification,,
+sensor.luis_cell_volume_level_ringer,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level ringer,,
+sensor.luis_cell_volume_level_system,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Volume level system,,
+sensor.luis_cell_weight,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Weight,,g
+sensor.luis_cell_wi_fi_bssid,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi BSSID,,
+sensor.luis_cell_wi_fi_connection,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi connection,,
+sensor.luis_cell_wi_fi_frequency,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi frequency,,MHz
+sensor.luis_cell_wi_fi_ip_address,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi IP address,,
+sensor.luis_cell_wi_fi_link_speed,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi link speed,,Mbps
+sensor.luis_cell_wi_fi_signal_strength,mobile_app,,,a5adb4b0fbd855d62443726b466c6f44,diagnostic,integration,,Luis Cell Wi-Fi signal strength,,dBm
+sensor.m01_main_hallway_motion_battery,zha,,,9269abc2968c77a923e341c565936281,diagnostic,,,Battery,,%
+sensor.m01_main_hallway_motion_lqi,zha,,,9269abc2968c77a923e341c565936281,diagnostic,integration,,LQI,,
+sensor.m01_main_hallway_motion_rssi,zha,,,9269abc2968c77a923e341c565936281,diagnostic,integration,,RSSI,,dBm
+sensor.m02_viewing_room_motion_battery,zha,,,a6490a4e4f585647d6a86c181fbebede,diagnostic,,,Battery,,%
+sensor.m02_viewing_room_motion_lqi,zha,,,a6490a4e4f585647d6a86c181fbebede,diagnostic,integration,,LQI,,
+sensor.m02_viewing_room_motion_rssi,zha,,,a6490a4e4f585647d6a86c181fbebede,diagnostic,integration,,RSSI,,dBm
+sensor.matter_server_cpu_percent,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,,integration,,CPU percent,,%
+sensor.matter_server_memory_percent,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,,integration,,Memory percent,,%
+sensor.matter_server_newest_version,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,,integration,,Newest version,,
+sensor.matter_server_version,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,,integration,,Version,,
+sensor.me_lewis_cell_accent_color,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Accent color,,
+sensor.me_lewis_cell_active_calories_burned,mobile_app,energy,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Active calories burned,,kcal
+sensor.me_lewis_cell_app_importance,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell App importance,,
+sensor.me_lewis_cell_app_memory,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell App memory,,GB
+sensor.me_lewis_cell_app_rx_gb,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell App Rx GB,,GB
+sensor.me_lewis_cell_app_standby_bucket,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell App standby bucket,,
+sensor.me_lewis_cell_app_tx_gb,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell App Tx GB,,GB
+sensor.me_lewis_cell_audio_mode,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Audio mode,,
+sensor.me_lewis_cell_basal_body_temperature,mobile_app,temperature,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Basal body temperature,,°C
+sensor.me_lewis_cell_basal_metabolic_rate,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Basal metabolic rate,,kcal/day
+sensor.me_lewis_cell_battery_cycle_count,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Battery cycle count,,
+sensor.me_lewis_cell_battery_health,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Battery health,,
+sensor.me_lewis_cell_battery_level,mobile_app,battery,,fc435c53636563035d322700f0f260a5,diagnostic,,,Me Lewis Cell Battery level,,%
+sensor.me_lewis_cell_battery_power,mobile_app,power,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Battery power,,W
+sensor.me_lewis_cell_battery_state,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,,,Me Lewis Cell Battery state,,
+sensor.me_lewis_cell_battery_temperature,mobile_app,temperature,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Battery temperature,,°C
+sensor.me_lewis_cell_beacon_monitor,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Beacon monitor,,
+sensor.me_lewis_cell_ble_transmitter,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell BLE transmitter,,
+sensor.me_lewis_cell_blood_glucose,mobile_app,blood_glucose_concentration,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Blood glucose,,mg/dL
+sensor.me_lewis_cell_bluetooth_connection,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Bluetooth connection,,connection(s)
+sensor.me_lewis_cell_body_fat,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Body fat,,%
+sensor.me_lewis_cell_body_temperature,mobile_app,temperature,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Body temperature,,°C
+sensor.me_lewis_cell_body_water_mass,mobile_app,weight,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Body water mass,,g
+sensor.me_lewis_cell_bone_mass,mobile_app,weight,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Bone mass,,g
+sensor.me_lewis_cell_car_battery,mobile_app,battery,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Car battery,,%
+sensor.me_lewis_cell_car_charging_status,mobile_app,plug,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Car charging status,,
+sensor.me_lewis_cell_car_ev_connector_type,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Car EV connector type,,
+sensor.me_lewis_cell_car_fuel,mobile_app,battery,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Car fuel,,%
+sensor.me_lewis_cell_car_fuel_type,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Car fuel type,,
+sensor.me_lewis_cell_car_name,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Car name,,
+sensor.me_lewis_cell_car_odometer,mobile_app,distance,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Car odometer,,m
+sensor.me_lewis_cell_car_range_remaining,mobile_app,distance,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Car range remaining,,m
+sensor.me_lewis_cell_car_speed,mobile_app,speed,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Car speed,,m/s
+sensor.me_lewis_cell_charger_type,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,,,Me Lewis Cell Charger type,,
+sensor.me_lewis_cell_current_time_zone,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Current time zone,,
+sensor.me_lewis_cell_current_version,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Current version,,
+sensor.me_lewis_cell_daily_distance,mobile_app,distance,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Daily distance,,m
+sensor.me_lewis_cell_daily_elevation_gained,mobile_app,distance,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Daily elevation gained,,m
+sensor.me_lewis_cell_daily_floors,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Daily floors,,floors
+sensor.me_lewis_cell_daily_hydration,mobile_app,volume,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Daily hydration,,mL
+sensor.me_lewis_cell_daily_steps,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Daily steps,,steps
+sensor.me_lewis_cell_data_network_type_sim_1,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Data network type (SIM 1),,
+sensor.me_lewis_cell_data_network_type_sim_2,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Data network type (SIM 2),,
+sensor.me_lewis_cell_detected_activity,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Detected activity,,
+sensor.me_lewis_cell_diastolic_blood_pressure,mobile_app,pressure,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Diastolic blood pressure,,mmHg
+sensor.me_lewis_cell_do_not_disturb_sensor,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Do Not Disturb sensor,,
+sensor.me_lewis_cell_external_storage,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell External storage,,%
+sensor.me_lewis_cell_geocoded_location,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Geocoded location,,
+sensor.me_lewis_cell_heart_rate,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Heart rate,,bpm
+sensor.me_lewis_cell_heart_rate_variability,mobile_app,duration,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Heart rate variability,,ms
+sensor.me_lewis_cell_height,mobile_app,distance,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Height,,m
+sensor.me_lewis_cell_internal_storage,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Internal storage,,%
+sensor.me_lewis_cell_ipv6_addresses,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell IPv6 addresses,,address(es)
+sensor.me_lewis_cell_last_reboot,mobile_app,timestamp,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Last reboot,,
+sensor.me_lewis_cell_last_used_app,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Last used app,,
+sensor.me_lewis_cell_lean_body_mass,mobile_app,weight,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Lean body mass,,g
+sensor.me_lewis_cell_light_sensor,mobile_app,illuminance,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Light sensor,,lx
+sensor.me_lewis_cell_media_session,mobile_app,enum,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Media session,,
+sensor.me_lewis_cell_mobile_rx_gb,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Mobile Rx GB,,GB
+sensor.me_lewis_cell_mobile_tx_gb,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Mobile Tx GB,,GB
+sensor.me_lewis_cell_network_type,mobile_app,enum,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Network type,,
+sensor.me_lewis_cell_next_alarm,mobile_app,timestamp,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Next alarm,,
+sensor.me_lewis_cell_os_version,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell OS version,,
+sensor.me_lewis_cell_oxygen_saturation,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Oxygen saturation,,%
+sensor.me_lewis_cell_phone_state,mobile_app,enum,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Phone state,,
+sensor.me_lewis_cell_pressure_sensor,mobile_app,atmospheric_pressure,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Pressure sensor,,hPa
+sensor.me_lewis_cell_proximity_sensor,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Proximity sensor,,
+sensor.me_lewis_cell_public_ip_address,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Public IP address,,
+sensor.me_lewis_cell_remaining_charge_time,mobile_app,duration,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Remaining charge time,,min
+sensor.me_lewis_cell_respiratory_rate,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Respiratory rate,,bpm
+sensor.me_lewis_cell_resting_heart_rate,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Resting heart rate,,bpm
+sensor.me_lewis_cell_ringer_mode,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Ringer mode,,
+sensor.me_lewis_cell_screen_brightness,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Screen brightness,,
+sensor.me_lewis_cell_screen_off_timeout,mobile_app,duration,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Screen off timeout,,ms
+sensor.me_lewis_cell_screen_orientation,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Screen orientation,,
+sensor.me_lewis_cell_screen_rotation,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Screen rotation,,°
+sensor.me_lewis_cell_security_patch,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Security patch,,
+sensor.me_lewis_cell_signal_strength_sim_1,mobile_app,signal_strength,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Signal strength (SIM 1),,dBm
+sensor.me_lewis_cell_signal_strength_sim_2,mobile_app,signal_strength,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Signal strength (SIM 2),,dBm
+sensor.me_lewis_cell_sim_1,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell SIM 1,,
+sensor.me_lewis_cell_sim_2,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell SIM 2,,
+sensor.me_lewis_cell_sleep_confidence,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Sleep confidence,,%
+sensor.me_lewis_cell_sleep_duration,mobile_app,duration,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Sleep duration,,min
+sensor.me_lewis_cell_sleep_segment,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Sleep segment,,ms
+sensor.me_lewis_cell_steps_sensor,mobile_app,,,fc435c53636563035d322700f0f260a5,,integration,,Me Lewis Cell Steps sensor,,steps
+sensor.me_lewis_cell_systolic_blood_pressure,mobile_app,pressure,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Systolic blood pressure,,mmHg
+sensor.me_lewis_cell_total_calories_burned,mobile_app,energy,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Total calories burned,,kcal
+sensor.me_lewis_cell_total_rx_gb,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Total Rx GB,,GB
+sensor.me_lewis_cell_total_tx_gb,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Total Tx GB,,GB
+sensor.me_lewis_cell_vo2_max,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell VO2 max,,mL/kg/min
+sensor.me_lewis_cell_volume_level_accessibility,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level accessibility,,
+sensor.me_lewis_cell_volume_level_alarm,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level alarm,,
+sensor.me_lewis_cell_volume_level_call,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level call,,
+sensor.me_lewis_cell_volume_level_dtmf,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level DTMF,,
+sensor.me_lewis_cell_volume_level_music,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level music,,
+sensor.me_lewis_cell_volume_level_notification,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level notification,,
+sensor.me_lewis_cell_volume_level_ringer,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level ringer,,
+sensor.me_lewis_cell_volume_level_system,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Volume level system,,
+sensor.me_lewis_cell_weight,mobile_app,weight,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Weight,,g
+sensor.me_lewis_cell_wi_fi_bssid,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi BSSID,,
+sensor.me_lewis_cell_wi_fi_connection,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi connection,,
+sensor.me_lewis_cell_wi_fi_frequency,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi frequency,,MHz
+sensor.me_lewis_cell_wi_fi_ip_address,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi IP address,,
+sensor.me_lewis_cell_wi_fi_link_speed,mobile_app,,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi link speed,,Mbps
+sensor.me_lewis_cell_wi_fi_signal_strength,mobile_app,signal_strength,,fc435c53636563035d322700f0f260a5,diagnostic,integration,,Me Lewis Cell Wi-Fi signal strength,,dBm
+sensor.parking_lot_cpu_usage,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,diagnostic,integration,,CPU usage,,%
+sensor.parking_lot_sd_0_storage,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,diagnostic,integration,,SD 0 storage,,%
+sensor.samba_share_cpu_percent,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,,integration,,CPU percent,,%
+sensor.samba_share_memory_percent,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,,integration,,Memory percent,,%
+sensor.samba_share_newest_version,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,,integration,,Newest version,,
+sensor.samba_share_version,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,,integration,,Version,,
+sensor.sonoff_zbdongle_e_address_conflict_sent,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,ADDRESS_CONFLICT_SENT,,
+sensor.sonoff_zbdongle_e_allocate_packet_buffer_failure,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,ALLOCATE_PACKET_BUFFER_FAILURE,,
+sensor.sonoff_zbdongle_e_aps_data_rx_broadcast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DATA_RX_BROADCAST,,
+sensor.sonoff_zbdongle_e_aps_data_rx_unicast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DATA_RX_UNICAST,,
+sensor.sonoff_zbdongle_e_aps_data_tx_broadcast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DATA_TX_BROADCAST,,
+sensor.sonoff_zbdongle_e_aps_data_tx_unicast_failed,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DATA_TX_UNICAST_FAILED,,
+sensor.sonoff_zbdongle_e_aps_data_tx_unicast_retry,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DATA_TX_UNICAST_RETRY,,
+sensor.sonoff_zbdongle_e_aps_data_tx_unicast_success,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DATA_TX_UNICAST_SUCCESS,,
+sensor.sonoff_zbdongle_e_aps_decryption_failure,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_DECRYPTION_FAILURE,,
+sensor.sonoff_zbdongle_e_aps_frame_counter_failure,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_FRAME_COUNTER_FAILURE,,
+sensor.sonoff_zbdongle_e_aps_link_[REDACTED_FIELD],zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,APS_LINK_[REDACTED_FIELD],,
+sensor.sonoff_zbdongle_e_ash_framing_error,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,ASH_FRAMING_ERROR,,
+sensor.sonoff_zbdongle_e_ash_overflow_error,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,ASH_OVERFLOW_ERROR,,
+sensor.sonoff_zbdongle_e_ash_overrun_error,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,ASH_OVERRUN_ERROR,,
+sensor.sonoff_zbdongle_e_broadcast_table_full,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,BROADCAST_TABLE_FULL,,
+sensor.sonoff_zbdongle_e_child_removed,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,CHILD_REMOVED,,
+sensor.sonoff_zbdongle_e_ezsp_free_buffers,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,EZSP_FREE_BUFFERS,,
+sensor.sonoff_zbdongle_e_join_indication,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,JOIN_INDICATION,,
+sensor.sonoff_zbdongle_e_mac_rx_broadcast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,MAC_RX_BROADCAST,,
+sensor.sonoff_zbdongle_e_mac_rx_unicast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,MAC_RX_UNICAST,,
+sensor.sonoff_zbdongle_e_mac_tx_broadcast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,MAC_TX_BROADCAST,,
+sensor.sonoff_zbdongle_e_mac_tx_unicast_failed,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,MAC_TX_UNICAST_FAILED,,
+sensor.sonoff_zbdongle_e_mac_tx_unicast_retry,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,MAC_TX_UNICAST_RETRY,,
+sensor.sonoff_zbdongle_e_mac_tx_unicast_success,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,MAC_TX_UNICAST_SUCCESS,,
+sensor.sonoff_zbdongle_e_neighbor_added,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,NEIGHBOR_ADDED,,
+sensor.sonoff_zbdongle_e_neighbor_removed,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,NEIGHBOR_REMOVED,,
+sensor.sonoff_zbdongle_e_neighbor_stale,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,NEIGHBOR_STALE,,
+sensor.sonoff_zbdongle_e_nwk_decryption_failure,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,NWK_DECRYPTION_FAILURE,,
+sensor.sonoff_zbdongle_e_nwk_frame_counter_failure,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,NWK_FRAME_COUNTER_FAILURE,,
+sensor.sonoff_zbdongle_e_packet_validate_library_dropped_count,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PACKET_VALIDATE_LIBRARY_DROPPED_COUNT,,
+sensor.sonoff_zbdongle_e_phy_cca_fail_count,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PHY_CCA_FAIL_COUNT,,
+sensor.sonoff_zbdongle_e_phy_to_mac_queue_limit_reached,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PHY_TO_MAC_QUEUE_LIMIT_REACHED,,
+sensor.sonoff_zbdongle_e_pta_hi_pri_denied,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PTA_HI_PRI_DENIED,,
+sensor.sonoff_zbdongle_e_pta_hi_pri_requested,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PTA_HI_PRI_REQUESTED,,
+sensor.sonoff_zbdongle_e_pta_hi_pri_tx_aborted,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PTA_HI_PRI_TX_ABORTED,,
+sensor.sonoff_zbdongle_e_pta_lo_pri_denied,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PTA_LO_PRI_DENIED,,
+sensor.sonoff_zbdongle_e_pta_lo_pri_requested,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PTA_LO_PRI_REQUESTED,,
+sensor.sonoff_zbdongle_e_pta_lo_pri_tx_aborted,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,PTA_LO_PRI_TX_ABORTED,,
+sensor.sonoff_zbdongle_e_relayed_unicast,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,RELAYED_UNICAST,,
+sensor.sonoff_zbdongle_e_route_discovery_initiated,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,ROUTE_DISCOVERY_INITIATED,,
+sensor.sonoff_zbdongle_e_type_nwk_retry_overflow,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,TYPE_NWK_RETRY_OVERFLOW,,
+sensor.sonoff_zbdongle_e_unicast_rx,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,unicast_rx,,
+sensor.sonoff_zbdongle_e_unicast_tx_success,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,unicast_tx_success,,
+sensor.sonoff_zbdongle_e_utility,zha,,,a1113bf537bc78b9a9dc476972cdbf3a,diagnostic,integration,,UTILITY,,
+sensor.south_wall_cam01_southwest_corner_parking_lot_day_night_state,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,diagnostic,,,Day night state,,
+sensor.south_wall_home_connect_620_connected_smart_lock_alarm_level,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,integration,,Alarm Level,,
+sensor.south_wall_home_connect_620_connected_smart_lock_alarm_type,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,integration,,Alarm Type,,
+sensor.south_wall_home_connect_620_connected_smart_lock_battery_level,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,Battery level,,%
+sensor.south_wall_home_connect_620_connected_smart_lock_commands_dropped_rx,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Commands dropped (RX),,
+sensor.south_wall_home_connect_620_connected_smart_lock_commands_dropped_tx,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Commands dropped (TX),,
+sensor.south_wall_home_connect_620_connected_smart_lock_last_seen,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Last seen,,
+sensor.south_wall_home_connect_620_connected_smart_lock_motor_resistance,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Motor Resistance,,
+sensor.south_wall_home_connect_620_connected_smart_lock_node_status,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,,,Node status,,
+sensor.south_wall_home_connect_620_connected_smart_lock_round_trip_time,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Round trip time,,ms
+sensor.south_wall_home_connect_620_connected_smart_lock_signal_strength,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Signal strength,,dBm
+sensor.south_wall_home_connect_620_connected_smart_lock_successful_commands_rx,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Successful commands (RX),,
+sensor.south_wall_home_connect_620_connected_smart_lock_successful_commands_tx,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Successful commands (TX),,
+sensor.south_wall_home_connect_620_connected_smart_lock_timed_out_responses,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,diagnostic,integration,,Timed out responses,,
+sensor.south_wall_home_connect_620_connected_smart_lock_unknown,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,,,unknown,,
+sensor.south_wall_home_connect_620_connected_smart_lock_unknown_2,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,,,unknown,,
+sensor.south_wall_home_connect_620_connected_smart_lock_unknown_3,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,,,,unknown,,
+sensor.south_wall_south_entrance_doorbell_day_night_state,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,diagnostic,,,Day night state,,
+sensor.sun_next_dawn,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,,,Next dawn,,
+sensor.sun_next_dusk,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,,,Next dusk,,
+sensor.sun_next_midnight,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,,,Next midnight,,
+sensor.sun_next_noon,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,,,Next noon,,
+sensor.sun_next_rising,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,,,Next rising,,
+sensor.sun_next_setting,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,,,Next setting,,
+sensor.sun_solar_azimuth,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,integration,,Solar azimuth,,°
+sensor.sun_solar_elevation,sun,,,971f9995614876bb2633a596d00b88bd,diagnostic,integration,,Solar elevation,,°
+sensor.terminal_ssh_cpu_percent,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,,integration,,CPU percent,,%
+sensor.terminal_ssh_memory_percent,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,,integration,,Memory percent,,%
+sensor.terminal_ssh_newest_version,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,,integration,,Newest version,,
+sensor.terminal_ssh_version,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,,integration,,Version,,
+sensor.z_wave_js_cpu_percent,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,,integration,,CPU percent,,%
+sensor.z_wave_js_memory_percent,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,,integration,,Memory percent,,%
+sensor.z_wave_js_newest_version,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,,integration,,Newest version,,
+sensor.z_wave_js_version,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,,integration,,Version,,
+siren.south_wall_cam01_southwest_corner_parking_lot_siren,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,,,,Siren,,
+siren.south_wall_south_entrance_doorbell_siren,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,,,,Siren,,
+stt.home_assistant_cloud,cloud,,,,,,,Home Assistant Cloud,,
+switch.auto_entities_pre_release,hacs,,,0ff1ee2b45b0460cbd793f489d08347f,diagnostic,integration,,Pre-release,,
+switch.browser_mod_pre_release,hacs,,,e57ec752a161e2c995cce20ef030cbd6,diagnostic,integration,,Pre-release,,
+switch.bubble_card_pre_release,hacs,,,a59fc0f4f4785d96f385916415af6055,diagnostic,integration,,Pre-release,,
+switch.button_card_pre_release,hacs,,,10067a5d2d971f63b7b58e299f5f7f37,diagnostic,integration,,Pre-release,,
+switch.card_mod_pre_release,hacs,,,b908b04080dc45126dc1824637a00357,diagnostic,integration,,Pre-release,,
+switch.conference_room_south_entrance_chime_led,reolink,,,d87ab3eea62f95bb66bb534ea4bbc100,config,,,LED,,
+switch.file_editor,hassio,,,d924db4acce2013caac2ab8e2a26ac09,,integration,,,,
+switch.hacs_pre_release,hacs,,,a61c37be91706a8d3036ded61c276e2b,diagnostic,integration,,Pre-release,,
+switch.layout_card_pre_release,hacs,,,92de86822b1c924a26bd72c83d4e9eba,diagnostic,integration,,Pre-release,,
+switch.matter_server,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,,integration,,,,
+switch.mushroom_pre_release,hacs,,,c8f4ca7de3d2481f4a1efe38c7a231d1,diagnostic,integration,,Pre-release,,
+switch.samba_share,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,,integration,,,,
+switch.south_wall_cam01_southwest_corner_parking_lot_email_on_event,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Email on event,,
+switch.south_wall_cam01_southwest_corner_parking_lot_ftp_upload,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,FTP upload,,
+switch.south_wall_cam01_southwest_corner_parking_lot_infrared_lights_in_night_mode,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Infrared lights in night mode,,
+switch.south_wall_cam01_southwest_corner_parking_lot_push_notifications,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Push notifications,,
+switch.south_wall_cam01_southwest_corner_parking_lot_record,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Record,,
+switch.south_wall_cam01_southwest_corner_parking_lot_record_audio,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Record audio,,
+switch.south_wall_cam01_southwest_corner_parking_lot_siren_on_event,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Siren on event,,
+switch.south_wall_south_entrance_doorbell_doorbell_button_sound,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Doorbell button sound,,
+switch.south_wall_south_entrance_doorbell_email_on_event,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Email on event,,
+switch.south_wall_south_entrance_doorbell_ftp_upload,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,FTP upload,,
+switch.south_wall_south_entrance_doorbell_infrared_lights_in_night_mode,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Infrared lights in night mode,,
+switch.south_wall_south_entrance_doorbell_privacy_mode,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Privacy mode,,
+switch.south_wall_south_entrance_doorbell_push_notifications,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Push notifications,,
+switch.south_wall_south_entrance_doorbell_record,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Record,,
+switch.south_wall_south_entrance_doorbell_record_audio,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Record audio,,
+switch.south_wall_south_entrance_doorbell_siren_on_event,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Siren on event,,
+switch.swipe_card_pre_release,hacs,,,bdce6c6b5a254e1e823d45cad8105e4a,diagnostic,integration,,Pre-release,,
+switch.terminal_ssh,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,,integration,,,,
+switch.z_wave_js,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,,integration,,,,
+todo.shopping_list,shopping_list,,,,,,,Shopping List,,
+tts.google_translate_en_com,google_translate,,,6c372760a6cff24f8e039b1919cfb5bf,,,,Google Translate en com,,
+tts.home_assistant_cloud,cloud,,,,,,,Home Assistant Cloud,,
+update.800_series_long_range_usb_controller_firmware,zwave_js,,,0dab21a581c5e68584cc30df97c09239,config,,,Firmware,,
+update.auto_entities_update,hacs,,,0ff1ee2b45b0460cbd793f489d08347f,config,,,auto-entities update,,
+update.browser_mod_update,hacs,,,e57ec752a161e2c995cce20ef030cbd6,config,,,browser_mod update,,
+update.bubble_card_update,hacs,,,a59fc0f4f4785d96f385916415af6055,config,,,Bubble Card update,,
+update.button_card_update,hacs,,,10067a5d2d971f63b7b58e299f5f7f37,config,,,button-card update,,
+update.c01_south_entrance_door_firmware,zha,,,430164a064e604570d9ea9816ca0a4d7,config,,,Firmware,,
+update.c03_east_door_right_firmware,zha,,,d6fa5c68ba774edc52551beca93e768d,config,,,Firmware,,
+update.c04_west_door_firmware,zha,,,754e6cb02d3110c2285962b6b78868e4,config,,,Firmware,,
+update.c05_north_wall_window_1_firmware,zha,,,daa1fe23aafeed8570e27a46cd2a2edd,config,,,Firmware,,
+update.c06_north_wall_window_2_firmware,zha,,,a4062d86605b1f335892c2d4155787be,config,,,Firmware,,
+update.c07_north_wall_window_3_firmware,zha,,,91c7405e18c81d53159201908d0584d4,config,,,Firmware,,
+update.c08_north_wall_window_4_firmware,zha,,,baeeab17a3eddef5f6f361392066ef56,config,,,Firmware,,
+update.c09_north_wall_window_5_firmware,zha,,,6a1413dbf8c06f498dfc4051ebbc5b92,config,,,Firmware,,
+update.c10_south_wall_window_1_firmware,zha,,,0808fb7b97611a30712fe4e567ebffc2,config,,,Firmware,,
+update.c11_south_wall_window_2_firmware,zha,,,2dd1c0c5a6cee6b2f6edb6e4d7a37ac0,config,,,Firmware,,
+update.c12_south_wall_window_3_firmware,zha,,,818bf2df3306a9c6bc6066460c51d6de,config,,,Firmware,,
+update.c13_south_wall_window_4_firmware,zha,,,cd0a18145e4fbf2088c029e21fbf1513,config,,,Firmware,,
+update.c14_south_wall_window_5_firmware,zha,,,f4f983048c19e5efef8fb87278133b15,config,,,Firmware,,
+update.card_mod_update,hacs,,,b908b04080dc45126dc1824637a00357,config,,,card-mod update,,
+update.east_door_left_firmware,zha,,,785e479597ffb8089508f31d1e79b385,config,,,Firmware,,
+update.file_editor_update,hassio,,,d924db4acce2013caac2ab8e2a26ac09,config,,,Update,,
+update.hacs_update,hacs,,,a61c37be91706a8d3036ded61c276e2b,config,,,HACS update,,
+update.home_assistant_core_update,hassio,,,ad6497948030bdd57a554e3f8bb1a2bb,config,,,Update,,
+update.home_assistant_operating_system_update,hassio,,,37bd085578bd41374bdbea330e91e239,config,,,Update,,
+update.home_assistant_supervisor_update,hassio,,,13c58899b701d2a6dc5170c9941f094c,config,,,Update,,
+update.layout_card_update,hacs,,,92de86822b1c924a26bd72c83d4e9eba,config,,,layout-card update,,
+update.m01_main_hallway_motion_firmware,zha,,,9269abc2968c77a923e341c565936281,config,,,Firmware,,
+update.m02_viewing_room_motion_firmware,zha,,,a6490a4e4f585647d6a86c181fbebede,config,,,Firmware,,
+update.matter_server_update,hassio,,,f0c66eac5eab77b3a59a8214d96624bd,config,,,Update,,
+update.mushroom_update,hacs,,,c8f4ca7de3d2481f4a1efe38c7a231d1,config,,,Mushroom update,,
+update.samba_share_update,hassio,,,1f98aaa620f4a89f5a36f4312bf2e67b,config,,,Update,,
+update.south_wall_cam01_southwest_corner_parking_lot_firmware,reolink,,,4b575486d3abc505e940e0ec6df9a7eb,config,,,Firmware,,
+update.south_wall_home_connect_620_connected_smart_lock_firmware,zwave_js,,,b447c85e4ab7dc3a694466a383503efd,config,,,Firmware,,
+update.south_wall_south_entrance_doorbell_firmware,reolink,,,732c0afb4c814fdfa7b5a98f6c4f3d3d,config,,,Firmware,,
+update.swipe_card_update,hacs,,,bdce6c6b5a254e1e823d45cad8105e4a,config,,,Swipe Card update,,
+update.terminal_ssh_update,hassio,,,4c4a87a7a7d26ccf955239f7ffc71e64,config,,,Update,,
+update.z_wave_js_update,hassio,,,bbb5147db9e649cacbd9ad8cda73eaca,config,,,Update,,
+weather.forecast_home,met,,,239b2786d88af256849d7f30c1328385,,,,Home,,
