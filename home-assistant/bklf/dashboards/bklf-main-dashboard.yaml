@@ -1,24 +1,42 @@
 title: WNYHS Customer Control Center
 views:
-  - title: Home
+  - title: South Entrance
     path: home
-    icon: mdi:home
+    icon: mdi:doorbell-video
     type: masonry
     max_columns: 1
     cards:
+      - type: picture-entity
+        entity: camera.south_wall_south_entrance_doorbell_fluent
+        camera_view: live
+        show_name: false
+        show_state: false
+        aspect_ratio: 16x9
+        tap_action:
+          action: more-info
+        card_mod:
+          style: &camera_card_style |
+            ha-card {
+              border-radius: 28px;
+              overflow: hidden;
+              border: 1px solid var(--wnyhs-gold);
+              background: var(--wnyhs-card-background);
+              box-shadow: var(--ha-card-box-shadow);
+            }
+
       - type: custom:button-card
-        name: WNY Home Security
-        label: BK Lewis Funeral Home
-        icon: mdi:shield-home
+        name: South Entrance
+        label: Front door, talk, view, and lock controls
+        icon: mdi:doorbell-video
         show_label: true
         tap_action:
-          action: navigate
-          navigation_path: /bklf-main/more
+          action: more-info
+          entity: camera.south_wall_south_entrance_doorbell_fluent
         styles:
           card:
-            - min-height: 96px
-            - border-radius: 24px
-            - padding: 18px
+            - min-height: 112px
+            - border-radius: 28px
+            - padding: 22px
             - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
             - border: 1px solid var(--wnyhs-gold)
             - border-left: 5px solid var(--wnyhs-gold)
@@ -32,13 +50,231 @@ views:
             - color: var(--wnyhs-gold)
           name:
             - justify-self: start
-            - font-size: 23px
+            - font-size: 26px
             - font-weight: 800
             - color: var(--primary-text-color)
           label:
             - justify-self: start
             - font-size: 14px
             - color: var(--secondary-text-color)
+
+      - type: custom:button-card
+        name: Talk
+        label: Speak through the front doorbell
+        icon: mdi:microphone
+        show_label: true
+        tap_action:
+          action: more-info
+          entity: camera.south_wall_south_entrance_doorbell_fluent
+        styles: &talk_button
+          card:
+            - min-height: 82px
+            - border-radius: 22px
+            - background: var(--wnyhs-primary-button-background)
+            - border: 1px solid var(--wnyhs-gold)
+            - border-left: 6px solid var(--wnyhs-gold)
+            - box-shadow: var(--ha-card-box-shadow)
+          grid:
+            - grid-template-areas: '"i n" "i l"'
+            - grid-template-columns: 58px 1fr
+            - grid-template-rows: min-content min-content
+          icon:
+            - width: 38px
+            - color: var(--wnyhs-gold)
+          name:
+            - justify-self: start
+            - color: var(--wnyhs-primary-button-text)
+            - font-size: 24px
+            - font-weight: 800
+          label:
+            - justify-self: start
+            - color: var(--wnyhs-primary-button-text)
+            - opacity: 0.86
+            - font-size: 13px
+
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Unlock
+            icon: mdi:lock-open-variant
+            confirmation:
+              text: Unlock the front entry?
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: &caution_button
+              card:
+                - min-height: 74px
+                - border-radius: 22px
+                - background: var(--wnyhs-emergency-background)
+                - border: 1px solid var(--wnyhs-unlock-color)
+                - border-left: 6px solid var(--wnyhs-unlock-color)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--wnyhs-emergency-text)
+                - font-weight: 800
+                - font-size: 17px
+              icon:
+                - color: var(--wnyhs-unlock-color)
+                - width: 32px
+          - type: custom:button-card
+            name: View
+            icon: mdi:fullscreen
+            tap_action:
+              action: more-info
+              entity: camera.south_wall_south_entrance_doorbell_fluent
+            styles: &neutral_gold_button
+              card:
+                - min-height: 74px
+                - border-radius: 22px
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-gold)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--primary-text-color)
+                - font-weight: 800
+                - font-size: 17px
+              icon:
+                - color: var(--wnyhs-gold)
+                - width: 32px
+          - type: custom:button-card
+            name: Snapshot
+            icon: mdi:camera-iris
+            tap_action:
+              action: call-service
+              service: camera.snapshot
+              target:
+                entity_id: camera.south_wall_south_entrance_doorbell_fluent
+              data:
+                filename: /config/www/bklf/south-entrance-snapshot.jpg
+            styles: &snapshot_button
+              card:
+                - min-height: 74px
+                - border-radius: 22px
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-gold)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--primary-text-color)
+                - font-weight: 800
+                - font-size: 17px
+              icon:
+                - color: var(--wnyhs-gold)
+                - width: 32px
+          - type: custom:button-card
+            name: Lock
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: &safe_button
+              card:
+                - min-height: 74px
+                - border-radius: 22px
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-lock-color)
+                - border-left: 6px solid var(--wnyhs-lock-color)
+                - box-shadow: var(--ha-card-box-shadow)
+              name:
+                - color: var(--primary-text-color)
+                - font-weight: 800
+                - font-size: 17px
+              icon:
+                - color: var(--wnyhs-lock-color)
+                - width: 32px
+
+      - type: custom:mushroom-template-card
+        primary: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
+            Door is open
+          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            Front Entrance Unlocked
+          {% else %}
+            Door is closed and locked
+          {% endif %}
+        secondary: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
+            Please check the front entry.
+          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            Lock when access is complete.
+          {% else %}
+            Ready for normal use.
+          {% endif %}
+        icon: mdi:door-closed-lock
+        icon_color: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
+            amber
+          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            red
+          {% else %}
+            green
+          {% endif %}
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-main/locks
+        card_mod:
+          style: &status_card_style |
+            ha-card {
+              border-radius: 22px;
+              border: 1px solid var(--wnyhs-card-border);
+              border-left: 5px solid var(--wnyhs-gold);
+              background: var(--wnyhs-card-background);
+              min-height: 92px;
+              box-shadow: var(--ha-card-box-shadow);
+            }
+
+      - type: vertical-stack
+        title: Display
+        cards: &theme_control
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: custom:button-card
+                name: Light
+                icon: mdi:white-balance-sunny
+                tap_action:
+                  action: call-service
+                  service: frontend.set_theme
+                  data:
+                    name: WNYHS Light
+                styles: &theme_button
+                  card:
+                    - min-height: 58px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-gold)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--primary-text-color)
+                    - font-weight: 800
+                    - font-size: 13px
+                  icon:
+                    - color: var(--wnyhs-gold)
+              - type: custom:button-card
+                name: Dark
+                icon: mdi:weather-night
+                tap_action:
+                  action: call-service
+                  service: frontend.set_theme
+                  data:
+                    name: WNYHS Dark
+                styles: *theme_button
+              - type: custom:button-card
+                name: Auto
+                icon: mdi:theme-light-dark
+                tap_action:
+                  action: call-service
+                  service: frontend.set_theme
+                  data:
+                    name: default
+                styles: *theme_button
 
       - type: custom:button-card
         entity: binary_sensor.bklf_building_secure
@@ -136,111 +372,10 @@ views:
             - color: var(--secondary-text-color)
 
       - type: vertical-stack
-        title: Front Door
+        title: Building Summary
         cards:
-          - type: picture-entity
-            entity: camera.south_wall_south_entrance_doorbell_fluent
-            camera_view: live
-            show_name: false
-            show_state: false
-            aspect_ratio: 16x9
-            tap_action:
-              action: more-info
-            card_mod:
-              style: |
-                ha-card {
-                  border-radius: 28px;
-                  overflow: hidden;
-                  border: 1px solid var(--wnyhs-gold);
-                  background: var(--wnyhs-card-background);
-                  box-shadow: var(--ha-card-box-shadow);
-                }
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                name: Talk
-                icon: mdi:microphone
-                tap_action:
-                  action: more-info
-                  entity: camera.south_wall_south_entrance_doorbell_fluent
-                styles: &positive_button
-                  card:
-                    - min-height: 68px
-                    - border-radius: 20px
-                    - background: var(--wnyhs-secondary-button-background)
-                    - border: 1px solid var(--wnyhs-lock-color)
-                    - color: var(--primary-text-color)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--primary-text-color)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-lock-color)
-              - type: custom:button-card
-                name: Unlock
-                icon: mdi:lock-open-variant
-                confirmation:
-                  text: Unlock the front entry?
-                tap_action:
-                  action: call-service
-                  service: lock.unlock
-                  target:
-                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-                styles: &caution_button
-                  card:
-                    - min-height: 68px
-                    - border-radius: 20px
-                    - background: var(--wnyhs-emergency-background)
-                    - border: 1px solid var(--wnyhs-unlock-color)
-                    - border-left: 5px solid var(--wnyhs-unlock-color)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--wnyhs-emergency-text)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-unlock-color)
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                name: Lock
-                icon: mdi:lock
-                tap_action:
-                  action: call-service
-                  service: lock.lock
-                  target:
-                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-                styles: &safe_button
-                  card:
-                    - min-height: 62px
-                    - border-radius: 20px
-                    - background: var(--wnyhs-secondary-button-background)
-                    - border: 1px solid var(--wnyhs-lock-color)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--primary-text-color)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-lock-color)
-              - type: custom:button-card
-                name: View
-                icon: mdi:fullscreen
-                tap_action:
-                  action: more-info
-                  entity: camera.south_wall_south_entrance_doorbell_fluent
-                styles: &neutral_gold_button
-                  card:
-                    - min-height: 62px
-                    - border-radius: 20px
-                    - background: var(--wnyhs-secondary-button-background)
-                    - border: 1px solid var(--wnyhs-gold)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--primary-text-color)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-gold)
           - type: custom:mushroom-template-card
-            primary: Door is closed and locked
+            primary: South Entrance
             secondary: >-
               {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
                 Door is open
@@ -262,15 +397,7 @@ views:
               action: navigate
               navigation_path: /bklf-main/doorbell
             card_mod:
-              style: &status_card_style |
-                ha-card {
-                  border-radius: 22px;
-                  border: 1px solid var(--wnyhs-card-border);
-                  border-left: 5px solid var(--wnyhs-gold);
-                  background: var(--wnyhs-card-background);
-                  min-height: 92px;
-                  box-shadow: var(--ha-card-box-shadow);
-                }
+              style: *status_card_style
 
       - type: vertical-stack
         title: Cameras
@@ -284,14 +411,7 @@ views:
             tap_action:
               action: more-info
             card_mod:
-              style: |
-                ha-card {
-                  border-radius: 28px;
-                  overflow: hidden;
-                  border: 1px solid var(--wnyhs-card-border);
-                  background: var(--wnyhs-card-background);
-                  box-shadow: var(--ha-card-box-shadow);
-                }
+              style: *camera_card_style
           - type: custom:button-card
             name: View Cameras
             icon: mdi:cctv
@@ -384,6 +504,10 @@ views:
           label:
             - color: var(--secondary-text-color)
 
+      - type: vertical-stack
+        title: Display
+        cards: *theme_control
+
       - type: picture-entity
         entity: camera.south_wall_south_entrance_doorbell_fluent
         camera_view: live
@@ -410,7 +534,7 @@ views:
             tap_action:
               action: more-info
               entity: camera.south_wall_south_entrance_doorbell_fluent
-            styles: *positive_button
+            styles: *talk_button
           - type: custom:button-card
             name: View
             icon: mdi:fullscreen
@@ -504,6 +628,10 @@ views:
           label:
             - color: var(--secondary-text-color)
 
+      - type: vertical-stack
+        title: Display
+        cards: *theme_control
+
       - type: picture-entity
         entity: camera.south_wall_south_entrance_doorbell_fluent
         name: Front Entrance
@@ -513,14 +641,7 @@ views:
         tap_action:
           action: more-info
         card_mod:
-          style: &camera_card_style |
-            ha-card {
-              border-radius: 28px;
-              overflow: hidden;
-              border: 1px solid var(--wnyhs-gold);
-              background: var(--wnyhs-card-background);
-              box-shadow: var(--ha-card-box-shadow);
-            }
+          style: *camera_card_style
 
       - type: horizontal-stack
         cards:
@@ -548,7 +669,7 @@ views:
             tap_action:
               action: more-info
               entity: camera.south_wall_south_entrance_doorbell_fluent
-            styles: *positive_button
+            styles: *talk_button
 
       - type: picture-entity
         entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
@@ -653,6 +774,10 @@ views:
             - font-size: 16px
             - line-height: 1.35
             - color: var(--secondary-text-color)
+
+      - type: vertical-stack
+        title: Display
+        cards: *theme_control
 
       - type: custom:mushroom-template-card
         primary: >-
@@ -767,6 +892,10 @@ views:
           label:
             - font-size: 15px
             - color: var(--secondary-text-color)
+
+      - type: vertical-stack
+        title: Display
+        cards: *theme_control
 
       - type: vertical-stack
         title: Doors And Windows
@@ -955,6 +1084,10 @@ views:
           label:
             - color: var(--secondary-text-color)
 
+      - type: vertical-stack
+        title: Display
+        cards: *theme_control
+
       - type: logbook
         title: Today
         hours_to_show: 24
@@ -1007,6 +1140,10 @@ views:
           label:
             - justify-self: start
             - color: var(--secondary-text-color)
+
+      - type: vertical-stack
+        title: Display
+        cards: *theme_control
 
       - type: vertical-stack
         title: App Menu
