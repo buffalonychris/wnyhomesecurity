@@ -1,0 +1,918 @@
+title: WNYHS Desktop Control Center
+views:
+  - title: Dashboard
+    path: dashboard
+    icon: mdi:view-dashboard
+    type: custom:grid-layout
+    layout:
+      grid-template-columns: repeat(12, minmax(0, 1fr))
+      grid-template-areas: |
+        "header header header header header header header header header header header header"
+        "status status status status status status status status status status status status"
+        "front front front front front front parking parking parking parking parking parking"
+        "doors doors doors doors lighting lighting lighting lighting activity activity activity activity"
+        "actions actions actions actions actions system system system system system system system"
+      mediaquery:
+        "(max-width: 1100px)":
+          grid-template-columns: repeat(6, minmax(0, 1fr))
+          grid-template-areas: |
+            "header header header header header header"
+            "status status status status status status"
+            "front front front parking parking parking"
+            "doors doors doors lighting lighting lighting"
+            "activity activity activity actions actions actions"
+            "system system system system system system"
+        "(max-width: 800px)":
+          grid-template-columns: 1fr
+          grid-template-areas: |
+            "header"
+            "status"
+            "front"
+            "parking"
+            "doors"
+            "lighting"
+            "activity"
+            "actions"
+            "system"
+    cards:
+      - type: vertical-stack
+        view_layout:
+          grid-area: header
+        cards:
+          - type: custom:button-card
+            name: WNY Home Security
+            label: BK Lewis Funeral Home | Desktop Control Center
+            icon: mdi:shield-home
+            show_label: true
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            styles: &hero_card
+              card:
+                - min-height: 118px
+                - border-radius: 24px
+                - padding: 24px
+                - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+                - border: 1px solid var(--wnyhs-gold)
+                - border-left: 7px solid var(--wnyhs-gold)
+                - box-shadow: var(--ha-card-box-shadow)
+              grid:
+                - grid-template-areas: '"i n" "i l"'
+                - grid-template-columns: 72px 1fr
+                - grid-template-rows: min-content min-content
+              icon:
+                - width: 54px
+                - color: var(--wnyhs-gold)
+              name:
+                - justify-self: start
+                - font-size: 30px
+                - font-weight: 800
+                - color: var(--primary-text-color)
+              label:
+                - justify-self: start
+                - font-size: 17px
+                - color: var(--secondary-text-color)
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Light
+                icon: mdi:white-balance-sunny
+                tap_action:
+                  action: call-service
+                  service: frontend.set_theme
+                  data:
+                    name: BKLF WNYHS Light
+                styles: &theme_button
+                  card:
+                    - min-height: 58px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-gold)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--primary-text-color)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-gold)
+              - type: custom:button-card
+                name: Dark
+                icon: mdi:weather-night
+                tap_action:
+                  action: call-service
+                  service: frontend.set_theme
+                  data:
+                    name: BKLF WNYHS Dark
+                styles: *theme_button
+              - type: custom:button-card
+                name: Auto
+                icon: mdi:theme-light-dark
+                tap_action:
+                  action: call-service
+                  service: frontend.set_theme
+                  data:
+                    name: default
+                styles: *theme_button
+
+      - type: horizontal-stack
+        view_layout:
+          grid-area: status
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Building Status
+            secondary: >-
+              {% if is_state('binary_sensor.bklf_building_secure', 'on') %}
+                Needs review
+              {% else %}
+                All clear
+              {% endif %}
+            icon: mdi:shield-check
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_building_secure', 'on') %} amber {% else %} green {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/security
+            card_mod:
+              style: &status_tile |
+                ha-card {
+                  min-height: 102px;
+                  border-radius: 20px;
+                  border: 1px solid var(--wnyhs-card-border);
+                  border-left: 5px solid var(--wnyhs-gold);
+                  background: var(--wnyhs-card-background);
+                  box-shadow: var(--ha-card-box-shadow);
+                }
+          - type: custom:mushroom-template-card
+            primary: Building Mode
+            secondary: "{{ states('input_select.bklf_building_mode') }}"
+            icon: mdi:office-building-cog
+            icon_color: amber
+            tap_action:
+              action: more-info
+              entity: input_select.bklf_building_mode
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Interior Motion
+            secondary: >-
+              {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+                Motion active
+              {% else %}
+                Clear
+              {% endif %}
+            icon: mdi:motion-sensor
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %} amber {% else %} green {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/security
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Doors / Windows
+            secondary: >-
+              {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %}
+                Opening needs review
+              {% else %}
+                Closed
+              {% endif %}
+            icon: mdi:door-closed-lock
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %} amber {% else %} green {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/doors-locks
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: System Status
+            secondary: >-
+              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on') %}
+                Lock needs service
+              {% else %}
+                Ready
+              {% endif %}
+            icon: mdi:server-network
+            icon_color: >-
+              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on') %} red {% else %} green {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            card_mod:
+              style: *status_tile
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: front
+        cards:
+          - type: custom:button-card
+            name: South Entrance / Front Door
+            label: Live view and entry controls
+            icon: mdi:doorbell-video
+            show_label: true
+            styles: &section_header
+              card:
+                - min-height: 74px
+                - border-radius: 20px
+                - padding: 14px 18px
+                - background: var(--wnyhs-secondary-button-background)
+                - border: 1px solid var(--wnyhs-gold)
+                - box-shadow: var(--ha-card-box-shadow)
+              grid:
+                - grid-template-areas: '"i n" "i l"'
+                - grid-template-columns: 44px 1fr
+              icon:
+                - width: 32px
+                - color: var(--wnyhs-gold)
+              name:
+                - justify-self: start
+                - font-size: 20px
+                - font-weight: 800
+              label:
+                - justify-self: start
+                - color: var(--secondary-text-color)
+          - type: picture-entity
+            entity: camera.south_wall_south_entrance_doorbell_fluent
+            camera_view: live
+            show_name: false
+            show_state: false
+            aspect_ratio: 16x9
+            tap_action:
+              action: more-info
+            card_mod:
+              style: &camera_card |
+                ha-card {
+                  border-radius: 24px;
+                  overflow: hidden;
+                  border: 1px solid var(--wnyhs-gold);
+                  background: var(--wnyhs-card-background);
+                  box-shadow: var(--ha-card-box-shadow);
+                }
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Lock
+                icon: mdi:lock
+                tap_action:
+                  action: call-service
+                  service: lock.lock
+                  target:
+                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+                styles: &safe_button
+                  card:
+                    - min-height: 66px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-lock-color)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--primary-text-color)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-lock-color)
+              - type: custom:button-card
+                name: Unlock
+                icon: mdi:lock-open-variant
+                confirmation:
+                  text: Unlock the South Entrance?
+                tap_action:
+                  action: call-service
+                  service: lock.unlock
+                  target:
+                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+                styles: &caution_button
+                  card:
+                    - min-height: 66px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-emergency-background)
+                    - border: 1px solid var(--wnyhs-unlock-color)
+                    - border-left: 5px solid var(--wnyhs-unlock-color)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--wnyhs-emergency-text)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-unlock-color)
+              - type: custom:button-card
+                name: Details
+                icon: mdi:fullscreen
+                tap_action:
+                  action: more-info
+                  entity: camera.south_wall_south_entrance_doorbell_fluent
+                styles: &gold_outline_button
+                  card:
+                    - min-height: 66px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-gold)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--primary-text-color)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-gold)
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: parking
+        cards:
+          - type: custom:button-card
+            name: Parking Lot
+            label: Live exterior camera
+            icon: mdi:cctv
+            show_label: true
+            styles: *section_header
+          - type: picture-entity
+            entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+            name: Parking Lot
+            camera_view: live
+            show_state: false
+            aspect_ratio: 16x9
+            tap_action:
+              action: more-info
+            card_mod:
+              style: *camera_card
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Front Door Camera
+                icon: mdi:doorbell-video
+                tap_action:
+                  action: more-info
+                  entity: camera.south_wall_south_entrance_doorbell_fluent
+                styles: *gold_outline_button
+              - type: custom:button-card
+                name: Parking Camera
+                icon: mdi:cctv
+                tap_action:
+                  action: more-info
+                  entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+                styles: *gold_outline_button
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: doors
+        cards:
+          - type: custom:button-card
+            name: Doors & Locks
+            label: Entry status and safe controls
+            icon: mdi:door-closed-lock
+            show_label: true
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/doors-locks
+            styles: *section_header
+          - type: custom:mushroom-template-card
+            primary: South Entrance Lock
+            secondary: >-
+              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+                Locked
+              {% else %}
+                Needs review
+              {% endif %}
+            icon: mdi:lock
+            icon_color: >-
+              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %} green {% else %} red {% endif %}
+            tap_action:
+              action: more-info
+              entity: lock.south_wall_home_connect_620_connected_smart_lock
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: East Double Door
+            secondary: Planned lock and doorbell - not active
+            icon: mdi:door-double
+            icon_color: grey
+            tap_action:
+              action: none
+            card_mod:
+              style: &planned_tile |
+                ha-card {
+                  min-height: 96px;
+                  border-radius: 20px;
+                  border: 1px dashed var(--wnyhs-card-border);
+                  border-left: 5px solid var(--wnyhs-gold);
+                  background: var(--wnyhs-card-background);
+                  opacity: 0.76;
+                  box-shadow: var(--ha-card-box-shadow);
+                }
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: lighting
+        cards:
+          - type: custom:button-card
+            name: Lighting Control
+            label: Single light control placeholder
+            icon: mdi:lightbulb
+            show_label: true
+            styles: *section_header
+          - type: custom:mushroom-template-card
+            primary: Third Reality Plug
+            secondary: Planned single-light control - entity pending
+            icon: mdi:power-plug
+            icon_color: grey
+            tap_action:
+              action: none
+            card_mod:
+              style: *planned_tile
+          - type: custom:mushroom-template-card
+            primary: Planned Device Note
+            secondary: Add the live switch after pairing and naming
+            icon: mdi:clipboard-check-outline
+            icon_color: amber
+            tap_action:
+              action: none
+            card_mod:
+              style: *planned_tile
+
+      - type: logbook
+        view_layout:
+          grid-area: activity
+        title: Recent Activity
+        hours_to_show: 12
+        entities:
+          - binary_sensor.south_wall_south_entrance_doorbell_visitor
+          - binary_sensor.south_wall_south_entrance_doorbell_person
+          - lock.south_wall_home_connect_620_connected_smart_lock
+          - binary_sensor.c01_south_entrance_door
+          - binary_sensor.c10_south_wall_window_1
+          - binary_sensor.c11_south_wall_window_2
+          - binary_sensor.bklf_interior_motion_active
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
+        card_mod:
+          style: &activity_card |
+            ha-card {
+              border-radius: 22px;
+              border: 1px solid var(--wnyhs-gold);
+              border-left: 5px solid var(--wnyhs-gold);
+              background: var(--wnyhs-card-background);
+              box-shadow: var(--ha-card-box-shadow);
+            }
+
+      - type: grid
+        view_layout:
+          grid-area: actions
+        title: Quick Actions
+        columns: 2
+        square: false
+        cards:
+          - type: custom:button-card
+            name: View All Cameras
+            icon: mdi:cctv
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/cameras
+            styles: *gold_outline_button
+          - type: custom:button-card
+            name: Doors & Locks
+            icon: mdi:door-closed-lock
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/doors-locks
+            styles: *gold_outline_button
+          - type: custom:button-card
+            name: Security Details
+            icon: mdi:shield-check
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/security
+            styles: *gold_outline_button
+          - type: custom:button-card
+            name: Activity Log
+            icon: mdi:history
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/security
+            styles: *gold_outline_button
+          - type: custom:button-card
+            name: System Status
+            icon: mdi:server-network
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            styles: *gold_outline_button
+          - type: custom:button-card
+            name: More Options
+            icon: mdi:dots-horizontal-circle
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            styles: *gold_outline_button
+
+      - type: grid
+        view_layout:
+          grid-area: system
+        title: System Overview
+        columns: 5
+        square: false
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Cameras
+            secondary: Live views ready
+            icon: mdi:cctv
+            icon_color: green
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/cameras
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Network
+            secondary: Check system page
+            icon: mdi:network
+            icon_color: amber
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Recording
+            secondary: Review camera app status
+            icon: mdi:record-circle-outline
+            icon_color: amber
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Power
+            secondary: Review onsite equipment
+            icon: mdi:power-plug-outline
+            icon_color: amber
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Storage
+            secondary: Review Home Assistant
+            icon: mdi:harddisk
+            icon_color: amber
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+            card_mod:
+              style: *status_tile
+
+  - title: Cameras
+    path: cameras
+    icon: mdi:cctv
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        name: Cameras
+        label: South Entrance and Parking Lot
+        icon: mdi:cctv
+        show_label: true
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-desktop/dashboard
+        styles: *hero_card
+      - type: picture-entity
+        entity: camera.south_wall_south_entrance_doorbell_fluent
+        name: South Entrance / Front Door
+        camera_view: live
+        show_state: false
+        aspect_ratio: 16x9
+        tap_action:
+          action: more-info
+        card_mod:
+          style: *camera_card
+      - type: picture-entity
+        entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+        name: Parking Lot
+        camera_view: live
+        show_state: false
+        aspect_ratio: 16x9
+        tap_action:
+          action: more-info
+        card_mod:
+          style: *camera_card
+      - type: logbook
+        title: Camera Activity
+        hours_to_show: 12
+        entities:
+          - binary_sensor.south_wall_south_entrance_doorbell_visitor
+          - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.south_wall_south_entrance_doorbell_motion
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
+        card_mod:
+          style: *activity_card
+
+  - title: Doors & Locks
+    path: doors-locks
+    icon: mdi:door-closed-lock
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        name: Doors & Locks
+        label: South Entrance active, East Double Door planned
+        icon: mdi:door-closed-lock
+        show_label: true
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-desktop/dashboard
+        styles: *hero_card
+      - type: custom:mushroom-template-card
+        primary: South Entrance Door
+        secondary: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
+            Door is open
+          {% else %}
+            Door is closed
+          {% endif %}
+        icon: mdi:door
+        icon_color: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %} amber {% else %} green {% endif %}
+        tap_action:
+          action: more-info
+          entity: binary_sensor.c01_south_entrance_door
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: South Entrance Lock
+        secondary: >-
+          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            Locked
+          {% else %}
+            Needs review
+          {% endif %}
+        icon: mdi:lock
+        icon_color: >-
+          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %} green {% else %} red {% endif %}
+        tap_action:
+          action: more-info
+          entity: lock.south_wall_home_connect_620_connected_smart_lock
+        card_mod:
+          style: *status_tile
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Lock South Entrance
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: *safe_button
+          - type: custom:button-card
+            name: Unlock South Entrance
+            icon: mdi:lock-open-variant
+            confirmation:
+              text: Unlock the South Entrance?
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: *caution_button
+      - type: custom:mushroom-template-card
+        primary: Front Double Door - Left
+        secondary: >-
+          {% if is_state('binary_sensor.c10_south_wall_window_1', 'on') %}
+            Door is open
+          {% else %}
+            Door is closed
+          {% endif %}
+        icon: mdi:door-open
+        icon_color: >-
+          {% if is_state('binary_sensor.c10_south_wall_window_1', 'on') %} amber {% else %} green {% endif %}
+        tap_action:
+          action: more-info
+          entity: binary_sensor.c10_south_wall_window_1
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: Front Double Door - Right
+        secondary: >-
+          {% if is_state('binary_sensor.c11_south_wall_window_2', 'on') %}
+            Door is open
+          {% else %}
+            Door is closed
+          {% endif %}
+        icon: mdi:door-open
+        icon_color: >-
+          {% if is_state('binary_sensor.c11_south_wall_window_2', 'on') %} amber {% else %} green {% endif %}
+        tap_action:
+          action: more-info
+          entity: binary_sensor.c11_south_wall_window_2
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: East Double Door Lock
+        secondary: Planned - not paired or active
+        icon: mdi:lock-clock
+        icon_color: grey
+        tap_action:
+          action: none
+        card_mod:
+          style: *planned_tile
+      - type: custom:mushroom-template-card
+        primary: East Double Door Doorbell
+        secondary: Planned - not paired or active
+        icon: mdi:doorbell-video
+        icon_color: grey
+        tap_action:
+          action: none
+        card_mod:
+          style: *planned_tile
+
+  - title: Security / Activity
+    path: security
+    icon: mdi:shield-check
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        name: Security / Activity
+        label: Building status, motion, openings, and recent events
+        icon: mdi:shield-check
+        show_label: true
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-desktop/dashboard
+        styles: *hero_card
+      - type: custom:mushroom-template-card
+        primary: Building Status
+        secondary: >-
+          {% if is_state('binary_sensor.bklf_building_secure', 'on') %}
+            Needs review
+          {% else %}
+            All clear
+          {% endif %}
+        icon: mdi:shield-home
+        icon_color: >-
+          {% if is_state('binary_sensor.bklf_building_secure', 'on') %} amber {% else %} green {% endif %}
+        tap_action:
+          action: more-info
+          entity: binary_sensor.bklf_building_secure
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: Interior Motion
+        secondary: >-
+          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            Motion active
+          {% else %}
+            Clear
+          {% endif %}
+        icon: mdi:motion-sensor
+        icon_color: >-
+          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %} amber {% else %} green {% endif %}
+        tap_action:
+          action: more-info
+          entity: binary_sensor.bklf_interior_motion_active
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: Exterior Openings
+        secondary: >-
+          {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %}
+            Opening needs review
+          {% else %}
+            Closed
+          {% endif %}
+        icon: mdi:window-closed-variant
+        icon_color: >-
+          {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %} amber {% else %} green {% endif %}
+        tap_action:
+          action: more-info
+          entity: binary_sensor.bklf_exterior_secure
+        card_mod:
+          style: *status_tile
+      - type: logbook
+        title: Activity Log
+        hours_to_show: 24
+        entities:
+          - binary_sensor.south_wall_south_entrance_doorbell_visitor
+          - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.south_wall_south_entrance_doorbell_motion
+          - lock.south_wall_home_connect_620_connected_smart_lock
+          - binary_sensor.c01_south_entrance_door
+          - binary_sensor.c05_north_wall_window_1
+          - binary_sensor.c06_north_wall_window_2
+          - binary_sensor.c07_north_wall_window_3
+          - binary_sensor.c08_north_wall_window_4
+          - binary_sensor.c10_south_wall_window_1
+          - binary_sensor.c11_south_wall_window_2
+          - binary_sensor.bklf_interior_motion_active
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
+          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
+        card_mod:
+          style: *activity_card
+
+  - title: System / More
+    path: system
+    icon: mdi:dots-horizontal-circle
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        name: System / More
+        label: Customer-friendly system overview
+        icon: mdi:server-network
+        show_label: true
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-desktop/dashboard
+        styles: *hero_card
+      - type: grid
+        title: System Overview
+        columns: 2
+        square: false
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Cameras
+            secondary: Front Door and Parking Lot
+            icon: mdi:cctv
+            icon_color: green
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/cameras
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Network
+            secondary: Network Closet equipment
+            icon: mdi:network
+            icon_color: amber
+            tap_action:
+              action: none
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Recording
+            secondary: Review camera app status
+            icon: mdi:record-circle-outline
+            icon_color: amber
+            tap_action:
+              action: none
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Power
+            secondary: Review onsite equipment
+            icon: mdi:power-plug-outline
+            icon_color: amber
+            tap_action:
+              action: none
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Storage
+            secondary: Review Home Assistant
+            icon: mdi:harddisk
+            icon_color: amber
+            tap_action:
+              action: none
+            card_mod:
+              style: *status_tile
+          - type: custom:mushroom-template-card
+            primary: Planned Light Control
+            secondary: Third Reality plug entity pending
+            icon: mdi:power-plug
+            icon_color: grey
+            tap_action:
+              action: none
+            card_mod:
+              style: *planned_tile
+      - type: grid
+        title: Theme
+        columns: 3
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button

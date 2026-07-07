@@ -32,3 +32,9 @@ lovelace:
       icon: mdi:shield-home
       show_in_sidebar: true
       filename: dashboards/bklf-main-dashboard.yaml
+    bklf-desktop:
+      mode: yaml
+      title: BKLF Desktop
+      icon: mdi:monitor-dashboard
+      show_in_sidebar: true
+      filename: dashboards/bklf-desktop-dashboard.yaml
