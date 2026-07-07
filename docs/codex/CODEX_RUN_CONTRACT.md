@@ -290,7 +290,29 @@ Every Codex task must return:
 7. Build/test result
 8. Known pre-existing failures separated from task regressions
 9. Self-check
-10. RSI / Context Efficiency Report, including token/context usage categories when available
+10. Token Utilization / RSI Report
+
+The Token Utilization / RSI Report is required for every Codex task unless higher-authority governance supersedes this requirement. Codex must report exact token metrics when visible:
+
+- total tokens
+- input tokens
+- output tokens
+- cached input tokens
+- reasoning tokens / compute usage
+- model used
+- reasoning level used
+
+If exact token metrics are not visible, Codex must state:
+
+```text
+Exact token metrics not visible in Codex.
+```
+
+Codex must then report observable proxy metrics, including model turns, files read, files modified, terminal/tool commands run, validation commands run, failed/retried commands, broad searches performed, large docs loaded, redundant reads, elapsed runtime if visible, context pressure, and recommended next-prompt compression.
+
+The report must also preserve RSI / Context Efficiency categories: essential docs loaded, unnecessary or redundant docs loaded, targeted-read opportunities, prompt-shortening recommendations, chat-derived context promoted into repository docs, and recommended next prompt pattern.
+
+Do not store every token count in the repository unless a bounded task explicitly requests a durable audit record.
 
 ChatGPT must evaluate every Codex summary for:
 

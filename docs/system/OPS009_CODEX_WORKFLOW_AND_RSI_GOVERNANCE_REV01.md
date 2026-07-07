@@ -134,9 +134,46 @@ Codex must not stop solely because the task is missing when the prompt explicitl
 
 Codex must not add unrelated tasks, activate adjacent tasks, mark unrelated tasks done, or infer a roadmap sequence from the missing-task record. The status must reflect the actual work state.
 
-## 11. RSI / Context Efficiency Report
+## 11. Token Utilization / RSI Report
 
-Codex closeouts should include an RSI / Context Efficiency Report with:
+Codex closeouts must include this report:
+
+```text
+TOKEN UTILIZATION / RSI REPORT -- REQUIRED
+```
+
+When exact token metrics are visible, Codex must report:
+
+- total tokens
+- input tokens
+- output tokens
+- cached input tokens
+- reasoning tokens / compute usage
+- model used
+- reasoning level used
+
+If exact token metrics are not visible, Codex must state:
+
+```text
+Exact token metrics not visible in Codex.
+```
+
+Codex must then report observable proxy metrics:
+
+- number of model turns
+- files read
+- files modified
+- terminal/tool commands run
+- validation commands run
+- failed/retried commands
+- broad searches performed
+- large docs loaded
+- redundant reads
+- elapsed runtime if visible
+- context pressure: low, medium, or high
+- recommended next-prompt compression
+
+Codex must also preserve the existing RSI / Context Efficiency categories:
 
 - essential docs loaded
 - unnecessary or redundant docs loaded
@@ -150,7 +187,7 @@ RSI means recursive self-improvement for the execution workflow. RSI findings ar
 
 ## 12. Codex Token / Context Usage Categories
 
-When available, Codex should report token/context usage by category:
+Codex must report token/context usage by category when exact metrics are visible, and must use observable proxy metrics when exact metrics are not visible:
 
 - prompt payload size
 - governance overhead
