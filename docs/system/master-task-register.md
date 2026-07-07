@@ -5383,6 +5383,24 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Operator Decision Required:** Review draft PR and decide whether to merge. Recommended next task after merge: `INSTALL001 - Installer Platform Architecture`.
 - **Completion Notes:** Created the docs-only OPS009 Codex workflow and RSI governance standard. Updated the Codex run contract narrowly so current full-read behavior remains the default while future targeted reads become allowed only under OPS009 conditions after merge. Added this bounded tracking record and catalog/manifest references. No source, runtime, route, style, page copy, public asset, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependency, package-lock, THEME implementation, INSTALL implementation, hooks, or automation files were changed.
 
+### OPS010-CODEX-TOKEN-UTILIZATION-RSI-001
+- **Task ID:** OPS010-CODEX-TOKEN-UTILIZATION-RSI-001
+- **Task Name:** Codex Token Utilization and RSI Reporting Requirement
+- **Status:** DONE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded docs-only governance work order.
+- **Purpose:** Strengthen Codex token utilization and RSI reporting requirements for future prompts and closeouts without creating a parallel governance system.
+- **Allowed Scope:** Update only `docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`, `docs/codex/CODEX_RUN_CONTRACT.md`, `docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`, and this bounded task-register entry.
+- **Forbidden Scope:** No source, runtime, UI, route, payment, CRM, scheduling, Cloudflare, Home Assistant, secrets, dependencies, package-lock, unrelated docs changes, hooks, scripts, automation, runtime behavior, product strategy, or unrelated task records.
+- **Target Files:** `docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`; `docs/codex/CODEX_RUN_CONTRACT.md`; `docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance update.
+- **Documentation Updates Required:** Strengthen OPS009 RSI reporting, update the Codex run contract output summary, update CODEX001 work-order templates and closeout standard, and add this bounded task-register entry only.
+- **Validation Required:** `git status --short`; `git diff --name-only`; `git diff --stat`; `git diff --check`; targeted `rg` checks for `TOKEN UTILIZATION / RSI REPORT`, `Exact token metrics not visible in Codex`, `proxy metrics`, `context pressure`, and `recommended next-prompt compression`.
+- **Exit Criteria:** Future Codex prompts and closeouts have explicit Token Utilization / RSI reporting requirements; exact token metrics are required when visible; proxy metrics are required when exact metrics are not visible; existing RSI categories are preserved; only allowed files change; no protected systems or runtime/source behavior change; validation passes; draft PR is opened without merge.
+- **Dependencies:** Prompt-created bounded `OPS010-CODEX-TOKEN-UTILIZATION-RSI-001` work order; OPS009; CODEX run contract; CODEX001 work order specification; current governance authority chain.
+- **Operator Decision Required:** Review draft PR and decide whether to merge.
+- **Completion Notes:** Added the Token Utilization / RSI reporting requirement into the existing OPS009 RSI framework, Codex run contract output summary, and CODEX001 work order template/closeout standards. Required exact token metrics when visible, explicit fallback language when exact metrics are not visible, proxy metrics, preserved RSI categories, and next-prompt compression guidance. No source, runtime, UI, routes, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, Home Assistant files, secrets, dependencies, package-lock, hooks, scripts, automation, product strategy, or unrelated task records were changed.
+
 ### INSTALL001
 - **Task ID:** INSTALL001
 - **Task Name:** Installer Platform Architecture

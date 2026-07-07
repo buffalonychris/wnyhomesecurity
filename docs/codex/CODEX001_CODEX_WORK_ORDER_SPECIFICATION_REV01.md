@@ -27,6 +27,7 @@ Every future work order must include or explicitly mark not applicable for these
 
 - Recommended Codex Model
 - Context Efficiency Instruction
+- Token Utilization / RSI Report requirement
 - System Context
 - Authority Order
 - Task ID
@@ -70,6 +71,8 @@ Context efficiency reduces prompt bloat; it never weakens governance.
 - Avoid broad full-docs scans unless the task is an audit, reconciliation, or safety check that requires one.
 - Report redundant context loads in the closeout.
 - Report a shorter future prompt pattern when useful.
+- Require a Token Utilization / RSI Report at closeout.
+- Report exact token metrics when visible and proxy metrics when exact token metrics are not visible.
 - Do not skip required authority docs.
 - Do not use context efficiency to bypass repository governance, task-register gating, protected-system contracts, claims guardrails, or validation.
 
@@ -124,6 +127,10 @@ Use targeted reads after confirming governing authority.
 Prefer rg/search for task-specific sections.
 Report redundant context loads and a shorter future prompt pattern.
 
+TOKEN UTILIZATION / RSI REPORT -- REQUIRED
+At closeout, report exact token metrics when visible.
+If exact token metrics are not visible, report proxy metrics including files read, commands run, redundant reads, context pressure, and next-prompt compression recommendation.
+
 SYSTEM CONTEXT
 Repo: buffalonychris/wnyhomesecurity
 Primary workstream: Project Governance
@@ -166,7 +173,7 @@ git diff --check
 targeted rg checks
 
 REQUIRED OUTPUT SUMMARY
-Branch, files changed, summary, validation, protected systems, PR URL, Context Efficiency Report.
+Branch, files changed, summary, validation, protected systems, PR URL, Token Utilization / RSI Report.
 
 SELF-CHECK
 Confirm only allowed docs changed and no protected systems changed.
@@ -306,8 +313,10 @@ Codex closeouts for repository work should report:
 - Scope confirmation
 - Events / KAOS intake candidates
 - RSI candidates
-- Context Efficiency Report
+- Token Utilization / RSI Report
 - Commands executed summary
+
+The Token Utilization / RSI Report must include exact token metrics when visible. If exact token metrics are not visible, it must state that clearly and report proxy metrics: files read, files modified, commands run, validation commands run, failed/retried commands, broad searches, large docs loaded, redundant reads, context pressure, and next-prompt compression recommendation.
 
 If a field does not apply, say `Not applicable` and explain briefly when useful.
 
