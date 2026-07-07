@@ -229,6 +229,7 @@ West Service Entrance should include:
 The Cameras panel should include:
 
 - South Wall Doorbell
+- Bailey Double Doors Doorbell
 - South Wall Corner Camera
 - Online/offline status
 - Motion/person event status where supported
@@ -305,6 +306,9 @@ This panel should use Network Closet naming for infrastructure devices even thou
 | BKLF-EW-001 | East Wall Double Door Left Contact | East Wall | Entrances, Exterior, Security, Overview, Activity | Contact state | Last activity | Building secure status | Sonoff SenseGuard Gen 2; one contact sensor on left door leaf |
 | BKLF-EW-002 | East Wall Double Door Right Contact | East Wall | Entrances, Exterior, Security, Overview, Activity | Contact state | Last activity | Building secure status | Sonoff SenseGuard Gen 2; one contact sensor on right door leaf |
 | BKLF-EW-003 | East Wall Window 01 | East Wall | Exterior, Security Notes | Deferred coverage note | Future contact placeholder | Deferred coverage | One operable East Wall window; contact sensor deferred until additional contact sensors arrive |
+| BKLF-EW-004 | Bailey Double Doors Lock | East Wall / East Entrance | Mobile Locks, Desktop Dashboard, Desktop Doors & Locks, Security / Activity, Activity | Lock control | Battery, jam, tamper, and node status when customer-safe | Bailey Double Doors owner-managed access workflow | Live entity `lock.east_wall_bailey_double_doors`; supporting entities `sensor.east_wall_bailey_double_doors_battery_level`, `binary_sensor.east_wall_bailey_double_doors_lock_jammed`, `binary_sensor.east_wall_bailey_double_doors_tampering_product_cover_removed`, and `sensor.east_wall_bailey_double_doors_node_status` |
+| BKLF-EW-005 | Bailey Double Doors Doorbell | East Wall / East Entrance | Mobile Cameras, Desktop Dashboard, Desktop Cameras, Desktop Doors & Locks, Security / Activity, Activity | Camera live view | Visitor/person/motion activity and camera details | Bailey Double Doors visitor/activity awareness | Live entity `camera.east_wall_bailey_double_door_fluent`; supporting entities `binary_sensor.east_wall_bailey_double_door_visitor`, `binary_sensor.east_wall_bailey_double_door_person`, `binary_sensor.east_wall_bailey_double_door_motion`, `binary_sensor.east_wall_bailey_double_door_vehicle`, `binary_sensor.east_wall_bailey_double_door_pet`, `siren.east_wall_bailey_double_door_siren`, `switch.east_wall_bailey_double_door_record`, `switch.east_wall_bailey_double_door_push_notifications`, `switch.east_wall_bailey_double_door_doorbell_button_sound`, `number.east_wall_bailey_double_door_speak_volume`, and `number.east_wall_bailey_double_door_doorbell_volume` |
+| BKLF-MH-001 | South Entrance Lamp | Main Hallway / South Entrance | Mobile More, Mobile Security, Desktop Dashboard, Desktop System / More, Security / Activity | Switch control | Power/voltage/current/energy status for service review when needed | Customer-facing utility/light control | Live entity `switch.south_entrance_lamp`; supporting entities `sensor.south_entrance_lamp_power`, `sensor.south_entrance_lamp_voltage`, `sensor.south_entrance_lamp_current`, and `sensor.south_entrance_lamp_summation_delivered` |
 | BKLF-WW-001 | West Wall Door Contact | West Wall | Entrances, Exterior, Security, Overview, Activity | Contact state | Last activity | Building secure status | West service entrance |
 | BKLF-WW-002 | West Wall Window 01 | West Wall | Exterior, Security Notes | Deferred coverage note | Future contact placeholder | Deferred coverage | One operable West Wall window; contact sensor deferred until additional contact sensors arrive |
 | BKLF-INT-001 | Viewing Room Motion 01 | Viewing Room | Security, Activity, Overview | Motion state | Last activity / battery state | Interior activity awareness, after-hours activity notification, low battery notification | Sonoff SNZB-03P; planned viewing-room placement |
@@ -327,6 +331,8 @@ The South Entrance workflow panel should document and display this sequence:
 7. Dashboard shows current lock, door, and camera state.
 
 The panel should include the South Wall Doorbell, South Wall Lock, South Wall Door Contact, recent access events, current lock state, current door state, current camera state, and re-lock timer status when exposed by the final Home Assistant configuration.
+
+The Bailey Double Doors workflow is live for dashboard display and should use the same customer-safe posture: camera view, visitor/person/motion activity, lock state, lock/unlock controls with unlock confirmation, and recent access events. Raw entity IDs remain implementation references only and should not appear as customer-facing labels.
 
 ---
 

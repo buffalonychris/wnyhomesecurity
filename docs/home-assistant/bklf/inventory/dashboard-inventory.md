@@ -26,7 +26,7 @@ Inventory version: REV01
 
 ## Customer-Facing Dashboard Entities
 
-These 17 entities are referenced by the customer dashboard source according to `dashboard_referenced_entities.csv`.
+These customer-facing entities are referenced by the customer dashboard source. The list includes the original South Entrance workflow plus the newly confirmed Bailey Double Doors lock, Bailey Double Doors doorbell, and South Entrance Lamp.
 
 | Entity | Role indicated by ID |
 | --- | --- |
@@ -40,18 +40,28 @@ These 17 entities are referenced by the customer dashboard source according to `
 | `binary_sensor.c08_north_wall_window_4` | North wall window contact |
 | `binary_sensor.c10_south_wall_window_1` | South wall window contact |
 | `binary_sensor.c11_south_wall_window_2` | South wall window contact |
+| `binary_sensor.east_wall_bailey_double_door_motion` | Bailey Double Doors doorbell motion status |
+| `binary_sensor.east_wall_bailey_double_door_person` | Bailey Double Doors doorbell person status |
+| `binary_sensor.east_wall_bailey_double_door_visitor` | Bailey Double Doors doorbell visitor status |
+| `binary_sensor.east_wall_bailey_double_doors_lock_jammed` | Bailey Double Doors lock jam status |
 | `binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed` | Smart lock jam status |
 | `binary_sensor.south_wall_south_entrance_doorbell_person` | South Entrance doorbell person status |
 | `binary_sensor.south_wall_south_entrance_doorbell_visitor` | South Entrance doorbell visitor status |
+| `camera.east_wall_bailey_double_door_fluent` | Bailey Double Doors doorbell camera stream |
 | `camera.south_wall_cam01_southwest_corner_parking_lot_fluent` | Parking Lot camera stream |
 | `camera.south_wall_south_entrance_doorbell_fluent` | South Entrance doorbell camera stream |
 | `input_select.bklf_building_mode` | Building mode helper |
+| `lock.east_wall_bailey_double_doors` | Bailey Double Doors lock |
 | `lock.south_wall_home_connect_620_connected_smart_lock` | South Entrance / Front Door lock |
+| `switch.south_entrance_lamp` | South Entrance Lamp control |
 
 ## Dashboard Status Notes
 
 - Current dashboard priority is the South Entrance / Front Door workflow.
 - Doorbell and parking lot camera streams are explicit customer dashboard entities.
+- Bailey Double Doors Doorbell is now an explicit customer dashboard camera and activity entity.
+- Bailey Double Doors Lock is now an explicit customer dashboard lock/control entity.
+- South Entrance Lamp is now an explicit customer-facing light/utility control.
 - The lock, lock jam status, door contact, visitor/person status, building mode, exterior secure, interior motion, and building secure composites are dashboard dependencies.
 - Broader HA entity inventory is documented separately in `entity-inventory.md` so customer-facing dashboard dependencies remain distinct from service, diagnostic, and integration-created entities.
 - BKLF mobile dashboard follow-up notes are preserved in `docs/home-assistant/bklf/BKLF_DASHBOARD_FOLLOWUP_NOTES_REV01.md` as documentation/planning only. They do not authorize dashboard YAML, live Home Assistant, package, theme, automation, or customer handoff changes.

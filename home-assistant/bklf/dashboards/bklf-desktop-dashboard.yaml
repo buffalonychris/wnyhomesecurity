@@ -9,7 +9,7 @@ views:
       grid-template-areas: |
         "header header header header header header header header header header header header"
         "status status status status status status status status status status status status"
-        "front front front front front front parking parking parking parking parking parking"
+        "front front front front bailey bailey bailey bailey parking parking parking parking"
         "doors doors doors doors lighting lighting lighting lighting activity activity activity activity"
         "actions actions actions actions actions system system system system system system system"
       mediaquery:
@@ -18,7 +18,7 @@ views:
           grid-template-areas: |
             "header header header header header header"
             "status status status status status status"
-            "front front front parking parking parking"
+            "front front bailey bailey parking parking"
             "doors doors doors lighting lighting lighting"
             "activity activity activity actions actions actions"
             "system system system system system system"
@@ -28,6 +28,7 @@ views:
             "header"
             "status"
             "front"
+            "bailey"
             "parking"
             "doors"
             "lighting"
@@ -84,16 +85,19 @@ views:
                     name: BKLF WNYHS Light
                 styles: &theme_button
                   card:
-                    - min-height: 58px
-                    - border-radius: 18px
+                    - min-height: 42px
+                    - border-radius: 14px
+                    - padding: 4px 10px
                     - background: var(--wnyhs-secondary-button-background)
                     - border: 1px solid var(--wnyhs-gold)
                     - box-shadow: var(--ha-card-box-shadow)
                   name:
                     - color: var(--primary-text-color)
                     - font-weight: 800
+                    - font-size: 13px
                   icon:
                     - color: var(--wnyhs-gold)
+                    - width: 20px
               - type: custom:button-card
                 name: Dark
                 icon: mdi:weather-night
@@ -134,7 +138,7 @@ views:
             card_mod:
               style: &status_tile |
                 ha-card {
-                  min-height: 102px;
+                  min-height: 86px;
                   border-radius: 20px;
                   border: 1px solid var(--wnyhs-card-border);
                   border-left: 5px solid var(--wnyhs-gold);
@@ -186,14 +190,16 @@ views:
           - type: custom:mushroom-template-card
             primary: System Status
             secondary: >-
-              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on') %}
+              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on')
+                or is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
                 Lock needs service
               {% else %}
                 Ready
               {% endif %}
             icon: mdi:server-network
             icon_color: >-
-              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on') %} red {% else %} green {% endif %}
+              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on')
+                or is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %} red {% else %} green {% endif %}
             tap_action:
               action: navigate
               navigation_path: /bklf-desktop/system
@@ -350,6 +356,56 @@ views:
 
       - type: vertical-stack
         view_layout:
+          grid-area: bailey
+        cards:
+          - type: custom:button-card
+            name: Bailey Double Doors
+            label: East entrance doorbell and lock
+            icon: mdi:doorbell-video
+            show_label: true
+            styles: *section_header
+          - type: picture-entity
+            entity: camera.east_wall_bailey_double_door_fluent
+            name: Bailey Double Doors Doorbell
+            camera_view: live
+            show_state: false
+            aspect_ratio: 16x9
+            tap_action:
+              action: more-info
+            card_mod:
+              style: *camera_card
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Lock
+                icon: mdi:lock
+                tap_action:
+                  action: call-service
+                  service: lock.lock
+                  target:
+                    entity_id: lock.east_wall_bailey_double_doors
+                styles: *safe_button
+              - type: custom:button-card
+                name: Unlock
+                icon: mdi:lock-open-variant
+                confirmation:
+                  text: Unlock the Bailey Double Doors?
+                tap_action:
+                  action: call-service
+                  service: lock.unlock
+                  target:
+                    entity_id: lock.east_wall_bailey_double_doors
+                styles: *caution_button
+              - type: custom:button-card
+                name: Details
+                icon: mdi:fullscreen
+                tap_action:
+                  action: more-info
+                  entity: camera.east_wall_bailey_double_door_fluent
+                styles: *gold_outline_button
+
+      - type: vertical-stack
+        view_layout:
           grid-area: doors
         cards:
           - type: custom:button-card
@@ -378,23 +434,29 @@ views:
             card_mod:
               style: *status_tile
           - type: custom:mushroom-template-card
-            primary: East Double Door
-            secondary: Planned lock and doorbell - not active
+            primary: Bailey Double Doors Lock
+            secondary: >-
+              {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+                Lock needs review
+              {% elif is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+                Locked
+              {% else %}
+                Needs review
+              {% endif %}
             icon: mdi:door-double
-            icon_color: grey
+            icon_color: >-
+              {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+                amber
+              {% elif is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+                green
+              {% else %}
+                red
+              {% endif %}
             tap_action:
-              action: none
+              action: more-info
+              entity: lock.east_wall_bailey_double_doors
             card_mod:
-              style: &planned_tile |
-                ha-card {
-                  min-height: 96px;
-                  border-radius: 20px;
-                  border: 1px dashed var(--wnyhs-card-border);
-                  border-left: 5px solid var(--wnyhs-gold);
-                  background: var(--wnyhs-card-background);
-                  opacity: 0.76;
-                  box-shadow: var(--ha-card-box-shadow);
-                }
+              style: *status_tile
 
       - type: vertical-stack
         view_layout:
@@ -402,28 +464,26 @@ views:
         cards:
           - type: custom:button-card
             name: Lighting Control
-            label: Single light control placeholder
+            label: South Entrance Lamp
             icon: mdi:lightbulb
             show_label: true
             styles: *section_header
           - type: custom:mushroom-template-card
-            primary: Third Reality Plug
-            secondary: Planned single-light control - entity pending
-            icon: mdi:power-plug
-            icon_color: grey
+            primary: South Entrance Lamp
+            secondary: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %}
+                On
+              {% else %}
+                Off
+              {% endif %}
+            icon: mdi:lamp
+            icon_color: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %} amber {% else %} grey {% endif %}
             tap_action:
-              action: none
+              action: toggle
+              entity: switch.south_entrance_lamp
             card_mod:
-              style: *planned_tile
-          - type: custom:mushroom-template-card
-            primary: Planned Device Note
-            secondary: Add the live switch after pairing and naming
-            icon: mdi:clipboard-check-outline
-            icon_color: amber
-            tap_action:
-              action: none
-            card_mod:
-              style: *planned_tile
+              style: *status_tile
 
       - type: logbook
         view_layout:
@@ -433,7 +493,12 @@ views:
         entities:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
           - lock.south_wall_home_connect_620_connected_smart_lock
+          - lock.east_wall_bailey_double_doors
+          - switch.south_entrance_lamp
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.c10_south_wall_window_1
           - binary_sensor.c11_south_wall_window_2
@@ -566,13 +631,42 @@ views:
     cards:
       - type: custom:button-card
         name: Cameras
-        label: South Entrance and Parking Lot
+        label: South Entrance, Bailey Double Doors, and Parking Lot
         icon: mdi:cctv
         show_label: true
         tap_action:
           action: navigate
           navigation_path: /bklf-desktop/dashboard
         styles: *hero_card
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
       - type: picture-entity
         entity: camera.south_wall_south_entrance_doorbell_fluent
         name: South Entrance / Front Door
@@ -593,6 +687,32 @@ views:
           action: more-info
         card_mod:
           style: *camera_card
+      - type: picture-entity
+        entity: camera.east_wall_bailey_double_door_fluent
+        name: Bailey Double Doors / East Entrance
+        camera_view: live
+        show_state: false
+        aspect_ratio: 16x9
+        tap_action:
+          action: more-info
+        card_mod:
+          style: *camera_card
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: South Entrance Talk
+            icon: mdi:microphone
+            tap_action:
+              action: more-info
+              entity: camera.south_wall_south_entrance_doorbell_fluent
+            styles: *gold_outline_button
+          - type: custom:button-card
+            name: Bailey Talk
+            icon: mdi:microphone
+            tap_action:
+              action: more-info
+              entity: camera.east_wall_bailey_double_door_fluent
+            styles: *gold_outline_button
       - type: logbook
         title: Camera Activity
         hours_to_show: 12
@@ -600,6 +720,9 @@ views:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
           - binary_sensor.south_wall_south_entrance_doorbell_motion
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
         card_mod:
@@ -613,13 +736,42 @@ views:
     cards:
       - type: custom:button-card
         name: Doors & Locks
-        label: South Entrance active, East Double Door planned
+        label: South Entrance and Bailey Double Doors
         icon: mdi:door-closed-lock
         show_label: true
         tap_action:
           action: navigate
           navigation_path: /bklf-desktop/dashboard
         styles: *hero_card
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
       - type: custom:mushroom-template-card
         primary: South Entrance Door
         secondary: >-
@@ -675,6 +827,52 @@ views:
                 entity_id: lock.south_wall_home_connect_620_connected_smart_lock
             styles: *caution_button
       - type: custom:mushroom-template-card
+        primary: Bailey Double Doors Lock
+        secondary: >-
+          {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+            Lock needs review
+          {% elif is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Locked
+          {% else %}
+            Needs review
+          {% endif %}
+        icon: mdi:lock
+        icon_color: >-
+          {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+            amber
+          {% elif is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            green
+          {% else %}
+            red
+          {% endif %}
+        tap_action:
+          action: more-info
+          entity: lock.east_wall_bailey_double_doors
+        card_mod:
+          style: *status_tile
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Lock Bailey Doors
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.east_wall_bailey_double_doors
+            styles: *safe_button
+          - type: custom:button-card
+            name: Unlock Bailey Doors
+            icon: mdi:lock-open-variant
+            confirmation:
+              text: Unlock the Bailey Double Doors?
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.east_wall_bailey_double_doors
+            styles: *caution_button
+      - type: custom:mushroom-template-card
         primary: Front Double Door - Left
         secondary: >-
           {% if is_state('binary_sensor.c10_south_wall_window_1', 'on') %}
@@ -707,23 +905,15 @@ views:
         card_mod:
           style: *status_tile
       - type: custom:mushroom-template-card
-        primary: East Double Door Lock
-        secondary: Planned - not paired or active
-        icon: mdi:lock-clock
-        icon_color: grey
-        tap_action:
-          action: none
-        card_mod:
-          style: *planned_tile
-      - type: custom:mushroom-template-card
-        primary: East Double Door Doorbell
-        secondary: Planned - not paired or active
+        primary: Bailey Double Doors Doorbell
+        secondary: Visitor, person, and motion activity
         icon: mdi:doorbell-video
-        icon_color: grey
+        icon_color: amber
         tap_action:
-          action: none
+          action: more-info
+          entity: camera.east_wall_bailey_double_door_fluent
         card_mod:
-          style: *planned_tile
+          style: *status_tile
 
   - title: Security / Activity
     path: security
@@ -740,6 +930,35 @@ views:
           action: navigate
           navigation_path: /bklf-desktop/dashboard
         styles: *hero_card
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
       - type: custom:mushroom-template-card
         primary: Building Status
         secondary: >-
@@ -788,6 +1007,54 @@ views:
           entity: binary_sensor.bklf_exterior_secure
         card_mod:
           style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: South Entrance Lock
+        secondary: >-
+          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            Locked
+          {% else %}
+            Needs review
+          {% endif %}
+        icon: mdi:lock
+        icon_color: >-
+          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %} green {% else %} red {% endif %}
+        tap_action:
+          action: more-info
+          entity: lock.south_wall_home_connect_620_connected_smart_lock
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: Bailey Double Doors Lock
+        secondary: >-
+          {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Locked
+          {% else %}
+            Needs review
+          {% endif %}
+        icon: mdi:lock
+        icon_color: >-
+          {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %} green {% else %} red {% endif %}
+        tap_action:
+          action: more-info
+          entity: lock.east_wall_bailey_double_doors
+        card_mod:
+          style: *status_tile
+      - type: custom:mushroom-template-card
+        primary: South Entrance Lamp
+        secondary: >-
+          {% if is_state('switch.south_entrance_lamp', 'on') %}
+            On
+          {% else %}
+            Off
+          {% endif %}
+        icon: mdi:lamp
+        icon_color: >-
+          {% if is_state('switch.south_entrance_lamp', 'on') %} amber {% else %} grey {% endif %}
+        tap_action:
+          action: toggle
+          entity: switch.south_entrance_lamp
+        card_mod:
+          style: *status_tile
       - type: logbook
         title: Activity Log
         hours_to_show: 24
@@ -795,7 +1062,12 @@ views:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
           - binary_sensor.south_wall_south_entrance_doorbell_motion
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
           - lock.south_wall_home_connect_620_connected_smart_lock
+          - lock.east_wall_bailey_double_doors
+          - switch.south_entrance_lamp
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.c05_north_wall_window_1
           - binary_sensor.c06_north_wall_window_2
@@ -824,6 +1096,35 @@ views:
           action: navigate
           navigation_path: /bklf-desktop/dashboard
         styles: *hero_card
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Light
+            icon: mdi:white-balance-sunny
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Light
+            styles: *theme_button
+          - type: custom:button-card
+            name: Dark
+            icon: mdi:weather-night
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: BKLF WNYHS Dark
+            styles: *theme_button
+          - type: custom:button-card
+            name: Auto
+            icon: mdi:theme-light-dark
+            tap_action:
+              action: call-service
+              service: frontend.set_theme
+              data:
+                name: default
+            styles: *theme_button
       - type: grid
         title: System Overview
         columns: 2
@@ -831,7 +1132,7 @@ views:
         cards:
           - type: custom:mushroom-template-card
             primary: Cameras
-            secondary: Front Door and Parking Lot
+            secondary: South Entrance, Bailey Double Doors, and Parking Lot
             icon: mdi:cctv
             icon_color: green
             tap_action:
@@ -876,43 +1177,18 @@ views:
             card_mod:
               style: *status_tile
           - type: custom:mushroom-template-card
-            primary: Planned Light Control
-            secondary: Third Reality plug entity pending
-            icon: mdi:power-plug
-            icon_color: grey
+            primary: South Entrance Lamp
+            secondary: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %}
+                On
+              {% else %}
+                Off
+              {% endif %}
+            icon: mdi:lamp
+            icon_color: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %} amber {% else %} grey {% endif %}
             tap_action:
-              action: none
+              action: toggle
+              entity: switch.south_entrance_lamp
             card_mod:
-              style: *planned_tile
-      - type: grid
-        title: Theme
-        columns: 3
-        square: false
-        cards:
-          - type: custom:button-card
-            name: Light
-            icon: mdi:white-balance-sunny
-            tap_action:
-              action: call-service
-              service: frontend.set_theme
-              data:
-                name: BKLF WNYHS Light
-            styles: *theme_button
-          - type: custom:button-card
-            name: Dark
-            icon: mdi:weather-night
-            tap_action:
-              action: call-service
-              service: frontend.set_theme
-              data:
-                name: BKLF WNYHS Dark
-            styles: *theme_button
-          - type: custom:button-card
-            name: Auto
-            icon: mdi:theme-light-dark
-            tap_action:
-              action: call-service
-              service: frontend.set_theme
-              data:
-                name: default
-            styles: *theme_button
+              style: *status_tile

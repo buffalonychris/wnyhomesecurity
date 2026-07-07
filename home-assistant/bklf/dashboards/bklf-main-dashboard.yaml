@@ -405,7 +405,12 @@ views:
         entities:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
           - lock.south_wall_home_connect_620_connected_smart_lock
+          - lock.east_wall_bailey_double_doors
+          - switch.south_entrance_lamp
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
@@ -588,7 +593,7 @@ views:
     cards:
       - type: custom:button-card
         name: Cameras
-        label: Doorbell first, parking lot next
+        label: Doorbells first, parking lot next
         icon: mdi:cctv
         show_label: true
         styles:
@@ -713,12 +718,43 @@ views:
               entity: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
             styles: *neutral_gold_button
 
+      - type: picture-entity
+        entity: camera.east_wall_bailey_double_door_fluent
+        name: Bailey Double Doors
+        camera_view: live
+        show_state: false
+        aspect_ratio: 16x9
+        tap_action:
+          action: more-info
+        card_mod:
+          style: *camera_card_style
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Live
+            icon: mdi:record-circle
+            tap_action:
+              action: more-info
+              entity: camera.east_wall_bailey_double_door_fluent
+            styles: *live_badge
+          - type: custom:button-card
+            name: Talk
+            icon: mdi:microphone
+            tap_action:
+              action: more-info
+              entity: camera.east_wall_bailey_double_door_fluent
+            styles: *positive_button
+
       - type: logbook
         title: Camera Activity
         hours_to_show: 12
         entities:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_vehicle
           - binary_sensor.bklf_cam01_person_active
@@ -869,11 +905,60 @@ views:
                 entity_id: lock.south_wall_home_connect_620_connected_smart_lock
             styles: *safe_button
 
+      - type: custom:mushroom-template-card
+        primary: Bailey Double Doors Lock
+        secondary: >-
+          {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+            Lock needs review
+          {% elif is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Locked
+          {% else %}
+            Please check the Bailey Double Doors.
+          {% endif %}
+        icon: mdi:door-closed-lock
+        icon_color: >-
+          {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+            amber
+          {% elif is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            green
+          {% else %}
+            red
+          {% endif %}
+        tap_action:
+          action: more-info
+          entity: lock.east_wall_bailey_double_doors
+        card_mod:
+          style: *status_card_style
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Unlock Bailey
+            icon: mdi:lock-open-variant
+            confirmation:
+              text: Unlock the Bailey Double Doors?
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.east_wall_bailey_double_doors
+            styles: *caution_button
+          - type: custom:button-card
+            name: Lock Bailey
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.east_wall_bailey_double_doors
+            styles: *safe_button
+
       - type: logbook
         title: Recent Access Activity
         hours_to_show: 12
         entities:
           - lock.south_wall_home_connect_620_connected_smart_lock
+          - lock.east_wall_bailey_double_doors
           - binary_sensor.c01_south_entrance_door
         card_mod:
           style: *activity_card_style
@@ -1104,6 +1189,48 @@ views:
           style: *status_card_style
 
       - type: custom:mushroom-template-card
+        primary: Bailey Double Doors Lock
+        secondary: >-
+          {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Locked
+          {% else %}
+            Please check the Bailey Double Doors.
+          {% endif %}
+        icon: mdi:lock
+        icon_color: >-
+          {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            green
+          {% else %}
+            red
+          {% endif %}
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-main/locks
+        card_mod:
+          style: *status_card_style
+
+      - type: custom:mushroom-template-card
+        primary: South Entrance Lamp
+        secondary: >-
+          {% if is_state('switch.south_entrance_lamp', 'on') %}
+            On
+          {% else %}
+            Off
+          {% endif %}
+        icon: mdi:lamp
+        icon_color: >-
+          {% if is_state('switch.south_entrance_lamp', 'on') %}
+            amber
+          {% else %}
+            grey
+          {% endif %}
+        tap_action:
+          action: toggle
+          entity: switch.south_entrance_lamp
+        card_mod:
+          style: *status_card_style
+
+      - type: custom:mushroom-template-card
         primary: System Status
         secondary: >-
           {% if is_state('binary_sensor.bklf_building_secure', 'on') %}
@@ -1186,7 +1313,12 @@ views:
         entities:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
           - lock.south_wall_home_connect_620_connected_smart_lock
+          - lock.east_wall_bailey_double_doors
+          - switch.south_entrance_lamp
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.c09_west_service_door
           - binary_sensor.c10_south_wall_window_1
@@ -1278,7 +1410,7 @@ views:
               style: *status_card_style
           - type: custom:mushroom-template-card
             primary: Cameras
-            secondary: Review front entrance and parking lot.
+            secondary: Review South Entrance, Bailey Double Doors, and Parking Lot.
             icon: mdi:cctv
             icon_color: amber
             tap_action:
@@ -1288,7 +1420,7 @@ views:
               style: *status_card_style
           - type: custom:mushroom-template-card
             primary: Locks
-            secondary: Front entry lock status and actions.
+            secondary: South Entrance and Bailey Double Doors lock actions.
             icon: mdi:lock
             icon_color: green
             tap_action:
@@ -1308,7 +1440,7 @@ views:
               style: *status_card_style
           - type: custom:mushroom-template-card
             primary: Activity
-            secondary: Recent visitor, camera, lock, and door events.
+            secondary: Recent visitor, camera, lock, lamp, and door events.
             icon: mdi:history
             icon_color: amber
             tap_action:
@@ -1319,7 +1451,7 @@ views:
 
       - type: custom:mushroom-template-card
         primary: BK Lewis Funeral Home
-        secondary: Front entry, cameras, locks, security, and activity.
+        secondary: Entrances, cameras, locks, lamp, security, and activity.
         icon: mdi:map-marker-radius
         icon_color: amber
         card_mod:
@@ -1339,6 +1471,26 @@ views:
       - type: vertical-stack
         title: System Status
         cards:
+          - type: custom:mushroom-template-card
+            primary: South Entrance Lamp
+            secondary: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %}
+                On
+              {% else %}
+                Off
+              {% endif %}
+            icon: mdi:lamp
+            icon_color: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %}
+                amber
+              {% else %}
+                grey
+              {% endif %}
+            tap_action:
+              action: toggle
+              entity: switch.south_entrance_lamp
+            card_mod:
+              style: *status_card_style
           - type: custom:mushroom-template-card
             primary: Building Status
             secondary: >-
