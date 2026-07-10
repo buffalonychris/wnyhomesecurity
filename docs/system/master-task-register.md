@@ -899,6 +899,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### HA-NOTIFY002-NOTIFICATION-GOVERNANCE-AND-BKLF-PROFILE-PROMOTION-001
+- **Task ID:** HA-NOTIFY002-NOTIFICATION-GOVERNANCE-AND-BKLF-PROFILE-PROMOTION-001
+- **Task Name:** Notification Governance and BKLF Profile Promotion
+- **Status:** DONE
+- **Category:** GOV
+- **Task Type:** Documentation promotion / governance / business-process authority
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded Home Assistant notification governance work order.
+- **Objective:** Promote the operator-approved WNYHS Notification Engine Standard REV01, WNYHS Adaptive Notification Configuration Questionnaire REV01, and BKLF Notification Configuration Decisions REV06 from DOCX sources into repository-native Markdown authority records.
+- **Allowed Scope:** Create `docs/home-assistant/notification-system/WNYHS_NOTIFICATION_ENGINE_STANDARD_REV01.md`, `docs/home-assistant/notification-system/WNYHS_ADAPTIVE_NOTIFICATION_CONFIGURATION_QUESTIONNAIRE_REV01.md`, `docs/home-assistant/notification-system/README.md`, and `docs/home-assistant/bklf/BKLF_NOTIFICATION_CONFIGURATION_DECISIONS_REV06.md`; update this bounded Master Task Register record; update OPS005 only where needed for status/discoverability.
+- **Forbidden Scope:** No website implementation, Home Assistant YAML changes, dashboard/theme/component changes, source code, routes, forms, HubSpot, Stripe/payment, scheduling, Resend/email, SMS providers, APIs/runtime, Cloudflare config, dependencies, package-lock, environment files, secrets, DOCX/PDF/image/archive commits, live Home Assistant changes, notification automation implementation, notify group creation, production routing enablement, PR merge, or ready-for-review PR marking.
+- **Target Files:** `docs/home-assistant/notification-system/WNYHS_NOTIFICATION_ENGINE_STANDARD_REV01.md`; `docs/home-assistant/notification-system/WNYHS_ADAPTIVE_NOTIFICATION_CONFIGURATION_QUESTIONNAIRE_REV01.md`; `docs/home-assistant/notification-system/README.md`; `docs/home-assistant/bklf/BKLF_NOTIFICATION_CONFIGURATION_DECISIONS_REV06.md`; `docs/system/master-task-register.md`; `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`.
+- **Runtime Systems Affected:** None. Documentation/governance only.
+- **Documentation Updates Required:** Promote all three approved source documents as Markdown; create the notification-system README; record this bounded task; update OPS005 to reflect notification governance, questionnaire/business-process authority, BKLF REV06 reference profile, and next live-validation task.
+- **Validation Required:** `git status --short`; `git diff --name-only`; `git diff --stat`; `git diff --check`; `git diff --cached --check`; changed-file scope check; binary/temp artifact addition scan; Home Assistant YAML/source/protected-system unchanged checks; required-section targeted searches; recipient/routing/timing preservation checks; `npm run build`; markdown lint if a relevant command exists.
+- **Exit Criteria:** All three approved source documents are faithfully promoted; required files exist; Markdown is valid; no binary source files or temporary conversion artifacts are committed; no Home Assistant YAML/source/runtime/protected-system files changed; live validation remains the next task; validation passes; draft PR opened without merge.
+- **Dependencies:** Operator-approved DOCX source files; CODEX run contract; CODEX001 work-order standard; OPS009 workflow governance; OPS004/OPS005 routing; HA-BACKUP002 sanitized BKLF notification/user/person inventory; read-only `home-assistant/bklf/packages/bklf_notifications.yaml` factual context.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. After merge, run the operator closeout sequence before issuing `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001`.
+- **Completion Notes:** Promoted the WNYHS Notification Engine Standard REV01, WNYHS Adaptive Notification Configuration Questionnaire REV01, and BKLF Notification Configuration Decisions REV06 into repository Markdown. Created the notification-system README and updated OPS005 to identify notification governance and `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001` as the next validation task. No website, Home Assistant YAML, dashboard, source/runtime, HubSpot, Stripe/payment, scheduling, Resend/email, SMS, APIs, Cloudflare config, dependencies, package-lock, environment files, secrets, DOCX/PDF/image/archive files, live Home Assistant systems, notify groups, production routing, or notification automations were changed.
+
 ### HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001
 - **Task ID:** HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001
 - **Task Name:** BKLF Sanitized Support Data Refresh
