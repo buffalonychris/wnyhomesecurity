@@ -1,142 +1,755 @@
-# BKLF notification automations.
+# BKLF notification package.
 #
-# Automations are disabled by default because the exported registry does not
-# include a real mobile notify service. When the Home Assistant mobile app is
-# installed onsite, replace persistent_notification.create actions with the
-# verified private notify.mobile_app_* service and enable only after testing.
+# Source-controlled implementation for HA-NOTIFY004. Production routes are
+# limited to Mr. Lewis, Chris, and Luis. Helen and Anthony are intentionally
+# excluded from every production route.
+
+input_boolean:
+  bklf_camera_parking_lot_offline_alert_active:
+    name: BKLF Parking Lot Camera Offline Alert Active
+    icon: mdi:cctv-off
+  bklf_south_doorbell_offline_alert_active:
+    name: BKLF South Entrance Doorbell Offline Alert Active
+    icon: mdi:doorbell-video
+  bklf_bailey_doorbell_offline_alert_active:
+    name: BKLF Bailey Doorbell Offline Alert Active
+    icon: mdi:doorbell-video
+  bklf_south_lock_jam_alert_active:
+    name: BKLF South Entrance Lock Jam Alert Active
+    icon: mdi:lock-alert
+  bklf_bailey_lock_jam_alert_active:
+    name: BKLF Bailey Double Doors Lock Jam Alert Active
+    icon: mdi:lock-alert
+  bklf_south_lock_battery_alert_active:
+    name: BKLF South Entrance Lock Battery Alert Active
+    icon: mdi:battery-alert
+  bklf_south_lock_secure_failure_active:
+    name: BKLF South Entrance Secure Failure Active
+    icon: mdi:lock-alert
+  bklf_c01_south_entrance_left_open_alert_active:
+    name: BKLF C01 South Entrance Left Open Alert Active
+    icon: mdi:door-open
+  bklf_c03_east_door_right_left_open_alert_active:
+    name: BKLF C03 East Door Right Left Open Alert Active
+    icon: mdi:door-open
+  bklf_c04_west_door_left_open_alert_active:
+    name: BKLF C04 West Door Left Open Alert Active
+    icon: mdi:door-open
+  bklf_zwave_controller_outage_alert_active:
+    name: BKLF Z-Wave Controller Outage Alert Active
+    icon: mdi:z-wave
+
+script:
+  bklf_notify_owner_primary:
+    alias: BKLF Notify Owner Primary
+    mode: queued
+    fields:
+      title:
+        description: Notification title.
+      message:
+        description: Notification body.
+      url:
+        description: Optional Companion destination.
+      image:
+        description: Optional local image path.
+    sequence:
+      - service: notify.me_lewis_cell
+        data:
+          title: "{{ title }}"
+          message: "{{ message }}"
+          data:
+            clickAction: "{{ url | default('/bklf-main') }}"
+            url: "{{ url | default('/bklf-main') }}"
+            image: "{{ image | default(none) }}"
+
+  bklf_notify_service_team:
+    alias: BKLF Notify Service Team
+    mode: queued
+    fields:
+      title:
+        description: Notification title.
+      message:
+        description: Notification body.
+      url:
+        description: Optional Companion destination.
+      image:
+        description: Optional local image path.
+    sequence:
+      - service: notify.chris_cell
+        data:
+          title: "{{ title }}"
+          message: "{{ message }}"
+          data:
+            clickAction: "{{ url | default('/bklf-main/more') }}"
+            url: "{{ url | default('/bklf-main/more') }}"
+            image: "{{ image | default(none) }}"
+      - service: notify.luis_cell
+        data:
+          title: "{{ title }}"
+          message: "{{ message }}"
+          data:
+            clickAction: "{{ url | default('/bklf-main/more') }}"
+            url: "{{ url | default('/bklf-main/more') }}"
+            image: "{{ image | default(none) }}"
+
+  bklf_notify_after_hours_security:
+    alias: BKLF Notify After Hours Security
+    mode: queued
+    fields:
+      title:
+        description: Notification title.
+      message:
+        description: Notification body.
+      url:
+        description: Optional Companion destination.
+      image:
+        description: Optional local image path.
+    sequence:
+      - service: script.bklf_notify_owner_primary
+        data:
+          title: "{{ title }}"
+          message: "{{ message }}"
+          url: "{{ url | default('/bklf-main/security') }}"
+          image: "{{ image | default(none) }}"
+      - service: script.bklf_notify_service_team
+        data:
+          title: "{{ title }}"
+          message: "{{ message }}"
+          url: "{{ url | default('/bklf-main/security') }}"
+          image: "{{ image | default(none) }}"
+
+  bklf_notify_implementation_test:
+    alias: BKLF Notify Implementation Test
+    mode: queued
+    fields:
+      title:
+        description: Notification title.
+      message:
+        description: Notification body.
+      url:
+        description: Optional Companion destination.
+      image:
+        description: Optional local image path.
+    sequence:
+      - service: notify.chris_cell
+        data:
+          title: "{{ title }}"
+          message: "{{ message }}"
+          data:
+            clickAction: "{{ url | default('/bklf-main/more') }}"
+            url: "{{ url | default('/bklf-main/more') }}"
+            image: "{{ image | default(none) }}"
 
 automation:
-  - id: bklf_cam01_after_hours_person_notification
-    alias: BKLF Parking Lot After-Hours Person Notification
-    description: "Disabled by default. Notifies onsite owner/operator after parking lot person detection while the building mode is Closed or After Hours."
+  - id: bklf_notify_south_entrance_doorbell_press
+    alias: BKLF Notify South Entrance Doorbell Press
     mode: single
-    initial_state: false
-    trigger:
-      - platform: state
-        entity_id:
-          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
-          - binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person
-        to: "on"
-    condition:
-      - condition: template
-        value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
-      - condition: state
-        entity_id: input_boolean.bklf_maintenance_mode
-        state: "off"
-      - condition: state
-        entity_id: input_boolean.bklf_installer_mode
-        state: "off"
-    action:
-      # Replace this service with the verified private notify.mobile_app_* service before enabling.
-      - service: persistent_notification.create
-        data:
-          title: "BKLF Parking Lot Person"
-          message: "Parking lot camera detected a person while the building mode was Closed or After Hours. Review the BKLF dashboard for current status."
-
-  - id: bklf_south_entrance_doorbell_visitor_notification
-    alias: BKLF South Entrance Doorbell Visitor Notification
-    description: "Disabled by default. Notifies onsite owner/operator when the South Entrance doorbell visitor sensor activates."
-    mode: single
-    initial_state: false
+    max_exceeded: silent
     trigger:
       - platform: state
         entity_id: binary_sensor.south_wall_south_entrance_doorbell_visitor
         to: "on"
     condition:
       - condition: state
-        entity_id: input_boolean.bklf_maintenance_mode
-        state: "off"
-      - condition: state
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      # Replace this service with the verified private notify.mobile_app_* service before enabling.
-      - service: persistent_notification.create
+      - service: camera.snapshot
+        continue_on_error: true
         data:
-          title: "BKLF Doorbell"
-          message: "South Entrance doorbell visitor detected. Open the Doorbell view for live status."
+          entity_id: camera.south_wall_south_entrance_doorbell_fluent
+          filename: /config/www/bklf-south-entrance-snapshot.jpg
+      - service: script.bklf_notify_owner_primary
+        data:
+          title: "South Entrance Doorbell"
+          message: "Visitor at South Entrance. Tap to view."
+          url: "/bklf-main/doorbell"
+          image: "/local/bklf-south-entrance-snapshot.jpg"
+      - delay: "00:00:05"
 
-  - id: bklf_south_entrance_active_notification
-    alias: BKLF South Entrance Active Notification
-    description: "Disabled by default. Notifies onsite owner/operator when the South Entrance combined status becomes active."
+  - id: bklf_notify_bailey_double_doors_doorbell_press
+    alias: BKLF Notify Bailey Double Doors Doorbell Press
     mode: single
-    initial_state: false
+    max_exceeded: silent
     trigger:
       - platform: state
-        entity_id: binary_sensor.bklf_south_entrance_active
+        entity_id: binary_sensor.east_wall_bailey_double_door_visitor
         to: "on"
     condition:
       - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.east_wall_bailey_double_door_fluent
+          filename: /config/www/bklf-bailey-double-doors-snapshot.jpg
+      - service: script.bklf_notify_owner_primary
+        data:
+          title: "Bailey Double Doors Doorbell"
+          message: "Visitor at Bailey Double Doors. Tap to view."
+          url: "/bklf-main/doorbell"
+          image: "/local/bklf-bailey-double-doors-snapshot.jpg"
+      - delay: "00:00:05"
+
+  - id: bklf_notify_parking_lot_camera_offline
+    alias: BKLF Notify Parking Lot Camera Offline
+    mode: restart
+    trigger:
+      - platform: state
+        entity_id: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+        to: "unavailable"
+        for: "00:03:00"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') != 'Maintenance' }}"
+      - condition: state
         entity_id: input_boolean.bklf_maintenance_mode
         state: "off"
       - condition: state
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      # Replace this service with the verified private notify.mobile_app_* service before enabling.
-      - service: persistent_notification.create
+      - if:
+          - condition: template
+            value_template: "{{ now().hour >= 21 or now().hour < 8 }}"
+        then:
+          - wait_template: "{{ now().hour >= 8 and now().hour < 21 }}"
+            timeout: "12:00:00"
+            continue_on_timeout: true
+      - condition: state
+        entity_id: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+        state: "unavailable"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bklf_camera_parking_lot_offline_alert_active
+      - service: script.bklf_notify_service_team
         data:
-          title: "BKLF South Entrance"
-          message: "South Entrance is active. Review the Doorbell or Lock view for current status."
+          title: "Parking Lot Camera Offline"
+          message: "Parking Lot camera is offline. Remote viewing may be unavailable."
+          url: "/bklf-main/cameras"
 
-  - id: bklf_low_battery_notification
-    alias: BKLF Low Battery Notification
-    description: "Disabled by default. Notifies onsite owner/operator when a battery-powered device reports low battery."
+  - id: bklf_notify_parking_lot_camera_restored
+    alias: BKLF Notify Parking Lot Camera Restored
     mode: single
-    initial_state: false
+    trigger:
+      - platform: state
+        entity_id: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+        from: "unavailable"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_camera_parking_lot_offline_alert_active
+        state: "on"
+      - condition: template
+        value_template: "{{ trigger.to_state.state not in ['unavailable', 'unknown'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bklf_camera_parking_lot_offline_alert_active
+      - service: script.bklf_notify_service_team
+        data:
+          title: "Parking Lot Camera Restored"
+          message: "Parking Lot camera is available again."
+          url: "/bklf-main/cameras"
+
+  - id: bklf_notify_doorbell_offline
+    alias: BKLF Notify Doorbell Offline
+    mode: parallel
+    max: 2
+    trigger:
+      - platform: state
+        entity_id: camera.south_wall_south_entrance_doorbell_fluent
+        to: "unavailable"
+        for: "00:03:00"
+      - platform: state
+        entity_id: camera.east_wall_bailey_double_door_fluent
+        to: "unavailable"
+        for: "00:03:00"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') != 'Maintenance' }}"
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - variables:
+          door_name: "{{ 'South Entrance' if trigger.entity_id == 'camera.south_wall_south_entrance_doorbell_fluent' else 'Bailey Double Doors' }}"
+          active_helper: "{{ 'input_boolean.bklf_south_doorbell_offline_alert_active' if trigger.entity_id == 'camera.south_wall_south_entrance_doorbell_fluent' else 'input_boolean.bklf_bailey_doorbell_offline_alert_active' }}"
+      - service: input_boolean.turn_on
+        data:
+          entity_id: "{{ active_helper }}"
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "{{ door_name }} Doorbell Offline"
+          message: "{{ door_name }} Doorbell is offline. Remote visitor response may be unavailable."
+          url: "/bklf-main/doorbell"
+
+  - id: bklf_notify_doorbell_restored
+    alias: BKLF Notify Doorbell Restored
+    mode: parallel
+    max: 2
+    trigger:
+      - platform: state
+        entity_id: camera.south_wall_south_entrance_doorbell_fluent
+        from: "unavailable"
+      - platform: state
+        entity_id: camera.east_wall_bailey_double_door_fluent
+        from: "unavailable"
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state not in ['unavailable', 'unknown'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - variables:
+          door_name: "{{ 'South Entrance' if trigger.entity_id == 'camera.south_wall_south_entrance_doorbell_fluent' else 'Bailey Double Doors' }}"
+          active_helper: "{{ 'input_boolean.bklf_south_doorbell_offline_alert_active' if trigger.entity_id == 'camera.south_wall_south_entrance_doorbell_fluent' else 'input_boolean.bklf_bailey_doorbell_offline_alert_active' }}"
+      - condition: template
+        value_template: "{{ is_state(active_helper, 'on') }}"
+      - service: input_boolean.turn_off
+        data:
+          entity_id: "{{ active_helper }}"
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "{{ door_name }} Doorbell Restored"
+          message: "{{ door_name }} Doorbell is available again."
+          url: "/bklf-main/doorbell"
+
+  - id: bklf_notify_lock_jam
+    alias: BKLF Notify Lock Jam
+    mode: parallel
+    max: 2
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed
+        to: "on"
+      - platform: state
+        entity_id: binary_sensor.east_wall_bailey_double_doors_lock_jammed
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - variables:
+          lock_name: "{{ 'South Entrance Lock' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'Bailey Double Doors Lock' }}"
+          active_helper: "{{ 'input_boolean.bklf_south_lock_jam_alert_active' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'input_boolean.bklf_bailey_lock_jam_alert_active' }}"
+      - condition: template
+        value_template: "{{ not is_state(active_helper, 'on') }}"
+      - service: input_boolean.turn_on
+        data:
+          entity_id: "{{ active_helper }}"
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "{{ lock_name }} Needs Review"
+          message: "{{ lock_name }} needs review. The lock reports a jam or operating problem."
+          url: "/bklf-main/locks"
+
+  - id: bklf_notify_lock_jam_restored
+    alias: BKLF Notify Lock Jam Restored
+    mode: parallel
+    max: 2
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed
+        to: "off"
+      - platform: state
+        entity_id: binary_sensor.east_wall_bailey_double_doors_lock_jammed
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - variables:
+          lock_name: "{{ 'South Entrance Lock' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'Bailey Double Doors Lock' }}"
+          active_helper: "{{ 'input_boolean.bklf_south_lock_jam_alert_active' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'input_boolean.bklf_bailey_lock_jam_alert_active' }}"
+      - condition: template
+        value_template: "{{ is_state(active_helper, 'on') }}"
+      - service: input_boolean.turn_off
+        data:
+          entity_id: "{{ active_helper }}"
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "{{ lock_name }} Restored"
+          message: "{{ lock_name }} no longer reports a jam condition."
+          url: "/bklf-main/locks"
+
+  - id: bklf_notify_south_lock_battery_low
+    alias: BKLF Notify South Entrance Lock Battery Low
+    mode: single
     trigger:
       - platform: numeric_state
-        entity_id:
-          - sensor.c01_south_entrance_door_battery
-          - sensor.c05_north_wall_window_1_battery
-          - sensor.c06_north_wall_window_2_battery
-          - sensor.c07_north_wall_window_3_battery
-          - sensor.c08_north_wall_window_4_battery
-          - sensor.c09_west_service_door_battery
-          - sensor.c10_south_wall_window_1_battery
-          - sensor.c11_south_wall_window_2_battery
-          - sensor.c12_upstairs_back_porch_door_battery
-          - sensor.m01_main_hallway_motion_battery
-          - sensor.m02_viewing_room_motion_battery
-          - sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
-        below: 20
+        entity_id: sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
+        below: 16
       - platform: state
         entity_id:
           - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now
           - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon
         to: "on"
+      - platform: time
+        at: "10:00:00"
     condition:
       - condition: state
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
+      - condition: template
+        value_template: >
+          {{ states('sensor.south_wall_home_connect_620_connected_smart_lock_battery_level') | int(100) <= 15
+             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now', 'on')
+             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon', 'on') }}
     action:
-      # Replace this service with the verified private notify.mobile_app_* service before enabling.
-      - service: persistent_notification.create
+      - if:
+          - condition: template
+            value_template: "{{ now().hour >= 21 or now().hour < 8 }}"
+        then:
+          - wait_template: "{{ now().hour >= 8 and now().hour < 21 }}"
+            timeout: "12:00:00"
+            continue_on_timeout: true
+      - condition: template
+        value_template: >
+          {{ states('sensor.south_wall_home_connect_620_connected_smart_lock_battery_level') | int(100) <= 15
+             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now', 'on')
+             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon', 'on') }}
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bklf_south_lock_battery_alert_active
+      - service: script.bklf_notify_owner_primary
         data:
-          title: "BKLF Battery Review"
-          message: "A battery-powered BKLF device needs review. Open System Health for details."
+          title: "South Entrance Lock Battery"
+          message: "South Entrance Lock battery is low. Battery replacement is recommended."
+          url: "/bklf-main/locks"
 
-  - id: bklf_device_offline_notification
-    alias: BKLF Device Offline Notification
-    description: "Disabled by default. Notifies onsite owner/operator when a critical live entity becomes unavailable."
+  - id: bklf_notify_south_lock_battery_restored
+    alias: BKLF Notify South Entrance Lock Battery Restored
     mode: single
-    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
+        above: 15
+      - platform: state
+        entity_id:
+          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now
+          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_south_lock_battery_alert_active
+        state: "on"
+      - condition: template
+        value_template: >
+          {{ states('sensor.south_wall_home_connect_620_connected_smart_lock_battery_level') | int(0) > 15
+             and is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now', 'off')
+             and is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon', 'off') }}
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bklf_south_lock_battery_alert_active
+      - service: script.bklf_notify_owner_primary
+        data:
+          title: "South Entrance Lock Battery Restored"
+          message: "South Entrance Lock battery is back above the low-battery threshold."
+          url: "/bklf-main/locks"
+
+  - id: bklf_secure_building_workflow
+    alias: BKLF Secure Building Workflow
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: input_select.bklf_building_mode
+        to:
+          - "Closed"
+          - "After Hours"
+      - platform: time
+        at: "19:00:00"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - if:
+          - condition: state
+            entity_id: binary_sensor.c01_south_entrance_door
+            state: "off"
+        then:
+          - repeat:
+              while:
+                - condition: template
+                  value_template: "{{ repeat.index <= 5 and not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}"
+              sequence:
+                - service: lock.lock
+                  data:
+                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+                - wait_template: "{{ is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}"
+                  timeout: "00:00:15"
+                  continue_on_timeout: true
+          - if:
+              - condition: template
+                value_template: "{{ not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}"
+            then:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.bklf_south_lock_secure_failure_active
+              - service: script.bklf_notify_after_hours_security
+                data:
+                  title: "South Entrance Lock Could Not Be Secured"
+                  message: "South Entrance Lock could not be secured after repeated attempts. Please review the door and lock."
+                  url: "/bklf-main/locks"
+        else:
+          - service: script.bklf_notify_after_hours_security
+            data:
+              title: "Cannot Secure Building"
+              message: "Cannot secure building - South Entrance Door is open."
+              url: "/bklf-main/security"
+
+  - id: bklf_secure_failure_restored
+    alias: BKLF Secure Failure Restored
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+        to: "locked"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_south_lock_secure_failure_active
+        state: "on"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bklf_south_lock_secure_failure_active
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "South Entrance Lock Secured"
+          message: "South Entrance Lock is now secured."
+          url: "/bklf-main/locks"
+
+  - id: bklf_notify_exterior_door_left_open
+    alias: BKLF Notify Exterior Door Left Open
+    mode: parallel
+    max: 8
     trigger:
       - platform: state
         entity_id:
           - binary_sensor.c01_south_entrance_door
-          - binary_sensor.c09_west_service_door
-          - binary_sensor.c10_south_wall_window_1
-          - binary_sensor.c11_south_wall_window_2
-          - binary_sensor.c12_upstairs_back_porch_door
-          - binary_sensor.m01_main_hallway_motion
-          - binary_sensor.m02_viewing_room_motion
-          - lock.south_wall_home_connect_620_connected_smart_lock
-          - camera.south_wall_south_entrance_doorbell_fluent
-          - camera.south_wall_cam01_southwest_corner_parking_lot_fluent
-        to: "unavailable"
-        for: "00:15:00"
+          - binary_sensor.c03_east_door_right
+          - binary_sensor.c04_west_door
+        to: "on"
+        for: "00:01:30"
     condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Open', 'Service', 'Cleaning', 'Maintenance', 'Closed', 'After Hours'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+    action:
+      - variables:
+          building_mode: "{{ states('input_select.bklf_building_mode') }}"
+          door_name: "{{ trigger.to_state.name }}"
+          alert_helper: >-
+            {% set helpers = {
+              'binary_sensor.c01_south_entrance_door': 'input_boolean.bklf_c01_south_entrance_left_open_alert_active',
+              'binary_sensor.c03_east_door_right': 'input_boolean.bklf_c03_east_door_right_left_open_alert_active',
+              'binary_sensor.c04_west_door': 'input_boolean.bklf_c04_west_door_left_open_alert_active'
+            } %}
+            {{ helpers[trigger.entity_id] }}
+      - if:
+          - condition: template
+            value_template: "{{ building_mode in ['Open', 'Service', 'Cleaning', 'Maintenance'] and (now().hour >= 21 or now().hour < 8) }}"
+        then:
+          - wait_template: "{{ now().hour >= 8 and now().hour < 21 }}"
+            timeout: "12:00:00"
+            continue_on_timeout: true
+      - condition: template
+        value_template: "{{ is_state(trigger.entity_id, 'on') }}"
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') == building_mode }}"
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Open', 'Service', 'Cleaning', 'Maintenance', 'Closed', 'After Hours'] }}"
+      - repeat:
+          while:
+            - condition: template
+              value_template: "{{ repeat.index <= 5 and is_state(trigger.entity_id, 'on') }}"
+          sequence:
+            - if:
+                - condition: template
+                  value_template: "{{ repeat.index == 1 }}"
+              then:
+                - service: input_boolean.turn_on
+                  data:
+                    entity_id: "{{ alert_helper }}"
+            - choose:
+                - conditions:
+                    - condition: template
+                      value_template: "{{ building_mode in ['Closed', 'After Hours'] }}"
+                  sequence:
+                    - service: script.bklf_notify_after_hours_security
+                      data:
+                        title: "Opening Left Open"
+                        message: "{{ door_name }} has been open for 90 seconds."
+                        url: "/bklf-main/security"
+              default:
+                - service: script.bklf_notify_after_hours_security
+                  data:
+                    title: "Door Left Open"
+                    message: "{{ door_name }} has been open for 90 seconds."
+                    url: "/bklf-main/security"
+            - delay: "00:01:30"
+
+  - id: bklf_notify_exterior_door_left_open_closed
+    alias: BKLF Notify Exterior Door Left Open Closed
+    mode: parallel
+    max: 8
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.c01_south_entrance_door
+          - binary_sensor.c03_east_door_right
+          - binary_sensor.c04_west_door
+        from: "on"
+        to: "off"
+    action:
+      - variables:
+          alert_helper: >-
+            {% set helpers = {
+              'binary_sensor.c01_south_entrance_door': 'input_boolean.bklf_c01_south_entrance_left_open_alert_active',
+              'binary_sensor.c03_east_door_right': 'input_boolean.bklf_c03_east_door_right_left_open_alert_active',
+              'binary_sensor.c04_west_door': 'input_boolean.bklf_c04_west_door_left_open_alert_active'
+            } %}
+            {{ helpers[trigger.entity_id] }}
+      - condition: template
+        value_template: "{{ is_state(alert_helper, 'on') }}"
+      - service: input_boolean.turn_off
+        data:
+          entity_id: "{{ alert_helper }}"
+      - if:
+          - condition: template
+            value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
+          - condition: state
+            entity_id: input_boolean.bklf_installer_mode
+            state: "off"
+        then:
+          - service: script.bklf_notify_after_hours_security
+            data:
+              title: "Opening Closed"
+              message: "{{ trigger.to_state.name }} is closed."
+              url: "/bklf-main/security"
+
+  - id: bklf_notify_exterior_opening_secured
+    alias: BKLF Notify Exterior Opening While Secured
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.c01_south_entrance_door
+          - binary_sensor.c03_east_door_right
+          - binary_sensor.c04_west_door
+          - binary_sensor.c09_north_wall_window_5
+          - binary_sensor.c12_south_wall_window_3
+        from: "off"
+        to: "on"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "Opening While Secured"
+          message: "{{ trigger.to_state.name }} opened while the building is secured."
+          url: "/bklf-main/security"
+      - delay: "00:02:00"
+
+  - id: bklf_notify_interior_motion_secured
+    alias: BKLF Notify Interior Motion While Secured
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.m01_main_hallway_motion
+          - binary_sensor.m01_main_hallway_motion_occupancy
+          - binary_sensor.m02_viewing_room_motion
+          - binary_sensor.m02_viewing_room_motion_occupancy
+        to: "on"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "Activity After Hours"
+          message: "Activity detected after hours in {{ trigger.to_state.name }}."
+          url: "/bklf-main/security"
+      - delay: "00:05:00"
+
+  - id: bklf_notify_parking_lot_linger_secured
+    alias: BKLF Notify Parking Lot Person Linger While Secured
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person
+        to: "on"
+        for: "00:05:00"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') in ['Closed', 'After Hours'] }}"
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.south_wall_cam01_southwest_corner_parking_lot_fluent
+          filename: /config/www/bklf-parking-lot-snapshot.jpg
+      - service: script.bklf_notify_after_hours_security
+        data:
+          title: "Parking Lot Activity"
+          message: "Person activity has continued in the parking lot for more than 5 minutes."
+          url: "/bklf-main/cameras"
+          image: "/local/bklf-parking-lot-snapshot.jpg"
+      - delay: "00:15:00"
+
+  - id: bklf_notify_zwave_controller_outage
+    alias: BKLF Notify Z-Wave Controller Outage
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.z_wave_js_running
+        to: "off"
+        for: "00:03:00"
+    condition:
+      - condition: template
+        value_template: "{{ states('input_select.bklf_building_mode') != 'Maintenance' }}"
       - condition: state
         entity_id: input_boolean.bklf_maintenance_mode
         state: "off"
@@ -144,8 +757,53 @@ automation:
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      # Replace this service with the verified private notify.mobile_app_* service before enabling.
-      - service: persistent_notification.create
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bklf_zwave_controller_outage_alert_active
+      - service: script.bklf_notify_service_team
         data:
-          title: "BKLF Device Review"
-          message: "A BKLF installed device needs review. Open System Ready for current status."
+          title: "Z-Wave Controller Unavailable"
+          message: "Z-Wave controller is unavailable. Lock status and control may be affected."
+          url: "/bklf-main/more"
+
+  - id: bklf_notify_zwave_controller_restored
+    alias: BKLF Notify Z-Wave Controller Restored
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.z_wave_js_running
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_zwave_controller_outage_alert_active
+        state: "on"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bklf_zwave_controller_outage_alert_active
+      - service: script.bklf_notify_service_team
+        data:
+          title: "Z-Wave Controller Restored"
+          message: "Z-Wave controller is available again."
+          url: "/bklf-main/more"
+
+  - id: bklf_notify_implementation_test_event
+    alias: BKLF Notify Implementation Test Event
+    mode: queued
+    trigger:
+      - platform: event
+        event_type: bklf_notification_test
+    condition:
+      - condition: template
+        value_template: >
+          {{ is_state('input_boolean.bklf_installer_mode', 'on')
+             or states('input_select.bklf_building_mode') == 'Maintenance' }}
+    action:
+      - service: script.bklf_notify_implementation_test
+        data:
+          title: "WNYHS Notification Test"
+          message: "WNYHS notification test: {{ trigger.event.data.test_name | default('manual test') }}."
+          url: "/bklf-main/more"
