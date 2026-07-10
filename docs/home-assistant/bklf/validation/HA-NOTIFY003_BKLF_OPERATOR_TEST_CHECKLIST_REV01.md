@@ -20,6 +20,8 @@ Do not report or store tokens, private cloud URLs, mobile registration payloads,
 
 ## Group 1 - Companion Notification Services
 
+Status: complete for HA-NOTIFY003. The operator accepted prior BKLF Companion setup validation for `notify.chris_cell`, `notify.luis_cell`, `notify.me_lewis_cell`, and `notify.sm_s931u1_helen_cell`. HA-NOTIFY003 also directly tested Chris, Luis, and Mr. Lewis. No additional Companion-device testing is required.
+
 Safety: customer-visible push. Use only calm test wording.
 
 Open: Home Assistant -> Developer Tools -> Services.
@@ -41,7 +43,19 @@ Evidence to report: service name, recipient/person mapping, timestamp, delivery 
 
 Restore: no restore action required.
 
-Do not create routes or groups. Do not test Helen unless the operator explicitly wants a technical exclusion test. If Helen is tested, record that she remains excluded from production routing.
+Do not create routes or groups. Do not repeat Helen testing. Helen is technically configured and previously tested, but remains excluded from production routing. Anthony has no confirmed service and remains excluded.
+
+### Group 1 Evidence Captured
+
+| Test ID | Service | Recipient | Title/body | Operator result | Timestamp | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| G1-01 | `notify.chris_cell` | Chris / service team | `WNYHS Notification Validation Test` / `Test message for Chris  no action required.` | Received immediately; no delay; no Home Assistant errors reported. | 2026-07-10 13:01 -04:00 | passed |
+| G1-02 | `notify.luis_cell` | Luis / service team | `WNYHS Notification Validation Test` / `Test message for Luis  no action required.` | Received; no delay; no Home Assistant errors reported. | 2026-07-10 13:02 -04:00 | passed |
+| G1-03 | `notify.me_lewis_cell` | Mr. Lewis / owner primary | `WNYHS Notification Validation Test` / `Test message for Mr. Lewis  no action required.` | Received; no delay; no Home Assistant errors reported. | 2026-07-10 13:03 -04:00 | passed |
+| G1-04 | `notify.sm_s931u1_helen_cell` | Helen / excluded | No HA-NOTIFY003 repeat test required. | Operator confirms service was previously configured and successfully tested during BKLF Companion setup; Helen remains excluded from production routing. | 2026-07-10 | accepted / excluded |
+| G1-05 | Anthony | Excluded | Not applicable. | No confirmed service; excluded from production routing. | 2026-07-10 | excluded |
+
+Companion services gate: READY.
 
 ## Group 2 - User, Person, And Role Mapping
 
@@ -58,6 +72,8 @@ Inspect only operational role facts:
 - Chris and Luis remain service-team/system-health recipients after handoff.
 
 Expected result: the live user/person records support the intended mapping without exposing private auth data.
+
+HA-NOTIFY003 readiness result: READY by operator decision for implementation routing. Mr. Lewis is the customer/owner operational recipient; Chris and Luis are service-team, system-health, and approved after-hours recipients; Helen and Anthony are excluded.
 
 Evidence to report: role mapping, user/person names visible, device tracker relationships if visible, and any ambiguity.
 
@@ -86,6 +102,18 @@ Record:
 
 Expected result: one authoritative source, exact values, and automation-observable state changes are identified.
 
+HA-NOTIFY003 readiness result: READY WITH IMPLEMENTATION CONDITION. Use the current repository-configured operational contract for HA-NOTIFY004:
+
+- `Open` = occupied
+- `Service` = occupied service/event
+- `Cleaning` = occupied/suppressed
+- `Maintenance` = maintenance suppression/service routing
+- `Closed` = secured
+- `After Hours` = secured
+- `input_boolean.bklf_installer_mode` = installer suppression/test routing
+
+Do not block HA-NOTIFY004 because `Consultation` and `Service / Event` naming refinements are not present; defer those refinements to a later dashboard/building-mode task.
+
 Restore: if a mode is changed with approval, set it back to the starting value and report both timestamps.
 
 ## Group 4 - Quiet Hours Inputs
@@ -102,6 +130,8 @@ Validate:
 - whether an update/restart or time-window helper exists
 
 Expected result: implementation can either consume a verified helper or calculate Quiet Hours directly using the correct timezone.
+
+HA-NOTIFY003 readiness result: READY WITH IMPLEMENTATION CONDITION. HA-NOTIFY004 may calculate Quiet Hours directly as 9:00 PM through 8:00 AM, seven days per week, and must acceptance-test local-time behavior before handoff.
 
 Restore: no changes.
 
@@ -336,4 +366,4 @@ Classify every BKLF REV06 event as:
 - NOT SUPPORTED
 - FUTURE / DEFERRED
 
-Do not mark READY unless direct operator evidence supports the entity/service, trigger, routing, timing, suppression, and recovery requirements.
+HA-NOTIFY003 readiness result: complete for initial bounded implementation. Current backup/repository evidence may support HA-NOTIFY004 implementation inputs when paired with explicit acceptance tests. Do not relabel event behavior as live-confirmed unless HA-NOTIFY004 actually tests it.
