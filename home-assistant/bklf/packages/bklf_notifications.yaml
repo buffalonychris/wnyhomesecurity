@@ -35,12 +35,6 @@ input_boolean:
   bklf_c04_west_door_left_open_alert_active:
     name: BKLF C04 West Door Left Open Alert Active
     icon: mdi:door-open
-  bklf_c09_north_wall_window_5_left_open_alert_active:
-    name: BKLF C09 North Wall Window 5 Left Open Alert Active
-    icon: mdi:window-open
-  bklf_c12_south_wall_window_3_left_open_alert_active:
-    name: BKLF C12 South Wall Window 3 Left Open Alert Active
-    icon: mdi:window-open
   bklf_zwave_controller_outage_alert_active:
     name: BKLF Z-Wave Controller Outage Alert Active
     icon: mdi:z-wave
@@ -558,8 +552,6 @@ automation:
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.c03_east_door_right
           - binary_sensor.c04_west_door
-          - binary_sensor.c09_north_wall_window_5
-          - binary_sensor.c12_south_wall_window_3
         to: "on"
         for: "00:01:30"
     condition:
@@ -579,9 +571,7 @@ automation:
             {% set helpers = {
               'binary_sensor.c01_south_entrance_door': 'input_boolean.bklf_c01_south_entrance_left_open_alert_active',
               'binary_sensor.c03_east_door_right': 'input_boolean.bklf_c03_east_door_right_left_open_alert_active',
-              'binary_sensor.c04_west_door': 'input_boolean.bklf_c04_west_door_left_open_alert_active',
-              'binary_sensor.c09_north_wall_window_5': 'input_boolean.bklf_c09_north_wall_window_5_left_open_alert_active',
-              'binary_sensor.c12_south_wall_window_3': 'input_boolean.bklf_c12_south_wall_window_3_left_open_alert_active'
+              'binary_sensor.c04_west_door': 'input_boolean.bklf_c04_west_door_left_open_alert_active'
             } %}
             {{ helpers[trigger.entity_id] }}
       - if:
@@ -637,8 +627,6 @@ automation:
           - binary_sensor.c01_south_entrance_door
           - binary_sensor.c03_east_door_right
           - binary_sensor.c04_west_door
-          - binary_sensor.c09_north_wall_window_5
-          - binary_sensor.c12_south_wall_window_3
         from: "on"
         to: "off"
     action:
@@ -647,9 +635,7 @@ automation:
             {% set helpers = {
               'binary_sensor.c01_south_entrance_door': 'input_boolean.bklf_c01_south_entrance_left_open_alert_active',
               'binary_sensor.c03_east_door_right': 'input_boolean.bklf_c03_east_door_right_left_open_alert_active',
-              'binary_sensor.c04_west_door': 'input_boolean.bklf_c04_west_door_left_open_alert_active',
-              'binary_sensor.c09_north_wall_window_5': 'input_boolean.bklf_c09_north_wall_window_5_left_open_alert_active',
-              'binary_sensor.c12_south_wall_window_3': 'input_boolean.bklf_c12_south_wall_window_3_left_open_alert_active'
+              'binary_sensor.c04_west_door': 'input_boolean.bklf_c04_west_door_left_open_alert_active'
             } %}
             {{ helpers[trigger.entity_id] }}
       - condition: template

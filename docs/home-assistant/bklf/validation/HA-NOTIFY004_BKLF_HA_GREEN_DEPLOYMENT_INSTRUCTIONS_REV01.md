@@ -81,7 +81,7 @@ If configuration check, reload, restart, or initial tests fail:
 
 ## Building Mode Validation
 
-1. Test `Open`, `Service`, and `Cleaning`: occupied-mode door-left-open notifications send after 90 seconds for approved exterior contacts; secured-building motion/opening notifications remain suppressed.
+1. Test `Open`, `Service`, and `Cleaning`: occupied-mode door-left-open notifications send after 90 seconds for confirmed exterior door contacts C01, C03, and C04; secured-building motion/opening notifications remain suppressed.
 2. Test `Maintenance`: occupied-mode door-left-open notifications send unless `input_boolean.bklf_maintenance_mode` is intentionally on for approved maintenance activity.
 3. Test `Closed` and `After Hours`: secured-building notifications are eligible.
 4. Test Installer Mode: customer-facing notifications are suppressed and implementation-test route is used.
@@ -96,12 +96,14 @@ If configuration check, reload, restart, or initial tests fail:
 ## Repeat And Reset Validation
 
 1. Doorbell press: press twice within 5 seconds and confirm duplicate suppression.
-2. Door left open in occupied mode: confirm first Normal alert at 90 seconds, repeat every 90 seconds, maximum five total, and Quiet Hours delay/recheck behavior if tested.
-3. Door left open in secured mode: confirm first left-open alert at 90 seconds, repeat every 90 seconds, maximum five total.
+2. Door left open in occupied mode: use only confirmed exterior door contacts C01, C03, and C04; confirm first Normal alert at 90 seconds, repeat every 90 seconds, maximum five total, and Quiet Hours delay/recheck behavior if tested.
+3. Door left open in secured mode: use only confirmed exterior door contacts C01, C03, and C04; confirm first left-open alert at 90 seconds, repeat every 90 seconds, maximum five total.
 4. Door left open: close the same contact and confirm repeats stop, the per-door helper clears, and any close/recovery notification is gated by prior left-open lifecycle.
-5. Ordinary open and close before 90 seconds: confirm no generic close notification sends.
-6. Interior motion: confirm five-minute cooldown.
-7. Parking Lot linger: confirm 15-minute cooldown after alert.
+5. Window opening while secured: open C09 or C12 and confirm the immediate High secured-opening alert can send.
+6. Window held open: hold C09 or C12 open for more than 90 seconds and confirm no repeating `Door Left Open` lifecycle begins.
+7. Ordinary door open and close before 90 seconds: confirm no generic close notification sends.
+8. Interior motion: confirm five-minute cooldown.
+9. Parking Lot linger: confirm 15-minute cooldown after alert.
 
 ## Lock Secure Workflow Validation
 

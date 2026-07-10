@@ -361,7 +361,7 @@ Each workstream row uses this schema:
 - **Related workstreams:** Catalog System, Solution System, Dashboard / Interactive Experience System, Runtime System.
 - **Protected-system concerns:** Do not install/configure automations, customer dashboards, integrations, dependencies, runtime services, or device behavior without bounded authority.
 - **Next recommended task:** Review draft PR #511 for `HA-NOTIFY004-BKLF-NOTIFICATION-IMPLEMENTATION-001`; live deployment and acceptance remain operator actions after merge.
-- **Notes / risks:** Keep automation claims and support posture conservative. HA-NOTIFY004 must preserve Helen and Anthony routing exclusions, use the temporary Building Mode operational contract, acceptance-test event/entity behavior before handoff, defer Bailey automatic locking until the physical Bailey door contact is confirmed, and defer backup failure, automation failure, and generic integration failure unless reliable signals are explicitly found and scoped.
+- **Notes / risks:** Keep automation claims and support posture conservative. HA-NOTIFY004 must preserve Helen and Anthony routing exclusions, use the temporary Building Mode operational contract, acceptance-test event/entity behavior before handoff, keep repeating left-open lifecycle limited to confirmed exterior door contacts, defer Bailey automatic locking until the physical Bailey door contact is confirmed, and defer backup failure, automation failure, and generic integration failure unless reliable signals are explicitly found and scoped.
 
 ## 27. Runtime System Status
 
