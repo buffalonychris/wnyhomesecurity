@@ -11,7 +11,7 @@ Implementation authority: No
 | --- | --- |
 | Home Assistant version | 2026.6.4 |
 | Supervisor version | 2026.06.2 |
-| Backup date | `2026-07-09T23:47:29.850048+00:00` |
+| Backup date | `2026-07-09T19:47:29.850048-04:00` |
 | Backup database inclusion | Database present in backup but intentionally excluded from repo support data |
 | HA image family | Home Assistant Green image evidence, token-bearing metadata excluded |
 | Add-ons from backup metadata | Matter Server 9.0.3; Z-Wave JS 1.5.0; File editor 6.0.0; Samba share 12.7.1; Terminal & SSH 10.3.0 |

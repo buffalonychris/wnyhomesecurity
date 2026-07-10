@@ -443,7 +443,7 @@ The entity register remains the source of truth for dashboard and workflow mappi
 ## HA-BACKUP002 Dashboard / Source Refresh
 
 Task ID: `HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001`
-Backup evidence date: `2026-07-09T23:47:29.850048+00:00`
+Backup evidence date: `2026-07-09T19:47:29.850048-04:00`
 Extraction date: `2026-07-09T23:14:00-04:00`
 
 Latest backup extraction confirmed the repo-controlled BKLF YAML files are byte-identical to the backup copies:

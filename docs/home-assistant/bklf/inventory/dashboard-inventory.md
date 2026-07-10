@@ -69,6 +69,6 @@ These customer-facing entities are referenced by the customer dashboard source. 
 ## HA-BACKUP002 Dashboard Refresh
 
 Task ID: `HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001`
-Backup evidence date: `2026-07-09T23:47:29.850048+00:00`
+Backup evidence date: `2026-07-09T19:47:29.850048-04:00`
 
 Latest backup copies of `bklf-main-dashboard.yaml` and `bklf-desktop-dashboard.yaml` are byte-identical to the repo versions. No dashboard YAML synchronization was required. Current routes remain `bklf-main` and `bklf-desktop`; current theme references remain BKLF WNYHS Light, Dark, and Auto controls. Stale placeholders are not documented as live unless backed by current entity bindings in the dashboard YAML or latest backup entity registry.

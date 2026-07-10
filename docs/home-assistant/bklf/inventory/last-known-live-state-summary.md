@@ -1,7 +1,7 @@
 # BKLF Last-Known Live-State Summary
 
 Task ID: HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001
-Backup evidence date: `2026-07-09T23:47:29.850048+00:00`
+Backup evidence date: `2026-07-09T19:47:29.850048-04:00`
 Extraction date: `2026-07-09T23:14:00-04:00`
 Customer-facing: No
 Implementation authority: No

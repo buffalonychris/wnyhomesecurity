@@ -12,7 +12,7 @@ Implementation authority: No
 | Field | Value |
 | --- | --- |
 | Source backup filename | `07092026wnyhs_bklewis_bailey_for_gpt.tar` |
-| Backup date/time | `2026-07-09T23:47:29.850048+00:00` |
+| Backup date/time | `2026-07-09T19:47:29.850048-04:00` |
 | Extraction date/time | `2026-07-09T23:14:00-04:00` |
 | Operator | Christian Brzostowicz |
 | Home Assistant version evidence | 2026.6.4 |
