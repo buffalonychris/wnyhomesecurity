@@ -353,15 +353,15 @@ Each workstream row uses this schema:
 
 - **Workstream title:** Automation System
 - **Status:** Active
-- **Current state:** Home Assistant-native first. C.A.F.E. is the preferred visual authoring layer for complex Home Assistant automations. Node-RED is reserved for advanced/customer-specific deployments only. WNYHS notification governance now exists as documentation/business-process authority only.
-- **Completed work:** AUTOMATION001 Home Assistant automation standard; WNYHS Notification Engine Standard REV01; WNYHS Adaptive Notification Configuration Questionnaire REV01; BKLF Notification Configuration Decisions REV06 as the reference customer profile for live validation.
-- **Outstanding work:** Use-case-specific automation evaluation; SafePath/reference examples; supportability checklist application; BKLF live notification validation before any notification implementation.
+- **Current state:** Home Assistant-native first. C.A.F.E. is the preferred visual authoring layer for complex Home Assistant automations. Node-RED is reserved for advanced/customer-specific deployments only. WNYHS notification governance exists as documentation/business-process authority only. `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001` is complete for initial bounded implementation readiness; no notification implementation is authorized until a separate HA-NOTIFY004 task.
+- **Completed work:** AUTOMATION001 Home Assistant automation standard; WNYHS Notification Engine Standard REV01; WNYHS Adaptive Notification Configuration Questionnaire REV01; BKLF Notification Configuration Decisions REV06 as the reference customer profile; HA-NOTIFY003 BKLF notification readiness validation.
+- **Outstanding work:** Use-case-specific automation evaluation; SafePath/reference examples; supportability checklist application; implement only the HA-NOTIFY003 READY and READY WITH IMPLEMENTATION CONDITION notification items in a separately bounded implementation task.
 - **Required current-state docs:** `/docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`; `/docs/home-assistant/notification-system/README.md`; `/docs/home-assistant/notification-system/WNYHS_NOTIFICATION_ENGINE_STANDARD_REV01.md`; `/docs/home-assistant/notification-system/WNYHS_ADAPTIVE_NOTIFICATION_CONFIGURATION_QUESTIONNAIRE_REV01.md`; `/docs/home-assistant/bklf/BKLF_NOTIFICATION_CONFIGURATION_DECISIONS_REV06.md`.
 - **Required governing docs:** AUTOMATION001, catalog/solution docs for hardware/capability fit.
 - **Related workstreams:** Catalog System, Solution System, Dashboard / Interactive Experience System, Runtime System.
 - **Protected-system concerns:** Do not install/configure automations, customer dashboards, integrations, dependencies, runtime services, or device behavior without bounded authority.
-- **Next recommended task:** `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001`.
-- **Notes / risks:** Keep automation claims and support posture conservative. Notification implementation remains blocked pending live validation and a separately approved bounded implementation task.
+- **Next recommended task:** `HA-NOTIFY004-BKLF-NOTIFICATION-IMPLEMENTATION-001`.
+- **Notes / risks:** Keep automation claims and support posture conservative. HA-NOTIFY004 must preserve Helen and Anthony routing exclusions, use the temporary Building Mode operational contract, acceptance-test event/entity behavior before handoff, and defer backup failure, automation failure, and generic integration failure unless reliable signals are explicitly found and scoped.
 
 ## 27. Runtime System Status
 
