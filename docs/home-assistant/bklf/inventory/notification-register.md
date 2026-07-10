@@ -30,5 +30,5 @@ Mobile push registration material, raw mobile identifiers, private Companion met
 | --- | --- | --- |
 | `owner_primary` | `notify.me_lewis_cell` | Doorbell, owner-visible low battery, owner recovery, after-hours-security via shared route |
 | `service_team` | `notify.chris_cell`, `notify.luis_cell` | Camera offline/restored, Z-Wave outage/restored, service visibility events |
-| `after_hours_security` | `notify.me_lewis_cell`, `notify.chris_cell`, `notify.luis_cell` | Lock jam, secure failure, secured opening, secured motion, door left open while secured, parking-lot linger |
+| `after_hours_security` | `notify.me_lewis_cell`, `notify.chris_cell`, `notify.luis_cell` | Lock jam, South Entrance secure failure, secured opening, secured motion, exterior door left open in occupied or secured modes, parking-lot linger |
 | `implementation_test` | `notify.chris_cell` | Controlled HA-NOTIFY004 deployment and acceptance tests |

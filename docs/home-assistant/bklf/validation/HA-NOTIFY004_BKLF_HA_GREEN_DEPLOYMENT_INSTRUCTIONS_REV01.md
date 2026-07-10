@@ -81,8 +81,8 @@ If configuration check, reload, restart, or initial tests fail:
 
 ## Building Mode Validation
 
-1. Test `Open`, `Service`, and `Cleaning`: secured-building motion/opening notifications remain suppressed.
-2. Test `Maintenance`: customer-facing operational noise remains suppressed.
+1. Test `Open`, `Service`, and `Cleaning`: occupied-mode door-left-open notifications send after 90 seconds for approved exterior contacts; secured-building motion/opening notifications remain suppressed.
+2. Test `Maintenance`: occupied-mode door-left-open notifications send unless `input_boolean.bklf_maintenance_mode` is intentionally on for approved maintenance activity.
 3. Test `Closed` and `After Hours`: secured-building notifications are eligible.
 4. Test Installer Mode: customer-facing notifications are suppressed and implementation-test route is used.
 
@@ -96,19 +96,28 @@ If configuration check, reload, restart, or initial tests fail:
 ## Repeat And Reset Validation
 
 1. Doorbell press: press twice within 5 seconds and confirm duplicate suppression.
-2. Door left open: confirm first alert at 90 seconds, repeat every 90 seconds, maximum five total.
-3. Door left open: close the contact and confirm repeats stop.
-4. Interior motion: confirm five-minute cooldown.
-5. Parking Lot linger: confirm 15-minute cooldown after alert.
+2. Door left open in occupied mode: confirm first Normal alert at 90 seconds, repeat every 90 seconds, maximum five total, and Quiet Hours delay/recheck behavior if tested.
+3. Door left open in secured mode: confirm first left-open alert at 90 seconds, repeat every 90 seconds, maximum five total.
+4. Door left open: close the same contact and confirm repeats stop, the per-door helper clears, and any close/recovery notification is gated by prior left-open lifecycle.
+5. Ordinary open and close before 90 seconds: confirm no generic close notification sends.
+6. Interior motion: confirm five-minute cooldown.
+7. Parking Lot linger: confirm 15-minute cooldown after alert.
 
 ## Lock Secure Workflow Validation
 
 1. South Entrance: with contact closed, verify up to five lock attempts spaced 15 seconds apart.
-2. South Entrance: with contact open, verify no lock command is issued.
-3. Bailey Double Doors: verify candidate contacts `binary_sensor.c10_south_wall_window_1` and `binary_sensor.c11_south_wall_window_2` before relying on them.
-4. Bailey Double Doors: with either candidate contact open, verify no lock command is issued.
-5. Confirm final failure notification sends only once per secure-building run.
-6. Confirm recovery sends after the lock becomes secured.
+2. South Entrance: with C01 open, verify no South Entrance lock command is issued and Mr. Lewis, Chris, and Luis receive `Cannot secure building - South Entrance Door is open.`
+3. South Entrance: confirm final failure notification sends only once per secure-building run when C01 is closed but the lock remains unsecured.
+4. South Entrance: confirm recovery sends after the lock becomes secured following a prior secure-failure alert.
+5. Bailey Double Doors: confirm HA-NOTIFY004 issues no Bailey automatic `lock.lock` command. Bailey automatic locking and Bailey failure-to-secure automation are deferred until the physical Bailey door contact is confirmed.
+6. If South Entrance C01 is open during secure-building evaluation and then later closes, manually re-run the secure-building action or change/reapply the secured Building Mode; HA-NOTIFY004 does not continue the secure workflow automatically after that open-door block.
+
+## Z-Wave Recovery Validation
+
+1. Trigger a safe Z-Wave outage simulation only if approved.
+2. Confirm the outage notification sends after 180 seconds and sets the Z-Wave outage helper.
+3. Restore Z-Wave and confirm recovery sends only while the outage helper is on.
+4. Confirm Maintenance, Installer, or approved update/restart suppression does not create a stale later recovery notification.
 
 ## Acceptance Results Record
 
