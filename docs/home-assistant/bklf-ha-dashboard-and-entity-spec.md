@@ -437,3 +437,25 @@ The entity register remains the source of truth for dashboard and workflow mappi
 - Confirm final PoE/network switch plan.
 - Confirm UPS availability.
 - Confirm owner mobile app setup and authentication method.
+
+---
+
+## HA-BACKUP002 Dashboard / Source Refresh
+
+Task ID: `HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001`
+Backup evidence date: `2026-07-09T19:47:29.850048-04:00`
+Extraction date: `2026-07-09T23:14:00-04:00`
+
+Latest backup extraction confirmed the repo-controlled BKLF YAML files are byte-identical to the backup copies:
+
+| File | Backup vs repo | Result |
+| --- | --- | --- |
+| `configuration.yaml` | Same | No repo YAML update required. |
+| `bklf-main-dashboard.yaml` | Same | No repo YAML update required. |
+| `bklf-desktop-dashboard.yaml` | Same | No repo YAML update required. |
+| `wnyhs-light.yaml` | Same | No repo YAML update required. |
+| `wnyhs-dark.yaml` | Same | No repo YAML update required. |
+| `bklf_notifications.yaml` | Same | No repo YAML update required. |
+| `bklf_security.yaml` | Same | No repo YAML update required. |
+
+Support-data updates from this extraction are recorded under `docs/home-assistant/bklf/inventory/`. Confirmed latest-backup facts include 12 areas, 56 devices, 1,026 entities, 27 config entries, four Companion app registrations, two person records, Bailey Double Doors lock and doorbell, South Entrance Lamp, both BKLF dashboards, both WNYHS HA themes, and the disabled notification scaffold package. No dashboard redesign, entity rename, notification routing change, automation enablement, user/permission change, or live Home Assistant change is authorized by this refresh.

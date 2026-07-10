@@ -37,3 +37,24 @@ The sanitized CSV source artifacts are preserved under `data/`:
 ## Scope Boundaries
 
 This folder is documentation and sanitized inventory only. It does not change live Home Assistant, dashboard YAML, Home Assistant config YAML, packages, themes, runtime code, website files, HubSpot, Stripe, scheduling, Cloudflare, APIs, dependencies, package-lock, environment files, or secrets.
+
+## HA-BACKUP002 Refresh Artifacts
+
+The governed sanitized backup refresh for `HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001` adds these support registers:
+
+- `backup-extraction-manifest.md`
+- `last-known-live-state-summary.md`
+- `area-register.md`
+- `device-register.md`
+- `integration-register.md`
+- `automation-register.md`
+- `notification-register.md`
+- `user-person-register.md`
+- `helper-register.md`
+- `camera-doorbell-register.md`
+- `lock-access-register.md`
+- `sensor-register.md`
+- `system-health-summary.md`
+- `validation-log.md`
+
+These files are sanitized derivatives only. They do not authorize live Home Assistant changes, notification routing changes, dashboard redesign, user/permission changes, or protected-system work.

@@ -899,6 +899,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001
+- **Task ID:** HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001
+- **Task Name:** BKLF Sanitized Support Data Refresh
+- **Status:** DONE
+- **Category:** Home Assistant / BKLF / Sanitized Backup Extraction
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded Home Assistant sanitized backup extraction work order under HA-BACKUP001.
+- **Purpose:** Refresh the BKLF repo support dataset from the latest operator-provided Home Assistant backup under HA-BACKUP001.
+- **Allowed Scope:** Existing BKLF Home Assistant owner docs, files under `docs/home-assistant/bklf/inventory/`, existing BKLF dashboard/entity specification docs, and this bounded Master Task Register record. Repo-controlled BKLF YAML may be changed only if backup comparison proves safe factual synchronization is needed.
+- **Forbidden Scope:** No website source, website routes, UI components, HubSpot, Stripe/payment, scheduling, Resend/email, APIs/runtime, Cloudflare config, dependencies, package-lock, secrets/env, unrelated docs, unrelated customer files, raw backup archive, auth/cloud/database/log files, live Home Assistant changes, automation enablement, notification routing changes, dashboard redesign, entity renames, user/permission changes, passwords, lock codes, camera credentials, PR merge, or ready-for-review PR marking.
+- **Target Files:** `docs/home-assistant/bklf/inventory/`; `docs/home-assistant/bklf-ha-entity-register.md`; `docs/home-assistant/bklf-ha-dashboard-and-entity-spec.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Sanitized repository support-data documentation only; raw backup handled locally outside the repository.
+- **Documentation Updates Required:** Create or refresh the extraction manifest, last-known live-state summary, area/device/integration/automation/notification/user-person/helper/camera-doorbell/lock-access/sensor/system-health registers, validation log, dashboard/entity owner notes, and task-register record.
+- **Validation Required:** `git status --short`; `git diff --name-only`; `git diff --stat`; `git diff --check`; `git diff --cached --check`; YAML parse for compared or changed YAML; Markdown checks; duplicate entity-ID checks; dashboard entity-reference checks; changed-file scope check; raw archive addition scan; forbidden path scan; secret-like value scan with policy-label review; `npm run build` because root execution rules require build before completion.
+- **Exit Criteria:** Manifest created/refreshed; current live-state summary created/refreshed; major registers created/refreshed; dashboard/entity docs aligned with latest backup; safe live-vs-repo YAML comparison documented; no secrets/raw backups committed; validation log completed; task marked DONE after validation; draft PR opened without merge.
+- **Dependencies:** `HA-BACKUP001_CUSTOMER_BACKUP_EXTRACTION_STANDARD_REV01`; CODEX run contract; CODEX001 work-order standard; OPS009 workflow governance; existing BKLF Home Assistant inventory, dashboard, package, theme, and security-exclusion docs.
+- **Operator Decision Required:** Review draft PR and decide whether to merge. After merge, confirm local main sync before any next Codex task.
+- **Completion Notes:** Refreshed the governed sanitized BKLF Home Assistant support dataset from the latest operator-provided backup recorded in the extraction manifest. Created/refreshed extraction manifest, last-known live-state summary, area/device/integration/automation/notification/user-person/helper/camera-doorbell/lock-access/sensor/system-health registers, validation log, and existing BKLF dashboard/entity owner notes. Confirmed repo-controlled BKLF YAML files are byte-identical to the backup copies, so no HA YAML synchronization change was made. No raw backup, auth/cloud/database/log files, secrets, credentials, lock codes, camera credentials, live HA systems, notification routing, automation enablement, user permissions, dashboard redesign, website/runtime files, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, or package-lock files were changed.
+
 ### INSTALL-BKLF-DESKTOP-DASHBOARD-001
 - **Task ID:** INSTALL-BKLF-DESKTOP-DASHBOARD-001
 - **Task Name:** BKLF Desktop Home Assistant Dashboard

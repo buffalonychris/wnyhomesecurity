@@ -65,3 +65,10 @@ These customer-facing entities are referenced by the customer dashboard source. 
 - The lock, lock jam status, door contact, visitor/person status, building mode, exterior secure, interior motion, and building secure composites are dashboard dependencies.
 - Broader HA entity inventory is documented separately in `entity-inventory.md` so customer-facing dashboard dependencies remain distinct from service, diagnostic, and integration-created entities.
 - BKLF mobile dashboard follow-up notes are preserved in `docs/home-assistant/bklf/BKLF_DASHBOARD_FOLLOWUP_NOTES_REV01.md` as documentation/planning only. They do not authorize dashboard YAML, live Home Assistant, package, theme, automation, or customer handoff changes.
+
+## HA-BACKUP002 Dashboard Refresh
+
+Task ID: `HA-BACKUP002-BKLF-SANITIZED-SUPPORT-DATA-REFRESH-001`
+Backup evidence date: `2026-07-09T19:47:29.850048-04:00`
+
+Latest backup copies of `bklf-main-dashboard.yaml` and `bklf-desktop-dashboard.yaml` are byte-identical to the repo versions. No dashboard YAML synchronization was required. Current routes remain `bklf-main` and `bklf-desktop`; current theme references remain BKLF WNYHS Light, Dark, and Auto controls. Stale placeholders are not documented as live unless backed by current entity bindings in the dashboard YAML or latest backup entity registry.
