@@ -353,15 +353,15 @@ Each workstream row uses this schema:
 
 - **Workstream title:** Automation System
 - **Status:** Active
-- **Current state:** Home Assistant-native first. C.A.F.E. is the preferred visual authoring layer for complex Home Assistant automations. Node-RED is reserved for advanced/customer-specific deployments only. WNYHS notification governance now exists as documentation/business-process authority only.
+- **Current state:** Home Assistant-native first. C.A.F.E. is the preferred visual authoring layer for complex Home Assistant automations. Node-RED is reserved for advanced/customer-specific deployments only. WNYHS notification governance exists as documentation/business-process authority only. `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001` is in progress as an operator-assisted evidence-capture task; no notification implementation is authorized.
 - **Completed work:** AUTOMATION001 Home Assistant automation standard; WNYHS Notification Engine Standard REV01; WNYHS Adaptive Notification Configuration Questionnaire REV01; BKLF Notification Configuration Decisions REV06 as the reference customer profile for live validation.
-- **Outstanding work:** Use-case-specific automation evaluation; SafePath/reference examples; supportability checklist application; BKLF live notification validation before any notification implementation.
+- **Outstanding work:** Use-case-specific automation evaluation; SafePath/reference examples; supportability checklist application; complete BKLF live notification validation before any notification implementation.
 - **Required current-state docs:** `/docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`; `/docs/home-assistant/notification-system/README.md`; `/docs/home-assistant/notification-system/WNYHS_NOTIFICATION_ENGINE_STANDARD_REV01.md`; `/docs/home-assistant/notification-system/WNYHS_ADAPTIVE_NOTIFICATION_CONFIGURATION_QUESTIONNAIRE_REV01.md`; `/docs/home-assistant/bklf/BKLF_NOTIFICATION_CONFIGURATION_DECISIONS_REV06.md`.
 - **Required governing docs:** AUTOMATION001, catalog/solution docs for hardware/capability fit.
 - **Related workstreams:** Catalog System, Solution System, Dashboard / Interactive Experience System, Runtime System.
 - **Protected-system concerns:** Do not install/configure automations, customer dashboards, integrations, dependencies, runtime services, or device behavior without bounded authority.
-- **Next recommended task:** `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001`.
-- **Notes / risks:** Keep automation claims and support posture conservative. Notification implementation remains blocked pending live validation and a separately approved bounded implementation task.
+- **Next recommended task:** Continue `HA-NOTIFY003-BKLF-LIVE-NOTIFICATION-VALIDATION-001` operator validation; do not start `HA-NOTIFY004-BKLF-NOTIFICATION-IMPLEMENTATION-001` until the readiness matrix supports it.
+- **Notes / risks:** Keep automation claims and support posture conservative. Notification implementation remains blocked pending live validation, evidence-backed readiness classification, and a separately approved bounded implementation task.
 
 ## 27. Runtime System Status
 
