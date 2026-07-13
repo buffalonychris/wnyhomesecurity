@@ -902,7 +902,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### Reconcile Smart-Home Research Into Existing WNYHS Governance
 - **Task ID:** T-SMARTRESEARCH001
 - **Task Name:** Reconcile Smart-Home Research Into Existing WNYHS Governance
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** Governance / Solution System / Hardware / Automation / Installer / BOM
 - **Task Type:** Documentation-only governance reconciliation task.
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01; prompt-created bounded task-register work order.
@@ -917,6 +917,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** The task is present once in the correct Active Tasks section. Task fields match the repository's established task schema. Task status is ACTIVE. No unrelated task is changed. No reconciliation work is executed. No source or runtime file is changed. The untracked ZIP remains untouched. The updated register passes formatting and duplicate-ID checks.
 - **Dependencies:** Prompt-created bounded smart-home research reconciliation task-register work order; current governance authority chain; `docs/system/project.md`; `docs/system/guardrails.md`; `docs/system/agent.md`; `docs/system/plan.md`; `docs/system/step-current.md`; `docs/system/master-task-register.md`; `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`; `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`; operator authorization to create the branch, commit, push, and open a draft PR.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. After merge, the smart-home research reconciliation requires a separate bounded execution prompt and must not be performed as part of this task-register activation run.
+- **Completion Notes:** Reconciled transcript-derived smart-home research and CATALOG004 exact-model doorbell evidence into existing owner documents without creating duplicate governance. Updated HARDWARE001 with conservative exact-model candidate treatment for Reolink D340P, Reolink D340W, Reolink D340B, Ubiquiti G4 Doorbell Pro PoE Kit, and Aqara DB-C03E/G400; updated SOLUTION_CATALOG_RECONCILIATION with solution relationships and verification requirements; updated PACKAGEBOM001 with BOM eligibility rules; and updated Capability Catalog REV03 with capability relationships. No hardware was promoted solely from transcript/import evidence; JSONL records remain unchanged and needs-review; no source/runtime, public copy, pricing, HubSpot, Stripe, scheduling, Cloudflare, dependencies, environment, secrets, or WNYHS_VideoGov_v1.0.zip files were changed.
 
 ### HA-NOTIFY002-NOTIFICATION-GOVERNANCE-AND-BKLF-PROFILE-PROMOTION-001
 - **Task ID:** HA-NOTIFY002-NOTIFICATION-GOVERNANCE-AND-BKLF-PROFILE-PROMOTION-001

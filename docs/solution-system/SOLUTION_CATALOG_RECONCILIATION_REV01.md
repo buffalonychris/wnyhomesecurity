@@ -442,3 +442,17 @@ This document does not authorize implementation of:
 - visible site version bumps
 
 Each future implementation must receive its own bounded task and work order.
+
+## T-SMARTRESEARCH001 Addendum - Transcript / CATALOG004 Doorbell Reconciliation
+
+CATALOG004 and transcript-derived smart-home research add exact-model doorbell evidence to Front Door Package Protection and Local Property Camera Package planning. This evidence is internal and verification-required. It does not create public copy, package pricing, customer BOMs, purchasing authorization, or Approved Standard promotion.
+
+| Candidate | Manufacturer | Conservative status | Related solutions | Verification required |
+| --- | --- | --- | --- | --- |
+| Reolink Video Doorbell PoE D340P | Reolink | Conditional | Front Door Package Protection; Package Protection; Front Door Awareness; Snapshot Notifications; Entry Lighting Automation | Doorbell press, motion/person/package events, local-only behavior, RTSP/ONVIF path, restart recovery, chime and notification workflow. |
+| Reolink Video Doorbell WiFi D340W | Reolink | Conditional exact-model status; existing family-level HARDWARE001 status preserved | Front Door Package Protection; retrofit front-door awareness | Transformer/chime compatibility, Wi-Fi resilience, event exposure, restart recovery, notification workflow. |
+| Reolink Battery Video Doorbell D340B | Reolink | Pilot | No-wiring exception for front-door awareness | Hub/NVR bridge requirement, battery wake/sleep behavior, event exposure, notification timing, restart recovery, charging/support burden. |
+| G4 Doorbell Pro PoE Kit | Ubiquiti | Premium / Custom | Premium entry video; Local Property Camera Package; custom light-commercial entry awareness | UniFi Protect architecture, event/entity exposure, supported firmware, restart recovery, notification workflow. |
+| Aqara Doorbell Camera G400 Wired DB-C03E | Aqara | Pilot | Ecosystem-specific front-door pilot | Exact Home Assistant path, local-vs-cloud dependency, event exposure, stream path, restart recovery, support burden. |
+
+Two-way audio, package classification, 24/7 recording, and advanced event detection remain verification-required unless a later owner document promotes specific supported behavior.

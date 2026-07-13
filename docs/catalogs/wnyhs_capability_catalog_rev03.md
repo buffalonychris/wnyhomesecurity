@@ -226,7 +226,7 @@ Total: 33
 | Feature | Category | Launch Suitability | BOM Priority | Local-Only Viability | Primary Validation Note |
 |---|---|---|---|---|---|
 | Package Protection | Security & Awareness | First Launch Candidate | Priority 1 | Mostly Local | Strong use case. Package classification angle should be bench-validated against porch geometry. |
-| Front Door Monitoring | Security & Awareness | First Launch Candidate | Priority 1 | Mostly Local | High-confidence row if kept to live view, press notifications, and recording. |
+| Front Door Awareness | Security & Awareness | First Launch Candidate | Priority 1 | Mostly Local | High-confidence row if kept to live view, press notifications, and recording. |
 | Person Detection | Security & Awareness | First Launch Candidate | Priority 1 | Mostly Local | Strong local path through Frigate or supported camera analytics. |
 | Door Open Alerts | Security & Awareness | First Launch Candidate | Priority 1 | Fully Local | Excellent first-launch row. |
 | Window Open Alerts | Security & Awareness | First Launch Candidate | Priority 1 | Fully Local | Strong local path; good climate and security value in WNY climate. |
@@ -525,7 +525,7 @@ These are research priorities only. They do not create BOM approval, customer pr
 | 1 | Leak Detection | Property Protection | Priority 1 | First Launch Candidate | Very strong WNY relevance. |
 | 2 | Basement Flood Alerts | Property Protection | Priority 1 | First Launch Candidate | High pain point and clear benefit. |
 | 3 | Freeze Alerts | Property Protection | Priority 1 | First Launch Candidate | Especially relevant for Buffalo/WNY. |
-| 4 | Front Door Monitoring | Security & Awareness | Priority 1 | First Launch Candidate | High-confidence row if kept to live view, press notifications, and recording. |
+| 4 | Front Door Awareness | Security & Awareness | Priority 1 | First Launch Candidate | High-confidence row if kept to live view, press notifications, and recording. |
 | 5 | Local Recording | Security & Awareness | Priority 1 | First Launch Candidate | Core differentiator for local-first positioning. |
 | 6 | Smart Lighting | Home Automation | Priority 1 | First Launch Candidate | Strong, repeatable, supportable. |
 | 7 | Motion Lighting | Home Automation | Priority 1 | First Launch Candidate | Excellent first-launch use case. |
@@ -592,3 +592,17 @@ Categories included:
 - Security & Awareness
 - Smart Property Intelligence
 - Vehicle / RV / Boat / Trailer
+
+## T-SMARTRESEARCH001 Addendum - Transcript / CATALOG004 Candidate Reconciliation
+
+This addendum reconciles transcript-derived smart-home research and CATALOG004 exact-model doorbell records into the REV03 capability catalog. It does not change capability launch suitability, public claims, package pricing, source/runtime behavior, or customer BOM approval.
+
+| Capability relationship | Candidate hardware evidence | Catalog interpretation | Unresolved verification |
+| --- | --- | --- | --- |
+| Package Protection; Front Door Awareness | Reolink D340P PoE; Reolink D340W WiFi | Supports the existing Reolink value/production doorbell path as conditional exact-model evidence. Keep awareness-led language. | Doorbell press, person/package events, chime, local-only behavior, Wi-Fi/PoE conditions, restart recovery. |
+| Two-Way Door Communication | Reolink D340P/D340W and other video doorbells | Remains Research Only / Do Not BOM Yet for HA-native intercom claims. | Audio path, customer workflow, mobile behavior, and support burden. |
+| Snapshot Notifications | Reolink, UniFi Protect, and Aqara doorbell candidates | Remains dependent on validated event/entity exposure and notification flow. | Event exposure, image availability, off-site phone delivery path, restart recovery. |
+| Local Recording | Reolink NVR/SD, UniFi Protect controller/NVR, Frigate/N100 path | Recording remains a separate storage architecture decision; HA Green is not the recorder. | Retention policy, storage sizing, privacy disclosure, NVR/controller support workflow. |
+| Front-door exception path | Reolink D340B battery; Aqara G400 wired; Ubiquiti G4 Doorbell Pro PoE Kit | Battery and Aqara paths are Pilot; UniFi Protect path is Premium / Custom. None are standard BOM hardware from transcript evidence alone. | Bridge/controller dependency, local-vs-cloud proof, firmware policy, battery maintenance, support burden. |
+
+REV03 remains the capability owner. HARDWARE001 owns hardware status. PACKAGEBOM001 owns BOM eligibility. CATALOG004 JSONL records remain governed data artifacts with `record_status: needs_review` unless separately promoted.

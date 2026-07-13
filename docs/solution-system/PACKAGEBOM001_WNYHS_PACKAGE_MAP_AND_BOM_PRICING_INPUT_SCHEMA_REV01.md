@@ -401,3 +401,26 @@ This document does not authorize:
 - site version bump
 
 Each future implementation, public-copy, pricing, payment, HubSpot, scheduling, purchasing, installation, or runtime change must receive its own bounded task and work order.
+
+## T-SMARTRESEARCH001 Addendum - Hardware Eligibility From Transcript / CATALOG004 Evidence
+
+Transcript-derived research and CATALOG004 master-parts records may inform future package and BOM worksheets, but they do not make a device BOM-eligible by themselves. PACKAGEBOM001 continues to defer hardware authority to HARDWARE001.
+
+BOM eligibility rules:
+
+1. Approved Standard HARDWARE001 rows may be considered for standard package BOM input only within their documented scope and after site compatibility review.
+2. Conditional HARDWARE001 rows may appear only as conditional BOM candidates with explicit dependencies, disclosures, and validation tasks.
+3. Pilot HARDWARE001 rows may appear only in field-test or controlled pilot BOM notes. They must not be used for standard package pricing or public package copy.
+4. Premium / Custom rows may appear only in custom-quote BOM notes with site review and operator approval.
+5. Research-Only and Excluded rows are not BOM-eligible for standard package worksheets.
+6. Transcript-only, web-research-only, or import-only product claims must include missing-evidence notes before any package, quote, installer, or purchasing workflow uses them.
+
+CATALOG004 doorbell candidate treatment:
+
+| Candidate | BOM-consideration status | Required BOM notes |
+| --- | --- | --- |
+| Reolink Video Doorbell PoE D340P | Conditional candidate | PoE path, chime workflow, storage path, event exposure, local-only/restart validation. |
+| Reolink Video Doorbell WiFi D340W | Conditional exact-model candidate | Transformer/chime compatibility, Wi-Fi quality threshold, event exposure, restart recovery. |
+| Reolink Battery Video Doorbell D340B | Pilot only | Hub/NVR bridge, battery maintenance, wake/sleep behavior, notification timing. |
+| Ubiquiti G4 Doorbell Pro PoE Kit | Premium / Custom only | UniFi Protect controller/NVR, firmware policy, event exposure, support burden. |
+| Aqara Doorbell Camera G400 Wired DB-C03E | Pilot only | Exact HA path, ecosystem dependency, stream/event behavior, local-vs-cloud proof. |
