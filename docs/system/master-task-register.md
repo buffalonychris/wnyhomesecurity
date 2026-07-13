@@ -903,7 +903,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Task ID:** T-GOVAUTH001
 - **Task Name:** Audit Complete WNYHS Governance Authority Environment
 - **Task Record Version:** REV01
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** GOV
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Produce a complete authoritative map of all governance, operational rules, execution rules, owner documents, and source-of-truth relationships controlling ChatGPT-assisted and Codex-executed WNY Home Security work.
@@ -917,6 +917,10 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** T-GOVAUTH001 appears exactly once under Active Tasks with `Status: ACTIVE`; the complete required task schema and requested audit coverage are recorded; no audit work has been performed; exactly one file is changed; required validation is reported; a fresh branch is pushed and a draft PR is open; HubSpot, Stripe, scheduling, Resend/email, Cloudflare, source, runtime, dependencies, and package-lock remain untouched.
 - **Dependencies:** Current operational context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; repository governance authority chain; a separate bounded work order defining the future audit deliverable file scope before audit execution.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. After manual merge, separately dispatch the bounded audit work order. This activation task does not authorize audit execution or merge.
+- **Execution Work Order:** `docs/codex/work-orders/T-GOVAUTH001_WORK_ORDER_REV01.md`, dispatched after PR #514 merged and local `main` synchronized.
+- **Audit Deliverable:** `docs/governance/GOVAUTH001_WNYHS_COMPLETE_GOVERNANCE_AUTHORITY_AUDIT_REV01.md`.
+- **Closeout Findings:** Confirmed the repository authority chain and current context; mapped domain owners, ChatGPT/Codex rules, prompt/work-order rules, skills, plugins/connectors, automatic workflows, and non-secret local configuration sources. Recorded governance conflicts, duplicate identifiers, stale status/index evidence, current-practice drift, and missing owners. `CHATGPT PROJECT-LAYER RECONCILIATION REQUIRED` remains open. Recommended remediation tasks were recorded in the audit but not activated.
+- **Completion Notes:** Completed and validated the bounded docs-only governance authority audit under the separate execution work order. Added the single audit document and required catalog/manifest registrations. No owner standard was modified. No source, runtime, route, UI, public copy, Home Assistant runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare config, dependencies, package-lock, environment, secrets, or remediation-task status was changed. Draft PR opened without merge.
 
 ### Reconcile Smart-Home Research Into Existing WNYHS Governance
 - **Task ID:** T-SMARTRESEARCH001

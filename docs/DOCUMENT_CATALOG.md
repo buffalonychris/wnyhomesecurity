@@ -1541,3 +1541,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Notes:** Confirms internal SOW section order, evidence/redraw/photo-analysis field exposure, opening inventory gap handling, hardware/BOM reconciliation counts, installer task planning, display-only checklist behavior, payment/scheduling gate reminders, route/localStorage preservation, and protected-system boundaries for version `v1.0.155`.
 
 - `docs/quotesystem/IMPLEMENTATION019_Structured_Opening_Inventory_REV01.md` — Records QUOTE-SYSTEM-STANDARD-004 structured opening inventory implementation for the local Property Model, customer estimate summary, installer packet detail, Funeral Home Test Case, and protected-system exclusions.
+
+### `/docs/governance/GOVAUTH001_WNYHS_COMPLETE_GOVERNANCE_AUTHORITY_AUDIT_REV01.md`
+- **File path:** `docs/governance/GOVAUTH001_WNYHS_COMPLETE_GOVERNANCE_AUTHORITY_AUDIT_REV01.md`
+- **Document type:** Completed governance authority audit / reference evidence
+- **Authority level:** Reference evidence only; does not replace primary authority or owner standards.
+- **Implementation authority:** No.
+- **Notes:** Created by T-GOVAUTH001 as the single bounded audit of repository authority, owner documents, prompt/work-order rules, skills, plugins, connectors, workflows, non-secret local Codex configuration, conflicts, missing owners, status drift, required load sets, and remediation candidates. Protected systems and runtime behavior were untouched; remediation tasks were recorded but not activated.
