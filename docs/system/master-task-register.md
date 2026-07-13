@@ -899,6 +899,25 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### Audit Complete WNYHS Governance Authority Environment
+- **Task ID:** T-GOVAUTH001
+- **Task Name:** Audit Complete WNYHS Governance Authority Environment
+- **Task Record Version:** REV01
+- **Status:** ACTIVE
+- **Category:** GOV
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Produce a complete authoritative map of all governance, operational rules, execution rules, owner documents, and source-of-truth relationships controlling ChatGPT-assisted and Codex-executed WNY Home Security work.
+- **Audit Coverage:** WNYHS project, repository, website, Home Assistant deployments, solution system, hardware/BOM system, automation system, dashboards, notifications, public marketing, security, aging in place, home safety, property management, estimates, quotes, SOWs, HubSpot, Stripe, scheduling, deployment, Cloudflare, installer operations, customer handoff, claims, privacy, Codex prompts, task dispatch, PRs, merge, validation, deployment, and closeout.
+- **Allowed Scope:** Add and activate only T-GOVAUTH001 in the Master Task Register during this task-register activation run. The governance audit itself requires a separate bounded execution work order after this activation change is reviewed and merged.
+- **Forbidden Scope:** Do not perform the audit in this activation run. Do not modify any file other than `docs/system/master-task-register.md`. Do not modify source code, runtime behavior, routes, UI, public copy, assets, dependencies, package-lock, integrations, schemas, workflows, or protected systems. Do not write to HubSpot, Stripe, scheduling/calendar, Resend/email, Cloudflare, deployment, Home Assistant, customer, or other external systems. Do not merge or enable auto-merge.
+- **Target Files:** `docs/system/master-task-register.md` only for this activation run. Any later audit deliverable path must be explicitly authorized by a separate bounded execution work order before audit work begins.
+- **Runtime Systems Affected:** None.
+- **Documentation Updates Required:** Add this task record only. No audit deliverable, catalog, manifest, source, runtime, or other documentation update is authorized in this activation run.
+- **Validation Required:** `git diff --check`; `git diff -- docs/system/master-task-register.md`; `git diff --name-only`; `git ls-files --deleted`; `rg -n "T-GOVAUTH001|Audit Complete WNYHS Governance Authority Environment|Status:\*\* ACTIVE" docs/system/master-task-register.md`; `npm run build`; confirm the draft PR contains exactly one changed file: `docs/system/master-task-register.md`.
+- **Exit Criteria:** T-GOVAUTH001 appears exactly once under Active Tasks with `Status: ACTIVE`; the complete required task schema and requested audit coverage are recorded; no audit work has been performed; exactly one file is changed; required validation is reported; a fresh branch is pushed and a draft PR is open; HubSpot, Stripe, scheduling, Resend/email, Cloudflare, source, runtime, dependencies, and package-lock remain untouched.
+- **Dependencies:** Current operational context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; repository governance authority chain; a separate bounded work order defining the future audit deliverable file scope before audit execution.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. After manual merge, separately dispatch the bounded audit work order. This activation task does not authorize audit execution or merge.
+
 ### Reconcile Smart-Home Research Into Existing WNYHS Governance
 - **Task ID:** T-SMARTRESEARCH001
 - **Task Name:** Reconcile Smart-Home Research Into Existing WNYHS Governance
