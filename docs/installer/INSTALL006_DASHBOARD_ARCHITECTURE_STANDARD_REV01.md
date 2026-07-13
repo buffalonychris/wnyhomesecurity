@@ -432,3 +432,14 @@ It does not authorize:
 - Secret or environment-value exposure.
 
 Future dashboard implementation, customer handoff, service posture, or theme tasks must identify their own target files, validation, protected-system review, and rollback posture before work begins.
+
+## 21. T-SMARTRESEARCH001 Dashboard and Control-Surface Addendum
+
+Dashboard planning for smart-home research candidates must remain exception-first. Healthy-device clutter should be suppressed from customer overview screens unless the customer specifically needs it for daily confidence. Customer dashboards should favor plain-language outcomes, while installer/service dashboards may expose diagnostics.
+
+- E-paper displays may be evaluated as a display form factor, but exact hardware, cloud/subscription posture, refresh limits, and Home Assistant integration must be verified before customer BOM eligibility.
+- Room-aware controls may be shown when presence/area logic is validated, but fixed fallback navigation must remain available.
+- Physical controls remain necessary for lighting, locks, shades, garage, and common scenes where practical; dashboards are not the only customer control path.
+- Camera picture-in-picture is a premium/custom pattern because of privacy, bandwidth, stream reliability, display lifecycle, and support burden.
+- Remotes, RFID/NFC, wall buttons, and other control surfaces are not runtime decision sources; they call governed scenes, scripts, helpers, or dashboards.
+- Routine status belongs on dashboards. Urgent exceptions may use notifications appropriate to urgency, customer preference, quiet hours, and claims boundaries.

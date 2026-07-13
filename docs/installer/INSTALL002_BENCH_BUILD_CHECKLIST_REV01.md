@@ -226,3 +226,7 @@ It does not authorize:
 - Secret or environment-value exposure.
 
 Future implementation or installer-operation tasks must identify their own target files, validation, protected-system review, and rollback posture before work begins.
+
+## 7. T-SMARTRESEARCH001 Installer Toolkit Follow-Up Note
+
+Installer tools are not customer BOM hardware. A later installer-toolkit task may standardize a non-customer kit containing categories such as battery tester, USB voltage/current tester, articulating inspection camera, stud finder, powered screwdriver, rechargeable battery station, flashlight/headlamp, cable tester, PoE tester, multimeter, non-contact voltage tester, and label printer. This note approves no exact brand, purchase, pricing, inventory, or customer line item.
