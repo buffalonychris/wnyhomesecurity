@@ -401,3 +401,32 @@ This document does not authorize:
 - site version bump
 
 Each future implementation, public-copy, pricing, payment, HubSpot, scheduling, purchasing, installation, or runtime change must receive its own bounded task and work order.
+
+## 15. T-SMARTRESEARCH001 Future BOM Consideration Relationships
+
+This task creates no customer BOM and authorizes no purchasing, pricing, or quoting change. Future BOM planning for the smart-home research candidates must retain or reference these fields when a line item is considered: HARDWARE001 registry entry, manufacturer, model, verified manufacturer part number when known, HARDWARE001 status, purpose, solution relationship, quantity, required accessories, power, protocol, hub/bridge/radio dependency, wiring/network requirement, compatibility condition, customer disclosure, substitution rule, local/cloud/subscription posture, verification requirement, field-test requirement, inventory relationship, installed-asset relationship, and BOM eligibility reason.
+
+### 15.1 Eligibility Rules by HARDWARE001 Status
+
+| HARDWARE001 Status | Future BOM Posture | Required BOM Eligibility Reason |
+|---|---|---|
+| Approved Standard | Eligible when job conditions match. | State the matching supported solution, site condition, required accessories, and approved use boundary. |
+| Conditional | Eligible only when stated conditions are satisfied. | State the compatibility condition, disclosure, and validation evidence. |
+| Pilot | Controlled pilot only. | State pilot sponsor, exact validation evidence required, field duration, and rollback/fallback plan. |
+| Premium / Custom | Custom/site-reviewed BOM only. | State site design assumptions, infrastructure dependencies, support boundary, and customer disclosure. |
+| Research-Only | Not customer-BOM eligible. | State verification gap and follow-up requirement. |
+| Excluded | Not standard WNYHS BOM eligible. | State exclusion reason and any allowed exception path, if one exists. |
+
+### 15.2 Research Candidate BOM Relationship Notes
+
+- Dry-contact/relay candidates such as ZEN16, ZEN17, ratgdo, hardwired alarm takeover, and gate/garage patterns require accessory capture for enclosure, power supply, wiring, opener/contact compatibility, and manual fallback.
+- Presence candidates such as Aqara FP2, Aqara FP1E, wired mmWave, BLE room presence, and Third Reality R3 require sensor placement, power/battery, radio/bridge, false-trigger, privacy, and household-acceptance fields.
+- Lighting/control candidates such as Lutron RA3, Pico remotes, IKEA buttons, LIFX wall-control patterns, dim-to-warm bulbs, RFID/NFC, and MQTT virtual buttons require bridge/radio, compatibility, labeling, physical fallback, and manual-intent preservation fields.
+- Shade candidates require power/battery, bridge/processor, window measurements, manual fallback, substitution rules, and premium/custom disclosure.
+- Video candidates require camera model, recorder/storage path, network/PoE/Wi-Fi dependency, privacy/FOV, retention posture, analytics confidence, and notification-filtering limitation fields.
+- Dashboards/control surfaces require mount, power, network, kiosk/display lifecycle, fallback navigation, and visibility/privacy fields.
+- Infrastructure relationships such as UniFi networking, TP-Link mesh, wired APs, PoE switching, UPS, dual WAN, point-to-point links, structured cabling, and rack design must be referenced as dependencies and not silently converted into ordinary device rows.
+
+### 15.3 Explicit Non-Eligibility
+
+Research-Only candidates including Broadlink Matter Superbridge, Third Reality R3 until validated, BLE room-presence pattern, TRMNL and large-format e-paper displays until HA/cloud posture is known, SofaBaton X2 until integration/local posture is verified, digital poster/sports displays, Reolink local AI appliance, TP-Link/Tapo solar cameras, Roborock/robot lawn platforms, Aqara/Eve thermostat uncertainty rows, and pet-water-level awareness are not customer-BOM eligible under this task.

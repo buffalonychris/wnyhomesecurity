@@ -592,3 +592,20 @@ Categories included:
 - Security & Awareness
 - Smart Property Intelligence
 - Vehicle / RV / Boat / Trailer
+
+## T-SMARTRESEARCH001 Retrieval Addendum
+
+The following governed retrieval terms must remain subordinate to HARDWARE001 and SOLUTION_CATALOG_RECONCILIATION. They exist so future property discovery, solution selection, estimate preparation, BOM planning, and upgrade reviews can find transcript-derived ideas without creating a new catalog authority.
+
+| Retrieval Trigger | Capability / Idea | Owner Relationship | Status Posture | BOM Posture |
+|---|---|---|---|---|
+| garage left open, compatible opener, detached garage | Local garage state/control, dry-contact relay, ratgdo, tilt/contact sensor | HARDWARE001 / Solution Catalog | Conditional, Pilot, or Premium-Custom by device/site | Follow HARDWARE001; Research-Only never eligible. |
+| too many camera alerts, package/driveway events | Local video notification intelligence, Frigate/Reolink/UniFi analytics | HARDWARE001 / Solution Catalog | Premium / Custom | Custom/site-reviewed only. |
+| older adult app fatigue, guest controls | Simplified physical controls, scene buttons, Pico/ZEN32/ZEN37/NFC/RFID | HARDWARE001 / Automation Standard | Approved/Conditional/Pilot by device | Eligible only by status. |
+| night lighting, room-aware routines | mmWave/motion presence, scene-first lighting | HARDWARE001 / Automation Standard | Pilot/Premium | Controlled pilot/custom. |
+| bathroom humidity, basement dampness, IAQ concern | Humidity automation and IAQ awareness | HARDWARE001 / Solution Catalog | Conditional/Pilot | Conditional or pilot only. |
+| glare, privacy, hard-to-reach windows | Powered shade/daylight management | HARDWARE001 / Solution Catalog | Premium / Custom | Custom/site-reviewed only. |
+| theater, game room, AV remotes | Legacy IR/RF bridge, activity remote, Music Assistant/Sonos controls | HARDWARE001 / Solution Catalog | Pilot, Conditional, Research, or Custom | Eligible only after validation/status. |
+| wall display, e-paper, exception status | Dashboard/control surfaces | INSTALL006 / HARDWARE001 | Pilot/Premium/Research by device | Pilot/custom; Research not eligible. |
+| remote property, outbuilding, shop, gate | Outbuilding connectivity, PoE camera, point-to-point link, UPS | Solution Catalog / PACKAGEBOM001 | Premium / Custom infrastructure relationship | Custom/site-reviewed only. |
+| floor care, lawn care, irrigation | Robotic cleaning/lawn and smart irrigation | HARDWARE001 / Solution Catalog | Research-Only or Pilot by platform | Research not eligible; irrigation pilot only. |

@@ -295,3 +295,19 @@ To implement any customer automation, future work must create or activate a boun
 - Protected systems confirmed untouched or explicitly authorized.
 
 C.A.F.E., Node-RED, and Homey adoption must each remain traceable to the hierarchy and exception rules in this standard.
+
+## 18. T-SMARTRESEARCH001 Automation Pattern Addendum
+
+Transcript-derived automations must be evaluated as recurring customer needs, not novelty demonstrations. New automation candidates should:
+
+- Prefer direct state from a contact, lock, presence, power, humidity, temperature, or validated event entity over guessed timers.
+- Use scene-first design for lighting, shades, theater/game-room, and mode behavior so physical controls and dashboards can call the same customer-readable outcome.
+- Preserve recent manual customer intent by delaying, suppressing, or requiring confirmation before an automation reverses a manual switch, shade, lock, thermostat, or media action.
+- Document competing automation priority when multiple rules can act on the same device, including security/away, guest mode, quiet hours, sleep/night, manual override, and maintenance/test modes.
+- Select the correct Home Assistant execution mode (`single`, `restart`, `queued`, or `parallel`) intentionally and document why when the automation can retrigger.
+- Use dashboards for routine status before spoken announcements; reserve voice for contextual confirmations or exceptions where household acceptance is validated.
+- Include quiet hours, guest mode, and temporary-disable controls for customer-facing automations.
+- Evaluate household acceptance during pilot field tests, especially for mmWave presence, BLE presence, camera notifications, voice confirmations, shade movement, and entertainment scenes.
+- Retire automations when they become obsolete, unreliable, unwanted, or too burdensome to support.
+- Replace device-dependency groups one at a time during migrations so failures are isolated and manual operation survives where practical.
+- Expose failed important automations, disabled automations, stale helper states, and repeated trace errors to service/operator dashboards.
