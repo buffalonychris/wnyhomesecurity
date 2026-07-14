@@ -1,4 +1,4 @@
-# T-GOVREF001 Work Order â€” Create WNYHS Governance Audit Reference Model â€” REV01
+# T-GOVREF001 Work Order - Create WNYHS Governance Audit Reference Model - REV01
 
 Status: Ready for execution under active task `T-GOVREF001`
 Task type: Docs-only governance synthesis
@@ -113,7 +113,7 @@ Include:
 - Title: `WNY Home Security Governance Authority & Operating Reference`
 - Subtitle: `Audit Findings, Current Authority Model, Domain Routing, and Remediation Roadmap`
 - Document ID: `WNYHS-GOVREF-REV01`
-- Status: `Active Reference â€” Non-Authoritative Narrative Companion`
+- Status: `Active Reference - Non-Authoritative Narrative Companion`
 - Controlling task and context
 - Primary source audit
 - Authority disclaimer
@@ -124,21 +124,21 @@ Required disclaimer:
 
 ## Required Chapters
 
-1. **Executive Overview** â€” purpose, benefits, and boundaries.
-2. **Governance Evolution** â€” ordered phases from chat-driven work through Master Task Register, bounded Codex execution, repo-native work orders, GOVAUTH001, Project KB reconciliation, and GOVREF001. Do not invent dates.
-3. **Final Authority Chain** â€” platform/tool rules, operator decisions, Project instructions, repository governance, current context, ACTIVE task, work order, owner standards/runtime contracts, implementation/PR evidence, and historical evidence.
-4. **Roles and Responsibilities** â€” Operator, ChatGPT, Codex, GitHub, Cloudflare, capability tools, and domain owners. Include a `May / Must / Must Not` table.
-5. **Standard Execution Lifecycle** â€” `Idea â†’ Discussion â†’ Decision â†’ Promotion â†’ Task â†’ Work Order â†’ Codex â†’ Draft PR â†’ Review â†’ Merge â†’ Deployment Validation When Relevant â†’ Local Sync â†’ Closeout`.
-6. **Capability Versus Authority** â€” tools and automatic workflows control method only and never grant business, merge, deployment, or protected-system authority.
-7. **Domain Authority Directory** â€” matrix for all major WNYHS domains.
-8. **Practical Routing for New Ideas and Products** â€” mandatory decision path and transcript/hardware example.
-9. **Practical Routing for a New Public Offerings Page** â€” mandatory website, claims, SEO, funnel, analytics, and sales-routing model.
-10. **Marketing-to-Sales Campaign Model** â€” approved solution to website destination to social video to tracked CTA to lead and estimate request.
-11. **Protected Systems and Hard Stops** â€” HubSpot, Stripe, scheduling, email, Cloudflare, Home Assistant runtime, customer data, planner, quote, SOW, agreements, routes, and SEO.
-12. **Audit Findings** â€” strong areas, conflicts, stale documents, duplicate authority, missing owners, runtime uncertainty, and current-practice drift.
-13. **Remediation Roadmap** â€” preserve all required follow-up tasks without activating them.
-14. **Governance Evolution Timeline** â€” compact evidence-based event table.
-15. **Source Directory and Glossary** â€” exact paths and key terms.
+1. **Executive Overview** - purpose, benefits, and boundaries.
+2. **Governance Evolution** - ordered phases from chat-driven work through Master Task Register, bounded Codex execution, repo-native work orders, GOVAUTH001, Project KB reconciliation, and GOVREF001. Do not invent dates.
+3. **Final Authority Chain** - platform/tool rules, operator decisions, Project instructions, repository governance, current context, ACTIVE task, work order, owner standards/runtime contracts, implementation/PR evidence, and historical evidence.
+4. **Roles and Responsibilities** - Operator, ChatGPT, Codex, GitHub, Cloudflare, capability tools, and domain owners. Include a `May / Must / Must Not` table.
+5. **Standard Execution Lifecycle** - `Idea -> Discussion -> Decision -> Promotion -> Task -> Work Order -> Codex -> Draft PR -> Review -> Merge -> Deployment Validation When Relevant -> Local Sync -> Closeout`.
+6. **Capability Versus Authority** - tools and automatic workflows control method only and never grant business, merge, deployment, or protected-system authority.
+7. **Domain Authority Directory** - matrix for all major WNYHS domains.
+8. **Practical Routing for New Ideas and Products** - mandatory decision path and transcript/hardware example.
+9. **Practical Routing for a New Public Offerings Page** - mandatory website, claims, SEO, funnel, analytics, and sales-routing model.
+10. **Marketing-to-Sales Campaign Model** - approved solution to website destination to social video to tracked CTA to lead and estimate request.
+11. **Protected Systems and Hard Stops** - HubSpot, Stripe, scheduling, email, Cloudflare, Home Assistant runtime, customer data, planner, quote, SOW, agreements, routes, and SEO.
+12. **Audit Findings** - strong areas, conflicts, stale documents, duplicate authority, missing owners, runtime uncertainty, and current-practice drift.
+13. **Remediation Roadmap** - preserve all required follow-up tasks without activating them.
+14. **Governance Evolution Timeline** - compact evidence-based event table.
+15. **Source Directory and Glossary** - exact paths and key terms.
 
 ## Domain Authority Matrix
 
@@ -161,7 +161,7 @@ Cover at minimum:
 
 Include:
 
-`Research/transcript â†’ operator approval â†’ solution classification â†’ hardware status â†’ HA integration purpose â†’ claims review â†’ offering status â†’ catalog/BOM consideration â†’ public visibility decision â†’ marketing task â†’ implementation task`
+`Research/transcript -> operator approval -> solution classification -> hardware status -> HA integration purpose -> claims review -> offering status -> catalog/BOM consideration -> public visibility decision -> marketing task -> implementation task`
 
 Distinguish:
 
@@ -180,7 +180,7 @@ Add one worked example showing where manufacturer, model, part, purpose, compati
 
 Include:
 
-`Business objective â†’ target audience/problem â†’ approved offering set â†’ claims-safe messaging â†’ page architecture â†’ SEO/search intent â†’ homepage/subpage relationship â†’ CTA/funnel â†’ analytics/attribution â†’ lead intake â†’ task/work order â†’ implementation â†’ PR/deployment validation`
+`Business objective -> target audience/problem -> approved offering set -> claims-safe messaging -> page architecture -> SEO/search intent -> homepage/subpage relationship -> CTA/funnel -> analytics/attribution -> lead intake -> task/work order -> implementation -> PR/deployment validation`
 
 Identify required owner sets for offerings, solutions, claims, website architecture, SEO, brand/tokens, navigation/routes, funnel, analytics, HubSpot boundaries, and scheduling boundaries.
 
@@ -188,7 +188,7 @@ Identify required owner sets for offerings, solutions, claims, website architect
 
 Include:
 
-`Approved solution â†’ campaign angle â†’ website destination â†’ Higgsfield/video concept â†’ social post â†’ tracked CTA â†’ lead signal â†’ estimate request â†’ sales follow-up`
+`Approved solution -> campaign angle -> website destination -> Higgsfield/video concept -> social post -> tracked CTA -> lead signal -> estimate request -> sales follow-up`
 
 Before video production, require:
 
@@ -272,7 +272,7 @@ No other files may change.
 - Use exact repository paths.
 - Keep the document WNYHS-specific.
 - Use tables and decision paths.
-- Target approximately 4,000â€“8,000 words.
+- Target approximately 4,000-8,000 words.
 - Do not create an encyclopedia.
 
 ## Validation
@@ -322,7 +322,7 @@ Commit message:
 
 PR title:
 
-`T-GOVREF001 â€” Create WNYHS governance audit reference model`
+`T-GOVREF001 - Create WNYHS governance audit reference model`
 
 Open as draft. Do not merge.
 
