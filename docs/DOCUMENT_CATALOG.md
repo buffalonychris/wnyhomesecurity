@@ -1548,3 +1548,10 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Reference evidence only; does not replace primary authority or owner standards.
 - **Implementation authority:** No.
 - **Notes:** Created by T-GOVAUTH001 as the single bounded audit of repository authority, owner documents, prompt/work-order rules, skills, plugins, connectors, workflows, non-secret local Codex configuration, conflicts, missing owners, status drift, required load sets, and remediation candidates. Protected systems and runtime behavior were untouched; remediation tasks were recorded but not activated.
+
+### `/docs/governance/WNYHS_GOVERNANCE_AUDIT_REFERENCE_MODEL_REV01.md`
+- **File path:** `docs/governance/WNYHS_GOVERNANCE_AUDIT_REFERENCE_MODEL_REV01.md`
+- **Document type:** Active non-authoritative governance narrative companion
+- **Authority level:** Reference and routing only; does not replace repository governance, owner standards, runtime contracts, ACTIVE tasks, or work orders.
+- **Implementation authority:** No.
+- **Notes:** Created by T-GOVREF001 from GOVAUTH001 and the Project KB reconciliation findings bounded by the work order. Explains the WNYHS authority chain, execution lifecycle, capability-versus-authority boundary, domain routing, idea/product promotion, public-offerings-page routing, marketing-to-sales routing, protected systems, unresolved audit findings, and inactive remediation roadmap. No owner authority or remediation status changed.
