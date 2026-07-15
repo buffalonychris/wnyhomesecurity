@@ -30,25 +30,25 @@ OPS004 sits under the repository authority chain in:
 - `/docs/system/plan.md`
 - `/docs/system/step-current.md`
 - `/docs/system/master-task-register.md`
-- `/docs/codex/CODEX_RUN_CONTRACT.md`
+- `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 
 OPS004 is a routing standard only. It does not authorize implementation, source changes, runtime changes, page changes, protected-system changes, route changes, content changes, image work, or dependency changes by itself.
 
 If OPS004 routing reveals a conflict with higher-authority governance, the agent must stop and request a Step, task-register, or work-order revision.
 
-## 3. Relationship to CODEX_RUN_CONTRACT
+## 3. Relationship to the canonical Codex execution standard
 
-`/docs/codex/CODEX_RUN_CONTRACT.md` defines always-on Codex execution rules.
+`/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md` is the sole active detailed owner for Codex execution and work-order mechanics.
 
 OPS004 adds a required classification step before the contract's task-specific document selection:
 
-1. Apply the Codex run contract.
+1. Apply root `AGENTS.md` and the canonical Codex execution standard.
 2. Classify the task by workstream under OPS004.
 3. Load the required current-state and owner documents for that workstream.
 4. Confirm protected-system and cross-workstream boundaries.
 5. Continue only when the active task scope allows the work.
 
-OPS004 does not replace the run contract. It tells ChatGPT/Codex how to choose the right current-state and owner documents before execution.
+OPS004 does not duplicate or replace execution mechanics. It tells ChatGPT/Codex how to choose the right current-state and owner documents before execution.
 
 ## 4. Relationship to OPS003 Context Efficiency
 
@@ -225,7 +225,7 @@ The registry below is the minimum routing map. It should be updated additively w
 
 - **Purpose:** Repository authority, task execution, context control, run contracts, catalog/manifest/register maintenance.
 - **Current-state/status docs:** `/docs/system/step-current.md`, `/docs/system/master-task-register.md`, `/docs/system/document_status_reconciliation_rev01.md`.
-- **Governing docs:** `/AGENTS.md`, `/docs/system/project.md`, `/docs/system/agent.md`, `/docs/system/plan.md`, `/docs/system/guardrails.md`, `/docs/codex/CODEX_RUN_CONTRACT.md`, OPS002, OPS003, OPS004.
+- **Governing docs:** `/AGENTS.md`, `/docs/system/project.md`, `/docs/system/agent.md`, `/docs/system/plan.md`, `/docs/system/guardrails.md`, `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`, OPS002, OPS003, OPS004.
 - **Related workstreams:** All workstreams.
 - **Typical tasks:** create governance standards, update run contracts, update task register, update catalog/manifest.
 - **Protected-system concerns:** Do not use governance docs to authorize runtime, CRM, payment, scheduling, secrets, or source changes.
@@ -419,6 +419,16 @@ The registry below is the minimum routing map. It should be updated additively w
 - **Typical tasks:** deployment docs, hostname audits, build validation standards.
 - **Protected-system concerns:** Do not change Cloudflare config, environment variables, DNS, secrets, deploy settings, or package/dependency files without bounded authority.
 
+### 23. ChatGPT Sites
+
+- **Purpose:** Governed source-backed website prototyping, interactive design validation, owner-only Site versioning/deployment, and controlled reconciliation into an authoritative production repository.
+- **Current-state/status docs:** `/docs/system/step-current.md`, the applicable SITE task record, source commit/version/deployment evidence, and OPS005 when current Sites status is needed.
+- **Governing docs:** `/AGENTS.md`, `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`, `CODEX_TASK_REGISTER_RULES.md`, current context, applicable site/category/visual owners, and the bounded SITE work order.
+- **Related workstreams:** Project Governance, Site Architecture, Visual System, Public Content System, SEO, Infrastructure / Deployment System.
+- **Typical tasks:** private prototype creation, interactive design validation, owner-only Site save/version/deployment, traceability review, and prototype-to-production reconciliation planning.
+- **Protected-system concerns:** Every Sites URL is a real hosted deployment even when private. A private prototype is not production authority. Do not reconcile into `wnyhomesecurity.com`, change Cloudflare/production, or touch protected systems without a separate bounded task.
+- **Public category invariant:** Home Security; Aging in Place; Home Safety; Home Automation; Home Lighting; Property Management.
+
 ## 16. Workstream Routing Table
 
 | Task signal | Primary workstream | Related workstreams | First docs to load |
@@ -444,6 +454,7 @@ The registry below is the minimum routing map. It should be updated additively w
 | Runtime/API/requestId/email | Runtime System | CRM, Scheduling, Quote, Infrastructure | protected runtime contract and relevant runtime docs |
 | Cloudflare/deploy/domain/env/build | Infrastructure / Deployment System | Runtime, SEO, Site Architecture | deployment validation and Cloudflare inventory docs |
 | Governance/run contract/register/catalog/manifest | Project Governance | All affected workstreams | project/agent/plan/guardrails/run contract/OPS003/OPS004 |
+| ChatGPT Sites/prototype/Site version or deployment | ChatGPT Sites | Project Governance, Site Architecture, Visual, Content, SEO, Infrastructure | current context, canonical Codex standard, bounded SITE task, applicable owner docs |
 
 ## 17. New Chat Bootstrap Behavior
 
@@ -451,7 +462,7 @@ In a new chat, ChatGPT should not ask the user to restate mature project governa
 
 Before creating a Codex prompt, ChatGPT should:
 
-1. Load or reference the Codex run contract.
+1. Load or reference root `AGENTS.md` and the canonical Codex execution standard.
 2. Apply OPS004 routing.
 3. Name the primary and related workstreams.
 4. Name the current-state and owner docs required.
@@ -525,3 +536,4 @@ OPS004 succeeds when:
 8. Context Efficiency Reports identify redundant context loads.
 9. New chats can resume workstream-specific execution without relying on chat memory.
 10. Owner standards remain authoritative for their domains.
+11. All 23 workstreams, including ChatGPT Sites, remain routing domains rather than implementation authority.

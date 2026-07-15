@@ -804,7 +804,7 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`
 - **File path:** `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`
-- **Purpose / likely role:** Project-wide workstream status board recording current state, completed work, outstanding work, required docs, related workstreams, protected-system concerns, and next recommended tasks for the 22 OPS004 workstreams.
+- **Purpose / likely role:** Project-wide workstream status board recording current state, completed work, outstanding work, required docs, related workstreams, protected-system concerns, and next recommended tasks for the 23 OPS004 workstreams, including ChatGPT Sites.
 - **Authority level:** **System governance / workstream current-state board**
 - **Customer-facing:** No.
 - **Implementation authority:** No, not by itself. It summarizes status for future bounded tasks after OPS004 routing.
@@ -812,11 +812,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`
 - **File path:** `docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`
-- **Purpose / likely role:** Codex workflow and RSI governance standard defining operator, ChatGPT, Codex, GitHub, and deployment responsibilities; lightweight prerequisite verification; targeted-read allowance conditions; missing-task handling; Windows Codex hook guidance; RSI/context-efficiency and token/context usage reporting; and semantic-token/theme-readiness reporting.
-- **Authority level:** **System governance / Codex workflow and context-efficiency standard**
+- **Purpose / likely role:** Preserved OPS009 lineage for the former Codex workflow and RSI governance owner.
+- **Authority level:** **SUPERSEDED historical governance lineage**
 - **Customer-facing:** No.
-- **Implementation authority:** No, not by itself. It governs future Codex workflow posture only.
-- **Notes:** Added by OPS009 as docs-only governance. It does not authorize source, CSS, route, page, runtime, API, HubSpot, Stripe/payment, Resend/email, scheduling, Cloudflare, secrets, assets, dependencies, package-lock, THEME implementation, INSTALL implementation, hooks, automation, implementation, pricing, claims, or protected-system changes by itself.
+- **Implementation authority:** No.
+- **Notes:** Superseded by `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; retained only for OPS009 lineage.
 
 ### `/docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
 - **File path:** `docs/system/PAGE_TOKEN_COMPLIANCE_TASK_PACK_REV01.md`
@@ -880,13 +880,45 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/codex/`
 
+### `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
+- **File path:** `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
+- **Purpose / likely role:** Sole active detailed owner for Codex execution, work-order construction, targeted-read behavior, validation tiers, retry/failure handling, Git/PR delivery, RSI reporting, and ChatGPT Sites boundaries.
+- **Authority level:** **ACTIVE AND CANONICAL Codex execution standard**
+- **Customer-facing:** No.
+- **Implementation authority:** No; it governs separately authorized work.
+- **Notes:** Created by T-CODEXGOVCONSOL001. Root `/AGENTS.md` is the concise always-on entrypoint and points only here for detailed Codex mechanics.
+
 ### `/docs/codex/CODEX_RUN_CONTRACT.md`
 - **File path:** `docs/codex/CODEX_RUN_CONTRACT.md`
-- **Purpose / likely role:** Reusable standard Codex run contract defining always-on governance, protected-system, validation, branch/PR, and output rules for future Codex tasks.
-- **Authority level:** **Active Codex governance contract**
+- **Purpose / likely role:** Preserved CODEX-CONTRACT001 lineage for the former Codex run contract.
+- **Authority level:** **SUPERSEDED historical governance lineage**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Required review/load document for future Codex tasks; updated by T-OPS001-002 to require model/reasoning guidance in work orders and ChatGPT post-run summary review. Updated by T-OPS001-003 to require OPS004 workstream context routing before task execution. It does not authorize runtime, UI, route, form, HubSpot, Stripe, scheduling, lead-signal, QRLanding, or other implementation changes by itself.
+- **Notes:** Superseded by `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; retained only for lineage.
+
+### `/docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`
+- **File path:** `docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`
+- **Purpose / likely role:** Preserved CODEX001 / KAOS lineage for the former detailed work-order specification.
+- **Authority level:** **SUPERSEDED historical governance lineage**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Superseded by `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; retained only for lineage.
+
+### `/docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`
+- **File path:** `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`
+- **Purpose / likely role:** Preserved predecessor lineage for the former Codex work-order standard.
+- **Authority level:** **SUPERSEDED historical governance lineage**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** Superseded by `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; retained only for lineage.
+
+### `/docs/codex/templates/CODEX_REPOSITORY_STARTER_STANDARD_REV01.md`
+- **File path:** `docs/codex/templates/CODEX_REPOSITORY_STARTER_STANDARD_REV01.md`
+- **Purpose / likely role:** Portable starter for repositories adopting a concise AGENTS entrypoint, targeted reads, bounded work orders, validation tiers, Git/PR rules, protected-system placeholders, and RSI closeout.
+- **Authority level:** **Non-authoritative portable template until adopted and customized**
+- **Customer-facing:** No.
+- **Implementation authority:** No.
+- **Notes:** WNYHS governance does not automatically control adopting repositories.
 
 ### `/docs/codex/CODEX_TASK_REGISTER_RULES.md`
 - **File path:** `docs/codex/CODEX_TASK_REGISTER_RULES.md`

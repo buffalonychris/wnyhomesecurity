@@ -21,7 +21,7 @@ OPS005 sits under the repository authority chain in:
 - `/docs/system/plan.md`
 - `/docs/system/step-current.md`
 - `/docs/system/master-task-register.md`
-- `/docs/codex/CODEX_RUN_CONTRACT.md`
+- `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 - `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`
 
 If OPS005 conflicts with a higher-authority document, the higher-authority document controls.
@@ -87,11 +87,11 @@ Each workstream row uses this schema:
 
 - **Workstream title:** Project Governance
 - **Status:** Active
-- **Current state:** Repository governance uses the current operational context, Master Task Register, Codex run contract, OPS003 context efficiency standard, OPS004 routing standard, catalog, and manifest.
-- **Completed work:** CODEX run contract exists; OPS003 context efficiency exists; OPS004 workstream routing exists; document status reconciliation exists; task-register execution gates are active.
+- **Current state:** Repository governance uses the current operational context, Master Task Register, concise root `AGENTS.md`, canonical Codex execution standard, OPS003 context efficiency standard, OPS004 routing standard, catalog, and manifest.
+- **Completed work:** One canonical detailed Codex execution/work-order owner exists; OPS003 context efficiency exists; OPS004 workstream routing exists; document status reconciliation exists; task-register execution gates are active.
 - **Outstanding work:** Keep status docs current; reduce prompt bloat through durable docs; reconcile catalog/manifest drift; maintain task status after bounded runs.
 - **Required current-state docs:** `/docs/system/step-current.md`, `/docs/system/master-task-register.md`, `/docs/system/document_status_reconciliation_rev01.md`, this OPS005 board.
-- **Required governing docs:** `/AGENTS.md`, `/docs/system/project.md`, `/docs/system/agent.md`, `/docs/system/plan.md`, `/docs/system/guardrails.md`, `/docs/codex/CODEX_RUN_CONTRACT.md`, OPS003, OPS004.
+- **Required governing docs:** `/AGENTS.md`, `/docs/system/project.md`, `/docs/system/agent.md`, `/docs/system/plan.md`, `/docs/system/guardrails.md`, `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`, OPS003, OPS004.
 - **Related workstreams:** All workstreams.
 - **Protected-system concerns:** Governance docs must not authorize runtime, CRM, payment, scheduling, email, Cloudflare, secrets, dependencies, source, route, or public-claim changes without a bounded task.
 - **Next recommended task:** DOCSYNC001 or a bounded OPS005 refresh after the next major workstream change.
@@ -391,7 +391,21 @@ Each workstream row uses this schema:
 - **Next recommended task:** Deployment validation only when a release or infra task is active.
 - **Notes / risks:** Docs-only tasks do not require a version badge bump unless explicitly stated.
 
-## 29. Cross-Workstream Dependency Notes
+## 29. ChatGPT Sites Status
+
+- **Workstream title:** ChatGPT Sites
+- **Status:** Active for separately bounded SITE tasks after governing authorization is merged.
+- **Current state:** ChatGPT Sites is authorized for governed source-backed prototyping, interactive design validation, owner-only Site versioning/deployment, and controlled reconciliation planning. Private Sites prototypes are real hosted deployments but are not WNYHS production authority.
+- **Completed work:** SITE task category, workstream routing, traceability requirements, production boundary, and exact six-category invariant are documented.
+- **Outstanding work:** `T-SITEPROTOTYPE001` remains inactive until the authorizing governance PR is merged and `main` is synchronized. Any prototype and any later production reconciliation require separate bounded tasks.
+- **Required current-state docs:** `/docs/system/step-current.md`, the applicable SITE task record, source commit/version/deployment evidence, and this status row.
+- **Required governing docs:** `/AGENTS.md`, `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`, `/docs/codex/CODEX_TASK_REGISTER_RULES.md`, OPS004, current Site Architecture/category/visual owners, and the bounded SITE work order.
+- **Related workstreams:** Project Governance, Site Architecture, Visual System, Public Content System, SEO, Infrastructure / Deployment System.
+- **Protected-system concerns:** Every Sites URL is a real deployment. Do not treat a private prototype as production authority; do not change `wnyhomesecurity.com`, Cloudflare, funnel/runtime systems, `.openai/hosting.json`, or protected systems without explicit bounded authority.
+- **Next recommended task:** After this governance PR is manually merged and `main` synchronized, the operator may separately decide whether to activate `T-SITEPROTOTYPE001`.
+- **Notes / risks:** Preserve source commit SHA, exact Sites `project_id` when authorized, saved Site version, deployment traceability, and public category order: Home Security; Aging in Place; Home Safety; Home Automation; Home Lighting; Property Management.
+
+## 30. Cross-Workstream Dependency Notes
 
 - Route work must check Site Architecture, SEO, Search, Category/Solution/Public Content ownership, and Infrastructure when redirects or deployment behavior are implicated.
 - Public page work must check Public Content, Visual, SEO, Site Architecture, Search, Image, and claims guardrails.
@@ -400,18 +414,18 @@ Each workstream row uses this schema:
 - CRM, payment, scheduling, email, runtime, and Cloudflare work are protected by default and require explicit bounded authority.
 - Image work must check Visual, Category/Solution ownership, SEO, and claim-safe language.
 
-## 30. New Chat Usage Instruction
+## 31. New Chat Usage Instruction
 
 In a new chat, load:
 
-1. `/docs/codex/CODEX_RUN_CONTRACT.md`
+1. `/AGENTS.md` and `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 2. `/docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`
 3. this OPS005 status board when current-state context is needed
 4. only the owner/current-state docs for the primary workstream and related workstreams touched by the task
 
 Do not ask the operator to restate mature governance already stored in repository docs.
 
-## 31. New Task Usage Instruction
+## 32. New Task Usage Instruction
 
 For each new task:
 
@@ -422,7 +436,7 @@ For each new task:
 5. Confirm allowed files, forbidden files, protected systems, and validation.
 6. Stop if the task conflicts with higher-authority governance or protected-system boundaries.
 
-## 32. Codex Restrictions
+## 33. Codex Restrictions
 
 Codex must not use OPS005 to:
 
@@ -433,11 +447,11 @@ Codex must not use OPS005 to:
 - bypass owner docs, task-register rules, OPS004 routing, claims guardrails, or protected-system stop conditions;
 - treat outstanding work as implementation approval.
 
-## 33. Success Criteria
+## 34. Success Criteria
 
 OPS005 succeeds when:
 
-1. All 22 OPS004 workstreams are represented.
+1. All 23 OPS004 workstreams are represented.
 2. Each workstream uses the required status schema.
 3. Current completed work and outstanding work are captured for major active workstreams.
 4. Required current-state and governing docs are named.

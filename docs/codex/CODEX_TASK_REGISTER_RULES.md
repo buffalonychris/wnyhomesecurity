@@ -2,6 +2,8 @@
 
 Status: Active
 
+Detailed Codex execution and work-order mechanics are owned only by `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`. This document retains the distinct task-register schema, taxonomy, lifecycle, and gating role.
+
 ---
 
 ## Purpose
@@ -47,6 +49,7 @@ Optional fields may be added, but required fields must remain present.
 Allowed Category values:
 
 - GOV — governance/doc authority
+- SITE — governed ChatGPT Sites prototype, validation, versioning/deployment, and production-reconciliation planning
 - RUNTIME — runtime/environment
 - CRM — HubSpot/CRM
 - PAYMENT — Stripe/payment

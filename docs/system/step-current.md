@@ -39,6 +39,7 @@ This file is the single current operational context authority. Historical Step d
 - CRM remains open.
 - PAYMENT remains open.
 - SCHED remains open.
+- ChatGPT Sites remains open for separately bounded `SITE` tasks under the Sites boundary below.
 
 ## Governance Enforcement
 
@@ -71,6 +72,15 @@ This file is the single current operational context authority. Historical Step d
 - Deleting historical docs.
 - Committing generated binary print files unless explicitly authorized.
 - Any scheduling authority rewrite beyond bounded task authorization.
+
+## ChatGPT Sites Boundary
+
+- `SITE` tasks may cover governed source-backed website prototyping, interactive design validation, owner-only Site versioning/deployment, and controlled reconciliation planning.
+- Sites may use dedicated branches and managed worktrees; `.openai/hosting.json` may persist the exact Sites `project_id` only when a bounded SITE task authorizes it.
+- Source commit SHA, saved Site version, and deployment must remain traceable. Every Sites URL is a real hosted deployment even when private.
+- A private Sites prototype is not customer production authority. `wnyhomesecurity.com` remains governed by this repository, GitHub, Cloudflare, funnel/runtime contracts, and protected-system rules.
+- Prototype-to-production reconciliation requires a separate bounded task. `T-SITEPROTOTYPE001` may be activated only after the governance PR establishing this boundary is merged and `main` is synchronized.
+- Sites work must preserve the exact public category order: Home Security; Aging in Place; Home Safety; Home Automation; Home Lighting; Property Management.
 
 ## Primary Task Register
 
