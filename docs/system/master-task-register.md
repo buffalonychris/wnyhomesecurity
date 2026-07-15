@@ -900,6 +900,39 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### Build and refine the WNYHS next-generation ChatGPT Sites prototype
+- **Task ID:** T-SITEPROTOTYPE001
+- **Task Name:** Build and refine the WNYHS next-generation ChatGPT Sites prototype
+- **Task Record Version:** REV01
+- **Status:** ACTIVE
+- **Category:** SITE
+- **Primary Workstream:** ChatGPT Sites
+- **Related Workstreams:** Site Architecture; Categories; Solutions; Brand; Marketing; UX; Conversion
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create and iteratively refine a new source-backed, owner-only ChatGPT Sites prototype that uses repository-approved WNYHS governance, brand, categories, solutions, claims, and site architecture. The prototype will establish the strongest possible future customer experience before any approved design is reconciled into the current Cloudflare production application.
+- **Allowed Scope:** Activation only in this run: add this single task record to `docs/system/master-task-register.md`. No prototype implementation is authorized by this activation. After the required repo-native work order is created, reviewed, and merged, later execution may create and iteratively refine one new private, source-backed ChatGPT Sites prototype only within that work order's exact file, source, validation, versioning, deployment, and review boundaries.
+- **Required Work-Order Gate:** A separate repo-native `T-SITEPROTOTYPE001` execution work order must be created, reviewed, and merged before any prototype implementation begins. That work order must define its exact allowed files and source boundary, forbidden scope, managed-worktree procedure, Sites actions, operator review gates, validation, traceability evidence, and closeout. This ACTIVE task record alone does not authorize prototype implementation, `create_site`, a worktree, Sites configuration, source changes, or deployment.
+- **Future Prototype Execution Requirements:** The merged work order must require (1) a dedicated prototype branch and managed worktree; (2) a new ChatGPT Site created from scratch; (3) exact persistence of the returned Sites `project_id` in `.openai/hosting.json`; (4) `create_site` to be called only once for the same local prototype source; (5) owner-only private access during design iterations unless explicitly changed by the operator; (6) traceability among the source branch, source commit SHA, saved Site version, and deployment; (7) meaningful section-level iterations rather than one-line edits or uncontrolled full-site rewrites; (8) operator review between material iterations; (9) mobile, accessibility, visual, claims, category, and conversion validation; and (10) no production reconciliation without a separate bounded task.
+- **Canonical Category Order:** Preserve exactly:
+  1. Home Security
+  2. Aging in Place
+  3. Home Safety
+  4. Home Automation
+  5. Home Lighting
+  6. Property Management
+- **Sites Source/Version/Deployment Traceability:** Future authorized execution must preserve the dedicated source branch, exact source commit SHA, exact returned Sites `project_id`, saved Site version, and deployment as one reviewable evidence chain. Every Sites URL is a real hosted deployment even when private. No Sites source, configuration, version, or deployment action is authorized during this activation run.
+- **Private Owner-Only Prototype Posture:** The future prototype must remain private and owner-only throughout design iterations unless the operator explicitly authorizes an access change in a bounded task. Private access does not make a Sites deployment non-real or grant production authority.
+- **Production Separation:** The prototype is a non-production design and validation surface. `wnyhomesecurity.com`, the current Cloudflare application, repository production source, funnel/runtime contracts, and protected systems remain authoritative and untouched. Any prototype-to-production reconciliation requires a separate bounded task after prototype review; this task does not authorize reconciliation, production deployment, or Cloudflare/DNS changes.
+- **Forbidden Scope:** During this activation run, do not create the prototype work order; create a ChatGPT Site; call `create_site`; create a worktree; create or edit `.openai/hosting.json`; edit source code, routes, pages, components, CSS, assets, SEO, sitemap, robots, forms, APIs, runtime, or dependencies; deploy anything; change Site access; modify Cloudflare or DNS; modify HubSpot, Stripe, scheduling, Resend, Home Assistant, environment variables, secrets, or customer data; activate adjacent tasks; merge; enable auto-merge; or mark a draft PR ready for review. Future execution may not exceed the separately merged repo-native work order.
+- **Protected Systems:** HubSpot/CRM and `/api/lead-signal`; Stripe/payment; scheduling/calendar; Resend/email; APIs/runtime; Home Assistant; Cloudflare and DNS; the production website and funnel; dependencies/package-lock; environment variables and secrets; customer data; and ChatGPT Sites source/configuration/deployment are protected and must remain untouched during activation.
+- **Target Files:** `docs/system/master-task-register.md` only for this activation run. Future prototype target files require explicit authorization in the separate merged repo-native work order.
+- **Runtime Systems Affected:** None. This activation is a documentation-only governance change.
+- **Documentation Updates Required:** Add this task record only. Do not create the prototype work order or any other documentation, source, Sites configuration, or deployment artifact in this activation run.
+- **Validation Required:** Governance activation checks: `git status --short`; `git diff --name-only`; `git diff --stat`; `git diff --check`; `git ls-files --deleted`; confirm only `docs/system/master-task-register.md` changed; confirm the `T-SITEPROTOTYPE001` Task ID record appears exactly once; confirm `Status: ACTIVE`; confirm `Category: SITE`; confirm the exact six-category order; confirm a separate repo-native work order must be created and merged before execution; confirm no Site, worktree, source, deployment, adjacent-task, or protected-system work occurred. Apply the governed docs-only build skip unless higher authority requires a build.
+- **Exit Criteria:** This complete REV01 task record appears exactly once under Active Tasks with `Status: ACTIVE`, `Category: SITE`, the exact controlling context, named workstreams, exact six-category order, required work-order gate, source/version/deployment traceability, owner-only private posture, production separation, protected-system boundaries, and future execution requirements; only the allowed register file changed; validation passes; the task branch is committed and pushed; a draft PR to `main` is open; no prototype work order, Site, worktree, Sites source/configuration/deployment, production reconciliation, protected-system change, adjacent-task activation, merge, auto-merge, or ready-for-review action occurred.
+- **Dependencies:** `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; completed `T-CODEXGOVCONSOL001`; synchronized `origin/main`; repository authority chain; manual operator review and merge of this activation PR; then creation, review, and merge of a separate repo-native `T-SITEPROTOTYPE001` execution work order before prototype implementation.
+- **Operator Decision Required:** Review this draft activation PR and decide whether to merge. After manual merge, separately authorize creation of the repo-native execution work order. Do not begin prototype implementation, change Site access, reconcile production, merge this PR, enable auto-merge, or mark it ready in this run.
+
 ### Consolidate and optimize Codex execution governance
 - **Task ID:** T-CODEXGOVCONSOL001
 - **Task Name:** Consolidate and optimize Codex execution governance
