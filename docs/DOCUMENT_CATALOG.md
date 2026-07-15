@@ -880,6 +880,14 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ## `docs/codex/`
 
+### `/docs/codex/work-orders/T-SITEPROTOTYPE001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/T-SITEPROTOTYPE001_WORK_ORDER_REV01.md`
+- **Purpose / likely role:** Canonical repo-native execution work order for the bounded, private, source-backed WNYHS ChatGPT Sites prototype, including client, isolation, project-ID, provenance, iteration, access, validation, production-separation, and protected-system rules.
+- **Authority level:** **ACTIVE task-specific work order after merge**
+- **Customer-facing:** No.
+- **Implementation authority:** Yes, only for the private prototype scope after merge and while `T-SITEPROTOTYPE001` remains ACTIVE.
+- **Notes:** Requires ChatGPT Windows App with Codex for actual Sites execution; does not authorize production reconciliation, Cloudflare changes, public/shared access, or merge.
+
 ### `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 - **File path:** `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 - **Purpose / likely role:** Sole active detailed owner for Codex execution, work-order construction, targeted-read behavior, validation tiers, retry/failure handling, Git/PR delivery, RSI reporting, and ChatGPT Sites boundaries.
