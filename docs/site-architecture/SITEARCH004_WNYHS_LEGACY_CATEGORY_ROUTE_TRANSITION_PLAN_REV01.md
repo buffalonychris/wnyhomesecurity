@@ -32,6 +32,10 @@ If this plan conflicts with higher-authority repository governance, the higher-a
 
 `SITEARCH001` records the current public information architecture and identifies a route conflict: `/home-security` functions as the effective WNYHS homepage while also looking like a Home Security category route.
 
+## 3A. T-CATEGORYRECON001 successor note
+
+`docs/site-architecture/SITEARCH005_WNYHS_SIX_CATEGORY_RECONCILIATION_DECISION_REV01.md` is the current six-category reconciliation. It preserves this plan's staged treatment of the five existing flat legacy routes, confirms Home Safety at `/categories/home-safety`, and recommends the deferred sixth canonical route `/categories/property-management`. This plan remains authoritative for transition handling of the five existing legacy routes; it does not establish a legacy Property Management route.
+
 `SITEARCH004` uses that finding to define how legacy flat category routes should be treated in a future bounded route task.
 
 ## 4. Relationship to SITEARCH002
