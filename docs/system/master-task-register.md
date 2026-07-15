@@ -48,6 +48,7 @@ Every actionable task record must include:
 ### Task Category Taxonomy (Allowed Values)
 
 - GOV
+- SITE
 - RUNTIME
 - CRM
 - PAYMENT
@@ -898,6 +899,29 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ---
 
 ## Active Tasks (Execution Driver)
+
+### Consolidate and optimize Codex execution governance
+- **Task ID:** T-CODEXGOVCONSOL001
+- **Task Name:** Consolidate and optimize Codex execution governance
+- **Task Record Version:** REV01
+- **Status:** DONE
+- **Category:** GOV
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Codex; KAOS; Operator Workflow; Context Efficiency; RSI; ChatGPT Sites; Site Architecture
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Replace overlapping Codex governance with one concise root entrypoint, one canonical detailed execution/work-order standard, targeted-read defaults, one work-order template, one RSI standard, governed ChatGPT Sites authorization, explicit predecessor supersession, and a portable starter template.
+- **Governing Inputs:** `AGENTS.md`; `docs/codex/CODEX_RUN_CONTRACT.md`; `docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`; `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`; `docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`; `docs/codex/CODEX_TASK_REGISTER_RULES.md`; `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`; `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`; `docs/system/step-current.md`; this register; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`; and established status-reconciliation patterns as needed.
+- **Allowed Scope:** Modify only the bounded governance and index files named by the task work order; create `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md` and `docs/codex/templates/CODEX_REPOSITORY_STARTER_STANDARD_REV01.md`; supersede but preserve predecessor documents; authorize the SITE category and ChatGPT Sites workstream; update only this task record from ACTIVE to DONE after validation.
+- **Forbidden Scope:** No source, pages, routes, components, CSS, assets, SEO, sitemap, robots, forms, planner, quote, agreement, payment, scheduling, API/runtime, HubSpot, Stripe, Resend/email, Home Assistant, Cloudflare configuration, DNS, dependencies, package-lock, environment, secrets, customer data, Sites source, `.openai/hosting.json`, deployed Site, unrelated task record, merge, or auto-merge change.
+- **Target Files:** `AGENTS.md`; `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; `docs/codex/CODEX_RUN_CONTRACT.md`; `docs/system/OPS009_CODEX_WORKFLOW_AND_RSI_GOVERNANCE_REV01.md`; `docs/governance/CODEX_WORK_ORDER_STANDARD_REV01.md`; `docs/codex/CODEX001_CODEX_WORK_ORDER_SPECIFICATION_REV01.md`; `docs/codex/CODEX_TASK_REGISTER_RULES.md`; `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`; `docs/system/OPS005_WORKSTREAM_STATUS_BOARD_REV01.md`; `docs/system/step-current.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`; `docs/system/document_status_reconciliation_rev01.md` only if required by established pattern; `docs/codex/templates/CODEX_REPOSITORY_STARTER_STANDARD_REV01.md`.
+- **Runtime Systems Affected:** None; docs-only governance.
+- **Documentation Updates Required:** Create and register the canonical execution standard and portable starter; replace root AGENTS; supersede four predecessor owners; retain distinct routing/status/task-register roles; authorize SITE and ChatGPT Sites; update only this task record.
+- **Required Validation:** Targeted governance/reference searches; `git status --short`; `git diff --name-only`; `git diff --stat`; `git diff --check`; `git ls-files --deleted`; allowed-file audit; canonical/superseded status checks; predecessor-reference audit; targeted/full-read/retry/build/work-order/RSI/SITE/Sites/six-category/task-count/protected-system checks; directly applicable repository documentation validation; governed docs-only build skip unless the resulting authority requires a build.
+- **Exit Criteria:** The canonical governance model is coherent; all required outputs exist; predecessor owners are clearly superseded; distinct owner docs point to the canonical execution standard without duplicated mechanics; SITE and ChatGPT Sites boundaries are authorized; the six public categories retain their exact order; this task appears exactly once and is DONE; T-SITEPROTOTYPE001 is not activated; validation passes; protected and implementation systems remain untouched; a commit is pushed and a draft PR is open without merge.
+- **Dependencies:** Prompt-created bounded T-CODEXGOVCONSOL001 work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; repository authority chain; synchronized `origin/main`; manual operator review and merge before any successor activation.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Do not merge or activate `T-SITEPROTOTYPE001` in this run.
+- **Successor Relationship:** T-SITEPROTOTYPE001 remains inactive and may be activated only after this PR is merged and `main` is synchronized.
+- **Completion Notes:** Consolidated Codex execution and work-order governance into concise root `AGENTS.md` plus the ACTIVE AND CANONICAL `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; created the non-authoritative portable starter; marked the four named predecessor owners SUPERSEDED with successor pointers; retained task-register, OPS004 routing, and OPS005 status-board roles while pointing execution mechanics to the canonical owner; authorized SITE and ChatGPT Sites with traceability, production-authority, separate-reconciliation-task, and exact six-category boundaries; registered the result in the catalog and manifest. Targeted validation passed with 14 allowed documentation files changed, no deletes, no protected/implementation files, one task record, and no T-SITEPROTOTYPE001 activation. No repository docs/link script exists. `npm run build` was skipped under the resulting canonical docs-only build rule. HubSpot, Stripe/payment, scheduling, Resend/email, APIs/runtime, Home Assistant, Cloudflare, dependencies/package-lock, environment/secrets, Sites source/config/deployment, and customer data were untouched.
 
 ### Audit Complete WNYHS Governance Authority Environment
 - **Task ID:** T-GOVAUTH001

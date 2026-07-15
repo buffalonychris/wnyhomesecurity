@@ -1,135 +1,61 @@
 # WNYHS Codex Execution Rules
 
-This repository is governed by:
+Repository: `buffalonychris/wnyhomesecurity`
+Canonical detailed standard: `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 
-- /docs/system/project.md
-- /docs/system/agent.md
-- /docs/system/plan.md
-- /docs/system/guardrails.md
+This file is the concise always-on entrypoint for Codex CLI and the ChatGPT Windows app. The canonical detailed standard is the sole active owner of Codex execution and work-order mechanics.
 
-HubSpot Architecture (Versioned):
+## Authority and task gate
 
-- /docs/crm/hubspot/hubspot_kb_rev01.md
-- /docs/crm/hubspot/hubspot_kb_rev02.md
-- /docs/crm/hubspot/hubspot_kb_rev03.md
+Follow this authority chain:
 
-Controlling Step:
+1. `/docs/system/project.md`
+2. `/docs/system/guardrails.md`
+3. `/docs/system/agent.md`
+4. `/docs/system/plan.md`
+5. `/docs/system/step-current.md`
+6. `/docs/system/master-task-register.md`
+7. active bounded task or permitted prompt-created work order
+8. applicable owner standards, locked specs, and runtime contracts
+9. historical documents as lineage only
 
-- /docs/system/step-current.md
+Confirm the exact context identifier in `step-current.md` before edits. Execute one bounded task per run, branch, and PR. A prompt-created task may proceed only when higher governance permits it and the prompt defines the task ID, allowed and forbidden scope, target files, validation, and closeout; add only that task record when explicitly authorized.
 
----
+## Read and routing model
 
-## REQUIRED (NON-NEGOTIABLE)
+Default to `READ MODE: TARGETED`. Search exact task IDs, headings, status fields, references, and owner-doc sections before reading. Do not fully load the Master Task Register, catalogs, manifests, audits, inventories, or status boards by default.
 
-All Codex executions MUST:
+Use `READ MODE: FULL` only when a higher authority requires it, the task is a bounded audit/reconciliation, targeted search fails, authority or protected-system scope is ambiguous, or the whole file is the object being reconciled. State the justification.
 
-- Follow the authority chain defined in project.md
-- Reference the controlling Step document BEFORE making changes
-- Follow additive vs destructive discipline EXACTLY
-- Create a new branch and open a PR (DO NOT MERGE)
-- Run build before completion
+Retry a stalled read or command at most once. After that retry fails, use a smaller targeted command or stop with the exact blocker. Do not repeat broad read batches.
 
----
+Classify the task by category, primary workstream, and related workstreams. Use OPS004 for routing and OPS005 only when current workstream status is needed.
 
-## HUBSPOT ENFORCEMENT (CRITICAL)
+## Scope and change discipline
 
-- HubSpot REV03 is LOCKED and AUTHORITATIVE
-- REV01 and REV02 are historical reference only
-- ALL CRM writes MUST go through: `/api/lead-signal`
-- API layer is the ONLY allowed write path
+- Modify only task-authorized files; capability access is not authorization.
+- Prefer additive, surgical changes. Destructive changes require explicit task authority.
+- Preserve working routes, funnel order, data, contracts, and historical lineage.
+- Do not introduce features, architecture, dependencies, workflows, cleanup, or adjacent task work by inference.
+- Do not hardcode colors or design primitives outside the semantic-token system.
+- For site-impacting work, follow the authorized version rule; docs-only governance has no site version bump.
 
-Codex MUST NOT:
+Protected by default: HubSpot/CRM and `/api/lead-signal`; Stripe/payment and webhook authority; scheduling/calendar ownership; Lead Signal/requestId; QR attribution; Resend/email; Cloudflare/runtime/environment/DNS; quote-agreement-payment-schedule chain; Precision Planner; secrets and customer data.
 
-- Modify HubSpot schema, properties, or pipeline
-- Bypass the API layer
-- Write directly to HubSpot from frontend or client logic
-- Update payment state outside Stripe webhook
+Public copy must not claim or imply: monitoring/monitored service, dispatch/dispatcher, “we respond,” police/authorities/emergency-services response, guarantees, or central-station service. Follow current claims owners for all customer-facing language.
 
-If a task touches CRM behavior:
+## Git, validation, and closeout
 
-→ STOP  
-→ Verify against REV03  
-→ Request Step revision if unclear  
+- Start from clean, synchronized `main`; use a fresh task branch.
+- Open a draft PR to `main`. Never merge, enable auto-merge, mark ready, or push directly to `main` unless higher authority and the operator explicitly authorize it.
+- Scale validation to task risk. Always check status, changed files, diff/check output, unexpected deletes, task-specific evidence, and protected scope.
+- Docs-only tasks do not run `npm run build` unless source/build configuration changed, higher authority requires it, or the work order explicitly justifies it. Record a governed skip otherwise.
+- Close out concisely with version when applicable, branch/commit/draft PR, controlling context, files created/changed, validation/build result, scope and protected-system confirmations, no-merge confirmation, unresolved risks, and the canonical Token Utilization / RSI Report.
 
----
+## ChatGPT Sites boundary
 
-## STRIPE ENFORCEMENT
+`SITE` tasks cover governed source-backed prototyping, interactive design validation, owner-only Site versioning/deployment, and controlled reconciliation. Sites prototypes are real hosted deployments but are not production authority. The production website remains governed by this repository, GitHub, Cloudflare, funnel/runtime contracts, and protected-system rules. Production reconciliation requires a separate bounded task after prototype review.
 
-- Stripe verification MUST be server-side
-- Payment success MUST be webhook-verified
-- Frontend success states are NOT authoritative
+## Stop conditions
 
-Codex MUST NOT:
-
-- Trust redirect URLs for payment confirmation
-- Implement client-side payment confirmation logic
-- Expose Stripe secrets
-- Modify Stripe logic without explicit instruction
-
----
-
-## COPY & CLAIMS ENFORCEMENT
-
-Forbidden claims MUST NOT appear:
-
-- monitoring / monitored
-- dispatch / dispatcher
-- “we respond”
-- police / authorities / emergency services
-- guarantee / guaranteed
-- central station
-
----
-
-## SYSTEM RULES
-
-Codex MUST NOT:
-
-- Introduce new features outside Step scope
-- Change funnel order or routing
-- Modify architecture without Step revision
-- Hardcode colors outside semantic token system
-
----
-
-## OUTPUT REQUIREMENTS (MANDATORY)
-
-Every Codex execution MUST return:
-
-- New version number
-- Summary of changes
-- Files modified
-- Confirmation HubSpot untouched
-- Confirmation Stripe untouched
-- Build result
-
----
-
-## STOP CONDITIONS (MANDATORY)
-
-If a request:
-
-- Conflicts with Step documents
-- Touches HubSpot logic
-- Touches Stripe logic
-- Violates guardrails
-
-Codex MUST:
-
-1. STOP execution  
-2. State the conflict clearly  
-3. Request Step revision  
-
-No silent deviation allowed.
-
----
-
-## TASK MANAGEMENT LAYER
-
-Task system references:
-
-- /docs/system/master-task-register.md
-- /docs/system/task-command-vocabulary.md
-- /docs/codex/CODEX_TASK_REGISTER_RULES.md
-
-Codex must check **Active Tasks** in `/docs/system/master-task-register.md` before implementation.
+Stop and state the conflict when repository/path, task authorization, current context, scope, allowed files, protected systems, claims, secrets, destructive authority, or required validation is missing, ambiguous, or conflicting. Request a task/context/work-order revision; never silently deviate.
