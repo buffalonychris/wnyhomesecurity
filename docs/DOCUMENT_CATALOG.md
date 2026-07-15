@@ -1569,3 +1569,38 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Current six-category route, alias, source-inventory, and implementation-deferral decision under SITEARCH owner governance.
 - **Implementation authority:** No.
 - **Notes:** Confirms `/categories/home-safety`, recommends deferred `/categories/property-management`, preserves existing routes/funnels, inventories exact source surfaces, defers coordinated source work, and records the T-NEWSOLUTIONS001 post-merge unblock condition.
+
+### `/docs/catalogs/WNYHS_INTERNAL_SOLUTION_ARSENAL_REV01.md`
+- **File path:** `docs/catalogs/WNYHS_INTERNAL_SOLUTION_ARSENAL_REV01.md`
+- **Document type:** Governed internal solution and hardware/BOM reconciliation catalog
+- **Authority level:** T-NEWSOLUTIONS001 commercial-planning index subordinate to current Category, Solution, Offering, Hardware, BOM, Claims, Home Assistant, Dashboard, and Notification owners.
+- **Implementation authority:** No.
+- **Notes:** Records 53 evidence/status-controlled solution records, 33 hardware evidence records, six-category classification, customer outcomes, Home Assistant behavior, dashboard/notification needs, limitations, public visibility, BOM posture, campaign suitability, evidence gaps, and protected-system boundaries. Does not authorize website/runtime work, pricing, purchasing, customer BOMs, external-platform activity, or protected-system changes.
+
+### `/docs/catalogs/WNYHS_CUSTOMER_SOLUTION_CATALOG_REV01.md`
+- **File path:** `docs/catalogs/WNYHS_CUSTOMER_SOLUTION_CATALOG_REV01.md`
+- **Document type:** Customer-facing solution catalog specification and approved content source set
+- **Authority level:** T-NEWSOLUTIONS001 public-content planning artifact subordinate to CATEGORY001 REV02, Solution/Offering/Claims owners, and public funnel authority.
+- **Implementation authority:** No.
+- **Notes:** Defines six exact category sections, 30 traceable customer possibilities, progressive disclosure, navigation/search recommendations, mobile/accessibility rules, URL recommendations, estimate CTA posture, and claims/protected-system boundaries. Property Management route implementation remains deferred.
+
+### `/docs/marketing/WNYHS_NEW_SOLUTIONS_PUBLIC_CONTENT_SPEC_REV01.md`
+- **File path:** `docs/marketing/WNYHS_NEW_SOLUTIONS_PUBLIC_CONTENT_SPEC_REV01.md`
+- **Document type:** New Solutions public-content and future-page specification
+- **Authority level:** T-NEWSOLUTIONS001 content planning artifact; route/source/SEO/funnel implementation requires a separate ACTIVE task.
+- **Implementation authority:** No.
+- **Notes:** Defines audience, customer problems, hero options, six-category copy, solution-family and representative-card copy, trust/privacy/local-first posture, CTA and FAQ recommendations, homepage/subpage support, SEO/schema intake, attribution recommendations, and protected lead/scheduling boundaries.
+
+### `/docs/marketing/WNYHS_NEW_SOLUTIONS_HIGGSFIELD_SOCIAL_ASSET_PACK_REV01.md`
+- **File path:** `docs/marketing/WNYHS_NEW_SOLUTIONS_HIGGSFIELD_SOCIAL_ASSET_PACK_REV01.md`
+- **Document type:** Higgsfield-ready video and social campaign content pack
+- **Authority level:** T-NEWSOLUTIONS001 draft campaign asset specification; generation/publication requires separate approval.
+- **Implementation authority:** No.
+- **Notes:** Defines Wave 1/2/Evergreen/Hold selection, six Wave 1 concepts, 18 duration scripts, 28 scene prompts, format adaptations, claims/visual limits, 84 social copy/tracking items, destination/UTM recommendations, sequence, follow-up, sales intent, and measurement recommendations. No assets were generated or published.
+
+### `/docs/marketing/WNYHS_NEW_SOLUTIONS_COMMERCIAL_TRACEABILITY_MATRIX_REV01.md`
+- **File path:** `docs/marketing/WNYHS_NEW_SOLUTIONS_COMMERCIAL_TRACEABILITY_MATRIX_REV01.md`
+- **Document type:** Commercial traceability and protected-boundary matrix
+- **Authority level:** T-NEWSOLUTIONS001 evidence map from internal status through customer catalog, destination, campaign, CTA, existing intake, and sales follow-up.
+- **Implementation authority:** No.
+- **Notes:** Traces all 30 customer catalog entries, records hardware/BOM and campaign posture, confirms no public entry relies on research status, defers the Property Management route, and preserves existing lead, CRM, scheduling, and external-platform boundaries.
