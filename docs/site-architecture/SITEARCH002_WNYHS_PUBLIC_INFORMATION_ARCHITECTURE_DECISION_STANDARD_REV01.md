@@ -24,6 +24,8 @@ Primary sources:
 - `docs/site-architecture/SITEARCH001_WNYHS_PUBLIC_INFORMATION_ARCHITECTURE_AUDIT_REV01.md`
 - `docs/governance/SITE_CONTENT_ARCHITECTURE_CONTEXT_REV01.md`
 - `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md`
+- `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV02.md`
+- `docs/site-architecture/SITEARCH005_WNYHS_SIX_CATEGORY_RECONCILIATION_DECISION_REV01.md`
 - `docs/governance/CATEGORY002_WNYHS_CATEGORY_LANDING_PAGE_STRUCTURE_REV01.md`
 - `docs/solution-system/SOLUTION001_WNYHS_SOLUTION_PAGE_STANDARD_REV02.md`
 - `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`
@@ -118,7 +120,7 @@ Current legacy flat routes require later cleanup or redirect decisions:
 - `/home-lighting`
 - `/aging-in-place`
 
-The `/home-safety` route name should be reconciled with the approved category name Environmental Safety in a future bounded implementation task.
+`SITEARCH005` resolves the naming decision: Home Safety is public-canonical at `/categories/home-safety`; Environmental Safety is limited to internal, historical, SEO-supporting, or alias use under Home Safety. `SITEARCH005` also recommends `/categories/property-management` as the deferred sixth canonical category route.
 
 ## 9. Solution route decision
 
@@ -279,7 +281,7 @@ Known conflicts and decisions:
 | Header "Solutions" pointing to `/packages` | Future nav should not make packages the primary Solutions destination. |
 | Search being placeholder/anchor only | Search should become functional through a separate bounded implementation task. |
 | Demo/dashboard routes scattered across `/home-security/dashboard`, `/demo`, `/5-day-demo`, `/newsite/demos`, and static demo HTML | Classify as Demo/Experience and assign future visibility/canonical ownership. |
-| `/home-safety` naming vs Environmental Safety governance | Reconcile route naming in a future category route task. |
+| `/home-safety` naming vs Environmental Safety governance | Resolved by `SITEARCH005`: Home Safety is public-canonical; existing legacy access remains until separately authorized redirect work. |
 | Route-backed solution pages coexisting with package-page solution anchors | Canonical solution pages should use `/solutions/<solution-slug>`; package anchors should become contextual references. |
 
 ## 24. Required future implementation tasks

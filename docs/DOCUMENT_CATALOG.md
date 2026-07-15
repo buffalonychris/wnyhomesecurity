@@ -1555,3 +1555,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Reference and routing only; does not replace repository governance, owner standards, runtime contracts, ACTIVE tasks, or work orders.
 - **Implementation authority:** No.
 - **Notes:** Created by T-GOVREF001 from GOVAUTH001 and the Project KB reconciliation findings bounded by the work order. Explains the WNYHS authority chain, execution lifecycle, capability-versus-authority boundary, domain routing, idea/product promotion, public-offerings-page routing, marketing-to-sales routing, protected systems, unresolved audit findings, and inactive remediation roadmap. No owner authority or remediation status changed.
+
+### `/docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV02.md`
+- **File path:** `docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV02.md`
+- **Document type:** Active category owner standard
+- **Authority level:** Current category identity, naming, ordering, boundary, and relationship owner; supersedes CATEGORY001 REV01 for current decisions.
+- **Implementation authority:** No.
+- **Notes:** Records the exact six-category public model, Home Safety alias posture, Property Management boundaries, reusable Solution ownership, duplicate-prevention rules, marketing/SEO terminology, and future category-change governance under T-CATEGORYRECON001.
+
+### `/docs/site-architecture/SITEARCH005_WNYHS_SIX_CATEGORY_RECONCILIATION_DECISION_REV01.md`
+- **File path:** `docs/site-architecture/SITEARCH005_WNYHS_SIX_CATEGORY_RECONCILIATION_DECISION_REV01.md`
+- **Document type:** Active site-architecture reconciliation decision
+- **Authority level:** Current six-category route, alias, source-inventory, and implementation-deferral decision under SITEARCH owner governance.
+- **Implementation authority:** No.
+- **Notes:** Confirms `/categories/home-safety`, recommends deferred `/categories/property-management`, preserves existing routes/funnels, inventories exact source surfaces, defers coordinated source work, and records the T-NEWSOLUTIONS001 post-merge unblock condition.

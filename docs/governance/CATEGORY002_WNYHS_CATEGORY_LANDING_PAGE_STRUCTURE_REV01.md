@@ -200,7 +200,7 @@ Aging-In-Place:
 A local-first foundation for family awareness and independence.
 ```
 
-Environmental Safety:
+Home Safety:
 
 ```text
 A local-first foundation for practical home protection.
@@ -325,7 +325,7 @@ Use safer language:
 
 ## Relationship To CATEGORY001
 
-`docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV01.md` defines category identity, metadata, category relationship rules, reuse rules, and broad category governance.
+`docs/governance/CATEGORY001_WNYHS_CATEGORY_STANDARD_REV02.md` defines the current category identity, metadata, six-category order, category relationship rules, reuse rules, naming, and broad category governance. REV02 supersedes REV01 for current category decisions; REV01 remains historical lineage.
 
 `CATEGORY002_WNYHS_CATEGORY_LANDING_PAGE_STRUCTURE_REV01.md` defines landing-page structure and presentation flow.
 
