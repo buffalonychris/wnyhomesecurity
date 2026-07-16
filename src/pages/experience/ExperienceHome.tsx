@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+import SmartPropertyVisualization from '../../components/experience/property/SmartPropertyVisualization';
 import SmartPropertyHero from '../../components/experience/story/SmartPropertyHero';
 import { experienceCategories } from '../../content/experience/baseline';
 
 const ExperienceHome = () => (
   <div className="experience-page">
     <SmartPropertyHero />
+
+    <SmartPropertyVisualization />
 
     <section id="categories" className="experience-section" aria-labelledby="experience-categories-title">
       <p className="experience-eyebrow">Start with the outcome</p>
