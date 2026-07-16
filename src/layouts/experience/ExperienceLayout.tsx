@@ -1,5 +1,7 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import PrototypeNotice from '../../components/experience/PrototypeNotice';
+import ExperienceFooter from '../../components/experience/shell/ExperienceFooter';
+import ExperienceHeader from '../../components/experience/shell/ExperienceHeader';
 import '../../styles/experience/baseline.css';
 
 const ExperienceLayout = () => (
@@ -8,32 +10,11 @@ const ExperienceLayout = () => (
       Skip to content
     </a>
     <PrototypeNotice />
-    <header className="experience-header">
-      <Link className="experience-brand" to="/" aria-label="WNY Home Security prototype home">
-        <img
-          src="/brand/crest-system/IconizedLogo.png"
-          width="42"
-          height="42"
-          alt=""
-        />
-        <span>WNY Home Security</span>
-      </Link>
-      <nav aria-label="Prototype navigation">
-        <Link to="/">Home</Link>
-        <Link to="/#categories">Categories</Link>
-        <Link to="/solutions">Solutions</Link>
-      </nav>
-    </header>
-    <main id="experience-main">
+    <ExperienceHeader />
+    <main id="experience-main" tabIndex={-1}>
       <Outlet />
     </main>
-    <footer className="experience-footer">
-      <div>
-        <strong>WNY Home Security</strong>
-        <p>Private design prototype for operator review.</p>
-      </div>
-      <img src="/brand/crest-system/IconizedLogo.png" width="38" height="38" alt="" />
-    </footer>
+    <ExperienceFooter />
   </div>
 );
 
