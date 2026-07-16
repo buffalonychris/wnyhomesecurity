@@ -40,10 +40,12 @@ const PropertyDiscoveryGuide = ({
             aria-pressed={selectedPriorityId === priority.id}
             onClick={() => onSelectPriority(priority.id)}
           >
-            <span>{priority.label}</span>
-            <span className="property-discovery__priority-state" aria-hidden="true">
-              {selectedPriorityId === priority.id ? 'Selected' : 'Explore'}
-            </span>
+            <span className="property-discovery__priority-label">{priority.label}</span>
+            {selectedPriorityId === priority.id ? (
+              <span className="property-discovery__priority-state" aria-hidden="true">
+                Selected
+              </span>
+            ) : null}
           </button>
         ))}
       </div>
@@ -52,6 +54,10 @@ const PropertyDiscoveryGuide = ({
         {selectedPriority ? (
           <>
             <div className="property-discovery__response-content">
+              <header className="property-discovery__selection">
+                <p>Selected priority</p>
+                <h4>{selectedPriority.label}</h4>
+              </header>
               <div className="property-discovery__recommendation">
                 <p className="property-discovery__recommendation-label">Recommended property zones</p>
                 <p>{selectedPriority.explanation}</p>
@@ -79,8 +85,7 @@ const PropertyDiscoveryGuide = ({
       </div>
 
       <p className="property-discovery__notice">
-        Prototype only: selections are temporary, remain only in the current browser view, and are
-        not stored or submitted.
+        Prototype only: selections stay in this view and are not stored or submitted.
       </p>
     </div>
   );

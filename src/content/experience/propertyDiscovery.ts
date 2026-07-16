@@ -35,7 +35,7 @@ export const propertyDiscoveryPriorities: PropertyDiscoveryPriority[] = [
     connectedCategories: ['Home Security', 'Home Automation', 'Home Lighting'],
     destinations: [
       { label: 'Explore Home Security', to: '/categories/home-security' },
-      { label: 'Browse entry and package possibilities', to: '/solutions' },
+      { label: 'See entry and package solutions', to: '/solutions' },
     ],
   },
   {
@@ -51,7 +51,7 @@ export const propertyDiscoveryPriorities: PropertyDiscoveryPriority[] = [
     connectedCategories: ['Home Safety', 'Home Automation', 'Property Management'],
     destinations: [
       { label: 'Explore Home Safety', to: '/categories/home-safety' },
-      { label: 'Review Water Awareness', to: '/solutions/water-protection' },
+      { label: 'See water awareness options', to: '/solutions/water-protection' },
     ],
   },
   {
@@ -88,7 +88,7 @@ export const propertyDiscoveryPriorities: PropertyDiscoveryPriority[] = [
     ],
     destinations: [
       { label: 'Explore Aging in Place', to: '/categories/aging-in-place' },
-      { label: 'Review Household Independence', to: '/solutions/senior-safety' },
+      { label: 'See household independence options', to: '/solutions/senior-safety' },
     ],
   },
   {
@@ -131,7 +131,7 @@ export const propertyDiscoveryPriorities: PropertyDiscoveryPriority[] = [
     ],
     destinations: [
       { label: 'Explore Property Management', to: '/categories/property-management' },
-      { label: 'Review Seasonal Property Awareness', to: '/solutions/vacation-homes' },
+      { label: 'See seasonal property awareness', to: '/solutions/vacation-homes' },
     ],
   },
 ];
