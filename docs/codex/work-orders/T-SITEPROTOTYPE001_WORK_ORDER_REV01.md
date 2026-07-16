@@ -266,6 +266,49 @@ Call `save_site_version` only after source validation passes, all authorized sou
 - Do not make a public/shared deployment or change access groups without explicit operator approval in a revised bounded instruction.
 - Treat every returned Sites URL as a real hosted deployment, even when private.
 
+### Credential-unsafe Sites source-transport exception
+
+This exception is narrow and conditional. It applies only when ChatGPT Sites source transport is blocked solely because the available client cannot safely prevent short-lived credentials from appearing in shell-visible commands, transcripts, logs, or task output. In that circumstance, the operator may authorize local-only prototype design iterations. This is the sole exception to the section 4 client boundary and to the Sites transport, version-saving, and deployment steps otherwise required per material iteration; it does not complete those deferred steps or satisfy final Sites provenance closeout.
+
+Local-only iterations must use this existing fixed prototype provenance:
+
+- Branch: `site/t-siteprototype001-next-generation-prototype`
+- Worktree: `C:\Dev\wnyhomesecurity-siteprototype001`
+- Current fixed baseline commit: `10f6c274644224574440c8b90e608d5263c71150`
+- Existing `project_id`: `appgprj_6a58f9ac87608191896166197fb30b64`
+
+While this exception is active, each operator-authorized local-only iteration may:
+
+- edit only the iteration-authorized presentation files;
+- run local browser debugging;
+- run build, focused lint, semantic-token, claims, accessibility, mobile, and protected-file validation;
+- commit changes to the dedicated prototype branch;
+- push changes to the GitHub prototype branch; and
+- stop for operator review after each iteration.
+
+While this exception is active, local-only iterations may not:
+
+- call `create_site` again;
+- change the existing `project_id`;
+- attempt a Sites source push through a credential-unsafe transport;
+- save a Site version;
+- deploy a Site version;
+- change Site access;
+- expose, persist, echo, log, or reuse short-lived credentials;
+- merge the prototype branch;
+- modify production systems; or
+- begin production reconciliation.
+
+Sites version saving and deployment remain blocked until a credential-safe transport is available and exact source provenance can be verified. When safe transport becomes available, execution must resume from the latest operator-approved GitHub prototype commit and complete all of the following before Sites provenance closeout:
+
+1. verified Sites source push;
+2. exact remote SHA verification;
+3. one saved Site version;
+4. owner-only deployment; and
+5. complete provenance closeout.
+
+This exception does not weaken operator review gates, protected-system exclusions, the exact six-category order, semantic-token requirements, claims guardrails, production separation, or the no-merge rule.
+
 ## 10. Reference-only inputs
 
 All documents in section 7, current application source, current production routes, `.openai/hosting.json` during initial inspection, brand assets, solution catalogs, and current runtime contracts are reference-only unless an exact later iteration ledger authorizes a presentation file under section 9.
