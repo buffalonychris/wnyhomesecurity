@@ -22,6 +22,7 @@ const SmartPropertyVisualization = () => {
 
   const handlePrioritySelect = (priorityId: string) => {
     setSelectedPriorityId(priorityId);
+    setSelectedZoneId(null);
   };
 
   const handleOpenRecommendedZone = (zoneId: PropertyZoneId) => {
