@@ -150,7 +150,7 @@ Every material iteration must:
 Required sequence:
 
 - **Iteration 0 - Setup and baseline:** prepare the isolated branch/worktree; approve the exact source-file ledger; inspect `.openai/hosting.json`; create the new Site only under the one-time rule; persist the exact project ID; validate the untouched baseline; define the traceability record. Do not deploy an uncommitted or unpushed source state.
-- **Iteration 1 - Global shell:** visual system, semantic tokens, typography, spacing, navigation, header, and footer. Preserve current locked standards unless governance is revised.
+- **Iteration 1 - Global shell:** visual system, semantic tokens, typography, spacing, navigation, header, and footer. The prototype-specific header/footer exception in `docs/brand/header_footer_standards_rev01.md` controls this private prototype; all production header/footer rules remain locked and authoritative for the customer production website.
 - **Iteration 2 - Unified story:** homepage hero and unified smart-property control-plane story, including an understandable interactive property/control-plane visualization.
 - **Iteration 3 - Discovery:** problem-first discovery and progressive-disclosure journey.
 - **Iteration 4 - Categories:** the exact six-category explorer.
