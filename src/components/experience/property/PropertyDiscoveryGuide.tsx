@@ -2,6 +2,7 @@ import type { Dispatch } from 'react';
 import { propertyDiscoveryPriorities } from '../../../content/experience/propertyDiscovery';
 import { propertyScenarios } from '../../../content/experience/propertyScenarios';
 import type { PropertyZoneId } from '../../../content/experience/propertyDiscovery';
+import DiscoveryOutcomeBridge from '../discovery/DiscoveryOutcomeBridge';
 
 type PropertyDiscoveryGuideProps = {
   selectedPriorityId: string | null;
@@ -50,20 +51,23 @@ const PropertyDiscoveryGuide = ({
       <div className="property-discovery__response" aria-live="polite" aria-atomic="true">
         {selectedPriority ? (
           <>
-            <div className="property-discovery__recommendation">
-              <p className="property-discovery__recommendation-label">Recommended property zones</p>
-              <p>{selectedPriority.explanation}</p>
-              <div className="property-discovery__zone-actions">
-                {selectedPriority.recommendedZoneIds.map((zoneId) => {
-                  const zone = propertyScenarios.find((scenario) => scenario.id === zoneId);
+            <div className="property-discovery__response-content">
+              <div className="property-discovery__recommendation">
+                <p className="property-discovery__recommendation-label">Recommended property zones</p>
+                <p>{selectedPriority.explanation}</p>
+                <div className="property-discovery__zone-actions">
+                  {selectedPriority.recommendedZoneIds.map((zoneId) => {
+                    const zone = propertyScenarios.find((scenario) => scenario.id === zoneId);
 
-                  return (
-                    <button key={zoneId} type="button" onClick={() => onOpenZone(zoneId)}>
-                      Open {zone?.name ?? zoneId} scenario
-                    </button>
-                  );
-                })}
+                    return (
+                      <button key={zoneId} type="button" onClick={() => onOpenZone(zoneId)}>
+                        Open {zone?.name ?? zoneId} scenario
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
+              <DiscoveryOutcomeBridge priority={selectedPriority} />
             </div>
             <button className="property-discovery__reset" type="button" onClick={onReset}>
               Reset guided discovery

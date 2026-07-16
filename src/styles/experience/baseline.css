@@ -598,6 +598,13 @@
   border-top: 1px solid var(--wnyhs-dark-border);
 }
 
+.property-discovery__response-content {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+  width: 100%;
+}
+
 .property-discovery__recommendation {
   display: grid;
   gap: 0.65rem;
@@ -638,6 +645,96 @@
   padding-left: 0.75rem;
   border-left: 2px solid var(--wnyhs-premium-gold-hover);
   font-size: 0.72rem;
+}
+
+.discovery-outcome-bridge {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 1rem clamp(1.5rem, 5vw, 4rem);
+  padding-block: 1.25rem 0.25rem;
+  border-top: 1px solid var(--wnyhs-dark-border);
+}
+
+.discovery-outcome-bridge__intro,
+.discovery-outcome-bridge__details,
+.discovery-outcome-bridge__details section,
+.discovery-outcome-bridge__details nav {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.discovery-outcome-bridge__details {
+  gap: 1rem;
+}
+
+.discovery-outcome-bridge__eyebrow,
+.discovery-outcome-bridge__priority,
+.discovery-outcome-bridge h5 {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.discovery-outcome-bridge__eyebrow,
+.discovery-outcome-bridge h5 {
+  color: var(--wnyhs-premium-gold);
+}
+
+.discovery-outcome-bridge h4 {
+  max-width: 21ch;
+  margin: 0;
+  color: var(--wnyhs-dark-text);
+  font-family: var(--wnyhs-font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  line-height: 1.15;
+}
+
+.discovery-outcome-bridge__priority,
+.discovery-outcome-bridge__details p,
+.discovery-outcome-bridge__outcomes,
+.discovery-outcome-bridge__categories {
+  margin: 0;
+  color: var(--wnyhs-dark-muted);
+}
+
+.discovery-outcome-bridge__outcomes {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1.15rem;
+}
+
+.discovery-outcome-bridge__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.15rem;
+  padding: 0;
+  list-style: none;
+}
+
+.discovery-outcome-bridge__categories li::before {
+  content: '·';
+  margin-right: 0.4rem;
+  color: var(--wnyhs-premium-gold);
+}
+
+.discovery-outcome-bridge__destinations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+}
+
+.discovery-outcome-bridge__destinations a {
+  color: var(--wnyhs-dark-text);
+  font-weight: 800;
+  text-underline-offset: 0.28em;
+}
+
+.discovery-outcome-bridge__destinations a::after {
+  content: ' →';
+  color: var(--wnyhs-premium-gold);
 }
 
 .smart-property-visualization__layout {
@@ -1597,6 +1694,10 @@
   .property-discovery__response {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .discovery-outcome-bridge {
+    grid-template-columns: 1fr;
   }
 
   .smart-property-canvas {
