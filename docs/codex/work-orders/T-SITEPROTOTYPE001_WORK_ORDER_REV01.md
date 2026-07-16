@@ -66,6 +66,111 @@ The prototype must make the customer journey understandable and compelling witho
 
 The prototype must address overall public information architecture, homepage, interactive property/control-plane visualization, problem-first discovery, progressive disclosure, six-category explorer, governed solution catalog, search, filtering, category pages, solution-detail experiences, internal linking, CTA placement, assessment journey, mobile behavior, accessibility, visual polish, SEO design intent, analytics-event design intent, and funnel-handoff boundaries. It must not invent live production integrations.
 
+## 5A. Signature Smart Property Experience (controlling)
+
+This section is the controlling experience amendment for the remaining `T-SITEPROTOTYPE001` prototype iterations. Where the broader iteration descriptions below differ from the experience direction or iteration routing in this section, this section controls only that experience direction and routing. It does not expand source, Sites, deployment, production, protected-system, claims, data, review-gate, or file-ledger authority.
+
+### Experience identity and principle
+
+- **Public experience name:** Smart Property Experience
+- **Internal architecture name:** Control Plane
+- **Core experience principle:** The website must not primarily behave like a traditional contractor, security-product, package, or feature-list website. It should feel like exploring what the visitor's own property could become.
+- **Primary storytelling surface:** An interactive property or home environment must become the central storytelling interface.
+- **Signature moment:** The long-term customer-facing outcome is **See Your Smart Property**. The visitor should recognize their own property needs reflected visually across security, safety, automation, lighting, aging in place, and property management.
+
+### Property-zone and outcome-first story model
+
+The Smart Property Experience should let visitors explore practical property zones, including:
+
+- front door;
+- driveway;
+- garage;
+- kitchen;
+- basement;
+- utility room;
+- bedroom;
+- aging-in-place living area;
+- backyard;
+- pool or hot tub;
+- detached structures; and
+- second property.
+
+Each zone should present practical scenarios and coordinated outcomes before products or hardware. Representative scenarios may include:
+
+- package arrival and secure access;
+- driveway awareness;
+- garage-left-open awareness and a supported, site-reviewed routine;
+- leak detection awareness and site-reviewed shutoff options;
+- sump, freezer, utility, and temperature awareness;
+- pathway lighting;
+- arrival and departure routines;
+- non-medical, consent-aware aging-in-place awareness;
+- outdoor-property management; and
+- pool or hot-tub monitoring concepts within supported, site-reviewed conditions.
+
+The required experience hierarchy is:
+
+1. stories and outcomes first;
+2. systems and capabilities second; and
+3. hardware and individual products third.
+
+### Six-category integration
+
+The interactive property must connect the exact public categories in this order:
+
+1. Home Security
+2. Aging in Place
+3. Home Safety
+4. Home Automation
+5. Home Lighting
+6. Property Management
+
+These categories should emerge through one coordinated property rather than appear only as disconnected service cards. This model does not create a new category, alternate taxonomy, route, Solution object, package, or public offer.
+
+### Guided discovery and progressive adaptation
+
+The long-term Smart Property Experience should allow a visitor to describe their property and priorities through natural questions about:
+
+- property type;
+- floors;
+- family or household structure;
+- pets;
+- aging-in-place needs;
+- garage or detached structures;
+- pool or hot tub; and
+- second-home or managed-property needs.
+
+The property visualization may progressively adapt to those answers. During the private prototype, guided discovery must remain demonstrative and must not submit, persist, or collect customer data.
+
+### Iteration routing and boundaries
+
+- **Iteration 2A - Hero and core Smart Property message:** Complete at commit `5899201ccf06d46a4efc2abf31aa1c13826150ae`.
+- **Iteration 2B - First interactive property visualization:** Create only the first interactive property visualization and a small number of representative property zones. It must not attempt guided personalization, the complete zone set, or the complete personalized experience.
+- **Iteration 2C - Guided property discovery and scenario interaction:** Add the separately reviewed guided-discovery and scenario-interaction layer after Iteration 2B.
+- **Iteration 8 - Full personalized Signature Experience / WOW Factor:** Remains future work. It requires its own bounded authorization and operator review and is not part of Iteration 2B.
+
+Iteration 2B must remain bounded to its first visualization and representative zones. Iterations 2C and 8 do not become authorized merely because they are recorded here; each remains subject to the work order's section-level file ledger, validation, provenance, and operator-review gates.
+
+### Claims, safety, data, and production boundaries
+
+All existing claims and safety boundaries remain active. The experience must not claim or imply:
+
+- emergency response;
+- monitoring, monitored service, or dispatch unless separately authorized;
+- medical monitoring, medical care, clinical assessment, fall detection, or caregiver replacement;
+- guaranteed prevention, protection, safety, detection, or outcomes;
+- unsupported or universal compatibility;
+- that every capability works in every property; or
+- that site review, supported equipment, connectivity, privacy, consent, maintenance, normal controls, or practical human follow-up can be omitted.
+
+No customer data may be collected during the private prototype. Prototype interactions remain inert or local demonstrative state only and must clearly preserve the no-submission and no-storage boundary.
+
+Production separation remains unchanged. The Smart Property Experience is private prototype authority only. It does not modify or authorize the production website, production source, routes, funnel/runtime contracts, Cloudflare, DNS, protected systems, public deployment, or prototype-to-production reconciliation. Any production reconciliation still requires a separate bounded task.
+
+### Print-output backlog note
+
+A future bounded iteration should create a print stylesheet for clean PDF and print rendering. This backlog note does not authorize print implementation during this amendment or Iteration 2B.
+
 ## 6. Authorization and required precheck
 
 Before any prototype source, worktree, Sites configuration, Site, version, or deployment action:
