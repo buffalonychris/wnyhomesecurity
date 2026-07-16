@@ -10,6 +10,15 @@ export type ExperienceSolution = {
   summary: string;
 };
 
+export const smartPropertyHero = {
+  eyebrow: 'WNY Home Security · Smart Property Systems',
+  headline: 'One property. One coordinated system. Built to grow with you.',
+  supportingMessage:
+    'WNY Home Security professionally designs and installs unified smart-property systems around your property, priorities, and everyday routines—not a collection of disconnected gadgets.',
+  primaryCta: 'Explore the Smart Property Experience',
+  secondaryCta: 'Browse the Six Categories',
+};
+
 export const experienceCategories: ExperienceCategory[] = [
   {
     slug: 'home-security',
