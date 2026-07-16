@@ -502,7 +502,7 @@
 .smart-property-canvas {
   position: relative;
   min-width: 0;
-  min-height: 34rem;
+  min-height: 36rem;
   overflow: hidden;
   border: 1px solid var(--wnyhs-dark-border);
   border-radius: var(--wnyhs-radius-card);
@@ -517,21 +517,33 @@
 }
 
 .smart-property-canvas__scene {
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
+}
+
+.smart-property-canvas__sky {
+  position: absolute;
+  inset: 0 0 42%;
+  background: linear-gradient(
+    180deg,
+    var(--wnyhs-text-charcoal),
+    var(--wnyhs-dark-panel)
+  );
 }
 
 .smart-property-canvas__horizon {
   position: absolute;
-  inset: 0 0 38%;
-  background: var(--wnyhs-text-charcoal);
-}
-
-.smart-property-canvas__yard {
-  position: absolute;
-  inset: 62% 0 0;
+  inset: 58% 0 0;
   border-top: 1px solid var(--wnyhs-dark-border);
   background: var(--wnyhs-dark-panel);
+}
+
+.smart-property-canvas__property-boundary {
+  position: absolute;
+  inset: 13% 4% 9%;
+  border: 1px solid var(--wnyhs-dark-border);
+  border-bottom: 0;
+  border-radius: var(--wnyhs-radius-card) var(--wnyhs-radius-card) 0 0;
 }
 
 .smart-property-canvas__house,
@@ -544,97 +556,287 @@
 
 .smart-property-canvas__house {
   top: 30%;
-  right: 23%;
-  bottom: 26%;
-  left: 25%;
+  right: 25%;
+  bottom: 20%;
+  left: 23%;
 }
 
 .smart-property-canvas__roof {
   position: absolute;
-  top: 18%;
-  right: 20%;
-  left: 22%;
-  height: 28%;
+  z-index: 2;
+  top: 16%;
+  right: 22%;
+  left: 19%;
+  height: 25%;
   border: 1px solid var(--wnyhs-dark-border);
   background: var(--wnyhs-text-charcoal);
-  clip-path: polygon(8% 48%, 52% 0, 100% 48%, 91% 52%, 52% 14%, 16% 52%);
+  clip-path: polygon(4% 58%, 49% 0, 100% 58%, 94% 64%, 49% 15%, 10% 64%);
+}
+
+.smart-property-canvas__chimney {
+  position: absolute;
+  z-index: 1;
+  top: 18%;
+  left: 35%;
+  width: 5%;
+  height: 18%;
+  border: 1px solid var(--wnyhs-dark-border);
+  background: var(--wnyhs-canvas-alternate);
 }
 
 .smart-property-canvas__wing {
-  top: 42%;
-  right: 8%;
-  bottom: 26%;
-  width: 28%;
+  top: 43%;
+  right: 6%;
+  bottom: 20%;
+  width: 30%;
 }
 
-.smart-property-canvas__garage {
+.smart-property-canvas__wing-roof {
   position: absolute;
-  right: 11%;
-  bottom: 30%;
-  width: 20%;
-  height: 24%;
+  z-index: 2;
+  top: 35%;
+  right: 3%;
+  width: 36%;
+  height: 12%;
+  border: 1px solid var(--wnyhs-dark-border);
+  background: var(--wnyhs-text-charcoal);
+  clip-path: polygon(8% 100%, 24% 10%, 84% 10%, 100% 100%);
+}
+
+.smart-property-canvas__zone-area {
+  position: absolute;
+  transition: border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.smart-property-canvas__zone-area.is-active {
+  z-index: 3;
+  border-color: var(--wnyhs-premium-gold);
+  box-shadow: 0 0 0.9rem var(--wnyhs-premium-gold), inset 0 0 1.2rem var(--wnyhs-gold-soft);
+  filter: brightness(1.06);
+}
+
+.smart-property-canvas__zone-area--backyard-property {
+  top: 19%;
+  bottom: 38%;
+  left: 6%;
+  width: 24%;
+  border: 1px solid var(--wnyhs-dark-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-dark-panel);
+}
+
+.smart-property-canvas__zone-area--backyard-property::before,
+.smart-property-canvas__zone-area--backyard-property::after {
+  position: absolute;
+  bottom: 12%;
+  width: 30%;
+  height: 18%;
+  border: 1px solid var(--wnyhs-premium-gold-hover);
+  border-radius: var(--wnyhs-radius-pill);
+  background: var(--wnyhs-dark-border);
+  content: '';
+}
+
+.smart-property-canvas__zone-area--backyard-property::before {
+  left: 12%;
+}
+
+.smart-property-canvas__zone-area--backyard-property::after {
+  right: 12%;
+  border-color: var(--wnyhs-dark-muted);
+  background: var(--wnyhs-text-charcoal);
+}
+
+.smart-property-canvas__zone-area--driveway {
+  right: 2%;
+  bottom: -5%;
+  width: 39%;
+  height: 32%;
+  border: 1px solid var(--wnyhs-dark-border);
+  background: var(--wnyhs-canvas-alternate);
+  clip-path: polygon(18% 0, 77% 0, 100% 100%, 0 100%);
+  opacity: 0.92;
+}
+
+.smart-property-canvas__walkway {
+  position: absolute;
+  bottom: -4%;
+  left: 45%;
+  width: 16%;
+  height: 30%;
+  border-inline: 1px solid var(--wnyhs-dark-border);
+  background: var(--wnyhs-canvas-alternate);
+  clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%);
+}
+
+.smart-property-canvas__zone-area--garage {
+  right: 9%;
+  bottom: 20%;
+  width: 24%;
+  height: 29%;
   border: 1px solid var(--wnyhs-text-muted);
   background: var(--wnyhs-surface-primary);
-  box-shadow: inset 0 -1.8rem 0 var(--wnyhs-canvas-alternate);
+  box-shadow: inset 0 -1.6rem 0 var(--wnyhs-canvas-alternate);
 }
 
-.smart-property-canvas__door {
+.smart-property-canvas__garage-slats {
   position: absolute;
-  bottom: 26%;
-  left: 52%;
-  width: 8%;
-  height: 25%;
+  inset: 22% 8% 18%;
+  border: 1px solid var(--wnyhs-border-warm);
+  background: repeating-linear-gradient(
+    180deg,
+    var(--wnyhs-surface-primary) 0,
+    var(--wnyhs-surface-primary) 24%,
+    var(--wnyhs-border-warm) 25%,
+    var(--wnyhs-surface-primary) 27%
+  );
+}
+
+.smart-property-canvas__zone-area--front-door {
+  bottom: 20%;
+  left: 56%;
+  width: 9%;
+  height: 29%;
   border: 1px solid var(--wnyhs-premium-gold-hover);
   background: var(--wnyhs-text-charcoal);
 }
 
-.smart-property-canvas__window {
+.smart-property-canvas__door-window {
   position: absolute;
-  top: 44%;
-  width: 11%;
-  height: 12%;
+  inset: 10% 20% 58%;
   border: 1px solid var(--wnyhs-premium-gold-hover);
   background: var(--wnyhs-gold-soft);
 }
 
-.smart-property-canvas__window--left {
-  left: 31%;
-}
-
-.smart-property-canvas__window--right {
-  left: 66%;
-}
-
-.smart-property-canvas__driveway,
-.smart-property-canvas__path {
+.smart-property-canvas__door-handle {
   position: absolute;
-  bottom: -8%;
-  background: var(--wnyhs-canvas-alternate);
-  clip-path: polygon(28% 0, 72% 0, 100% 100%, 0 100%);
-  opacity: 0.78;
+  right: 14%;
+  top: 55%;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: var(--wnyhs-radius-pill);
+  background: var(--wnyhs-premium-gold);
 }
 
-.smart-property-canvas__driveway {
-  right: 4%;
-  width: 35%;
-  height: 39%;
+.smart-property-canvas__zone-area--aging-in-place-living-area {
+  top: 43%;
+  left: 30%;
+  width: 20%;
+  height: 18%;
+  border: 1px solid var(--wnyhs-premium-gold-hover);
+  background: var(--wnyhs-gold-soft);
 }
 
-.smart-property-canvas__path {
-  left: 41%;
-  width: 22%;
-  height: 35%;
+.smart-property-canvas__window-frame,
+.smart-property-canvas__window {
+  background: linear-gradient(
+    90deg,
+    transparent 47%,
+    var(--wnyhs-premium-gold-hover) 48%,
+    var(--wnyhs-premium-gold-hover) 52%,
+    transparent 53%
+  );
 }
 
-.smart-property-canvas__pool {
+.smart-property-canvas__window-frame {
   position: absolute;
-  right: 5%;
-  bottom: 8%;
+  inset: 12%;
+  border: 1px solid var(--wnyhs-premium-gold-hover);
+}
+
+.smart-property-canvas__window-frame::after,
+.smart-property-canvas__window::after {
+  position: absolute;
+  top: 48%;
+  right: 0;
+  left: 0;
+  border-top: 1px solid var(--wnyhs-premium-gold-hover);
+  content: '';
+}
+
+.smart-property-canvas__window {
+  position: absolute;
+  top: 42%;
+  left: 67%;
+  width: 9%;
+  height: 14%;
+  border: 1px solid var(--wnyhs-premium-gold-hover);
+  background-color: var(--wnyhs-gold-soft);
+}
+
+.smart-property-canvas__zone-area--basement-utility {
+  right: 40%;
+  bottom: 20%;
+  left: 25%;
+  height: 13%;
+  border: 1px solid var(--wnyhs-text-muted);
+  background: var(--wnyhs-text-charcoal);
+}
+
+.smart-property-canvas__utility-window {
+  position: absolute;
+  top: 22%;
+  left: 10%;
   width: 25%;
-  height: 9%;
+  height: 35%;
+  border: 1px solid var(--wnyhs-dark-muted);
+  background: var(--wnyhs-dark-panel);
+}
+
+.smart-property-canvas__utility-indicator {
+  position: absolute;
+  top: 28%;
+  right: 11%;
+  width: 0.55rem;
+  height: 0.55rem;
   border: 1px solid var(--wnyhs-premium-gold-hover);
   border-radius: var(--wnyhs-radius-pill);
+  background: var(--wnyhs-gold-soft);
+}
+
+.smart-property-canvas__foundation-line {
+  position: absolute;
+  right: 24%;
+  bottom: 19%;
+  left: 22%;
+  border-top: 2px solid var(--wnyhs-border-warm);
+}
+
+.smart-property-canvas__tree,
+.smart-property-canvas__shrub {
+  position: absolute;
+  border-radius: var(--wnyhs-radius-pill);
   background: var(--wnyhs-dark-border);
+}
+
+.smart-property-canvas__tree {
+  width: 5%;
+  height: 23%;
+  border-bottom: 2.4rem solid var(--wnyhs-text-secondary);
+}
+
+.smart-property-canvas__tree--left {
+  top: 23%;
+  left: 10%;
+}
+
+.smart-property-canvas__tree--right {
+  top: 27%;
+  right: 3%;
+}
+
+.smart-property-canvas__shrub {
+  bottom: 18%;
+  width: 12%;
+  height: 7%;
+}
+
+.smart-property-canvas__shrub--left {
+  left: 12%;
+}
+
+.smart-property-canvas__shrub--right {
+  right: 35%;
 }
 
 .property-zone {
@@ -654,7 +856,7 @@
   text-align: left;
   cursor: pointer;
   scroll-margin-top: 5rem;
-  transform: translate(-50%, -50%);
+  transform: translate(-1.375rem, -50%);
 }
 
 .property-zone__marker {
@@ -683,6 +885,10 @@
   line-height: 1.2;
 }
 
+.property-zone__label-short {
+  display: none;
+}
+
 .property-zone__state {
   grid-column: 2;
   margin-top: -0.45rem;
@@ -706,33 +912,57 @@
 }
 
 .property-zone--front-door {
-  top: 58%;
-  left: 56%;
+  top: 65%;
+  left: 60.5%;
 }
 
 .property-zone--driveway {
-  top: 82%;
-  left: 20%;
+  top: 85%;
+  left: 77%;
 }
 
 .property-zone--garage {
-  top: 55%;
-  left: 83%;
+  top: 57%;
+  left: 85%;
 }
 
 .property-zone--basement-utility {
-  top: 78%;
-  left: 57%;
+  top: 75%;
+  left: 42%;
 }
 
 .property-zone--aging-in-place-living-area {
-  top: 43%;
+  top: 49%;
   left: 40%;
 }
 
 .property-zone--backyard-property {
-  top: 21%;
-  left: 80%;
+  top: 25%;
+  left: 17%;
+}
+
+.property-zone--garage,
+.property-zone--driveway {
+  grid-template-columns: minmax(0, auto) 2.75rem;
+  transform: translate(calc(-100% + 1.375rem), -50%);
+}
+
+.property-zone--garage .property-zone__marker,
+.property-zone--driveway .property-zone__marker {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.property-zone--garage .property-zone__label,
+.property-zone--driveway .property-zone__label {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.property-zone--garage .property-zone__state,
+.property-zone--driveway .property-zone__state {
+  grid-column: 1;
+  text-align: right;
 }
 
 .smart-property-canvas__caption {
@@ -1150,7 +1380,7 @@
   }
 
   .smart-property-canvas {
-    min-height: 32rem;
+    min-height: 34rem;
   }
 
   .smart-property-detail {
@@ -1239,7 +1469,7 @@
   }
 
   .smart-property-canvas {
-    min-height: 34rem;
+    min-height: 36rem;
   }
 
   .property-zone {
@@ -1247,29 +1477,42 @@
     gap: 0.3rem;
   }
 
-  .property-zone--driveway {
-    top: 88%;
-    left: 24%;
+  .property-zone__label:has(.property-zone__label-short) .property-zone__label-full {
+    display: none;
   }
 
-  .property-zone--garage {
-    top: 50%;
+  .property-zone__label-short {
+    display: inline;
+  }
+
+  .property-zone--driveway {
+    top: 87%;
     left: 76%;
   }
 
+  .property-zone--garage {
+    top: 57%;
+    left: 78%;
+  }
+
   .property-zone--front-door {
-    top: 62%;
-    left: 46%;
+    top: 66%;
+    left: 61%;
   }
 
   .property-zone--aging-in-place-living-area {
-    top: 40%;
-    left: 38%;
+    top: 48%;
+    left: 34%;
   }
 
   .property-zone--backyard-property {
-    top: 18%;
-    left: 72%;
+    top: 24%;
+    left: 14%;
+  }
+
+  .property-zone--basement-utility {
+    top: 75%;
+    left: 35%;
   }
 
   .smart-property-canvas__caption {

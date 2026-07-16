@@ -7,6 +7,11 @@ const SmartPropertyVisualization = () => {
   const [selectedZoneId, setSelectedZoneId] = useState<string | null>(null);
   const selectedScenario = propertyScenarios.find((scenario) => scenario.id === selectedZoneId);
 
+  const zoneAreaClassName = (zoneId: string) =>
+    `smart-property-canvas__zone-area smart-property-canvas__zone-area--${zoneId}${
+      selectedZoneId === zoneId ? ' is-active' : ''
+    }`;
+
   return (
     <section
       id="smart-property-visualization"
@@ -26,18 +31,37 @@ const SmartPropertyVisualization = () => {
       <div className="smart-property-visualization__layout">
         <div className="smart-property-canvas" aria-label="Interactive smart property zones">
           <div className="smart-property-canvas__scene" aria-hidden="true">
+            <span className="smart-property-canvas__sky" />
             <span className="smart-property-canvas__horizon" />
+            <span className="smart-property-canvas__property-boundary" />
+            <span className={zoneAreaClassName('backyard-property')} />
+            <span className="smart-property-canvas__tree smart-property-canvas__tree--left" />
+            <span className="smart-property-canvas__tree smart-property-canvas__tree--right" />
+            <span className={zoneAreaClassName('driveway')} />
+            <span className="smart-property-canvas__walkway" />
             <span className="smart-property-canvas__house" />
             <span className="smart-property-canvas__roof" />
+            <span className="smart-property-canvas__chimney" />
             <span className="smart-property-canvas__wing" />
-            <span className="smart-property-canvas__garage" />
-            <span className="smart-property-canvas__door" />
-            <span className="smart-property-canvas__window smart-property-canvas__window--left" />
-            <span className="smart-property-canvas__window smart-property-canvas__window--right" />
-            <span className="smart-property-canvas__driveway" />
-            <span className="smart-property-canvas__path" />
-            <span className="smart-property-canvas__yard" />
-            <span className="smart-property-canvas__pool" />
+            <span className="smart-property-canvas__wing-roof" />
+            <span className={zoneAreaClassName('garage')}>
+              <span className="smart-property-canvas__garage-slats" />
+            </span>
+            <span className={zoneAreaClassName('front-door')}>
+              <span className="smart-property-canvas__door-window" />
+              <span className="smart-property-canvas__door-handle" />
+            </span>
+            <span className={zoneAreaClassName('aging-in-place-living-area')}>
+              <span className="smart-property-canvas__window-frame" />
+            </span>
+            <span className="smart-property-canvas__window smart-property-canvas__window--upper" />
+            <span className={zoneAreaClassName('basement-utility')}>
+              <span className="smart-property-canvas__utility-window" />
+              <span className="smart-property-canvas__utility-indicator" />
+            </span>
+            <span className="smart-property-canvas__foundation-line" />
+            <span className="smart-property-canvas__shrub smart-property-canvas__shrub--left" />
+            <span className="smart-property-canvas__shrub smart-property-canvas__shrub--right" />
           </div>
 
           <div className="smart-property-canvas__zones">
@@ -47,6 +71,15 @@ const SmartPropertyVisualization = () => {
                 id={scenario.id}
                 index={index}
                 name={scenario.name}
+                shortName={
+                  scenario.id === 'aging-in-place-living-area'
+                    ? 'Living Area'
+                    : scenario.id === 'backyard-property'
+                      ? 'Backyard'
+                      : scenario.id === 'basement-utility'
+                        ? 'Utility'
+                        : undefined
+                }
                 isActive={selectedZoneId === scenario.id}
                 onSelect={setSelectedZoneId}
               />
