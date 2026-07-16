@@ -1,16 +1,37 @@
 import { useState } from 'react';
 import { experienceCategories } from '../../../content/experience/baseline';
+import { propertyDiscoveryPriorities } from '../../../content/experience/propertyDiscovery';
+import type { PropertyZoneId } from '../../../content/experience/propertyDiscovery';
 import { propertyScenarios } from '../../../content/experience/propertyScenarios';
+import PropertyDiscoveryGuide from './PropertyDiscoveryGuide';
 import PropertyZone from './PropertyZone';
 
 const SmartPropertyVisualization = () => {
   const [selectedZoneId, setSelectedZoneId] = useState<string | null>(null);
+  const [selectedPriorityId, setSelectedPriorityId] = useState<string | null>(null);
   const selectedScenario = propertyScenarios.find((scenario) => scenario.id === selectedZoneId);
+  const selectedPriority = propertyDiscoveryPriorities.find(
+    (priority) => priority.id === selectedPriorityId,
+  );
+  const recommendedZoneIds = selectedPriority?.recommendedZoneIds ?? [];
 
   const zoneAreaClassName = (zoneId: string) =>
     `smart-property-canvas__zone-area smart-property-canvas__zone-area--${zoneId}${
       selectedZoneId === zoneId ? ' is-active' : ''
-    }`;
+    }${recommendedZoneIds.includes(zoneId as PropertyZoneId) ? ' is-recommended' : ''}`;
+
+  const handlePrioritySelect = (priorityId: string) => {
+    setSelectedPriorityId(priorityId);
+  };
+
+  const handleOpenRecommendedZone = (zoneId: PropertyZoneId) => {
+    setSelectedZoneId(zoneId);
+  };
+
+  const handleDiscoveryReset = () => {
+    setSelectedPriorityId(null);
+    setSelectedZoneId(null);
+  };
 
   return (
     <section
@@ -28,8 +49,19 @@ const SmartPropertyVisualization = () => {
         </p>
       </header>
 
+      <PropertyDiscoveryGuide
+        selectedPriorityId={selectedPriorityId}
+        onSelectPriority={handlePrioritySelect}
+        onOpenZone={handleOpenRecommendedZone}
+        onReset={handleDiscoveryReset}
+      />
+
       <div className="smart-property-visualization__layout">
-        <div className="smart-property-canvas" aria-label="Interactive smart property zones">
+        <div
+          className="smart-property-canvas"
+          aria-label="Interactive smart property zones"
+          data-recommended-zones={recommendedZoneIds.join(' ')}
+        >
           <div className="smart-property-canvas__scene" aria-hidden="true">
             <span className="smart-property-canvas__sky" />
             <span className="smart-property-canvas__horizon" />

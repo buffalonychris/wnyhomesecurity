@@ -492,6 +492,154 @@
   color: var(--wnyhs-dark-muted);
 }
 
+.property-discovery {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--wnyhs-dark-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-dark-panel);
+}
+
+.property-discovery__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.65fr);
+  gap: 1rem clamp(1.5rem, 5vw, 4rem);
+  align-items: end;
+}
+
+.property-discovery__heading > div {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.property-discovery__eyebrow,
+.property-discovery__recommendation-label {
+  margin: 0;
+  color: var(--wnyhs-premium-gold);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.property-discovery h3 {
+  max-width: 24ch;
+  margin: 0;
+  color: var(--wnyhs-dark-text);
+  font-family: var(--wnyhs-font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.08;
+}
+
+.property-discovery__heading > p,
+.property-discovery__recommendation > p,
+.property-discovery__prompt,
+.property-discovery__notice {
+  margin: 0;
+  color: var(--wnyhs-dark-muted);
+}
+
+.property-discovery__priorities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.property-discovery__priority {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+  min-height: var(--experience-control-height);
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--wnyhs-dark-border);
+  border-radius: var(--wnyhs-radius-standard);
+  background: var(--wnyhs-text-charcoal);
+  color: var(--wnyhs-dark-text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 750;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+
+.property-discovery__priority:hover,
+.property-discovery__priority[aria-pressed='true'] {
+  border-color: var(--wnyhs-premium-gold);
+}
+
+.property-discovery__priority[aria-pressed='true'] {
+  background: var(--wnyhs-gold-soft);
+  color: var(--wnyhs-dark-text);
+  box-shadow: inset 0 0 0 1px var(--wnyhs-premium-gold-hover);
+}
+
+.property-discovery__priority-state {
+  color: var(--wnyhs-premium-gold);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.property-discovery__priority[aria-pressed='true'] .property-discovery__priority-state {
+  color: var(--wnyhs-dark-text);
+}
+
+.property-discovery__response {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--experience-control-height);
+  padding-top: 1rem;
+  border-top: 1px solid var(--wnyhs-dark-border);
+}
+
+.property-discovery__recommendation {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.property-discovery__zone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.property-discovery__zone-actions button,
+.property-discovery__reset {
+  min-height: var(--experience-control-height);
+  border: 1px solid var(--wnyhs-premium-gold-hover);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.property-discovery__zone-actions button {
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--wnyhs-radius-pill);
+  background: var(--wnyhs-premium-gold);
+  color: var(--wnyhs-text-charcoal);
+}
+
+.property-discovery__reset {
+  flex: 0 0 auto;
+  padding: 0.6rem 0;
+  border-width: 0 0 1px;
+  background: transparent;
+  color: var(--wnyhs-dark-text);
+}
+
+.property-discovery__notice {
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--wnyhs-premium-gold-hover);
+  font-size: 0.72rem;
+}
+
 .smart-property-visualization__layout {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 0.75fr);
@@ -613,6 +761,13 @@
   border-color: var(--wnyhs-premium-gold);
   box-shadow: 0 0 0.9rem var(--wnyhs-premium-gold), inset 0 0 1.2rem var(--wnyhs-gold-soft);
   filter: brightness(1.06);
+}
+
+.smart-property-canvas__zone-area.is-recommended:not(.is-active) {
+  z-index: 2;
+  border-color: var(--wnyhs-premium-gold);
+  box-shadow: inset 0 0 0 2px var(--wnyhs-premium-gold-hover), 0 0 0.75rem var(--wnyhs-gold-soft);
+  filter: brightness(1.04);
 }
 
 .smart-property-canvas__zone-area--backyard-property {
@@ -909,6 +1064,61 @@
 
 .property-zone[aria-pressed='true'] .property-zone__label {
   box-shadow: inset 0 0 0 1px var(--wnyhs-premium-gold);
+}
+
+.smart-property-canvas[data-recommended-zones~='front-door'] .property-zone--front-door,
+.smart-property-canvas[data-recommended-zones~='driveway'] .property-zone--driveway,
+.smart-property-canvas[data-recommended-zones~='garage'] .property-zone--garage,
+.smart-property-canvas[data-recommended-zones~='basement-utility'] .property-zone--basement-utility,
+.smart-property-canvas[data-recommended-zones~='aging-in-place-living-area']
+  .property-zone--aging-in-place-living-area,
+.smart-property-canvas[data-recommended-zones~='backyard-property']
+  .property-zone--backyard-property {
+  z-index: 4;
+}
+
+.smart-property-canvas[data-recommended-zones~='front-door'] .property-zone--front-door .property-zone__marker,
+.smart-property-canvas[data-recommended-zones~='driveway'] .property-zone--driveway .property-zone__marker,
+.smart-property-canvas[data-recommended-zones~='garage'] .property-zone--garage .property-zone__marker,
+.smart-property-canvas[data-recommended-zones~='basement-utility']
+  .property-zone--basement-utility
+  .property-zone__marker,
+.smart-property-canvas[data-recommended-zones~='aging-in-place-living-area']
+  .property-zone--aging-in-place-living-area
+  .property-zone__marker,
+.smart-property-canvas[data-recommended-zones~='backyard-property']
+  .property-zone--backyard-property
+  .property-zone__marker {
+  background: var(--wnyhs-premium-gold);
+  color: var(--wnyhs-text-charcoal);
+  box-shadow: 0 0 0 3px var(--wnyhs-dark-panel), 0 0 0 5px var(--wnyhs-premium-gold-hover);
+}
+
+.smart-property-canvas[data-recommended-zones~='front-door'] .property-zone--front-door::after,
+.smart-property-canvas[data-recommended-zones~='driveway'] .property-zone--driveway::after,
+.smart-property-canvas[data-recommended-zones~='garage'] .property-zone--garage::after,
+.smart-property-canvas[data-recommended-zones~='basement-utility'] .property-zone--basement-utility::after,
+.smart-property-canvas[data-recommended-zones~='aging-in-place-living-area']
+  .property-zone--aging-in-place-living-area::after,
+.smart-property-canvas[data-recommended-zones~='backyard-property']
+  .property-zone--backyard-property::after {
+  position: absolute;
+  top: calc(100% + 0.1rem);
+  left: 2.75rem;
+  padding-inline: 0.5rem;
+  color: var(--wnyhs-premium-gold);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  content: 'Recommended';
+}
+
+.smart-property-canvas[data-recommended-zones~='garage'] .property-zone--garage::after,
+.smart-property-canvas[data-recommended-zones~='driveway'] .property-zone--driveway::after {
+  right: 2.75rem;
+  left: auto;
 }
 
 .property-zone--front-door {
@@ -1321,6 +1531,10 @@
     grid-template-columns: 1fr;
   }
 
+  .property-discovery__priorities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .property-zone__label {
     font-size: 0.66rem;
   }
@@ -1375,8 +1589,14 @@
   .smart-property-story__heading,
   .smart-property-story__details,
   .smart-property-visualization__heading,
+  .property-discovery__heading,
   .smart-property-visualization__layout {
     grid-template-columns: 1fr;
+  }
+
+  .property-discovery__response {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .smart-property-canvas {
@@ -1466,6 +1686,28 @@
 
   .smart-property-visualization {
     padding: 1rem;
+  }
+
+  .property-discovery {
+    padding: 1rem;
+  }
+
+  .property-discovery__priorities {
+    grid-template-columns: 1fr;
+  }
+
+  .property-discovery__priority {
+    min-height: 3.25rem;
+  }
+
+  .property-discovery__zone-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .property-discovery__zone-actions button {
+    width: 100%;
   }
 
   .smart-property-canvas {
