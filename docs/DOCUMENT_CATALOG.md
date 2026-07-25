@@ -1644,3 +1644,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** T-NEWSOLUTIONS001 evidence map from internal status through customer catalog, destination, campaign, CTA, existing intake, and sales follow-up.
 - **Implementation authority:** No.
 - **Notes:** Traces all 30 customer catalog entries, records hardware/BOM and campaign posture, confirms no public entry relies on research status, defers the Property Management route, and preserves existing lead, CRM, scheduling, and external-platform boundaries.
+
+### `/docs/system/WNYHS_LOCAL_STAGING_AND_FILE_TRANSFER_STANDARD_REV01.md`
+- **File path:** `docs/system/WNYHS_LOCAL_STAGING_AND_FILE_TRANSFER_STANDARD_REV01.md`
+- **Document type:** Active local repository staging and file-transfer operating standard
+- **Authority level:** OPSLOCAL001 owner for ignored local intake, output, review, exact-source transfer, and promotion-boundary rules.
+- **Implementation authority:** No runtime or external-system authority; the included provisioning command requires its own bounded task or work order.
+- **Notes:** Defines `.local-intake/`, `.local-output/`, and `.local-review/`; distinguishes ChatGPT Project sources from Windows Codex files; requires exact local paths for byte-level work; provides security, validation, failure, worktree, and future repository-bootstrap rules.
+
+### `/docs/codex/CODEX_LOCAL_STAGING_BOOTSTRAP_WORK_ORDER_TEMPLATE_REV01.md`
+- **File path:** `docs/codex/CODEX_LOCAL_STAGING_BOOTSTRAP_WORK_ORDER_TEMPLATE_REV01.md`
+- **Document type:** Active reusable bounded Codex work-order template
+- **Authority level:** Subordinate execution template under the local staging and file-transfer standard.
+- **Implementation authority:** No authority by itself; all placeholders and task gates must be resolved before execution.
+- **Notes:** Provides the reusable preview/execution commands, scope boundaries, prechecks, validation, exit criteria, closeout requirements, and single-line future Codex request.

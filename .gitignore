@@ -21,3 +21,8 @@ public/brand/print-assets/qr-placards/*.pdf
 /public/brand/print-assets/pole-mall-flyer/generated/
 /public/brand/print-assets/pole-mall-flyer/**/*.pdf
 /public/brand/print-assets/pole-mall-flyer/**/*.png
+
+# Local agent staging (never commit)
+.local-intake/
+.local-output/
+.local-review/
