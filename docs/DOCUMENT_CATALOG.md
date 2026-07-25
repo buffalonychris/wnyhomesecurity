@@ -1658,3 +1658,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Subordinate execution template under the local staging and file-transfer standard.
 - **Implementation authority:** No authority by itself; all placeholders and task gates must be resolved before execution.
 - **Notes:** Provides the reusable preview/execution commands, scope boundaries, prechecks, validation, exit criteria, closeout requirements, and single-line future Codex request.
+
+### `/docs/governance/GOVFOUNDRECON001_GOVFOUND002_AUTHORITY_RECONCILIATION_REV01.md`
+- **File path:** `docs/governance/GOVFOUNDRECON001_GOVFOUND002_AUTHORITY_RECONCILIATION_REV01.md`
+- **Document type:** Active docs-only governance reconciliation record
+- **Authority level:** GOVFOUNDRECON001 decision record under current repository governance.
+- **Implementation authority:** GOVFOUNDRECON001 documentation scope only. No GOVFOUND002, source-freeze, promotion, runtime, merge, or deployment authority.
+- **Notes:** Records the unresolved GOVFOUND001 prerequisite, blocked dispositions for two nonexistent amendment targets, a current-schema non-authoritative GOVFOUND002 MTR proposal, and the exact future operator approval gate. Candidate identity is evidence only.
+
+### `/docs/codex/work-orders/GOVFOUNDRECON001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/GOVFOUNDRECON001_WORK_ORDER_REV01.md`
+- **Document type:** Active bounded governance-reconciliation work order
+- **Authority level:** Task-specific execution authority for GOVFOUNDRECON001 only.
+- **Implementation authority:** Exactly five documentation files; draft PR only; no merge. Appendix A is a non-authoritative GOVFOUND002 proposal.
+- **Notes:** Defines current-format scope, reference-only candidate handling, protected boundaries, validation, branch/commit requirements, and canonical proposed GOVFOUND002 work-order material marked `PROPOSED — NOT AUTHORIZED — DO NOT EXECUTE`.
