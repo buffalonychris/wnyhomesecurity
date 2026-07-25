@@ -1672,3 +1672,24 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task-specific execution authority for GOVFOUNDRECON001 only.
 - **Implementation authority:** Exactly five documentation files; draft PR only; no merge. Appendix A is a non-authoritative GOVFOUND002 proposal.
 - **Notes:** Defines current-format scope, reference-only candidate handling, protected boundaries, validation, branch/commit requirements, and canonical proposed GOVFOUND002 work-order material marked `PROPOSED — NOT AUTHORIZED — DO NOT EXECUTE`.
+
+### `/docs/governance/source-authority/GOVFOUND002_APPROVED_PROMOTION_SPEC_REV01_1.md`
+- **File path:** `docs/governance/source-authority/GOVFOUND002_APPROVED_PROMOTION_SPEC_REV01_1.md`
+- **Document type:** Verified frozen promotion-source authority
+- **Authority level:** Exact source identity authority established by GOVFOUNDFREEZE001.
+- **Implementation authority:** No GOVFOUND002 execution, promotion, runtime, merge, or deployment authority by itself.
+- **Notes:** Byte-identical tracked copy of the approved intake source: 73785 bytes; SHA-256 `6ac70f8044704cb66fe6d92016ad52c70e80d6b4c6ed879e89a2e4c0e128524a`. Preserve exact bytes.
+
+### `/docs/governance/source-authority/GOVFOUND002_APPROVED_PROMOTION_SPEC_REV01_1_PROVENANCE.md`
+- **File path:** `docs/governance/source-authority/GOVFOUND002_APPROVED_PROMOTION_SPEC_REV01_1_PROVENANCE.md`
+- **Document type:** Source provenance and SHA-256 fingerprint record
+- **Authority level:** GOVFOUNDFREEZE001 verification evidence for the frozen promotion source.
+- **Implementation authority:** No task activation, GOVFOUND002 execution, merge, deployment, runtime, or customer-facing authority.
+- **Notes:** Records original intake path, operator approval date, verification timestamp and method, exact byte size, SHA-256, direct byte-identity result, PR #533 lineage, and non-authorization boundary.
+
+### `/docs/codex/work-orders/GOVFOUNDFREEZE001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/GOVFOUNDFREEZE001_WORK_ORDER_REV01.md`
+- **Document type:** Active bounded source-freeze work order
+- **Authority level:** Task-specific execution authority for GOVFOUNDFREEZE001 only.
+- **Implementation authority:** Exactly six allowlisted governance files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
+- **Notes:** Defines independent source verification, byte-preserving copy, provenance, protected boundaries, exact validation, and explicit preservation of GOVFOUND002 as unauthorized.
