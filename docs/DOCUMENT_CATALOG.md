@@ -1693,3 +1693,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task-specific execution authority for GOVFOUNDFREEZE001 only.
 - **Implementation authority:** Exactly six allowlisted governance files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
 - **Notes:** Defines independent source verification, byte-preserving copy, provenance, protected boundaries, exact validation, and explicit preservation of GOVFOUND002 as unauthorized.
+
+### `/docs/system/WNYHS_AUTHORITY_AND_SYSTEMS_OF_RECORD_STANDARD_REV01.md`
+- **File path:** `docs/system/WNYHS_AUTHORITY_AND_SYSTEMS_OF_RECORD_STANDARD_REV01.md`
+- **Document type:** Active repository-wide authority and systems-of-record governance standard
+- **Authority level:** GOVFOUNDASOR001 owner for authority hierarchy, document classes, system-of-record designations, ownership, promotion, conflict resolution, historical treatment, and execution boundaries.
+- **Implementation authority:** No. Does not authorize runtime, customer-facing, protected-system, merge, deployment, Business Bible, or GOVFOUND002 work.
+- **Notes:** Consolidates existing repository rules without replacing core governance, domain owners, or runtime contracts. Distinguishes frozen source identity from promoted repository authority and preserves GOVFOUND002 as unauthorized.
+
+### `/docs/codex/work-orders/GOVFOUNDASOR001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/GOVFOUNDASOR001_WORK_ORDER_REV01.md`
+- **Document type:** Active bounded governance work order
+- **Authority level:** Task-specific execution authority for GOVFOUNDASOR001 only.
+- **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
+- **Notes:** Controls creation and validation of the Authority and Systems of Record standard while preserving the frozen source, unresolved Business Bible blocker, existing owner boundaries, protected systems, and GOVFOUND002 non-authorization.
