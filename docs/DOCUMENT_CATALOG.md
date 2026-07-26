@@ -1721,3 +1721,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task-specific execution authority for GOVFOUNDBIBLESTRUCT001 only.
 - **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
 - **Notes:** Controls creation and validation of the ownership structure while prohibiting the Business Bible, doctrine promotion, owner changes, unresolved-decision/conflict resolution, protected-system work, and GOVFOUND002 activation.
+
+### `/docs/business/WNYHS_BUSINESS_BIBLE_REV01.md`
+- **File path:** `docs/business/WNYHS_BUSINESS_BIBLE_REV01.md`
+- **Document type:** Active-on-merge narrow cross-domain business doctrine owner
+- **Authority level:** GOVFOUNDBIBLE002 owner for exactly 13 durable WNYHS business doctrine statements under the Business Bible ownership structure.
+- **Implementation authority:** None. Does not authorize public copy, commercial changes, implementation, runtime, protected-system work, merge, deployment, or GOVFOUND002.
+- **Notes:** Defines business identity, customer ownership, privacy, local-first, subscription/lock-in, ethical sales, solution-first, expandability, plain-language, local accountability, honest capability, unified experience, and durable-trust doctrine while preserving every dedicated detailed owner.
+
+### `/docs/codex/work-orders/GOVFOUNDBIBLE002_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/GOVFOUNDBIBLE002_WORK_ORDER_REV01.md`
+- **Document type:** Active bounded governance work order
+- **Authority level:** Task-specific execution authority for GOVFOUNDBIBLE002 only.
+- **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
+- **Notes:** Controls promotion of the narrow Business Bible and its provenance while prohibiting wholesale evidence promotion, owner changes, unresolved-decision or conflict resolution, implementation, protected-system changes, and GOVFOUND002 activation.
