@@ -1749,3 +1749,45 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task-specific execution authority for GOVFOUND002DISP001 only.
 - **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
 - **Notes:** Controls creation and validation of the final disposition while prohibiting GOVFOUND002 activation, historical-evidence changes, owner changes, reopened decisions, implementation, merge, and deployment.
+
+## WEBBETADISC001 Discovery Package
+
+### `/docs/site-architecture/WEBBETADISC001_WNYHS_BETA_WEBSITE_PROGRAM_CHARTER_REV01.md`
+- **File path:** `docs/site-architecture/WEBBETADISC001_WNYHS_BETA_WEBSITE_PROGRAM_CHARTER_REV01.md`
+- **Document type:** Active-on-merge discovery and architecture program charter
+- **Authority level:** Controls the WNYHS beta website discovery program, public-first scope, phase boundaries, production protections, and future-candidate posture.
+- **Implementation authority:** None.
+- **Notes:** Establishes discovery only; creates no beta application, route, integration, deployment, migration, or future-task activation.
+
+### `/docs/site-architecture/WEBBETADISC001_WNYHS_BETA_WEBSITE_REQUIREMENTS_REGISTER_REV01.md`
+- **File path:** `docs/site-architecture/WEBBETADISC001_WNYHS_BETA_WEBSITE_REQUIREMENTS_REGISTER_REV01.md`
+- **Document type:** Active-on-merge discovery requirements register
+- **Authority level:** Traceability record for operator-approved website direction and current repository constraints under WEBBETADISC001.
+- **Implementation authority:** None.
+- **Notes:** Records requirement IDs, owners, status, priority, open questions, dependencies, and acceptance implications without resolving open decisions.
+
+### `/docs/site-architecture/WEBBETADISC001_WNYHS_BETA_DISCOVERY_INTERVIEW_FRAMEWORK_REV01.md`
+- **File path:** `docs/site-architecture/WEBBETADISC001_WNYHS_BETA_DISCOVERY_INTERVIEW_FRAMEWORK_REV01.md`
+- **Document type:** Active-on-merge staged discovery interview framework
+- **Authority level:** Controls the 28-stage incremental operator interview and checkpoint method.
+- **Implementation authority:** None.
+- **Notes:** Prevents re-asking settled direction and requires later promotion of approved results.
+
+### `/docs/site-architecture/WEBBETADISC001_WNYHS_BETA_BUILD_LOCATION_DECISION_REV01.md`
+- **File path:** `docs/site-architecture/WEBBETADISC001_WNYHS_BETA_BUILD_LOCATION_DECISION_REV01.md`
+- **Document type:** Evidence-based beta build-location architecture decision
+- **Authority level:** Recommends `apps/wnyhs-beta/` and a separate protected non-indexed Cloudflare Pages project/host for later bounded implementation.
+- **Implementation authority:** None.
+- **Notes:** Rejects the shared `/newsite` production boundary as the canonical beta location; retains ChatGPT Sites as an optional private visual-prototype lane.
+
+### `/docs/site-architecture/WEBBETADISC001_WNYHS_BETA_WEBSITE_PROGRAM_DECISION_LOG_REV01.md`
+- **File path:** `docs/site-architecture/WEBBETADISC001_WNYHS_BETA_WEBSITE_PROGRAM_DECISION_LOG_REV01.md`
+- **Document type:** Active-on-merge program decision and unresolved-question log
+- **Authority level:** Records approved direction, architecture recommendations, open decisions, deferrals, and prohibited assumptions.
+- **Implementation authority:** None.
+- **Notes:** Future decisions require promotion through their dedicated owners and bounded tasks.
+
+### `/docs/codex/work-orders/WEBBETADISC001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/WEBBETADISC001_WORK_ORDER_REV01.md`
+- **Document type:** Canonical bounded governance work order
+- **Authority level:** Task-specific execution authority for WEBBETADISC001 only.
