@@ -1735,3 +1735,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task-specific execution authority for GOVFOUNDBIBLE002 only.
 - **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
 - **Notes:** Controls promotion of the narrow Business Bible and its provenance while prohibiting wholesale evidence promotion, owner changes, unresolved-decision or conflict resolution, implementation, protected-system changes, and GOVFOUND002 activation.
+
+### `/docs/governance/GOVFOUND002_DISPOSITION_REV01.md`
+- **File path:** `docs/governance/GOVFOUND002_DISPOSITION_REV01.md`
+- **Document type:** Active-on-merge historical-identifier disposition record
+- **Authority level:** Final Project Governance disposition for the identifier GOVFOUND002 under GOVFOUND002DISP001.
+- **Implementation authority:** None. Does not authorize GOVFOUND002, implementation, runtime, customer-facing, protected-system, merge, or deployment work.
+- **Notes:** Records `SUPERSEDED — PERMANENTLY RETIRED — NON-EXECUTABLE`, preserves frozen and historical evidence, identifies the separately authorized superseding sequence, and prohibits future revival of GOVFOUND002.
+
+### `/docs/codex/work-orders/GOVFOUND002DISP001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/GOVFOUND002DISP001_WORK_ORDER_REV01.md`
+- **Document type:** Active bounded governance work order
+- **Authority level:** Task-specific execution authority for GOVFOUND002DISP001 only.
+- **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
+- **Notes:** Controls creation and validation of the final disposition while prohibiting GOVFOUND002 activation, historical-evidence changes, owner changes, reopened decisions, implementation, merge, and deployment.
