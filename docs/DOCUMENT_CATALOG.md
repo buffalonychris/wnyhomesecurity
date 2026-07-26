@@ -1707,3 +1707,17 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** Task-specific execution authority for GOVFOUNDASOR001 only.
 - **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
 - **Notes:** Controls creation and validation of the Authority and Systems of Record standard while preserving the frozen source, unresolved Business Bible blocker, existing owner boundaries, protected systems, and GOVFOUND002 non-authorization.
+
+### `/docs/governance/WNYHS_BUSINESS_BIBLE_OWNERSHIP_STRUCTURE_REV01.md`
+- **File path:** `docs/governance/WNYHS_BUSINESS_BIBLE_OWNERSHIP_STRUCTURE_REV01.md`
+- **Document type:** Active-on-merge cross-domain doctrine ownership standard
+- **Authority level:** GOVFOUNDBIBLESTRUCT001 owner for the narrow Business Bible role, strict exclusions, one-owner-per-fact rule, no-parallel-authority rule, promotion gates, and future drafting boundaries.
+- **Implementation authority:** None. Does not create the Business Bible, promote doctrine, resolve decisions or conflicts, alter existing owners, or authorize GOVFOUND002.
+- **Notes:** Records operator-approved Option B and reserves `docs/business/WNYHS_BUSINESS_BIBLE_REV01.md` for a future separately authorized doctrine-only document while preserving all detailed domain owners.
+
+### `/docs/codex/work-orders/GOVFOUNDBIBLESTRUCT001_WORK_ORDER_REV01.md`
+- **File path:** `docs/codex/work-orders/GOVFOUNDBIBLESTRUCT001_WORK_ORDER_REV01.md`
+- **Document type:** Active bounded governance work order
+- **Authority level:** Task-specific execution authority for GOVFOUNDBIBLESTRUCT001 only.
+- **Implementation authority:** Exactly five allowlisted documentation files; dedicated branch, bounded commit, and draft PR only; no merge or deployment.
+- **Notes:** Controls creation and validation of the ownership structure while prohibiting the Business Bible, doctrine promotion, owner changes, unresolved-decision/conflict resolution, protected-system work, and GOVFOUND002 activation.
