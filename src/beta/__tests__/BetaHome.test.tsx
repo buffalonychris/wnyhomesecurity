@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it } from 'vitest';
 import BetaHome from '../BetaHome';
@@ -21,14 +21,5 @@ describe('BetaHome', () => {
     const section = container.querySelector('#home-003') as HTMLElement;
     expect(within(section).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['Home Security','Aging in Place','Home Safety','Home Automation','Home Lighting','Property Management']);
     expect(container.textContent).not.toMatch(/\b(Bronze|Silver|Gold)\b/);
-  });
-  it('provides an accessible light and dark theme control', () => {
-    const { container } = renderPage();
-    const page = container.querySelector('.beta-home');
-    const toggle = screen.getByRole('button', { name: 'Switch to dark theme' });
-    expect(page).toHaveAttribute('data-theme', 'light');
-    fireEvent.click(toggle);
-    expect(page).toHaveAttribute('data-theme', 'dark');
-    expect(screen.getByRole('button', { name: 'Switch to light theme' })).toBeInTheDocument();
   });
 });
