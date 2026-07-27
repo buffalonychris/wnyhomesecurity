@@ -2,7 +2,7 @@
 
 ## Status
 
-Working Standard
+Working Standard — QR Landing retained; replacement-homepage provisions superseded by HOMEAUTH001
 
 ## Owner
 
@@ -17,6 +17,14 @@ UX / Page Structure Standard
 Define the authoritative user experience, information architecture, search requirements, and structural requirements for the WNY Home Security Homepage and QR Landing pages.
 
 This document governs page purpose, content hierarchy, search behavior, navigation expectations, and customer discovery flow.
+
+## HOMEAUTH001 relationship
+
+For the replacement homepage, the current page-specific owner is `docs/site-architecture/HOMEAUTH001_WNYHS_HOMEPAGE_VISUAL_AUTHORITY_REV01.md`.
+
+HOMEAUTH001 supersedes this document’s replacement-homepage section order, five-category/package-first discovery model, public package terminology, and page-specific visual direction. This document remains authority for the distinction between Homepage discovery and QR Landing conversion and for QR Landing structure unless a later bounded task changes it.
+
+Current production navigation, routes, funnels, and runtime behavior remain unchanged. Historical text below is preserved for lineage and must not be interpreted as authority to implement package-first replacement-homepage messaging.
 
 ---
 

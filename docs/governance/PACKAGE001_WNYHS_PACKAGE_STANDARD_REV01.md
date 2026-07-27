@@ -2,7 +2,7 @@
 
 ## Status
 
-Working Standard
+Legacy Transitional Standard — public-offering authority superseded by HOMEAUTH001
 
 ## Owner
 
@@ -17,6 +17,20 @@ Package Standard
 Define the authoritative WNY Home Security Package Standard.
 
 Packages are curated collections of Solutions designed to help homeowners solve common situations through recommended combinations of outcomes.
+
+## HOMEAUTH001 public-authority disposition
+
+HOMEAUTH001 establishes that WNY Home Security publicly sells professionally designed Solutions rather than Packages or hardware bundles.
+
+This document no longer controls public positioning, homepage terminology, public offering labels, or replacement-site discovery language. Its Package definitions, identifiers, relationships, and examples are retained as legacy governance and operational evidence until a separately bounded package-to-solution migration reconciles Site Architecture, SEO, routes, analytics, quotes, proposals, agreements, planner behavior, CRM fields, Stripe/payment metadata, and runtime compatibility.
+
+Do not create new public package pages, package CTAs, Bronze/Silver/Gold tiers, or package-first messaging from this document.
+
+Do not rename or remove legacy routes, identifiers, fields, records, or historical evidence from this status notice.
+
+Current replacement-homepage authority:
+
+`docs/site-architecture/HOMEAUTH001_WNYHS_HOMEPAGE_VISUAL_AUTHORITY_REV01.md`
 
 ---
 

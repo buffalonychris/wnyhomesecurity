@@ -8076,3 +8076,23 @@ No ARCHIVED tasks are currently recorded.
 - **Exit Criteria:** Drive operationalization and repository documentation are complete; BOKS remains non-executable knowledge authority; unresolved proposals remain operator-gated; one bounded commit is pushed and one draft PR is open for manual review; nothing is merged or deployed.
 - **Dependencies:** Operator authorization dated `2026-07-26`; merged BOKSFOUND001 PR #540; synchronized base commit `10242e33e22ea3a5c64cd5b2d9ef3b16847789ea`; connected WNYHS Google Workspace; merged WEBBETADISC001 PR #539 and source commit `d4adc0a2968385dc8a29afe2532c1641d20be047`.
 - **Operator Decision Required:** Manually review the draft PR and decide whether to merge. Separately decide the owner and system-of-record boundaries for Installed-System Records, Customer Support Operations, Warranty Tracking, Replacement Cost Tracking, and Customer Expansion Management.
+
+### HOMEAUTH001
+
+- **Task ID:** HOMEAUTH001
+- **Task Name:** Homepage Visual Authority and Replacement-Site Governance Reconciliation
+- **Status:** DONE — PENDING MANUAL PR REVIEW
+- **Category:** GOV
+- **Primary Workstream:** Site Architecture
+- **Related Workstreams:** Visual System; Public Content System; Category System; Solution System; SEO; Funnel; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Establish solution-first visual and structural authority for the replacement homepage; reconcile homepage, category, visual, claims, package, route, funnel, and asset authority; and define future migration gates without changing production.
+- **Allowed Scope:** Create the canonical work order, homepage authority, and reconciliation report; amend only the homepage order in the Page Layout Standard; add narrow successor/status notices to UX001 and PACKAGE001; add this task record; update catalog and manifest; use one branch, one commit, and one draft PR.
+- **Forbidden Scope:** No website/source/runtime implementation; no route, redirect, navigation, asset, CSS, HTML, public-copy deployment, package/tier identifier, pricing, quote, agreement, payment, Stripe, HubSpot, CRM, scheduling, planner, form, analytics, email, Cloudflare, secret, customer-data, Drive, merge, or deployment change; no uncontrolled package-term replacement.
+- **Target Files:** `docs/codex/work-orders/HOMEAUTH001_WORK_ORDER_REV01.md`; `docs/site-architecture/HOMEAUTH001_WNYHS_HOMEPAGE_VISUAL_AUTHORITY_REV01.md`; `docs/site-architecture/HOMEAUTH001_WNYHS_HOMEPAGE_AND_REPLACEMENT_SITE_RECONCILIATION_REPORT_REV01.md`; `docs/brand/page_layout_standards_rev01.md`; `docs/governance/UX001_HOMEPAGE_QRLANDING_STRUCTURE_REV01.md`; `docs/governance/PACKAGE001_WNYHS_PACKAGE_STANDARD_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Governance documentation only.
+- **Documentation Updates Required:** Create three canonical documents; record the ten-section hierarchy and page-specific authority; preserve QR, navigation, hero, claims, route, and runtime owners; disposition public package authority; update catalog and manifest.
+- **Validation Required:** Confirm synchronized clean main; HOMEAUTH001 exactly once; exactly nine files and no deletions; exact ten-section hierarchy and SITEARCH005 order; solution-first terminology, qualified claims, bounded dark hero, current navigation and `HomePageHero.png` preservation, package classification, stable IDs, and future gates; validate links, catalog/manifest, and `git diff --check`; confirm no production/protected/external/merge/deployment change; governed docs-only build skip.
+- **Exit Criteria:** The nine-file package validates; old homepage/package authority is narrowly reconciled; future navigation, migration, visual-reference, hero-asset, and implementation work remains gated; one bounded commit is pushed and a draft PR is open; nothing is merged or deployed; final worktree is clean.
+- **Dependencies:** Operator authorization and reconciliation dated `2026-07-27`; synchronized `origin/main` at `0349b2e40bb1aa68f90910e811a7f14642f73aab`; current authority chain; WEBBETADISC001/BOKSOPS001 baseline; current Site Architecture, Category, Visual, Token, Claims, Content, Funnel, Package, SEO, and Business Bible owners.
+- **Operator Decision Required:** Manually review the draft PR and decide whether to merge. Separately authorize terminology migration, replacement navigation/IA, visual-reference/mockup approval, hero-asset approval, and implementation.
