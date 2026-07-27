@@ -26,7 +26,7 @@ const Layout = () => {
     storedVertical === 'home-security' ||
     location.pathname.startsWith('/home-security');
   const isNewSite = location.pathname.startsWith('/newsite');
-  const isBetaSite = location.pathname === '/beta';
+  const isBetaSite = location.pathname.startsWith('/beta');
   const isHomeSecurityLanding = location.pathname === '/' || location.pathname === '/home-security';
   const isHomeSecurityMarketingRoute = useMemo(() => {
     const marketingRoutes = new Set([

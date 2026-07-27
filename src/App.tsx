@@ -86,6 +86,7 @@ const Support = lazy(() => import('./pages/Support'));
 const Search = lazy(() => import('./pages/Search'));
 const SolutionOpportunity = lazy(() => import('./pages/SolutionOpportunity'));
 const BetaHome = lazy(() => import('./beta/BetaHome'));
+const BetaShell = lazy(() => import('./beta/BetaShell'));
 const NewSiteLayout = lazy(() => import('./newsite/layout/NewSiteLayout'));
 const NewSiteHome = lazy(() => import('./newsite/pages/NewSiteHome'));
 const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
@@ -120,7 +121,9 @@ const App = () => {
     >
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/beta" element={<BetaHome />} />
+          <Route path="/beta" element={<BetaShell />}>
+            <Route index element={<BetaHome />} />
+          </Route>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<HomeSecurity />} />
             <Route path="/halo-splash" element={<Home />} />

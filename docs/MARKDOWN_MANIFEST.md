@@ -1878,3 +1878,9 @@ T-NEWSOLUTIONS001 addendum: `docs/catalogs/WNYHS_INTERNAL_SOLUTION_ARSENAL_REV01
 | Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/HOMEIMPL001_WORK_ORDER_REV01.md | HOMEIMPL001 Work Order REV01 | Controls the exact ten-file isolated replacement beta homepage implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | HOMEIMPL001 only | Adds isolated `/beta` review route | No | work order, beta homepage, responsive, accessibility | Production `/`, funnels, transactions, CRM, analytics, merge, and deployment remain unchanged. |
+
+## NAVIMPL001 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/NAVIMPL001_WORK_ORDER_REV01.md | NAVIMPL001 Work Order REV01 | Controls the exact sixteen-file replacement-site beta navigation, shared shell, footer, and validation package. | Site Architecture / UI / Project Governance | Executed pending manual PR and visual review | NAVIMPL001 only | Refines isolated `/beta` review environment | No | navigation, shared shell, mobile sheet, footer | Production navigation/footer, protected systems, merge, and deployment remain unchanged. |
