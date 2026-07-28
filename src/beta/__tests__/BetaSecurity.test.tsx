@@ -63,14 +63,17 @@ describe("BetaSecurity", () => {
     );
   });
 
-  it("keeps unimplemented cross-pillar destinations non-clickable", () => {
+  it("links only to implemented cross-pillar destinations", () => {
     renderPage();
+    expect(
+      screen.getByRole("link", { name: "Explore Aging in Place →" }),
+    ).toHaveAttribute("href", "/beta/solutions/aging-in-place");
     expect(
       screen.queryByRole("link", { name: /Explore Home Lighting/i }),
     ).not.toBeInTheDocument();
     expect(
       screen.getAllByText("Dedicated beta destination in development"),
-    ).toHaveLength(5);
+    ).toHaveLength(4);
   });
 
   it("does not introduce package-first or unsupported claims language", () => {

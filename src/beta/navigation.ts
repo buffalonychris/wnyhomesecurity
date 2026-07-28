@@ -34,8 +34,8 @@ export const betaSolutionNavigation: BetaNavigationItem[] = [
     label: "Aging in Place",
     description:
       "Support easier routines and useful non-medical awareness for selected people.",
-    href: "/categories/aging-in-place",
-    kind: "protected-legacy-route",
+    href: "/beta/solutions/aging-in-place",
+    kind: "future-approved-route",
   },
   {
     label: "Home Safety",
