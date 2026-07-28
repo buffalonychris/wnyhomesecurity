@@ -69,11 +69,14 @@ describe("BetaSecurity", () => {
       screen.getByRole("link", { name: "Explore Aging in Place →" }),
     ).toHaveAttribute("href", "/beta/solutions/aging-in-place");
     expect(
+      screen.getByRole("link", { name: "Explore Home Safety →" }),
+    ).toHaveAttribute("href", "/beta/solutions/home-safety");
+    expect(
       screen.queryByRole("link", { name: /Explore Home Lighting/i }),
     ).not.toBeInTheDocument();
     expect(
       screen.getAllByText("Dedicated beta destination in development"),
-    ).toHaveLength(4);
+    ).toHaveLength(3);
   });
 
   it("does not introduce package-first or unsupported claims language", () => {

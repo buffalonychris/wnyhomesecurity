@@ -1899,3 +1899,9 @@ T-NEWSOLUTIONS001 addendum: `docs/catalogs/WNYHS_INTERNAL_SOLUTION_ARSENAL_REV01
 | Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/PILLARAGING001_WORK_ORDER_REV01.md | PILLARAGING001 Work Order REV01 | Controls the exact twelve-file isolated beta Aging in Place pillar implementation and validation. | Site Architecture / UI / Solution System / Project Governance | Executed pending manual PR and visual review | PILLARAGING001 only | Adds isolated `/beta/solutions/aging-in-place` route | No | Aging in Place, pillar, dignity, awareness, dashboard, responsive | Production routes, funnel/runtime systems, merge, and deployment remain unchanged. |
+
+## PILLARSAFETY001 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/PILLARSAFETY001_WORK_ORDER_REV01.md | PILLARSAFETY001 Work Order REV01 | Controls the exact thirteen-file isolated beta Home Safety pillar implementation and validation. | Site Architecture / UI / Solution System / Project Governance | Executed pending manual PR and visual review | PILLARSAFETY001 only | Adds isolated `/beta/solutions/home-safety` route | No | Home Safety, pillar, water awareness, qualified shutoff, dashboard, responsive | Production routes, funnel/runtime systems, merge, and deployment remain unchanged. |

@@ -1,30 +1,28 @@
 import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
-import BetaAging from "../BetaAging";
+import BetaSafety from "../BetaSafety";
 import BetaShell from "../BetaShell";
 
-const renderAging = () =>
+const renderSafety = () =>
   render(
-    <MemoryRouter initialEntries={["/beta/solutions/aging-in-place"]}>
+    <MemoryRouter initialEntries={["/beta/solutions/home-safety"]}>
       <Routes>
         <Route path="/beta" element={<BetaShell />}>
-          <Route path="solutions/aging-in-place" element={<BetaAging />} />
+          <Route path="solutions/home-safety" element={<BetaSafety />} />
         </Route>
       </Routes>
     </MemoryRouter>,
   );
 
-describe("BetaAging", () => {
-  beforeEach(() => {
-    window.localStorage.clear();
-  });
+describe("BetaSafety", () => {
+  beforeEach(() => window.localStorage.clear());
 
   it("renders the approved pillar under the shared beta shell", () => {
-    renderAging();
+    renderSafety();
 
     expect(
-      screen.getByRole("heading", { level: 1, name: "Aging in Place" }),
+      screen.getByRole("heading", { level: 1, name: "Home Safety" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("navigation", {
@@ -39,47 +37,51 @@ describe("BetaAging", () => {
   });
 
   it("preserves the exact assessment destination and education link", () => {
-    renderAging();
+    renderSafety();
 
     screen
       .getAllByRole("link", { name: "Request a Property Assessment" })
-      .forEach((link) => {
+      .forEach((link) =>
         expect(link).toHaveAttribute(
           "href",
           "/discovery?vertical=home-security",
-        );
-      });
+        ),
+      );
     expect(
       screen.getByRole("link", { name: "Explore Common Questions" }),
     ).toHaveAttribute("href", "/faq");
   });
 
-  it("covers approved capabilities, scenarios, dignity, and illustrative dashboard framing", () => {
-    renderAging();
+  it("covers approved risks, capabilities, scenarios, and dashboard framing", () => {
+    renderSafety();
 
     expect(
-      screen.getByRole("heading", { name: "Simpler everyday control" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "Night-path lighting" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "Respectful family awareness" }),
+      screen.getByRole("heading", { name: "Water awareness" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
-        name: "Awareness should respect the person who lives there.",
+        name: "Temperature and freeze-risk awareness",
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText("Illustrative Aging in Place Property Dashboard"),
+      screen.getByRole("heading", {
+        name: "A water concern while you are away",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "A signal, a notification, an automation, and a response are not the same thing.",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Illustrative Home Safety Property Dashboard"),
     ).toBeInTheDocument();
   });
 
   it("links only to implemented beta pillar destinations", () => {
-    renderAging();
+    renderSafety();
     const heading = screen.getByRole("heading", {
-      name: "Everyday support can connect with a wider property system.",
+      name: "Home Safety can contribute to a wider property system.",
     });
     const section = heading.closest("section") as HTMLElement;
 
@@ -87,28 +89,29 @@ describe("BetaAging", () => {
       within(section).getByRole("link", { name: "Explore Home Security →" }),
     ).toHaveAttribute("href", "/beta/solutions/home-security");
     expect(
-      within(section).getByRole("link", { name: "Explore Home Safety →" }),
-    ).toHaveAttribute("href", "/beta/solutions/home-safety");
-    expect(
-      within(section).queryByRole("link", { name: /Home Lighting/ }),
-    ).not.toBeInTheDocument();
+      within(section).getByRole("link", { name: "Explore Aging in Place →" }),
+    ).toHaveAttribute("href", "/beta/solutions/aging-in-place");
     expect(
       within(section).queryByRole("link", { name: /Home Automation/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(section).queryByRole("link", { name: /Home Lighting/ }),
     ).not.toBeInTheDocument();
     expect(
       within(section).queryByRole("link", { name: /Property Management/ }),
     ).not.toBeInTheDocument();
   });
 
-  it("stays solution-first and avoids unsupported or clinical claims", () => {
-    const { container } = renderAging();
+  it("stays solution-first and qualifies safety and shutoff claims", () => {
+    const { container } = renderSafety();
     const text = container.textContent ?? "";
 
     expect(text).not.toMatch(/\b(Bronze|Silver|Gold|Buy Now)\b/);
     expect(text).not.toMatch(
-      /fall detection|guaranteed safety|professional monitoring|automatic dispatch|medical response|caregiver replacement/i,
+      /prevents water damage|prevents frozen pipes|guarantees? detection|automatic shutoff works with every|professional monitoring/i,
     );
-    expect(text).toMatch(/non-medical home awareness/i);
-    expect(text).toMatch(/consent/i);
+    expect(text).toMatch(/(?:does not|never) replace[s]? required smoke/i);
+    expect(text).toMatch(/water shutoff requires validated/i);
+    expect(text).toMatch(/not guaranteed prevention/i);
   });
 });
