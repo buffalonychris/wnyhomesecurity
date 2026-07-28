@@ -1880,3 +1880,8 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 | Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/SOLUTIONSIMPL001_WORK_ORDER_REV01.md | SOLUTIONSIMPL001 Work Order REV01 | Controls the exact eleven-file replacement-site beta Solutions overview implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | SOLUTIONSIMPL001 only | Isolated `/beta/solutions` review route | Beta review only | work order, Solutions overview, six pillars, Property Dashboard, responsive, accessibility | Production `/solutions`, protected systems, merge, and deployment remain unchanged. |
+## PILLARSEC001 Catalog Addendum
+
+| Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/PILLARSEC001_WORK_ORDER_REV01.md | PILLARSEC001 Work Order REV01 | Controls the exact twelve-file isolated beta Home Security pillar implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | PILLARSEC001 only | Isolated `/beta/solutions/home-security` route | Beta review only | work order, Home Security, pillar, awareness, Property Dashboard | Production Home Security routes, protected systems, merge, and deployment remain unchanged. |

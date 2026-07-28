@@ -58,7 +58,7 @@ function Destination({
 
 function BetaNavigation({ theme, onThemeChange }: Props) {
   const location = useLocation();
-  const solutionsActive = location.pathname === solutionsOverviewHref;
+  const solutionsActive = location.pathname.startsWith(solutionsOverviewHref);
   const solutionsId = useId();
   const mobileId = useId();
   const [solutionsOpen, setSolutionsOpen] = useState(false);
