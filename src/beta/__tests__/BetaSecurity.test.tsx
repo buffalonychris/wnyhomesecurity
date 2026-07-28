@@ -75,11 +75,11 @@ describe("BetaSecurity", () => {
       screen.getByRole("link", { name: "Explore Home Automation →" }),
     ).toHaveAttribute("href", "/beta/solutions/home-automation");
     expect(
-      screen.queryByRole("link", { name: /Explore Home Lighting/i }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("link", { name: "Explore Home Lighting →" }),
+    ).toHaveAttribute("href", "/beta/solutions/home-lighting");
     expect(
       screen.getAllByText("Dedicated beta destination in development"),
-    ).toHaveLength(2);
+    ).toHaveLength(1);
   });
 
   it("does not introduce package-first or unsupported claims language", () => {

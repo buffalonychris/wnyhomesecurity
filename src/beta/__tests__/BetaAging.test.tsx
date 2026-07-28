@@ -90,8 +90,8 @@ describe("BetaAging", () => {
       within(section).getByRole("link", { name: "Explore Home Safety →" }),
     ).toHaveAttribute("href", "/beta/solutions/home-safety");
     expect(
-      within(section).queryByRole("link", { name: /Home Lighting/ }),
-    ).not.toBeInTheDocument();
+      within(section).getByRole("link", { name: "Explore Home Lighting →" }),
+    ).toHaveAttribute("href", "/beta/solutions/home-lighting");
     expect(
       within(section).getByRole("link", { name: "Explore Home Automation →" }),
     ).toHaveAttribute("href", "/beta/solutions/home-automation");

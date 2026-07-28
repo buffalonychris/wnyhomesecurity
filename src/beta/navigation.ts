@@ -55,8 +55,8 @@ export const betaSolutionNavigation: BetaNavigationItem[] = [
     label: "Home Lighting",
     description:
       "Create useful lighting scenes, pathways, schedules, and property modes.",
-    href: "/categories/home-lighting",
-    kind: "protected-legacy-route",
+    href: "/beta/solutions/home-lighting",
+    kind: "future-approved-route",
   },
   {
     label: "Property Management",

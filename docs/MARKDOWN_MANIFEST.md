@@ -1910,3 +1910,9 @@ T-NEWSOLUTIONS001 addendum: `docs/catalogs/WNYHS_INTERNAL_SOLUTION_ARSENAL_REV01
 | Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/PILLARAUTO001_WORK_ORDER_REV01.md | PILLARAUTO001 Work Order REV01 | Controls the exact fourteen-file isolated beta Home Automation pillar implementation and validation. | Site Architecture / UI / Solution System / Automation System / Project Governance | Executed pending manual PR and visual review | PILLARAUTO001 only | Adds isolated `/beta/solutions/home-automation` route | No | Home Automation, routines, manual control, dashboard, responsive | Production routes, funnel/runtime systems, merge, and deployment remain unchanged. |
+
+## PILLARLIGHT001 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/PILLARLIGHT001_WORK_ORDER_REV01.md | PILLARLIGHT001 Work Order REV01 | Controls the exact fifteen-file isolated beta Home Lighting pillar implementation and validation. | Site Architecture / UI / Solution System / Automation System / Project Governance | Executed pending manual PR and visual review | PILLARLIGHT001 only | Adds isolated `/beta/solutions/home-lighting` route | No | Home Lighting, permanent exterior lighting, manual control, dashboard, responsive | Production routes, funnel/runtime systems, merge, and deployment remain unchanged. |

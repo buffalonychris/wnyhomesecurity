@@ -9,7 +9,10 @@ const renderAutomation = () =>
     <MemoryRouter initialEntries={["/beta/solutions/home-automation"]}>
       <Routes>
         <Route path="/beta" element={<BetaShell />}>
-          <Route path="solutions/home-automation" element={<BetaAutomation />} />
+          <Route
+            path="solutions/home-automation"
+            element={<BetaAutomation />}
+          />
         </Route>
       </Routes>
     </MemoryRouter>,
@@ -72,9 +75,7 @@ describe("BetaAutomation", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText(
-        "Illustrative Home Automation Property Dashboard",
-      ),
+      screen.getByLabelText("Illustrative Home Automation Property Dashboard"),
     ).toBeInTheDocument();
   });
 
@@ -95,8 +96,8 @@ describe("BetaAutomation", () => {
       within(section).getByRole("link", { name: "Explore Home Safety →" }),
     ).toHaveAttribute("href", "/beta/solutions/home-safety");
     expect(
-      within(section).queryByRole("link", { name: /Home Lighting/ }),
-    ).not.toBeInTheDocument();
+      within(section).getByRole("link", { name: "Explore Home Lighting →" }),
+    ).toHaveAttribute("href", "/beta/solutions/home-lighting");
     expect(
       within(section).queryByRole("link", { name: /Property Management/ }),
     ).not.toBeInTheDocument();

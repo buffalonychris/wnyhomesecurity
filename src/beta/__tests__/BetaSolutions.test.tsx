@@ -73,7 +73,7 @@ describe("BetaSolutions", () => {
     ).toHaveAttribute("href", "/beta/solutions/home-automation");
     expect(
       within(section).getByRole("link", { name: /Explore Home Lighting/ }),
-    ).toHaveAttribute("href", "/categories/home-lighting");
+    ).toHaveAttribute("href", "/beta/solutions/home-lighting");
     expect(
       within(section).queryByRole("link", { name: /Property Management/ }),
     ).not.toBeInTheDocument();
