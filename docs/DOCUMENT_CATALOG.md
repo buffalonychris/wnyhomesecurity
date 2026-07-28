@@ -1890,3 +1890,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 | Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/PILLARAGING001_WORK_ORDER_REV01.md | PILLARAGING001 Work Order REV01 | Controls the exact twelve-file isolated beta Aging in Place pillar implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | PILLARAGING001 only | Isolated `/beta/solutions/aging-in-place` route | Beta review only | work order, Aging in Place, dignity, non-medical awareness, Property Dashboard | Production Aging in Place routes, protected systems, merge, and deployment remain unchanged. |
+
+## PILLARSAFETY001 Catalog Addendum
+
+| Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/PILLARSAFETY001_WORK_ORDER_REV01.md | PILLARSAFETY001 Work Order REV01 | Controls the exact thirteen-file isolated beta Home Safety pillar implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | PILLARSAFETY001 only | Isolated `/beta/solutions/home-safety` route | Beta review only | work order, Home Safety, water awareness, freeze risk, Property Dashboard | Production Home Safety routes, protected systems, merge, and deployment remain unchanged. |

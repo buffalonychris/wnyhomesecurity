@@ -41,8 +41,8 @@ export const betaSolutionNavigation: BetaNavigationItem[] = [
     label: "Home Safety",
     description:
       "Get practical awareness of water, temperature, humidity, and selected conditions.",
-    href: "/categories/home-safety",
-    kind: "protected-legacy-route",
+    href: "/beta/solutions/home-safety",
+    kind: "future-approved-route",
   },
   {
     label: "Home Automation",

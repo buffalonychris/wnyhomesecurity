@@ -67,7 +67,7 @@ describe("BetaSolutions", () => {
     ).toHaveAttribute("href", "/beta/solutions/aging-in-place");
     expect(
       within(section).getByRole("link", { name: /Explore Home Safety/ }),
-    ).toHaveAttribute("href", "/categories/home-safety");
+    ).toHaveAttribute("href", "/beta/solutions/home-safety");
     expect(
       within(section).getByRole("link", { name: /Explore Home Automation/ }),
     ).toHaveAttribute("href", "/categories/home-automation");
