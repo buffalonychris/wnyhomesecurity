@@ -89,6 +89,7 @@ const BetaHome = lazy(() => import('./beta/BetaHome'));
 const BetaShell = lazy(() => import('./beta/BetaShell'));
 const BetaSolutions = lazy(() => import('./beta/BetaSolutions'));
 const BetaSecurity = lazy(() => import('./beta/BetaSecurity'));
+const BetaAging = lazy(() => import('./beta/BetaAging'));
 const NewSiteLayout = lazy(() => import('./newsite/layout/NewSiteLayout'));
 const NewSiteHome = lazy(() => import('./newsite/pages/NewSiteHome'));
 const DemosIndex = lazy(() => import('./newsite/pages/DemosIndex'));
@@ -127,6 +128,7 @@ const App = () => {
             <Route index element={<BetaHome />} />
             <Route path="solutions" element={<BetaSolutions />} />
             <Route path="solutions/home-security" element={<BetaSecurity />} />
+            <Route path="solutions/aging-in-place" element={<BetaAging />} />
           </Route>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<HomeSecurity />} />
