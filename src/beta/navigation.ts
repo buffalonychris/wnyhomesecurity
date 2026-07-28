@@ -48,8 +48,8 @@ export const betaSolutionNavigation: BetaNavigationItem[] = [
     label: "Home Automation",
     description:
       "Coordinate useful routines, modes, and supported controls around daily life.",
-    href: "/categories/home-automation",
-    kind: "protected-legacy-route",
+    href: "/beta/solutions/home-automation",
+    kind: "future-approved-route",
   },
   {
     label: "Home Lighting",
