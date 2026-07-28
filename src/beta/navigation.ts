@@ -9,6 +9,7 @@ export type BetaNavigationItem = {
 };
 
 export const assessmentHref = "/discovery?vertical=home-security";
+export const solutionsOverviewHref = "/beta/solutions";
 
 export const betaPrimaryNavigation: BetaNavigationItem[] = [
   { label: "Why W. N. Y.", href: "/beta#why-wny", kind: "homepage-anchor" },
@@ -71,8 +72,8 @@ export const betaFooterGroups = [
     items: [
       {
         label: "Explore Solutions",
-        href: "/beta#solutions",
-        kind: "homepage-anchor" as const,
+        href: solutionsOverviewHref,
+        kind: "future-approved-route" as const,
       },
       ...betaSolutionNavigation,
     ],

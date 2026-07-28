@@ -1875,3 +1875,8 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 | Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/NAVIMPL001_WORK_ORDER_REV01.md | NAVIMPL001 Work Order REV01 | Controls the exact sixteen-file replacement-site beta navigation, shared shell, footer, and validation package. | Codex Execution / Project Governance | Executed pending manual PR and visual review | NAVIMPL001 only | Isolated `/beta` review environment | Beta review only | work order, navigation, shared shell, mobile menu, footer | Production navigation/footer, protected systems, merge, and deployment remain unchanged. |
+## SOLUTIONSIMPL001 Catalog Addendum
+
+| Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/SOLUTIONSIMPL001_WORK_ORDER_REV01.md | SOLUTIONSIMPL001 Work Order REV01 | Controls the exact eleven-file replacement-site beta Solutions overview implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | SOLUTIONSIMPL001 only | Isolated `/beta/solutions` review route | Beta review only | work order, Solutions overview, six pillars, Property Dashboard, responsive, accessibility | Production `/solutions`, protected systems, merge, and deployment remain unchanged. |

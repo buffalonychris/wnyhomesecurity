@@ -13,6 +13,7 @@ import {
   assessmentHref,
   betaPrimaryNavigation,
   betaSolutionNavigation,
+  solutionsOverviewHref,
   type BetaNavigationItem,
 } from "./navigation";
 
@@ -57,6 +58,7 @@ function Destination({
 
 function BetaNavigation({ theme, onThemeChange }: Props) {
   const location = useLocation();
+  const solutionsActive = location.pathname === solutionsOverviewHref;
   const solutionsId = useId();
   const mobileId = useId();
   const [solutionsOpen, setSolutionsOpen] = useState(false);
@@ -161,6 +163,7 @@ function BetaNavigation({ theme, onThemeChange }: Props) {
               ref={solutionsButtonRef}
               type="button"
               aria-expanded={solutionsOpen}
+              aria-current={solutionsActive ? "page" : undefined}
               aria-controls={solutionsId}
               onClick={() => setSolutionsOpen((value) => !value)}
             >
@@ -180,7 +183,7 @@ function BetaNavigation({ theme, onThemeChange }: Props) {
                   property works.
                 </p>
                 <Link
-                  to="/beta#solutions"
+                  to={solutionsOverviewHref}
                   onClick={() => setSolutionsOpen(false)}
                 >
                   View all solutions →
@@ -297,7 +300,11 @@ function BetaNavigation({ theme, onThemeChange }: Props) {
               </button>
               {mobileSolutionsOpen && (
                 <div className="beta-mobile-solutions">
-                  <Link to="/beta#solutions" onClick={closeMobile}>
+                  <Link
+                    to={solutionsOverviewHref}
+                    aria-current={solutionsActive ? "page" : undefined}
+                    onClick={closeMobile}
+                  >
                     Explore all solutions
                   </Link>
                   {betaSolutionNavigation.map((item) => (
