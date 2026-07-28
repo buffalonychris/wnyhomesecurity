@@ -1889,3 +1889,8 @@ T-NEWSOLUTIONS001 addendum: `docs/catalogs/WNYHS_INTERNAL_SOLUTION_ARSENAL_REV01
 | Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/SOLUTIONSIMPL001_WORK_ORDER_REV01.md | SOLUTIONSIMPL001 Work Order REV01 | Controls the exact eleven-file replacement-site beta Solutions overview implementation and validation. | Site Architecture / UI / Public Content / Project Governance | Executed pending manual PR and visual review | SOLUTIONSIMPL001 only | Adds isolated `/beta/solutions` review route | No | Solutions overview, six pillars, Property Dashboard, responsive, accessibility | Production `/solutions`, protected systems, merge, and deployment remain unchanged. |
+## PILLARSEC001 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/PILLARSEC001_WORK_ORDER_REV01.md | PILLARSEC001 Work Order REV01 | Controls the exact twelve-file isolated beta Home Security pillar implementation and validation. | Site Architecture / UI / Solution System / Project Governance | Executed pending manual PR and visual review | PILLARSEC001 only | Adds isolated `/beta/solutions/home-security` route | No | Home Security, pillar, awareness, dashboard, responsive | Production routes, funnel/runtime systems, merge, and deployment remain unchanged. |

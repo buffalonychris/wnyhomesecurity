@@ -27,8 +27,8 @@ export const betaSolutionNavigation: BetaNavigationItem[] = [
     label: "Home Security",
     description:
       "Bring selected entries, cameras, locks, and alerts into one clearer property view.",
-    href: "/categories/home-security",
-    kind: "protected-legacy-route",
+    href: "/beta/solutions/home-security",
+    kind: "future-approved-route",
   },
   {
     label: "Aging in Place",
