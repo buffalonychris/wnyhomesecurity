@@ -11,14 +11,13 @@ Implementation authority: No
 | --- | --- | --- | --- | --- | --- | --- |
 | C01 South Entrance Door | C01 South Entrance Door | South Wall | ZHA | `binary_sensor.c01_south_entrance_door` | battery, firmware, identify, LQI/RSSI | Requires live verification for final state. |
 | C03 East Door Right | C03 East Door Right | East Wall / unresolved from live naming | ZHA | Contact entity present in registry evidence | `sensor.c03_east_door_right_battery` | Battery restore state showed unavailable; live verification required. |
-| C09 West Service Door / North Wall Window 5 naming conflict | C09 device evidence | North/West naming requires live verification | ZHA | Contact entity evidence present | battery, firmware, identify, LQI/RSSI | C09 restore-state evidence includes unavailable entries; live verification required. |
 
 ## Window Contacts
 
 | Entity group | Area | Integration | Operational entities | Diagnostic entities | Restore-state note |
 | --- | --- | --- | --- | --- | --- |
-| C05-C09 North Wall Windows | North Wall | ZHA | `binary_sensor.c05_north_wall_window_1` through `binary_sensor.c09_north_wall_window_5` | battery, firmware, identify, LQI/RSSI | C09 showed unavailable in restore state. |
-| C10-C14 South Wall Windows | South Wall | ZHA | `binary_sensor.c10_south_wall_window_1` through `binary_sensor.c14_south_wall_window_5` | battery, firmware, identify, LQI/RSSI | C13/C14 showed unavailable in restore state. |
+| C05-C08 North Wall Windows | North Wall | ZHA | `binary_sensor.c05_north_wall_window_1` through `binary_sensor.c08_north_wall_window_4` | battery, firmware, identify, LQI/RSSI | C09 was removed from the installed system. |
+| C10-C11 and C13-C14 South Wall Windows | South Wall | ZHA | C10, C11, C13, and C14 contact entities | battery, firmware, identify, LQI/RSSI | C12 was removed from the installed system; C13/C14 require live state verification. |
 
 ## Motion / Occupancy
 
@@ -32,6 +31,16 @@ Implementation authority: No
 | Device | Area | Integration | Customer-facing entity | Diagnostic/control entities |
 | --- | --- | --- | --- | --- |
 | South Entrance Lamp | Main Hallway | ZHA | `switch.south_entrance_lamp` | power, voltage, current, energy/summation, AC frequency, power factor, power-on behavior, turn-on/off delays, identify/reset, LQI/RSSI |
+
+## Smoke Detectors
+
+| Device | Area | Model / manufacturer | Integration path | Expected service entity | Customer landing-page status |
+| --- | --- | --- | --- | --- | --- |
+| SMOKE 01 Network Closet | Network Closet | `TS0601` / `_TZE284_vawy74yh` | ZHA scoped handler, Tuya DP 1 | `binary_sensor.smoke_01_smoke` after live reconfigure | Smoke Detectors — Installed (green) |
+| SMOKE 02 Viewing Room | Viewing Room | `TS0601` / `_TZE284_vawy74yh` | ZHA scoped handler, Tuya DP 1 | `binary_sensor.smoke_02_smoke` after live reconfigure | Smoke Detectors — Installed (green) |
+| SMOKE 03 West Hallway Jog | West Hallway Jog | `TS0601` / `_TZE284_vawy74yh` | ZHA scoped handler, Tuya DP 1 | `binary_sensor.smoke_03_smoke` after live reconfigure | Smoke Detectors — Installed (green) |
+
+The green customer tile confirms installed detectors only. Alarm-event monitoring, listener behavior, notifications, and response actions are not commissioned by this task and require separate onsite acceptance.
 
 ## Notes
 
