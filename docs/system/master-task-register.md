@@ -904,7 +904,8 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** KAOS-PROCUREMENT-SITE-001
 - **Task Name:** KAOS Procurement V1 Prototype
-- **Status:** ACTIVE
+- **Status:** COMPLETE
+- **Completed:** 2026-08-01
 - **Category:** SITE
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Primary Workstream:** ChatGPT Sites
@@ -998,7 +999,9 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 #### Documentation Updates Required
 
 - Preserve a Sites execution closeout containing the source/checkpoint identity, exact Sites project ID when available, saved Site version, deployment URL, visibility state, prototype/production boundary confirmation, and screenshots or equivalent review evidence when the Sites workflow supports them.
-- Do not mark this task DONE in the repository during the prototype build unless the operator separately authorizes a task-register closeout update after reviewing the Sites checkpoint.
+- Closeout evidence: Christian reviewed and approved the private Procurement V1 Sites checkpoint on 2026-08-01 at `https://kaos-command-center-private.kickass-4410.chatgpt.site`.
+- The approved checkpoint remained a private, representative-data prototype; no production authority, live purchasing, mailbox, carrier, claim, payment, or vendor integration was granted.
+- This task-register closeout is docs-only and was separately authorized after operator review; it does not modify the Sites project, application code, runtime files, or any unrelated task.
 
 #### Validation Required
 
@@ -1022,7 +1025,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - The supplier/manufacturer foundation preserves the separation between sourcing relationships and approved solution hardware.
 - Christian can review the prototype through the provided Sites checkpoint/deployment link.
 - Required traceability and protected-system confirmations are reported.
-- No production reconciliation, public deployment, purchase, claim submission, live integration, or task closeout occurs.
+- No production reconciliation, public deployment, purchase, claim submission, or live integration occurred; this separately authorized task closeout changes repository documentation only.
 
 #### Dependencies
 
@@ -1033,8 +1036,8 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 #### Operator Decision Required
 
-- No additional decision is required to begin this bounded prototype after this task-register PR is manually reviewed, merged, and `main` is synchronized.
-- Christian must review the Sites checkpoint before any task closeout, production reconciliation, external integration, or automation is authorized.
+- Resolved on 2026-08-01: Christian reviewed and approved the private Sites checkpoint and authorized docs-only task closeout.
+- Any production reconciliation, external integration, live automation, or expansion remains unauthorized and requires a separate bounded task.
 
 ### Build and refine the WNYHS next-generation ChatGPT Sites prototype
 - **Task ID:** T-SITEPROTOTYPE001
