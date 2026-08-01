@@ -147,6 +147,8 @@ AI Assist, if evaluated later, must not control locks, alarms, security-sensitiv
 
 The Overview panel should include:
 
+- Date, time, and combined Bailey Building Status as the first customer-visible information
+- Close and Arm, Disarm, Open Building, and View Details as the primary actions
 - Building Secure status for installed sensors only
 - South Entrance quick status
 - Active alerts
@@ -161,6 +163,8 @@ The Overview panel should include:
 The Overview panel should provide the shortest path to the current first-floor state without requiring the owner to navigate into each device group.
 
 Building Secure during initial deployment must account for installed sensors only. Deferred window contacts should appear as planned/deferred coverage, not active sensors.
+
+For the three installed BKLF smoke detectors, the landing-page category is fixed to `Smoke Detectors` with secondary text `Installed` and a green installation-status icon. This status means the physical detectors are installed. It must not be used as proof of live smoke/fire alarm detection, alarm health, notification delivery, emergency response, or an `All Clear` condition. Smoke must remain outside the aggregate facility-attention calculation until a separately authorized listener or verified smoke-event entity is commissioned and accepted onsite.
 
 ---
 
@@ -459,3 +463,7 @@ Latest backup extraction confirmed the repo-controlled BKLF YAML files are byte-
 | `bklf_security.yaml` | Same | No repo YAML update required. |
 
 Support-data updates from this extraction are recorded under `docs/home-assistant/bklf/inventory/`. Confirmed latest-backup facts include 12 areas, 56 devices, 1,026 entities, 27 config entries, four Companion app registrations, two person records, Bailey Double Doors lock and doorbell, South Entrance Lamp, both BKLF dashboards, both WNYHS HA themes, and the disabled notification scaffold package. No dashboard redesign, entity rename, notification routing change, automation enablement, user/permission change, or live Home Assistant change is authorized by this refresh.
+
+## BKLF-SMOKE-QUIRK-001 Current Source Synchronization
+
+Task `BKLF-SMOKE-QUIRK-001` synchronizes the later operator-approved sanitized BKLF source capture and governs the installed-only smoke presentation above. It adds the exact `_TZE284_vawy74yh` / `TS0601` ZHA handler for commissioning use, but it does not commission smoke-alarm notifications or alarm response. Historical HA-BACKUP002 facts remain provenance for the earlier backup date and do not override this later bounded task.

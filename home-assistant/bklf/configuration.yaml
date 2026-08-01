@@ -4,6 +4,9 @@ frontend:
 homeassistant:
   packages: !include_dir_named packages
 
+zha:
+  custom_quirks_path: /config/custom_zha_quirks
+
 logbook:
 
 history:
@@ -24,6 +27,8 @@ lovelace:
     - url: /hacsfiles/Bubble-Card/bubble-card.js
       type: module
     - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /webrtc/webrtc-camera.js
       type: module
   dashboards:
     bklf-main:

@@ -1,5 +1,233 @@
 title: WNYHS Desktop Control Center
 views:
+  - title: Bailey Building Status
+    path: status
+    icon: mdi:office-building-check
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        entity: sensor.bklf_facility_date_and_time
+        name: Bailey Building Status
+        label: >-
+          [[[ return `${entity.state}<br>${states['sensor.bklf_facility_status']?.state || 'Status unavailable'}`; ]]]
+        icon: mdi:office-building
+        show_label: true
+        tap_action:
+          action: none
+        styles:
+          card:
+            - min-height: 142px
+            - border-radius: 26px
+            - padding: 22px
+            - background: linear-gradient(135deg, var(--wnyhs-card-background), var(--wnyhs-secondary-button-background))
+            - border: 2px solid var(--wnyhs-gold)
+            - border-left: 7px solid var(--wnyhs-gold)
+            - box-shadow: var(--ha-card-box-shadow)
+          grid:
+            - grid-template-areas: '"i n" "i l"'
+            - grid-template-columns: 64px 1fr
+          icon:
+            - width: 52px
+            - color: var(--wnyhs-gold)
+          name:
+            - justify-self: start
+            - font-size: 30px
+            - font-weight: 800
+          label:
+            - justify-self: start
+            - text-align: left
+            - font-size: 18px
+            - line-height: 1.55
+
+      - type: grid
+        columns: 4
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Close and Arm
+            icon: mdi:shield-lock
+            confirmation:
+              text: Run the building preflight, lock both entrances, and arm the building?
+            tap_action:
+              action: call-service
+              service: script.bklf_close_and_arm
+          - type: custom:button-card
+            name: Disarm
+            icon: mdi:shield-off
+            confirmation:
+              text: Disarm the building?
+            tap_action:
+              action: call-service
+              service: script.bklf_disarm_building
+          - type: custom:button-card
+            name: Open Building
+            icon: mdi:door-open
+            confirmation:
+              text: Set the building to Open and Disarmed?
+            tap_action:
+              action: call-service
+              service: script.bklf_open_building
+          - type: custom:button-card
+            name: View Details
+            icon: mdi:format-list-checks
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+
+      - type: custom:mushroom-template-card
+        primary: >-
+          {% set armed_motion = is_state('input_boolean.bklf_building_armed', 'on')
+             and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+          {% if armed_motion %}
+            Security Attention
+          {% elif is_state('binary_sensor.bklf_environmental_attention', 'off')
+             and is_state('binary_sensor.bklf_doors_attention', 'off')
+             and is_state('binary_sensor.bklf_windows_attention', 'off')
+             and is_state('binary_sensor.bklf_cameras_attention', 'off')
+             and is_state('binary_sensor.bklf_alarm_output_attention', 'off') %}
+            All Monitored Systems Normal
+          {% else %}
+            System Check Required
+          {% endif %}
+        secondary: Select a category below for exact status information.
+        icon: >-
+          {% set armed_motion = is_state('input_boolean.bklf_building_armed', 'on')
+             and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+          {% if is_state('binary_sensor.bklf_environmental_attention', 'off')
+             and is_state('binary_sensor.bklf_doors_attention', 'off')
+             and is_state('binary_sensor.bklf_windows_attention', 'off')
+             and is_state('binary_sensor.bklf_cameras_attention', 'off')
+             and is_state('binary_sensor.bklf_alarm_output_attention', 'off')
+             and not armed_motion %}
+            mdi:check-circle
+          {% else %}
+            mdi:alert-circle
+          {% endif %}
+        icon_color: >-
+          {% set armed_motion = is_state('input_boolean.bklf_building_armed', 'on')
+             and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+          {% if is_state('binary_sensor.bklf_environmental_attention', 'off')
+             and is_state('binary_sensor.bklf_doors_attention', 'off')
+             and is_state('binary_sensor.bklf_windows_attention', 'off')
+             and is_state('binary_sensor.bklf_cameras_attention', 'off')
+             and is_state('binary_sensor.bklf_alarm_output_attention', 'off')
+             and not armed_motion %}green{% elif armed_motion %}red{% else %}amber{% endif %}
+        tap_action:
+          action: navigate
+          navigation_path: /bklf-desktop/system
+
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:mushroom-template-card
+            entity: sensor.environmental_monitor_temperature
+            primary: "{{ states('sensor.environmental_monitor_temperature') }} °F"
+            secondary: Viewing Room Temperature
+            icon: mdi:thermometer
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_environmental_attention', 'on') %}amber{% else %}green{% endif %}
+          - type: custom:mushroom-template-card
+            entity: sensor.environmental_monitor_humidity
+            primary: "{{ states('sensor.environmental_monitor_humidity') }} %"
+            secondary: Viewing Room Humidity
+            icon: mdi:water-percent
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_environmental_attention', 'on') %}amber{% else %}blue{% endif %}
+
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Doors
+            secondary: >-
+              {% if is_state('binary_sensor.bklf_doors_attention', 'off') %}Monitored door status normal{% else %}Door or lock communication needs attention{% endif %}
+            icon: mdi:door-closed
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_doors_attention', 'off') %}green{% else %}amber{% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+          - type: custom:mushroom-template-card
+            primary: Locks
+            secondary: >-
+              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
+                 and is_state('lock.east_wall_bailey_double_doors', 'locked') %}Both entrances locked{% else %}One or more entrances are unlocked{% endif %}
+            icon: mdi:lock
+            icon_color: >-
+              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
+                 and is_state('lock.east_wall_bailey_double_doors', 'locked') %}green{% else %}amber{% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+          - type: custom:mushroom-template-card
+            primary: Windows
+            secondary: >-
+              {% set windows = [
+                'binary_sensor.c05_north_wall_window_1',
+                'binary_sensor.c06_north_wall_window_2',
+                'binary_sensor.c07_north_wall_window_3',
+                'binary_sensor.c08_north_wall_window_4',
+                'binary_sensor.c10_south_wall_window_1',
+                'binary_sensor.c11_south_wall_window_2'
+              ] %}
+              {% set unavailable = expand(windows) | selectattr('state', 'in', ['unknown', 'unavailable']) | list | count %}
+              {% set open = expand(windows) | selectattr('state', 'eq', 'on') | list | count %}
+              {% if unavailable > 0 %}{{ unavailable }} window sensor{{ '' if unavailable == 1 else 's' }} offline{% elif open > 0 %}{{ open }} window{{ '' if open == 1 else 's' }} open{% else %}All mapped windows closed{% endif %}
+            icon: mdi:window-closed
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_windows_attention', 'off') %}green{% else %}amber{% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+          - type: custom:mushroom-template-card
+            primary: Cameras
+            secondary: >-
+              {% if is_state('binary_sensor.bklf_cameras_attention', 'off') %}All three primary cameras online{% else %}One or more cameras unavailable{% endif %}
+            icon: mdi:cctv
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_cameras_attention', 'off') %}green{% else %}amber{% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/cameras
+          - type: custom:mushroom-template-card
+            primary: Motion
+            secondary: >-
+              {% if is_state('binary_sensor.bklf_interior_motion_active', 'off') %}No interior activity{% elif is_state('input_boolean.bklf_building_armed', 'on') %}Motion detected while armed{% else %}Normal activity detected{% endif %}
+            icon: mdi:motion-sensor
+            icon_color: >-
+              {% if is_state('binary_sensor.bklf_interior_motion_active', 'off') %}green{% elif is_state('input_boolean.bklf_building_armed', 'on') %}red{% else %}blue{% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /bklf-desktop/system
+          - type: custom:mushroom-template-card
+            primary: Smoke Detectors
+            secondary: Installed
+            icon: mdi:smoke-detector
+            icon_color: green
+            tap_action:
+              action: none
+          - type: custom:mushroom-template-card
+            primary: South Entrance Light
+            secondary: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %}On{% elif is_state('switch.south_entrance_lamp', 'off') %}Off{% else %}Unavailable{% endif %}
+            icon: mdi:lightbulb
+            icon_color: >-
+              {% if is_state('switch.south_entrance_lamp', 'on') %}amber{% elif is_state('switch.south_entrance_lamp', 'off') %}green{% else %}red{% endif %}
+            tap_action:
+              action: none
+          - type: custom:mushroom-template-card
+            primary: Siren / Strobe
+            secondary: >-
+              {% if is_state('switch.network_closet_universal_relay_zooz_zen17_1', 'on') %}ACTIVE{% elif is_state('binary_sensor.bklf_alarm_output_attention', 'on') %}Relay unavailable{% else %}Ready{% endif %}
+            icon: mdi:alarm-light
+            icon_color: >-
+              {% if is_state('switch.network_closet_universal_relay_zooz_zen17_1', 'on') %}red{% elif is_state('binary_sensor.bklf_alarm_output_attention', 'on') %}amber{% else %}green{% endif %}
+            tap_action:
+              action: none
+
   - title: Dashboard
     path: dashboard
     icon: mdi:view-dashboard
@@ -124,10 +352,14 @@ views:
           - type: custom:mushroom-template-card
             primary: Building Status
             secondary: >-
-              {% if is_state('binary_sensor.bklf_building_secure', 'on') %}
-                Needs review
+              {% if is_state('input_boolean.bklf_building_armed', 'on') and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+                Armed motion alert
+              {% elif is_state('binary_sensor.bklf_exterior_secure', 'on') %}
+                Review exterior openings
+              {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') or not is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+                Review entrance locks
               {% else %}
-                All clear
+                Ready for normal use
               {% endif %}
             icon: mdi:shield-check
             icon_color: >-
@@ -158,14 +390,16 @@ views:
           - type: custom:mushroom-template-card
             primary: Interior Motion
             secondary: >-
-              {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
-                Motion active
+              {% if is_state('input_boolean.bklf_building_armed', 'on') and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+                Motion detected while armed
+              {% elif is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+                Normal activity while disarmed
               {% else %}
-                Clear
+                No interior activity
               {% endif %}
             icon: mdi:motion-sensor
             icon_color: >-
-              {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %} amber {% else %} green {% endif %}
+              {% if is_state('input_boolean.bklf_building_armed', 'on') and is_state('binary_sensor.bklf_interior_motion_active', 'on') %} red {% elif is_state('binary_sensor.bklf_interior_motion_active', 'on') %} blue {% else %} green {% endif %}
             tap_action:
               action: navigate
               navigation_path: /bklf-desktop/security
@@ -174,10 +408,23 @@ views:
           - type: custom:mushroom-template-card
             primary: Doors / Windows
             secondary: >-
-              {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %}
-                Opening needs review
+              {% set contacts = [
+                'binary_sensor.c01_south_entrance_door',
+                'binary_sensor.c05_north_wall_window_1',
+                'binary_sensor.c06_north_wall_window_2',
+                'binary_sensor.c07_north_wall_window_3',
+                'binary_sensor.c08_north_wall_window_4',
+                'binary_sensor.c10_south_wall_window_1',
+                'binary_sensor.c11_south_wall_window_2'
+              ] %}
+              {% set offline = expand(contacts) | selectattr('state', 'in', ['unknown', 'unavailable']) | list | count %}
+              {% set opened = expand(contacts) | selectattr('state', 'eq', 'on') | list | count %}
+              {% if offline > 0 %}
+                {{ offline }} contact sensor{% if offline != 1 %}s{% endif %} offline
+              {% elif opened > 0 %}
+                {{ opened }} opening{% if opened != 1 %}s{% endif %} open
               {% else %}
-                Closed
+                All mapped openings closed
               {% endif %}
             icon: mdi:door-closed-lock
             icon_color: >-
@@ -623,6 +870,192 @@ views:
             card_mod:
               style: *status_tile
 
+  - title: South Entrance Doorbell
+    path: doorbell
+    icon: mdi:doorbell-video
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        name: South Entrance Doorbell
+        label: Live visitor video and entry access
+        icon: mdi:doorbell-video
+        show_label: true
+        styles: *hero_card
+      - type: custom:webrtc-camera
+        streams:
+          - url: bklf_south_doorbell
+            name: Listen
+          - url: bklf_south_doorbell
+            name: Talk
+            mode: webrtc
+            media: video,audio,microphone
+        ui: true
+      - type: custom:mushroom-template-card
+        primary: Two-way conversation
+        secondary: Use the Reolink app for full conversation. Listen and Talk remain available in the video controls.
+        icon: mdi:cellphone-sound
+        icon_color: blue
+        card_mod:
+          style: *status_tile
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Lock
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: *safe_button
+          - type: custom:button-card
+            name: Unlock
+            icon: mdi:lock-open-variant
+            confirmation:
+              text: Unlock the front entry?
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
+            styles: *caution_button
+      - type: custom:button-card
+        name: Snapshot
+        icon: mdi:camera
+        tap_action:
+          action: call-service
+          service: camera.snapshot
+          target:
+            entity_id: camera.south_wall_south_entrance_doorbell_fluent
+          data:
+            filename: /config/www/bklf-south-entrance-snapshot.jpg
+        styles: *gold_outline_button
+      - type: custom:mushroom-template-card
+        primary: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
+            Door is open
+          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            Lock needs review
+          {% else %}
+            Door is closed and locked
+          {% endif %}
+        secondary: South Entrance / Front Entry
+        icon: mdi:door-closed-lock
+        icon_color: >-
+          {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
+            amber
+          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
+            red
+          {% else %}
+            green
+          {% endif %}
+        card_mod:
+          style: *status_tile
+      - type: logbook
+        title: Recent Visitor Activity
+        hours_to_show: 12
+        entities:
+          - binary_sensor.south_wall_south_entrance_doorbell_visitor
+          - binary_sensor.south_wall_south_entrance_doorbell_person
+          - binary_sensor.south_wall_south_entrance_doorbell_motion
+          - lock.south_wall_home_connect_620_connected_smart_lock
+        card_mod:
+          style: *activity_card
+
+  - title: Bailey Doorbell
+    path: bailey-doorbell
+    icon: mdi:doorbell-video
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: custom:button-card
+        name: Bailey Double Doors Doorbell
+        label: Live visitor video and entry access
+        icon: mdi:doorbell-video
+        show_label: true
+        styles: *hero_card
+      - type: custom:webrtc-camera
+        streams:
+          - url: bklf_bailey_doorbell
+            name: Listen
+          - url: bklf_bailey_doorbell
+            name: Talk
+            mode: webrtc
+            media: video,audio,microphone
+        ui: true
+      - type: custom:mushroom-template-card
+        primary: Two-way conversation
+        secondary: Use the Reolink app for full conversation. Listen and Talk remain available in the video controls.
+        icon: mdi:cellphone-sound
+        icon_color: blue
+        card_mod:
+          style: *status_tile
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            name: Lock
+            icon: mdi:lock
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.east_wall_bailey_double_doors
+            styles: *safe_button
+          - type: custom:button-card
+            name: Unlock
+            icon: mdi:lock-open-variant
+            confirmation:
+              text: Unlock the Bailey Double Doors?
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.east_wall_bailey_double_doors
+            styles: *caution_button
+      - type: custom:button-card
+        name: Snapshot
+        icon: mdi:camera
+        tap_action:
+          action: call-service
+          service: camera.snapshot
+          target:
+            entity_id: camera.east_wall_bailey_double_door_fluent
+          data:
+            filename: /config/www/bklf-bailey-double-doors-snapshot.jpg
+        styles: *gold_outline_button
+      - type: custom:mushroom-template-card
+        primary: >-
+          {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Bailey Double Doors are locked
+          {% elif is_state('lock.east_wall_bailey_double_doors', 'unlocked') %}
+            Bailey Double Doors are unlocked
+          {% else %}
+            Bailey lock needs review
+          {% endif %}
+        secondary: Bailey Double Doors / East Wall
+        icon: mdi:door-closed-lock
+        icon_color: >-
+          {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            green
+          {% elif is_state('lock.east_wall_bailey_double_doors', 'unlocked') %}
+            amber
+          {% else %}
+            red
+          {% endif %}
+        card_mod:
+          style: *status_tile
+      - type: logbook
+        title: Recent Visitor Activity
+        hours_to_show: 12
+        entities:
+          - binary_sensor.east_wall_bailey_double_door_visitor
+          - binary_sensor.east_wall_bailey_double_door_person
+          - binary_sensor.east_wall_bailey_double_door_motion
+          - lock.east_wall_bailey_double_doors
+        card_mod:
+          style: *activity_card
+
   - title: Cameras
     path: cameras
     icon: mdi:cctv
@@ -697,22 +1130,6 @@ views:
           action: more-info
         card_mod:
           style: *camera_card
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            name: South Entrance Talk
-            icon: mdi:microphone
-            tap_action:
-              action: more-info
-              entity: camera.south_wall_south_entrance_doorbell_fluent
-            styles: *gold_outline_button
-          - type: custom:button-card
-            name: Bailey Talk
-            icon: mdi:microphone
-            tap_action:
-              action: more-info
-              entity: camera.east_wall_bailey_double_door_fluent
-            styles: *gold_outline_button
       - type: logbook
         title: Camera Activity
         hours_to_show: 12
@@ -962,10 +1379,14 @@ views:
       - type: custom:mushroom-template-card
         primary: Building Status
         secondary: >-
-          {% if is_state('binary_sensor.bklf_building_secure', 'on') %}
-            Needs review
+          {% if is_state('input_boolean.bklf_building_armed', 'on') and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            Armed motion alert
+          {% elif is_state('binary_sensor.bklf_exterior_secure', 'on') %}
+            Review exterior openings
+          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') or not is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Review entrance locks
           {% else %}
-            All clear
+            Ready for normal use
           {% endif %}
         icon: mdi:shield-home
         icon_color: >-
@@ -978,14 +1399,16 @@ views:
       - type: custom:mushroom-template-card
         primary: Interior Motion
         secondary: >-
-          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
-            Motion active
+          {% if is_state('input_boolean.bklf_building_armed', 'on') and is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            Motion detected while armed
+          {% elif is_state('binary_sensor.bklf_interior_motion_active', 'on') %}
+            Normal activity while disarmed
           {% else %}
-            Clear
+            No interior activity
           {% endif %}
         icon: mdi:motion-sensor
         icon_color: >-
-          {% if is_state('binary_sensor.bklf_interior_motion_active', 'on') %} amber {% else %} green {% endif %}
+          {% if is_state('input_boolean.bklf_building_armed', 'on') and is_state('binary_sensor.bklf_interior_motion_active', 'on') %} red {% elif is_state('binary_sensor.bklf_interior_motion_active', 'on') %} blue {% else %} green {% endif %}
         tap_action:
           action: more-info
           entity: binary_sensor.bklf_interior_motion_active
@@ -994,10 +1417,23 @@ views:
       - type: custom:mushroom-template-card
         primary: Exterior Openings
         secondary: >-
-          {% if is_state('binary_sensor.bklf_exterior_secure', 'on') %}
-            Opening needs review
+          {% set contacts = [
+            'binary_sensor.c01_south_entrance_door',
+            'binary_sensor.c05_north_wall_window_1',
+            'binary_sensor.c06_north_wall_window_2',
+            'binary_sensor.c07_north_wall_window_3',
+            'binary_sensor.c08_north_wall_window_4',
+            'binary_sensor.c10_south_wall_window_1',
+            'binary_sensor.c11_south_wall_window_2'
+          ] %}
+          {% set offline = expand(contacts) | selectattr('state', 'in', ['unknown', 'unavailable']) | list | count %}
+          {% set opened = expand(contacts) | selectattr('state', 'eq', 'on') | list | count %}
+          {% if offline > 0 %}
+            {{ offline }} contact sensor{% if offline != 1 %}s{% endif %} offline
+          {% elif opened > 0 %}
+            {{ opened }} opening{% if opened != 1 %}s{% endif %} open
           {% else %}
-            Closed
+            All mapped openings closed
           {% endif %}
         icon: mdi:window-closed-variant
         icon_color: >-

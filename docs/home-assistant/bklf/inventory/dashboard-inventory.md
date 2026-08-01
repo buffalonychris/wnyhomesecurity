@@ -9,17 +9,21 @@ Inventory version: REV01
 | --- | --- |
 | Dashboard title | WNYHS Customer Control Center |
 | Dashboard source file | `dashboards/bklf-main-dashboard.yaml` |
-| Current customer-priority workflow | South Entrance / Front Door with Talk, Unlock, View, Snapshot, and Lock |
+| Current customer-priority workflow | Bailey Building Status landing page, then matched South Entrance and Bailey doorbell workflows |
 | Dashboard-referenced entity source | `data/dashboard_referenced_entities.csv` |
 
 ## Views / Routes
 
 | Route | Title | Icon | Type |
 | --- | --- | --- | --- |
-| `home` | Home | `mdi:home` | `masonry` |
-| `doorbell` | Doorbell | `mdi:doorbell-video` | `masonry` |
+| `status` | Bailey Building Status | `mdi:office-building-check` | Main and Desktop landing view |
+| `home` | South Entrance | `mdi:doorbell-video` | Main mobile view |
+| `dashboard` | Dashboard | `mdi:view-dashboard` | Desktop overview view |
+| `doorbell` | South Entrance Doorbell | `mdi:doorbell-video` | Main and Desktop |
+| `bailey-doorbell` | Bailey Doorbell | `mdi:doorbell-video` | Main and Desktop |
 | `cameras` | Cameras | `mdi:cctv` | `masonry` |
 | `locks` | Locks | `mdi:lock` | `masonry` |
+| `doors-locks` | Doors & Locks | `mdi:door-closed-lock` | Desktop |
 | `security` | Security | `mdi:shield-check` | `masonry` |
 | `activity` | Activity | `mdi:history` | `masonry` |
 | `more` | More | `mdi:dots-horizontal-circle` | `masonry` |
@@ -62,6 +66,8 @@ These customer-facing entities are referenced by the customer dashboard source. 
 - Bailey Double Doors Doorbell is now an explicit customer dashboard camera and activity entity.
 - Bailey Double Doors Lock is now an explicit customer dashboard lock/control entity.
 - South Entrance Lamp is now an explicit customer-facing light/utility control.
+- Both customer dashboards open with Bailey Building Status and show the customer-facing smoke category only as `Smoke Detectors` / `Installed` in green.
+- Smoke installation status is not included in the facility-attention aggregate and does not claim live smoke/fire alarm detection.
 - The lock, lock jam status, door contact, visitor/person status, building mode, exterior secure, interior motion, and building secure composites are dashboard dependencies.
 - Broader HA entity inventory is documented separately in `entity-inventory.md` so customer-facing dashboard dependencies remain distinct from service, diagnostic, and integration-created entities.
 - BKLF mobile dashboard follow-up notes are preserved in `docs/home-assistant/bklf/BKLF_DASHBOARD_FOLLOWUP_NOTES_REV01.md` as documentation/planning only. They do not authorize dashboard YAML, live Home Assistant, package, theme, automation, or customer handoff changes.

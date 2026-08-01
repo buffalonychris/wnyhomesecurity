@@ -20,6 +20,9 @@ Implementation authority: No
 | C10-C14 South Wall Windows | SONOFF | SNZB-04PR2 | ZHA | South Wall | 30 | South Wall window contact set and battery diagnostics. |
 | M01 Main Hallway Motion | eWeLink | SNZB-03P | ZHA | Main Hallway | 7 | Motion and occupancy plus battery diagnostics. |
 | M02 Viewing Room Motion | eWeLink | SNZB-03P | ZHA | Viewing Room | 7 | Motion and occupancy plus battery diagnostics. |
+| SMOKE 01 Network Closet | Tuya / Moes | TS0601 (`_TZE284_vawy74yh`) | ZHA with scoped handler | Network Closet | Pending live reconfigure | Installed; DP 1 smoke entity expected after handler deployment and device reconfigure. Customer landing page reports installation only. |
+| SMOKE 02 Viewing Room | Tuya / Moes | TS0601 (`_TZE284_vawy74yh`) | ZHA with scoped handler | Viewing Room | Pending live reconfigure | Installed; DP 1 smoke entity expected after handler deployment and device reconfigure. Customer landing page reports installation only. |
+| SMOKE 03 West Hallway Jog | Tuya / Moes | TS0601 (`_TZE284_vawy74yh`) | ZHA with scoped handler | West Hallway Jog | Pending live reconfigure | Installed; DP 1 smoke entity expected after handler deployment and device reconfigure. Customer landing page reports installation only. |
 | Network Closet Zigbee Coordinator | SONOFF | ZBDongle-E | ZHA | Network Closet | 44 | Zigbee controller/support diagnostics. |
 | 800 Series Long Range USB Controller | Zooz | ZST39 LR | Z-Wave JS | Network Closet | 19 | Z-Wave controller/support diagnostics. |
 | Chris Cell | motorola | moto g play - 2024 | Mobile App | Unassigned | 127 | Companion device, notify service, device tracker. |
@@ -34,3 +37,4 @@ Implementation authority: No
 - ZHA covers contact sensors, motion sensors, the South Entrance Lamp, and Zigbee coordinator.
 - Mobile App covers Chris Cell, Luis Cell, Me Lewis Cell, and SM-S931U1 Helen Cell.
 - Credentials, serials, private identifiers, pairing codes, and mobile push registration material are excluded.
+- C09 North Wall Window 5 and C12 South Wall Window 3 were removed from the installed system on operator confirmation. Their rows in historical backup-extraction CSVs remain provenance only and are not current operational inventory.

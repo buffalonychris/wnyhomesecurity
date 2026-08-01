@@ -1,9 +1,9 @@
 # BKLF security helpers and template status package.
 #
 # Live entity IDs are sourced from the exported BKLF Home Assistant registry.
-# C09-C12 were finalized onsite after the initial handoff build. C13 and C14
-# remain documented only and are not referenced by active customer-facing
-# templates or dashboards.
+# C09 and C12 were removed from the installed system and are intentionally not
+# referenced by active customer-facing templates or dashboards. C13 and C14
+# remain documented only.
 
 input_boolean:
   bklf_building_armed:
@@ -28,11 +28,173 @@ input_select:
       - Service
       - Maintenance
 
+script:
+  bklf_open_building:
+    alias: BKLF Open Building
+    mode: single
+    sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bklf_building_armed
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.bklf_building_mode
+        data:
+          option: Open
+
+  bklf_disarm_building:
+    alias: BKLF Disarm Building
+    mode: single
+    sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bklf_building_armed
+
+  bklf_close_and_arm:
+    alias: BKLF Close and Arm
+    mode: single
+    sequence:
+      - condition: state
+        entity_id: input_boolean.bklf_installer_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.bklf_maintenance_mode
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.bklf_doors_attention
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.bklf_windows_attention
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.bklf_interior_motion_active
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.bklf_cameras_attention
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.bklf_alarm_output_attention
+        state: "off"
+      - service: lock.lock
+        target:
+          entity_id:
+            - lock.south_wall_home_connect_620_connected_smart_lock
+            - lock.east_wall_bailey_double_doors
+      - wait_template: >
+          {{ is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
+             and is_state('lock.east_wall_bailey_double_doors', 'locked') }}
+        timeout: "00:00:20"
+        continue_on_timeout: false
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.bklf_building_mode
+        data:
+          option: Closed
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bklf_building_armed
+
 template:
+  - sensor:
+      - name: BKLF Facility Date and Time
+        unique_id: bklf_facility_date_and_time
+        icon: mdi:calendar-clock
+        state: "{{ now().strftime('%A, %B %d, %Y - %I:%M %p') }}"
+
+      - name: BKLF Facility Status
+        unique_id: bklf_facility_status
+        icon: mdi:office-building
+        state: >
+          {% set mode = states('input_select.bklf_building_mode') %}
+          {% set armed = is_state('input_boolean.bklf_building_armed', 'on') %}
+          {% if armed %}
+            {{ mode }} / Armed
+          {% else %}
+            {{ mode }} / Disarmed
+          {% endif %}
+
   - binary_sensor:
-      - name: BKLF Exterior Secure
+      - name: BKLF Doors Attention
+        unique_id: bklf_doors_attention
+        device_class: problem
+        state: >
+          {{ states('binary_sensor.c01_south_entrance_door') != 'off'
+             or states('lock.south_wall_home_connect_620_connected_smart_lock') in ['unknown', 'unavailable']
+             or states('lock.east_wall_bailey_double_doors') in ['unknown', 'unavailable'] }}
+        attributes:
+          monitored_door_contact: binary_sensor.c01_south_entrance_door
+          monitored_locks: >
+            lock.south_wall_home_connect_620_connected_smart_lock,
+            lock.east_wall_bailey_double_doors
+          onsite_note: "Confirm the physical Bailey entrance contact mapping before adding it to this aggregate."
+
+      - name: BKLF Windows Attention
+        unique_id: bklf_windows_attention
+        device_class: problem
+        state: >
+          {% set windows = [
+            'binary_sensor.c05_north_wall_window_1',
+            'binary_sensor.c06_north_wall_window_2',
+            'binary_sensor.c07_north_wall_window_3',
+            'binary_sensor.c08_north_wall_window_4',
+            'binary_sensor.c10_south_wall_window_1',
+            'binary_sensor.c11_south_wall_window_2'
+          ] %}
+          {{ expand(windows) | rejectattr('state', 'eq', 'off') | list | count > 0 }}
+        attributes:
+          onsite_note: "C03/C04 and C13/C14 remain outside this aggregate until their physical mapping is confirmed onsite."
+
+      - name: BKLF Cameras Attention
+        unique_id: bklf_cameras_attention
+        device_class: problem
+        state: >
+          {% set cameras = [
+            'camera.south_wall_south_entrance_doorbell_fluent',
+            'camera.east_wall_bailey_double_door_fluent',
+            'camera.south_wall_cam01_southwest_corner_parking_lot_fluent'
+          ] %}
+          {{ expand(cameras)
+             | selectattr('state', 'in', ['unknown', 'unavailable'])
+             | list | count > 0 }}
+
+      - name: BKLF Environmental Attention
+        unique_id: bklf_environmental_attention
+        device_class: problem
+        state: >
+          {{ states('sensor.environmental_monitor_temperature') in ['unknown', 'unavailable']
+             or states('sensor.environmental_monitor_humidity') in ['unknown', 'unavailable'] }}
+
+      - name: BKLF Alarm Output Attention
+        unique_id: bklf_alarm_output_attention
+        device_class: problem
+        state: >
+          {{ states('switch.network_closet_universal_relay_zooz_zen17_1') in ['unknown', 'unavailable'] }}
+
+      - name: BKLF Smoke Fire Attention
+        unique_id: bklf_smoke_fire_attention
+        device_class: problem
+        state: >
+          {% set smoke_entities = [
+            'binary_sensor.smoke_01_smoke',
+            'binary_sensor.smoke_02_smoke',
+            'binary_sensor.smoke_03_smoke'
+          ] %}
+          {% set ns = namespace(attention=false) %}
+          {% for smoke_entity in smoke_entities %}
+            {% if states(smoke_entity) != 'off' %}
+              {% set ns.attention = true %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.attention }}
+        attributes:
+          status_note: >
+            The scoped ZHA handler exposes smoke state for commissioning and service
+            validation. The customer landing page reports installation status only.
+            Audible-listener alarm detection and response validation are deferred.
+
+      - name: BKLF Exterior Attention
         unique_id: bklf_exterior_secure
-        device_class: safety
+        device_class: problem
         state: >
           {% set active_contacts = [
             'binary_sensor.c01_south_entrance_door',
@@ -40,10 +202,8 @@ template:
             'binary_sensor.c06_north_wall_window_2',
             'binary_sensor.c07_north_wall_window_3',
             'binary_sensor.c08_north_wall_window_4',
-            'binary_sensor.c09_west_service_door',
             'binary_sensor.c10_south_wall_window_1',
-            'binary_sensor.c11_south_wall_window_2',
-            'binary_sensor.c12_upstairs_back_porch_door'
+            'binary_sensor.c11_south_wall_window_2'
           ] %}
           {{ expand(active_contacts)
             | rejectattr('state', 'eq', 'off')
@@ -51,9 +211,7 @@ template:
             | count > 0 }}
         attributes:
           included_contacts: >
-            C01 South Entrance, C05-C08 North Wall Windows, C09 West Service Door,
-            C10 Front Double Door - Left, C11 Front Double Door - Right, and
-            C12 Upstairs Back Porch Door.
+            C01 South Entrance, C05-C08 North Wall Windows, and C10-C11 South Wall Windows.
           deferred_contacts: "C13 and C14 are intentionally deferred and not part of active secure status."
           future_window_sensors: "Two East Wall fixed picture windows are future sensor locations."
           future_front_double_door_lock: "Second Kwikset/Home Connect 620 lock is planned for the front double-door entrance after pairing. It is not active and does not affect secure status."
@@ -63,15 +221,15 @@ template:
         device_class: motion
         state: >
           {% set motion_sensors = [
-            'binary_sensor.m01_main_hallway_motion',
-            'binary_sensor.m02_viewing_room_motion'
+            'binary_sensor.m01_main_hallway_motion_occupancy',
+            'binary_sensor.m02_viewing_room_motion_occupancy'
           ] %}
           {{ expand(motion_sensors)
             | selectattr('state', 'eq', 'on')
             | list
             | count > 0 }}
         attributes:
-          included_motion_sensors: "M01 Main Hallway Motion and M02 Viewing Room Motion."
+          included_motion_sensors: "M01 Main Hallway Motion Occupancy and M02 Viewing Room Motion Occupancy."
 
       - name: BKLF South Entrance Active
         unique_id: bklf_south_entrance_active
@@ -98,14 +256,17 @@ template:
           person_sensor: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_person
           linger_area_person_sensor: binary_sensor.south_wall_cam01_southwest_corner_parking_lot_linger_area_1_person
 
-      - name: BKLF Building Secure
+      - name: BKLF Building Attention
         unique_id: bklf_building_secure
-        device_class: safety
+        device_class: problem
         state: >
           {{ is_state('binary_sensor.bklf_exterior_secure', 'on')
-            or is_state('binary_sensor.bklf_interior_motion_active', 'on')
-            or not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}
+            or not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
+            or not is_state('lock.east_wall_bailey_double_doors', 'locked')
+            or (is_state('input_boolean.bklf_building_armed', 'on')
+              and is_state('binary_sensor.bklf_interior_motion_active', 'on')) }}
         attributes:
-          lock: lock.south_wall_home_connect_620_connected_smart_lock
+          south_lock: lock.south_wall_home_connect_620_connected_smart_lock
+          bailey_lock: lock.east_wall_bailey_double_doors
           exterior_status: binary_sensor.bklf_exterior_secure
           motion_status: binary_sensor.bklf_interior_motion_active
