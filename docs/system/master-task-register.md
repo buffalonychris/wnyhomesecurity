@@ -900,6 +900,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001
+
+- **Task ID:** KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001
+- **Task Name:** KAOS HubSpot Authority and Schema Reconciliation Audit
+- **Status:** ACTIVE
+- **Category:** CRM
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Perform a bounded, read-only reconciliation of HubSpot object authority, schema structure, pipeline usage, lifecycle ownership, duplicate or legacy properties, and KAOS module interdependencies so later implementation tasks can be defined without allowing Codex or chat-derived context to invent business rules.
+- **Allowed Scope:** Read current repository governance, HubSpot-related documentation, CRM contracts, workflow documentation, existing property and pipeline references, and authorized read-only HubSpot metadata and records when the later audit work order is executed. Determine the authoritative ownership boundaries for Contacts, Companies, Deals, pipelines, stages, KAOS modules, opportunity progress, lifecycle state, and cross-module dependencies. Identify duplicate, legacy, ambiguous, conflicting, unused, or insufficiently governed properties and structures. Produce a documented current-state map, authority matrix, schema-gap analysis, interdependency map, remediation recommendations, and a proposed queue of separately bounded follow-up tasks. Treat Deals as the expected owner of opportunity progress only where confirmed by repository authority or explicit operator decision.
+- **Forbidden Scope:** No live HubSpot writes; no creation, deletion, renaming, merging, migration, archival, or modification of properties, objects, pipelines, stages, associations, workflows, lists, records, forms, dashboards, reports, permissions, integrations, or automation. No website or runtime changes. No KAOS user-interface implementation. No historical data cleanup. No speculative business rules. No implementation of recommended remediation. No payment, Stripe, scheduling, procurement, installation, customer communication, lead-routing, quote, planner, email, Cloudflare, dependency, secret, or production-system changes. No PR merge.
+- **Target Files:** Future audit deliverables and exact target paths must be established by a separate bounded audit work order after repository inspection. This MTR-creation work order may modify only `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None during task creation. The future audit must remain read-only and must not alter HubSpot or any production system.
+- **Documentation Updates Required:** For the future audit, create a durable repository-owned audit documenting current HubSpot object authority, canonical pipeline and stage usage, property ownership, duplicate and legacy classifications, KAOS module relationships, schema gaps, unresolved operator decisions, remediation sequencing, and proposed bounded implementation tasks. Exact filenames require confirmation in the future audit work order.
+- **Validation Required:** For this task-record creation: `git status --short`; `git diff --stat`; `git diff --name-only`; `git diff --check`; targeted search confirming exactly one actionable task record for `KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001`; verify only `docs/system/master-task-register.md` changed. For the future audit: validate all findings against repository authority and authorized read-only HubSpot evidence; clearly distinguish confirmed facts, inconsistencies, inferred relationships, and operator decisions required.
+- **Exit Criteria:** The Master Task Register contains one complete ACTIVE task record for `KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001`; the record complies with the current actionable task schema; only the Master Task Register changed; no HubSpot or runtime action occurred; validation passes; a pull request is opened without merge. Completion of this MTR update does not mark the audit itself DONE.
+- **Dependencies:** Current repository authority chain; current operational-context document; HubSpot connector access for a later read-only audit; existing CRM, lifecycle, KAOS, workflow, and integration documentation; operator authorization for this task; separate bounded Codex work order before audit execution.
+- **Operator Decision Required:** Review and approve the resulting pull request. During the later audit, resolve any business-authority questions not already controlled by repository documentation, including canonical object ownership, retirement of legacy properties, pipeline consolidation, and remediation priority.
+
 ### KAOS-PROCUREMENT-SITE-001 — KAOS Procurement V1 Prototype
 
 - **Task ID:** KAOS-PROCUREMENT-SITE-001
