@@ -1,0 +1,501 @@
+.beta-lighting-page {
+  background: var(--c);
+  color: var(--t);
+}
+
+.beta-lighting-page h1,
+.beta-lighting-page h2,
+.beta-lighting-page h3 {
+  margin-top: 0;
+}
+
+.beta-lighting-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--ca);
+  color: var(--wnyhs-dark-text);
+}
+
+.beta-lighting-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      color-mix(in srgb, var(--wnyhs-action-gold) 18%, transparent),
+      transparent 32%
+    ),
+    linear-gradient(
+      126deg,
+      transparent 52%,
+      color-mix(in srgb, var(--wnyhs-dark-panel) 48%, transparent)
+    );
+}
+
+.beta-lighting-hero__layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(20rem, 0.94fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  padding-block: clamp(5rem, 9vw, 8.5rem);
+}
+
+.beta-lighting-hero h1 {
+  max-width: 11ch;
+  font-size: clamp(3.35rem, 8vw, 7rem);
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+}
+
+.beta-lighting-hero__lead {
+  max-width: 46rem;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.35;
+}
+
+.beta-lighting-hero__visual {
+  min-height: 31rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 3vw, 2.6rem);
+  border: 1px solid
+    color-mix(in srgb, var(--wnyhs-action-gold) 45%, transparent);
+  border-radius: var(--wnyhs-radius-2xl);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--wnyhs-action-gold) 14%, transparent),
+    color-mix(in srgb, var(--wnyhs-dark-panel) 95%, transparent)
+  );
+  box-shadow: var(--wnyhs-shadow-xl);
+}
+
+.beta-lighting-hero__visual > span {
+  color: var(--wnyhs-action-gold);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.beta-lighting-hero__visual > strong {
+  max-width: 12ch;
+  margin: 0.6rem 0 2rem;
+  font-family: var(--wnyhs-font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+.beta-lighting-hero__visual > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.beta-lighting-hero__visual i {
+  padding: 0.8rem;
+  border-radius: var(--wnyhs-radius-md);
+  background: color-mix(in srgb, var(--wnyhs-dark-text) 8%, transparent);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.beta-lighting-hero__visual small {
+  margin-top: 1.2rem;
+  color: var(--wnyhs-dark-muted);
+}
+
+.beta-lighting-outcome h2,
+.beta-lighting-control h2,
+.beta-lighting-ownership h2 {
+  max-width: 17ch;
+}
+
+.beta-lighting-compare__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.beta-lighting-compare article {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--bd);
+  border-radius: var(--wnyhs-radius-xl);
+  background: var(--c);
+}
+
+.beta-lighting-compare article:last-child {
+  border-top: 4px solid var(--wnyhs-action-gold);
+}
+
+.beta-lighting-compare article > span {
+  color: var(--wnyhs-action-gold-ink);
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.beta-lighting-compare h3 {
+  max-width: 22ch;
+  margin: 1.2rem 0;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.beta-lighting-compare ul {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: 1.2rem;
+}
+
+.beta-lighting-friction__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.beta-lighting-friction ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.beta-lighting-friction li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--bd);
+}
+
+.beta-lighting-friction li span,
+.beta-lighting-capability-grid article > span,
+.beta-lighting-scenario-grid article > span {
+  color: var(--wnyhs-action-gold-ink);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.beta-lighting-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.beta-lighting-capability-grid article {
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  border: 1px solid var(--bd);
+  border-radius: var(--wnyhs-radius-xl);
+  background: var(--s);
+  box-shadow: var(--wnyhs-shadow-sm);
+}
+
+.beta-lighting-capability-grid h3 {
+  margin: 1.4rem 0 0.7rem;
+}
+
+.beta-lighting-capability-grid small {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  color: var(--m);
+}
+
+.beta-lighting-scenarios {
+  padding-top: 0;
+}
+
+.beta-lighting-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.beta-lighting-scenario-grid article {
+  min-height: 17rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--bd);
+  background: var(--sf);
+}
+
+.beta-lighting-scenario-grid h3 {
+  margin: 2.2rem 0 0.8rem;
+}
+
+.beta-lighting-dashboard__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(22rem, 1.15fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.beta-lighting-dashboard aside {
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid
+    color-mix(in srgb, var(--wnyhs-action-gold) 40%, transparent);
+  border-radius: var(--wnyhs-radius-2xl);
+  background: var(--wnyhs-dark-panel);
+  box-shadow: var(--wnyhs-shadow-xl);
+}
+
+.beta-lighting-dashboard aside header,
+.beta-lighting-dashboard aside div span {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.beta-lighting-dashboard aside header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--wnyhs-dark-border);
+}
+
+.beta-lighting-dashboard aside > strong {
+  display: block;
+  margin: 1.5rem 0 0.7rem;
+  font-family: var(--wnyhs-font-heading);
+  font-size: 1.7rem;
+}
+
+.beta-lighting-dashboard aside div {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.beta-lighting-dashboard aside div span {
+  padding: 0.8rem 0.95rem;
+  border-radius: var(--wnyhs-radius-md);
+  background: color-mix(in srgb, var(--wnyhs-dark-text) 7%, transparent);
+}
+
+.beta-lighting-dashboard aside b {
+  color: var(--wnyhs-action-gold);
+}
+
+.beta-lighting-dashboard aside small {
+  color: var(--wnyhs-dark-muted);
+}
+
+.beta-lighting-control__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.beta-lighting-control__grid article {
+  padding: 1.4rem;
+  border-left: 3px solid var(--wnyhs-action-gold);
+  background: var(--s);
+}
+
+.beta-lighting-control__boundary {
+  max-width: 72rem;
+  margin: 2rem 0 0;
+  padding: 1.2rem 1.4rem;
+  background: var(--sf);
+  font-weight: 650;
+}
+
+.beta-lighting-ownership {
+  padding-top: 0;
+}
+
+.beta-lighting-ownership__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: var(--wnyhs-radius-2xl);
+  background: var(--sf);
+}
+
+.beta-lighting-connections > .beta-shell > div {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.beta-lighting-connections article {
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  border: 1px solid var(--bd);
+  border-radius: var(--wnyhs-radius-lg);
+  background: var(--c);
+}
+
+.beta-lighting-connections article a,
+.beta-lighting-connections article small {
+  margin-top: auto;
+  padding-top: 1rem;
+  font-weight: 750;
+}
+
+.beta-lighting-connections article small {
+  color: var(--m);
+}
+
+.beta-lighting-expand__layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.beta-lighting-expand__layout > div:first-child {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.beta-lighting-expand__layout > div:first-child span {
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--wnyhs-action-gold);
+  background: var(--sf);
+  font-family: var(--wnyhs-font-heading);
+  font-size: 1.25rem;
+}
+
+.beta-lighting-learn {
+  padding-top: 0;
+}
+
+.beta-lighting-learn__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr) auto;
+  gap: 2rem;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid var(--bd);
+  border-radius: var(--wnyhs-radius-2xl);
+}
+
+.beta-lighting-learn ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.beta-lighting-learn li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--bd);
+}
+
+.beta-lighting-final {
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      color-mix(in srgb, var(--wnyhs-action-gold) 18%, transparent),
+      transparent 28%
+    ),
+    var(--ca);
+}
+
+@media (max-width: 1100px) {
+  .beta-lighting-capability-grid,
+  .beta-lighting-control__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .beta-lighting-connections > .beta-shell > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .beta-lighting-learn__layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .beta-lighting-learn__layout > .beta-action {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .beta-lighting-hero__layout,
+  .beta-lighting-compare__grid,
+  .beta-lighting-friction__layout,
+  .beta-lighting-dashboard__layout,
+  .beta-lighting-ownership__layout,
+  .beta-lighting-expand__layout,
+  .beta-lighting-learn__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .beta-lighting-hero__visual {
+    min-height: 24rem;
+  }
+
+  .beta-lighting-capability-grid,
+  .beta-lighting-scenario-grid,
+  .beta-lighting-control__grid,
+  .beta-lighting-connections > .beta-shell > div {
+    grid-template-columns: 1fr;
+  }
+
+  .beta-lighting-capability-grid article,
+  .beta-lighting-scenario-grid article,
+  .beta-lighting-connections article {
+    min-height: auto;
+  }
+
+  .beta-lighting-dashboard aside {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beta-lighting-page *,
+  .beta-lighting-page *::before,
+  .beta-lighting-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.beta-lighting-permanent__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.beta-lighting-scene-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.beta-lighting-scene-list article {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--bd);
+  border-left: 4px solid var(--wnyhs-action-gold);
+  border-radius: var(--wnyhs-radius-md);
+  background: var(--c);
+}
+
+.beta-lighting-scene-list span {
+  font-family: var(--wnyhs-font-heading);
+  font-weight: 800;
+}
+
+.beta-lighting-scene-list small {
+  color: var(--m);
+}
+
+@media (max-width: 760px) {
+  .beta-lighting-permanent__layout,
+  .beta-lighting-scene-list article {
+    grid-template-columns: 1fr;
+  }
+}

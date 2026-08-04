@@ -1901,3 +1901,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 | Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/PILLARAUTO001_WORK_ORDER_REV01.md | PILLARAUTO001 Work Order REV01 | Controls the exact fourteen-file isolated beta Home Automation pillar implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | PILLARAUTO001 only | Isolated `/beta/solutions/home-automation` route | Beta review only | work order, Home Automation, routines, manual control, Property Dashboard | Production Home Automation routes, protected systems, merge, and deployment remain unchanged. |
+
+## PILLARLIGHT001 Catalog Addendum
+
+| Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/PILLARLIGHT001_WORK_ORDER_REV01.md | PILLARLIGHT001 Work Order REV01 | Controls the exact fifteen-file isolated beta Home Lighting pillar implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | PILLARLIGHT001 only | Isolated `/beta/solutions/home-lighting` route | Beta review only | work order, Home Lighting, permanent exterior lighting, manual control, Property Dashboard | Production Home Lighting routes, protected systems, merge, and deployment remain unchanged. |
