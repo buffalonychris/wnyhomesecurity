@@ -27,11 +27,13 @@ The CTR never authorizes implementation, task activation, merge, deployment, or 
 
 A task is eligible for archival only when the weekly steward can verify:
 
-1. the bounded task reached its completion criteria;
-2. a PR and merge record exist;
-3. deployment applicability is recorded and any required deployment is verified;
-4. local/current `main` synchronization is evidenced; and
-5. the minimal CTR record can be created without losing proof-of-work identifiers.
+1. execution Status is `DONE`;
+2. draft PR and merge evidence exist;
+3. deployment is explicitly `DEPLOYMENT_NOT_APPLICABLE` or required deployment is `DEPLOYMENT_VERIFIED`;
+4. local/current `main` synchronization is evidenced;
+5. Publication/Evidence State is `CTR_ELIGIBLE`;
+6. duplicate checks pass; and
+7. the minimal CTR record can be created without losing proof-of-work identifiers.
 
 If evidence is missing or contradictory, leave the task in the MTR and record the gap. Do not invent completion, deployment, or synchronization facts.
 
@@ -56,7 +58,7 @@ Optional fields may include source MTR location, follow-up references, and evide
 ## Weekly Stewardship Procedure
 
 1. Identify MTR records that appear eligible.
-2. Verify PR, merge, deployment applicability/status, and main-sync evidence.
+2. Verify execution `DONE`, draft PR, merge, deployment applicability/status, main-sync, and `CTR_ELIGIBLE` evidence.
 3. Add one minimal CTR record per verified task.
 4. Replace the MTR's operative completed record only through a separately authorized, non-destructive archival edit that preserves a task ID and CTR pointer.
 5. Check for duplicate task IDs across operative MTR and CTR records.

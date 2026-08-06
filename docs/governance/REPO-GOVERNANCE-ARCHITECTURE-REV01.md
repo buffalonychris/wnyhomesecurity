@@ -86,6 +86,14 @@ Examples:
 
 Capability access does not create authority. The steward reconciles before creating, extends existing owners when possible, keeps work bounded, and routes approved improvements into durable authority.
 
+## Owner Routing Matrix Lifecycle
+
+Applicable work follows:
+
+`Discussion -> GIA when required -> Draft Work Order -> Owner Routing Matrix -> Operator Approval -> Final Repository Work Order -> Codex Implementation`
+
+The Architecture Steward prepares the matrix and secures operator approval before final dispatch. The matrix is proportional: a compact one-row form is sufficient for a small, single-owner, non-governance task; a detailed matrix is required for cross-cutting, governance, architecture, protected-system, or multi-owner work. `/docs/codex/CODEX_EXECUTION_STANDARD_REV01.md` owns the exact fields and stop rules. The MTR records task authority but does not duplicate the architectural method.
+
 ## Master Task Register Standard
 
 The Master Task Register is the dispatch board.
@@ -104,19 +112,19 @@ Every active task must route Codex to:
 - validation
 - exit criteria
 
-The MTR remains the live dispatch board through active, ready/planned, blocked/waiting/deferred, review, merged, deployed when applicable, and main-synced evidence states pending scheduled archival. Existing status fields and evidence fields may represent those facts; labels do not create implementation authority. Routine task closeout must not purge history.
+The MTR remains the live dispatch board. Its primary execution status is distinct from the separate Publication/Evidence State owned by `/docs/codex/CODEX_TASK_REGISTER_RULES.md`. `DONE` records completed bounded execution, validation, draft-PR delivery, and closeout; it does not prove merge, deployment, main synchronization, or CTR eligibility. Routine task closeout must not purge history.
 
 ## Completed Task Register Relationship
 
 `/docs/system/completed-task-register.md` is the canonical completed-history owner. It preserves only the minimum proof-of-work fields needed for audit and later KAOS Mission History / Operational History views. It does not duplicate full PR or implementation history retained in GitHub and never authorizes execution.
 
-Existing completed records embedded in the MTR remain preserved until a weekly, evidence-checked archival pass can move eligible records without losing lineage. This task creates no bulk migration.
+Existing completed records embedded in the MTR remain preserved until a weekly, evidence-checked archival pass can move eligible records without losing lineage. Eligibility requires execution `DONE`, draft-PR and merge evidence, explicit deployment non-applicability or verified deployment, main-sync evidence, `CTR_ELIGIBLE`, and a passing duplicate check. This task creates no bulk migration.
 
 ## Weekly Repository Stewardship
 
 Once per week, the Architecture Steward should:
 
-1. archive eligible completed tasks from MTR to CTR only after merge, applicable deployment verification, and main synchronization are evidenced;
+1. archive eligible completed tasks from MTR to CTR only after execution is `DONE`, draft-PR and merge evidence exist, deployment is explicitly not applicable or verified, main synchronization is evidenced, and the task is marked `CTR_ELIGIBLE`;
 2. preserve PR, merge, deployment, and sync identifiers;
 3. compact the active register without deleting lineage;
 4. detect stale references, duplicate owners, broken links, and unresolved status drift;

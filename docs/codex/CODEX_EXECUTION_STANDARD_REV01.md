@@ -54,6 +54,28 @@ When explicitly authorized, Codex may add only the missing prompt-created task r
 
 Standing Campaign Authorization is category-level permission to create and sequence bounded tasks inside an approved campaign. It does not authorize source, website, runtime, protected-system, or multi-task implementation. Every implementation still requires one bounded task and repository-owned work order; website, runtime, and protected-system changes remain individually authorized.
 
+## 4A. Owner Routing Matrix checkpoint
+
+Applicable work must follow:
+
+`Discussion -> GIA when required -> Draft Work Order -> Owner Routing Matrix -> Operator Approval -> Final Repository Work Order -> Codex Implementation`
+
+Before implementation, the final repository work order must contain an operator-approved Owner Routing Matrix with:
+
+- approved concept;
+- current canonical owner;
+- exact target file;
+- exact section or target behavior;
+- action: `MODIFY`, `CREATE`, `SUPERSEDE`, `REFERENCE ONLY`, or `STOP`;
+- reason the selected owner is correct;
+- why the concept does not belong in another plausible owner;
+- authority conflict: `YES` or `NO`; and
+- confidence: `HIGH`, `MEDIUM`, or `LOW`.
+
+`CONFLICT: YES` requires reconciliation before implementation. `CONFIDENCE: LOW` requires operator review and explicit approval. Creating an owner requires a duplicate-owner search and a documented reason no existing owner can absorb the concept. Codex may verify or narrow an approved action to `REFERENCE ONLY`, but it must not silently reroute it. A newly discovered target outside the approved matrix requires a work-order revision.
+
+Small, single-owner, non-governance tasks may use a compact one-row matrix. Cross-cutting, governance, architecture, protected-system, or multi-owner tasks require a detailed matrix.
+
 ## 5. Category and workstream routing
 
 Before edits, identify:
@@ -116,15 +138,16 @@ Use these sections, marking a section `Not applicable` only when justified:
 5. Objective
 6. Authorization and required precheck
 7. Required authority/owner documents
-8. Required work
-9. Allowed scope and target files
-10. Reference-only inputs
-11. Forbidden scope and protected systems
-12. Additive/destructive posture and version rule
-13. Validation tier and exact checks
-14. Git/branch/commit/draft-PR requirements
-15. Required closeout and RSI report
-16. Stop conditions and exit criteria
+8. Operator-approved Owner Routing Matrix
+9. Required work
+10. Allowed scope and target files
+11. Reference-only inputs
+12. Forbidden scope and protected systems
+13. Additive/destructive posture and version rule
+14. Validation tier and exact checks
+15. Git/branch/commit/draft-PR requirements
+16. Required closeout and RSI report
+17. Stop conditions and exit criteria
 
 Stable rules should be referenced by path, not pasted into every prompt.
 
@@ -149,6 +172,10 @@ OBJECTIVE
 
 PRECHECK / GOVERNING INPUTS
 [Repo, main sync, existing branch/PR, authority, owner-doc, and protected-scope checks.]
+
+OWNER ROUTING MATRIX
+[Approved concept | canonical owner | exact file | section/behavior | action | reason | alternate-owner exclusion | conflict | confidence.]
+[Use one compact row for a small single-owner task; use a detailed matrix for cross-cutting or higher-risk work.]
 
 REQUIRED WORK
 [Exact bounded operations.]

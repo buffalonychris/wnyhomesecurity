@@ -39,8 +39,15 @@ Every actionable task (READY, ACTIVE, BLOCKED, DONE) must include:
 - Exit Criteria
 - Dependencies
 - Operator Decision Required
+- Publication/Evidence State
+- Draft PR Evidence
+- Merge Evidence
+- Deployment Applicability / Status / Evidence
+- Main-Sync Status / Evidence
+- CTR Eligibility
+- CTR Record / Pointer
 
-Optional fields may be added, but required fields must remain present.
+Optional fields may be added, but required fields must remain present. Evidence fields may use an explicit pending, not-applicable, or not-yet-verified value; missing future evidence must never be invented.
 
 ---
 
@@ -83,8 +90,29 @@ Lifecycle guidance:
 - READY → fully bounded and eligible for activation.
 - ACTIVE → executable now; only ACTIVE tasks may be executed by Codex.
 - BLOCKED → execution halted pending dependency/decision.
-- DONE → execution complete and validated.
-- ARCHIVED → retained for historical traceability.
+- DONE → the bounded executor completed the authorized work, validation passed, and the required draft PR and closeout delivery exist. It does not mean merged, deployed, main-synchronized, or CTR-eligible.
+- ARCHIVED → the operative MTR record was safely transferred or reduced to a CTR pointer through weekly stewardship. It is retained for historical traceability.
+
+---
+
+## Publication/Evidence State (Required Values)
+
+Publication and evidence are separate from execution Status. The allowed values are:
+
+- NOT_STARTED
+- VALIDATION_COMPLETE
+- DRAFT_PR_OPEN
+- MERGED
+- DEPLOYMENT_NOT_APPLICABLE
+- DEPLOYMENT_PENDING
+- DEPLOYMENT_VERIFIED
+- MAIN_SYNCED
+- CTR_ELIGIBLE
+- ARCHIVED_TO_CTR
+
+Codex may record only states it verifies during its run. Normal draft-PR delivery may finish with `Status: DONE` and `Publication/Evidence State: DRAFT_PR_OPEN`. A later operator or bounded stewardship task records merge, deployment applicability/status, main synchronization, CTR eligibility, and archival.
+
+The supporting evidence fields preserve facts after the primary Publication/Evidence State advances: draft PR URL/number; merge commit or merge evidence; deployment applicability and status/evidence; main-sync status/evidence; CTR eligibility; and CTR record/pointer. Publication/Evidence State labels never create task authority.
 
 ---
 
@@ -106,7 +134,7 @@ Lifecycle guidance:
   - complete required task schema,
   - explicit operator authorization when required.
 - Demotion from ACTIVE to BLOCKED must record the blocking reason and required unlock action.
-- Completion from ACTIVE to DONE requires all validation and exit criteria to pass.
+- Completion from ACTIVE to DONE requires the authorized work and validation to pass and the required draft PR and closeout delivery to exist. Merge, deployment, main sync, and CTR eligibility occur later and must not be inferred from `DONE`.
 
 ---
 
