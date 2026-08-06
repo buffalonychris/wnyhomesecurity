@@ -33,13 +33,15 @@ Higher authority controls conflicts. `step-current.md` supplies the exact single
 ## 3. Roles and control surfaces
 
 - **Operator:** selects priority, authorizes bounded work, reviews PRs and Sites outcomes, manually merges, and decides deployment readiness.
-- **ChatGPT dispatcher:** routes the task, frames a bounded work order, reviews closeout/PR evidence, and recommends approve or hold. It does not invent strategy or merge.
+- **ChatGPT Architecture Steward and dispatcher:** protects repository-first governance, assesses governance impact, routes the task, frames a bounded repository-owned work order, reviews closeout/PR/RSI evidence, and recommends approve or hold. It does not invent strategy, merge, activate protected work, or substitute chat memory for repository authority.
 - **Codex:** executes one authorized bounded task, preserves scope, validates, opens a draft PR, and reports evidence. It does not expand scope or merge.
 - **GitHub:** branch, diff, checks, review, and manual-merge control surface.
 - **Cloudflare:** production hosting/deployment surface; access does not authorize configuration or deployment changes.
 - **ChatGPT Sites:** governed prototype, interactive validation, versioning, and hosted-preview surface; it is not WNYHS production authority.
 
 External integrations, apps, MCPs, browser/application control, and connected services require explicit task need. Capability availability is not authorization.
+
+The Architecture Steward role is technology-agnostic and independent of a specific model version. It preserves business-capability ownership, reconciles before creating or duplicating owners, prefers extending an existing owner, keeps implementation bounded, protects additive/destructive discipline, surfaces conflicts as stop conditions, uses targeted reads and compact dispatch, and routes approved improvement candidates into durable authority. Platform adapters may change without changing this operating doctrine.
 
 ## 4. Task authorization and prompt-created tasks
 
@@ -49,6 +51,8 @@ Execute only one named bounded task per run and PR. Authorization requires curre
 - a prompt-created work order permitted by higher governance that states task ID/name, category/workstreams, objective, allowed and forbidden scope, target files, validation, and closeout.
 
 When explicitly authorized, Codex may add only the missing prompt-created task record, set it ACTIVE at work start, and set only that record DONE after all validation and exit criteria pass. Do not activate, complete, or reprioritize adjacent tasks.
+
+Standing Campaign Authorization is category-level permission to create and sequence bounded tasks inside an approved campaign. It does not authorize source, website, runtime, protected-system, or multi-task implementation. Every implementation still requires one bounded task and repository-owned work order; website, runtime, and protected-system changes remain individually authorized.
 
 ## 5. Category and workstream routing
 
@@ -72,6 +76,8 @@ OPS004 routes. OPS005 summarizes current state. Neither authorizes implementatio
 3. Load task-specific owner docs only for affected surfaces.
 4. Do not fully load the Master Task Register, Document Catalog, Markdown Manifest, broad audits, inventories, or status boards by default.
 5. Avoid broad repository searches after the needed reference set is known.
+
+Every work order must name the minimum authority and owner-document set needed for the task. Detailed implementation reasoning, exact files, checks, stop conditions, and closeout requirements belong in the repository-owned work order. An external dispatch prompt should be a minimal pointer to that work order. Chat discussion and approval become durable implementation authority only after promotion into the repository authority chain.
 
 Escalate to a full-file read only when:
 
@@ -264,7 +270,9 @@ Report, as applicable:
 - assumptions, unresolved conflicts/risks, and follow-up tasks without activating them;
 - Token Utilization / RSI Report.
 
-## 19. Token Utilization / RSI Report
+The read/context portion of closeout must identify essential reads, unnecessary or redundant reads, every full/broad-read justification, retries and failures, context pressure, and a shorter next-run dispatch pattern.
+
+## 19. Token Utilization / Recursive Self Improvement Report
 
 Use one canonical report. When exact metrics are visible, report total, input, output, cached-input, reasoning/compute tokens, model, and reasoning level. Otherwise state:
 
@@ -287,6 +295,21 @@ Then report observable proxies:
 - recommended shorter prompt pattern.
 
 Do not create a durable token log unless explicitly authorized.
+
+Every applicable closeout must end with these RSI headings:
+
+1. Repository improvements
+2. Governance improvements
+3. Context optimization
+4. Token optimization
+5. Execution efficiency
+6. Promotion candidates
+7. Future prevention
+8. Risks observed
+9. Operator experience
+10. Confidence (`HIGH`, `MEDIUM`, or `LOW`, with a reason)
+
+RSI may recommend candidate improvements, but it may not amend governance, activate work, or expand task scope without operator approval and durable authorization.
 
 ## 20. Desktop-app and CLI parity
 

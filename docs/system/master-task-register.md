@@ -70,6 +70,20 @@ Every actionable task record must include:
 - ARCHIVED preserves historical traceability and is non-executable.
 - Activation to ACTIVE requires controlling-context alignment and complete required task fields.
 
+### Active Dispatch Board and Evidence Lifecycle
+
+- This register is the live dispatch board, not the canonical completed-history archive.
+- Retain bounded tasks here while they are active, ready or planned, blocked or waiting, deferred, under review, merged, deployed when applicable, or main-synchronized pending weekly archival.
+- Existing formal status values remain controlling. Review, merge, deployment, and main-sync facts must be recorded in explicit evidence or completion fields and never inferred from a status label alone.
+- Routine closeout does not purge completed history. Weekly repository stewardship moves only eligible records to `/docs/system/completed-task-register.md` after preserving task, PR, merge, deployment-applicability/status, and main-sync evidence.
+- Legacy completed sections remain preserved until a separate evidence-checked weekly archival pass can migrate records without loss or duplication.
+
+### Standing Campaign Authorization
+
+- Standing Campaign Authorization permits creation and sequencing of bounded tasks inside an operator-approved campaign category.
+- It does not authorize source, website, runtime, integration, protected-system, or multi-task implementation.
+- Every implementation requires one bounded task and repository-owned work order. Website, runtime, and protected-system scopes remain individually authorized.
+
 ### Current Context ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Task Record ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Codex Execution Relationship
 
 - `step-current.md` defines the single active operational context.
@@ -1089,6 +1103,28 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** This complete REV01 task record appears exactly once under Active Tasks with `Status: ACTIVE`, `Category: SITE`, the exact controlling context, named workstreams, exact six-category order, required work-order gate, source/version/deployment traceability, owner-only private posture, production separation, protected-system boundaries, and future execution requirements; only the allowed register file changed; validation passes; the task branch is committed and pushed; a draft PR to `main` is open; no prototype work order, Site, worktree, Sites source/configuration/deployment, production reconciliation, protected-system change, adjacent-task activation, merge, auto-merge, or ready-for-review action occurred.
 - **Dependencies:** `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; completed `T-CODEXGOVCONSOL001`; synchronized `origin/main`; repository authority chain; manual operator review and merge of this activation PR; then creation, review, and merge of a separate repo-native `T-SITEPROTOTYPE001` execution work order before prototype implementation.
 - **Operator Decision Required:** Review this draft activation PR and decide whether to merge. After manual merge, separately authorize creation of the repo-native execution work order. Do not begin prototype implementation, change Site access, reconcile production, merge this PR, enable auto-merge, or mark it ready in this run.
+
+### Execution Governance Consolidation and Viewer-Ready Read Model
+- **Task ID:** T-GOVEXEC001
+- **Task Name:** Execution Governance Consolidation and Viewer-Ready Read Model
+- **Task Record Version:** REV01
+- **Status:** DONE
+- **Category:** GOV
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Codex Execution; KAOS Governance Viewer Readiness
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Consolidate the operator-approved execution-governance delta into current canonical owners; formalize repository-owned work orders, targeted reads, Architecture Steward, MTR/CTR lifecycle, weekly stewardship, Standing Campaign Authorization, favorable variance, expanded RSI, viewer-ready governance metadata, and current-use OpenAI alignment without implementing a viewer or changing protected systems.
+- **Allowed Scope:** Markdown-only governance changes within the exact files authorized by `docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md`; create one canonical CTR, one Governance Viewer read-model contract, and one current-use OpenAI alignment artifact only after duplicate-owner checks; update required catalog/manifest registrations; update only this task record from ACTIVE to DONE after validation.
+- **Forbidden Scope:** No source, website, routes, UI, runtime, API, database, ingestion, integration, CRM, HubSpot, `/api/lead-signal`, Stripe/payment, scheduling/calendar, Resend/email, Cloudflare, DNS, environment, secrets, analytics, customer data, dependencies, package-lock, deployment, historical deletion, GOVFOUND002 revival, unused OpenAI capability governance, adjacent task activation, merge, auto-merge, or ready-for-review transition.
+- **Target Files:** `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; `docs/governance/AUTHORITY-MAP-REV01.md`; `docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md`; `docs/system/master-task-register.md`; `docs/system/agent.md`; `docs/system/completed-task-register.md`; `docs/governance/GOVERNANCE_VIEWER_READ_MODEL_REV01.md`; `docs/governance/OPENAI_CURRENT_USE_GOVERNANCE_ALIGNMENT_REV01.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None; governance documentation only.
+- **Documentation Updates Required:** Amend current execution, role, routing, architecture, and dispatch owners; create and register the CTR, read model, and alignment reference; preserve existing completed history without bulk migration; create no parallel Codex execution owner.
+- **Validation Required:** Governance tier checks from the work order: status, exact changed-file list, focused diff, `git diff --check`, required-term and authority/status searches, deletion and file-type/scope audits, new-document metadata checks, circular/canonical-owner review, and governed docs-only build skip.
+- **Exit Criteria:** Approved delta is represented in current canonical owners; no parallel execution standard or duplicate history/schema/alignment owner exists; MTR/CTR and stewardship rules are unambiguous; Architecture Steward, dispatcher, targeted-read, Standing Campaign Authorization, favorable-variance, and RSI rules are durable; viewer read model and current-use alignment exist; validation passes; protected systems remain unchanged; one draft PR is open without merge, ready transition, or deployment.
+- **Dependencies:** Operator-authorized `T-GOVEXEC001` work order; GIA001 Targeted Delta Assessment REV01 approval basis; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main`; repository authority chain; manual operator PR review and merge.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Do not merge, enable auto-merge, mark ready, deploy, or activate follow-up work in this run.
+- **Execution Work Order:** `docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md`.
+- **Completion Notes:** Consolidated the approved execution-governance delta into the existing canonical execution, role, routing, architecture, and dispatch owners; created the canonical empty CTR without migrating or duplicating legacy MTR history; created the validated 11-domain Governance Viewer YAML read model; created the bounded current-use OpenAI alignment reference; and registered all new/promoted documents. Governance validation passed for exactly 10 authorized Markdown files with no deletions, source/runtime/configuration/binary/protected-system changes, parallel `EXEC001` owner, ownership cycle, or duplicate new owner. `npm run build` was governed-skipped under the docs-only rule. Draft PR review and manual merge remain separate operator controls.
 
 ### Consolidate and optimize Codex execution governance
 - **Task ID:** T-CODEXGOVCONSOL001
