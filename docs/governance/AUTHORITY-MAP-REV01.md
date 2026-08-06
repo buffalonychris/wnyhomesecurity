@@ -1,7 +1,12 @@
 # AUTHORITY-MAP-REV01
 
-Status: Proposed
-Target location: `/docs/system/authority_map_rev01.md` after governance approval.
+Status: ACTIVE AUTHORITY-ROUTING REFERENCE
+Task ID: `T-GOVEXEC001`
+Owner: Project Governance
+Authority posture: Supporting role and routing display; the authority chain in `/docs/system/project.md` controls
+Customer-facing: No
+Implementation authority: No
+Predecessor/successor: Promotes this proposed REV01 in place; no predecessor is deleted and no parallel authority owner is created
 
 ## Purpose
 
@@ -43,14 +48,14 @@ The work order must point Codex to the correct authority docs and define allowed
 
 | Role | Project Equivalent |
 |---|---|
-| Management | Operator + ChatGPT decision layer |
-| Dispatcher | ChatGPT operating through Master Task Register |
+| Management | Operator as business owner and final approver |
+| Architecture Steward / Dispatcher | ChatGPT as governance impact assessor, bounded dispatcher, and closeout reviewer |
 | Dispatch board | `/docs/system/master-task-register.md` |
-| Work order | Task-specific prompt/spec |
+| Durable work order | Repository-owned task work order; external prompts are minimal pointers |
 | Company policy | Governance, guardrails, standards, runtime contracts |
 | Support technician | Codex |
-| Closed ticket | GitHub PR summary + merge record |
-| Field verification | Cloudflare deployment review |
+| Review and evidence | GitHub branch, diff, draft PR, review, and merge evidence |
+| Production evidence | Cloudflare deployment evidence when separately authorized and relevant |
 
 ## Conflict Rule
 
@@ -78,6 +83,8 @@ Repository docs are the durable source of truth for:
 ## Task Register Role
 
 The Master Task Register is the dispatch board, not merely a historical log.
+
+Eligible completed history moves to the canonical Completed Task Register through weekly repository stewardship after merge, relevant deployment verification, and main synchronization are evidenced. The Completed Task Register is historical evidence and never authorizes implementation.
 
 A valid active task must route Codex to:
 

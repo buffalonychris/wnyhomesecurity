@@ -1907,3 +1907,38 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 | Path | Title | Purpose | Owner | Status | Authority | Runtime | Customer-facing implementation | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/codex/work-orders/PILLARLIGHT001_WORK_ORDER_REV01.md | PILLARLIGHT001 Work Order REV01 | Controls the exact fifteen-file isolated beta Home Lighting pillar implementation and validation. | Codex Execution / Project Governance | Executed pending manual PR and visual review | PILLARLIGHT001 only | Isolated `/beta/solutions/home-lighting` route | Beta review only | work order, Home Lighting, permanent exterior lighting, manual control, Property Dashboard | Production Home Lighting routes, protected systems, merge, and deployment remain unchanged. |
+
+### `/docs/system/completed-task-register.md`
+- **File path:** `docs/system/completed-task-register.md`
+- **Purpose / likely role:** Canonical minimal completed-task proof-of-work history populated through evidence-checked weekly repository stewardship.
+- **Authority level:** **ACTIVE AND CANONICAL historical evidence owner**
+- **Implementation authority:** No.
+- **Notes:** Does not authorize tasks or duplicate GitHub history. Existing MTR completed records remain preserved pending separately authorized archival migration.
+
+### `/docs/governance/AUTHORITY-MAP-REV01.md`
+- **File path:** `docs/governance/AUTHORITY-MAP-REV01.md`
+- **Purpose / likely role:** Active supporting display of the repository authority route, Architecture Steward/dispatcher roles, durable work-order source, and MTR-to-CTR evidence path.
+- **Authority level:** **ACTIVE AUTHORITY-ROUTING REFERENCE**
+- **Implementation authority:** No.
+- **Notes:** The authority chain in `docs/system/project.md` remains controlling; this reference does not create parallel authority.
+
+### `/docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md`
+- **File path:** `docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md`
+- **Purpose / likely role:** Canonical repository governance architecture for owner structure, MTR/CTR relationship, weekly stewardship, campaign authorization boundaries, and favorable variance.
+- **Authority level:** **ACTIVE AND CANONICAL repository governance architecture**
+- **Implementation authority:** No.
+- **Notes:** Operates below the system authority chain and does not authorize product, runtime, protected-system, merge, or deployment changes.
+
+### `/docs/governance/GOVERNANCE_VIEWER_READ_MODEL_REV01.md`
+- **File path:** `docs/governance/GOVERNANCE_VIEWER_READ_MODEL_REV01.md`
+- **Purpose / likely role:** Canonical machine-readable metadata contract for a future read-only KAOS Governance Viewer.
+- **Authority level:** **ACTIVE AND CANONICAL read-model contract**
+- **Implementation authority:** No.
+- **Notes:** Source governance documents remain authoritative. No GUI, route, component, API, database, schema migration, ingestion pipeline, or deployment is authorized.
+
+### `/docs/governance/OPENAI_CURRENT_USE_GOVERNANCE_ALIGNMENT_REV01.md`
+- **File path:** `docs/governance/OPENAI_CURRENT_USE_GOVERNANCE_ALIGNMENT_REV01.md`
+- **Purpose / likely role:** Bounded alignment metadata for currently used ChatGPT, Projects, apps/plugins, Deep Research, image-generation, Codex, and repository-execution surfaces.
+- **Authority level:** **ACTIVE GOVERNANCE ALIGNMENT REFERENCE**
+- **Implementation authority:** No.
+- **Notes:** Excludes unused Agents SDK, custom GPTs, API agents, MCP apps, and future tools; capability availability does not create authority.
