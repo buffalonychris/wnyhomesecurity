@@ -1,0 +1,378 @@
+/**
+ * Read-only application snapshot of:
+ * docs/governance/GOVERNANCE_VIEWER_READ_MODEL_REV01.md
+ * Internal schema: REV02. Snapshot verified for GOVUI001 on 2026-08-06.
+ * Repository source documents remain authoritative; this module is not live-synchronized.
+ */
+
+export const GOVERNANCE_SCHEMA_VERSION = 'REV02' as const;
+export const GOVERNANCE_SNAPSHOT_SOURCE = 'docs/governance/GOVERNANCE_VIEWER_READ_MODEL_REV01.md';
+export const GOVERNANCE_SNAPSHOT_DATE = '2026-08-06';
+
+export const VIEWER_READINESS_VALUES = [
+  'READY',
+  'NEEDS_METADATA_NORMALIZATION',
+  'NEEDS_STATUS_RECONCILIATION',
+  'NEEDS_OWNER_CLARIFICATION',
+  'HISTORICAL_ONLY',
+  'EXCLUDED',
+] as const;
+
+export type ViewerReadiness = (typeof VIEWER_READINESS_VALUES)[number];
+
+export type GovernanceRecord = {
+  document_id: string;
+  title: string;
+  path: string;
+  governance_domain: string;
+  authority_level: string;
+  is_canonical_owner: boolean;
+  authority_owner: string;
+  authority_source_path: string;
+  status: string;
+  controls: readonly string[];
+  does_not_control: readonly string[];
+  upstream_authority: readonly string[];
+  downstream_dependencies: readonly string[];
+  supporting_documents: readonly string[];
+  conflicting_documents: readonly string[];
+  provenance_task_reference: string;
+  provenance_work_order_reference: string;
+  provenance_pr_reference: string;
+  last_governance_update_task: string | null;
+  last_governance_update_work_order: string | null;
+  last_governance_update_pr: string | null;
+  last_governance_update_date: string | null;
+  last_reviewed: string;
+  effective_revision: string;
+  viewer_readiness: ViewerReadiness;
+};
+
+export const governanceRecords: readonly GovernanceRecord[] = [
+  {
+    document_id: 'WNYHS-PROJECT-GOVERNANCE',
+    title: 'WNY Home Security Project Governance',
+    path: 'docs/system/project.md',
+    governance_domain: 'Project Governance',
+    authority_level: 'Primary repository authority',
+    is_canonical_owner: true,
+    authority_owner: 'Project Governance / Operator',
+    authority_source_path: 'docs/system/project.md',
+    status: 'Active',
+    controls: ['authority chain', 'task gate', 'project preservation rules'],
+    does_not_control: ['domain implementation without a bounded task'],
+    upstream_authority: ['operator-approved repository governance'],
+    downstream_dependencies: ['docs/system/guardrails.md', 'docs/system/agent.md', 'docs/system/plan.md'],
+    supporting_documents: ['AGENTS.md', 'docs/governance/AUTHORITY-MAP-REV01.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: null,
+    last_governance_update_work_order: null,
+    last_governance_update_pr: null,
+    last_governance_update_date: null,
+    last_reviewed: '2026-08-06',
+    effective_revision: 'current',
+    viewer_readiness: 'NEEDS_METADATA_NORMALIZATION',
+  },
+  {
+    document_id: 'WNYHS-REPOSITORY-GOVERNANCE-ARCHITECTURE-REV01',
+    title: 'Repository Governance Architecture REV01',
+    path: 'docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md',
+    governance_domain: 'Repository Governance',
+    authority_level: 'Canonical architecture owner below system governance',
+    is_canonical_owner: true,
+    authority_owner: 'Project Governance / Repository Governance Architecture',
+    authority_source_path: 'docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md',
+    status: 'ACTIVE AND CANONICAL',
+    controls: ['repository governance layers', 'MTR CTR relationship', 'weekly stewardship'],
+    does_not_control: ['task activation', 'product strategy', 'runtime behavior'],
+    upstream_authority: ['docs/system/project.md', 'docs/system/guardrails.md', 'docs/system/agent.md', 'docs/system/plan.md'],
+    downstream_dependencies: ['docs/system/master-task-register.md', 'docs/system/completed-task-register.md'],
+    supporting_documents: ['docs/governance/AUTHORITY-MAP-REV01.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: 'T-GOVFLOW001',
+    last_governance_update_work_order: 'docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md',
+    last_governance_update_pr: 'https://github.com/buffalonychris/wnyhomesecurity/pull/562',
+    last_governance_update_date: '2026-08-06',
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01 amended by T-GOVFLOW001',
+    viewer_readiness: 'READY',
+  },
+  {
+    document_id: 'WNYHS-CODEX-EXECUTION-REV01',
+    title: 'Codex Execution Standard REV01',
+    path: 'docs/codex/CODEX_EXECUTION_STANDARD_REV01.md',
+    governance_domain: 'Codex Governance',
+    authority_level: 'Sole active detailed execution and work-order owner',
+    is_canonical_owner: true,
+    authority_owner: 'Project Governance / Codex',
+    authority_source_path: 'docs/codex/CODEX_EXECUTION_STANDARD_REV01.md',
+    status: 'ACTIVE AND CANONICAL',
+    controls: ['Codex execution', 'repository-owned work orders', 'targeted reads', 'closeout', 'RSI'],
+    does_not_control: ['task priority', 'merge', 'deployment', 'protected-system authorization'],
+    upstream_authority: ['AGENTS.md', 'docs/system/project.md', 'docs/system/guardrails.md', 'docs/system/agent.md', 'docs/system/plan.md'],
+    downstream_dependencies: ['docs/codex/work-orders'],
+    supporting_documents: ['docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: 'T-GOVFLOW001',
+    last_governance_update_work_order: 'docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md',
+    last_governance_update_pr: 'https://github.com/buffalonychris/wnyhomesecurity/pull/562',
+    last_governance_update_date: '2026-08-06',
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01 amended by T-GOVFLOW001',
+    viewer_readiness: 'READY',
+  },
+  {
+    document_id: 'WNYHS-CURRENT-CONTEXT',
+    title: 'Current Operational Context',
+    path: 'docs/system/step-current.md',
+    governance_domain: 'Current Context',
+    authority_level: 'Single current operational context',
+    is_canonical_owner: true,
+    authority_owner: 'Project Governance / Current Operational Context',
+    authority_source_path: 'docs/system/step-current.md',
+    status: 'ACTIVE',
+    controls: ['current context identifier', 'open bounded workstreams', 'protected runtime locks'],
+    does_not_control: ['unbounded implementation', 'adjacent task activation'],
+    upstream_authority: ['docs/system/project.md', 'docs/system/guardrails.md', 'docs/system/agent.md', 'docs/system/plan.md'],
+    downstream_dependencies: ['docs/system/master-task-register.md'],
+    supporting_documents: [],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: null,
+    last_governance_update_work_order: null,
+    last_governance_update_pr: null,
+    last_governance_update_date: null,
+    last_reviewed: '2026-08-06',
+    effective_revision: 'CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01',
+    viewer_readiness: 'NEEDS_METADATA_NORMALIZATION',
+  },
+  {
+    document_id: 'WNYHS-MASTER-TASK-REGISTER',
+    title: 'Master Task Register',
+    path: 'docs/system/master-task-register.md',
+    governance_domain: 'Task Authorization',
+    authority_level: 'Live dispatch board',
+    is_canonical_owner: true,
+    authority_owner: 'Project Governance / Master Task Register',
+    authority_source_path: 'docs/system/master-task-register.md',
+    status: 'Active',
+    controls: ['bounded task records', 'executable ACTIVE state', 'pre-archive lifecycle evidence'],
+    does_not_control: ['strategy', 'adjacent tasks', 'canonical completed history'],
+    upstream_authority: ['docs/system/step-current.md'],
+    downstream_dependencies: ['docs/codex/work-orders', 'docs/system/completed-task-register.md'],
+    supporting_documents: ['docs/codex/CODEX_TASK_REGISTER_RULES.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: 'T-GOVFLOW001',
+    last_governance_update_work_order: 'docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md',
+    last_governance_update_pr: 'https://github.com/buffalonychris/wnyhomesecurity/pull/562',
+    last_governance_update_date: '2026-08-06',
+    last_reviewed: '2026-08-06',
+    effective_revision: 'GOV002 plus T-GOVEXEC001 and T-GOVFLOW001 amendments',
+    viewer_readiness: 'READY',
+  },
+  {
+    document_id: 'WNYHS-WORK-ORDER-T-GOVEXEC001',
+    title: 'T-GOVEXEC001 Work Order REV01',
+    path: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    governance_domain: 'Work Orders',
+    authority_level: 'Active bounded task contract',
+    is_canonical_owner: false,
+    authority_owner: 'Operator-authorized bounded task / Project Governance',
+    authority_source_path: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    status: 'PROMPT-CREATED / OPERATOR AUTHORIZED',
+    controls: ['T-GOVEXEC001 scope', 'target routing', 'validation', 'closeout'],
+    does_not_control: ['other tasks', 'merge', 'deployment'],
+    upstream_authority: ['docs/system/master-task-register.md', 'docs/codex/CODEX_EXECUTION_STANDARD_REV01.md'],
+    downstream_dependencies: ['T-GOVEXEC001 draft PR'],
+    supporting_documents: [],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: null,
+    last_governance_update_work_order: null,
+    last_governance_update_pr: null,
+    last_governance_update_date: null,
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01',
+    viewer_readiness: 'NEEDS_METADATA_NORMALIZATION',
+  },
+  {
+    document_id: 'WNYHS-STANDARDS-ROUTING',
+    title: 'Standards Owner Routing',
+    path: 'docs/governance/AUTHORITY-MAP-REV01.md',
+    governance_domain: 'Standards',
+    authority_level: 'Supporting authority-routing reference',
+    is_canonical_owner: false,
+    authority_owner: 'Project Governance',
+    authority_source_path: 'docs/governance/AUTHORITY-MAP-REV01.md',
+    status: 'ACTIVE AUTHORITY-ROUTING REFERENCE',
+    controls: ['role display', 'authority routing'],
+    does_not_control: ['domain-standard content', 'task authorization'],
+    upstream_authority: ['docs/system/project.md'],
+    downstream_dependencies: ['domain owner standards'],
+    supporting_documents: ['docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: 'T-GOVEXEC001',
+    last_governance_update_work_order: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    last_governance_update_pr: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_date: '2026-08-05',
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01',
+    viewer_readiness: 'READY',
+  },
+  {
+    document_id: 'WNYHS-RUNTIME-CONTRACTS-INDEX',
+    title: 'Runtime Contracts',
+    path: 'docs/runtime/README.md',
+    governance_domain: 'Runtime Contracts',
+    authority_level: 'Supporting runtime index; individual contracts control their domains',
+    is_canonical_owner: false,
+    authority_owner: 'Runtime contract owners',
+    authority_source_path: 'docs/runtime/README.md',
+    status: 'Active Supporting',
+    controls: ['runtime owner discovery'],
+    does_not_control: ['runtime implementation', 'live status', 'protected changes'],
+    upstream_authority: ['docs/system/guardrails.md'],
+    downstream_dependencies: ['docs/runtime'],
+    supporting_documents: ['docs/runtime/runtime_ownership_map.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: null,
+    last_governance_update_work_order: null,
+    last_governance_update_pr: null,
+    last_governance_update_date: null,
+    last_reviewed: '2026-08-06',
+    effective_revision: 'current',
+    viewer_readiness: 'NEEDS_STATUS_RECONCILIATION',
+  },
+  {
+    document_id: 'WNYHS-DOCUMENT-STATUS-REV01',
+    title: 'Documentation Status Reconciliation REV01',
+    path: 'docs/system/document_status_reconciliation_rev01.md',
+    governance_domain: 'Document Status',
+    authority_level: 'Supporting status map',
+    is_canonical_owner: false,
+    authority_owner: 'Project Governance / Documentation Status',
+    authority_source_path: 'docs/system/document_status_reconciliation_rev01.md',
+    status: 'Internal governance / document reconciliation / status map',
+    controls: ['document classification evidence'],
+    does_not_control: ['source authority', 'implementation'],
+    upstream_authority: ['docs/system/project.md'],
+    downstream_dependencies: ['docs/DOCUMENT_CATALOG.md', 'docs/MARKDOWN_MANIFEST.md'],
+    supporting_documents: [],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: null,
+    last_governance_update_work_order: null,
+    last_governance_update_pr: null,
+    last_governance_update_date: null,
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01',
+    viewer_readiness: 'NEEDS_STATUS_RECONCILIATION',
+  },
+  {
+    document_id: 'WNYHS-GOVERNANCE-RECONCILIATION-PLAN-REV01',
+    title: 'Governance Reconciliation Task Plan REV01',
+    path: 'docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md',
+    governance_domain: 'Governance Reconciliation',
+    authority_level: 'Planning and lineage reference',
+    is_canonical_owner: false,
+    authority_owner: 'Project Governance / Governance Reconciliation Planning',
+    authority_source_path: 'docs/governance/GOVERNANCE_RECONCILIATION_TASK_PLAN_REV01.md',
+    status: 'Reference planning',
+    controls: ['bounded reconciliation lineage'],
+    does_not_control: ['current task activation', 'current owner status'],
+    upstream_authority: ['docs/system/project.md', 'docs/system/master-task-register.md'],
+    downstream_dependencies: [],
+    supporting_documents: ['docs/governance/GOVAUTH001_WNYHS_COMPLETE_GOVERNANCE_AUTHORITY_AUDIT_REV01.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: null,
+    last_governance_update_work_order: null,
+    last_governance_update_pr: null,
+    last_governance_update_date: null,
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01',
+    viewer_readiness: 'HISTORICAL_ONLY',
+  },
+  {
+    document_id: 'WNYHS-RSI-EXECUTION-EVIDENCE',
+    title: 'Recursive Self Improvement and Execution Evidence',
+    path: 'docs/codex/CODEX_EXECUTION_STANDARD_REV01.md',
+    governance_domain: 'RSI / Execution Evidence',
+    authority_level: 'Canonical closeout and RSI owner',
+    is_canonical_owner: true,
+    authority_owner: 'Project Governance / Codex',
+    authority_source_path: 'docs/codex/CODEX_EXECUTION_STANDARD_REV01.md',
+    status: 'ACTIVE AND CANONICAL',
+    controls: ['RSI closeout headings', 'recommendation boundary', 'token context reporting'],
+    does_not_control: ['automatic governance amendment', 'task activation', 'scope expansion'],
+    upstream_authority: ['docs/system/agent.md'],
+    downstream_dependencies: ['Codex closeouts', 'docs/system/completed-task-register.md'],
+    supporting_documents: ['docs/kaos/KAOS001_RECURSIVE_SELF_IMPROVEMENT_REGISTER_REV01.md'],
+    conflicting_documents: [],
+    provenance_task_reference: 'T-GOVEXEC001',
+    provenance_work_order_reference: 'docs/codex/work-orders/T-GOVEXEC001_WORK_ORDER_REV01.md',
+    provenance_pr_reference: 'https://github.com/buffalonychris/wnyhomesecurity/pull/561',
+    last_governance_update_task: 'T-GOVFLOW001',
+    last_governance_update_work_order: 'docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md',
+    last_governance_update_pr: 'https://github.com/buffalonychris/wnyhomesecurity/pull/562',
+    last_governance_update_date: '2026-08-06',
+    last_reviewed: '2026-08-06',
+    effective_revision: 'REV01 amended by T-GOVFLOW001',
+    viewer_readiness: 'READY',
+  },
+];
+
+export type OwnerRoutingRecord = {
+  concept: string;
+  owner: string;
+  target: string;
+  section: string;
+  action: string;
+  reason: string;
+  why_not_elsewhere: string;
+  conflict: 'NO';
+  confidence: 'HIGH' | 'MEDIUM';
+};
+
+export const govuiOwnerRouting: readonly OwnerRoutingRecord[] = [
+  { concept: 'Governance Viewer application capability', owner: 'Existing KAOS/operator application owner', target: 'Existing operator route/layout/source structure', section: 'Internal governance module', action: 'MODIFY EXISTING OWNER', reason: 'The viewer is an internal operator capability that consumes governance.', why_not_elsewhere: 'Repository governance owns authority, not application presentation.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Governance Viewer route', owner: 'Existing React routing owner', target: 'src/App.tsx', section: '/operator/governance under OperatorLayout', action: 'MODIFY', reason: 'App.tsx owns application routing.', why_not_elsewhere: 'No public route or new router is needed.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Governance Viewer page and screen composition', owner: 'Existing operator page/component layer', target: 'src/pages/GovernanceViewer.tsx', section: 'One bounded tabbed module', action: 'CREATE WITHIN EXISTING LAYER', reason: 'Operator source owns internal UI behavior.', why_not_elsewhere: 'Governance documents remain source authority only.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Operator navigation entry', owner: 'Existing operator layout/navigation owner', target: 'src/layouts/OperatorLayout.tsx', section: 'Operator sub-navigation', action: 'MODIFY', reason: 'The layout owns operator-route discovery.', why_not_elsewhere: 'Public and business navigation stay unchanged.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Governance data contract', owner: 'Governance Viewer read-model owner', target: GOVERNANCE_SNAPSHOT_SOURCE, section: 'REV02 payload', action: 'REFERENCE ONLY', reason: 'REV02 defines the canonical metadata.', why_not_elsewhere: 'No duplicate schema owner is needed.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Viewer runtime data', owner: 'Existing application data layer', target: 'src/data/governanceViewerData.ts', section: 'Typed deterministic snapshot', action: 'CREATE READ-ONLY ADAPTER', reason: 'The browser needs typed build-time data.', why_not_elsewhere: 'No GitHub fetch, database, or mutation layer is authorized.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Search, filter, and relationship logic', owner: 'Governance Viewer module', target: 'src/pages/GovernanceViewer.tsx', section: 'Client-side query and selection', action: 'CREATE', reason: 'These are module-local presentation behaviors.', why_not_elsewhere: 'No verified shared global utility owns them.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Graph visualization', owner: 'Existing React UI stack', target: 'src/pages/GovernanceViewer.tsx', section: 'Directed node-link and accessible relationship list', action: 'CREATE USING EXISTING STACK', reason: 'React and CSS support the bounded relationship view.', why_not_elsewhere: 'No graph dependency is required.', conflict: 'NO', confidence: 'MEDIUM' },
+  { concept: 'Read-only enforcement', owner: 'Repository governance and application boundary', target: 'Governance Viewer module', section: 'All screens', action: 'ENFORCE', reason: 'The viewer must remain a projection.', why_not_elsewhere: 'No authentication redesign or API policy change is needed.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Visual system', owner: 'Existing operator visual/token owner', target: 'src/index.css', section: 'governance-* module styles', action: 'MODIFY EXISTING STYLES', reason: 'The operator UI already has semantic tokens and a visual language.', why_not_elsewhere: 'No standalone theme or public redesign is needed.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Task authorization and evidence', owner: 'Master Task Register', target: 'docs/system/master-task-register.md', section: 'GOVUI001 record', action: 'MODIFY', reason: 'The MTR is the live dispatch board.', why_not_elsewhere: 'No separate task register is authorized.', conflict: 'NO', confidence: 'HIGH' },
+  { concept: 'Visible version', owner: 'Existing application-version owner', target: 'src/lib/siteVersion.ts', section: 'SITE_VERSION', action: 'MODIFY', reason: 'The existing source owns visible publication confirmation.', why_not_elsewhere: 'A second version source would create drift.', conflict: 'NO', confidence: 'HIGH' },
+];
+
+export const OPENAI_ALIGNMENT_REFERENCE = 'docs/governance/OPENAI_CURRENT_USE_GOVERNANCE_ALIGNMENT_REV01.md';

@@ -1112,6 +1112,34 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Dependencies:** `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; completed `T-CODEXGOVCONSOL001`; synchronized `origin/main`; repository authority chain; manual operator review and merge of this activation PR; then creation, review, and merge of a separate repo-native `T-SITEPROTOTYPE001` execution work order before prototype implementation.
 - **Operator Decision Required:** Review this draft activation PR and decide whether to merge. After manual merge, separately authorize creation of the repo-native execution work order. Do not begin prototype implementation, change Site access, reconcile production, merge this PR, enable auto-merge, or mark it ready in this run.
 
+### KAOS Governance Viewer Read-Only Implementation
+- **Task ID:** GOVUI001
+- **Task Name:** KAOS Governance Viewer Read-Only Implementation
+- **Task Record Version:** REV01
+- **Status:** ACTIVE
+- **Category:** GOV
+- **Primary Workstream:** KAOS Governance Viewer
+- **Related Workstreams:** Project Governance; Codex Execution; Operator UI
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement one internal, searchable, filterable, clickable, graph-driven, relationship-driven Governance Viewer under the existing operator application so the operator can inspect why repository-owned governance exists without making the viewer an authority.
+- **Allowed Scope:** One internal `/operator/governance` route under `OperatorLayout`; one bounded read-only page module; a typed deterministic local snapshot of all 11 REV02 records; client-side search, filters, sorting, grouping, selection, relationship traversal, and accessible graph/list presentation; focused operator navigation, semantic-token styles, tests, visible version bump, and this task record only.
+- **Forbidden Scope:** No governance editing, document or register writes from the application, task creation or activation, approval, promotion, conflict resolution, GitHub runtime/API writes, API route, database, ingestion pipeline, filesystem write, external-system access, authentication redesign, new dependency, package-lock change, public route/navigation change, protected-system change, broad KAOS/operator restructure, unrelated cleanup, merge, auto-merge, ready transition, or deployment.
+- **Target Files:** `src/App.tsx`; `src/layouts/OperatorLayout.tsx`; `src/pages/GovernanceViewer.tsx`; `src/data/governanceViewerData.ts`; `src/index.css`; `src/pages/__tests__/GovernanceViewer.test.tsx`; `src/lib/siteVersion.ts`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** Internal operator UI presentation only; deterministic bundled data with no external reads or writes.
+- **Documentation Updates Required:** Add and update only this task record. Governance source documents, viewer schema, catalogs, manifests, and completed-history records remain reference-only and unchanged.
+- **Validation Required:** SOURCE/UI validation from `docs/codex/work-orders/GOVUI001_WORK_ORDER_REV01.md`: exact whitelist and focused diff; token check; lint; build; focused data, query, filter, detail, relationship, read-only, and route tests; protected/public/dependency audits; desktop and narrow browser review; keyboard/accessibility review; REV02 source-snapshot parity; visible version confirmation.
+- **Exit Criteria:** One internal read-only viewer uses all 11 REV02 records and implements the bounded overview, authority, registry, owner, execution, routing, RSI, OpenAI-reference, health, and record-detail views; search, filters, sort, grouping, graph/list navigation, responsive behavior, accessible labels, and focus states work; all validation passes; version is `v1.0.196`; one draft PR is open; no source authority, protected system, public route, dependency, merge, ready transition, or deployment changes occur.
+- **Dependencies:** Operator-approved `GOVUI001` work order and Owner Routing Matrix; merged PR #562; synchronized `origin/main`; REV02 Governance Viewer contract; existing React operator shell and semantic token system; manual operator review and merge.
+- **Operator Decision Required:** Review the draft PR and visual evidence and decide whether to merge. Do not merge, enable auto-merge, mark ready, deploy, activate editing, or expand the viewer in this run.
+- **Publication/Evidence State:** NOT_STARTED
+- **Draft PR Evidence:** Pending creation during this bounded run.
+- **Merge Evidence:** Pending operator action; not performed or inferred by Codex.
+- **Deployment Applicability / Status / Evidence:** Applicability: internal application change; Status: `DEPLOYMENT_PENDING`; deployment is not authorized in this run.
+- **Main-Sync Status / Evidence:** Pending future evidence after operator merge; not inferred.
+- **CTR Eligibility:** No; merge, deployment, and main-sync evidence do not yet exist.
+- **CTR Record / Pointer:** None; task remains in the MTR.
+- **Execution Work Order:** `docs/codex/work-orders/GOVUI001_WORK_ORDER_REV01.md`.
+
 ### Owner Routing and Governance Lifecycle Precision
 - **Task ID:** T-GOVFLOW001
 - **Task Name:** Owner Routing and Governance Lifecycle Precision
