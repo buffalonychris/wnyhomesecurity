@@ -1116,7 +1116,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Task ID:** GOVUI001
 - **Task Name:** KAOS Governance Viewer Read-Only Implementation
 - **Task Record Version:** REV01
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** GOV
 - **Primary Workstream:** KAOS Governance Viewer
 - **Related Workstreams:** Project Governance; Codex Execution; Operator UI
@@ -1131,14 +1131,15 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** One internal read-only viewer uses all 11 REV02 records and implements the bounded overview, authority, registry, owner, execution, routing, RSI, OpenAI-reference, health, and record-detail views; search, filters, sort, grouping, graph/list navigation, responsive behavior, accessible labels, and focus states work; all validation passes; version is `v1.0.196`; one draft PR is open; no source authority, protected system, public route, dependency, merge, ready transition, or deployment changes occur.
 - **Dependencies:** Operator-approved `GOVUI001` work order and Owner Routing Matrix; merged PR #562; synchronized `origin/main`; REV02 Governance Viewer contract; existing React operator shell and semantic token system; manual operator review and merge.
 - **Operator Decision Required:** Review the draft PR and visual evidence and decide whether to merge. Do not merge, enable auto-merge, mark ready, deploy, activate editing, or expand the viewer in this run.
-- **Publication/Evidence State:** NOT_STARTED
-- **Draft PR Evidence:** Pending creation during this bounded run.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #563, `https://github.com/buffalonychris/wnyhomesecurity/pull/563`, targeting `main`; draft state verified during this bounded run.
 - **Merge Evidence:** Pending operator action; not performed or inferred by Codex.
 - **Deployment Applicability / Status / Evidence:** Applicability: internal application change; Status: `DEPLOYMENT_PENDING`; deployment is not authorized in this run.
 - **Main-Sync Status / Evidence:** Pending future evidence after operator merge; not inferred.
 - **CTR Eligibility:** No; merge, deployment, and main-sync evidence do not yet exist.
 - **CTR Record / Pointer:** None; task remains in the MTR.
 - **Execution Work Order:** `docs/codex/work-orders/GOVUI001_WORK_ORDER_REV01.md`.
+- **Completion Notes:** Implemented one internal read-only Governance Viewer at `/operator/governance` using a typed deterministic snapshot of all 11 REV02 records, bounded client-side query and relationship behavior, the approved operator navigation and semantic-token visual owner, and focused tests. Token compliance, changed-file lint, five focused tests, production build, REV02 parity, exact whitelist, dependency, deletion, public-route, mutation, and protected-system audits passed. Repository-wide lint remains blocked by 21 pre-existing errors outside the GOVUI001 allowlist; no unrelated lint files were changed. Desktop, selected-detail, filtered, no-results, selected-authority, 390px narrow, and keyboard-focus states were captured and inspected locally, then temporary evidence files were removed. Version is `v1.0.196`. Draft PR #563 remains open for operator review; no merge, ready transition, auto-merge, or deployment occurred.
 
 ### Owner Routing and Governance Lifecycle Precision
 - **Task ID:** T-GOVFLOW001
