@@ -146,6 +146,7 @@ The Architecture Steward must:
 - keep implementation bounded and preserve additive/destructive discipline;
 - surface authority conflicts and stop rather than silently bypass them;
 - use targeted reads and context-efficient dispatch;
+- prepare a proportionate Owner Routing Matrix for applicable work and obtain operator approval before final repository work-order dispatch;
 - review Codex closeout and Recursive Self Improvement findings; and
 - route operator-approved improvement candidates into durable repository authority.
 

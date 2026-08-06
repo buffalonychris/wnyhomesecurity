@@ -44,6 +44,13 @@ Every actionable task record must include:
 - Exit Criteria
 - Dependencies
 - Operator Decision Required
+- Publication/Evidence State
+- Draft PR Evidence
+- Merge Evidence
+- Deployment Applicability / Status / Evidence
+- Main-Sync Status / Evidence
+- CTR Eligibility
+- CTR Record / Pointer
 
 ### Task Category Taxonomy (Allowed Values)
 
@@ -73,8 +80,9 @@ Every actionable task record must include:
 ### Active Dispatch Board and Evidence Lifecycle
 
 - This register is the live dispatch board, not the canonical completed-history archive.
-- Retain bounded tasks here while they are active, ready or planned, blocked or waiting, deferred, under review, merged, deployed when applicable, or main-synchronized pending weekly archival.
-- Existing formal status values remain controlling. Review, merge, deployment, and main-sync facts must be recorded in explicit evidence or completion fields and never inferred from a status label alone.
+- Primary execution Status and Publication/Evidence State are separate. `/docs/codex/CODEX_TASK_REGISTER_RULES.md` is the sole owner of both controlled vocabularies.
+- `DONE` means bounded execution, validation, required draft-PR delivery, and closeout are complete. It does not mean merged, deployed, main-synchronized, or CTR-eligible.
+- Retain records here while publication/evidence is pending. Merge, deployment applicability/status, main-sync, CTR eligibility, and archival must be recorded only from verified evidence.
 - Routine closeout does not purge completed history. Weekly repository stewardship moves only eligible records to `/docs/system/completed-task-register.md` after preserving task, PR, merge, deployment-applicability/status, and main-sync evidence.
 - Legacy completed sections remain preserved until a separate evidence-checked weekly archival pass can migrate records without loss or duplication.
 
@@ -1103,6 +1111,35 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** This complete REV01 task record appears exactly once under Active Tasks with `Status: ACTIVE`, `Category: SITE`, the exact controlling context, named workstreams, exact six-category order, required work-order gate, source/version/deployment traceability, owner-only private posture, production separation, protected-system boundaries, and future execution requirements; only the allowed register file changed; validation passes; the task branch is committed and pushed; a draft PR to `main` is open; no prototype work order, Site, worktree, Sites source/configuration/deployment, production reconciliation, protected-system change, adjacent-task activation, merge, auto-merge, or ready-for-review action occurred.
 - **Dependencies:** `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; completed `T-CODEXGOVCONSOL001`; synchronized `origin/main`; repository authority chain; manual operator review and merge of this activation PR; then creation, review, and merge of a separate repo-native `T-SITEPROTOTYPE001` execution work order before prototype implementation.
 - **Operator Decision Required:** Review this draft activation PR and decide whether to merge. After manual merge, separately authorize creation of the repo-native execution work order. Do not begin prototype implementation, change Site access, reconcile production, merge this PR, enable auto-merge, or mark it ready in this run.
+
+### Owner Routing and Governance Lifecycle Precision
+- **Task ID:** T-GOVFLOW001
+- **Task Name:** Owner Routing and Governance Lifecycle Precision
+- **Task Record Version:** REV01
+- **Status:** DONE
+- **Category:** GOV
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Codex Execution; KAOS Governance Viewer Readiness
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Implement the operator-approved Owner Routing Matrix checkpoint, refine the canonical Governance Viewer read model to separate authority, provenance, and last governance update, and distinguish execution status from publication/evidence state and CTR archival eligibility.
+- **Allowed Scope:** Markdown-only, additive and surgical governance amendments within the exact Owner Routing Matrix and file allowlist in `docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md`; amend the existing viewer contract in place to schema REV02; add and update only this task record; treat catalog and manifest as reference-only unless current registration rules require an amendment.
+- **Forbidden Scope:** No application, website, route, UI, parser, API, database, ingestion, runtime, integration, CRM, HubSpot, `/api/lead-signal`, payment, Stripe, scheduling, calendar, Lead Signal/requestId, QR attribution, Resend, email, Cloudflare, deployment, DNS, environment, secrets, analytics, customer data, dependencies, package-lock, bulk historical MTR rewrite or migration, new governance owner, adjacent-task activation, merge, auto-merge, ready-for-review transition, or deployment.
+- **Target Files:** `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; `docs/codex/CODEX_TASK_REGISTER_RULES.md`; `docs/system/agent.md`; `docs/governance/REPO-GOVERNANCE-ARCHITECTURE-REV01.md`; `docs/governance/GOVERNANCE_VIEWER_READ_MODEL_REV01.md`; `docs/system/master-task-register.md`; `docs/system/completed-task-register.md`.
+- **Runtime Systems Affected:** None; governance documentation only.
+- **Documentation Updates Required:** Amend current canonical execution, task-schema, steward, repository-architecture, viewer read-model, live-register, and completed-history owners exactly as routed; preserve the 11 viewer domains and existing historical task records; create no new owner or schema file.
+- **Validation Required:** Governance-tier checks from the work order: synchronized baseline, exact Markdown whitelist, diff/staged checks, no deletions, one task record, complete routing rules, no parallel owners, parsed REV02 viewer schema and record validation, controlled lifecycle vocabulary, objective CTR gates, no historical bulk rewrite, protected-path audit, and governed docs-only build skip.
+- **Exit Criteria:** Owner Routing Matrix mechanics and steward duty are durable in the approved owners; the viewer schema is REV02 and separates authority, provenance, and last update without static active-task fields; execution and publication/evidence states are distinct; `DONE` does not imply later operator-controlled events; CTR eligibility is evidence-gated; validation passes; one draft PR is open; protected systems remain unchanged; no merge, ready transition, or deployment occurs.
+- **Dependencies:** Operator-approved `T-GOVFLOW001` work order and Owner Routing Matrix; merged PR #561 at merge commit `94e1f8269bc03c3f948876f1431f27d44900334b`; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main`; repository authority chain; manual operator PR review and merge.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Do not merge, enable auto-merge, mark ready, deploy, archive to CTR, or activate follow-up work in this run.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #562, `https://github.com/buffalonychris/wnyhomesecurity/pull/562`, targeting `main`; draft state verified during this bounded run.
+- **Merge Evidence:** Pending operator action; not performed or inferred by Codex.
+- **Deployment Applicability / Status / Evidence:** Applicability: not applicable; Status: `DEPLOYMENT_NOT_APPLICABLE`; governance Markdown only; no deployment authorized or performed.
+- **Main-Sync Status / Evidence:** Pending future evidence after operator merge; not inferred.
+- **CTR Eligibility:** No; merge and main-sync evidence do not yet exist.
+- **CTR Record / Pointer:** None; task remains in the MTR.
+- **Execution Work Order:** `docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md`.
+- **Completion Notes:** Implemented the approved Owner Routing Matrix checkpoint and steward duty in current owners; migrated the existing read-model payload in place to schema REV02 across all 11 records; separated execution from publication/evidence state; and aligned objective CTR eligibility gates. Governance validation passed for exactly seven authorized Markdown files with no deletions, historical bulk migration, parallel owner, ownership cycle, source/runtime/configuration/protected-system change, merge, ready transition, or deployment. `npm run build` was governed-skipped. Draft PR #562 remains open for operator review; merge, main sync, and CTR eligibility remain future evidence.
 
 ### Execution Governance Consolidation and Viewer-Ready Read Model
 - **Task ID:** T-GOVEXEC001
