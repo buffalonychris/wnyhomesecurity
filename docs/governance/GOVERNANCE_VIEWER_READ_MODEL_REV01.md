@@ -76,7 +76,7 @@ records:
     provenance_pr_reference: https://github.com/buffalonychris/wnyhomesecurity/pull/561
     last_governance_update_task: T-GOVFLOW001
     last_governance_update_work_order: docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md
-    last_governance_update_pr: PENDING_DRAFT_PR
+    last_governance_update_pr: https://github.com/buffalonychris/wnyhomesecurity/pull/562
     last_governance_update_date: 2026-08-06
     last_reviewed: 2026-08-06
     effective_revision: REV01 amended by T-GOVFLOW001
@@ -101,7 +101,7 @@ records:
     provenance_pr_reference: https://github.com/buffalonychris/wnyhomesecurity/pull/561
     last_governance_update_task: T-GOVFLOW001
     last_governance_update_work_order: docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md
-    last_governance_update_pr: PENDING_DRAFT_PR
+    last_governance_update_pr: https://github.com/buffalonychris/wnyhomesecurity/pull/562
     last_governance_update_date: 2026-08-06
     last_reviewed: 2026-08-06
     effective_revision: REV01 amended by T-GOVFLOW001
@@ -151,7 +151,7 @@ records:
     provenance_pr_reference: https://github.com/buffalonychris/wnyhomesecurity/pull/561
     last_governance_update_task: T-GOVFLOW001
     last_governance_update_work_order: docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md
-    last_governance_update_pr: PENDING_DRAFT_PR
+    last_governance_update_pr: https://github.com/buffalonychris/wnyhomesecurity/pull/562
     last_governance_update_date: 2026-08-06
     last_reviewed: 2026-08-06
     effective_revision: GOV002 plus T-GOVEXEC001 and T-GOVFLOW001 amendments
@@ -301,7 +301,7 @@ records:
     provenance_pr_reference: https://github.com/buffalonychris/wnyhomesecurity/pull/561
     last_governance_update_task: T-GOVFLOW001
     last_governance_update_work_order: docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md
-    last_governance_update_pr: PENDING_DRAFT_PR
+    last_governance_update_pr: https://github.com/buffalonychris/wnyhomesecurity/pull/562
     last_governance_update_date: 2026-08-06
     last_reviewed: 2026-08-06
     effective_revision: REV01 amended by T-GOVFLOW001

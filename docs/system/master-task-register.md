@@ -1116,7 +1116,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Task ID:** T-GOVFLOW001
 - **Task Name:** Owner Routing and Governance Lifecycle Precision
 - **Task Record Version:** REV01
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** GOV
 - **Primary Workstream:** Project Governance
 - **Related Workstreams:** Codex Execution; KAOS Governance Viewer Readiness
@@ -1131,14 +1131,15 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** Owner Routing Matrix mechanics and steward duty are durable in the approved owners; the viewer schema is REV02 and separates authority, provenance, and last update without static active-task fields; execution and publication/evidence states are distinct; `DONE` does not imply later operator-controlled events; CTR eligibility is evidence-gated; validation passes; one draft PR is open; protected systems remain unchanged; no merge, ready transition, or deployment occurs.
 - **Dependencies:** Operator-approved `T-GOVFLOW001` work order and Owner Routing Matrix; merged PR #561 at merge commit `94e1f8269bc03c3f948876f1431f27d44900334b`; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main`; repository authority chain; manual operator PR review and merge.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. Do not merge, enable auto-merge, mark ready, deploy, archive to CTR, or activate follow-up work in this run.
-- **Publication/Evidence State:** NOT_STARTED
-- **Draft PR Evidence:** Pending creation during this bounded run.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #562, `https://github.com/buffalonychris/wnyhomesecurity/pull/562`, targeting `main`; draft state verified during this bounded run.
 - **Merge Evidence:** Pending operator action; not performed or inferred by Codex.
-- **Deployment Applicability / Status / Evidence:** Not applicable; governance Markdown only; no deployment authorized.
+- **Deployment Applicability / Status / Evidence:** Applicability: not applicable; Status: `DEPLOYMENT_NOT_APPLICABLE`; governance Markdown only; no deployment authorized or performed.
 - **Main-Sync Status / Evidence:** Pending future evidence after operator merge; not inferred.
 - **CTR Eligibility:** No; merge and main-sync evidence do not yet exist.
 - **CTR Record / Pointer:** None; task remains in the MTR.
 - **Execution Work Order:** `docs/codex/work-orders/T-GOVFLOW001_WORK_ORDER_REV01.md`.
+- **Completion Notes:** Implemented the approved Owner Routing Matrix checkpoint and steward duty in current owners; migrated the existing read-model payload in place to schema REV02 across all 11 records; separated execution from publication/evidence state; and aligned objective CTR eligibility gates. Governance validation passed for exactly seven authorized Markdown files with no deletions, historical bulk migration, parallel owner, ownership cycle, source/runtime/configuration/protected-system change, merge, ready transition, or deployment. `npm run build` was governed-skipped. Draft PR #562 remains open for operator review; merge, main sync, and CTR eligibility remain future evidence.
 
 ### Execution Governance Consolidation and Viewer-Ready Read Model
 - **Task ID:** T-GOVEXEC001
