@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import GovernanceViewer from '../pages/GovernanceViewer';
 import './kaos.css';
@@ -84,5 +85,6 @@ function Installations({filter,setFilter}:{filter:string;setFilter:(x:string)=>v
 function Money(){return <><section className="money-hero"><p className="kicker">Plain-language financial view</p><h3>Money</h3><p>What is sold, paid, and coming—not accounting software.</p></section><section className="metrics"><article><span>Deposits received</span><strong>$8,900</strong><p>2 new jobs ready to schedule</p></article><article><span>Open estimates</span><strong>$25,750</strong><p>Across active opportunities</p></article><article><span>Balances due</span><strong>$6,200</strong><p>After scheduled installation work</p></article></section></>}
 function Automations({records,setRecords}:{records:typeof automationSeed;setRecords:(x:typeof automationSeed)=>void}){return <><Heading kicker="Routine follow-up" title="Automations" note="Demonstration controls only. No messages, CRM writes, or workflows are created."/><section className="table-list">{records.map((x,i)=><article className="record-row" key={x.task}><span><strong>{x.task}</strong><small>{x.person}</small></span><mark>{x.state}</mark><span/><button onClick={()=>setRecords(records.map((r,n)=>n===i?{...r,state:r.state==='Needs Approval'?'Completed':'Needs Approval'}:r))}>Toggle demo state</button></article>)}</section></>}
 function Overview(){return <><section className="overview-hero"><p className="kicker">The KAOS vision</p><h3>One command layer for the business.</h3><p>Customer journey on one side. Owner/business journey on the other. Governed systems remain authoritative underneath.</p></section><section className="metrics">{nav.filter(x=>x.id!=='overview'&&x.id!=='governance').map(x=><article key={x.id}><span>{x.label}</span><strong>→</strong><p>{x.note}</p></article>)}</section></>}
-function Drawer({title,subtitle,close,children}:{title:string;subtitle:string;close:()=>void;children:React.ReactNode}){return <aside className="drawer" role="dialog" aria-modal="true"><button className="drawer-close" onClick={close}>×</button><p className="kicker">Record detail</p><h3>{title}</h3><p>{subtitle}</p><div>{children}</div></aside>}
+function Drawer({title,subtitle,close,children}:{title:string;subtitle:string;close:()=>void;children:ReactNode}){return <aside className="drawer" role="dialog" aria-modal="true"><button className="drawer-close" onClick={close}>×</button><p className="kicker">Record detail</p><h3>{title}</h3><p>{subtitle}</p><div>{children}</div></aside>}
 function Detail({label,value}:{label:string;value:string}){return <div className="detail"><span>{label}</span><strong>{value}</strong></div>}
+
