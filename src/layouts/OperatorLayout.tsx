@@ -26,7 +26,6 @@ const secondaryLinks: NavItem[] = [
 const OperatorLayout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const isHub = location.pathname === '/';
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -125,6 +124,12 @@ const OperatorLayout = () => {
           </div>
         )}
       </header>
+      <nav className="operator-layout-nav hide-when-print" aria-label="Operator workspace navigation">
+        <div className="container operator-layout-nav__inner">
+          <NavLink to="/operator" end>Operator overview</NavLink>
+          <NavLink to="/operator/governance">Governance</NavLink>
+        </div>
+      </nav>
       <main>
         <Outlet />
       </main>
