@@ -93,11 +93,12 @@ OPS004 routes. OPS005 summarizes current state. Neither authorizes implementatio
 
 `READ MODE: TARGETED` is the default.
 
-1. Search exact task IDs, headings, status labels, paths, and references with `rg` or equivalent.
-2. Read the smallest located section that establishes authority, scope, status, owner rules, or validation.
-3. Load task-specific owner docs only for affected surfaces.
-4. Do not fully load the Master Task Register, Document Catalog, Markdown Manifest, broad audits, inventories, or status boards by default.
-5. Avoid broad repository searches after the needed reference set is known.
+1. Immediately after reading the work-order header, verify that its Primary Workstream exactly matches a registered OPS004 workstream. If it does not, stop immediately and report the routing conflict before broader repository reads, authority discovery, or implementation.
+2. Search exact task IDs, headings, status labels, paths, and references with `rg` or equivalent.
+3. Read the smallest located section that establishes authority, scope, status, owner rules, or validation.
+4. Load task-specific owner docs only for affected surfaces.
+5. Do not fully load the Master Task Register, Document Catalog, Markdown Manifest, broad audits, inventories, or status boards by default.
+6. Avoid broad repository searches after the needed reference set is known.
 
 Every work order must name the minimum authority and owner-document set needed for the task. Detailed implementation reasoning, exact files, checks, stop conditions, and closeout requirements belong in the repository-owned work order. An external dispatch prompt should be a minimal pointer to that work order. Chat discussion and approval become durable implementation authority only after promotion into the repository authority chain.
 
@@ -276,7 +277,7 @@ Otherwise record `Governed docs-only build skip` and the controlling rule. A tas
 
 ## 17. Git, commit, PR, and review
 
-- Precheck a clean, synchronized `main` and any existing task branch/PR.
+- Precheck repository convergence first: confirm the repository is on `main`, the working tree is clean, and local `HEAD` equals `origin/main`. When all three conditions pass, treat the previous task PR/deployment lifecycle as operationally closed. Do not reconstruct, re-read, or revalidate the previous PR, task branch, deployment history, or prior closeout unless the current bounded task explicitly requires that historical evidence. If repository convergence fails, stop immediately and report the exact divergence before further task discovery or implementation.
 - Create one fresh branch from `origin/main`; one task per branch and PR.
 - Stage only authorized files and use the task-specified commit message.
 - Push the task branch and open a draft PR to `main` with scope, rationale, validation, build decision, protected-system posture, and risks.
