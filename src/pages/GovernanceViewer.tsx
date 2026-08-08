@@ -134,7 +134,9 @@ const AuthorityGraph = ({ record, onSelect }: { record: GovernanceRecord; onSele
   </SpaceFrame>
 );
 
-const GovernanceViewer = () => {
+type GovernanceViewerProps = { presentation?: 'operator' | 'kaos' };
+
+const GovernanceViewer = ({ presentation = 'operator' }: GovernanceViewerProps) => {
   const [activeView, setActiveView] = useState<ViewId>('overview');
   const [selectedId, setSelectedId] = useState(governanceRecords[0].document_id);
   const [query, setQuery] = useState('');
@@ -248,7 +250,7 @@ const GovernanceViewer = () => {
   };
 
   return (
-    <div className="space-shell governance-viewer-shell">
+    <div className={`space-shell governance-viewer-shell${presentation === 'kaos' ? ' governance-viewer--kaos' : ''}`}>
       <div className="container section governance-viewer">
         <SectionHeader kicker="KAOS / Internal" title="Governance Viewer" subtitle="Search repository-owned governance, trace authority relationships, and answer why each rule exists—without changing its source." actions={<div className="governance-snapshot-label"><strong>Read-only snapshot</strong><span>REV02 · {GOVERNANCE_SNAPSHOT_DATE}</span></div>} />
         <div className="governance-boundary" role="note"><strong>Read-only projection.</strong> Source documents remain authoritative. No editing, approvals, task actions, GitHub writes, or live external state.</div>
