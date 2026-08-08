@@ -5388,6 +5388,33 @@ Multiple ACTIVE tasks under CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01 are pre-authorized
 ## Active Tasks (Execution Driver)
 
 
+### DASH-GOV-001
+- **Task ID:** DASH-GOV-001
+- **Task Name:** Consolidate and Reconcile WNYHS Dashboard Governance
+- **Status:** DONE
+- **Category:** GOV
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Project Governance; Automation System; Visual System; KAOS Application
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Consolidate current WNYHS Home Assistant dashboard governance, installer standards, BKLF reference evidence, validation, handoff, service/support, notification, automation-interaction, and future KAOS consumption gaps into one classified reconciliation document without changing implementation behavior or existing functional owners.
+- **Allowed Scope:** Follow the operator-approved Owner Routing Matrix in `docs/codex/work-orders/DASH-GOV-001_WORK_ORDER_REV03.md`; create `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV01.md`; register that durable document in the Document Catalog and Markdown Manifest when required; update only this task record for lifecycle/evidence; use one branch, one bounded commit, and one draft PR.
+- **Forbidden Scope:** No Home Assistant implementation, dashboard YAML, runtime, automations, notifications, KAOS source, website source, protected-system, dependency, package-lock, environment, secret, customer-sensitive material, entity rename, existing functional-owner modification/deletion/supersession, unrelated governance cleanup, merge, auto-merge, ready-for-review transition, or deployment.
+- **Target Files:** `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV01.md`; `docs/system/master-task-register.md`; `docs/DOCUMENT_CATALOG.md`; `docs/MARKDOWN_MANIFEST.md`.
+- **Runtime Systems Affected:** None. Documentation/governance reconciliation only.
+- **Documentation Updates Required:** Create the dashboard-governance master reconciliation; add this current-schema task record; add exact Document Catalog and Markdown Manifest registration entries for the new durable document if required by current repository governance.
+- **Validation Required:** Confirm REV03 routing and Owner Routing Matrix compliance; confirm the exact authorized changed-file set and no deletions; confirm every required master section and substantive-rule lineage; count all eight classification values; surface conflicts without guessing; separate BKLF evidence from universal standards; confirm no raw backup, secrets, or customer-sensitive material; run applicable documentation validation/link checks and `git diff --check`; report `git diff --stat` and final `git status`; record a governed docs-only build skip unless current governance requires a build.
+- **Exit Criteria:** The complete current-schema record exists; the authorized master reconciliation and required inventory/lineage/duplicate/conflict/gap/ownership/KAOS analyses exist; validation passes; no implementation or existing functional-owner behavior changes; one bounded commit is pushed and one draft PR is open; no merge or deployment occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/DASH-GOV-001_WORK_ORDER_REV03.md`; synchronized `origin/main` at `95a2904f6497c42cb366bf15f5e06cb6bfb94c88`; current repository authority chain; current OPS004 registry; current Codex execution standard; the reference-only owner and BKLF evidence documents named by REV03.
+- **Operator Decision Required:** Manually review the draft PR and decide whether to merge. Separately authorize any functional-owner revision, Home Assistant/dashboard implementation, notification/automation change, KAOS implementation, runtime change, or deployment.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #569 is open at `https://github.com/buffalonychris/wnyhomesecurity/pull/569` from `docs/dash-gov-001` to `main`; verified draft and open during this run.
+- **Merge Evidence:** Not merged; merge is not authorized for this run.
+- **Deployment Applicability / Status / Evidence:** Not applicable; documentation-only governance task with no deployment authorized.
+- **Main-Sync Status / Evidence:** Not yet verified after operator merge; current task branch started from synchronized `origin/main`.
+- **CTR Eligibility:** Not eligible during this run; merge and post-merge main synchronization remain unverified.
+- **CTR Record / Pointer:** None.
+
+
 ### QUOTESYSTEM-016
 - **Task ID:** QUOTESYSTEM-016
 - **Task Name:** Live Test / Bug Fix Pass

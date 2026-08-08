@@ -1942,3 +1942,12 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **ACTIVE GOVERNANCE ALIGNMENT REFERENCE**
 - **Implementation authority:** No.
 - **Notes:** Excludes unused Agents SDK, custom GPTs, API agents, MCP apps, and future tools; capability availability does not create authority.
+
+## DASH-GOV-001 Catalog Addendum
+
+### `/docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV01.md`
+- **File path:** `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV01.md`
+- **Purpose / likely role:** Reconciles dashboard governance, classifies reusable rules and BKLF evidence, preserves functional-owner boundaries, and records unresolved conflicts and missing governance for future bounded work.
+- **Authority level:** **ACTIVE DASHBOARD GOVERNANCE RECONCILIATION AND GAP-ANALYSIS REFERENCE**
+- **Implementation authority:** No.
+- **Notes:** Does not authorize Home Assistant, dashboard YAML, automation, notification, KAOS, website, protected-system, merge, or deployment changes. Functional source owners remain controlling.
