@@ -50,7 +50,7 @@ Customer Home Assistant Green
 -> cloudflared
 -> Cloudflare Tunnel
 -> Cloudflare Zero Trust / Access policy
--> <customer>.remote.wnyhomesecurity.com
+-> <site-slug>.wnyhomesecurity.com
 -> Home Assistant login
 ```
 
@@ -60,23 +60,18 @@ The Home Assistant login remains required for every user. Cloudflare Access can 
 
 ## 4. Standard Hostname Model
 
-WNYHS owns and manages `wnyhomesecurity.com` in Cloudflare and uses the `remote.wnyhomesecurity.com` parent naming pattern for customer Home Assistant remote access.
+WNYHS owns and manages `wnyhomesecurity.com` in Cloudflare. The current default uses one direct customer/site subdomain for each Home Assistant deployment.
 
 Standard format:
 
-- `<customer>.remote.wnyhomesecurity.com`
+- `<site-slug>.wnyhomesecurity.com`
 
-Examples:
+Validated deployment examples:
 
-- `bklewis.remote.wnyhomesecurity.com`
-- `smith.remote.wnyhomesecurity.com`
-- `jones.remote.wnyhomesecurity.com`
+- `peckham.wnyhomesecurity.com`
+- `bailey.wnyhomesecurity.com`
 
-BKLF example:
-
-- Customer: Brian K. Lewis Funeral Home
-- Standard customer slug: `bklewis`
-- Target hostname: `bklewis.remote.wnyhomesecurity.com`
+The previously documented `<customer>.remote.wnyhomesecurity.com` pattern is legacy planning lineage, not the current required default. Existing live hostnames are not changed by this architecture document.
 
 Customer slugs should be short, stable, approved, and free of secrets, account IDs, tokens, passwords, or private device identifiers.
 
@@ -96,6 +91,8 @@ One tunnel per deployment gives WNYHS:
 
 Tunnel credentials, connector tokens, tunnel UUIDs, Cloudflare tokens, and `cloudflared` secret values must never be committed to the repository.
 
+The tunnel origin may use internal HTTP. Its reachable service address and port are deployment-specific and must be validated from the `cloudflared` environment rather than hardcoded as one universal Home Assistant origin.
+
 ---
 
 ## 6. Customer Access Model
@@ -104,7 +101,7 @@ Customer access supports:
 
 - Browser dashboard access at the customer-specific remote URL.
 - Home Assistant Companion App access using the same remote URL.
-- A customer non-admin Home Assistant user for normal owner use.
+- An individual, non-admin Home Assistant user for each customer who requires normal owner access.
 
 Customer users should have access only to the dashboards and controls appropriate for the installation. Installer-only views, maintenance helpers, admin settings, internal entity-maintenance views, and WNYHS technician surfaces should not be exposed through the standard customer user.
 
@@ -188,7 +185,7 @@ Do not disrupt customer business networks. If routing, VLAN, firewall, VPN, or c
 
 ## 11. Temporary Remote Access
 
-Nabu Casa may be used as a temporary bridge when needed for setup or interim support.
+Nabu Casa may be used as a temporary bridge when needed for setup or interim support, but it is not a dependency of the standard Cloudflare Tunnel model.
 
 Cloudflare Tunnel is the preferred long-term WNYHS standard for customer Home Assistant remote access because it supports the WNYHS hostname model, outbound-only connectivity, customer-specific tunnel ownership, and future support operations.
 
@@ -201,7 +198,7 @@ Temporary access paths should be retired or reviewed after the Cloudflare Tunnel
 WNYHS owns:
 
 - DNS naming convention.
-- `remote.wnyhomesecurity.com` customer hostname pattern.
+- `<site-slug>.wnyhomesecurity.com` customer hostname pattern.
 - Internal support architecture standards.
 - Non-secret customer URL inventory process when created by a future task.
 

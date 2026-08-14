@@ -37,15 +37,18 @@ Customer users should receive only the Home Assistant permissions and dashboards
 
 ## 3. Standard Hostname Model
 
-WNYHS should use `remote.wnyhomesecurity.com` as the parent remote-access zone for customer Home Assistant deployments.
+The current WNYHS default is one direct customer/site subdomain under `wnyhomesecurity.com` for each Home Assistant deployment.
 
-Customer Home Assistant instances should use customer-specific subdomains under that parent zone.
+Standard format:
 
-Examples:
+- `<site-slug>.wnyhomesecurity.com`
 
-- `bklewis.remote.wnyhomesecurity.com`
-- `smith.remote.wnyhomesecurity.com`
-- `jones.remote.wnyhomesecurity.com`
+Validated deployment examples:
+
+- `peckham.wnyhomesecurity.com`
+- `bailey.wnyhomesecurity.com`
+
+The previously documented `<customer>.remote.wnyhomesecurity.com` pattern is legacy planning lineage, not the current required default. Do not migrate or disable an existing hostname without separate live-system authority.
 
 Hostnames should use short, stable customer slugs. Avoid personal details beyond the approved customer slug. Do not place tunnel tokens, account IDs, passwords, or other secret values in hostnames, documentation, commit messages, screenshots, or handoff notes.
 
@@ -60,6 +63,8 @@ Standard remote access should use layered access controls:
 - Cloudflare Zero Trust Access policy where appropriate for WNYHS admin or technician access.
 - Home Assistant login for every user.
 
+The tunnel origin may use internal HTTP. Validate the reachable Home Assistant origin from the `cloudflared` environment for each deployment and record the deployment-specific value in approved non-secret operational records. Do not assume one universal LAN address or Home Assistant origin port.
+
 Home Assistant authentication remains required even when Cloudflare Access is enabled.
 
 Cloudflare Access policy should not be treated as a replacement for Home Assistant user accounts, Home Assistant permissions, or customer dashboard scoping.
@@ -72,7 +77,7 @@ Customer remote access should use the customer-specific URL for that Home Assist
 
 The Home Assistant Companion App should point to the customer-specific remote URL after the tunnel is verified.
 
-Customer access should use a non-admin Home Assistant user.
+Customer access should use an individual, non-admin Home Assistant user. Do not share customer, WNYHS admin, or technician credentials between people.
 
 Customer dashboards should show the owner-facing controls and status needed for the installation, without exposing installer-only maintenance views, internal helpers, or admin-only configuration surfaces.
 
@@ -159,6 +164,7 @@ Before tunnel setup, confirm:
 - Terminal & SSH is installed when needed for authorized troubleshooting.
 - The Cloudflared add-on is installed or available for installation.
 - Cloudflared configuration is not committed with secrets.
+- The deployment-specific internal Home Assistant origin is reachable from the `cloudflared` environment; do not assume a universal origin port.
 - Required Home Assistant users exist before customer handoff.
 
 Do not store Cloudflare tunnel credentials, Cloudflare tokens, Home Assistant credentials, or mobile device private identifiers in this repository.
