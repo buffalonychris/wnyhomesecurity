@@ -22,16 +22,18 @@ Before setup:
 1. Confirm `wnyhomesecurity.com` is active in Cloudflare.
 2. Select the approved customer slug.
 3. Confirm the target hostname in the standard format:
-   - `<customer>.remote.wnyhomesecurity.com`
+   - `<site-slug>.wnyhomesecurity.com`
 4. Confirm customer approval for remote access.
 5. Confirm whether Cloudflare Access policy is required for customer, WNYHS admin, or technician access.
 6. Confirm no tunnel tokens, passwords, Home Assistant credentials, Cloudflare tokens, mobile private details, or customer secrets will be stored in repo files.
 7. Prepare the non-secret customer URL inventory entry if a governed inventory exists.
 
-BKLF example:
+Validated deployment examples:
 
-- Customer slug: `bklewis`
-- Target hostname: `bklewis.remote.wnyhomesecurity.com`
+- `peckham.wnyhomesecurity.com`
+- `bailey.wnyhomesecurity.com`
+
+The older `<customer>.remote.wnyhomesecurity.com` pattern is legacy planning lineage, not the current required default. Do not change an existing live hostname under this documentation-only runbook.
 
 ---
 
@@ -62,20 +64,14 @@ Standard sequence after customer approval:
 1. Create the customer tunnel in Cloudflare Zero Trust.
 2. Install or configure `cloudflared` on the Home Assistant Green or an approved local host.
 3. Authenticate the tunnel using the approved Cloudflare flow.
-4. Map the customer public hostname to the internal Home Assistant service.
+4. Validate the reachable Home Assistant origin from the `cloudflared` environment, then map the customer public hostname to that deployment-specific internal service.
 5. Apply Cloudflare Access policy where appropriate.
 6. Verify the remote URL loads.
 7. Verify Home Assistant login is still required.
 8. Verify local Home Assistant access still works.
 9. Create a post-success Home Assistant backup.
 
-BKLF example internal target:
-
-- `http://192.168.2.106:8123`
-
-BKLF example hostname:
-
-- `bklewis.remote.wnyhomesecurity.com`
+The internal origin may use HTTP. Do not assume one universal LAN address or Home Assistant origin port. Peckham and Bailey both validate the internal-HTTP tunnel model, but their deployment-specific origin details are not universal rules.
 
 Do not commit tunnel token, tunnel UUID, connector credential, Cloudflare token, Home Assistant password, or customer private device detail to the repo.
 
@@ -87,7 +83,7 @@ Customer Companion App setup:
 
 1. Customer opens or installs the Home Assistant Companion App.
 2. Customer connects using the customer remote URL.
-3. Customer logs in with the customer non-admin Home Assistant account.
+3. Customer logs in with their individual, non-admin Home Assistant account.
 4. Customer allows notifications if notifications are part of the approved handoff.
 5. Verify the customer dashboard loads.
 6. Verify camera views load if included.
@@ -119,6 +115,7 @@ Technician access should be time-bounded or removed when the support task is com
 Remote access is not complete until applicable checks pass:
 
 - [ ] Remote URL loads.
+- [ ] The deployment-specific internal origin was validated from the `cloudflared` environment.
 - [ ] Home Assistant login works.
 - [ ] Customer non-admin login works.
 - [ ] Customer dashboard loads.
@@ -182,14 +179,14 @@ Do not leave temporary setup accounts active after handoff or offboarding.
 
 - Confirm the hostname matches the approved customer slug.
 - Confirm Cloudflare DNS record status in the Cloudflare dashboard.
-- Confirm the hostname uses `<customer>.remote.wnyhomesecurity.com`.
+- Confirm the hostname uses the current `<site-slug>.wnyhomesecurity.com` format unless an existing legacy hostname is separately approved.
 - Confirm no typo in the customer URL.
 
 ### Home Assistant Login Works Locally But Not Remotely
 
 - Confirm the tunnel target points to the correct internal Home Assistant service.
-- Confirm Home Assistant is listening at the expected local URL.
-- Confirm any reverse-proxy or trusted-proxy settings are appropriate for the approved setup.
+- Confirm Home Assistant is reachable from the `cloudflared` environment at the deployment-specific internal origin; do not assume a universal port.
+- If Home Assistant responds but reports a reverse-proxy or trusted-proxy error, verify the trusted-proxy configuration through the current supported Home Assistant configuration path. Do not retain duplicate legacy YAML when the current Home Assistant UI owns that setting.
 - Confirm Cloudflare Access policy is not blocking the intended user.
 
 ### Companion App Cannot Connect
