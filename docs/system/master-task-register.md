@@ -1945,7 +1945,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 ### T-HA-REMOTE-001R
 - **Task ID:** T-HA-REMOTE-001R
 - **Task Name:** Reconcile Peckham/Bailey Cloudflare Remote Access Governance
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** GOV
 - **Primary Workstream:** Infrastructure / Deployment System
 - **Related Workstreams:** Project Governance; Dashboard / Interactive Experience System; Automation System
@@ -1961,8 +1961,8 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** The complete current-schema record and bounded owner-document corrections exist; Peckham and Bailey are recorded as validated direct-subdomain deployments without inventing a universal origin port or LAN value; PR #570 remains stale unmerged lineage; validation passes; protected systems remain untouched; the task branch is pushed and one draft PR is open; no merge or deployment occurs.
 - **Dependencies:** Operator-authorized `docs/codex/work-orders/T-HA-REMOTE-001R_WORK_ORDER_REV02.md`; synchronized `origin/main` at `e93daa7db1e24561917cefd00ba13f8df7a12f51`; current repository authority chain; OPS004 Infrastructure / Deployment System routing; current remote-access owner documents; completed Peckham and Bailey deployment evidence recorded in REV02; stale PR #570 lineage only.
 - **Operator Decision Required:** Manually review the draft PR and decide whether to merge. Any live Cloudflare, DNS, Home Assistant, customer-system, network, runtime, protected-system, merge, or deployment action requires separate authorization.
-- **Publication/Evidence State:** VALIDATION_COMPLETE
-- **Draft PR Evidence:** Required draft PR remains pending until the validated task commit is pushed during this run.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #572 is open at `https://github.com/buffalonychris/wnyhomesecurity/pull/572` from `task/ha-remote-001r-reconciliation` to `main`; verified draft and open during this run.
 - **Merge Evidence:** Not merged; merge is not authorized for this run.
 - **Deployment Applicability / Status / Evidence:** Not applicable; documentation-only governance reconciliation with no deployment authorized.
 - **Main-Sync Status / Evidence:** Task branch started from synchronized `origin/main` at `e93daa7db1e24561917cefd00ba13f8df7a12f51`; post-merge main synchronization is not applicable during this run.
