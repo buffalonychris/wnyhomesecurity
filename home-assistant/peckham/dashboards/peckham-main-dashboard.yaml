@@ -1,0 +1,196 @@
+# T-HA-DASH-PECKHAM-001 REV02
+# UNBOUND REPOSITORY FOUNDATION — DO NOT DEPLOY BEFORE ONSITE BINDING.
+# GOLD LOGO PLACEMENT: reserve the top of each view for the approved WNYHS gold
+# logo after a repository-owned asset path is authorized. No image is bound here.
+# APPEARANCE: the shell uses core cards and theme variables only. Light, Dark,
+# and Auto controls are added during a later authorized registration/binding task.
+
+title: Peckham Customer Dashboard
+views:
+  - title: Home
+    path: home
+    icon: mdi:home-outline
+    type: masonry
+    cards:
+      - type: markdown
+        title: PK | PECKHAM
+        content: |
+          ## Building Status
+          **Setup pending**
+
+          Live building status begins after onsite setup and verification.
+          No live status or security conclusion is shown by this foundation.
+      - type: markdown
+        title: Main Entrance
+        content: |
+          The Main Entrance will bring the door contact, visitor view, and both
+          locks together after onsite setup.
+
+          **Current display:** Setup pending
+      - type: markdown
+        title: Windows
+        content: |
+          Fifteen first-floor window contacts are prepared with temporary names.
+          Final window names will be added only after each contact is triggered onsite.
+      - type: markdown
+        title: Appearance
+        content: |
+          **Light · Dark · Auto**
+
+          The same navigation, status words, and controls will remain in every mode.
+          Approved appearance controls become available after onsite setup.
+      - type: markdown
+        content: |
+          ---
+          **WNY Home Security**
+
+          wnyhomesecurity.com · 716-201-0364
+
+  - title: Main Entrance
+    path: main-entrance
+    icon: mdi:door
+    type: masonry
+    cards:
+      - type: markdown
+        title: PK | PECKHAM
+        content: |
+          ## Building Status
+          **Setup pending** — live status begins after onsite setup.
+      # Unbound contact slot: operator-verified Sensor 13. Exact entity ID is unknown.
+      - type: markdown
+        title: Main Entrance Door
+        content: |
+          Door status will appear here after onsite setup and verification.
+      # Planned unbound slot: Reolink Main Entrance doorbell. Model capabilities are unverified.
+      - type: markdown
+        title: Main Entrance Doorbell
+        content: |
+          Visitor view and any supported actions will appear only after onsite setup
+          and verification.
+
+          **Current display:** Setup pending
+      # Planned unbound slot: Kwikset SmartCode 912 lever. Exact entity ID is unknown.
+      - type: markdown
+        title: Lever Lock
+        content: |
+          Status and deliberate controls will be added after onsite setup and testing.
+
+          **Current display:** Setup pending
+      # Planned unbound slot: Kwikset Home Connect 620 deadbolt. Exact entity ID is unknown.
+      - type: markdown
+        title: Deadbolt
+        content: |
+          Status and deliberate controls will be added after onsite setup and testing.
+
+          **Current display:** Setup pending
+      - type: markdown
+        title: Overall Main Entrance
+        content: |
+          **No combined lock conclusion is available yet.**
+
+          After onsite setup, the Main Entrance may show fully locked only when
+          both the lever lock and deadbolt are verified locked. One lock alone is not
+          enough to show the complete entrance as locked.
+      - type: markdown
+        content: |
+          ---
+          **WNY Home Security**
+
+          wnyhomesecurity.com · 716-201-0364
+
+  - title: Windows
+    path: windows
+    icon: mdi:window-closed-variant
+    type: masonry
+    cards:
+      - type: markdown
+        title: PK | PECKHAM
+        content: |
+          ## Building Status
+          **Setup pending** — live status begins after onsite setup.
+      - type: markdown
+        title: First-Floor Windows
+        content: |
+          - **Window Sensor 01** — Setup pending
+          - **Window Sensor 02** — Setup pending
+          - **Window Sensor 03** — Setup pending
+          - **Window Sensor 04** — Setup pending
+          - **Window Sensor 05** — Setup pending
+          - **Window Sensor 06** — Setup pending
+          - **Window Sensor 07** — Setup pending
+          - **Window Sensor 08** — Setup pending
+          - **Window Sensor 09** — Setup pending
+          - **Window Sensor 10** — Setup pending
+          - **Window Sensor 11** — Setup pending
+          - **Window Sensor 12** — Setup pending
+          - **Window Sensor 13** — Setup pending
+          - **Window Sensor 14** — Setup pending
+          - **Window Sensor 15** — Setup pending
+
+          Temporary numbers do not identify a room, wall, or exact opening.
+          Final names are assigned only after onsite trigger testing.
+      - type: markdown
+        content: |
+          ---
+          **WNY Home Security**
+
+          wnyhomesecurity.com · 716-201-0364
+
+  - title: Appearance
+    path: appearance
+    icon: mdi:theme-light-dark
+    type: masonry
+    cards:
+      - type: markdown
+        title: PK | PECKHAM
+        content: |
+          ## Building Status
+          **Setup pending** — live status begins after onsite setup.
+      - type: markdown
+        title: Choose Your View
+        content: |
+          ### Light
+          Bright daily-use presentation.
+
+          ### Dark
+          Low-light daily-use presentation.
+
+          ### Auto
+          Follow the device or system preference where supported.
+
+          Appearance does not change navigation, status meaning, or available actions.
+          Controls become available only after approved appearance modes are confirmed onsite.
+      - type: markdown
+        content: |
+          ---
+          **WNY Home Security**
+
+          wnyhomesecurity.com · 716-201-0364
+
+  - title: More
+    path: more
+    icon: mdi:dots-horizontal-circle-outline
+    type: masonry
+    cards:
+      - type: markdown
+        title: PK | PECKHAM
+        content: |
+          ## Building Status
+          **Setup pending** — live status begins after onsite setup.
+      - type: markdown
+        title: Status Words
+        content: |
+          - **Normal** — no current action is indicated.
+          - **Information** — helpful context.
+          - **Attention** — review is recommended.
+          - **Critical** — prompt action is needed.
+
+          Hidden setup noise is not a customer status level.
+      - type: markdown
+        title: Service
+        content: |
+          **WNY Home Security**
+
+          wnyhomesecurity.com
+
+          716-201-0364
