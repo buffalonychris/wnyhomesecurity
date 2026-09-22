@@ -2,7 +2,13 @@
 
 **Revision:** REV01
 
-**Status:** PREPARED - NOT DISPATCHED OR EXECUTED
+**Status:** SUPERSEDED FOR EXECUTION
+
+**Successor:** `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV02.md`
+
+**Execution note:** Preserve REV01 for lineage only. Do not execute REV01 after operator approval of REV02.
+
+**Prior Status:** PREPARED - NOT DISPATCHED OR EXECUTED
 
 **Category:** GOV
 
