@@ -2,7 +2,13 @@
 
 **Revision:** REV01
 
-**Status:** OPERATOR AUTHORIZED
+**Status:** SUPERSEDED FOR EXECUTION
+
+**Successor:** `docs/codex/work-orders/DASH-GOV-REFRESH-001_WORK_ORDER_REV02.md`
+
+**Execution note:** Preserve for lineage only. Do not execute REV01 after operator approval of REV02.
+
+**Prior Status:** OPERATOR AUTHORIZED
 
 **Category:** GOV
 
