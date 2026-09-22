@@ -1,9 +1,8 @@
-# T-HA-DASH-PECKHAM-001 REV02
-# UNBOUND REPOSITORY FOUNDATION — DO NOT DEPLOY BEFORE ONSITE BINDING.
-# GOLD LOGO PLACEMENT: reserve the top of each view for the approved WNYHS gold
-# logo after a repository-owned asset path is authorized. No image is bound here.
-# APPEARANCE: the shell uses core cards and theme variables only. Light, Dark,
-# and Auto controls are added during a later authorized registration/binding task.
+# T-HA-DASH-PECKHAM-002 REV02 — PHASE A PREVIEW
+# REPOSITORY PREVIEW ONLY — DO NOT DEPLOY BEFORE OPERATOR REVIEW.
+# Contact entities are backup-verified. Window physical locations remain unresolved.
+# Doorbell and lock regions are visual placeholders with no entity or service binding.
+# The approved WNYHS gold logo location remains reserved; no asset path is invented.
 
 title: Peckham Customer Dashboard
 views:
@@ -12,185 +11,545 @@ views:
     icon: mdi:home-outline
     type: masonry
     cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending**
+      - &site_header
+        type: custom:button-card
+        name: PK | PECKHAM
+        label: WNY Home Security · Customer Dashboard
+        icon: mdi:home-city-outline
+        show_label: true
+        tap_action:
+          action: none
+        styles:
+          card:
+            - min-height: 104px
+            - padding: 18px
+            - border-radius: var(--ha-card-border-radius)
+            - border: var(--ha-card-border-width) solid var(--ha-card-border-color)
+            - border-left: 6px solid var(--wnyhs-gold, var(--primary-color))
+            - background: var(--wnyhs-card-background, var(--ha-card-background))
+            - box-shadow: var(--ha-card-box-shadow)
+          grid:
+            - grid-template-areas: '"i n" "i l"'
+            - grid-template-columns: 54px 1fr
+          icon:
+            - width: 42px
+            - color: var(--wnyhs-gold, var(--primary-color))
+          name:
+            - justify-self: start
+            - font-size: 24px
+            - font-weight: 800
+            - color: var(--primary-text-color)
+          label:
+            - justify-self: start
+            - font-size: 14px
+            - color: var(--secondary-text-color)
 
-          Live building status begins after onsite setup and verification.
-          No live status or security conclusion is shown by this foundation.
-      - type: markdown
-        title: Main Entrance
-        content: |
-          The Main Entrance will bring the door contact, visitor view, and both
-          locks together after onsite setup.
+      - &building_status
+        type: custom:button-card
+        name: Building Status
+        label: >-
+          [[[
+            const ids = [
+              'binary_sensor.sensor13',
+              'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003',
+              'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2',
+              'binary_sensor.sensor03',
+              'binary_sensor.sensor04',
+              'binary_sensor.sensor05',
+              'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3',
+              'binary_sensor.sensor7',
+              'binary_sensor.sensor08',
+              'binary_sensor.sensor09',
+              'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4',
+              'binary_sensor.sensor11',
+              'binary_sensor.sensor12',
+              'binary_sensor.sensor14',
+              'binary_sensor.sensor15',
+              'binary_sensor.sensor16'
+            ];
+            const missing = ids.filter((id) => !states[id] || ['unknown', 'unavailable'].includes(states[id].state));
+            const open = ids.filter((id) => states[id]?.state === 'on');
+            if (missing.length) return `Contact coverage: ${ids.length - missing.length} of ${ids.length} reporting · Information`;
+            if (open.length) return `${open.length} contact${open.length === 1 ? '' : 's'} open · Attention`;
+            return 'All 16 contact sensors closed · Normal';
+          ]]]
+        icon: mdi:shield-home-outline
+        show_label: true
+        tap_action:
+          action: none
+        styles:
+          card:
+            - min-height: 112px
+            - padding: 18px
+            - border-radius: var(--ha-card-border-radius)
+            - border: var(--ha-card-border-width) solid var(--ha-card-border-color)
+            - background: var(--wnyhs-card-background, var(--ha-card-background))
+            - box-shadow: var(--ha-card-box-shadow)
+          grid:
+            - grid-template-areas: '"i n" "i l"'
+            - grid-template-columns: 50px 1fr
+          icon:
+            - width: 38px
+            - color: >-
+                [[[
+                  const ids = [
+                    'binary_sensor.sensor13',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2',
+                    'binary_sensor.sensor03',
+                    'binary_sensor.sensor04',
+                    'binary_sensor.sensor05',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3',
+                    'binary_sensor.sensor7',
+                    'binary_sensor.sensor08',
+                    'binary_sensor.sensor09',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4',
+                    'binary_sensor.sensor11',
+                    'binary_sensor.sensor12',
+                    'binary_sensor.sensor14',
+                    'binary_sensor.sensor15',
+                    'binary_sensor.sensor16'
+                  ];
+                  if (ids.some((id) => !states[id] || ['unknown', 'unavailable'].includes(states[id].state))) return 'var(--info-color)';
+                  if (ids.some((id) => states[id]?.state === 'on')) return 'var(--wnyhs-warning-amber, var(--warning-color))';
+                  return 'var(--wnyhs-success-green, var(--success-color))';
+                ]]]
+          name:
+            - justify-self: start
+            - font-size: 20px
+            - font-weight: 800
+            - color: var(--primary-text-color)
+          label:
+            - justify-self: start
+            - white-space: normal
+            - text-align: left
+            - font-size: 14px
+            - color: var(--secondary-text-color)
 
-          **Current display:** Setup pending
-      - type: markdown
-        title: Windows
-        content: |
-          Fifteen first-floor window contacts are prepared with temporary names.
-          Final window names will be added only after each contact is triggered onsite.
-      - type: markdown
-        title: Appearance
-        content: |
-          **Light · Dark · Auto**
+      - type: custom:mushroom-template-card
+        entity: binary_sensor.sensor13
+        primary: Main Entrance Door
+        secondary: >-
+          {% if is_state('binary_sensor.sensor13', 'on') %}Open · Attention
+          {% elif is_state('binary_sensor.sensor13', 'off') %}Closed · Normal
+          {% else %}Status needs review · Information{% endif %}
+        icon: >-
+          {% if is_state('binary_sensor.sensor13', 'on') %}mdi:door-open
+          {% else %}mdi:door-closed{% endif %}
+        icon_color: >-
+          {% if is_state('binary_sensor.sensor13', 'on') %}amber
+          {% elif is_state('binary_sensor.sensor13', 'off') %}green
+          {% else %}blue{% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: &status_tile |
+            ha-card {
+              min-height: 82px;
+              border-radius: var(--ha-card-border-radius);
+              border: var(--ha-card-border-width) solid var(--ha-card-border-color);
+              background: var(--wnyhs-card-background, var(--ha-card-background));
+              box-shadow: var(--ha-card-box-shadow);
+            }
 
-          The same navigation, status words, and controls will remain in every mode.
-          Approved appearance controls become available after onsite setup.
-      - type: markdown
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Windows
+            label: >-
+              [[[
+                const ids = [
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2',
+                  'binary_sensor.sensor03',
+                  'binary_sensor.sensor04',
+                  'binary_sensor.sensor05',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3',
+                  'binary_sensor.sensor7',
+                  'binary_sensor.sensor08',
+                  'binary_sensor.sensor09',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4',
+                  'binary_sensor.sensor11',
+                  'binary_sensor.sensor12',
+                  'binary_sensor.sensor14',
+                  'binary_sensor.sensor15',
+                  'binary_sensor.sensor16'
+                ];
+                const open = ids.filter((id) => states[id]?.state === 'on').length;
+                return open ? `${open} open · Attention` : '15 window contacts · View status';
+              ]]]
+            icon: mdi:window-closed-variant
+            show_label: true
+            tap_action:
+              action: none
+            styles: &summary_card_styles
+              card:
+                - min-height: 106px
+                - padding: 14px
+                - border-radius: var(--ha-card-border-radius)
+                - border: var(--ha-card-border-width) solid var(--ha-card-border-color)
+                - background: var(--wnyhs-card-background, var(--ha-card-background))
+                - box-shadow: var(--ha-card-box-shadow)
+              icon:
+                - width: 34px
+                - color: var(--wnyhs-gold, var(--primary-color))
+              name:
+                - font-weight: 800
+                - color: var(--primary-text-color)
+              label:
+                - white-space: normal
+                - color: var(--secondary-text-color)
+          - type: custom:button-card
+            name: Entry Integration
+            label: Doorbell and two locks pending onsite
+            icon: mdi:doorbell-video
+            show_label: true
+            tap_action:
+              action: none
+            styles: *summary_card_styles
+
+      - type: custom:button-card
+        name: Appearance
+        label: Light · Dark · Auto presentation ready for review
+        icon: mdi:theme-light-dark
+        show_label: true
+        tap_action:
+          action: none
+        styles: *summary_card_styles
+
+      - &footer
+        type: markdown
         content: |
           ---
-          **WNY Home Security**
-
-          wnyhomesecurity.com · 716-201-0364
+          **WNY Home Security** · wnyhomesecurity.com · 716-201-0364
+        card_mod:
+          style: |
+            ha-card {
+              text-align: center;
+              color: var(--secondary-text-color);
+              background: transparent;
+              box-shadow: none;
+            }
 
   - title: Main Entrance
     path: main-entrance
     icon: mdi:door
     type: masonry
     cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      # Unbound contact slot: operator-verified Sensor 13. Exact entity ID is unknown.
-      - type: markdown
-        title: Main Entrance Door
-        content: |
-          Door status will appear here after onsite setup and verification.
-      # Planned unbound slot: Reolink Main Entrance doorbell. Model capabilities are unverified.
-      - type: markdown
-        title: Main Entrance Doorbell
-        content: |
-          Visitor view and any supported actions will appear only after onsite setup
-          and verification.
+      - *site_header
+      - *building_status
+      - type: custom:mushroom-template-card
+        entity: binary_sensor.sensor13
+        primary: Main Entrance Door
+        secondary: >-
+          {% if is_state('binary_sensor.sensor13', 'on') %}Open · Attention
+          {% elif is_state('binary_sensor.sensor13', 'off') %}Closed · Normal
+          {% else %}Status needs review · Information{% endif %}
+        icon: >-
+          {% if is_state('binary_sensor.sensor13', 'on') %}mdi:door-open
+          {% else %}mdi:door-closed{% endif %}
+        icon_color: >-
+          {% if is_state('binary_sensor.sensor13', 'on') %}amber
+          {% elif is_state('binary_sensor.sensor13', 'off') %}green
+          {% else %}blue{% endif %}
+        tap_action:
+          action: more-info
+        card_mod:
+          style: *status_tile
 
-          **Current display:** Setup pending
-      # Planned unbound slot: Kwikset SmartCode 912 lever. Exact entity ID is unknown.
-      - type: markdown
-        title: Lever Lock
-        content: |
-          Status and deliberate controls will be added after onsite setup and testing.
+      - type: custom:button-card
+        name: Main Entrance Doorbell
+        label: Planned Reolink position · Pending onsite integration
+        icon: mdi:doorbell-video
+        show_label: true
+        tap_action:
+          action: none
+        styles:
+          card:
+            - min-height: 210px
+            - padding: 22px
+            - border-radius: var(--ha-card-border-radius)
+            - border: 2px dashed var(--ha-card-border-color)
+            - background: var(--wnyhs-card-background, var(--ha-card-background))
+            - box-shadow: var(--ha-card-box-shadow)
+          icon:
+            - width: 70px
+            - color: var(--wnyhs-gold, var(--primary-color))
+          name:
+            - font-size: 21px
+            - font-weight: 800
+            - color: var(--primary-text-color)
+          label:
+            - white-space: normal
+            - font-size: 14px
+            - color: var(--secondary-text-color)
 
-          **Current display:** Setup pending
-      # Planned unbound slot: Kwikset Home Connect 620 deadbolt. Exact entity ID is unknown.
-      - type: markdown
-        title: Deadbolt
-        content: |
-          Status and deliberate controls will be added after onsite setup and testing.
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Lever Lock
+            label: Kwikset SmartCode 912 · Pending onsite integration
+            icon: mdi:door-closed-lock
+            show_label: true
+            tap_action:
+              action: none
+            styles: &pending_card_styles
+              card:
+                - min-height: 132px
+                - padding: 16px
+                - border-radius: var(--ha-card-border-radius)
+                - border: 2px dashed var(--ha-card-border-color)
+                - background: var(--wnyhs-card-background, var(--ha-card-background))
+                - box-shadow: var(--ha-card-box-shadow)
+              icon:
+                - width: 42px
+                - color: var(--info-color)
+              name:
+                - font-weight: 800
+                - color: var(--primary-text-color)
+              label:
+                - white-space: normal
+                - color: var(--secondary-text-color)
+          - type: custom:button-card
+            name: Deadbolt
+            label: Kwikset Home Connect 620 · Pending onsite integration
+            icon: mdi:lock-outline
+            show_label: true
+            tap_action:
+              action: none
+            styles: *pending_card_styles
 
-          **Current display:** Setup pending
-      - type: markdown
-        title: Overall Main Entrance
-        content: |
-          **No combined lock conclusion is available yet.**
-
-          After onsite setup, the Main Entrance may show fully locked only when
-          both the lever lock and deadbolt are verified locked. One lock alone is not
-          enough to show the complete entrance as locked.
-      - type: markdown
-        content: |
-          ---
-          **WNY Home Security**
-
-          wnyhomesecurity.com · 716-201-0364
+      - type: custom:button-card
+        name: Overall Main Entrance
+        label: Full lock confirmation requires both verified lock states · Information
+        icon: mdi:shield-key-outline
+        show_label: true
+        tap_action:
+          action: none
+        styles: *summary_card_styles
+      - *footer
 
   - title: Windows
     path: windows
     icon: mdi:window-closed-variant
     type: masonry
     cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      - type: markdown
-        title: First-Floor Windows
-        content: |
-          - **Window Sensor 01** — Setup pending
-          - **Window Sensor 02** — Setup pending
-          - **Window Sensor 03** — Setup pending
-          - **Window Sensor 04** — Setup pending
-          - **Window Sensor 05** — Setup pending
-          - **Window Sensor 06** — Setup pending
-          - **Window Sensor 07** — Setup pending
-          - **Window Sensor 08** — Setup pending
-          - **Window Sensor 09** — Setup pending
-          - **Window Sensor 10** — Setup pending
-          - **Window Sensor 11** — Setup pending
-          - **Window Sensor 12** — Setup pending
-          - **Window Sensor 13** — Setup pending
-          - **Window Sensor 14** — Setup pending
-          - **Window Sensor 15** — Setup pending
-
-          Temporary numbers do not identify a room, wall, or exact opening.
-          Final names are assigned only after onsite trigger testing.
+      - *site_header
+      - *building_status
       - type: markdown
         content: |
-          ---
-          **WNY Home Security**
-
-          wnyhomesecurity.com · 716-201-0364
+          ## First-Floor Windows
+          These 15 contacts are included with temporary labels until onsite trigger testing establishes each physical location.
+        card_mod:
+          style: |
+            ha-card {
+              border-radius: var(--ha-card-border-radius);
+              border: var(--ha-card-border-width) solid var(--ha-card-border-color);
+              background: var(--wnyhs-card-background, var(--ha-card-background));
+              box-shadow: var(--ha-card-box-shadow);
+            }
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003
+            primary: Window Sensor 01
+            secondary: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003', 'on') %}Open · Attention{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003', 'on') %}amber{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2
+            primary: Window Sensor 02
+            secondary: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2', 'on') %}Open · Attention{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2', 'on') %}amber{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor03
+            primary: Window Sensor 03
+            secondary: "{% if is_state('binary_sensor.sensor03', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor03', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor03', 'on') %}amber{% elif is_state('binary_sensor.sensor03', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor04
+            primary: Window Sensor 04
+            secondary: "{% if is_state('binary_sensor.sensor04', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor04', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor04', 'on') %}amber{% elif is_state('binary_sensor.sensor04', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor05
+            primary: Window Sensor 05
+            secondary: "{% if is_state('binary_sensor.sensor05', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor05', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor05', 'on') %}amber{% elif is_state('binary_sensor.sensor05', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3
+            primary: Window Sensor 06
+            secondary: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3', 'on') %}Open · Attention{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3', 'on') %}amber{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor7
+            primary: Window Sensor 07
+            secondary: "{% if is_state('binary_sensor.sensor7', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor7', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor7', 'on') %}amber{% elif is_state('binary_sensor.sensor7', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor08
+            primary: Window Sensor 08
+            secondary: "{% if is_state('binary_sensor.sensor08', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor08', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor08', 'on') %}amber{% elif is_state('binary_sensor.sensor08', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor09
+            primary: Window Sensor 09
+            secondary: "{% if is_state('binary_sensor.sensor09', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor09', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor09', 'on') %}amber{% elif is_state('binary_sensor.sensor09', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4
+            primary: Window Sensor 10
+            secondary: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4', 'on') %}Open · Attention{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4', 'on') %}amber{% elif is_state('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor11
+            primary: Window Sensor 11
+            secondary: "{% if is_state('binary_sensor.sensor11', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor11', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor11', 'on') %}amber{% elif is_state('binary_sensor.sensor11', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor12
+            primary: Window Sensor 12
+            secondary: "{% if is_state('binary_sensor.sensor12', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor12', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor12', 'on') %}amber{% elif is_state('binary_sensor.sensor12', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor14
+            primary: Window Sensor 13
+            secondary: "{% if is_state('binary_sensor.sensor14', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor14', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor14', 'on') %}amber{% elif is_state('binary_sensor.sensor14', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor15
+            primary: Window Sensor 14
+            secondary: "{% if is_state('binary_sensor.sensor15', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor15', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor15', 'on') %}amber{% elif is_state('binary_sensor.sensor15', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor16
+            primary: Window Sensor 15
+            secondary: "{% if is_state('binary_sensor.sensor16', 'on') %}Open · Attention{% elif is_state('binary_sensor.sensor16', 'off') %}Closed · Normal{% else %}Needs review · Information{% endif %}"
+            icon: mdi:window-closed-variant
+            icon_color: "{% if is_state('binary_sensor.sensor16', 'on') %}amber{% elif is_state('binary_sensor.sensor16', 'off') %}green{% else %}blue{% endif %}"
+            tap_action: {action: more-info}
+            card_mod: {style: *status_tile}
+      - *footer
 
   - title: Appearance
     path: appearance
     icon: mdi:theme-light-dark
     type: masonry
     cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      - type: markdown
-        title: Choose Your View
-        content: |
-          ### Light
-          Bright daily-use presentation.
-
-          ### Dark
-          Low-light daily-use presentation.
-
-          ### Auto
-          Follow the device or system preference where supported.
-
-          Appearance does not change navigation, status meaning, or available actions.
-          Controls become available only after approved appearance modes are confirmed onsite.
+      - *site_header
+      - *building_status
       - type: markdown
         content: |
-          ---
-          **WNY Home Security**
-
-          wnyhomesecurity.com · 716-201-0364
+          ## Appearance
+          Light, Dark, and Auto preserve the same status meaning, navigation, and card order. Final appearance selection will be confirmed during onsite setup.
+        card_mod:
+          style: |
+            ha-card {
+              border-radius: var(--ha-card-border-radius);
+              border: var(--ha-card-border-width) solid var(--ha-card-border-color);
+              background: var(--wnyhs-card-background, var(--ha-card-background));
+            }
+      - type: grid
+        columns: 3
+        square: false
+        cards:
+          - type: custom:button-card
+            name: Light
+            label: Bright daily view
+            icon: mdi:white-balance-sunny
+            show_label: true
+            tap_action: {action: none}
+            styles: *pending_card_styles
+          - type: custom:button-card
+            name: Dark
+            label: Low-light daily view
+            icon: mdi:weather-night
+            show_label: true
+            tap_action: {action: none}
+            styles: *pending_card_styles
+          - type: custom:button-card
+            name: Auto
+            label: Follow device preference
+            icon: mdi:theme-light-dark
+            show_label: true
+            tap_action: {action: none}
+            styles: *pending_card_styles
+      - *footer
 
   - title: More
     path: more
     icon: mdi:dots-horizontal-circle-outline
     type: masonry
     cards:
+      - *site_header
+      - *building_status
+      - type: custom:mushroom-template-card
+        primary: Setup Progress
+        secondary: Window contacts are ready for review. Final window names, doorbell, and locks will be completed onsite.
+        icon: mdi:clipboard-check-outline
+        icon_color: blue
+        multiline_secondary: true
+        tap_action: {action: none}
+        card_mod: {style: *status_tile}
       - type: markdown
-        title: PK | PECKHAM
         content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      - type: markdown
-        title: Status Words
-        content: |
-          - **Normal** — no current action is indicated.
-          - **Information** — helpful context.
-          - **Attention** — review is recommended.
-          - **Critical** — prompt action is needed.
-
-          Hidden setup noise is not a customer status level.
-      - type: markdown
-        title: Service
-        content: |
-          **WNY Home Security**
-
-          wnyhomesecurity.com
-
-          716-201-0364
+          ## Status words
+          - **Normal** — no current contact action is indicated.
+          - **Information** — helpful context or pending integration.
+          - **Attention** — a contact is open or needs review.
+          - **Critical** — prompt action is required when a later verified rule supports it.
+        card_mod:
+          style: |
+            ha-card {
+              border-radius: var(--ha-card-border-radius);
+              border: var(--ha-card-border-width) solid var(--ha-card-border-color);
+              background: var(--wnyhs-card-background, var(--ha-card-background));
+            }
+      - *footer
