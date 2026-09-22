@@ -1,10 +1,10 @@
 # DASH-CTX-ROUTING-001 — Dashboard Visual-Task Context Routing Reconciliation
 
-**Revision:** REV01  
-**Status:** OPERATOR-AUTHORIZED CORRECTION TASK  
-**Category:** GOV  
-**Primary Workstream:** Dashboard / Interactive Experience System  
-**Related Workstreams:** Project Governance; Visual System  
+**Revision:** REV01
+**Status:** OPERATOR-AUTHORIZED CORRECTION TASK
+**Category:** GOV
+**Primary Workstream:** Dashboard / Interactive Experience System
+**Related Workstreams:** Project Governance; Visual System
 **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 
 READ MODE: TARGETED
@@ -83,7 +83,7 @@ Do not change the controlling-context identifier or unrelated operational author
 
 Add/update only the bounded `DASH-CTX-ROUTING-001` task record using the current required schema.
 
-This task should end DONE with draft-PR evidence after validation.  
+This task should end DONE with draft-PR evidence after validation.
 `DASHBOARD-CAMPAIGN-001` remains ACTIVE and unchanged except if an evidence pointer is strictly required by current schema.
 
 ## 5. Owner Routing Matrix
