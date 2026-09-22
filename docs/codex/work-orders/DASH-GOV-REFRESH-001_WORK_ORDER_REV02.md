@@ -1,11 +1,17 @@
 # DASH-GOV-REFRESH-001 — Dashboard Governance Consolidation Correction
 
-**Revision:** REV02  
-**Supersedes for execution:** `DASH-GOV-REFRESH-001_WORK_ORDER_REV01.md`  
-**Status:** OPERATOR AUTHORIZED — SAME TASK / SAME BRANCH / SAME PR CORRECTION  
-**Category:** GOV  
-**Primary Workstream:** Dashboard / Interactive Experience System  
-**Related Workstreams:** Project Governance; Visual System; Home Assistant Platform; Automation System  
+**Revision:** REV02
+
+**Supersedes for execution:** `DASH-GOV-REFRESH-001_WORK_ORDER_REV01.md`
+
+**Status:** OPERATOR AUTHORIZED — SAME TASK / SAME BRANCH / SAME PR CORRECTION
+
+**Category:** GOV
+
+**Primary Workstream:** Dashboard / Interactive Experience System
+
+**Related Workstreams:** Project Governance; Visual System; Home Assistant Platform; Automation System
+
 **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 
 READ MODE: TARGETED

@@ -8,187 +8,154 @@
 
 **Primary Workstream:** Dashboard / Interactive Experience System
 
-**Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System
+**Related Workstreams:** Project Governance; Visual System; Home Assistant Platform
 
 **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 
 READ MODE: TARGETED
 
-Search the exact task ID, authority headings, owner sections, and Peckham evidence fields. Do not broadly load catalogs, manifests, backups, inventories, or unrelated dashboard history.
+Context target: LOW. This work order is implementation-ready but does not authorize execution by itself.
 
-## 1. Dispatch gate
+## 1. Dispatch and branch gate
 
-This repository-owned work order is implementation-ready but is not dispatched by `DASH-GOV-REFRESH-001`. A later explicit operator instruction must authorize execution. At execution start, add only the missing bounded MTR task record if current governance permits prompt-created child tasks under `DASHBOARD-CAMPAIGN-001`.
+A later explicit operator instruction must dispatch this task. At execution start, confirm the exact current-context/task gate and exact `DASHBOARD-CAMPAIGN-001` block. Add only the missing bounded MTR child record if current governance permits it.
 
-Do not infer authorization from this file's existence. Execute one task, one branch, and one draft PR. Do not merge or deploy.
+Use one fresh child-task branch and one draft PR when dispatched. Do not merge or deploy.
 
 ## 2. Objective
 
-Create an isolated, functional, deterministic browser-rendered Peckham dashboard approval prototype using plain HTML, CSS, and JavaScript. The prototype is not connected to Home Assistant, an API, a production route, customer authentication, or live devices.
+Create an isolated, functional, deterministic browser-rendered Peckham dashboard approval prototype using plain HTML, CSS, and JavaScript. It has no Home Assistant connection, backend, API, production route, authentication, live device binding, or deployment.
 
-## 3. Required precheck and reads
+## 3. Low-context read contract
 
-Before edits:
+Required normal reads only:
 
-1. Confirm a clean branch based on synchronized `origin/main`.
-2. Confirm `DASHBOARD-CAMPAIGN-001` remains ACTIVE and still does not authorize implementation by itself.
-3. Confirm this exact work order is operator-dispatched.
-4. Confirm no newer active owner supersedes the named REV02 standards.
-5. Confirm PR #578 remains deferred and do not modify its branch.
+1. Exact current-context/task gate.
+2. Exact `DASHBOARD-CAMPAIGN-001` MTR block.
+3. Relevant INSTALL006 REV02 sections for navigation, status/Activity/Alert behavior, capability visibility, command states, footer, and proof.
+4. Relevant DESIGN001 REV02 sections for tokens, typography, tile/media/status/action components, themes, focus, and reduced motion.
+5. Relevant DASHBOARD001 REV02 sections for size modes, responsive delivery, fixtures, deterministic proof, and validation.
+6. Exact relevant Peckham sanitized binding-register section.
+7. HA-BACKUP001 REV02 registry-consumption section only if canonical raw registry-export files are supplied for this task.
 
-Required targeted reads:
+Do not normally read:
 
-- root `AGENTS.md`
-- `docs/system/project.md`
-- `docs/system/guardrails.md`
-- `docs/system/agent.md`
-- `docs/system/plan.md`
-- `docs/system/step-current.md`
-- `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
-- `docs/codex/CODEX_TASK_REGISTER_RULES.md`
-- `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV01.md`
-- `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`
-- `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md`
-- `docs/design-system/customer-dashboard-design-standard-rev02.md`
-- `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md`
-- `docs/installer/INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`
-- `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md`
-- `docs/home-assistant/peckham/PECKHAM_PREONSITE_BINDING_REGISTER_REV01.md`
+- Dashboard Governance Map/Master;
+- superseded dashboard standards;
+- customer-dashboard-design-standard;
+- customer-dashboard-philosophy;
+- INSTALL007;
+- BKLF/Bailey history;
+- PR #578 diff/history;
+- the full MTR; or
+- broad catalogs/manifests.
 
-Reference only: PR #578 summary/diff and current Peckham dashboard YAML. Do not edit or import implementation from the deferred branch.
+Use exact headings and fields. Do not perform broad repository discovery after owner paths resolve. Do not read a full owner file unless exact headings cannot resolve a requirement; report any such read as a context-budget exception. Target Context Pressure = LOW.
 
 ## 4. Owner Routing Matrix
 
-| Concern | Canonical owner | Prototype action | Boundary | Conflict | Confidence |
-| --- | --- | --- | --- | --- | --- |
-| Status, tile, action, typography, brand semantics | DESIGN001 REV02 | Implement governed components and states | No live or authoritative state | NO | HIGH |
-| Compact/Default/Large and equal grids | DASHBOARD001 REV02 | Implement deterministic responsive modes | No arbitrary zoom | NO | HIGH |
-| Navigation, footer, dashboard class, approval proof | INSTALL006 REV02 | Implement local functional shell and proof harness | No auth, route, or registration authority | NO | HIGH |
-| Product hierarchy and customer-safe experience | Customer Dashboard Design Standard REV02 | Implement customer approval composition | No new product behavior | NO | HIGH |
-| Peckham inventory | Peckham binding register | Use sanitized verified inventory only | No invented entity/location/state | NO | HIGH |
-| Prototype implementation | This work order | Create exact isolated allowlist below | No production or HA integration | NO | HIGH |
+| Need | Canonical owner | Prototype use | Boundary |
+| --- | --- | --- | --- |
+| Architecture and functional behavior | INSTALL006 REV02 | Customer hierarchy, navigation, status, Activity/Alert, controls, unavailable behavior, footer | No auth/runtime authority |
+| Visual and components | DESIGN001 REV02 | Exact tokens, type, tiles, fields, media, buttons, themes, accessibility | No functional/binding authority |
+| Delivery, binding and validation | DASHBOARD001 REV02 | Responsive modes, Peckham assembly, fixture classes, proof and validation | No live binding/registration authority |
+| Peckham facts | Peckham pre-onsite binding register | Sanitized verified inventory only | No invented entity/location/state |
+| Registry exports, if supplied | HA-BACKUP001 REV02 | Temporary evidence interpretation only | Raw exports remain transient and uncommitted |
 
-STOP if any row is no longer correct or a newer owner creates a conflict.
+STOP if these owners are superseded or conflict.
 
-## 5. Exact target and file allowlist
+## 5. Exact file allowlist
 
 Prototype root: `prototypes/dashboard/peckham/`
-
-Implementation files:
 
 - `prototypes/dashboard/peckham/index.html`
 - `prototypes/dashboard/peckham/styles.css`
 - `prototypes/dashboard/peckham/app.js`
 - `prototypes/dashboard/peckham/peckham-fixture.js`
 - `prototypes/dashboard/peckham/README.md`
+- `docs/system/master-task-register.md` only for the authorized child task record/closeout.
 
-Governance bookkeeping:
-
-- `docs/system/master-task-register.md` only to add/update the `T-DASH-PECKHAM-HTML-001` task record when authorized.
-
-No other file may be created or modified. Browser screenshots are temporary ignored review evidence and must not be committed. Do not alter ignore rules merely to store them.
+No other file may be created or modified. Screenshots are ignored temporary review evidence and are not committed.
 
 ## 6. Required prototype behavior
 
-- Functional local navigation in this exact order: Home, Systems, Activity, Explore WNYHS, Support, Property, Settings.
-- `Explore WNYHS` is visibly marked `COMING SOON`.
-- Dark, Light, and Auto theme switching.
-- Compact, Default, and Large switching using those exact labels.
-- Inter, Atkinson Hyperlegible, and System font switching.
-- Initial/default presentation is Default size plus Inter.
-- Available/Off, Hover/Focus, Momentary Pressed, Command Pending, Selected/On, and Disabled button states.
-- Persistent depressed state for stateful demo controls only after the prototype's explicit simulated-state confirmation; click alone must not be represented as live authoritative confirmation.
-- Equal-size governed tiles, standardized circular-icon headers/dividers, and right-justified chiseled Status Value Fields.
-- One customer action-button family with 48 px height in Compact/Default and 56 px in Large.
-- Functional footer buttons for Support, Call WNYHS, and Email Support.
-- Footer current-weather location plus date/time. Any fixture weather/time behavior must be clearly documented as simulated in developer/prototype context.
-- `WNY HOME SECURITY` appears on one line where width permits.
-- No backend, API, live Home Assistant, production route, or external write.
+- Functional local navigation: Home, Systems, Activity, Explore WNYHS, Support, Property, Settings.
+- `Explore WNYHS` visibly marked `COMING SOON`.
+- Dark / Light / Auto switching.
+- Compact / Default / Large switching with exact labels.
+- Inter / Atkinson Hyperlegible / System switching.
+- Initial state: Default + Inter.
+- INSTALL006 Current/Recent/Resolved, Attention/Alert, unavailable/unknown, and command lifecycle behavior demonstrated through deterministic fixtures.
+- Available/Off, Hover/Focus, Momentary Pressed, Command Pending, Selected/On, Failure/Result Unknown, and Disabled control presentation.
+- Persistent Selected/On only after explicit simulated authoritative confirmation in the fixture model; click alone does not claim live confirmation.
+- Equal governed tiles, standardized header/divider, 16:9 media footprint, right-justified Status Value Fields, and the single action family.
+- Action heights: 48px Compact, 48px Default, 56px Large.
+- Footer actions: Support, Call WNYHS, Email Support; plus weather and date/time in the governed region.
+- `WNY HOME SECURITY` single-line where width permits.
+- No backend, API, live HA, production route, external write, or network dependency.
 
-## 7. Status and visual rules
+## 7. Peckham fixture contract
 
-Customer status values are limited to Normal, Active, Attention, Alert, and Unavailable. Actual status values are the only text that may use their semantic accent colors. Unavailable/unknown uses governed neutral gray. Titles, descriptions, labels, navigation, timestamps, button labels, helper text, and prose remain neutral/identity/action-role text.
-
-Red `• LIVE` may appear only if the prototype explicitly represents a confirmed simulated media condition in its developer fixture state and the customer-facing output cannot be mistaken for actual live service. Omitting it is preferred when that distinction cannot be made cleanly.
-
-Blue identifies executable action surfaces; WNYHS gold identifies brand, governed tile icons, tile titles, and restrained identity accents. No primary/secondary visual button split is allowed.
-
-## 8. Peckham fixture contract
-
-- Use only sanitized repository-authorized Peckham evidence.
-- Persistent site identity is `PK | PECKHAM` and the customer surface includes Building Status scoped truthfully to represented contact coverage.
+- Persistent identity: `PK | PECKHAM`.
+- Building Status truthfully scoped to represented contact coverage.
 - Sensor 13 is Main Entrance Door where currently authoritative.
-- Represent the remaining verified installed contact inventory as 15 generic first-floor window contacts without inventing physical window locations.
-- Do not expose raw entity IDs in normal customer UI.
-- Doorbell and lock are separate placeholders/capabilities; do not invent a binding or combine them as one device.
-- Do not claim live lock, camera, sensor, weather, or device state.
-- Preserve separation between registry-known capability, unresolved binding, and simulated UI state.
-- Developer/prototype documentation must visibly declare simulated data; clean customer screenshot output remains non-technical and must not imply live state.
+- Remaining verified installed inventory is 15 generic first-floor window contacts with no invented physical locations.
+- Doorbell and lock remain separate placeholders/capabilities with no invented binding.
+- No raw entity IDs in normal customer UI.
+- No claim of live lock, camera, sensor, weather, or device state.
+- Registry-known capability, simulated approval state, authoritative live state, and unresolved mapping remain distinct.
+- Developer/prototype evidence declares simulated data; customer screenshots remain clean without implying live state.
 
-## 9. Functional and accessibility expectations
+If canonical raw registry exports are supplied, consume them only as temporary evidence under HA-BACKUP001 REV02. Do not copy them into the repository. Registry presence is not current-state proof.
 
-- Navigation buttons change the visible local panel without a page error.
-- Theme, size, and font selectors visibly update the governed tokens/components.
-- Stateful demo controls expose selected/depressed behavior and can demonstrate pending/disabled states without implying device execution.
-- Keyboard navigation and visible focus work for all interactive controls.
-- Semantic HTML, accessible names, adequate contrast, and reduced-motion safety are preserved.
-- Layout remains usable at representative phone, tablet, and desktop widths without horizontal scrolling or clipped primary controls.
+## 8. Status and visual rules
 
-## 10. Forbidden scope and protected systems
+Customer status values are Normal, Active, Attention, Alert, and Unavailable. Only actual status-value text uses its semantic accent; prose, labels, titles, navigation, timestamps, helpers, and button labels do not.
 
-Do not:
+WNYHS gold is identity, blue is interaction, and `• LIVE` appears only for a confirmed live media condition. A prototype simulation should omit `• LIVE` unless the developer evidence and customer output make the simulation unmistakable.
 
-- edit Home Assistant YAML or connect to live Home Assistant;
-- register, assign, deploy, or bind a dashboard;
-- invent entity IDs, window locations, logo paths, capabilities, or live state;
-- alter locks/access, cameras/Reolink, automations/scripts/helpers, notifications, or device behavior;
-- change production website source, routes, navigation, SEO, or runtime;
-- change Cloudflare/network/DNS/environment, CRM/HubSpot, Stripe/payment, scheduling, email, APIs, customer data, or secrets;
-- add dependencies or modify package/package-lock files;
-- use custom-card, theme, logo, external-font, or network dependencies;
-- copy Bailey/BKLF-specific customer data into Peckham;
-- modify or merge PR #578;
-- merge this task PR, enable auto-merge, mark ready, or deploy.
+Use DESIGN001 tokens rather than one-off visual values.
+
+## 9. Accessibility and responsive behavior
+
+- All controls support keyboard use and visible focus.
+- Use semantic HTML, accessible names, readable contrast, and reduced-motion support.
+- Phone, tablet, desktop, and applicable wall-display widths have no horizontal scrolling, clipped primary controls, or hidden current status.
+- Theme, size, and font change presentation only; state, permissions, and action availability stay fixed.
+
+## 10. Forbidden scope
+
+Do not edit or connect Home Assistant YAML/live systems; register/assign/deploy dashboards; alter locks/access, cameras/Reolink, automations/scripts/helpers, notifications, Cloudflare/network, website/runtime/routes, CRM/HubSpot, Stripe/payment, scheduling/email/APIs, customer data, secrets, dependencies, package files, or package-lock.
+
+Do not invent entity IDs, locations, logo paths, capabilities, bindings, permissions, or live state. Do not import Bailey/BKLF customer data. Do not modify/merge PR #578. Do not merge, mark ready, enable auto-merge, or deploy the child PR.
 
 ## 11. Validation
 
 Required:
 
-1. Exact six-file changed allowlist and no deletions.
-2. Direct local browser-load smoke test of `index.html` with no console errors or failed local resources.
-3. Functional checks for all seven navigation destinations and all footer buttons.
-4. Checks for Dark / Light / Auto, Compact / Default / Large, and Inter / Atkinson Hyperlegible / System.
-5. Default state check: Default + Inter.
-6. Checks for available, hover/focus, pressed, pending, selected, and disabled behavior.
-7. Geometry checks for equal comparable tiles and 48/48/56 px action heights.
-8. Content checks for exact navigation, COMING SOON, status-text exclusivity, Status Value Fields, governed headers/dividers, brand treatment, footer weather/date-time placement, and scoped Building Status.
-9. Peckham checks for Main Entrance Door plus 15 generic windows, separate doorbell/lock placeholders, no invented location/binding/capability, and no raw entity IDs in customer UI.
-10. Responsive checks at representative phone, tablet, and desktop widths; keyboard/focus and accessibility review.
-11. Deterministic browser screenshots for operator/customer visual approval, retained only as ignored temporary evidence.
-12. Confirm no production route/runtime, live system, dependency, package-lock, protected-system, or PR #578 change.
-13. `git diff --check`, changed-file audit, unexpected-delete check, and applicable local static-source validation.
+1. Exact six-file allowlist and no deletions.
+2. Direct local browser load with no console or local-resource errors.
+3. All seven navigation destinations and footer actions work locally.
+4. All three themes, sizes, and fonts work; initial state is Default + Inter.
+5. Required control and INSTALL006 behavior states are demonstrated without false live claims.
+6. Equal tile geometry, 16:9 media, governed fields/headers/dividers, and 48/48/56px action heights.
+7. Main Entrance Door plus 15 generic windows and separate doorbell/lock placeholders; no invented mapping/capability.
+8. Responsive, keyboard/focus, contrast, semantics, names, and reduced-motion checks.
+9. No raw entity IDs or raw registry exports in committed/customer output.
+10. Deterministic browser screenshots as ignored temporary operator/customer review evidence.
+11. No production, live, dependency, protected-system, or PR #578 change.
+12. Changed-file audit, unexpected-delete check, conflict-marker scan, and `git diff --check`.
 
-Do not run or install a new dependency merely for validation. If a required browser capability is unavailable, stop and report the exact blocker.
+Do not install a dependency for validation. If required browser capability is unavailable, stop with the exact blocker.
 
-## 12. Git and delivery
+## 12. Git and closeout
 
-- Start from clean synchronized `main` and create a fresh `task/t-dash-peckham-html-001` branch.
-- Use one bounded task, one implementation commit, and one draft PR to `main`.
-- Suggested commit: `prototype: add isolated Peckham dashboard approval harness`
-- Suggested PR title: `T-DASH-PECKHAM-HTML-001 - build isolated Peckham dashboard prototype`
-- Commit only the exact allowlist. Push the task branch and open the PR as DRAFT.
-- Do not merge, mark ready, enable auto-merge, or deploy.
+When dispatched, create `task/t-dash-peckham-html-001` from synchronized `main`, one bounded implementation commit, and one draft PR to `main`. Suggested commit: `prototype: add isolated Peckham dashboard approval harness`.
 
-## 13. Closeout / RSI
+Report branch, commit, draft PR, exact files, fixture/evidence posture, validation, screenshot/cleanup posture, Context Pressure and exceptions, protected systems, PR #578 deferred/unmerged, and no merge/deploy.
 
-Report branch, commit SHA, draft PR URL, exact files, interactions implemented, fixture/evidence posture, validation results, screenshots produced and cleanup/ignore posture, protected-system confirmation, no-production/no-live-system confirmation, no-merge/no-deploy confirmation, unresolved risks, and the canonical Token Utilization / RSI Report.
+## 13. Stop and exit
 
-Explicitly state that PR #578 remains deferred and unmerged.
+STOP if authorization is absent, campaign is closed, owners conflict, evidence cannot support a fixture claim, the allowlist must expand, a live/protected system or dependency is required, browser validation is unavailable, or secrets/private data appear.
 
-## 14. Stop conditions
-
-STOP if authorization is absent; the standing campaign is closed; a newer owner conflicts; exact evidence cannot support a fixture claim; the file allowlist must expand; a production/live/protected system is required; browser validation is unavailable; secrets/private data appear; or any requested behavior requires a new dependency.
-
-## 15. Exit criteria
-
-Complete only when the isolated five-file prototype and one MTR record are the sole changes; all required local interactions and visual rules work; deterministic browser validation and screenshots pass; customer output contains no raw IDs or false live claims; protected systems and PR #578 remain untouched; one draft PR is open; and no merge or deployment occurred.
+Complete only when the five-file isolated prototype plus one MTR record are the sole changes; deterministic behavior/visual validation passes; customer output contains no raw IDs or false live claims; one draft PR is open; and no live-system change, merge, or deployment occurred.
