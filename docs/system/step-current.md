@@ -122,14 +122,22 @@ These are context-default validation expectations. A task-specific bounded work 
 - Final-hour category openness does not weaken claims, Stripe, HubSpot, routing, runtime, secret, historical-doc, or generated-binary restrictions.
 
 
-## Locked Standards Documents (Required Load for Visual/Funnel Tasks)
+## Locked Standards Documents (Required Load for Public-Site / Public-Funnel Visual Tasks)
 
-All future visual/funnel tasks must load and follow:
+All applicable public-site / public-funnel visual tasks must load and follow:
 - `/docs/brand/brand_asset_standards_rev01.md`
 - `/docs/brand/page_layout_standards_rev01.md`
 - `/docs/brand/header_footer_standards_rev01.md`
 - `/docs/specs/qr_funnel_standards_rev01.md`
 - `/docs/specs/public_funnel_standards_rev01.md`
+
+Dashboard / Interactive Experience System tasks are not public-site / public-funnel visual tasks merely because they render visual UI. Dashboard tasks route through the current canonical dashboard owners:
+
+- INSTALL006 REV02 for architecture and functional behavior.
+- DESIGN001 REV02 for visuals and components.
+- DASHBOARD001 REV02 for delivery, binding, and validation.
+
+Load the Dashboard Governance Map only when routing or authority is ambiguous. Load the public brand/funnel standards for a dashboard task only when that bounded task also modifies or depends on the applicable public website/funnel surface or a shared public brand asset governed there. This dashboard routing clarification does not weaken claims, privacy, security, Stripe/payment, CRM, runtime, secret, or other protected-system rules.
 
 
 ## Operational Authority Clarification

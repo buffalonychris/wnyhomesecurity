@@ -950,6 +950,34 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **CTR Record / Pointer:** None.
 - **Completion Notes:** Superseding REV02 correction consolidated dashboard authority into INSTALL006 architecture/functional behavior, DESIGN001 visual/components, DASHBOARD001 delivery/binding/validation, and a thin non-implementation routing map. The branch-only customer-dashboard-design REV02 draft was removed after absorption; its REV01 predecessor, INSTALL007 REV01, and customer-dashboard philosophy now route to current owners as historical/reference lineage. HA-BACKUP001 REV02 and `home-assistant/wnyhs/tools/wnyhs-ha-registry-export.sh` establish one read-only entity/device/area plus optional floor/label export workflow with transient raw evidence and no live-state inference. The Peckham HTML work order now uses a LOW-context owner read contract and remains undispatched/unexecuted. `DASHBOARD-CAMPAIGN-001` remains ACTIVE/non-implementing; PR #578 remains deferred/unmerged; PR #579 remains draft. Required script, owner, routing, scope, conflict, and diff validation passed; application build was a governed skip. No customer HA/runtime/protected-system, merge, or deployment change occurred.
 
+### DASH-CTX-ROUTING-001
+
+- **Task ID:** DASH-CTX-ROUTING-001
+- **Task Name:** Dashboard Visual-Task Context Routing Reconciliation
+- **Status:** DONE
+- **Category:** GOV
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Project Governance; Visual System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reconcile the current-context read-routing rule so applicable public-site / public-funnel visual work retains its five locked standards while dashboard-only visual tasks route through the three current canonical dashboard owners.
+- **Allowed Scope:** Follow `docs/codex/work-orders/DASH-CTX-ROUTING-001_WORK_ORDER_REV01.md`; modify only the locked-standards routing section in `docs/system/step-current.md`; add only this bounded task record; preserve the five public visual/funnel standards and all protected-system rules.
+- **Forbidden Scope:** No dashboard implementation or prototype work; no execution of `T-DASH-PECKHAM-HTML-001`; no edits to dashboard owner standards; no public-site source, route, layout, funnel, QR, or asset change; no Home Assistant, Cloudflare/network/DNS, HubSpot/CRM, Stripe/payment, scheduling/email/runtime/API, dependency/package-lock, secret, customer-data, merge, deployment, or PR #578 change.
+- **Target Files:** `docs/codex/work-orders/DASH-CTX-ROUTING-001_WORK_ORDER_REV01.md`; `docs/system/step-current.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Governance/docs-only correction.
+- **Documentation Updates Required:** Scope the five locked standards to applicable public-site / public-funnel visual work; route dashboard-only visual tasks to INSTALL006 REV02, DESIGN001 REV02, and DASHBOARD001 REV02; keep the Dashboard Governance Map conditional on ambiguous routing/authority; preserve the campaign gate and protected-system rules.
+- **Validation Required:** Exact three-file allowlist; five public visual/funnel standards preserved; dashboard-only visual routing points to all three canonical owners; Dashboard Governance Map remains conditional; no protected-system weakening; controlling context unchanged; campaign ACTIVE; Peckham HTML task unexecuted; conflict-marker scan; `git diff --check`; governed docs-only build skip.
+- **Exit Criteria:** The stale visual-task routing conflict is removed; public visual/funnel governance remains mandatory where applicable; dashboard-only work routes through the three canonical owners; the exact allowlist and governance validation pass; one draft PR is open; no dashboard implementation, protected-system change, merge, or deployment occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/DASH-CTX-ROUTING-001_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; `DASHBOARD-CAMPAIGN-001`; INSTALL006 REV02; DESIGN001 REV02; DASHBOARD001 REV02; current Codex Execution Standard; OPS004.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. `T-DASH-PECKHAM-HTML-001` remains separately gated and unexecuted.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #580: `https://github.com/buffalonychris/wnyhomesecurity/pull/580`.
+- **Merge Evidence:** Pending operator review; no merge authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; governance/docs-only; no deployment authorized or performed.
+- **Main-Sync Status / Evidence:** Branch is based on synchronized `origin/main` at `f570eb1f10759455485a25533625ad294886c84d`, containing merged PR #579.
+- **CTR Eligibility:** Not eligible until merge and later main synchronization are verified.
+- **CTR Record / Pointer:** None.
+- **Completion Notes:** Updated only current-context routing and this bounded record. The five locked public visual/funnel standards remain mandatory for applicable public work; dashboard-only visual tasks now route to INSTALL006 REV02, DESIGN001 REV02, and DASHBOARD001 REV02 without automatic public-funnel reads. The Dashboard Governance Map remains a conditional ambiguity read. `DASHBOARD-CAMPAIGN-001` remains ACTIVE; `T-DASH-PECKHAM-HTML-001` was not executed; PR #578 remains deferred and unmerged. Governance validation passed; application build was a governed docs-only skip. No runtime, source, protected-system, merge, or deployment change occurred.
+
 ### DASHBOARD-CAMPAIGN-001
 
 - **Task ID:** DASHBOARD-CAMPAIGN-001
