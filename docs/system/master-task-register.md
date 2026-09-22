@@ -922,6 +922,61 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### DASH-GOV-REFRESH-001
+
+- **Task ID:** DASH-GOV-REFRESH-001
+- **Task Name:** Dashboard Governance Refresh + Standing Dashboard Campaign Authorization
+- **Status:** DONE
+- **Category:** GOV
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reconcile active dashboard owner documents with the operator-approved 2026-09-22 visual and interaction decisions, create standing dashboard campaign authority, preserve PR #578 as deferred lineage, and prepare the next bounded Peckham HTML prototype work order without executing implementation.
+- **Allowed Scope:** Follow `docs/codex/work-orders/DASH-GOV-REFRESH-001_WORK_ORDER_REV01.md`; supersede the five exact REV01 owners with the five exact REV02 successors in its Owner Routing Matrix; add this task and `DASHBOARD-CAMPAIGN-001`; create the next Peckham HTML prototype work order; validate and open one draft PR.
+- **Forbidden Scope:** No HTML prototype implementation; no Home Assistant YAML or live Home Assistant change; no dashboard registration, assignment, binding, or deployment; no lock/access, camera/Reolink, automation/script/helper, Cloudflare/network, website source/route, HubSpot/CRM, Stripe/payment, scheduling/email/runtime/API, dependency/package-lock, environment, secret, customer-data, merge, or deployment change; do not modify or merge PR #578; do not execute `T-DASH-PECKHAM-HTML-001`.
+- **Target Files:** `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV01.md`; `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`; `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV01.md`; `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md`; `docs/design-system/customer-dashboard-design-standard-rev01.md`; `docs/design-system/customer-dashboard-design-standard-rev02.md`; `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`; `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md`; `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV01.md`; `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md`; `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV01.md`; `docs/system/master-task-register.md`. Catalog/manifest/index files may be added only if current governance proves registration mandatory.
+- **Runtime Systems Affected:** None. Documentation and governance only.
+- **Documentation Updates Required:** Create the five REV02 successor owners; mark each named REV01 superseded with its exact successor; add this bounded task and the standing campaign record; create the next unexecuted Peckham HTML prototype work order; do not update catalog/manifest/index files without a proven current requirement.
+- **Validation Required:** Exact changed-file allowlist; no source/runtime files or deletions; supersession-pointer, active-owner, status taxonomy, Compact/Default/Large, Default + Inter, one-button-family, 48/48/56, status-text exclusivity, tile-header/divider, canonical-navigation, footer-weather, deterministic-render, standing-campaign, unexecuted-next-work-order, deferred-PR-#578, conflict-marker, and protected-scope checks; `git diff --check`; governed docs-only build skip.
+- **Exit Criteria:** Durable REV02 owners resolve contradictory active instructions; `DASHBOARD-CAMPAIGN-001` remains ACTIVE and non-implementing; PR #578 is deferred lineage; the next work order exists but is not executed; validation passes; one draft PR is open; no implementation, merge, or deployment occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/DASH-GOV-REFRESH-001_WORK_ORDER_REV01.md`; current synchronized `origin/main`; current authority chain; exact approved Owner Routing Matrix; PR #578 available as reference only.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Do not execute the prepared Peckham HTML work order until separately dispatched.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #579: `https://github.com/buffalonychris/wnyhomesecurity/pull/579`.
+- **Merge Evidence:** Pending operator review; no merge authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; docs/governance only; no deployment authorized.
+- **Main-Sync Status / Evidence:** Pending any future operator merge and separate synchronization.
+- **CTR Eligibility:** Not eligible until merge and main synchronization are verified by later stewardship.
+- **CTR Record / Pointer:** None.
+- **Completion Notes:** Created the five exact REV02 dashboard owners and marked their REV01 predecessors SUPERSEDED; resolved Compact/Default/Large, Default + Inter, five customer status states, semantic status-text exclusivity, governed Status Value Fields, tile headers/dividers, the single 48/48/56 action family, canonical customer navigation, footer weather/date-time placement, and deterministic browser approval proof in their routed owners. Added the ACTIVE non-implementing `DASHBOARD-CAMPAIGN-001` standing authorization and the prepared but unexecuted `T-DASH-PECKHAM-HTML-001` work order. PR #578 remains deferred lineage and unmerged. Exact docs-only scope, no-deletion, successor/status, conflict-marker, `git diff --check`, and protected-boundary validation passed; the repository has no Peckham HTML prototype directory. Build was a governed docs-only skip. No implementation, live Home Assistant, protected-system, merge, or deployment change occurred.
+
+### DASHBOARD-CAMPAIGN-001
+
+- **Task ID:** DASHBOARD-CAMPAIGN-001
+- **Task Name:** Dashboard Development Standing Campaign Authorization
+- **Status:** ACTIVE
+- **Category:** GOV
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Keep the Dashboard / Interactive Experience System workstream operationally open during the current dashboard-development campaign without reopening category-level governance for every child task.
+- **Allowed Scope:** Create and sequence separately bounded dashboard governance, prototype, visual-validation, customer-dashboard, installer-dashboard, service-dashboard, responsive, theme, component, token, and customer-specific dashboard tasks; create repository-owned work orders; use prompt-created child tasks where the Codex Execution Standard permits them; keep dashboard design and development planning active.
+- **Forbidden Scope:** This standing authorization does not authorize implementation. No source, website, runtime, Home Assistant, live dashboard, registration/assignment, automation/script/helper, lock/access/security-sensitive control, camera/privacy-sensitive access, Cloudflare/network, customer-data/secret, CRM/HubSpot, Stripe/payment, scheduling/email/runtime/API, production route, dependency/package-lock, multi-task implementation, merge, or deployment change may occur without its own bounded task/work order.
+- **Target Files:** None by standing authority alone. Every child task/work order must define its own exact target files before execution.
+- **Runtime Systems Affected:** None by this standing governance authorization.
+- **Documentation Updates Required:** Maintain this record as the standing campaign gate. Separately bounded child work orders and task records own their own documentation.
+- **Validation Required:** For campaign creation, verify this record appears exactly once; remains `Status: ACTIVE`; states that it does not authorize implementation; requires one named bounded child task/work order, exact scope/files/protected boundaries/validation, and one task per branch/PR; verify no implementation or deployment occurred.
+- **Exit Criteria:** The record remains ACTIVE, truthfully records governance-only standing authority, and every actual implementation remains individually gated. Do not mark DONE merely because one child task completes.
+- **Dependencies:** Current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; `DASH-GOV-REFRESH-001`; current Codex Execution Standard; operator control of campaign closure.
+- **Operator Decision Required:** Operator must explicitly close this campaign. Each protected or implementation child task requires separate bounded authorization.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Created through draft PR #579: `https://github.com/buffalonychris/wnyhomesecurity/pull/579`.
+- **Merge Evidence:** Pending operator review; no merge authorized.
+- **Deployment Applicability / Status / Evidence:** Deployment not applicable to standing governance authority; no implementation or deployment occurred.
+- **Main-Sync Status / Evidence:** Pending any future operator merge and separate synchronization.
+- **CTR Eligibility:** Not eligible while ACTIVE.
+- **CTR Record / Pointer:** None.
+
 ### KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001
 
 - **Task ID:** KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001

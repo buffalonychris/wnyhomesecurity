@@ -1,6 +1,7 @@
 # DASHBOARD001 - Responsive Dashboard Delivery Standard - REV01
 
-Status: Active design-system standard
+Status: SUPERSEDED by `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md`
+Supersession: Historical lineage only. REV02 is the active responsive-delivery owner.
 Customer-facing: No
 Implementation authority: Governance and delivery standard only; implementation requires a separate bounded task
 Task ID: DASHBOARD001-RESPONSIVE-DELIVERY-STANDARD-001

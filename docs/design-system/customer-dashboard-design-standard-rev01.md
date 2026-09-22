@@ -1,6 +1,7 @@
 # WNYHS Customer Dashboard Design Standard REV01
 
-Status: Active design-system standard
+Status: SUPERSEDED by `docs/design-system/customer-dashboard-design-standard-rev02.md`
+Supersession: Historical lineage only. REV02 is the active customer-dashboard design owner.
 Customer-facing: No
 Implementation authority: Design authority only; implementation requires bounded task
 Task ID: DASHBOARD-DESIGN-STANDARD-001

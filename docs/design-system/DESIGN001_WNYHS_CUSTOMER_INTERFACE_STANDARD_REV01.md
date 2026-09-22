@@ -1,6 +1,7 @@
 # DESIGN001 - WNYHS Customer Interface Standard - REV01
 
-Status: Active design-system standard
+Status: SUPERSEDED by `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`
+Supersession: Historical lineage only. REV02 is the active customer-interface owner.
 Customer-facing: No
 Implementation authority: Design and governance authority only; implementation requires a separate bounded task
 Task ID: DESIGN001-WNYHS-CUSTOMER-INTERFACE-STANDARD-001

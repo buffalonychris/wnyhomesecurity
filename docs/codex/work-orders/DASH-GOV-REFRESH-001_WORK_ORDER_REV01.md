@@ -1,18 +1,25 @@
 # DASH-GOV-REFRESH-001 — Dashboard Governance Refresh + Standing Dashboard Campaign Authorization
 
-**Revision:** REV01  
-**Status:** OPERATOR AUTHORIZED  
-**Category:** GOV  
-**Primary Workstream:** Dashboard / Interactive Experience System  
-**Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System  
+**Revision:** REV01
+
+**Status:** OPERATOR AUTHORIZED
+
+**Category:** GOV
+
+**Primary Workstream:** Dashboard / Interactive Experience System
+
+**Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System
+
 **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 
-READ MODE: TARGETED  
+READ MODE: TARGETED
+
 Search exact IDs/headings first; load only applicable authority and owner sections. Do not broadly scan the repository unless a named target cannot be resolved.
 
 ## 1. Repository / execution posture
 
-Repo: `buffalonychris/wnyhomesecurity`  
+Repo: `buffalonychris/wnyhomesecurity`
+
 Local repo: `C:\dev\wnyhomesecurity`
 
 Operator decision:
@@ -262,12 +269,18 @@ Generated concept art must not become implementation authority.
 
 Create one MTR record:
 
-**Task ID:** `DASHBOARD-CAMPAIGN-001`  
-**Task Name:** Dashboard Development Standing Campaign Authorization  
-**Status:** ACTIVE  
-**Category:** GOV  
-**Primary Workstream:** Dashboard / Interactive Experience System  
-**Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System  
+**Task ID:** `DASHBOARD-CAMPAIGN-001`
+
+**Task Name:** Dashboard Development Standing Campaign Authorization
+
+**Status:** ACTIVE
+
+**Category:** GOV
+
+**Primary Workstream:** Dashboard / Interactive Experience System
+
+**Related Workstreams:** Project Governance; Visual System; Automation System; Infrastructure / Deployment System
+
 **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 
 Purpose:
