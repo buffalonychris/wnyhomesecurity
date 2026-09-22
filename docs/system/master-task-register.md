@@ -1005,6 +1005,38 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **CTR Eligibility:** Not eligible while ACTIVE.
 - **CTR Record / Pointer:** None.
 
+### T-DASH-PECKHAM-HTML-001
+
+- **Task ID:** T-DASH-PECKHAM-HTML-001
+- **Task Name:** Standalone Email-Ready Peckham Dashboard Approval Demo
+- **Status:** DONE
+- **Category:** PROTOTYPE / VISUAL APPROVAL
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Visual System; Home Assistant Platform; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create one standalone, self-contained, email-ready Peckham customer-dashboard approval demo that opens directly from a copied `file://` location without a server, network, backend, Home Assistant, external asset, font file, or dependency.
+- **Allowed Scope:** Follow `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV02.md`; implement only the deterministic approval fixture and interactions defined there; update only this bounded task record; preserve unresolved bindings and simulated-state disclosure.
+- **Forbidden Scope:** No live Home Assistant, backend, API, production website/runtime, Cloudflare/network/DNS, deployment, external asset/font/dependency, raw/private state, lock/camera authority, PR #578 change, merge, auto-merge, or ready-for-review transition.
+- **Target Files:** `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV01.md`; `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV02.md`; `docs/system/master-task-register.md`; `prototypes/dashboard/peckham/Peckham_Dashboard_Review.html`.
+- **Runtime Systems Affected:** None. Standalone local approval artifact only.
+- **Home Assistant Affected:** None.
+- **Production Website Affected:** None.
+- **Documentation Updates Required:** Maintain this bounded record and preserve REV02 as the controlling task definition; REV01 remains superseded.
+- **Validation Required:** Complete REV02 Section 26 single-file integrity, direct `file://` browser load, seven-view navigation, functional controls, component states, desktop/tablet/phone responsiveness, geometry, content/evidence, semantic visual, accessibility, and Git/scope validation; install no dependency.
+- **Validation Evidence:** Copied the standalone HTML alone to a separate directory and loaded it directly by `file://` in installed Google Chrome using existing Playwright tooling. Validation returned zero console errors, page errors, failed requests, and network requests; all seven views, theme/size/font/scenario controls, eight component states, refresh/hash navigation, local support feedback, keyboard focus, and reduced-motion handling passed. Viewports 1440x1000, 1024x768, and 390x844 passed without horizontal overflow or clipped primary controls. Desktop geometry passed at 3/4/2 columns, equal Home tile bounds, 48/48/56px action heights, 16:9 media, and right-aligned status fields. Final static content, external-resource, raw-ID, claims, deletion, package, conflict-marker, scope, and `git diff --check` checks passed.
+- **Exit Criteria:** The single governed HTML file works after copy to a separate directory and direct Chromium-compatible `file://` open; all REV02 truthfulness, interaction, responsive, visual, accessibility, and scope checks pass; exactly one draft PR is open; no protected-system, merge, or deployment change occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV02.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; ACTIVE `DASHBOARD-CAMPAIGN-001`; INSTALL006 REV02; DESIGN001 REV02; DASHBOARD001 REV02; sanitized Peckham pre-onsite binding register.
+- **Operator Decision Required:** Review the standalone HTML artifact and draft PR; decide separately whether any later approval, binding, implementation, or merge task is authorized.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #581: `https://github.com/buffalonychris/wnyhomesecurity/pull/581`.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; this is an offline approval artifact and no deployment is authorized.
+- **Raw / Live State:** None. Registry-known install facts and deterministic simulated approval states only; no live bindings or live state.
+- **Main-Sync Status / Evidence:** Existing task branch is based on synchronized `main` at `7805587`, containing merged PR #580 and its dashboard-routing correction.
+- **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Completion Notes:** Created the single self-contained Peckham approval HTML using registry-known install facts, deterministic simulated review states, and explicit unresolved binding posture. The copied-file Chromium validation and all REV02 static, geometry, responsive, accessibility, content, and scope checks passed. Temporary validators, copied files, and screenshots were removed before commit. `DASHBOARD-CAMPAIGN-001` remains ACTIVE. PR #578 remains deferred and unmerged. No live Home Assistant, production website/runtime, Cloudflare/network, dependency, merge, or deployment change occurred.
+
 ### KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001
 
 - **Task ID:** KAOS-HUBSPOT-AUTHORITY-SCHEMA-AUDIT-001

@@ -1,15 +1,15 @@
 # T-DASH-PECKHAM-HTML-001 — Standalone Email-Ready Peckham Dashboard Approval Demo
 
-**Revision:** REV02  
-**Status:** OPERATOR AUTHORIZED — EXECUTE THIS REVISION  
-**Supersedes for execution:** `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV01.md`  
-**Category:** PROTOTYPE / VISUAL APPROVAL  
-**Primary Workstream:** Dashboard / Interactive Experience System  
-**Related Workstreams:** Visual System; Home Assistant Platform; Project Governance  
-**Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01  
+**Revision:** REV02
+**Status:** OPERATOR AUTHORIZED — EXECUTE THIS REVISION
+**Supersedes for execution:** `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV01.md`
+**Category:** PROTOTYPE / VISUAL APPROVAL
+**Primary Workstream:** Dashboard / Interactive Experience System
+**Related Workstreams:** Visual System; Home Assistant Platform; Project Governance
+**Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 **Standing campaign:** DASHBOARD-CAMPAIGN-001
 
-READ MODE: TARGETED  
+READ MODE: TARGETED
 CONTEXT TARGET: LOW
 
 ## 1. Operator decision and objective

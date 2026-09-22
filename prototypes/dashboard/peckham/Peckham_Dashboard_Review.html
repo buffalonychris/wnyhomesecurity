@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-size="default" data-font="inter">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>PK | Peckham — WNY Home Security Approval Preview</title>
+  <style>
+    :root {
+      --wnyhs-gold: #D4AF37;
+      --action-blue: #0A84FF;
+      --action-blue-hover: #0876E4;
+      --action-blue-selected: #075EBA;
+      --action-blue-disabled: #64748B;
+      --status-normal: #22C55E;
+      --status-active: #0A84FF;
+      --status-attention: #F5A524;
+      --status-alert: #EF4444;
+      --status-unavailable: #94A3B8;
+      --page-bg: #F4F7FB;
+      --shell-bg: #FFFFFF;
+      --tile-bg: #FFFFFF;
+      --recessed-bg: #E8EEF6;
+      --text: #172033;
+      --muted: #5F6B7A;
+      --border: #CDD6E3;
+      --focus: #0A84FF;
+      --icon-bg: #111827;
+      --tile-shadow: 0 8px 24px rgb(15 23 42 / 12%);
+      --field-shadow: inset 0 1px 3px rgb(15 23 42 / 18%);
+      --font-stack: Inter, Arial, sans-serif;
+      --page-title-size: 32px;
+      --page-title-line: 38px;
+      --tile-title-size: 18px;
+      --tile-title-line: 24px;
+      --body-size: 16px;
+      --body-line: 24px;
+      --status-size: 16px;
+      --status-line: 20px;
+      --button-size: 16px;
+      --button-line: 20px;
+      --tile-padding: 20px;
+      --grid-gap: 16px;
+      --tile-radius: 16px;
+      --header-gap: 12px;
+      --icon-circle: 44px;
+      --icon-size: 22px;
+      --status-min: 128px;
+      --action-height: 48px;
+      --action-radius: 10px;
+      --divider-space: 12px;
+    }
+
+    html[data-theme="dark"] {
+      --page-bg: #08111F;
+      --shell-bg: #0D1726;
+      --tile-bg: #111D2E;
+      --recessed-bg: #091321;
+      --text: #F8FAFC;
+      --muted: #A8B3C2;
+      --border: #314056;
+      --focus: #5CB3FF;
+      --icon-bg: #050A12;
+      --tile-shadow: 0 10px 28px rgb(0 0 0 / 28%);
+      --field-shadow: inset 0 1px 4px rgb(0 0 0 / 45%);
+    }
+
+    html[data-size="compact"] {
+      --page-title-size: 28px;
+      --page-title-line: 34px;
+      --tile-title-size: 17px;
+      --tile-title-line: 22px;
+      --tile-padding: 16px;
+      --grid-gap: 12px;
+      --tile-radius: 14px;
+      --header-gap: 10px;
+      --icon-circle: 40px;
+      --icon-size: 20px;
+      --status-min: 112px;
+      --action-height: 48px;
+      --action-radius: 10px;
+      --divider-space: 10px;
+    }
+
+    html[data-size="large"] {
+      --page-title-size: 36px;
+      --page-title-line: 42px;
+      --tile-title-size: 20px;
+      --tile-title-line: 26px;
+      --body-size: 17px;
+      --body-line: 25px;
+      --status-size: 18px;
+      --status-line: 22px;
+      --button-size: 18px;
+      --button-line: 22px;
+      --tile-padding: 24px;
+      --grid-gap: 20px;
+      --tile-radius: 18px;
+      --header-gap: 14px;
+      --icon-circle: 48px;
+      --icon-size: 24px;
+      --status-min: 144px;
+      --action-height: 56px;
+      --action-radius: 12px;
+      --divider-space: 16px;
+    }
+
+    html[data-font="inter"] { --font-stack: Inter, Arial, sans-serif; }
+    html[data-font="atkinson"] { --font-stack: "Atkinson Hyperlegible", Arial, sans-serif; }
+    html[data-font="system"] { --font-stack: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page-bg); color-scheme: light; }
+    html[data-theme="dark"] { color-scheme: dark; }
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--page-bg);
+      color: var(--text);
+      font: var(--body-size)/var(--body-line) var(--font-stack);
+    }
+    button, select { font: inherit; }
+    button:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      left: 12px;
+      top: -80px;
+      padding: 10px 14px;
+      background: var(--action-blue);
+      color: #FFFFFF;
+      border-radius: 8px;
+    }
+    .skip-link:focus { top: 12px; }
+    .app { min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 20px;
+      min-height: 84px;
+      padding: 12px 24px;
+      background: var(--shell-bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 18px rgb(15 23 42 / 8%);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--icon-bg);
+      color: var(--wnyhs-gold);
+      border: 1px solid color-mix(in srgb, var(--wnyhs-gold) 55%, transparent);
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    .brand-name { color: var(--wnyhs-gold); font-weight: 800; letter-spacing: .08em; white-space: nowrap; }
+    .property { color: var(--muted); font-size: 14px; line-height: 20px; font-weight: 700; letter-spacing: .08em; }
+    .view-heading { min-width: 0; text-align: center; }
+    .view-heading .eyebrow { color: var(--muted); font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .view-heading strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 20px; line-height: 26px; }
+    .preview-flag {
+      max-width: 340px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--recessed-bg);
+      color: var(--text);
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-align: center;
+    }
+    .shell { display: grid; grid-template-columns: 224px minmax(0, 1fr); flex: 1; min-width: 0; }
+    .sidebar {
+      padding: 20px 14px;
+      background: var(--shell-bg);
+      border-right: 1px solid var(--border);
+    }
+    .nav-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .nav-button {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 12px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .nav-button:hover { background: var(--recessed-bg); }
+    .nav-button[aria-current="page"] { background: var(--action-blue-selected); color: #FFFFFF; }
+    .nav-button .coming { display: block; margin-top: 2px; font-size: 10px; line-height: 14px; letter-spacing: .1em; }
+    main { min-width: 0; padding: 28px; }
+    .view[hidden] { display: none; }
+    .view-header { margin: 0 0 20px; }
+    .view-header h1 { margin: 0; font-size: var(--page-title-size); line-height: var(--page-title-line); }
+    .view-header p { max-width: 780px; margin: 6px 0 0; color: var(--muted); }
+    .priority-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: var(--grid-gap);
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--wnyhs-gold);
+      border-radius: 12px;
+      background: var(--shell-bg);
+    }
+    .priority-banner[hidden] { display: none; }
+    .priority-banner strong { display: block; }
+    .priority-banner span:not(.status-value) { color: var(--muted); }
+    .tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: var(--grid-gap); }
+    html[data-size="compact"] .tile-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    html[data-size="large"] .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tile {
+      min-width: 0;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      padding: var(--tile-padding);
+      background: var(--tile-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--tile-radius);
+      box-shadow: var(--tile-shadow);
+    }
+    .tile-header { display: grid; grid-template-columns: var(--icon-circle) minmax(0, 1fr); gap: var(--header-gap); align-items: center; }
+    .tile-icon {
+      width: var(--icon-circle);
+      height: var(--icon-circle);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--icon-bg);
+      color: var(--wnyhs-gold);
+    }
+    .tile-icon svg { width: var(--icon-size); height: var(--icon-size); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .tile-title { margin: 0; color: var(--wnyhs-gold); font-size: var(--tile-title-size); line-height: var(--tile-title-line); }
+    .tile-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .divider { height: 1px; margin: var(--divider-space) 0; background: color-mix(in srgb, var(--border) 60%, transparent); }
+    .tile-content { flex: 1; min-height: 0; }
+    .helper { margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .status-list { display: grid; gap: 10px; }
+    .spaced-status { margin-top: 12px; }
+    .status-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--status-min), auto); align-items: center; gap: 10px; }
+    .status-label { color: var(--muted); }
+    .status-value {
+      min-width: var(--status-min);
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--recessed-bg);
+      box-shadow: var(--field-shadow);
+      text-align: right;
+      font-size: var(--status-size);
+      line-height: var(--status-line);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-value[data-status="normal"] { color: var(--status-normal); }
+    .status-value[data-status="active"] { color: var(--status-active); }
+    .status-value[data-status="attention"] { color: var(--status-attention); }
+    .status-value[data-status="alert"] { color: var(--status-alert); }
+    .status-value[data-status="unavailable"] { color: var(--status-unavailable); }
+    .tile-actions, .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .action-button {
+      min-height: var(--action-height);
+      height: var(--action-height);
+      padding: 0 18px;
+      border: 0;
+      border-radius: var(--action-radius);
+      background: var(--action-blue);
+      color: #FFFFFF;
+      box-shadow: 0 5px 12px rgb(10 132 255 / 22%);
+      cursor: pointer;
+      font-size: var(--button-size);
+      line-height: var(--button-line);
+      font-weight: 650;
+    }
+    .action-button:hover { background: var(--action-blue-hover); }
+    .action-button:active, .action-button.is-pressed { transform: translateY(1px); box-shadow: 0 2px 5px rgb(10 132 255 / 18%); }
+    .action-button.is-selected { background: var(--action-blue-selected); box-shadow: inset 0 2px 5px rgb(0 0 0 / 25%); }
+    .action-button.is-pending { background: var(--action-blue); background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 22%) 50%, transparent 70%); background-size: 220% 100%; animation: pending 1.2s linear infinite; }
+    .action-button:disabled, .action-button.is-disabled { background: var(--action-blue-disabled); box-shadow: none; cursor: not-allowed; opacity: .82; }
+    .result-note { min-height: 20px; margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .media-region {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--recessed-bg);
+      color: var(--muted);
+      text-align: center;
+    }
+    .media-region svg { width: 38px; height: 38px; margin-bottom: 8px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+    .activity-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .activity-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .activity-item:last-child { border-bottom: 0; }
+    .activity-meta { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 13px; line-height: 18px; }
+    .activity-item p { margin: 3px 0 0; }
+    .activity-status { margin-top: 8px; }
+    .panel {
+      padding: var(--tile-padding);
+      background: var(--tile-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--tile-radius);
+      box-shadow: var(--tile-shadow);
+    }
+    .panel + .panel { margin-top: var(--grid-gap); }
+    .panel h2 { margin: 0 0 6px; font-size: 22px; line-height: 28px; }
+    .panel > p { margin: 0 0 16px; color: var(--muted); }
+    .system-grid, .settings-grid, .property-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
+    .device-list { display: grid; gap: 10px; }
+    .device-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--status-min), auto); align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .device-row:last-child { border-bottom: 0; }
+    .device-name strong { display: block; }
+    .device-name span { color: var(--muted); font-size: 13px; line-height: 18px; }
+    .windows-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .window-item { padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--recessed-bg); }
+    .window-item strong { display: block; margin-bottom: 8px; }
+    .window-item .status-value { width: 100%; min-width: 0; }
+    fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+    legend { margin-bottom: 10px; font-weight: 800; }
+    .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .segmented.scenarios { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .choice-button {
+      min-height: 48px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--recessed-bg);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .choice-button:hover { border-color: var(--action-blue-hover); }
+    .choice-button[aria-pressed="true"] { border-color: var(--action-blue-selected); background: var(--action-blue-selected); color: #FFFFFF; }
+    .control-help { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 18px; }
+    .review-state-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .state-sample { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--recessed-bg); }
+    .state-sample strong { display: block; min-height: 40px; margin-bottom: 8px; }
+    .state-sample .action-button { width: 100%; }
+    .coming-soon {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      text-align: center;
+    }
+    .coming-soon-badge { display: inline-block; padding: 10px 16px; border: 1px solid var(--wnyhs-gold); border-radius: 999px; color: var(--wnyhs-gold); font-weight: 800; letter-spacing: .12em; }
+    .support-layout { max-width: 820px; }
+    .notice {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--recessed-bg);
+      color: var(--text);
+    }
+    .preview-toast {
+      position: fixed;
+      z-index: 50;
+      right: 20px;
+      bottom: 20px;
+      max-width: min(420px, calc(100vw - 32px));
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--action-blue);
+      border-radius: 12px;
+      background: var(--shell-bg);
+      color: var(--text);
+      box-shadow: var(--tile-shadow);
+    }
+    .preview-toast[hidden] { display: none; }
+    .footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(220px, .8fr) minmax(220px, .8fr);
+      gap: 18px;
+      align-items: center;
+      padding: 18px 24px;
+      background: var(--shell-bg);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 18px rgb(15 23 42 / 6%);
+    }
+    .footer .button-row { margin: 0; }
+    .footer .action-button { flex: 1 1 135px; }
+    .footer-block { color: var(--muted); font-size: 14px; line-height: 20px; }
+    .footer-block strong { display: block; color: var(--text); }
+    .footer-value { font-size: 20px; line-height: 26px; color: var(--text); font-weight: 800; }
+    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    @keyframes pending { from { background-position: 100% 0; } to { background-position: -120% 0; } }
+
+    @media (max-width: 1199px) {
+      .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .review-state-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .windows-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar { grid-template-columns: auto minmax(0, 1fr); }
+      .preview-flag { grid-column: 1 / -1; justify-self: stretch; max-width: none; }
+    }
+
+    @media (max-width: 820px) {
+      .topbar { position: static; padding: 12px 16px; gap: 12px; }
+      .brand-name { white-space: normal; line-height: 18px; }
+      .view-heading { text-align: right; }
+      .shell { display: block; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--border); padding: 12px; }
+      .nav-list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+      .nav-button { min-height: 54px; padding: 7px 8px; text-align: center; font-size: 13px; line-height: 17px; }
+      main { padding: 20px 16px; }
+      .footer { grid-template-columns: 1fr 1fr; padding: 18px 16px; }
+      .footer .button-row { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .system-grid, .settings-grid, .property-grid { grid-template-columns: 1fr; }
+      .segmented.scenarios { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 679px) {
+      .topbar { grid-template-columns: minmax(0, 1fr); }
+      .view-heading { text-align: left; }
+      .view-heading strong { white-space: normal; }
+      .preview-flag { font-size: 10px; }
+      .nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid { grid-template-columns: 1fr; }
+      .tile { min-height: 0; }
+      .priority-banner { align-items: stretch; flex-direction: column; }
+      .priority-banner .status-value { width: 100%; }
+      .status-row, .device-row { grid-template-columns: minmax(0, 1fr); }
+      .status-value { width: 100%; min-width: 0; }
+      .windows-grid, .review-state-grid { grid-template-columns: 1fr; }
+      .segmented, .segmented.scenarios { grid-template-columns: 1fr 1fr; }
+      .footer { grid-template-columns: 1fr; }
+      .footer .button-row { grid-column: auto; grid-template-columns: 1fr; }
+      .footer .action-button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand" aria-label="WNY Home Security">
+        <div class="brand-mark" aria-hidden="true">W</div>
+        <div><div class="brand-name">WNY HOME SECURITY</div><div class="property">PK | PECKHAM</div></div>
+      </div>
+      <div class="view-heading"><span class="eyebrow">Customer Control Center</span><strong id="current-view-title">Home</strong></div>
+      <div class="preview-flag">APPROVAL PREVIEW · SIMULATED DATA · NOT CONNECTED TO LIVE SYSTEMS</div>
+    </header>
+
+    <div class="shell">
+      <nav class="sidebar" aria-label="Customer dashboard navigation">
+        <ul class="nav-list">
+          <li><button class="nav-button" type="button" data-view="home" aria-current="page">Home</button></li>
+          <li><button class="nav-button" type="button" data-view="systems">Systems</button></li>
+          <li><button class="nav-button" type="button" data-view="activity">Activity</button></li>
+          <li><button class="nav-button" type="button" data-view="explore">Explore WNYHS<span class="coming">COMING SOON</span></button></li>
+          <li><button class="nav-button" type="button" data-view="support">Support</button></li>
+          <li><button class="nav-button" type="button" data-view="property">Property</button></li>
+          <li><button class="nav-button" type="button" data-view="settings">Settings</button></li>
+        </ul>
+      </nav>
+
+      <main id="main-content" tabindex="-1">
+        <section class="view" id="view-home" data-title="Home">
+          <div class="view-header"><h1>Peckham at a glance</h1><p>Approval preview of the represented Main Entrance and first-floor window contact coverage.</p></div>
+          <div class="priority-banner" id="priority-banner" hidden>
+            <div><strong id="priority-title">Review item</strong><span id="priority-copy">A simulated approval state is being shown.</span></div>
+            <span class="status-value" id="priority-value" data-status="attention">Attention</span>
+          </div>
+          <div class="tile-grid" id="home-grid">
+            <article class="tile">
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div><div><h2 class="tile-title">Building Status</h2><p class="tile-subtitle">Represented coverage only</p></div></header>
+              <div class="divider"></div>
+              <div class="tile-content"><p class="helper">Simulated review status for the represented Main Entrance and 15 first-floor window contacts. This is not a whole-property protection claim.</p><div class="status-list"><div class="status-row"><span class="status-label">Review status</span><span class="status-value js-scenario-status" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Connection</span><span class="status-value" data-status="unavailable">Preview only</span></div></div></div>
+              <div class="tile-actions"><button class="action-button" type="button" data-navigate="systems">View Systems</button></div>
+            </article>
+
+            <article class="tile">
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 21V4h11v17M5 21h14M11 12h.01M16 8h3v13"/></svg></div><div><h2 class="tile-title">Main Entrance</h2><p class="tile-subtitle">Entry assembly approval view</p></div></header>
+              <div class="divider"></div>
+              <div class="tile-content"><p class="helper">Main Entrance Door is the customer-safe contact label. Lock state and control authority are not yet verified.</p><div class="status-list"><div class="status-row"><span class="status-label">Door Contact</span><span class="status-value js-contact-status" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Lever Lock</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Deadbolt</span><span class="status-value" data-status="unavailable">Unavailable</span></div></div></div>
+              <div class="tile-actions"><button class="action-button" type="button" data-navigate="systems">View Main Entrance</button></div>
+            </article>
+
+            <article class="tile">
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M12 4v16M3 12h18"/></svg></div><div><h2 class="tile-title">First Floor Windows</h2><p class="tile-subtitle">15 installed contacts</p></div></header>
+              <div class="divider"></div>
+              <div class="tile-content"><p class="helper">Individual physical locations remain unresolved. Labels and status shown here are deterministic approval fixtures.</p><div class="status-list"><div class="status-row"><span class="status-label">Installed contacts</span><span class="status-value" data-status="active">15</span></div><div class="status-row"><span class="status-label">Simulated summary</span><span class="status-value js-contact-status" data-status="normal">Normal</span></div></div></div>
+              <div class="tile-actions"><button class="action-button" type="button" data-navigate="systems">View Windows</button></div>
+            </article>
+
+            <article class="tile">
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></div><div><h2 class="tile-title">Main Entrance Doorbell</h2><p class="tile-subtitle">Pending onsite binding</p></div></header>
+              <div class="divider"></div>
+              <div class="tile-content"><div class="media-region" aria-label="Doorbell media unavailable"><div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2zM4 4l16 16"/></svg><div>Media unavailable in approval preview</div></div></div><div class="status-list spaced-status"><div class="status-row"><span class="status-label">Binding</span><span class="status-value" data-status="unavailable">Unavailable</span></div></div></div>
+            </article>
+
+            <article class="tile">
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4v16h16M7 15l3-3 3 2 5-6"/></svg></div><div><h2 class="tile-title">Recent Activity</h2><p class="tile-subtitle">Simulated customer examples</p></div></header>
+              <div class="divider"></div>
+              <div class="tile-content"><ul class="activity-list" id="home-activity"><li class="activity-item"><div class="activity-meta"><span>Current</span><span>Review fixture</span></div><p>Represented contact summary is ready for visual review.</p></li><li class="activity-item"><div class="activity-meta"><span>Recent</span><span>Earlier in preview</span></div><p>Main Entrance Door example updated.</p></li><li class="activity-item"><div class="activity-meta"><span>Resolved</span><span>Demo sequence</span></div><p>Example attention item was resolved.</p></li></ul></div>
+              <div class="tile-actions"><button class="action-button" type="button" data-navigate="activity">View Activity</button></div>
+            </article>
+
+            <article class="tile">
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div><div><h2 class="tile-title">Support</h2><p class="tile-subtitle">Local preview interactions</p></div></header>
+              <div class="divider"></div>
+              <div class="tile-content"><p class="helper">These buttons demonstrate the governed customer action family. They do not call, email, or send information.</p><div class="status-list"><div class="status-row"><span class="status-label">External actions</span><span class="status-value" data-status="unavailable">Disabled</span></div></div></div>
+              <div class="tile-actions"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-systems" data-title="Systems" hidden>
+          <div class="view-header"><h1>Systems</h1><p>Peckham install evidence represented for approval. Device states are simulated or unresolved, never live.</p></div>
+          <div class="system-grid">
+            <section class="panel"><h2>Main Entrance</h2><p>Known device plan with unresolved live bindings and control capabilities.</p><div class="device-list">
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Door</strong><span>Installed contact; approval state simulated</span></div><span class="status-value js-contact-status" data-status="normal">Normal</span></div>
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Doorbell</strong><span>Pending onsite binding and capability verification</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Lever Lock</strong><span>Kwikset SmartCode 912; pending onsite binding</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Deadbolt</strong><span>Kwikset Home Connect 620; pending onsite binding</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
+            </div></section>
+            <section class="panel"><h2>Evidence posture</h2><p>No live connection is present in this approval file.</p><div class="status-list"><div class="status-row"><span class="status-label">Installed contacts</span><span class="status-value" data-status="active">16 total</span></div><div class="status-row"><span class="status-label">Live bindings</span><span class="status-value" data-status="unavailable">Unresolved</span></div><div class="status-row"><span class="status-label">Approval data</span><span class="status-value" data-status="active">Simulated</span></div></div></section>
+          </div>
+          <section class="panel"><h2>First Floor Windows</h2><p>Temporary customer-facing labels only. Individual physical locations remain unresolved.</p><div class="windows-grid" id="windows-grid"></div></section>
+        </section>
+
+        <section class="view" id="view-activity" data-title="Activity" hidden>
+          <div class="view-header"><h1>Activity</h1><p>Deterministic examples for customer approval. These are not Peckham event history and do not imply message delivery.</p></div>
+          <section class="panel"><h2>Approval activity examples</h2><p>Current items remain separate from Recent and Resolved examples.</p><ul class="activity-list" id="full-activity"></ul></section>
+        </section>
+
+        <section class="view" id="view-explore" data-title="Explore WNYHS" hidden>
+          <div class="view-header"><h1>Explore WNYHS</h1><p>This destination is reserved for a separately authorized future experience.</p></div>
+          <section class="panel coming-soon"><div><span class="coming-soon-badge">COMING SOON</span><h2>Explore WNYHS</h2><p>No offers, links, forms, packages, or pricing are included in this approval preview.</p></div></section>
+        </section>
+
+        <section class="view" id="view-support" data-title="Support" hidden>
+          <div class="view-header"><h1>Support</h1><p>Customer-facing support layout with local preview interactions only.</p></div>
+          <section class="panel support-layout"><h2>How can we help?</h2><p>No phone number, email address, hours, service level, or response claim is included in this offline artifact.</p><div class="button-row"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div><div class="notice">Approval preview only. No external contact action is available from this file.</div></section>
+        </section>
+
+        <section class="view" id="view-property" data-title="Property" hidden>
+          <div class="view-header"><h1>Property</h1><p>Safe known property context for this approval review.</p></div>
+          <div class="property-grid">
+            <section class="panel"><h2>PK | PECKHAM</h2><p>Standalone customer dashboard approval preview.</p><div class="status-list"><div class="status-row"><span class="status-label">Review status</span><span class="status-value" data-status="active">Approval preview</span></div><div class="status-row"><span class="status-label">Live connection</span><span class="status-value" data-status="unavailable">Not connected</span></div></div></section>
+            <section class="panel"><h2>Represented scope</h2><p>Main Entrance plus 15 first-floor window contacts.</p><div class="status-list"><div class="status-row"><span class="status-label">Contact sensors</span><span class="status-value" data-status="active">16 installed</span></div><div class="status-row"><span class="status-label">Doorbell binding</span><span class="status-value" data-status="unavailable">Pending</span></div><div class="status-row"><span class="status-label">Entry lock bindings</span><span class="status-value" data-status="unavailable">Pending</span></div></div></section>
+          </div>
+        </section>
+
+        <section class="view" id="view-settings" data-title="Settings" hidden>
+          <div class="view-header"><h1>Settings</h1><p>Presentation and deterministic review controls. Choices change only this in-memory preview.</p></div>
+          <div class="settings-grid">
+            <section class="panel"><fieldset><legend>Theme</legend><div class="segmented" data-control="theme"><button class="choice-button" type="button" data-value="light" aria-pressed="true">Light</button><button class="choice-button" type="button" data-value="dark" aria-pressed="false">Dark</button><button class="choice-button" type="button" data-value="auto" aria-pressed="false">Auto</button></div><p class="control-help">Auto follows the review device color preference without reloading.</p></fieldset></section>
+            <section class="panel"><fieldset><legend>Layout size</legend><div class="segmented" data-control="size"><button class="choice-button" type="button" data-value="compact" aria-pressed="false">Compact</button><button class="choice-button" type="button" data-value="default" aria-pressed="true">Default</button><button class="choice-button" type="button" data-value="large" aria-pressed="false">Large</button></div><p class="control-help">Size changes governed density and component geometry, never browser zoom.</p></fieldset></section>
+            <section class="panel"><fieldset><legend>Font</legend><div class="segmented" data-control="font"><button class="choice-button" type="button" data-value="inter" aria-pressed="true">Inter</button><button class="choice-button" type="button" data-value="atkinson" aria-pressed="false">Atkinson Hyperlegible</button><button class="choice-button" type="button" data-value="system" aria-pressed="false">System</button></div><p class="control-help">If Inter or Atkinson Hyperlegible is not installed, the browser uses Arial. No font file is embedded.</p></fieldset></section>
+            <section class="panel"><fieldset><legend>Review Scenario</legend><div class="segmented scenarios" data-control="scenario"><button class="choice-button" type="button" data-value="normal" aria-pressed="true">Normal</button><button class="choice-button" type="button" data-value="active" aria-pressed="false">Active</button><button class="choice-button" type="button" data-value="attention" aria-pressed="false">Attention</button><button class="choice-button" type="button" data-value="alert" aria-pressed="false">Alert</button><button class="choice-button" type="button" data-value="unavailable" aria-pressed="false">Unavailable</button></div><p class="control-help">Scenarios demonstrate simulated status behavior only. They never send a command or write data.</p></fieldset></section>
+          </div>
+          <section class="panel"><h2>Component State Review</h2><p>Visual examples of the one governed action-button family. These are not operational device controls.</p><div class="review-state-grid">
+            <div class="state-sample"><strong>Available / Off</strong><button class="action-button" type="button" data-demo="success">Run Demo</button><div class="result-note">Click to review pending and selected states.</div></div>
+            <div class="state-sample"><strong>Hover / Focus</strong><button class="action-button" type="button">Tab or Point Here</button><div class="result-note">Visible focus is keyboard-accessible.</div></div>
+            <div class="state-sample"><strong>Momentary Pressed</strong><button class="action-button is-pressed" type="button">Pressed</button><div class="result-note">Fixed dimensions with a 1px depression.</div></div>
+            <div class="state-sample"><strong>Command Pending</strong><button class="action-button is-pending" type="button">Command Pending</button><div class="result-note">Simulated presentation; no command was sent.</div></div>
+            <div class="state-sample"><strong>Selected / On</strong><button class="action-button is-selected" type="button">Selected / On</button><div class="result-note">Example confirmed-state styling.</div></div>
+            <div class="state-sample"><strong>Failure</strong><button class="action-button" type="button" data-demo="failure">Review Failure</button><div class="result-note" data-result>Local demo path.</div></div>
+            <div class="state-sample"><strong>Result Unknown</strong><button class="action-button" type="button" data-demo="unknown">Review Unknown</button><div class="result-note" data-result>Local demo path.</div></div>
+            <div class="state-sample"><strong>Disabled</strong><button class="action-button" type="button" disabled>Disabled</button><div class="result-note">Unavailable for interaction.</div></div>
+          </div></section>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="button-row"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div>
+      <div class="footer-block"><strong>WEATHER PREVIEW</strong><span class="footer-value">--°</span><br>Current conditions unavailable in approval preview</div>
+      <div class="footer-block"><strong>REVIEW DEVICE DATE &amp; TIME</strong><span id="local-time">Loading local time…</span><br>Browser-local display, not Peckham telemetry</div>
+    </footer>
+  </div>
+  <div class="preview-toast" id="preview-toast" hidden></div>
+  <div class="sr-only" id="live-feedback" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const root = document.documentElement;
+      const views = [...document.querySelectorAll('.view')];
+      const navButtons = [...document.querySelectorAll('.nav-button')];
+      const themePreference = window.matchMedia('(prefers-color-scheme: dark)');
+      const validViews = new Set(['home', 'systems', 'activity', 'explore', 'support', 'property', 'settings']);
+      const state = { theme: 'light', size: 'default', font: 'inter', scenario: 'normal' };
+      let toastTimer;
+      const scenarioContent = {
+        normal: { label: 'Normal', contact: 'Normal', banner: false, copy: 'Represented approval fixture is in its calm baseline.' },
+        active: { label: 'Active', contact: 'Active', banner: false, copy: 'A representative contact activity example is being shown.' },
+        attention: { label: 'Attention', contact: 'Attention', banner: true, copy: 'A representative contact item is shown for customer review.' },
+        alert: { label: 'Alert', contact: 'Alert', banner: true, copy: 'A high-priority simulated contact condition is shown for visual approval.' },
+        unavailable: { label: 'Unavailable', contact: 'Unavailable', banner: true, copy: 'The represented contact summary cannot be verified in this approval scenario.' }
+      };
+
+      function announce(message) {
+        const region = document.getElementById('live-feedback');
+        const toast = document.getElementById('preview-toast');
+        region.textContent = '';
+        window.setTimeout(() => { region.textContent = message; }, 20);
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.hidden = false;
+        toastTimer = window.setTimeout(() => { toast.hidden = true; }, 3200);
+      }
+
+      function resolveTheme() {
+        root.dataset.theme = state.theme === 'auto' ? (themePreference.matches ? 'dark' : 'light') : state.theme;
+      }
+
+      function setPressed(group, value) {
+        group.querySelectorAll('.choice-button').forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.value === value));
+        });
+      }
+
+      function setView(requested, updateHash = true) {
+        const viewName = validViews.has(requested) ? requested : 'home';
+        views.forEach((view) => { view.hidden = view.id !== `view-${viewName}`; });
+        navButtons.forEach((button) => {
+          if (button.dataset.view === viewName) button.setAttribute('aria-current', 'page');
+          else button.removeAttribute('aria-current');
+        });
+        const active = document.getElementById(`view-${viewName}`);
+        document.getElementById('current-view-title').textContent = active.dataset.title;
+        document.title = `PK | Peckham — ${active.dataset.title} Approval Preview`;
+        if (updateHash && window.location.hash !== `#${viewName}`) window.location.hash = viewName;
+        window.scrollTo(0, 0);
+      }
+
+      function renderScenario(value) {
+        state.scenario = value;
+        const config = scenarioContent[value];
+        document.querySelectorAll('.js-scenario-status').forEach((node) => {
+          node.textContent = config.label;
+          node.dataset.status = value;
+        });
+        document.querySelectorAll('.js-contact-status').forEach((node) => {
+          node.textContent = config.contact;
+          node.dataset.status = value;
+        });
+        document.querySelectorAll('.window-item .status-value').forEach((node, index) => {
+          const representative = index === 0 || value === 'normal' || value === 'unavailable';
+          const displayed = representative ? value : 'normal';
+          node.textContent = scenarioContent[displayed].contact;
+          node.dataset.status = displayed;
+        });
+        const banner = document.getElementById('priority-banner');
+        banner.hidden = !config.banner;
+        document.getElementById('priority-title').textContent = `${config.label} review scenario`;
+        document.getElementById('priority-copy').textContent = config.copy;
+        const priorityValue = document.getElementById('priority-value');
+        priorityValue.textContent = config.label;
+        priorityValue.dataset.status = value;
+        renderActivity();
+      }
+
+      function renderActivity() {
+        const config = scenarioContent[state.scenario];
+        const items = [
+          ['Current', 'Review fixture', `${config.label} scenario is active for the represented contact summary.`, state.scenario],
+          ['Recent', 'Earlier in preview', 'Main Entrance Door representative status changed in the local demo.', 'active'],
+          ['Resolved', 'Demo sequence', 'A simulated attention example was resolved for component review.', 'normal'],
+          ['Attention / Alert priority', 'Visual ordering example', 'Higher-priority current items appear before informational examples.', state.scenario === 'alert' ? 'alert' : 'attention']
+        ];
+        document.getElementById('full-activity').innerHTML = items.map(([kind, time, textValue, status]) => `<li class="activity-item"><div class="activity-meta"><span>${kind}</span><span>${time}</span></div><p>${textValue}</p><div class="status-row activity-status"><span class="status-label">Example status</span><span class="status-value" data-status="${status}">${scenarioContent[status].label}</span></div></li>`).join('');
+      }
+
+      function buildWindows() {
+        const grid = document.getElementById('windows-grid');
+        const items = [];
+        for (let index = 1; index <= 15; index += 1) {
+          const label = String(index).padStart(2, '0');
+          items.push(`<div class="window-item"><strong>Window Sensor ${label}</strong><span class="status-value" data-status="normal">Normal</span></div>`);
+        }
+        grid.innerHTML = items.join('');
+      }
+
+      document.querySelectorAll('[data-control]').forEach((group) => {
+        group.addEventListener('click', (event) => {
+          const button = event.target.closest('.choice-button');
+          if (!button) return;
+          const control = group.dataset.control;
+          const value = button.dataset.value;
+          setPressed(group, value);
+          if (control === 'theme') { state.theme = value; resolveTheme(); }
+          if (control === 'size') { state.size = value; root.dataset.size = value; }
+          if (control === 'font') { state.font = value; root.dataset.font = value; }
+          if (control === 'scenario') renderScenario(value);
+          announce(`${button.textContent.trim()} ${control} selected.`);
+        });
+      });
+
+      navButtons.forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
+      document.querySelectorAll('[data-navigate]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.navigate)));
+      document.querySelectorAll('.preview-action').forEach((button) => button.addEventListener('click', () => announce(`Preview only — no external action was sent for ${button.textContent.trim()}.`)));
+      document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
+        const mode = button.dataset.demo;
+        const original = button.textContent;
+        button.classList.remove('is-selected');
+        button.classList.add('is-pending');
+        button.textContent = 'Command Pending';
+        button.disabled = true;
+        const result = button.parentElement.querySelector('[data-result]');
+        if (result) result.textContent = 'Simulated command pending…';
+        window.setTimeout(() => {
+          button.disabled = false;
+          button.classList.remove('is-pending');
+          if (mode === 'success') {
+            button.classList.add('is-selected');
+            button.textContent = 'Selected / On';
+            announce('Simulated component demo reached Selected / On. No command was sent.');
+          } else if (mode === 'failure') {
+            button.textContent = original;
+            result.innerHTML = 'Result: <span class="status-value" data-status="alert">Failure</span>';
+            announce('Simulated component demo shows Failure. No command was sent.');
+          } else {
+            button.textContent = original;
+            result.innerHTML = 'Result: <span class="status-value" data-status="unavailable">Result Unknown</span>';
+            announce('Simulated component demo shows Result Unknown. No command was sent.');
+          }
+        }, 650);
+      }));
+
+      themePreference.addEventListener('change', () => { if (state.theme === 'auto') resolveTheme(); });
+      window.addEventListener('hashchange', () => setView(window.location.hash.slice(1), false));
+
+      function updateClock() {
+        document.getElementById('local-time').textContent = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
+      }
+
+      buildWindows();
+      renderScenario('normal');
+      resolveTheme();
+      setView(window.location.hash.slice(1) || 'home', false);
+      updateClock();
+      window.setInterval(updateClock, 30000);
+    })();
+  </script>
+</body>
+</html>
