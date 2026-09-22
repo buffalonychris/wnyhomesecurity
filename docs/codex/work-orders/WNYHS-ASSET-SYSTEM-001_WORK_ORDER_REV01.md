@@ -3,8 +3,8 @@
 **Revision:** REV01  
 **Status:** PREPARED — NOT DISPATCHED  
 **Category:** DESIGN SYSTEM / GOVERNANCE / ASSET FOUNDATION  
-**Primary Workstream:** WNYHS Unified Visual Asset System  
-**Related Workstreams:** Dashboard; Website; Documents; Contracts; Social Media; Merchandise; Print  
+**Primary Workstream:** Visual System  
+**Related Workstreams:** Image System; Dashboard / Interactive Experience System; Project Governance  
 **Controlling Standard:** `docs/design-system/ASSET001_WNYHS_UNIFIED_ASSET_SYSTEM_STANDARD_REV01.md`
 
 READ MODE: TARGETED  
@@ -25,11 +25,35 @@ Read only:
    - §§2–4, 9–11 only
 3. `docs/brand/brand_asset_standards_rev01.md`
    - approved asset locations and prohibited asset behavior only
-4. exact MTR task block after creation
+4. `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md`
+   - §4 Canonical customer navigation
+   - §14 Header, footer, and functional composition
+5. `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md`
+   - §2 Customer-visible size modes
+   - §4 Responsive and equal-tile delivery
+   - §8 Deterministic approval prototypes
+   - §9 Validation contract
+6. exact MTR task block after creation
 
 Do not load historical asset/design standards, full MTR, old dashboard drafts, PR #578 history, broad catalogs, or unrelated workstreams.
 
-## 3. Required implementation
+## 3. Operator-Approved Owner Routing Matrix
+
+This matrix is part of the controlling task definition. Codex must validate it before editing. The operator approves this routing when redispatching this revised work order.
+
+| Approved concept | Canonical owner | Exact file | Section / behavior | Action | Reason | Alternate-owner exclusion | Conflict | Confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Cross-channel reusable WNYHS asset production grammar, repository asset taxonomy, manifest, export, validation, and future-extension rules | ASSET001 (created by this bounded task as the proposed canonical asset-system owner) | `docs/design-system/ASSET001_WNYHS_UNIFIED_ASSET_SYSTEM_STANDARD_REV01.md` | Whole bounded standard | IMPLEMENT / ESTABLISH | This task exists specifically to establish one reusable WNYHS asset-production system across channels | DESIGN001 remains dashboard visual/component owner; Image System remains image/media-specific routing; existing brand standard remains owner of locked public brand assets | NO | HIGH |
+| Dashboard colors, typography, semantic tokens, component geometry, Light/Dark behavior, status roles | DESIGN001 | `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` | §§2–4, 9–11 | REFERENCE / PRESERVE ONLY | New assets must consume existing dashboard visual tokens rather than redefine them | ASSET001 may encode reusable asset grammar but may not redefine these visual/component roles | NO | HIGH |
+| Existing approved WNYHS public brand assets and prohibited brand-asset behavior | Brand Asset Standards REV01 | `docs/brand/brand_asset_standards_rev01.md` | Approved asset locations; prohibited asset behavior | REFERENCE / PRESERVE ONLY | Existing crest/iconized logo/hero remain locked source assets | ASSET001 must not redraw, trace, rename, move, recolor, or replace existing locked brand assets | NO | HIGH |
+| Customer dashboard shell navigation and header/footer functional composition | INSTALL006 REV02 | `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` | §4; §14 | REFERENCE / CONFORM ONLY | Peckham shell cleanup must remain inside canonical dashboard behavior/navigation ownership | Visual System owns appearance, not customer-navigation behavior | NO | HIGH |
+| Customer-visible size modes, responsive delivery, deterministic approval-prototype behavior, validation | DASHBOARD001 REV02 | `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` | §§2, 4, 8, 9 | REFERENCE / CONFORM ONLY | Peckham remains a standalone deterministic approval artifact across desktop/tablet/phone | ASSET001 does not replace responsive/delivery authority | NO | HIGH |
+| Generic reusable image/media assets, naming/storage, and visual proof hierarchy when later image-class work is added | Image System | OPS004-registered Image System plus its applicable image standards when a future bounded task actually touches those classes | Boundary only for this task | REFERENCE / PRESERVE ONLY | Current task creates icon/placeholder grammar and channel scaffolding, not a new category/solution image rollout | Image System is related but is not primary because the task outcome is the cross-channel visual asset grammar, not image/media rollout | NO | HIGH |
+| MTR lifecycle and bounded execution evidence | Project Governance | `docs/system/master-task-register.md` plus canonical Codex execution rules | Exact task block only | UPDATE ONLY AS REQUIRED | Task lifecycle/evidence must be durable without expanding governance scope | Project Governance does not become the visual/asset owner | NO | HIGH |
+
+If any row resolves to `CONFLICT: YES`, `CONFIDENCE: LOW`, or materially contradicts current repository authority, STOP before implementation and report the exact conflict.
+
+## 4. Required implementation
 
 Create the governed WNYHS asset root:
 
@@ -70,7 +94,7 @@ assets/wnyhs/
 
 Create only the initial assets required for the current dashboard shell and reusable WNYHS system. Do not fill empty channel folders with speculative art.
 
-## 4. Initial reusable asset set
+## 5. Initial reusable asset set
 
 ### Navigation
 - home.svg
@@ -109,7 +133,7 @@ Create only the initial assets required for the current dashboard shell and reus
 
 Reuse one canonical semantic asset across channels when appropriate. Do not duplicate a semantic icon into another folder merely because another surface consumes it.
 
-## 5. Icon grammar
+## 6. Icon grammar
 
 Normal UI icons:
 - SVG
@@ -144,7 +168,7 @@ Placeholder illustrations:
 - `currentColor`
 - no text/fake imagery
 
-## 6. Color behavior
+## 7. Color behavior
 
 Use the canonical digital roles from DESIGN001/ASSET001.
 
@@ -156,7 +180,7 @@ Do not create separate Light/Dark/gold/white versions of the same normal reusabl
 
 Print/physical color equivalents remain unresolved until process-specific proofing. Do not invent CMYK/Pantone/thread/vinyl values.
 
-## 7. Transparency/background
+## 8. Transparency/background
 
 Reusable source assets default to transparent canvas.
 
@@ -171,7 +195,7 @@ No baked:
 
 Backgrounds belong to the consuming composition unless explicitly part of the approved asset.
 
-## 8. Naming
+## 9. Naming
 
 Use lowercase kebab-case.
 
@@ -189,7 +213,7 @@ Do not use:
 
 Revision/state belongs in manifest/history.
 
-## 9. Manifest
+## 10. Manifest
 
 Create `assets/wnyhs/manifest.json`.
 
@@ -212,7 +236,7 @@ Each entry records:
 
 Future agents must check the manifest before asset creation.
 
-## 10. Cross-channel profile scaffolding
+## 11. Cross-channel profile scaffolding
 
 Document within ASSET001 and/or profile metadata that:
 
@@ -224,7 +248,7 @@ Document within ASSET001 and/or profile metadata that:
 
 Do not force UI-icon geometry onto non-icon asset classes.
 
-## 11. Validator
+## 12. Validator
 
 Create:
 
@@ -247,7 +271,7 @@ Validate at minimum:
 
 If robust safe-area coordinate validation cannot be done without new dependency, require manual preview inspection instead of unreliable parsing.
 
-## 12. Preview/contact sheet
+## 13. Preview/contact sheet
 
 Create:
 
@@ -273,7 +297,7 @@ Placeholders:
 
 The checkerboard is preview-only and never part of an asset.
 
-## 13. Initial consumer integration
+## 14. Initial consumer integration
 
 After the library validates, update the Peckham standalone approval demo to consume the canonical asset sources while remaining a single self-contained HTML artifact.
 
@@ -292,7 +316,7 @@ Required shell alignment:
 
 Preserve all existing truthfulness, offline, accessibility, scenario, responsive, and no-live-state constraints.
 
-## 14. Exact allowed paths
+## 15. Exact allowed paths
 
 - `docs/design-system/ASSET001_WNYHS_UNIFIED_ASSET_SYSTEM_STANDARD_REV01.md`
 - `docs/codex/work-orders/WNYHS-ASSET-SYSTEM-001_WORK_ORDER_REV01.md`
@@ -305,7 +329,7 @@ Preserve all existing truthfulness, offline, accessibility, scenario, responsive
 
 `package-lock.json` must not change.
 
-## 15. Forbidden scope
+## 16. Forbidden scope
 
 Do not:
 - alter existing locked public brand assets
@@ -325,7 +349,7 @@ Do not:
 - deploy
 - modify PR #578
 
-## 16. Validation
+## 17. Validation
 
 Run:
 - `node scripts/checks/check-wnyhs-assets.mjs`
@@ -344,7 +368,7 @@ Run:
 - `git diff --check`
 - package-lock unchanged
 
-## 17. MTR
+## 18. MTR
 
 Create exactly one bounded task:
 `WNYHS-ASSET-SYSTEM-001`
@@ -362,7 +386,7 @@ Record:
 - draft PR evidence
 - operator review required
 
-## 18. Git delivery
+## 19. Git delivery
 
 Branch:
 `task/wnyhs-unified-asset-system-001`
@@ -377,7 +401,7 @@ Suggested PR:
 
 Do not merge. Do not deploy.
 
-## 19. Future extension rule
+## 20. Future extension rule
 
 Normal future asset creation must be mechanical:
 
@@ -396,7 +420,7 @@ If a new asset appears to require changing palette, typography, viewBox, stroke,
 
 That is an ASSET SYSTEM REDESIGN and requires explicit operator authorization.
 
-## 20. Exit criteria
+## 21. Exit criteria
 
 Complete only when:
 - unified repository structure exists;
