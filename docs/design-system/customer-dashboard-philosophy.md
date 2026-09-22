@@ -1,9 +1,12 @@
 # WNYHS Customer Dashboard Philosophy
 
-Status: Active design-system philosophy
+Status: Historical/reference philosophy only
 Customer-facing: No
 Implementation authority: No
 Task ID: DASHBOARD-PHILOSOPHY-001
+Current authority: `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` owns architecture/behavior; `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` owns visual/components; `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` owns delivery/binding/validation.
+
+Reference note: This file preserves philosophy lineage only. Its four-level severity model is not active dashboard authority and must not override the canonical five customer status meanings in INSTALL006 REV02.
 
 ---
 

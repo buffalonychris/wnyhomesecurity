@@ -1,6 +1,7 @@
 # INSTALL006 - Dashboard Architecture Standard - REV01
 
-Status: Active standard
+Status: SUPERSEDED by `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md`
+Supersession: Historical lineage only. REV02 is the active dashboard-architecture owner.
 Customer-facing: No
 Implementation authority: No
 Task ID: INSTALL006

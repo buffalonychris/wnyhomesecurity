@@ -1,6 +1,7 @@
 # WNYHS Customer Dashboard Design Standard REV01
 
-Status: Active design-system standard
+Status: SUPERSEDED by `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` and `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`
+Supersession: Historical lineage only. INSTALL006 REV02 owns dashboard architecture and behavior; DESIGN001 REV02 owns visual and component rules. The unmerged customer-dashboard-design REV02 draft was withdrawn after its durable rules were absorbed.
 Customer-facing: No
 Implementation authority: Design authority only; implementation requires bounded task
 Task ID: DASHBOARD-DESIGN-STANDARD-001

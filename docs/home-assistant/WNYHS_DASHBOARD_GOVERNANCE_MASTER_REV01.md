@@ -1,6 +1,7 @@
 # WNYHS Dashboard Governance Master REV01
 
-Status: Active reconciliation and gap-analysis document
+Status: SUPERSEDED by `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md`
+Supersession: Historical lineage only. REV02 is the active dashboard reconciliation owner.
 Owner: Dashboard / Interactive Experience System
 Customer-facing: No
 Implementation authority: No

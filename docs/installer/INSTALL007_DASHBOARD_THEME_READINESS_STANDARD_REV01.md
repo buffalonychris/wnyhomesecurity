@@ -1,6 +1,7 @@
 # INSTALL007 - Dashboard Theme Readiness Standard - REV01
 
-Status: Active standard
+Status: SUPERSEDED by `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`
+Supersession: Historical lineage only. DESIGN001 REV02 now owns dashboard theme, readability, focus, contrast, and presentation parity rules.
 Customer-facing: No
 Implementation authority: No
 Task ID: INSTALL007

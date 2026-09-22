@@ -1,6 +1,7 @@
 # HA-BACKUP001 - Customer Home Assistant Backup Extraction Standard - REV01
 
-Status: Active standard
+Status: SUPERSEDED by `docs/home-assistant/HA-BACKUP001_CUSTOMER_BACKUP_EXTRACTION_STANDARD_REV02.md`
+Supersession: Historical lineage only. REV02 preserves the safe-backup rules and adds the canonical WNYHS HA Registry Export workflow.
 Customer-facing: No
 Implementation authority: No
 Task ID: HA-BACKUP001-CUSTOMER-BACKUP-EXTRACTION-STANDARD-001
