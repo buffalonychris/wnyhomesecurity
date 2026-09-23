@@ -1,12 +1,12 @@
 # WNYHS-ASSET-SYSTEM-001 — Unified Asset System + Peckham Customer Dashboard Visual Completion
 
-**Revision:** REV02  
-**Status:** ACTIVE — OPERATOR-AUTHORIZED REVISION  
-**Supersedes:** `WNYHS-ASSET-SYSTEM-001_WORK_ORDER_REV01.md` for all remaining execution and closeout  
-**Primary Workstream:** Visual System  
-**Related Workstreams:** Image System; Dashboard / Interactive Experience System; Project Governance  
-**Branch:** `task/wnyhs-unified-asset-system-001`  
-**Read Mode:** TARGETED  
+**Revision:** REV02
+**Status:** ACTIVE — OPERATOR-AUTHORIZED REVISION
+**Supersedes:** `WNYHS-ASSET-SYSTEM-001_WORK_ORDER_REV01.md` for all remaining execution and closeout
+**Primary Workstream:** Visual System
+**Related Workstreams:** Image System; Dashboard / Interactive Experience System; Project Governance
+**Branch:** `task/wnyhs-unified-asset-system-001`
+**Read Mode:** TARGETED
 **Context Target:** LOW
 
 ## 1. Objective

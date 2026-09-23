@@ -2,7 +2,7 @@
 
 **Status:** CANONICAL — OPERATOR APPROVED AND IMPLEMENTED BY WNYHS-ASSET-SYSTEM-001
 **Primary Owner:** Visual System / ASSET001
-**Applies To:** Dashboard, website, contracts/documents, proposals, social media, merchandise, print, signage, presentations, and future WNYHS visual channels  
+**Applies To:** Dashboard, website, contracts/documents, proposals, social media, merchandise, print, signage, presentations, and future WNYHS visual channels
 **Controlling Principle:** One brand system, multiple governed output profiles
 
 ## 1. Purpose

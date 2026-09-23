@@ -2,12 +2,12 @@
 
 **Revision:** REV02 — IN-PLACE OPERATOR-AUTHORIZED SCOPE REVISION
 **Status:** ACTIVE — VISUAL APPROVAL PASS
-**Category:** DESIGN SYSTEM / GOVERNANCE / ASSET FOUNDATION  
-**Primary Workstream:** Visual System  
-**Related Workstreams:** Image System; Dashboard / Interactive Experience System; Project Governance  
+**Category:** DESIGN SYSTEM / GOVERNANCE / ASSET FOUNDATION
+**Primary Workstream:** Visual System
+**Related Workstreams:** Image System; Dashboard / Interactive Experience System; Project Governance
 **Controlling Standard:** `docs/design-system/ASSET001_WNYHS_UNIFIED_ASSET_SYSTEM_STANDARD_REV01.md`
 
-READ MODE: TARGETED  
+READ MODE: TARGETED
 CONTEXT TARGET: LOW
 
 ## 1. Objective
@@ -419,7 +419,7 @@ After these checks, STOP for operator visual approval. Do not mark the task `DON
 Create exactly one bounded task:
 `WNYHS-ASSET-SYSTEM-001`
 
-Status during execution: ACTIVE.  
+Status during execution: ACTIVE.
 Status after this REV02 validation pass: remain ACTIVE pending operator visual approval.
 Status after later explicit operator approval, successful final validation, and draft PR: DONE.
 
