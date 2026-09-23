@@ -1,7 +1,7 @@
 # ASSET001 — WNYHS Unified Asset System Standard — REV01
 
-**Status:** PROPOSED CANONICAL STANDARD — OPERATOR APPROVAL REQUIRED BEFORE IMPLEMENTATION  
-**Primary Owner:** WNYHS Visual / Brand Asset System  
+**Status:** CANONICAL — OPERATOR APPROVED AND IMPLEMENTED BY WNYHS-ASSET-SYSTEM-001
+**Primary Owner:** Visual System / ASSET001
 **Applies To:** Dashboard, website, contracts/documents, proposals, social media, merchandise, print, signage, presentations, and future WNYHS visual channels  
 **Controlling Principle:** One brand system, multiple governed output profiles
 
@@ -277,6 +277,10 @@ Large digital placeholder illustrations use:
 - no text
 - no fake content
 - no fake LIVE indicators
+
+### 11.1 Reusable dashboard illustration grammar
+
+Reusable dashboard illustrations use the same 64×64 source geometry, 8-unit safe area, 2.5-unit rounded `currentColor` stroke, transparent background, and no-text/no-fake-content constraints as large placeholders. They may organize already verified concepts such as represented property posture, a multi-component entry assembly, or a non-spatial coverage count. They must not imply a floorplan, physical sensor placement, live state, device control, telemetry, or whole-property protection.
 
 ## 12. Website Profile
 

@@ -1,7 +1,7 @@
 # WNYHS-ASSET-SYSTEM-001 — Implement Unified Cross-Channel Asset System
 
-**Revision:** REV01  
-**Status:** PREPARED — NOT DISPATCHED  
+**Revision:** REV02 — IN-PLACE OPERATOR-AUTHORIZED SCOPE REVISION
+**Status:** ACTIVE — VISUAL APPROVAL PASS
 **Category:** DESIGN SYSTEM / GOVERNANCE / ASSET FOUNDATION  
 **Primary Workstream:** Visual System  
 **Related Workstreams:** Image System; Dashboard / Interactive Experience System; Project Governance  
@@ -15,6 +15,34 @@ CONTEXT TARGET: LOW
 Implement the reusable cross-channel WNYHS asset system defined by ASSET001 so future assets are created by extending an established grammar instead of redesigning colors, geometry, naming, transparency, typography, or export behavior.
 
 This task establishes the shared repository structure, manifest, validation tooling, initial dashboard/UI assets, preview/contact-sheet tooling, and the first proved consumer integration.
+
+Before final validation, complete one additional bounded visual/approval pass that adds an approval-artifact-only device preview, corrects the canonical asset preview's `currentColor` treatment rendering, and adds reusable governed Peckham visuals for property posture, the main entrance assembly, and first-floor window coverage. This revision does not authorize production/runtime work, invented customer data, new visual-system primitives, or a new task/branch/PR.
+
+## 1A. Operator-authorized REV02 approval pass
+
+The existing branch remains `task/wnyhs-unified-asset-system-001`. Do not create a new task, branch, or PR.
+
+The Peckham standalone approval artifact must add a review-only device selector in this header utility order:
+
+`DEVICE | THEME | SIZE | USER`
+
+`USER` remains far upper-right. Device options are exactly:
+
+- Desktop — 1440px approval viewport
+- Tablet — 1024px approval viewport
+- Phone — 390px approval viewport
+
+The selected device mode must visibly constrain the emulated dashboard viewport and cause actual CSS responsive reflow at the selected width; it must not merely scale a desktop composition. The selector is approval-artifact-only and must not become a customer-facing production control. Preserve standalone, offline, `file://`, print, and capture behavior without requiring browser developer tools.
+
+Correct `assets/wnyhs/validation/asset-preview.html` so Light, Dark, Gold, Muted, and Alpha panes each visibly render the same canonical `currentColor` SVG sources. Preserve source-SVG grammar and do not bake treatment colors into canonical assets.
+
+Create and integrate reusable governed visual concepts for:
+
+1. Property Status Hero — `PK | PECKHAM`, represented coverage posture, 16 installed contacts, preview/not-live state, and unresolved/pending bindings.
+2. Main Entrance Assembly — Main Entrance Door Contact, Kwikset SmartCode 912 Lever Lock, Kwikset Home Connect 620 Deadbolt, and Main Entrance Doorbell shown as one assembly while preserving verified/unavailable/pending posture.
+3. First-Floor Window Coverage — 15 installed window contacts with reusable indicators and an explicit statement that exact physical window locations remain unresolved; do not imply a floorplan or spatial placement.
+
+Also improve the governed presentation of unavailable media, unavailable weather, and the footer/system-support strip where useful. Use DESIGN001 tokens and canonical WNYHS assets only. Do not add fonts, palette roles, gradients, fake imagery, fake weather, fake telemetry, floorplans, invented sensor locations, unsupported controls, or unsupported live/security claims.
 
 ## 2. Required targeted reads
 
@@ -109,6 +137,7 @@ Create only the initial assets required for the current dashboard shell and reus
 - user.svg
 - theme.svg
 - layout-size.svg
+- device-preview.svg
 - chevron-down.svg
 
 ### Capability
@@ -130,6 +159,13 @@ Create only the initial assets required for the current dashboard shell and reus
 ### Placeholder
 - media-unavailable.svg
 - weather-unavailable.svg
+
+### Reusable dashboard illustrations
+- property-status-hero.svg
+- main-entrance-assembly.svg
+- window-coverage.svg
+
+These illustrations use the existing large digital illustration/placeholder grammar: 64×64 SVG, transparent canvas, `currentColor`, no embedded text, no fake device imagery, and no spatial/floorplan implication.
 
 Reuse one canonical semantic asset across channels when appropriate. Do not duplicate a semantic icon into another folder merely because another surface consumes it.
 
@@ -308,10 +344,13 @@ Required shell alignment:
 - top masthead
 - horizontal customer navigation
 - no desktop left-sidebar shell
-- header utilities left-to-right: THEME | SIZE | USER
+- header utilities left-to-right: DEVICE | THEME | SIZE | USER
 - USER is far upper-right
+- DEVICE is review-only and offers Desktop 1440px, Tablet 1024px, and Phone 390px approval viewports
+- the selected DEVICE mode constrains the rendered dashboard viewport and triggers genuine responsive reflow rather than visual scaling
 - review-only Font / Scenario / Component State controls remain in Settings
 - canonical asset library supplies navigation, header utility, tile, and placeholder icons
+- canonical assets also supply the property-status, entry-assembly, window-coverage, unavailable-media, and unavailable-weather visual concepts
 - standalone HTML inlines needed SVG so email/file:// delivery still has no external dependency
 
 Preserve all existing truthfulness, offline, accessibility, scenario, responsive, and no-live-state constraints.
@@ -353,20 +392,27 @@ Do not:
 
 Run:
 - `node scripts/checks/check-wnyhs-assets.mjs`
+- inline-JavaScript syntax validation for both standalone HTML artifacts
 - direct browser load of asset preview
-- Light/Dark visual inspection
-- transparency inspection
+- asset-preview Light/Dark/Gold/Muted/Alpha treatment inspection
 - manifest completeness
 - duplicate-semantic review
 - Peckham copied-file `file://` validation
-- desktop/tablet/phone responsive validation
+- Desktop 1440px device-mode validation
+- Tablet 1024px device-mode validation
+- Phone 390px device-mode validation
+- Light and Dark validation
+- Compact, Default, and Large validation
 - keyboard/focus validation
 - no-network validation
+- print/capture preservation check for the selected device presentation, as technically practical
 - changed-file audit
 - no unexpected deletion
 - conflict-marker scan
 - `git diff --check`
 - package-lock unchanged
+
+After these checks, STOP for operator visual approval. Do not mark the task `DONE`, commit, push, or open the draft PR until the operator explicitly approves the revised visual result.
 
 ## 18. MTR
 
@@ -374,7 +420,8 @@ Create exactly one bounded task:
 `WNYHS-ASSET-SYSTEM-001`
 
 Status during execution: ACTIVE.  
-Status after successful validation and draft PR: DONE.
+Status after this REV02 validation pass: remain ACTIVE pending operator visual approval.
+Status after later explicit operator approval, successful final validation, and draft PR: DONE.
 
 Record:
 - ASSET001 as asset-system owner
@@ -391,7 +438,7 @@ Record:
 Branch:
 `task/wnyhs-unified-asset-system-001`
 
-One DRAFT PR to main.
+One DRAFT PR to main only after explicit operator approval of the revised visual result.
 
 Suggested commit:
 `design: establish unified WNYHS asset system`
@@ -400,6 +447,7 @@ Suggested PR:
 `WNYHS-ASSET-SYSTEM-001 — establish unified WNYHS asset system`
 
 Do not merge. Do not deploy.
+For the current approval pass, do not commit, push, or open the PR.
 
 ## 20. Future extension rule
 
