@@ -928,8 +928,8 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Task Name:** Lead Signal Notification and Persistence Reliability
 - **Status:** DONE
 - **Category:** LEAD
-- **Primary Workstream:** Lead Capture / Lead Signal
-- **Related Workstreams:** HubSpot / CRM; Resend / Email Routing; QR Attribution; Scheduling / Calendar Ownership
+- **Primary Workstream:** Runtime System
+- **Related Workstreams:** CRM / HubSpot System; Scheduling System; Estimate / Quote System; Analytics System; Infrastructure / Deployment System
 - **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 - **Purpose:** Separate telemetry from actionable lead notifications and prevent required persistence failures from masquerading as successful customer submissions.
 - **Allowed Scope:** Protected lead-signal classification; notification gating; actionable persistence-result semantics; telemetry preservation; requestId-safe failure handling; minimal scheduling side-effect gating; tests, runtime docs, implementation audit, and this task record's evidence.
