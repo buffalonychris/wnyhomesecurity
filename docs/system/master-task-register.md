@@ -926,7 +926,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** TEST-RUNNER-FIX001
 - **Task Name:** Vitest Collection and Operator Navbar Baseline Correction
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** QA
 - **Primary Workstream:** Project Governance
 - **Related Workstreams:** Site Architecture; Infrastructure / Deployment System
@@ -941,13 +941,14 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** Vitest no longer collects `tests/site-qa/**`; Playwright still discovers its site-QA suites; stable operator-navbar tests pass; repository-wide Vitest, test typecheck, build, and diff checks pass unless an unrelated baseline defect is truthfully recorded as a blocker; audit and MTR evidence are complete; one task branch is committed and pushed; one draft PR to `main` is created if GitHub auth permits; no production/runtime change, merge, or deployment occurs.
 - **Dependencies:** Operator-authorized `docs/codex/work-orders/TEST-RUNNER-FIX001_WORK_ORDER_REV02.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `main` containing merge commit `4959b282da7f12f137934309111c743f15069064`; current Codex execution and task-register rules; approved Owner Routing Matrix.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. No merge or deployment is authorized.
-- **Publication/Evidence State:** NOT_STARTED
-- **Draft PR Evidence:** Pending bounded implementation, validation, push, and draft-PR creation.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #587: `https://github.com/buffalonychris/wnyhomesecurity/pull/587`.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Not applicable; QA/test-only correction and no deployment authorized.
 - **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` at `0d18830bcd04b27cbe14322a76ef9d0f2ae23efe`.
-- **CTR Eligibility:** Not eligible while ACTIVE and before merge/main synchronization.
+- **CTR Eligibility:** Not eligible until merge and later main synchronization are verified.
 - **CTR Record / Pointer:** None.
+- **Completion Notes:** Preserved Vitest defaults while excluding only the Playwright-owned `tests/site-qa/**` tree; replaced stale operator-navbar copy/brand assertions with current semantic operator/public navigation checks; created the implementation audit; and left `package.json`, Playwright configuration/tests, dependencies/package lock, production/runtime source, and LEAD-FIX002 runtime files untouched. `npm test -- --run` passed 32 files and 155 tests; `npm run typecheck:test`, `npm run build`, Playwright discovery of 399 tests in 11 files, conflict/scope checks, and `git diff --check` passed. Draft PR #587 remains draft. No protected-system change, merge, or deployment occurred.
 
 ### DASH-GOV-REFRESH-001
 
