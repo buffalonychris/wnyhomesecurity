@@ -197,3 +197,12 @@ Confirmation email runtime now records scheduling email audit metadata per appoi
 - `confirmationEmailRecipient`
 - `confirmationEmailStatus`
 - `confirmationEmailErrorCode`
+
+## LEAD-FIX002 Lead Notification Eligibility (2026-09-25)
+
+- Operator lead notifications and customer lead acknowledgements are eligible only for actionable `qr_estimate_requested` and `callback_requested` intake.
+- `qrlanding_view`, `estimate_form_started`, `fit_check_completed`, and `quote_generated` do not send lead-intake email.
+- Existing lifecycle signals do not send a new lead-intake notification or acknowledgement.
+- For actionable intake, email attempts occur only after core HubSpot persistence succeeds.
+- Email provider failure after durable persistence is returned as a degraded notification status; it does not erase the retained lead or change email into persistence authority.
+- Existing sender, recipient, audit-copy, outbound-only, and server-side secret boundaries remain unchanged.

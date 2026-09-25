@@ -922,6 +922,34 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### LEAD-FIX002
+
+- **Task ID:** LEAD-FIX002
+- **Task Name:** Lead Signal Notification and Persistence Reliability
+- **Status:** BLOCKED
+- **Category:** LEAD
+- **Primary Workstream:** Lead Capture / Lead Signal
+- **Related Workstreams:** HubSpot / CRM; Resend / Email Routing; QR Attribution; Scheduling / Calendar Ownership
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Separate telemetry from actionable lead notifications and prevent required persistence failures from masquerading as successful customer submissions.
+- **Allowed Scope:** Protected lead-signal classification; notification gating; actionable persistence-result semantics; telemetry preservation; requestId-safe failure handling; minimal scheduling side-effect gating; tests, runtime docs, implementation audit, and this task record's evidence.
+- **Forbidden Scope:** No HubSpot schema or pipeline changes; no Stripe or payment changes; no scheduling redesign; no funnel, route, or UI redesign; no new persistence systems; no historical CRM cleanup; no unrelated refactoring; no merge or deployment.
+- **Target Files:** `docs/system/master-task-register.md`; `src/lib/siteVersion.ts` for the required deployed-site version bump; `functions/api/lead-signal.ts`; `api/lead-signal.ts` only if parity is required; `src/lib/hubspotLeadSignal.ts` only if required; `src/components/CanonicalEstimateRequestForm.tsx` only if required; `src/pages/QrLanding.tsx` only if required; `src/newsite/pages/NewSiteCallback.tsx` only if required; `src/newsite/pages/NewSiteOnSiteQuote.tsx` only if required; relevant existing tests or one narrowly scoped new lead-signal test; `docs/runtime/lead_signal_contract.md`; `docs/runtime/qrlanding_runtime.md` only if needed; `docs/runtime/hubspot_sync_contract.md` only if authoritative persistence semantics change; `docs/runtime/scheduling_ownership.md` only if needed; `docs/runtime/resend_runtime.md` only if notification flow semantics change; `docs/audits/lead_fix002_implementation_rev01.md`.
+- **Runtime Systems Affected:** Protected `/api/lead-signal` runtime orchestration, HubSpot persistence result handling, Resend notification eligibility, requestId correlation, and existing scheduling side-effect eligibility. No live external system changes are authorized.
+- **Documentation Updates Required:** Update `docs/runtime/lead_signal_contract.md`; update `docs/runtime/qrlanding_runtime.md` only as needed; update other runtime contracts only if their governed behavior changes; create `docs/audits/lead_fix002_implementation_rev01.md`; maintain truthful lifecycle evidence in this record.
+- **Validation Required:** `git status`; `npm test -- --run`; `npm run build`; `git diff --check`; required event-policy, side-effect, conflict-marker, changed-file, protected-scope, and frontend failure-path checks from `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV01.md`.
+- **Exit Criteria:** Telemetry-only events remain accepted where contracted but trigger no actionable lead email, acknowledgement, CRM write, or scheduling artifact; actionable estimate and callback requests retain required processing and notifications; required persistence failure cannot present normal customer success; requestId authority and safe failure correlation remain intact; HubSpot schema/pipeline and Stripe/payment remain untouched; no new persistence provider/database is introduced; tests and build pass; runtime docs and audit match behavior; branch is committed/pushed; one draft PR to `main` is open if GitHub CLI/auth permits.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; current lead-signal, requestId, QRLanding, HubSpot, Resend, and scheduling runtime contracts; synchronized `main` containing merge commit `915f878b3ca8a646968f95f268a96d9d980c4633` or a newer descendant.
+- **Operator Decision Required:** No additional decision required unless a material governance conflict is discovered. Operator review is required before any merge or deployment.
+- **Blocker / Unlock:** The exact required `npm test -- --run` gate is red on pre-existing, out-of-scope repository failures: Vitest collects Playwright `tests/site-qa/**` suites and rejects their `test.describe()` calls, and two existing `src/pages/__tests__/operatorNavbar.test.tsx` assertions fail independently. Unlock requires a separately authorized correction to the repository test-runner/baseline tests or an explicit higher-authority validation exception. LEAD-FIX002 focused tests, test typecheck, and production build pass.
+- **Publication/Evidence State:** NOT_STARTED
+- **Draft PR Evidence:** Pending implementation, validation, push, and draft PR creation.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Deployment applicable only through a later operator-authorized action; no deployment is authorized or performed by this task.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `main` at `7995049b784525695d86d98c742d374feca08b4b`; later merge and main synchronization are not authorized or inferred.
+- **CTR Eligibility:** Not eligible while ACTIVE and unmerged.
+- **CTR Record / Pointer:** None.
+
 ### DASH-GOV-REFRESH-001
 
 - **Task ID:** DASH-GOV-REFRESH-001

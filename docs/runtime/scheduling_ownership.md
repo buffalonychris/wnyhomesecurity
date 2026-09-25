@@ -354,3 +354,11 @@ Internal status constants normalized for future drift prevention:
 - If `calendarEventId` already exists on a confirmed request, calendar write is not retried.
 - If `confirmationEmailStatus` is `SENT` on a confirmed request, customer email send is not retried.
 - Durable customer contact fields are stored on appointment request creation and reused during confirmation email delivery.
+
+## LEAD-FIX002 Intake Ordering Addendum (2026-09-25)
+
+- Telemetry-only lead-signal events do not create appointment-request records.
+- `qr_estimate_requested` creates an appointment request only after core actionable HubSpot persistence succeeds.
+- The created request remains `PENDING_OWNER_CONFIRMATION`; no automatic confirmation or calendar authority is introduced.
+- `callback_requested` preserves callback handling and does not create an estimate appointment record.
+- Scheduling storage failure returns a safe correlated failure and does not create a false confirmation posture.

@@ -77,7 +77,7 @@ const NewSiteCallback = () => {
     setIsSubmitting(true);
     try {
       const response = await sendLeadSignal({
-        event: 'qr_estimate_requested',
+        event: 'callback_requested',
         sourceFamily: 'NEWSITE',
         source: 'callback_form',
         landingRoute: '/newsite/callback',

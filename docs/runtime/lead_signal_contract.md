@@ -264,3 +264,30 @@ For QR attribution metadata associated with lead-signal events, future validatio
 - Prefer bounded diagnostics/logging for malformed attribution metadata instead of silent ambiguity.
 
 This addendum is governance documentation only and introduces no runtime implementation changes.
+
+## LEAD-FIX002 Reliability Policy (2026-09-25)
+
+The production-authoritative Cloudflare Pages implementation is `functions/api/lead-signal.ts`. The separate `api/lead-signal.ts` implementation is not the documented Cloudflare production route and was not changed by LEAD-FIX002.
+
+Event eligibility is explicit:
+
+| Event | Classification | Operator lead notification | Customer acknowledgement | Actionable CRM persistence | Scheduling artifact |
+| --- | --- | --- | --- | --- | --- |
+| `qrlanding_view` | Telemetry | No | No | No | No |
+| `estimate_form_started` | Telemetry | No | No | No | No |
+| `fit_check_completed` | Telemetry | No | No | No | No |
+| `quote_generated` | Telemetry | No | No | No | No |
+| `qr_estimate_requested` | Actionable lead | Yes | Yes, when configured and a customer email is present | Yes | Yes; `PENDING_OWNER_CONFIRMATION` only |
+| `callback_requested` | Actionable lead | Yes | Yes, when configured and a customer email is present | Yes | No |
+| `walkthrough_requested` | Existing lifecycle signal | No lead-intake notification | No lead-intake acknowledgement | Existing API-mediated lifecycle eligibility retained | No lead-intake scheduling artifact |
+| `walkthrough_scheduled` | Existing lifecycle signal | No lead-intake notification | No lead-intake acknowledgement | Existing API-mediated lifecycle eligibility retained | No lead-intake scheduling artifact |
+| `agreement_accepted` | Existing lifecycle signal | No lead-intake notification | No lead-intake acknowledgement | Existing API-mediated lifecycle eligibility retained | No lead-intake scheduling artifact |
+| `install_scheduled` | Existing lifecycle signal | No lead-intake notification | No lead-intake acknowledgement | Existing API-mediated lifecycle eligibility retained | No lead-intake scheduling artifact |
+
+Unknown events and malformed payloads fail validation before side effects. Telemetry events remain accepted for directional attribution but return `not_eligible` side-effect statuses and do not call Resend, HubSpot, or scheduling persistence.
+
+For actionable events, core HubSpot contact and deal persistence is the required durable lead-retention boundary. A missing HubSpot configuration or failed core contact/deal persistence returns a safe non-2xx response with `ok:false`, `errorCode: LEAD_PERSISTENCE_FAILED`, and the canonical server-generated `requestId`. Provider internals are not returned. Frontend callers therefore reject the request and retain their existing alternate phone/text guidance instead of presenting normal success.
+
+After core actionable persistence succeeds, estimate scheduling capture is created with `PENDING_OWNER_CONFIRMATION`; callback requests do not create an appointment record. Operator notification and customer acknowledgement are attempted only after the persistence boundary. Email failure after durable persistence is deliberately reported as a degraded notification status while the actionable submission remains successful; email delivery is not the sole persistence authority.
+
+Browser/session attribution identifiers remain metadata only. The response and all backend correlation continue to use the server-generated `requestId`.

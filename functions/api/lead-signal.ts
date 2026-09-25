@@ -26,6 +26,27 @@ const isString = (value: unknown): value is string => typeof value === 'string' 
 const createRequestId = () => `lead_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 const isProduction = (env: LeadSignalEnv) => (env.NODE_ENV || 'production') === 'production';
 
+type LeadSignalEventPolicy = {
+  category: 'telemetry' | 'actionable' | 'lifecycle';
+  operatorNotification: boolean;
+  customerAcknowledgement: boolean;
+  crmPersistence: boolean;
+  scheduling: boolean;
+};
+
+const EVENT_POLICIES: Record<string, LeadSignalEventPolicy> = {
+  qrlanding_view: { category: 'telemetry', operatorNotification: false, customerAcknowledgement: false, crmPersistence: false, scheduling: false },
+  estimate_form_started: { category: 'telemetry', operatorNotification: false, customerAcknowledgement: false, crmPersistence: false, scheduling: false },
+  fit_check_completed: { category: 'telemetry', operatorNotification: false, customerAcknowledgement: false, crmPersistence: false, scheduling: false },
+  quote_generated: { category: 'telemetry', operatorNotification: false, customerAcknowledgement: false, crmPersistence: false, scheduling: false },
+  qr_estimate_requested: { category: 'actionable', operatorNotification: true, customerAcknowledgement: true, crmPersistence: true, scheduling: true },
+  callback_requested: { category: 'actionable', operatorNotification: true, customerAcknowledgement: true, crmPersistence: true, scheduling: false },
+  walkthrough_requested: { category: 'lifecycle', operatorNotification: false, customerAcknowledgement: false, crmPersistence: true, scheduling: false },
+  walkthrough_scheduled: { category: 'lifecycle', operatorNotification: false, customerAcknowledgement: false, crmPersistence: true, scheduling: false },
+  agreement_accepted: { category: 'lifecycle', operatorNotification: false, customerAcknowledgement: false, crmPersistence: true, scheduling: false },
+  install_scheduled: { category: 'lifecycle', operatorNotification: false, customerAcknowledgement: false, crmPersistence: true, scheduling: false },
+};
+
 const parseEmails = (value?: string) =>
   (value ?? '')
     .split(',')
@@ -118,6 +139,7 @@ const buildQrLeadSummary = (body: LeadSignalRequest, timestampISO: string) => {
 const validateRequest = (body: LeadSignalRequest) => {
   if (!body || typeof body !== 'object') return 'Request body must be a JSON object';
   if (!isString(body.event)) return 'event is required';
+  if (!EVENT_POLICIES[body.event]) return 'event is not supported';
   if (body.event === 'qr_estimate_requested') {
     const hasName = isString(body?.contact?.fullName) || isString(body?.contact?.firstName) || isString(body?.contact?.lastName);
     if (!hasName || !isString(body?.contact?.phone)) return 'qr_estimate_requested is missing required contact fields';
@@ -225,27 +247,28 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
 
   const nowIso = new Date().toISOString();
   const now = new Date();
+  const eventPolicy = EVENT_POLICIES[body.event];
+  const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
+  if (eventPolicy.category === 'telemetry') {
+    const responseBody: Record<string, unknown> = {
+      ok: true,
+      requestId,
+      eventCategory: eventPolicy.category,
+      notification: { configured: false, attempted: false, status: 'not_eligible', provider: 'resend' },
+      customerAcknowledgement: { configured: false, attempted: false, status: 'not_eligible', provider: 'resend' },
+      hubspot: { configured: hubspotConfigured, attempted: false, status: 'not_eligible' },
+    };
+    if (!isProduction(env)) responseBody.diagnostics = { event: body.event, route: body.route || 'api/lead-signal' };
+    return json(responseBody, 200);
+  }
+
   const isCallbackRequest = body.event === 'callback_requested';
   const leadSummary = buildQrLeadSummary(body, nowIso);
   const parsedName = splitName(body.contact);
   const submittedTimestamp = body.submittedAt || nowIso;
   const schedulingSummary = extractSchedulingRequestSummary(body?.request);
   const preferredWindow = schedulingSummary.preferredWindowText;
-  const appointmentRequest = isCallbackRequest ? null : await createPendingOwnerConfirmationAppointmentRequest({
-    requestId,
-    event: body.event,
-    preferredEstimateDate: schedulingSummary.preferredEstimateDate,
-    preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
-    preferredWindowText: schedulingSummary.preferredWindowText,
-    customerName: leadSummary.fullName || undefined,
-    customerEmail: leadSummary.email || undefined,
-    customerPhone: leadSummary.phone || undefined,
-    requestedDate: schedulingSummary.preferredEstimateDate,
-    requestedTimeWindow: schedulingSummary.preferredEstimateTimeSlot,
-    timezone: 'America/New_York',
-    source: 'lead_signal',
-    env,
-  });
+  let appointmentRequest: Awaited<ReturnType<typeof createPendingOwnerConfirmationAppointmentRequest>> | null = null;
   const sourceFamily = body?.sourceFamily || 'QR_SCAN';
   const packageTier = normalizePackageTier(body?.deal?.packageTier ?? body?.funnelContext?.packageTier ?? body?.funnelContext?.selectedPackage);
   const discoveryContext = normalizeDiscoveryContext(body?.discoveryContext);
@@ -282,24 +305,6 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     `requestId: ${requestId}`, qrDetailSummary,
   ].join(' | ');
 
-  const emailResult = await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary, packageTier, discoveryContext });
-  const notificationStatus = emailResult.ok ? 'sent' : emailResult.skipped ? 'skipped' : 'failed';
-  const customerAckResult = await sendCustomerAcknowledgementEmail(env, {
-    requestId,
-    customerEmail: leadSummary.email || body.contact?.email || '',
-    customerName: leadSummary.fullName,
-    customerPhone: leadSummary.phone,
-    sourceRoute: body.route || 'api/lead-signal',
-    event: body.event,
-    vertical: normalizedVerticalInterest,
-    requestedHelp: leadSummary.requestedHelp,
-    preferredWindow,
-    packageTier,
-    discoveryContext,
-  });
-  const customerAcknowledgementStatus = customerAckResult.ok ? 'sent' : customerAckResult.skipped ? 'skipped' : 'failed';
-
-  const hubspotConfigured = Boolean(env.HUBSPOT_PRIVATE_APP_TOKEN || env.HUBSPOT_ACCESS_TOKEN);
   const hubspot: any = { configured: hubspotConfigured, attempted: hubspotConfigured, status: 'failed', contact: 'skipped', deal: 'skipped', association: 'skipped', note: 'skipped', task: 'skipped', skippedProperties: [] };
   const followUpTaskSubject = isCallbackRequest ? 'Follow up on callback request' : 'Follow up on QR estimate request';
   const setContactFailure = (stage: 'contact_search' | 'contact_create' | 'contact_update', result: any, fallbackErrorCode: string, attemptedPropertyNames: string[] = []) => {
@@ -343,7 +348,14 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
       hubspot.contact = 'skipped';
       hubspot.status = 'partial';
       console.warn('[lead-signal] skipping HubSpot contact search: no email or phone', { requestId, sourceRoute: body.route || 'api/lead-signal' });
-      return json({ ok: true, requestId, schedulingStatus: appointmentRequest?.schedulingStatus, appointmentRequest: appointmentRequest || undefined, notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' }, customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' }, hubspot }, 200);
+      return json({
+        ok: true,
+        requestId,
+        eventCategory: eventPolicy.category,
+        notification: { configured: false, attempted: false, status: 'not_eligible', provider: 'resend' },
+        customerAcknowledgement: { configured: false, attempted: false, status: 'not_eligible', provider: 'resend' },
+        hubspot,
+      }, 200);
     }
 
     const search = await hubspotRequest(env, 'POST', '/crm/v3/objects/contacts/search', {
@@ -574,13 +586,63 @@ export const onRequest: PagesFunction<LeadSignalEnv> = async ({ request, env }) 
     hubspot.status = 'failed';
   }
 
+  if (eventPolicy.category === 'actionable' && hubspot.status === 'failed') {
+    console.error('[lead-signal] actionable lead persistence failed', { requestId, event: body.event, stage: hubspot.stage || 'hubspot_not_configured' });
+    return fail(503, 'LEAD_PERSISTENCE_FAILED', 'We couldn’t safely save your request. Please call or text us at 716-201-0364.');
+  }
+
+  if (eventPolicy.scheduling) {
+    try {
+      appointmentRequest = await createPendingOwnerConfirmationAppointmentRequest({
+        requestId,
+        event: body.event,
+        preferredEstimateDate: schedulingSummary.preferredEstimateDate,
+        preferredEstimateTimeSlot: schedulingSummary.preferredEstimateTimeSlot,
+        preferredWindowText: schedulingSummary.preferredWindowText,
+        customerName: leadSummary.fullName || undefined,
+        customerEmail: leadSummary.email || undefined,
+        customerPhone: leadSummary.phone || undefined,
+        requestedDate: schedulingSummary.preferredEstimateDate,
+        requestedTimeWindow: schedulingSummary.preferredEstimateTimeSlot,
+        timezone: 'America/New_York',
+        source: 'lead_signal',
+        env,
+      });
+    } catch (error) {
+      console.error('[lead-signal] appointment request persistence failed', { requestId, event: body.event, error: error instanceof Error ? error.message : 'unknown_error' });
+      return fail(503, 'SCHEDULING_PERSISTENCE_FAILED', 'We saved your lead but couldn’t save the requested appointment window. Please call or text us at 716-201-0364.');
+    }
+  }
+
+  const emailResult = eventPolicy.operatorNotification
+    ? await sendLeadSignalEmail(env, { event: body.event, timestampISO: nowIso, customerEmail: body.contact?.email, requestId, leadSummary, packageTier, discoveryContext })
+    : { ok: false as const, skipped: true, error: 'notification_not_eligible' };
+  const notificationStatus = eventPolicy.operatorNotification ? (emailResult.ok ? 'sent' : emailResult.skipped ? 'skipped' : 'failed') : 'not_eligible';
+  const customerAckResult = eventPolicy.customerAcknowledgement
+    ? await sendCustomerAcknowledgementEmail(env, {
+        requestId,
+        customerEmail: leadSummary.email || body.contact?.email || '',
+        customerName: leadSummary.fullName,
+        customerPhone: leadSummary.phone,
+        sourceRoute: body.route || 'api/lead-signal',
+        event: body.event,
+        vertical: normalizedVerticalInterest,
+        requestedHelp: leadSummary.requestedHelp,
+        preferredWindow,
+        packageTier,
+        discoveryContext,
+      })
+    : { ok: false as const, skipped: true, error: 'customer_ack_not_eligible' };
+  const customerAcknowledgementStatus = eventPolicy.customerAcknowledgement ? (customerAckResult.ok ? 'sent' : customerAckResult.skipped ? 'skipped' : 'failed') : 'not_eligible';
+
   const responseBody: Record<string, unknown> = {
     ok: true,
     requestId,
+    eventCategory: eventPolicy.category,
     schedulingStatus: appointmentRequest?.schedulingStatus,
     appointmentRequest: appointmentRequest || undefined,
-    notification: { configured: true, attempted: true, status: notificationStatus, provider: 'resend' },
-    customerAcknowledgement: { configured: true, attempted: true, status: customerAcknowledgementStatus, provider: 'resend' },
+    notification: { configured: eventPolicy.operatorNotification && !emailResult.skipped, attempted: eventPolicy.operatorNotification && !emailResult.skipped, status: notificationStatus, provider: 'resend' },
+    customerAcknowledgement: { configured: eventPolicy.customerAcknowledgement && !customerAckResult.skipped, attempted: eventPolicy.customerAcknowledgement && !customerAckResult.skipped, status: customerAcknowledgementStatus, provider: 'resend' },
     hubspot,
   };
   if (!isProduction(env)) responseBody.diagnostics = { event: body.event, route: body.route || 'api/lead-signal' };

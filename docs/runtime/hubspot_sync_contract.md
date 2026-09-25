@@ -228,3 +228,12 @@ Submit one QR estimate request after deployment and verify resulting deal stage 
 - Package/discovery context remains in HubSpot note content for now.
 - No new HubSpot properties unless explicitly scoped in a separate bounded task.
 - HubSpot schema/pipeline structural changes require separate bounded task authorization.
+
+## LEAD-FIX002 Actionable Persistence Boundary (2026-09-25)
+
+- For `qr_estimate_requested` and `callback_requested`, core HubSpot contact and deal persistence is the current durable lead-retention boundary.
+- Core contact/deal failure, including missing HubSpot runtime configuration, returns a safe non-2xx lead-signal response and cannot be represented as normal customer success.
+- Association, note, task, and property-fallback diagnostics remain visible through the structured HubSpot result. Auxiliary failure after successful contact/deal persistence may produce `partial` status without discarding the durably retained lead.
+- Operator and customer emails occur after the core persistence result is established and are not persistence authority.
+- Telemetry-only events do not perform actionable contact/deal writes.
+- Existing schema, property names, pipeline `2282258169`, stage IDs, and API-mediated write ownership are unchanged.

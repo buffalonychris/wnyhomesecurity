@@ -235,3 +235,11 @@ Reporting and join assumptions:
 Implementation boundary reminder:
 
 - This contract is documentation-only for RUNTIME010 and does not implement runtime schema validation behavior in this task.
+
+## LEAD-FIX002 Event Boundary (2026-09-25)
+
+- `qrlanding_view` → telemetry only; accepted without operator lead email, customer acknowledgement, actionable CRM writes, or scheduling artifacts.
+- `estimate_form_started` → telemetry only; accepted without operator lead email, customer acknowledgement, actionable CRM writes, or scheduling artifacts.
+- Actual estimate submission (`qr_estimate_requested`, with `estimate_form_submitted` as attribution metadata) → actionable lead processing.
+- The browser/session `requestId` in attribution metadata is not backend authority. `/api/lead-signal` continues to generate the canonical server `requestId` returned for success and failure correlation.
+- A required actionable persistence failure is not a conversion success and must not advance the frontend to its normal submitted state.
