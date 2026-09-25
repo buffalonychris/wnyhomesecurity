@@ -219,20 +219,43 @@
     .utility-button svg { grid-area: icon; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .utility-label { grid-area: label; color: var(--muted); font-size: 10px; line-height: 13px; font-weight: 800; letter-spacing: .1em; }
     .utility-value { grid-area: value; font-size: 13px; line-height: 17px; font-weight: 700; white-space: nowrap; }
-    .device-utility { cursor: default; }
-    .device-utility select {
-      grid-area: value;
-      min-width: 0;
-      max-width: 150px;
-      padding: 0 18px 0 0;
-      border: 0;
+    .device-menu { position: relative; display: flex; flex: 1 1 0; min-width: 0; }
+    .device-utility { width: 100%; }
+    .device-menu-popover {
+      position: absolute;
+      z-index: 60;
+      top: calc(100% + 6px);
+      left: 8px;
+      min-width: 210px;
+      padding: 6px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--shell-bg);
+      color: var(--text);
+      box-shadow: var(--tile-shadow);
+    }
+    .device-menu-popover[hidden] { display: none; }
+    .device-option {
+      width: 100%;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 9px 10px;
+      border: 1px solid transparent;
+      border-radius: 8px;
       background: transparent;
       color: var(--text);
-      font-size: 13px;
-      line-height: 17px;
-      font-weight: 700;
       cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-align: left;
     }
+    .device-option span { color: var(--muted); font-size: 12px; }
+    .device-option:hover, .device-option:focus-visible { background: var(--recessed-bg); }
+    .device-option[aria-selected="true"] { border-color: var(--action-blue-selected); background: var(--action-blue-selected); color: #FFFFFF; }
+    .device-option[aria-selected="true"] span { color: #FFFFFF; }
     .user-utility { padding-right: 0; }
     .horizontal-nav {
       padding: 0 24px;
@@ -275,6 +298,20 @@
     .view-header { margin: 0 0 20px; }
     .view-header h1 { margin: 0; font-size: var(--page-title-size); line-height: var(--page-title-line); }
     .view-header p { max-width: 780px; margin: 6px 0 0; color: var(--muted); }
+    .view-header-actions { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+    .view-header-actions > div { min-width: 0; }
+    .review-print-button {
+      flex: 0 0 auto;
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--recessed-bg);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .review-print-button:hover { border-color: var(--action-blue); }
     .priority-banner {
       display: flex;
       align-items: center;
@@ -511,6 +548,7 @@
     .footer-value { font-size: 20px; line-height: 26px; color: var(--text); font-weight: 800; }
     .weather-preview { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 10px; align-items: center; }
     .weather-preview svg { width: 48px; height: 48px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .print-review-set { display: none; }
     .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     @keyframes pending { from { background-position: 100% 0; } to { background-position: -120% 0; } }
@@ -548,8 +586,11 @@
       .view-heading { text-align: left; }
       .view-heading strong { white-space: normal; }
       .preview-flag { font-size: 10px; }
-      .header-utilities { grid-column: auto; }
-      .utility-button { min-width: 0; padding: 6px 8px; }
+      .view-header-actions { flex-direction: column; }
+      .review-print-button { width: 100%; }
+      .header-utilities { grid-column: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .device-menu, .utility-button { width: 100%; min-width: 0; }
+      .utility-button { padding: 6px 8px; }
       .utility-value { font-size: 11px; }
       .nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid { grid-template-columns: 1fr; }
@@ -569,14 +610,40 @@
     }
 
     @media print {
-      body { background: var(--page-bg); }
-      .review-frame { width: min(100%, var(--review-viewport)); border: 0; box-shadow: none; }
+      html, body { background: var(--page-bg); }
+      body { overflow: visible; }
+      .review-frame { width: var(--review-viewport); min-height: 0; }
+      .app { min-height: 0; }
+      .shell { flex: none; }
       .topbar { position: static; }
       .skip-link { display: none !important; }
-      .header-utilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .utility-button { width: 100%; }
-      .device-utility select { width: 100%; max-width: none; }
+      .device-menu-popover { display: none !important; }
       .preview-toast { display: none !important; }
+      .tile, .panel, .property-hero, .priority-banner, .activity-item, .window-item, .state-sample { break-inside: avoid; page-break-inside: avoid; }
+      h1, h2, h3, .tile-header { break-after: avoid; page-break-after: avoid; }
+      .review-print-button, .action-button, .choice-button, .nav-button, .utility-button { pointer-events: none; }
+      html[data-print-mode="review-set"] body > .review-frame { display: none; }
+      html[data-print-mode="review-set"] .print-review-set { display: block; }
+      .review-set-cover, .review-set-view { width: var(--review-viewport); margin: 0 auto; }
+      .review-set-cover {
+        padding: 32px;
+        border: 1px solid var(--border);
+        background: var(--shell-bg);
+        color: var(--text);
+        break-after: page;
+        page-break-after: always;
+      }
+      .review-set-cover h1 { margin: 6px 0 4px; color: var(--wnyhs-gold); }
+      .review-set-cover p { margin: 0; }
+      .review-set-metadata { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 18px; margin: 26px 0; }
+      .review-set-metadata dt { color: var(--muted); font-weight: 800; }
+      .review-set-metadata dd { margin: 0; }
+      .review-set-included { columns: 2; margin: 8px 0 24px; padding-left: 22px; }
+      .review-set-disclosure { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--recessed-bg); font-weight: 800; letter-spacing: .08em; }
+      .review-set-view { container: dashboard / inline-size; break-before: page; page-break-before: always; }
+      .review-set-view-label { padding: 8px 12px; border: 1px solid var(--border); border-bottom: 0; background: var(--recessed-bg); color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+      .review-set-app { min-height: 0; border: 1px solid var(--border); }
+      .review-set-app .print-review-set-action { display: none !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -596,10 +663,10 @@
         </div>
         <div class="header-context">
           <div class="view-heading"><span class="eyebrow">Customer Control Center</span><strong id="current-view-title">Home</strong></div>
-          <div class="preview-flag">APPROVAL PREVIEW · SIMULATED DATA · NOT CONNECTED TO LIVE SYSTEMS</div>
+          <div class="preview-flag">APPROVAL PREVIEW · NOT CONNECTED TO LIVE SYSTEMS</div>
         </div>
         <div class="header-utilities" aria-label="Dashboard display utilities">
-          <label class="utility-button device-utility"><svg data-asset-id="utility-device-preview" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M7 18h4M9 14v4"/><rect x="18" y="7" width="4" height="11" rx="1"/></svg><span class="utility-label">DEVICE</span><select id="device-selector" aria-label="Approval device viewport"><option value="desktop">Desktop · 1440px</option><option value="tablet">Tablet · 1024px</option><option value="phone">Phone · 390px</option></select></label>
+          <div class="device-menu" id="device-menu"><button class="utility-button device-utility" id="device-menu-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="device-menu-popover"><svg data-asset-id="utility-device-preview" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M7 18h4M9 14v4"/><rect x="18" y="7" width="4" height="11" rx="1"/></svg><span class="utility-label">DEVICE</span><span class="utility-value" id="device-menu-value">Desktop · 1440px</span></button><div class="device-menu-popover" id="device-menu-popover" role="listbox" aria-label="Approval device viewport" hidden><button class="device-option" type="button" role="option" data-device="desktop" aria-selected="true">Desktop <span>1440px</span></button><button class="device-option" type="button" role="option" data-device="tablet" aria-selected="false">Tablet <span>1024px</span></button><button class="device-option" type="button" role="option" data-device="phone" aria-selected="false">Phone <span>390px</span></button></div></div>
           <button class="utility-button" id="theme-utility" type="button" aria-label="Theme: Light. Activate to select the next theme."><svg data-asset-id="utility-theme" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/></svg><span class="utility-label">THEME</span><span class="utility-value" id="theme-utility-value">Light</span></button>
           <button class="utility-button" id="size-utility" type="button" aria-label="Size: Default. Activate to select the next size."><svg data-asset-id="utility-layout-size" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 17h16M7 4 4 7l3 3m10-6 3 3-3 3M7 14l-3 3 3 3m10-6 3 3-3 3"/></svg><span class="utility-label">SIZE</span><span class="utility-value" id="size-utility-value">Default</span></button>
           <button class="utility-button user-utility" type="button" data-navigate="property" aria-label="User: Peckham property profile"><svg data-asset-id="utility-user" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="utility-label">USER</span><span class="utility-value">Peckham</span></button>
@@ -621,77 +688,77 @@
     <div class="shell">
       <main id="main-content" tabindex="-1">
         <section class="view" id="view-home" data-title="Home">
-          <div class="view-header"><h1>Peckham at a glance</h1><p>Approval preview of the represented Main Entrance and first-floor window contact coverage.</p></div>
+          <div class="view-header view-header-actions"><div><h1>Peckham at a glance</h1><p>Approval preview of the Main Entrance and first-floor window contacts shown here.</p></div><button class="review-print-button print-review-set-action" id="print-review-set-button" type="button">Print Review Set</button></div>
           <div class="priority-banner" id="priority-banner" hidden>
-            <div><strong id="priority-title">Review item</strong><span id="priority-copy">A simulated approval state is being shown.</span></div>
+            <div><strong id="priority-title">Review item</strong><span id="priority-copy">An example status is shown for review.</span></div>
             <span class="status-value" id="priority-value" data-status="attention">Attention</span>
           </div>
           <section class="property-hero" aria-labelledby="property-hero-title">
             <div class="hero-illustration" aria-hidden="true"><svg data-asset-id="illustration-property-status-hero" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8 52 16v15c0 12-8 20-20 25-12-5-20-13-20-25V16z"/><path d="m20 31 12-10 12 10v13H20zM27 44V33h10v11"/><circle cx="18" cy="22" r="2"/><circle cx="46" cy="22" r="2"/><circle cx="32" cy="14" r="2"/></svg></div>
-            <div class="hero-copy"><span class="eyebrow">PROPERTY STATUS</span><h1 id="property-hero-title">PK | PECKHAM</h1><p>Represented coverage posture for the Main Entrance and first-floor window contacts. Approval preview only—not a live or whole-property status.</p></div>
-            <div class="hero-metrics" aria-label="Property approval posture"><div class="hero-metric"><span>INSTALLED CONTACTS</span><strong>16 represented</strong></div><div class="hero-metric"><span>CONNECTION</span><strong>Preview · not live</strong></div><div class="hero-metric"><span>ENTRY BINDINGS</span><strong>Pending</strong></div><div class="hero-metric"><span>WINDOW LOCATIONS</span><strong>Unresolved</strong></div></div>
+            <div class="hero-copy"><span class="eyebrow">PROPERTY STATUS</span><h1 id="property-hero-title">PK | PECKHAM</h1><p>Main Entrance and first-floor window contacts are shown here. Approval preview only—not a live or whole-property status.</p></div>
+            <div class="hero-metrics" aria-label="Property approval posture"><div class="hero-metric"><span>INSTALLED CONTACTS</span><strong>16 shown</strong></div><div class="hero-metric"><span>CONNECTION</span><strong>Preview · not live</strong></div><div class="hero-metric"><span>ENTRY SETUP</span><strong>Setup pending</strong></div><div class="hero-metric"><span>WINDOW LABELS</span><strong>Setup pending</strong></div></div>
           </section>
           <div class="tile-grid" id="home-grid">
             <article class="tile">
-              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-building-status" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5h10v16M15 9h4v12M8 8h.01M12 8h.01M8 12h.01M12 12h.01M8 16h.01M12 16h.01"/></svg></div><div><h2 class="tile-title">Building Status</h2><p class="tile-subtitle">Represented coverage only</p></div></header>
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-building-status" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5h10v16M15 9h4v12M8 8h.01M12 8h.01M8 12h.01M12 12h.01M8 16h.01M12 16h.01"/></svg></div><div><h2 class="tile-title">Building Status</h2><p class="tile-subtitle">Preview coverage only</p></div></header>
               <div class="divider"></div>
-              <div class="tile-content"><p class="helper">Simulated review status for the represented Main Entrance and 15 first-floor window contacts. This is not a whole-property protection claim.</p><div class="status-list"><div class="status-row"><span class="status-label">Review status</span><span class="status-value js-scenario-status" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Connection</span><span class="status-value" data-status="unavailable">Preview only</span></div></div></div>
+              <div class="tile-content"><p class="helper">Example status for the Main Entrance and 15 first-floor window contacts shown here. This is not a whole-property protection claim.</p><div class="status-list"><div class="status-row"><span class="status-label">Review status</span><span class="status-value js-scenario-status" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Connection</span><span class="status-value">Preview only</span></div></div></div>
               <div class="tile-actions"><button class="action-button" type="button" data-navigate="systems">View Systems</button></div>
             </article>
 
             <article class="tile">
               <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-main-entrance" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11v17M5 21h14M11 12h.01M16 8h3v13"/></svg></div><div><h2 class="tile-title">Main Entrance</h2><p class="tile-subtitle">Entry assembly approval view</p></div></header>
               <div class="divider"></div>
-              <div class="tile-content"><div class="assembly-visual"><div class="assembly-illustration" aria-hidden="true"><svg data-asset-id="illustration-main-entrance-assembly" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 56V8h28v48M12 56h40"/><path d="M25 50V15h14v35M36 33h.01"/><rect x="47" y="18" width="7" height="13" rx="2"/><circle cx="50.5" cy="22" r="1"/><rect x="9" y="18" width="6" height="11" rx="2"/><path d="M10.5 39h5M13 36.5v5M47 39h7M50.5 35.5v7"/></svg></div><div class="visual-caption"><strong>One entry assembly</strong><span>Door contact, lever lock, deadbolt, and doorbell are grouped here without implying shared live state or control.</span></div></div><div class="status-list"><div class="status-row"><span class="status-label">Main Entrance Door Contact</span><span class="status-value js-contact-status" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Kwikset SmartCode 912 Lever Lock</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Kwikset Home Connect 620 Deadbolt</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Main Entrance Doorbell</span><span class="status-value" data-status="unavailable">Pending</span></div></div></div>
+              <div class="tile-content"><div class="assembly-visual"><div class="assembly-illustration" aria-hidden="true"><svg data-asset-id="illustration-main-entrance-assembly" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 56V8h28v48M12 56h40"/><path d="M25 50V15h14v35M36 33h.01"/><rect x="47" y="18" width="7" height="13" rx="2"/><circle cx="50.5" cy="22" r="1"/><rect x="9" y="18" width="6" height="11" rx="2"/><path d="M10.5 39h5M13 36.5v5M47 39h7M50.5 35.5v7"/></svg></div><div class="visual-caption"><strong>One entry assembly</strong><span>Door contact, lever lock, deadbolt, and doorbell are grouped here without implying shared live state or control.</span></div></div><div class="status-list"><div class="status-row"><span class="status-label">Main Entrance Door Contact</span><span class="status-value js-contact-status" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Kwikset SmartCode 912 Lever Lock</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Kwikset Home Connect 620 Deadbolt</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Main Entrance Doorbell</span><span class="status-value">Setup pending</span></div></div></div>
               <div class="tile-actions"><button class="action-button" type="button" data-navigate="systems">View Main Entrance</button></div>
             </article>
 
             <article class="tile">
               <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-window" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M12 4v16M3 12h18"/></svg></div><div><h2 class="tile-title">First Floor Windows</h2><p class="tile-subtitle">15 installed contacts</p></div></header>
               <div class="divider"></div>
-              <div class="tile-content"><div class="coverage-visual"><div class="coverage-illustration" aria-hidden="true"><svg data-asset-id="illustration-window-coverage" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="11" width="8" height="10" rx="2"/><rect x="18" y="11" width="8" height="10" rx="2"/><rect x="28" y="11" width="8" height="10" rx="2"/><rect x="38" y="11" width="8" height="10" rx="2"/><rect x="48" y="11" width="8" height="10" rx="2"/><rect x="8" y="27" width="8" height="10" rx="2"/><rect x="18" y="27" width="8" height="10" rx="2"/><rect x="28" y="27" width="8" height="10" rx="2"/><rect x="38" y="27" width="8" height="10" rx="2"/><rect x="48" y="27" width="8" height="10" rx="2"/><rect x="8" y="43" width="8" height="10" rx="2"/><rect x="18" y="43" width="8" height="10" rx="2"/><rect x="28" y="43" width="8" height="10" rx="2"/><rect x="38" y="43" width="8" height="10" rx="2"/><rect x="48" y="43" width="8" height="10" rx="2"/></svg></div><div class="visual-caption"><strong>15 installed indicators</strong><span>Count representation only. Exact physical window locations remain unresolved; this is not a floorplan.</span></div></div><div class="status-list"><div class="status-row"><span class="status-label">Installed contacts</span><span class="status-value" data-status="active">15</span></div><div class="status-row"><span class="status-label">Physical locations</span><span class="status-value" data-status="unavailable">Unresolved</span></div><div class="status-row"><span class="status-label">Simulated summary</span><span class="status-value js-contact-status" data-status="normal">Normal</span></div></div></div>
+              <div class="tile-content"><div class="coverage-visual"><div class="coverage-illustration" aria-hidden="true"><svg data-asset-id="illustration-window-coverage" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="11" width="8" height="10" rx="2"/><rect x="18" y="11" width="8" height="10" rx="2"/><rect x="28" y="11" width="8" height="10" rx="2"/><rect x="38" y="11" width="8" height="10" rx="2"/><rect x="48" y="11" width="8" height="10" rx="2"/><rect x="8" y="27" width="8" height="10" rx="2"/><rect x="18" y="27" width="8" height="10" rx="2"/><rect x="28" y="27" width="8" height="10" rx="2"/><rect x="38" y="27" width="8" height="10" rx="2"/><rect x="48" y="27" width="8" height="10" rx="2"/><rect x="8" y="43" width="8" height="10" rx="2"/><rect x="18" y="43" width="8" height="10" rx="2"/><rect x="28" y="43" width="8" height="10" rx="2"/><rect x="38" y="43" width="8" height="10" rx="2"/><rect x="48" y="43" width="8" height="10" rx="2"/></svg></div><div class="visual-caption"><strong>15 installed indicators</strong><span>Count only. Exact window labels will be added during setup; this is not a floorplan.</span></div></div><div class="status-list"><div class="status-row"><span class="status-label">Installed contacts</span><span class="status-value">15</span></div><div class="status-row"><span class="status-label">Window labels</span><span class="status-value">Setup pending</span></div><div class="status-row"><span class="status-label">Example status</span><span class="status-value js-contact-status" data-status="normal">Normal</span></div></div></div>
               <div class="tile-actions"><button class="action-button" type="button" data-navigate="systems">View Windows</button></div>
             </article>
 
             <article class="tile">
-              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-doorbell" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></div><div><h2 class="tile-title">Main Entrance Doorbell</h2><p class="tile-subtitle">Pending onsite binding</p></div></header>
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-doorbell" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></div><div><h2 class="tile-title">Main Entrance Doorbell</h2><p class="tile-subtitle">Setup pending</p></div></header>
               <div class="divider"></div>
-              <div class="tile-content"><div class="media-region" aria-label="Doorbell media unavailable"><div class="media-placeholder-card"><div class="media-placeholder-icon"><svg data-asset-id="placeholder-media-unavailable" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="14" width="38" height="30" rx="4"/><path d="m46 24 10-6v22l-10-6zM12 10l40 44"/></svg></div><strong>Media unavailable</strong><span>Approval preview has no live doorbell binding or image.</span></div></div><div class="status-list spaced-status"><div class="status-row"><span class="status-label">Binding</span><span class="status-value" data-status="unavailable">Unavailable</span></div></div></div>
+              <div class="tile-content"><div class="media-region" aria-label="Doorbell media unavailable"><div class="media-placeholder-card"><div class="media-placeholder-icon"><svg data-asset-id="placeholder-media-unavailable" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="14" width="38" height="30" rx="4"/><path d="m46 24 10-6v22l-10-6zM12 10l40 44"/></svg></div><strong>Media unavailable</strong><span>No doorbell image is available in this preview.</span></div></div><div class="status-list spaced-status"><div class="status-row"><span class="status-label">Setup</span><span class="status-value">Setup pending</span></div></div></div>
             </article>
 
             <article class="tile">
-              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-recent-activity" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2M7 3.8 4.5 6M17 3.8 19.5 6"/></svg></div><div><h2 class="tile-title">Recent Activity</h2><p class="tile-subtitle">Simulated customer examples</p></div></header>
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="capability-recent-activity" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2M7 3.8 4.5 6M17 3.8 19.5 6"/></svg></div><div><h2 class="tile-title">Recent Activity</h2><p class="tile-subtitle">Example activity</p></div></header>
               <div class="divider"></div>
-              <div class="tile-content"><ul class="activity-list" id="home-activity"><li class="activity-item"><div class="activity-meta"><span>Current</span><span>Review fixture</span></div><p>Represented contact summary is ready for visual review.</p></li><li class="activity-item"><div class="activity-meta"><span>Recent</span><span>Earlier in preview</span></div><p>Main Entrance Door example updated.</p></li><li class="activity-item"><div class="activity-meta"><span>Resolved</span><span>Demo sequence</span></div><p>Example attention item was resolved.</p></li></ul></div>
+              <div class="tile-content"><ul class="activity-list" id="home-activity"><li class="activity-item"><div class="activity-meta"><span>Current</span><span>Preview</span></div><p>Contact summary is ready for review.</p></li><li class="activity-item"><div class="activity-meta"><span>Recent</span><span>Earlier in preview</span></div><p>Main Entrance Door example updated.</p></li><li class="activity-item"><div class="activity-meta"><span>Resolved</span><span>Example</span></div><p>Example attention item was resolved.</p></li></ul></div>
               <div class="tile-actions"><button class="action-button" type="button" data-navigate="activity">View Activity</button></div>
             </article>
 
             <article class="tile">
-              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="navigation-support" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="m5.6 5.6 4.3 4.3m4.2 4.2 4.3 4.3m0-12.8-4.3 4.3m-4.2 4.2-4.3 4.3"/></svg></div><div><h2 class="tile-title">Support</h2><p class="tile-subtitle">Local preview interactions</p></div></header>
+              <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg data-asset-id="navigation-support" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="m5.6 5.6 4.3 4.3m4.2 4.2 4.3 4.3m0-12.8-4.3 4.3m-4.2 4.2-4.3 4.3"/></svg></div><div><h2 class="tile-title">Support</h2><p class="tile-subtitle">Preview contact options</p></div></header>
               <div class="divider"></div>
-              <div class="tile-content"><p class="helper">These buttons demonstrate the governed customer action family. They do not call, email, or send information.</p><div class="status-list"><div class="status-row"><span class="status-label">External actions</span><span class="status-value" data-status="unavailable">Disabled</span></div></div></div>
+              <div class="tile-content"><p class="helper">These preview buttons do not call, email, or send information.</p><div class="status-list"><div class="status-row"><span class="status-label">Contact options</span><span class="status-value">Disabled in this preview</span></div></div></div>
               <div class="tile-actions"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div>
             </article>
           </div>
         </section>
 
         <section class="view" id="view-systems" data-title="Systems" hidden>
-          <div class="view-header"><h1>Systems</h1><p>Peckham install evidence represented for approval. Device states are simulated or unresolved, never live.</p></div>
+          <div class="view-header"><h1>Systems</h1><p>Example system information is shown for review. This is not live Peckham data.</p></div>
           <div class="system-grid">
-            <section class="panel"><h2>Main Entrance</h2><p>Known device plan with unresolved live bindings and control capabilities.</p><div class="device-list">
-              <div class="device-row"><div class="device-name"><strong>Main Entrance Door</strong><span>Installed contact; approval state simulated</span></div><span class="status-value js-contact-status" data-status="normal">Normal</span></div>
-              <div class="device-row"><div class="device-name"><strong>Main Entrance Doorbell</strong><span>Pending onsite binding and capability verification</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
-              <div class="device-row"><div class="device-name"><strong>Main Entrance Lever Lock</strong><span>Kwikset SmartCode 912; pending onsite binding</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
-              <div class="device-row"><div class="device-name"><strong>Main Entrance Deadbolt</strong><span>Kwikset Home Connect 620; pending onsite binding</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
+            <section class="panel"><h2>Main Entrance</h2><p>Planned devices. Setup will be completed on site.</p><div class="device-list">
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Door</strong><span>Installed contact; example status shown</span></div><span class="status-value js-contact-status" data-status="normal">Normal</span></div>
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Doorbell</strong><span>Setup will be completed on site</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Lever Lock</strong><span>Kwikset SmartCode 912; setup pending</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
+              <div class="device-row"><div class="device-name"><strong>Main Entrance Deadbolt</strong><span>Kwikset Home Connect 620; setup pending</span></div><span class="status-value" data-status="unavailable">Unavailable</span></div>
             </div></section>
-            <section class="panel"><h2>Evidence posture</h2><p>No live connection is present in this approval file.</p><div class="status-list"><div class="status-row"><span class="status-label">Installed contacts</span><span class="status-value" data-status="active">16 total</span></div><div class="status-row"><span class="status-label">Live bindings</span><span class="status-value" data-status="unavailable">Unresolved</span></div><div class="status-row"><span class="status-label">Approval data</span><span class="status-value" data-status="active">Simulated</span></div></div></section>
+            <section class="panel"><h2>Preview details</h2><p>No live connection is present in this approval file.</p><div class="status-list"><div class="status-row"><span class="status-label">Installed contacts</span><span class="status-value">16 total</span></div><div class="status-row"><span class="status-label">Live connection</span><span class="status-value">Not connected</span></div><div class="status-row"><span class="status-label">Displayed information</span><span class="status-value">Preview</span></div></div></section>
           </div>
-          <section class="panel"><h2>First Floor Windows</h2><p>Temporary customer-facing labels only. Individual physical locations remain unresolved.</p><div class="windows-grid" id="windows-grid"></div></section>
+          <section class="panel"><h2>First Floor Windows</h2><p>Exact window labels will be added during setup.</p><div class="windows-grid" id="windows-grid"></div></section>
         </section>
 
         <section class="view" id="view-activity" data-title="Activity" hidden>
-          <div class="view-header"><h1>Activity</h1><p>Deterministic examples for customer approval. These are not Peckham event history and do not imply message delivery.</p></div>
-          <section class="panel"><h2>Approval activity examples</h2><p>Current items remain separate from Recent and Resolved examples.</p><ul class="activity-list" id="full-activity"></ul></section>
+          <div class="view-header"><h1>Activity</h1><p>Example activity is shown here for review. This is not live Peckham history.</p></div>
+          <section class="panel"><h2>Activity examples</h2><p>Current items remain separate from Recent and Resolved examples.</p><ul class="activity-list" id="full-activity"></ul></section>
         </section>
 
         <section class="view" id="view-explore" data-title="Explore WNYHS" hidden>
@@ -700,32 +767,32 @@
         </section>
 
         <section class="view" id="view-support" data-title="Support" hidden>
-          <div class="view-header"><h1>Support</h1><p>Customer-facing support layout with local preview interactions only.</p></div>
+          <div class="view-header"><h1>Support</h1><p>Contact options are disabled in this preview.</p></div>
           <section class="panel support-layout"><h2>How can we help?</h2><p>No phone number, email address, hours, service level, or response claim is included in this offline artifact.</p><div class="button-row"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div><div class="notice">Approval preview only. No external contact action is available from this file.</div></section>
         </section>
 
         <section class="view" id="view-property" data-title="Property" hidden>
           <div class="view-header"><h1>Property</h1><p>Safe known property context for this approval review.</p></div>
           <div class="property-grid">
-            <section class="panel"><h2>PK | PECKHAM</h2><p>Standalone customer dashboard approval preview.</p><div class="status-list"><div class="status-row"><span class="status-label">Review status</span><span class="status-value" data-status="active">Approval preview</span></div><div class="status-row"><span class="status-label">Live connection</span><span class="status-value" data-status="unavailable">Not connected</span></div></div></section>
-            <section class="panel"><h2>Represented scope</h2><p>Main Entrance plus 15 first-floor window contacts.</p><div class="status-list"><div class="status-row"><span class="status-label">Contact sensors</span><span class="status-value" data-status="active">16 installed</span></div><div class="status-row"><span class="status-label">Doorbell binding</span><span class="status-value" data-status="unavailable">Pending</span></div><div class="status-row"><span class="status-label">Entry lock bindings</span><span class="status-value" data-status="unavailable">Pending</span></div></div></section>
+            <section class="panel"><h2>PK | PECKHAM</h2><p>Standalone customer dashboard approval preview.</p><div class="status-list"><div class="status-row"><span class="status-label">Review status</span><span class="status-value">Preview</span></div><div class="status-row"><span class="status-label">Live connection</span><span class="status-value">Not connected</span></div></div></section>
+            <section class="panel"><h2>Included scope</h2><p>Main Entrance plus 15 first-floor window contacts.</p><div class="status-list"><div class="status-row"><span class="status-label">Contact sensors</span><span class="status-value">16 installed</span></div><div class="status-row"><span class="status-label">Doorbell setup</span><span class="status-value">Setup pending</span></div><div class="status-row"><span class="status-label">Entry lock setup</span><span class="status-value">Setup pending</span></div></div></section>
           </div>
         </section>
 
         <section class="view" id="view-settings" data-title="Settings" hidden>
-          <div class="view-header"><h1>Settings</h1><p>Presentation and deterministic review controls. Choices change only this in-memory preview.</p></div>
+          <div class="view-header"><h1>Settings</h1><p>Display and review controls. Choices change only this preview.</p></div>
           <div class="settings-grid">
             <section class="panel"><fieldset><legend>Font</legend><div class="segmented" data-control="font"><button class="choice-button" type="button" data-value="inter" aria-pressed="true">Inter</button><button class="choice-button" type="button" data-value="atkinson" aria-pressed="false">Atkinson Hyperlegible</button><button class="choice-button" type="button" data-value="system" aria-pressed="false">System</button></div><p class="control-help">If Inter or Atkinson Hyperlegible is not installed, the browser uses Arial. No font file is embedded.</p></fieldset></section>
-            <section class="panel"><fieldset><legend>Review Scenario</legend><div class="segmented scenarios" data-control="scenario"><button class="choice-button" type="button" data-value="normal" aria-pressed="true">Normal</button><button class="choice-button" type="button" data-value="active" aria-pressed="false">Active</button><button class="choice-button" type="button" data-value="attention" aria-pressed="false">Attention</button><button class="choice-button" type="button" data-value="alert" aria-pressed="false">Alert</button><button class="choice-button" type="button" data-value="unavailable" aria-pressed="false">Unavailable</button></div><p class="control-help">Scenarios demonstrate simulated status behavior only. They never send a command or write data.</p></fieldset></section>
+            <section class="panel"><fieldset><legend>Review Scenario</legend><div class="segmented scenarios" data-control="scenario"><button class="choice-button" type="button" data-value="normal" aria-pressed="true">Normal</button><button class="choice-button" type="button" data-value="active" aria-pressed="false">Active</button><button class="choice-button" type="button" data-value="attention" aria-pressed="false">Attention</button><button class="choice-button" type="button" data-value="alert" aria-pressed="false">Alert</button><button class="choice-button" type="button" data-value="unavailable" aria-pressed="false">Unavailable</button></div><p class="control-help">Scenarios show example status behavior only. They never send a command or write data.</p></fieldset></section>
           </div>
-          <section class="panel"><h2>Component State Review</h2><p>Visual examples of the one governed action-button family. These are not operational device controls.</p><div class="review-state-grid">
-            <div class="state-sample"><strong>Available / Off</strong><button class="action-button" type="button" data-demo="success">Run Demo</button><div class="result-note">Click to review pending and selected states.</div></div>
+          <section class="panel"><div hidden><h2>Component State Review</h2></div><h2>Button State Preview</h2><p>Examples of how buttons may appear. These are not operational device controls.</p><div class="review-state-grid">
+            <div class="state-sample"><strong>Available / Off</strong><button class="action-button" type="button" data-example="success">Run Example</button><div class="result-note">Select to review pending and selected states.</div></div>
             <div class="state-sample"><strong>Hover / Focus</strong><button class="action-button" type="button">Tab or Point Here</button><div class="result-note">Visible focus is keyboard-accessible.</div></div>
             <div class="state-sample"><strong>Momentary Pressed</strong><button class="action-button is-pressed" type="button">Pressed</button><div class="result-note">Fixed dimensions with a 1px depression.</div></div>
-            <div class="state-sample"><strong>Command Pending</strong><button class="action-button is-pending" type="button">Command Pending</button><div class="result-note">Simulated presentation; no command was sent.</div></div>
+            <div class="state-sample"><strong>Command Pending</strong><button class="action-button is-pending" type="button">Command Pending</button><div class="result-note">Example only; no command was sent.</div></div>
             <div class="state-sample"><strong>Selected / On</strong><button class="action-button is-selected" type="button">Selected / On</button><div class="result-note">Example confirmed-state styling.</div></div>
-            <div class="state-sample"><strong>Failure</strong><button class="action-button" type="button" data-demo="failure">Review Failure</button><div class="result-note" data-result>Local demo path.</div></div>
-            <div class="state-sample"><strong>Result Unknown</strong><button class="action-button" type="button" data-demo="unknown">Review Unknown</button><div class="result-note" data-result>Local demo path.</div></div>
+            <div class="state-sample"><strong>Failure</strong><button class="action-button" type="button" data-example="failure">Review Failure</button><div class="result-note" data-result>Select to view an example result.</div></div>
+            <div class="state-sample"><strong>Result Unknown</strong><button class="action-button" type="button" data-example="unknown">Review Unknown</button><div class="result-note" data-result>Select to view an example result.</div></div>
             <div class="state-sample"><strong>Disabled</strong><button class="action-button" type="button" disabled>Disabled</button><div class="result-note">Unavailable for interaction.</div></div>
           </div></section>
         </section>
@@ -735,10 +802,11 @@
     <footer class="footer">
       <div class="button-row"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div>
       <div class="footer-block weather-preview"><svg data-asset-id="placeholder-weather-unavailable" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 46h28a10 10 0 0 0 1-20 16 16 0 0 0-30-2 11 11 0 0 0 1 22zM12 12l40 40"/></svg><div><strong>WEATHER PREVIEW</strong><span class="footer-value">--°</span><br>Current conditions unavailable in approval preview</div></div>
-      <div class="footer-block"><strong>REVIEW DEVICE DATE &amp; TIME</strong><span id="local-time">Loading local time…</span><br>Browser-local display, not Peckham telemetry</div>
+      <div class="footer-block"><strong>REVIEW DEVICE DATE &amp; TIME</strong><span id="local-time">Loading local time…</span><br>Time shown from this device. Not live system data.</div>
     </footer>
   </div>
   </div>
+  <div class="print-review-set" id="print-review-set" hidden aria-hidden="true"></div>
   <div class="preview-toast" id="preview-toast" hidden></div>
   <div class="sr-only" id="live-feedback" aria-live="polite" aria-atomic="true"></div>
 
@@ -751,18 +819,31 @@
       const navButtons = [...document.querySelectorAll('.nav-button')];
       const themePreference = window.matchMedia('(prefers-color-scheme: dark)');
       const validViews = new Set(['home', 'systems', 'activity', 'explore', 'support', 'property', 'settings']);
-      const state = { device: 'desktop', theme: 'light', size: 'default', font: 'inter', scenario: 'normal' };
+      const state = { view: 'home', device: 'desktop', theme: 'light', size: 'default', font: 'inter', scenario: 'normal' };
       const deviceWidths = { desktop: 1440, tablet: 1024, phone: 390 };
       const deviceLabels = { desktop: 'Desktop', tablet: 'Tablet', phone: 'Phone' };
+      const captureDeviceLabels = { desktop: 'PC', tablet: 'Tablet', phone: 'Cell' };
+      const captureViewLabels = { home: 'Home', systems: 'Systems', activity: 'Activity', explore: 'Explore', support: 'Support', property: 'Property', settings: 'Settings' };
+      const captureFontLabels = { inter: 'Inter', atkinson: 'Atkinson', system: 'System' };
+      const canonicalViews = [
+        { key: 'home', label: 'Home' },
+        { key: 'systems', label: 'Systems' },
+        { key: 'activity', label: 'Activity' },
+        { key: 'explore', label: 'Explore WNYHS' },
+        { key: 'support', label: 'Support' },
+        { key: 'property', label: 'Property' },
+        { key: 'settings', label: 'Settings' }
+      ];
       const themeOrder = ['light', 'dark', 'auto'];
       const sizeOrder = ['default', 'large', 'compact'];
       let toastTimer;
+      let printingReviewSet = false;
       const scenarioContent = {
-        normal: { label: 'Normal', contact: 'Normal', banner: false, copy: 'Represented approval fixture is in its calm baseline.' },
-        active: { label: 'Active', contact: 'Active', banner: false, copy: 'A representative contact activity example is being shown.' },
-        attention: { label: 'Attention', contact: 'Attention', banner: true, copy: 'A representative contact item is shown for customer review.' },
-        alert: { label: 'Alert', contact: 'Alert', banner: true, copy: 'A high-priority simulated contact condition is shown for visual approval.' },
-        unavailable: { label: 'Unavailable', contact: 'Unavailable', banner: true, copy: 'The represented contact summary cannot be verified in this approval scenario.' }
+        normal: { label: 'Normal', contact: 'Normal', banner: false, copy: 'The example contact summary is in its normal state.' },
+        active: { label: 'Active', contact: 'Active', banner: false, copy: 'An active contact example is shown for review.' },
+        attention: { label: 'Attention', contact: 'Attention', banner: true, copy: 'A contact needing attention is shown for review.' },
+        alert: { label: 'Alert', contact: 'Alert', banner: true, copy: 'A high-priority contact example is shown for review.' },
+        unavailable: { label: 'Unavailable', contact: 'Unavailable', banner: true, copy: 'The example contact summary is unavailable.' }
       };
 
       function announce(message) {
@@ -784,6 +865,27 @@
         return value.charAt(0).toUpperCase() + value.slice(1);
       }
 
+      function localDateStamp(date = new Date()) {
+        return [date.getFullYear(), String(date.getMonth() + 1).padStart(2, '0'), String(date.getDate()).padStart(2, '0')].join('');
+      }
+
+      function captureTitle(viewLabel) {
+        return [
+          localDateStamp(),
+          'PK-Peckham',
+          viewLabel,
+          captureDeviceLabels[state.device],
+          displayName(state.theme),
+          displayName(state.size),
+          captureFontLabels[state.font],
+          displayName(state.scenario)
+        ].join('_');
+      }
+
+      function updateDocumentTitle() {
+        document.title = captureTitle(captureViewLabels[state.view]);
+      }
+
       function updateHeaderUtilities() {
         const themeButton = document.getElementById('theme-utility');
         const sizeButton = document.getElementById('size-utility');
@@ -793,10 +895,69 @@
         sizeButton.setAttribute('aria-label', `Size: ${displayName(state.size)}. Activate to select the next size.`);
       }
 
-      document.getElementById('device-selector').addEventListener('change', (event) => {
-        state.device = event.target.value;
+      const deviceMenu = document.getElementById('device-menu');
+      const deviceMenuButton = document.getElementById('device-menu-button');
+      const deviceMenuPopover = document.getElementById('device-menu-popover');
+      const deviceOptions = [...deviceMenuPopover.querySelectorAll('[role="option"]')];
+
+      function setDevice(value) {
+        state.device = value;
         root.dataset.device = state.device;
+        document.getElementById('device-menu-value').textContent = `${deviceLabels[state.device]} · ${deviceWidths[state.device]}px`;
+        deviceOptions.forEach((option) => option.setAttribute('aria-selected', String(option.dataset.device === state.device)));
+        updateDocumentTitle();
         announce(`${deviceLabels[state.device]} ${deviceWidths[state.device]} pixel approval viewport selected.`);
+      }
+
+      function openDeviceMenu(focusIndex = deviceOptions.findIndex((option) => option.dataset.device === state.device)) {
+        deviceMenuPopover.hidden = false;
+        deviceMenuButton.setAttribute('aria-expanded', 'true');
+        deviceOptions[Math.max(0, focusIndex)].focus();
+      }
+
+      function closeDeviceMenu(returnFocus = false) {
+        deviceMenuPopover.hidden = true;
+        deviceMenuButton.setAttribute('aria-expanded', 'false');
+        if (returnFocus) deviceMenuButton.focus();
+      }
+
+      deviceMenuButton.addEventListener('click', () => {
+        if (deviceMenuPopover.hidden) openDeviceMenu();
+        else closeDeviceMenu();
+      });
+      deviceMenuButton.addEventListener('keydown', (event) => {
+        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const focusIndex = event.key === 'ArrowUp' || event.key === 'End' ? deviceOptions.length - 1 : 0;
+        openDeviceMenu(focusIndex);
+      });
+      deviceOptions.forEach((option) => option.addEventListener('click', () => {
+        setDevice(option.dataset.device);
+        closeDeviceMenu(true);
+      }));
+      deviceMenuPopover.addEventListener('keydown', (event) => {
+        const currentIndex = deviceOptions.indexOf(document.activeElement);
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeDeviceMenu(true);
+          return;
+        }
+        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = currentIndex;
+        if (event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % deviceOptions.length;
+        if (event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + deviceOptions.length) % deviceOptions.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = deviceOptions.length - 1;
+        deviceOptions[nextIndex].focus();
+      });
+      document.addEventListener('click', (event) => {
+        if (!deviceMenu.contains(event.target)) closeDeviceMenu();
+      });
+      deviceMenu.addEventListener('focusout', () => {
+        window.setTimeout(() => {
+          if (!deviceMenu.contains(document.activeElement)) closeDeviceMenu();
+        }, 0);
       });
 
       function setPressed(group, value) {
@@ -807,6 +968,7 @@
 
       function setView(requested, updateHash = true) {
         const viewName = validViews.has(requested) ? requested : 'home';
+        state.view = viewName;
         views.forEach((view) => { view.hidden = view.id !== `view-${viewName}`; });
         navButtons.forEach((button) => {
           if (button.dataset.view === viewName) button.setAttribute('aria-current', 'page');
@@ -814,7 +976,7 @@
         });
         const active = document.getElementById(`view-${viewName}`);
         document.getElementById('current-view-title').textContent = active.dataset.title;
-        document.title = `PK | Peckham — ${active.dataset.title} Approval Preview`;
+        updateDocumentTitle();
         if (updateHash && window.location.hash !== `#${viewName}`) window.location.hash = viewName;
         window.scrollTo(0, 0);
       }
@@ -831,8 +993,8 @@
           node.dataset.status = value;
         });
         document.querySelectorAll('.window-item .status-value').forEach((node, index) => {
-          const representative = index === 0 || value === 'normal' || value === 'unavailable';
-          const displayed = representative ? value : 'normal';
+          const usesSelectedScenario = index === 0 || value === 'normal' || value === 'unavailable';
+          const displayed = usesSelectedScenario ? value : 'normal';
           node.textContent = scenarioContent[displayed].contact;
           node.dataset.status = displayed;
         });
@@ -849,9 +1011,9 @@
       function renderActivity() {
         const config = scenarioContent[state.scenario];
         const items = [
-          ['Current', 'Review fixture', `${config.label} scenario is active for the represented contact summary.`, state.scenario],
-          ['Recent', 'Earlier in preview', 'Main Entrance Door representative status changed in the local demo.', 'active'],
-          ['Resolved', 'Demo sequence', 'A simulated attention example was resolved for component review.', 'normal'],
+          ['Current', 'Preview', `${config.label} is shown for the example contact summary.`, state.scenario],
+          ['Recent', 'Earlier in preview', 'Main Entrance Door status changed in this preview.', 'active'],
+          ['Resolved', 'Example', 'An example attention item was resolved.', 'normal'],
           ['Attention / Alert priority', 'Visual ordering example', 'Higher-priority current items appear before informational examples.', state.scenario === 'alert' ? 'alert' : 'attention']
         ];
         document.getElementById('full-activity').innerHTML = items.map(([kind, time, textValue, status]) => `<li class="activity-item"><div class="activity-meta"><span>${kind}</span><span>${time}</span></div><p>${textValue}</p><div class="status-row activity-status"><span class="status-label">Example status</span><span class="status-value" data-status="${status}">${scenarioContent[status].label}</span></div></li>`).join('');
@@ -867,6 +1029,113 @@
         grid.innerHTML = items.join('');
       }
 
+      function buildReviewSetCover() {
+        const cover = document.createElement('section');
+        cover.className = 'review-set-cover';
+
+        const identity = document.createElement('strong');
+        identity.textContent = 'WNY HOME SECURITY';
+        const title = document.createElement('h1');
+        title.textContent = 'PK | PECKHAM';
+        const subtitle = document.createElement('p');
+        subtitle.textContent = 'Dashboard Approval Review Set';
+        cover.append(identity, title, subtitle);
+
+        const metadata = document.createElement('dl');
+        metadata.className = 'review-set-metadata';
+        const values = [
+          ['Generated', new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date())],
+          ['Device', `${captureDeviceLabels[state.device]} · ${deviceWidths[state.device]}px`],
+          ['Theme', displayName(state.theme)],
+          ['Size', displayName(state.size)],
+          ['Font', captureFontLabels[state.font]],
+          ['Scenario', displayName(state.scenario)]
+        ];
+        values.forEach(([label, value]) => {
+          const term = document.createElement('dt');
+          term.textContent = `${label}:`;
+          const description = document.createElement('dd');
+          description.textContent = value;
+          metadata.append(term, description);
+        });
+        cover.append(metadata);
+
+        const includedHeading = document.createElement('h2');
+        includedHeading.textContent = 'Included Views:';
+        const included = document.createElement('ol');
+        included.className = 'review-set-included';
+        canonicalViews.forEach(({ label }) => {
+          const item = document.createElement('li');
+          item.textContent = label;
+          included.append(item);
+        });
+        const disclosure = document.createElement('div');
+        disclosure.className = 'review-set-disclosure';
+        disclosure.textContent = 'NOT CONNECTED TO LIVE SYSTEMS';
+        cover.append(includedHeading, included, disclosure);
+        return cover;
+      }
+
+      function buildReviewSetView({ key, label }, position) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'review-set-view';
+        wrapper.dataset.reviewView = key;
+
+        const viewLabel = document.createElement('div');
+        viewLabel.className = 'review-set-view-label';
+        viewLabel.textContent = `VIEW ${position + 1} OF ${canonicalViews.length} · ${label}`;
+
+        const clone = document.querySelector('.app').cloneNode(true);
+        clone.classList.add('review-set-app');
+        clone.querySelectorAll('.view').forEach((view) => {
+          if (view.dataset.title === label) view.hidden = false;
+          else view.remove();
+        });
+        const heading = clone.querySelector('#current-view-title');
+        if (heading) heading.textContent = label;
+        clone.querySelectorAll('.nav-button').forEach((button) => {
+          if (button.dataset.view === key) button.setAttribute('aria-current', 'page');
+          else button.removeAttribute('aria-current');
+        });
+        const popover = clone.querySelector('#device-menu-popover');
+        if (popover) popover.hidden = true;
+        clone.querySelector('.print-review-set-action')?.remove();
+        clone.querySelectorAll('[id]').forEach((node) => node.removeAttribute('id'));
+        clone.querySelectorAll('button, a, [tabindex]').forEach((node) => {
+          node.setAttribute('tabindex', '-1');
+          node.setAttribute('aria-disabled', 'true');
+        });
+        wrapper.append(viewLabel, clone);
+        return wrapper;
+      }
+
+      function restorePrintReviewSet() {
+        if (!printingReviewSet) return;
+        printingReviewSet = false;
+        root.removeAttribute('data-print-mode');
+        const reviewSet = document.getElementById('print-review-set');
+        reviewSet.hidden = true;
+        reviewSet.setAttribute('aria-hidden', 'true');
+        reviewSet.replaceChildren();
+        updateDocumentTitle();
+      }
+
+      function printReviewSet() {
+        if (printingReviewSet) return;
+        printingReviewSet = true;
+        closeDeviceMenu();
+        const reviewSet = document.getElementById('print-review-set');
+        reviewSet.replaceChildren(buildReviewSetCover(), ...canonicalViews.map(buildReviewSetView));
+        reviewSet.hidden = false;
+        reviewSet.setAttribute('aria-hidden', 'false');
+        root.dataset.printMode = 'review-set';
+        document.title = captureTitle('AllViews');
+        window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+          try { window.print(); }
+          finally { restorePrintReviewSet(); }
+        }));
+      }
+
       document.querySelectorAll('[data-control]').forEach((group) => {
         group.addEventListener('click', (event) => {
           const button = event.target.closest('.choice-button');
@@ -878,6 +1147,7 @@
           if (control === 'size') { state.size = value; root.dataset.size = value; }
           if (control === 'font') { state.font = value; root.dataset.font = value; }
           if (control === 'scenario') renderScenario(value);
+          updateDocumentTitle();
           announce(`${button.textContent.trim()} ${control} selected.`);
         });
       });
@@ -886,51 +1156,56 @@
         state.theme = themeOrder[(themeOrder.indexOf(state.theme) + 1) % themeOrder.length];
         resolveTheme();
         updateHeaderUtilities();
+        updateDocumentTitle();
         announce(`${displayName(state.theme)} theme selected.`);
       });
       document.getElementById('size-utility').addEventListener('click', () => {
         state.size = sizeOrder[(sizeOrder.indexOf(state.size) + 1) % sizeOrder.length];
         root.dataset.size = state.size;
         updateHeaderUtilities();
+        updateDocumentTitle();
         announce(`${displayName(state.size)} size selected.`);
       });
 
       navButtons.forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
       document.querySelectorAll('[data-navigate]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.navigate)));
+      document.getElementById('print-review-set-button').addEventListener('click', printReviewSet);
       document.querySelectorAll('.preview-action').forEach((button) => button.addEventListener('click', () => announce(`Preview only — no external action was sent for ${button.textContent.trim()}.`)));
-      document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
-        const mode = button.dataset.demo;
+      document.querySelectorAll('[data-example]').forEach((button) => button.addEventListener('click', () => {
+        const mode = button.dataset.example;
         const original = button.textContent;
         button.classList.remove('is-selected');
         button.classList.add('is-pending');
         button.textContent = 'Command Pending';
         button.disabled = true;
         const result = button.parentElement.querySelector('[data-result]');
-        if (result) result.textContent = 'Simulated command pending…';
+        if (result) result.textContent = 'Example command pending…';
         window.setTimeout(() => {
           button.disabled = false;
           button.classList.remove('is-pending');
           if (mode === 'success') {
             button.classList.add('is-selected');
             button.textContent = 'Selected / On';
-            announce('Simulated component demo reached Selected / On. No command was sent.');
+            announce('Example button reached Selected / On. No command was sent.');
           } else if (mode === 'failure') {
             button.textContent = original;
-            result.innerHTML = 'Result: <span class="status-value" data-status="alert">Failure</span>';
-            announce('Simulated component demo shows Failure. No command was sent.');
+            result.innerHTML = 'Failure result: <span class="status-value" data-status="alert">Alert</span>';
+            announce('Example button shows a failure result. No command was sent.');
           } else {
             button.textContent = original;
-            result.innerHTML = 'Result: <span class="status-value" data-status="unavailable">Result Unknown</span>';
-            announce('Simulated component demo shows Result Unknown. No command was sent.');
+            result.innerHTML = 'Unknown result: <span class="status-value" data-status="unavailable">Unavailable</span>';
+            announce('Example button shows an unknown result. No command was sent.');
           }
         }, 650);
       }));
 
       themePreference.addEventListener('change', () => { if (state.theme === 'auto') resolveTheme(); });
       window.addEventListener('hashchange', () => setView(window.location.hash.slice(1), false));
+      window.addEventListener('afterprint', restorePrintReviewSet);
 
       function updateClock() {
         document.getElementById('local-time').textContent = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
+        updateDocumentTitle();
       }
 
       buildWindows();
