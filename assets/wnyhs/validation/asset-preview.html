@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>WNYHS Canonical Asset Preview</title>
+  <style>
+    :root { color-scheme: light dark; font-family: Inter, Arial, sans-serif; background: #F4F7FB; color: #172033; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; }
+    h1 { margin: 0 0 8px; }
+    .intro { max-width: 900px; margin: 0 0 24px; color: #5F6B7A; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card { overflow: hidden; border: 1px solid #CDD6E3; border-radius: 16px; background: #FFFFFF; box-shadow: 0 8px 24px rgb(15 23 42 / 12%); }
+    .card h2 { margin: 0; padding: 14px 16px 4px; color: #172033; font-size: 17px; }
+    .path { margin: 0; padding: 0 16px 12px; color: #5F6B7A; font-size: 12px; overflow-wrap: anywhere; }
+    .treatments { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .swatch { min-height: 84px; display: grid; place-items: center; padding: 8px 4px; color: #172033; }
+    .swatch span { align-self: end; font-size: 10px; font-weight: 700; letter-spacing: .05em; }
+    .light { background: #FFFFFF; color: #172033; }
+    .dark { background: #0D1726; color: #F8FAFC; }
+    .gold { background: #111827; color: #D4AF37; }
+    .muted { background: #E8EEF6; color: #5F6B7A; }
+    .checker { background-color: #FFFFFF; background-image: linear-gradient(45deg,#CDD6E3 25%,transparent 25%),linear-gradient(-45deg,#CDD6E3 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#CDD6E3 75%),linear-gradient(-45deg,transparent 75%,#CDD6E3 75%); background-size: 16px 16px; background-position: 0 0,0 8px,8px -8px,-8px 0; }
+    .asset-image { width: 32px; height: 32px; object-fit: contain; }
+    .light .asset-image { filter: brightness(0) saturate(100%) invert(10%) sepia(18%) saturate(1131%) hue-rotate(183deg) brightness(94%) contrast(92%); }
+    .dark .asset-image { filter: brightness(0) saturate(100%) invert(100%); }
+    .gold .asset-image { filter: brightness(0) saturate(100%) invert(72%) sepia(56%) saturate(691%) hue-rotate(4deg) brightness(91%) contrast(85%); }
+    .muted .asset-image { filter: brightness(0) saturate(100%) invert(43%) sepia(12%) saturate(617%) hue-rotate(176deg) brightness(92%) contrast(87%); }
+    .checker .asset-image { filter: brightness(0) saturate(100%); opacity: .72; }
+    .sizes { display: flex; align-items: end; justify-content: center; gap: 14px; padding: 12px; border-top: 1px solid #CDD6E3; color: #172033; }
+    .sizes div { display: grid; justify-items: center; gap: 4px; font-size: 10px; }
+    .sizes .asset-image { width: var(--size); height: var(--size); }
+    @media (prefers-color-scheme: dark) { :root { background: #08111F; color: #F8FAFC; } .intro { color: #A8B3C2; } }
+  </style>
+</head>
+<body>
+  <h1>WNYHS canonical asset preview</h1>
+  <p class="intro">REV02 deterministic inspection sheet. Every treatment directly renders the same canonical SVG file. Light, Dark, Gold, and Muted use preview-only display filters; Alpha uses the unmodified transparent asset over a checkerboard. Source SVGs remain <code>currentColor</code> with no baked treatment colors.</p>
+  <main class="grid" id="asset-grid"></main>
+  <script id="asset-data" type="application/json">[{"id":"navigation-home","file":"digital/icons/navigation/home.svg"},{"id":"navigation-systems","file":"digital/icons/navigation/systems.svg"},{"id":"navigation-activity","file":"digital/icons/navigation/activity.svg"},{"id":"navigation-alerts","file":"digital/icons/navigation/alerts.svg"},{"id":"navigation-support","file":"digital/icons/navigation/support.svg"},{"id":"navigation-property","file":"digital/icons/navigation/property.svg"},{"id":"navigation-settings","file":"digital/icons/navigation/settings.svg"},{"id":"utility-user","file":"digital/icons/utility/user.svg"},{"id":"utility-theme","file":"digital/icons/utility/theme.svg"},{"id":"utility-layout-size","file":"digital/icons/utility/layout-size.svg"},{"id":"utility-device-preview","file":"digital/icons/utility/device-preview.svg"},{"id":"utility-chevron-down","file":"digital/icons/utility/chevron-down.svg"},{"id":"capability-building-status","file":"digital/icons/capability/building-status.svg"},{"id":"capability-main-entrance","file":"digital/icons/capability/main-entrance.svg"},{"id":"capability-door","file":"digital/icons/capability/door.svg"},{"id":"capability-window","file":"digital/icons/capability/window.svg"},{"id":"capability-doorbell","file":"digital/icons/capability/doorbell.svg"},{"id":"capability-lock","file":"digital/icons/capability/lock.svg"},{"id":"capability-recent-activity","file":"digital/icons/capability/recent-activity.svg"},{"id":"status-normal","file":"digital/icons/status/normal.svg"},{"id":"status-active","file":"digital/icons/status/active.svg"},{"id":"status-attention","file":"digital/icons/status/attention.svg"},{"id":"status-alert","file":"digital/icons/status/alert.svg"},{"id":"status-unavailable","file":"digital/icons/status/unavailable.svg"},{"id":"placeholder-media-unavailable","file":"digital/placeholders/media-unavailable.svg"},{"id":"placeholder-weather-unavailable","file":"digital/placeholders/weather-unavailable.svg"},{"id":"illustration-property-status-hero","file":"digital/illustrations/property-status-hero.svg"},{"id":"illustration-main-entrance-assembly","file":"digital/illustrations/main-entrance-assembly.svg"},{"id":"illustration-window-coverage","file":"digital/illustrations/window-coverage.svg"}]</script>
+  <script>
+    (() => {
+      const assets = JSON.parse(document.getElementById('asset-data').textContent);
+      const grid = document.getElementById('asset-grid');
+      for (const asset of assets) {
+        const source = `../${asset.file}`;
+        const largeAsset = asset.file.includes('/placeholders/') || asset.file.includes('/illustrations/');
+        const sizes = largeAsset ? [64, 96, 128] : [20, 22, 24, 32];
+        const card = document.createElement('article');
+        card.className = 'card';
+        const treatments = ['light', 'dark', 'gold', 'muted', 'checker'];
+        card.innerHTML = `<h2>${asset.id}</h2><p class="path">${asset.file}</p><div class="treatments">${treatments.map((tone) => `<div class="swatch ${tone}"><img class="asset-image" src="${source}" alt=""><span>${tone === 'checker' ? 'Alpha' : tone[0].toUpperCase() + tone.slice(1)}</span></div>`).join('')}</div><div class="sizes">${sizes.map((size) => `<div><img class="asset-image" src="${source}" style="--size:${size}px" alt=""><span>${size}px</span></div>`).join('')}</div>`;
+        grid.append(card);
+      }
+    })();
+  </script>
+</body>
+</html>
