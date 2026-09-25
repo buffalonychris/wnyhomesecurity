@@ -56,7 +56,7 @@ The backend continues to generate the canonical `requestId` before validation. S
 
 ## Validation results
 
-- Main synchronization: PASS. Current `origin/main` at `7d4c75d29bdee2950f53c14f73d386d1ec9479fc` was merged without rebase or force-push in merge commit `aeff53a1b8ef1d837408a41133279578b1da5f9e`; the completed `TEST-RUNNER-FIX001` MTR record and the `LEAD-FIX002` record were both preserved.
+- Main synchronization: PASS. Current `origin/main` at `7d4c75d29bdee2950f53c14f73d386d1ec9479fc` was merged without rebase or force-push in merge commit `aeff53a1a1627c324cb00b227f3edcb83ccd38d0`; the completed `TEST-RUNNER-FIX001` MTR record and the `LEAD-FIX002` record were both preserved.
 - Exact `npm test -- --run`: PASS. Thirty-three test files and 167 tests passed after the synchronized test-runner correction from `main`.
 - Focused LEAD-FIX002 suite: PASS. Fourteen handler and frontend failure-path tests passed.
 - `npm run typecheck:test`: PASS.
