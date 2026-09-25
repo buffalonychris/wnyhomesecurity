@@ -1,10 +1,10 @@
 # TEST-RUNNER-FIX001 Implementation Evidence REV01
 
-**Task:** TEST-RUNNER-FIX001 — Vitest Collection and Operator Navbar Baseline Correction  
+**Task:** TEST-RUNNER-FIX001 — Vitest Collection and Operator Navbar Baseline Correction
 **Status:** DONE; DRAFT_PR_OPEN
-**Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01  
-**Branch:** `codex/test-runner-fix001-vitest-baseline`  
-**Base:** synchronized `origin/main` at `0d18830bcd04b27cbe14322a76ef9d0f2ae23efe`  
+**Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+**Branch:** `codex/test-runner-fix001-vitest-baseline`
+**Base:** synchronized `origin/main` at `0d18830bcd04b27cbe14322a76ef9d0f2ae23efe`
 **Work Order:** `docs/codex/work-orders/TEST-RUNNER-FIX001_WORK_ORDER_REV02.md`
 
 **Implementation Commit:** `9ef51c78286a22520310007e6845f3fe26f6e11b`
