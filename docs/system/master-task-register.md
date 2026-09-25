@@ -951,6 +951,34 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **CTR Record / Pointer:** None.
 - **Completion Notes:** Implemented explicit telemetry/actionable/lifecycle event policy in the production Cloudflare Pages handler; telemetry events retain acceptance without actionable email, CRM, or scheduling side effects; actionable estimate/callback intake requires core HubSpot contact/deal persistence before normal success, scheduling, or email attempts; callback routing now uses `callback_requested`; canonical server requestId and pending-owner-confirmation semantics remain intact. Focused LEAD-FIX002 tests (14), test typecheck, build, diff, grep, and protected-scope gates pass. Task remains BLOCKED because the exact repository-wide Vitest command is red on pre-existing out-of-scope Playwright collection and operator-navbar failures. Draft PR #584 is open; no merge or deployment occurred.
 
+### TEST-RUNNER-FIX001
+
+- **Task ID:** TEST-RUNNER-FIX001
+- **Task Name:** Vitest Collection and Operator Navbar Baseline Correction
+- **Status:** DONE
+- **Category:** QA
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Site Architecture; Infrastructure / Deployment System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Restore the repository-wide Vitest command to the intended Vitest test surface and correct stale operator-navbar test expectations that fail on clean `main`, without changing production/runtime behavior.
+- **Allowed Scope:** Follow `docs/codex/work-orders/TEST-RUNNER-FIX001_WORK_ORDER_REV02.md`; correct Vitest collection so `tests/site-qa/**` remains Playwright-owned; update only stale assertions in `src/pages/__tests__/operatorNavbar.test.tsx`; create the required implementation audit; update only this task record with truthful lifecycle and evidence.
+- **Forbidden Scope:** No production route/navbar/runtime behavior or source changes; no lead-signal or LEAD-FIX002 runtime implementation changes; no Stripe/payment, HubSpot/CRM, scheduling/calendar, Resend/email, QR attribution, requestId, pricing/package, visual/token, public-copy, Cloudflare/runtime/environment/secret, dependency/package-lock, Playwright behavior, unrelated test/refactor, merge, or deployment change.
+- **Target Files:** `docs/system/master-task-register.md`; `vite.config.ts`; `src/pages/__tests__/operatorNavbar.test.tsx`; `package.json` only if strictly required and justified; one test-only config only if current architecture clearly requires it; `docs/audits/test_runner_fix001_implementation_rev01.md`.
+- **Runtime Systems Affected:** None. QA/test-infrastructure baseline correction only.
+- **Documentation Updates Required:** Create `docs/audits/test_runner_fix001_implementation_rev01.md`; maintain this exact task record with truthful validation, draft-PR, and closeout evidence.
+- **Validation Required:** Reproduce the clean-main failure when practical; run `npm test -- --run`, `npm run typecheck:test`, `npm run build`, `git diff --check`, and the lightest supported Playwright discovery command; inspect status, changed-file scope, unexpected deletes, and conflict markers; prove Vitest excludes `tests/site-qa/**`, Playwright discovery remains intact, operator-navbar tests pass, and production/runtime plus LEAD-FIX002 runtime files remain untouched.
+- **Exit Criteria:** Vitest no longer collects `tests/site-qa/**`; Playwright still discovers its site-QA suites; stable operator-navbar tests pass; repository-wide Vitest, test typecheck, build, and diff checks pass unless an unrelated baseline defect is truthfully recorded as a blocker; audit and MTR evidence are complete; one task branch is committed and pushed; one draft PR to `main` is created if GitHub auth permits; no production/runtime change, merge, or deployment occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/TEST-RUNNER-FIX001_WORK_ORDER_REV02.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `main` containing merge commit `4959b282da7f12f137934309111c743f15069064`; current Codex execution and task-register rules; approved Owner Routing Matrix.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. No merge or deployment is authorized.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #587: `https://github.com/buffalonychris/wnyhomesecurity/pull/587`.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; QA/test-only correction and no deployment authorized.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` at `0d18830bcd04b27cbe14322a76ef9d0f2ae23efe`.
+- **CTR Eligibility:** Not eligible until merge and later main synchronization are verified.
+- **CTR Record / Pointer:** None.
+- **Completion Notes:** Preserved Vitest defaults while excluding only the Playwright-owned `tests/site-qa/**` tree; replaced stale operator-navbar copy/brand assertions with current semantic operator/public navigation checks; created the implementation audit; and left `package.json`, Playwright configuration/tests, dependencies/package lock, production/runtime source, and LEAD-FIX002 runtime files untouched. `npm test -- --run` passed 32 files and 155 tests; `npm run typecheck:test`, `npm run build`, Playwright discovery of 399 tests in 11 files, conflict/scope checks, and `git diff --check` passed. Draft PR #587 remains draft. No protected-system change, merge, or deployment occurred.
+
 ### DASH-GOV-REFRESH-001
 
 - **Task ID:** DASH-GOV-REFRESH-001
