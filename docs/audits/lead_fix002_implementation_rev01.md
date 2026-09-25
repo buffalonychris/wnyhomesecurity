@@ -8,6 +8,8 @@
 
 **Branch:** `codex/lead-fix002-lead-signal-reliability`
 
+**Draft PR:** #584 — `https://github.com/buffalonychris/wnyhomesecurity/pull/584`
+
 ## Pre-change defect
 
 The production-authoritative Cloudflare Pages handler in `functions/api/lead-signal.ts` applied actionable scheduling, operator email, customer acknowledgement, and HubSpot orchestration to every accepted event. It also returned `ok:true` and HTTP 200 when required core HubSpot persistence failed. The initiating audit found no confirmed historical lost actionable lead in the reviewed sample.
@@ -54,11 +56,11 @@ The backend continues to generate the canonical `requestId` before validation. S
 
 ## Validation results
 
-- Focused LEAD-FIX002 suite: PASS. All handler and frontend failure-path tests passed.
+- Focused LEAD-FIX002 suite: PASS. Fourteen handler and frontend failure-path tests passed.
 - `npm run typecheck:test`: PASS.
 - `npm run build`: PASS.
-- `git diff --check`: PASS before audit creation; rerun required at final closeout.
-- Required event-policy, side-effect-order, requestId, protected-scope, and conflict-marker searches: PASS before audit creation; rerun required at final closeout.
+- `git diff --check`: PASS.
+- Required event-policy, side-effect-order, requestId, protected-scope, and conflict-marker searches: PASS.
 - Exact `npm test -- --run`: BLOCKED by existing repository-wide runner failures outside the LEAD-FIX002 changed surface. Vitest collects Playwright `tests/site-qa/**` suites and rejects their `test.describe()` calls; two existing `src/pages/__tests__/operatorNavbar.test.tsx` assertions also fail when rerun independently. LEAD-FIX002 tests pass in both the full attempt and the focused suite.
 - Supplemental `npm run typecheck:api`: pre-existing failure in unchanged legacy `api/*` files; no reported error points to the production `functions/api/lead-signal.ts` change.
 

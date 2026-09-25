@@ -942,13 +942,14 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Dependencies:** Operator-authorized `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; current lead-signal, requestId, QRLanding, HubSpot, Resend, and scheduling runtime contracts; synchronized `main` containing merge commit `915f878b3ca8a646968f95f268a96d9d980c4633` or a newer descendant.
 - **Operator Decision Required:** No additional decision required unless a material governance conflict is discovered. Operator review is required before any merge or deployment.
 - **Blocker / Unlock:** The exact required `npm test -- --run` gate is red on pre-existing, out-of-scope repository failures: Vitest collects Playwright `tests/site-qa/**` suites and rejects their `test.describe()` calls, and two existing `src/pages/__tests__/operatorNavbar.test.tsx` assertions fail independently. Unlock requires a separately authorized correction to the repository test-runner/baseline tests or an explicit higher-authority validation exception. LEAD-FIX002 focused tests, test typecheck, and production build pass.
-- **Publication/Evidence State:** NOT_STARTED
-- **Draft PR Evidence:** Pending implementation, validation, push, and draft PR creation.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #584: `https://github.com/buffalonychris/wnyhomesecurity/pull/584`.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Deployment applicable only through a later operator-authorized action; no deployment is authorized or performed by this task.
 - **Main-Sync Status / Evidence:** Task branch created from synchronized `main` at `7995049b784525695d86d98c742d374feca08b4b`; later merge and main synchronization are not authorized or inferred.
 - **CTR Eligibility:** Not eligible while ACTIVE and unmerged.
 - **CTR Record / Pointer:** None.
+- **Completion Notes:** Implemented explicit telemetry/actionable/lifecycle event policy in the production Cloudflare Pages handler; telemetry events retain acceptance without actionable email, CRM, or scheduling side effects; actionable estimate/callback intake requires core HubSpot contact/deal persistence before normal success, scheduling, or email attempts; callback routing now uses `callback_requested`; canonical server requestId and pending-owner-confirmation semantics remain intact. Focused LEAD-FIX002 tests (14), test typecheck, build, diff, grep, and protected-scope gates pass. Task remains BLOCKED because the exact repository-wide Vitest command is red on pre-existing out-of-scope Playwright collection and operator-navbar failures. Draft PR #584 is open; no merge or deployment occurred.
 
 ### DASH-GOV-REFRESH-001
 
