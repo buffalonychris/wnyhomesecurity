@@ -926,7 +926,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** LEAD-FIX002
 - **Task Name:** Lead Signal Notification and Persistence Reliability
-- **Status:** BLOCKED
+- **Status:** DONE
 - **Category:** LEAD
 - **Primary Workstream:** Lead Capture / Lead Signal
 - **Related Workstreams:** HubSpot / CRM; Resend / Email Routing; QR Attribution; Scheduling / Calendar Ownership
@@ -941,15 +941,15 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** Telemetry-only events remain accepted where contracted but trigger no actionable lead email, acknowledgement, CRM write, or scheduling artifact; actionable estimate and callback requests retain required processing and notifications; required persistence failure cannot present normal customer success; requestId authority and safe failure correlation remain intact; HubSpot schema/pipeline and Stripe/payment remain untouched; no new persistence provider/database is introduced; tests and build pass; runtime docs and audit match behavior; branch is committed/pushed; one draft PR to `main` is open if GitHub CLI/auth permits.
 - **Dependencies:** Operator-authorized `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; current lead-signal, requestId, QRLanding, HubSpot, Resend, and scheduling runtime contracts; synchronized `main` containing merge commit `915f878b3ca8a646968f95f268a96d9d980c4633` or a newer descendant.
 - **Operator Decision Required:** No additional decision required unless a material governance conflict is discovered. Operator review is required before any merge or deployment.
-- **Blocker / Unlock:** The exact required `npm test -- --run` gate is red on pre-existing, out-of-scope repository failures: Vitest collects Playwright `tests/site-qa/**` suites and rejects their `test.describe()` calls, and two existing `src/pages/__tests__/operatorNavbar.test.tsx` assertions fail independently. Unlock requires a separately authorized correction to the repository test-runner/baseline tests or an explicit higher-authority validation exception. LEAD-FIX002 focused tests, test typecheck, and production build pass.
+- **Blocker / Unlock:** Resolved. Current `origin/main` containing the completed `TEST-RUNNER-FIX001` correction was merged without rebase or force-push; the exact repository-wide Vitest gate now passes.
 - **Publication/Evidence State:** DRAFT_PR_OPEN
 - **Draft PR Evidence:** Draft PR #584: `https://github.com/buffalonychris/wnyhomesecurity/pull/584`.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Deployment applicable only through a later operator-authorized action; no deployment is authorized or performed by this task.
-- **Main-Sync Status / Evidence:** Task branch created from synchronized `main` at `7995049b784525695d86d98c742d374feca08b4b`; later merge and main synchronization are not authorized or inferred.
-- **CTR Eligibility:** Not eligible while ACTIVE and unmerged.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `main` at `7995049b784525695d86d98c742d374feca08b4b`; current `origin/main` at `7d4c75d29bdee2950f53c14f73d386d1ec9479fc` was merged into the task branch in merge commit `aeff53a1b8ef1d837408a41133279578b1da5f9e` without rebase or force-push.
+- **CTR Eligibility:** Not eligible until PR #584 is merged and later main synchronization is verified.
 - **CTR Record / Pointer:** None.
-- **Completion Notes:** Implemented explicit telemetry/actionable/lifecycle event policy in the production Cloudflare Pages handler; telemetry events retain acceptance without actionable email, CRM, or scheduling side effects; actionable estimate/callback intake requires core HubSpot contact/deal persistence before normal success, scheduling, or email attempts; callback routing now uses `callback_requested`; canonical server requestId and pending-owner-confirmation semantics remain intact. Focused LEAD-FIX002 tests (14), test typecheck, build, diff, grep, and protected-scope gates pass. Task remains BLOCKED because the exact repository-wide Vitest command is red on pre-existing out-of-scope Playwright collection and operator-navbar failures. Draft PR #584 is open; no merge or deployment occurred.
+- **Completion Notes:** Implemented explicit telemetry/actionable/lifecycle event policy in the production Cloudflare Pages handler; telemetry events retain acceptance without actionable email, CRM, or scheduling side effects; actionable estimate/callback intake requires core HubSpot contact/deal persistence before normal success, scheduling, or email attempts; callback routing now uses `callback_requested`; canonical server requestId and pending-owner-confirmation semantics remain intact. After merging current `origin/main`, `npm test -- --run` passed 33 files and 167 tests; focused LEAD-FIX002 tests (14), `npm run typecheck:test`, `npm run build`, diff, event-policy, side-effect, requestId, protected-scope, unexpected-delete, and conflict-marker gates passed. The completed `TEST-RUNNER-FIX001` record remains intact. Draft PR #584 remains open and draft; no merge or deployment occurred.
 
 ### TEST-RUNNER-FIX001
 

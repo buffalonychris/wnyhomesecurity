@@ -56,13 +56,13 @@ The backend continues to generate the canonical `requestId` before validation. S
 
 ## Validation results
 
+- Main synchronization: PASS. Current `origin/main` at `7d4c75d29bdee2950f53c14f73d386d1ec9479fc` was merged without rebase or force-push in merge commit `aeff53a1b8ef1d837408a41133279578b1da5f9e`; the completed `TEST-RUNNER-FIX001` MTR record and the `LEAD-FIX002` record were both preserved.
+- Exact `npm test -- --run`: PASS. Thirty-three test files and 167 tests passed after the synchronized test-runner correction from `main`.
 - Focused LEAD-FIX002 suite: PASS. Fourteen handler and frontend failure-path tests passed.
 - `npm run typecheck:test`: PASS.
-- `npm run build`: PASS.
+- `npm run build`: PASS. Vite reported the existing mixed static/dynamic import warning for `GovernanceViewer.tsx`; the build completed successfully.
 - `git diff --check`: PASS.
-- Required event-policy, side-effect-order, requestId, protected-scope, and conflict-marker searches: PASS.
-- Exact `npm test -- --run`: BLOCKED by existing repository-wide runner failures outside the LEAD-FIX002 changed surface. Vitest collects Playwright `tests/site-qa/**` suites and rejects their `test.describe()` calls; two existing `src/pages/__tests__/operatorNavbar.test.tsx` assertions also fail when rerun independently. LEAD-FIX002 tests pass in both the full attempt and the focused suite.
-- Supplemental `npm run typecheck:api`: pre-existing failure in unchanged legacy `api/*` files; no reported error points to the production `functions/api/lead-signal.ts` change.
+- Required event-policy, side-effect-order, requestId, protected-scope, changed-file, unexpected-delete, and actual conflict-marker checks: PASS.
 
 ## Protected-scope confirmation
 
