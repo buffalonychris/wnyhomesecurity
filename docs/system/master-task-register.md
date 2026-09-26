@@ -922,6 +922,35 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### LEAD-FIX002
+
+- **Task ID:** LEAD-FIX002
+- **Task Name:** Lead Signal Notification and Persistence Reliability
+- **Status:** DONE
+- **Category:** LEAD
+- **Primary Workstream:** Runtime System
+- **Related Workstreams:** CRM / HubSpot System; Scheduling System; Estimate / Quote System; Analytics System; Infrastructure / Deployment System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Separate telemetry from actionable lead notifications and prevent required persistence failures from masquerading as successful customer submissions.
+- **Allowed Scope:** Protected lead-signal classification; notification gating; actionable persistence-result semantics; telemetry preservation; requestId-safe failure handling; minimal scheduling side-effect gating; tests, runtime docs, implementation audit, and this task record's evidence.
+- **Forbidden Scope:** No HubSpot schema or pipeline changes; no Stripe or payment changes; no scheduling redesign; no funnel, route, or UI redesign; no new persistence systems; no historical CRM cleanup; no unrelated refactoring; no merge or deployment.
+- **Target Files:** `docs/system/master-task-register.md`; `src/lib/siteVersion.ts` for the required deployed-site version bump; `functions/api/lead-signal.ts`; `api/lead-signal.ts` only if parity is required; `src/lib/hubspotLeadSignal.ts` only if required; `src/components/CanonicalEstimateRequestForm.tsx` only if required; `src/pages/QrLanding.tsx` only if required; `src/newsite/pages/NewSiteCallback.tsx` only if required; `src/newsite/pages/NewSiteOnSiteQuote.tsx` only if required; relevant existing tests or one narrowly scoped new lead-signal test; `docs/runtime/lead_signal_contract.md`; `docs/runtime/qrlanding_runtime.md` only if needed; `docs/runtime/hubspot_sync_contract.md` only if authoritative persistence semantics change; `docs/runtime/scheduling_ownership.md` only if needed; `docs/runtime/resend_runtime.md` only if notification flow semantics change; `docs/audits/lead_fix002_implementation_rev01.md`.
+- **Runtime Systems Affected:** Protected `/api/lead-signal` runtime orchestration, HubSpot persistence result handling, Resend notification eligibility, requestId correlation, and existing scheduling side-effect eligibility. No live external system changes are authorized.
+- **Documentation Updates Required:** Update `docs/runtime/lead_signal_contract.md`; update `docs/runtime/qrlanding_runtime.md` only as needed; update other runtime contracts only if their governed behavior changes; create `docs/audits/lead_fix002_implementation_rev01.md`; maintain truthful lifecycle evidence in this record.
+- **Validation Required:** `git status`; `npm test -- --run`; `npm run build`; `git diff --check`; required event-policy, side-effect, conflict-marker, changed-file, protected-scope, and frontend failure-path checks from `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV01.md`.
+- **Exit Criteria:** Telemetry-only events remain accepted where contracted but trigger no actionable lead email, acknowledgement, CRM write, or scheduling artifact; actionable estimate and callback requests retain required processing and notifications; required persistence failure cannot present normal customer success; requestId authority and safe failure correlation remain intact; HubSpot schema/pipeline and Stripe/payment remain untouched; no new persistence provider/database is introduced; tests and build pass; runtime docs and audit match behavior; branch is committed/pushed; one draft PR to `main` is open if GitHub CLI/auth permits.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; current lead-signal, requestId, QRLanding, HubSpot, Resend, and scheduling runtime contracts; synchronized `main` containing merge commit `915f878b3ca8a646968f95f268a96d9d980c4633` or a newer descendant.
+- **Operator Decision Required:** No additional decision required unless a material governance conflict is discovered. Operator review is required before any merge or deployment.
+- **Blocker / Unlock:** Resolved. Current `origin/main` containing the completed `TEST-RUNNER-FIX001` correction was merged without rebase or force-push; the exact repository-wide Vitest gate now passes.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #584: `https://github.com/buffalonychris/wnyhomesecurity/pull/584`.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Deployment applicable only through a later operator-authorized action; no deployment is authorized or performed by this task.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `main` at `7995049b784525695d86d98c742d374feca08b4b`; current `origin/main` at `7d4c75d29bdee2950f53c14f73d386d1ec9479fc` was merged into the task branch in merge commit `aeff53a1a1627c324cb00b227f3edcb83ccd38d0` without rebase or force-push.
+- **CTR Eligibility:** Not eligible until PR #584 is merged and later main synchronization is verified.
+- **CTR Record / Pointer:** None.
+- **Completion Notes:** Implemented explicit telemetry/actionable/lifecycle event policy in the production Cloudflare Pages handler; telemetry events retain acceptance without actionable email, CRM, or scheduling side effects; actionable estimate/callback intake requires core HubSpot contact/deal persistence before normal success, scheduling, or email attempts; callback routing now uses `callback_requested`; canonical server requestId and pending-owner-confirmation semantics remain intact. After merging current `origin/main`, `npm test -- --run` passed 33 files and 167 tests; focused LEAD-FIX002 tests (14), `npm run typecheck:test`, `npm run build`, diff, event-policy, side-effect, requestId, protected-scope, unexpected-delete, and conflict-marker gates passed. The completed `TEST-RUNNER-FIX001` record remains intact. Draft PR #584 remains open and draft; no merge or deployment occurred.
+
 ### TEST-RUNNER-FIX001
 
 - **Task ID:** TEST-RUNNER-FIX001
