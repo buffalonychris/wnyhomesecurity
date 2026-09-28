@@ -32,7 +32,8 @@ Required result:
 3. the first invalid field must receive focus or be scrolled/focused into view;
 4. accessible invalid-state semantics must be provided;
 5. correcting a field must clear its field-level invalid state;
-6. the compact onsite-estimate form must not submit unless full name, mobile phone, email address, and service/street address are all present;\n7. existing submission payloads, lead-signal semantics, HubSpot behavior, scheduling behavior, requestId behavior, consent behavior, and success states must remain unchanged.
+6. the compact onsite-estimate form must not submit unless full name, mobile phone, email address, and service/street address are all present;
+7. existing submission payloads, lead-signal semantics, HubSpot behavior, scheduling behavior, requestId behavior, consent behavior, and success states must remain unchanged.
 
 This is a narrow LEAD-FIX002 revision. It does not reopen or redesign the runtime reliability work completed in REV01.
 
@@ -95,6 +96,7 @@ For the compact estimate path, validate these required fields independently:
 
 - full name;
 - mobile phone;
+- email address;
 - service/street address.
 
 ### Error message behavior
@@ -103,8 +105,9 @@ If exactly one required field is missing, report only that field.
 
 Examples:
 
-- missing phone only → `Please enter your phone number.`
 - missing name only → `Please enter your name.`
+- missing phone only → `Please enter your phone number.`
+- missing email only → `Please enter your email address.`
 - missing service address only → `Please enter your service address.`
 
 If multiple required fields are missing, the message may list only the missing fields, in form order. It must never name a field that is already valid.
@@ -124,7 +127,15 @@ On submit with invalid required fields:
 - if needed, use the existing field ref infrastructure to ensure the field is brought into view;
 - do not clear user-entered values.
 
-### Required-field enforcement\n\nThe compact onsite-estimate fields for full name, mobile phone, email address, and service/street address must also use the component's appropriate native required semantics where compatible with the existing form structure. The explicit submit-time validation remains authoritative for the exact message, field highlighting, and focus behavior.\n\n### Existing communication-permission validation
+### Required-field enforcement
+
+The compact onsite-estimate fields for full name, mobile phone, email address, and service/street address must all be required. Validation must block the existing submit/send path if any of those four values is blank. Use appropriate native required semantics where compatible with the existing form structure. The explicit submit-time validation remains authoritative for exact messages, field highlighting, accessible error state, and first-invalid-field focus.
+
+### Submission hard gate
+
+For the compact onsite-estimate path, missing any one of the four required fields must prevent the submission path from being invoked. The component must not call `sendLeadSignal` for an invalid required-field state. Tests must prove this for each single-field omission and a multiple-field omission.
+
+### Existing communication-permission validation
 
 Preserve existing contact-method and communication-authorization validation behavior. Do not broaden this task into redesigning consent UX.
 
@@ -189,15 +200,16 @@ Validation Tier: source/UI + QA
 
 Required targeted tests must prove at minimum:
 
-1. phone-only missing → message names phone only;
-2. name-only missing → message names name only;
-3. address-only missing → message names service address only;
-4. multiple missing → message names only the actual missing fields;
-5. invalid field(s) receive accessible invalid state;
-6. first invalid field receives focus;
-7. correcting the field clears its invalid state;
-8. valid onsite-estimate submission still reaches existing submit path;
-9. communication-permission validation still behaves as before.
+1. name-only missing → message names name only and submission is blocked;
+2. phone-only missing → message names phone only and submission is blocked;
+3. email-only missing → message names email only and submission is blocked;
+4. address-only missing → message names service address only and submission is blocked;
+5. multiple missing → message names only the actual missing fields and submission is blocked;
+6. invalid field(s) receive accessible invalid state;
+7. first invalid field receives focus;
+8. correcting a field clears that field's invalid state;
+9. valid onsite-estimate submission with name, phone, email, and service address still reaches the existing submit path;
+10. communication-permission validation still behaves as before.
 
 Run:
 
