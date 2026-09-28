@@ -926,7 +926,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** LEAD-FIX002
 - **Task Name:** Lead Signal Notification and Persistence Reliability
-- **Status:** DONE
+- **Status:** ACTIVE
 - **Category:** LEAD
 - **Primary Workstream:** Runtime System
 - **Related Workstreams:** CRM / HubSpot System; Scheduling System; Estimate / Quote System; Analytics System; Infrastructure / Deployment System

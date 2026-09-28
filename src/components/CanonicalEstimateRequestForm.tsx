@@ -1,9 +1,10 @@
-import { useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useId, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { sendLeadSignal } from '../lib/hubspotLeadSignal';
 import '../styles/canonicalEstimateForm.css';
 
 type PreferredContactMethod = 'Text' | 'Phone call' | 'Email' | 'Any';
 type IntakeMode = 'call' | 'estimate';
+type CompactEstimateRequiredField = 'fullName' | 'mobilePhone' | 'email' | 'streetAddress';
 
 type FormState = {
   fullName: string;
@@ -72,6 +73,27 @@ const splitFullName = (fullName: string) => {
   return { firstName: firstName || '', lastName: rest.join(' ') };
 };
 
+const compactEstimateRequiredFields: CompactEstimateRequiredField[] = [
+  'fullName',
+  'mobilePhone',
+  'email',
+  'streetAddress',
+];
+
+const compactEstimateFieldLabels: Record<CompactEstimateRequiredField, string> = {
+  fullName: 'name',
+  mobilePhone: 'phone number',
+  email: 'email address',
+  streetAddress: 'service address',
+};
+
+const formatMissingFieldMessage = (fields: CompactEstimateRequiredField[]) => {
+  const labels = fields.map((field) => compactEstimateFieldLabels[field]);
+  if (labels.length === 1) return `Please enter your ${labels[0]}.`;
+  if (labels.length === 2) return `Please enter your ${labels[0]} and ${labels[1]}.`;
+  return `Please enter your ${labels.slice(0, -1).join(', ')}, and ${labels.at(-1)}.`;
+};
+
 const CanonicalEstimateRequestForm = ({
   entryRoute,
   sourceFamily,
@@ -94,7 +116,9 @@ const CanonicalEstimateRequestForm = ({
   const [failureRequestId, setFailureRequestId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [started, setStarted] = useState(false);
+  const [invalidEstimateFields, setInvalidEstimateFields] = useState<CompactEstimateRequiredField[]>([]);
   const fieldRefs = useRef<Partial<Record<keyof FormState, HTMLElement | null>>>({});
+  const fieldErrorIdPrefix = useId();
   const timeSlotOptions = useMemo(() => {
     const d = new Date(`${formState.preferredEstimateDate}T12:00:00`);
     if (Number.isNaN(d.getTime())) return [];
@@ -118,6 +142,7 @@ const CanonicalEstimateRequestForm = ({
     markStarted();
     setIntakeMode(mode);
     setApiFailure(null);
+    setInvalidEstimateFields([]);
   };
 
   const handleChange = (field: keyof FormState) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -131,6 +156,13 @@ const CanonicalEstimateRequestForm = ({
       if (field === 'preferredEstimateDate') return { ...prev, preferredEstimateDate: nextValue, preferredEstimateTimeSlot: '' };
       return { ...prev, [field]: nextValue };
     });
+    if (
+      compactEstimate
+      && compactEstimateRequiredFields.includes(field as CompactEstimateRequiredField)
+      && nextValue.trim()
+    ) {
+      setInvalidEstimateFields((prev) => prev.filter((invalidField) => invalidField !== field));
+    }
   };
 
   const selectedContactMethods = () => [
@@ -160,6 +192,28 @@ const CanonicalEstimateRequestForm = ({
   const buildReferralContext = () => {
     const referredByName = formState.referredByName.trim();
     return referredByName ? { referredByName } : {};
+  };
+
+  const validateCompactEstimateRequiredFields = () => {
+    const missingFields = compactEstimateRequiredFields.filter((field) => !formState[field].trim());
+    setInvalidEstimateFields(missingFields);
+    if (missingFields.length === 0) return true;
+    setApiFailure(formatMissingFieldMessage(missingFields));
+    fieldRefs.current[missingFields[0]]?.focus();
+    return false;
+  };
+
+  const compactFieldErrorId = (field: CompactEstimateRequiredField) => `${fieldErrorIdPrefix}-${field}-error`;
+
+  const compactFieldAccessibility = (field: CompactEstimateRequiredField) => {
+    const invalid = invalidEstimateFields.includes(field);
+    return {
+      invalid,
+      inputProps: {
+        'aria-invalid': invalid || undefined,
+        'aria-describedby': invalid ? compactFieldErrorId(field) : undefined,
+      },
+    };
   };
 
   const submitCallbackRequest = async (submitTimestamp: string) => {
@@ -210,10 +264,7 @@ const CanonicalEstimateRequestForm = ({
     const parsed = splitFullName(formState.fullName);
     const firstName = compactEstimate ? parsed.firstName : formState.firstName.trim();
     const lastName = compactEstimate ? parsed.lastName : formState.lastName.trim();
-    if (compactEstimate && (!formState.fullName.trim() || !formState.mobilePhone.trim() || !formState.streetAddress.trim())) {
-      setApiFailure('Please enter your name, phone number, and service address.');
-      return null;
-    }
+    if (compactEstimate && !validateCompactEstimateRequiredFields()) return null;
     if (!validateCommunicationPermission()) return null;
     return sendLeadSignal({
       event: 'qr_estimate_requested',
@@ -388,17 +439,20 @@ const CanonicalEstimateRequestForm = ({
             <div className="qr-form-grid">
               {compactEstimate ? (
                 <>
-                  <label className="estimate-field">
+                  <label className={`estimate-field${compactFieldAccessibility('fullName').invalid ? ' estimate-field--invalid' : ''}`}>
                     <span>Name</span>
-                    <input ref={(e) => { fieldRefs.current.fullName = e; }} type="text" value={formState.fullName} onChange={handleChange('fullName')} required />
+                    <input ref={(e) => { fieldRefs.current.fullName = e; }} aria-label="Name" type="text" value={formState.fullName} onChange={handleChange('fullName')} required {...compactFieldAccessibility('fullName').inputProps} />
+                    {compactFieldAccessibility('fullName').invalid ? <span id={compactFieldErrorId('fullName')} className="estimate-field-error">Please enter your name.</span> : null}
                   </label>
-                  <label className="estimate-field">
+                  <label className={`estimate-field${compactFieldAccessibility('mobilePhone').invalid ? ' estimate-field--invalid' : ''}`}>
                     <span>Phone</span>
-                    <input ref={(e) => { fieldRefs.current.mobilePhone = e; }} type="tel" value={formState.mobilePhone} onChange={handleChange('mobilePhone')} required />
+                    <input ref={(e) => { fieldRefs.current.mobilePhone = e; }} aria-label="Phone" type="tel" value={formState.mobilePhone} onChange={handleChange('mobilePhone')} required {...compactFieldAccessibility('mobilePhone').inputProps} />
+                    {compactFieldAccessibility('mobilePhone').invalid ? <span id={compactFieldErrorId('mobilePhone')} className="estimate-field-error">Please enter your phone number.</span> : null}
                   </label>
-                  <label className="estimate-field">
-                    <span>Email (optional)</span>
-                    <input type="email" value={formState.email} onChange={handleChange('email')} />
+                  <label className={`estimate-field${compactFieldAccessibility('email').invalid ? ' estimate-field--invalid' : ''}`}>
+                    <span>Email address</span>
+                    <input ref={(e) => { fieldRefs.current.email = e; }} aria-label="Email address" type="email" value={formState.email} onChange={handleChange('email')} required {...compactFieldAccessibility('email').inputProps} />
+                    {compactFieldAccessibility('email').invalid ? <span id={compactFieldErrorId('email')} className="estimate-field-error">Please enter your email address.</span> : null}
                   </label>
                 </>
               ) : (
@@ -434,9 +488,10 @@ const CanonicalEstimateRequestForm = ({
           <fieldset className="qr-section estimate-form-stage">
             <legend>{compactEstimate ? 'Service location' : 'Stage 2 - Property Details'}</legend>
             <div className="qr-form-grid">
-              <label className="estimate-field">
+              <label className={`estimate-field${compactEstimate && compactFieldAccessibility('streetAddress').invalid ? ' estimate-field--invalid' : ''}`}>
                 <span>Street address</span>
-                <input ref={(e) => { fieldRefs.current.streetAddress = e; }} value={formState.streetAddress} onChange={handleChange('streetAddress')} required />
+                <input ref={(e) => { fieldRefs.current.streetAddress = e; }} aria-label={compactEstimate ? 'Street address' : undefined} value={formState.streetAddress} onChange={handleChange('streetAddress')} required {...(compactEstimate ? compactFieldAccessibility('streetAddress').inputProps : {})} />
+                {compactEstimate && compactFieldAccessibility('streetAddress').invalid ? <span id={compactFieldErrorId('streetAddress')} className="estimate-field-error">Please enter your service address.</span> : null}
               </label>
               <label className="estimate-field">
                 <span>City (optional)</span>
