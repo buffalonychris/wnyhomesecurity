@@ -89,6 +89,8 @@ No deployment or live external-system validation was authorized. After a later o
 
 **Branch:** `codex/lead-fix002-validation-ux-rev02`
 
+**Draft PR:** #590 — `https://github.com/buffalonychris/wnyhomesecurity/pull/590`
+
 **Work order:** `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV02.md`
 
 ### Defect correction
@@ -112,7 +114,7 @@ Existing submission payloads, Lead Signal semantics, HubSpot behavior, schedulin
 - `npm test -- --run`: PASS on the permitted serial retry, 34 files and 175 tests. The first full run was executed concurrently with the production build and had one unrelated lazy-loaded operator-navigation timeout while the page remained at `Loading…`; the same operator test passed on the immediate serial retry.
 - `npm run typecheck:test`: PASS.
 - `npm run build`: PASS. Vite reported the existing mixed static/dynamic import warning for `GovernanceViewer.tsx`; the build completed successfully.
-- Final changed-file, protected-scope, unexpected-delete, and `git diff --check` evidence is recorded in the REV02 task closeout.
+- Exact six-file allowlist, protected-scope, no-deletion, conflict-marker, and staged `git diff --check` gates: PASS.
 
 ### REV02 protected-scope confirmation
 
