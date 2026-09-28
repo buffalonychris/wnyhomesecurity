@@ -942,7 +942,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Evidence:** Focused canonical estimate-form suite passed 14/14. The default parallel full suite passed 179/181 with two timing-only timeouts in untouched `GovernanceViewer.test.tsx`; that file passed 5/5 independently, and a deterministic single-worker full suite passed 181/181. `npm run typecheck:test`, `npm run build`, `git diff --check`, staged diff check, allowlist verification, and protected-scope verification passed.
 - **Dependencies:** Operator-approved `FUNNEL-CTA001_WORK_ORDER_REV01.md`; current `main` including merged LEAD-FIX002 REV02; current funnel/copy/visual/accessibility owner standards as targeted by the work order.
 - **Operator Decision Required:** Review the implementation draft PR and decide whether to merge/deploy.
-- **Publication/Evidence State:** IMPLEMENTED — DRAFT PR OPEN
+- **Publication/Evidence State:** DRAFT_PR_OPEN
 - **Draft PR Evidence:** Draft PR [#592](https://github.com/buffalonychris/wnyhomesecurity/pull/592), `codex/funnel-cta001-contact-intake-finalization` -> `main`, verified open and draft on 2026-09-28. Initial implementation commit: `a8787981e54c659b2a37bf26047b0ca4a3c2dbc8`.
 - **Merge Evidence:** Pending.
 - **Deployment Applicability / Status / Evidence:** Deployable customer-facing UI task; production deployment pending operator-approved merge.
