@@ -926,7 +926,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** FUNNEL-CTA001
 - **Task Name:** Contact CTA and Intake Experience Finalization
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Primary Workstream:** Public Content System
 - **Related Workstreams:** Site Architecture; Visual System; Fit Check System; Estimate / Quote System; CRM / HubSpot System; Project Governance
@@ -939,15 +939,17 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Documentation Updates Required:** Execute and record `docs/codex/work-orders/FUNNEL-CTA001_WORK_ORDER_REV01.md`; create bounded implementation audit; update only this task's lifecycle/evidence.
 - **Validation Required:** Focused canonical estimate-form tests; full `npm test -- --run`; `npm run typecheck:test`; `npm run build`; `git diff --check`; changed-file allowlist/protected-scope verification.
 - **Exit Criteria:** Approved copy and form rules implemented exactly; callback stays minimal; onsite requires separate first/last plus phone/email/service address; protected systems untouched; required validation passes; one draft PR exists; task is returned to DONE with truthful draft-PR evidence.
+- **Validation Evidence:** Focused canonical estimate-form suite passed 14/14. The default parallel full suite passed 179/181 with two timing-only timeouts in untouched `GovernanceViewer.test.tsx`; that file passed 5/5 independently, and a deterministic single-worker full suite passed 181/181. `npm run typecheck:test`, `npm run build`, `git diff --check`, staged diff check, allowlist verification, and protected-scope verification passed.
 - **Dependencies:** Operator-approved `FUNNEL-CTA001_WORK_ORDER_REV01.md`; current `main` including merged LEAD-FIX002 REV02; current funnel/copy/visual/accessibility owner standards as targeted by the work order.
 - **Operator Decision Required:** Review the implementation draft PR and decide whether to merge/deploy.
-- **Publication/Evidence State:** NOT_STARTED
-- **Draft PR Evidence:** Pending.
+- **Publication/Evidence State:** IMPLEMENTED — DRAFT PR OPEN
+- **Draft PR Evidence:** Draft PR [#592](https://github.com/buffalonychris/wnyhomesecurity/pull/592), `codex/funnel-cta001-contact-intake-finalization` -> `main`, verified open and draft on 2026-09-28. Initial implementation commit: `a8787981e54c659b2a37bf26047b0ca4a3c2dbc8`.
 - **Merge Evidence:** Pending.
 - **Deployment Applicability / Status / Evidence:** Deployable customer-facing UI task; production deployment pending operator-approved merge.
 - **Main-Sync Status / Evidence:** Pending post-merge verification.
 - **CTR Eligibility:** Not eligible until merge, deployment verification, and main synchronization are complete.
 - **CTR Record / Pointer:** None.
+- **Completion Notes:** Applied the locked contact/intake copy; preserved callback Name/Phone minimums and optional Email/referral/notes; replaced compact onsite Name with required First Name and Last Name; preserved precise five-field onsite validation UX; mapped explicit first/last values through the existing estimate submit path; retained existing callback/estimate event paths and communication authorization; bumped the site patch version to `v1.0.200`; and recorded implementation evidence in `docs/audits/funnel_cta001_implementation_rev01.md`. No protected runtime, API, HubSpot schema/pipeline, scheduling, requestId, notification, payment, QR attribution, route/navigation, dependency, lockfile, environment, secret, semantic-token, merge, or deployment change occurred.
 
 ### LEAD-FIX002
 
