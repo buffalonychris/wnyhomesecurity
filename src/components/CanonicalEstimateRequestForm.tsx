@@ -4,7 +4,7 @@ import '../styles/canonicalEstimateForm.css';
 
 type PreferredContactMethod = 'Text' | 'Phone call' | 'Email' | 'Any';
 type IntakeMode = 'call' | 'estimate';
-type CompactEstimateRequiredField = 'fullName' | 'mobilePhone' | 'email' | 'streetAddress';
+type CompactEstimateRequiredField = 'firstName' | 'lastName' | 'mobilePhone' | 'email' | 'streetAddress';
 
 type FormState = {
   fullName: string;
@@ -74,14 +74,16 @@ const splitFullName = (fullName: string) => {
 };
 
 const compactEstimateRequiredFields: CompactEstimateRequiredField[] = [
-  'fullName',
+  'firstName',
+  'lastName',
   'mobilePhone',
   'email',
   'streetAddress',
 ];
 
 const compactEstimateFieldLabels: Record<CompactEstimateRequiredField, string> = {
-  fullName: 'name',
+  firstName: 'first name',
+  lastName: 'last name',
   mobilePhone: 'phone number',
   email: 'email address',
   streetAddress: 'service address',
@@ -261,9 +263,8 @@ const CanonicalEstimateRequestForm = ({
   };
 
   const submitEstimateRequest = async (submitTimestamp: string) => {
-    const parsed = splitFullName(formState.fullName);
-    const firstName = compactEstimate ? parsed.firstName : formState.firstName.trim();
-    const lastName = compactEstimate ? parsed.lastName : formState.lastName.trim();
+    const firstName = formState.firstName.trim();
+    const lastName = formState.lastName.trim();
     if (compactEstimate && !validateCompactEstimateRequiredFields()) return null;
     if (!validateCommunicationPermission()) return null;
     return sendLeadSignal({
@@ -283,7 +284,6 @@ const CanonicalEstimateRequestForm = ({
       consentTimestamp: new Date().toISOString(),
       contactHours: '8am_9pm_7_days',
       contact: {
-        fullName: compactEstimate ? formState.fullName.trim() : undefined,
         firstName,
         lastName,
         phone: formState.mobilePhone.trim(),
@@ -344,15 +344,15 @@ const CanonicalEstimateRequestForm = ({
   const renderPathSelection = () => (
     <fieldset className="qr-section estimate-form-stage intake-path-stage">
       <legend>Choose how you'd like to get started</legend>
-      <p className="estimate-stage-note">Pick the quickest next step. We'll review your request and confirm availability before anything is scheduled.</p>
+      <p className="estimate-stage-note">Choose what works best for you. We’ll take it from there — nothing gets scheduled until we confirm it with you.</p>
       <div className="intake-path-grid">
         <button type="button" className={`intake-path-option${intakeMode === 'call' ? ' is-active' : ''}`} onClick={() => handleModeChange('call')} aria-pressed={intakeMode === 'call'}>
           <span>Request a Call</span>
-          <small>Send your name and phone number. We'll call you back before asking for more detail.</small>
+          <small>Just give us your name and number. We’ll call you back and take it from there.</small>
         </button>
         <button type="button" className={`intake-path-option${intakeMode === 'estimate' ? ' is-active' : ''}`} onClick={() => handleModeChange('estimate')} aria-pressed={intakeMode === 'estimate'}>
           <span>Request On-Site Estimate</span>
-          <small>Share the service location and any helpful preferences. We'll review the request before anything is scheduled.</small>
+          <small>Tell us where the property is and anything you’d like us to know. We’ll review everything with you before anything is scheduled.</small>
         </button>
       </div>
     </fieldset>
@@ -361,8 +361,8 @@ const CanonicalEstimateRequestForm = ({
   const renderCommunicationSections = () => (
     <>
       <fieldset className="qr-section estimate-form-stage communication-preference-stage">
-        <legend>Preferred communication</legend>
-        <p className="estimate-stage-note">Choose any methods we can use for updates about your request, appointment coordination, reminders, arrival updates, and service follow-up.</p>
+        <legend>How should we reach you?</legend>
+        <p className="estimate-stage-note">Choose any that work for you. We’ll only use them for your request, scheduling, reminders, arrival updates, and service follow-up.</p>
         <div className="qr-checkbox-list communication-method-list">
           <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.textConsent} onChange={handleChange('textConsent')} /><span>Text message</span></label>
           <label className="qr-choice estimate-choice"><input type="checkbox" checked={formState.phoneConsent} onChange={handleChange('phoneConsent')} /><span>Phone call</span></label>
@@ -370,12 +370,11 @@ const CanonicalEstimateRequestForm = ({
         </div>
       </fieldset>
       <fieldset className="qr-section estimate-form-stage communication-permission-stage">
-        <legend>Communication permission</legend>
+        <legend>Okay for us to contact you?</legend>
         <label className="qr-choice estimate-choice permission-choice">
           <input type="checkbox" checked={formState.contactTimeAcknowledgement} onChange={handleChange('contactTimeAcknowledgement')} required />
-          <span>By submitting this request, you authorize WNY Home Security to contact you using the selected methods about this request, scheduling, appointment reminders, arrival updates, and related service follow-up.</span>
+          <span>Yes — WNY Home Security may contact me using the methods I selected about this request, scheduling, reminders, arrival updates, and service follow-up.</span>
         </label>
-        <p className="estimate-stage-note">We do not sell your information or use this permission for unrelated marketing.</p>
         <p className="estimate-stage-note">You may revoke permission at any time by contacting us and telling us which method you want removed.</p>
       </fieldset>
     </>
@@ -405,6 +404,7 @@ const CanonicalEstimateRequestForm = ({
         <>
           <fieldset className="qr-section estimate-form-stage">
             <legend>Request a Call</legend>
+            <p className="estimate-stage-note">Your number is not for sale. Ever. No spam, no robocall campaigns, no marketing. If you ask us to contact you about your request, that’s exactly what we use it for.</p>
             <div className="qr-form-grid">
               <label className="estimate-field">
                 <span>Name</span>
@@ -419,7 +419,7 @@ const CanonicalEstimateRequestForm = ({
                 <input type="email" value={formState.email} onChange={handleChange('email')} />
               </label>
               <label className="estimate-field">
-                <span>Referred by (optional)</span>
+                <span>Referred by (optional — good people deserve credit for good referrals.)</span>
                 <input type="text" value={formState.referredByName} onChange={handleChange('referredByName')} />
               </label>
             </div>
@@ -435,14 +435,19 @@ const CanonicalEstimateRequestForm = ({
       {intakeMode === 'estimate' ? (
         <>
           <fieldset className="qr-section estimate-form-stage">
-            <legend>{compactEstimate ? 'Estimate request basics' : 'Stage 1 - Start Here'}</legend>
+            <legend>{compactEstimate ? 'First, tell us about you' : 'Stage 1 - Start Here'}</legend>
             <div className="qr-form-grid">
               {compactEstimate ? (
                 <>
-                  <label className={`estimate-field${compactFieldAccessibility('fullName').invalid ? ' estimate-field--invalid' : ''}`}>
-                    <span>Name</span>
-                    <input ref={(e) => { fieldRefs.current.fullName = e; }} aria-label="Name" type="text" value={formState.fullName} onChange={handleChange('fullName')} required {...compactFieldAccessibility('fullName').inputProps} />
-                    {compactFieldAccessibility('fullName').invalid ? <span id={compactFieldErrorId('fullName')} className="estimate-field-error">Please enter your name.</span> : null}
+                  <label className={`estimate-field${compactFieldAccessibility('firstName').invalid ? ' estimate-field--invalid' : ''}`}>
+                    <span>First Name</span>
+                    <input ref={(e) => { fieldRefs.current.firstName = e; }} aria-label="First Name" type="text" value={formState.firstName} onChange={handleChange('firstName')} required {...compactFieldAccessibility('firstName').inputProps} />
+                    {compactFieldAccessibility('firstName').invalid ? <span id={compactFieldErrorId('firstName')} className="estimate-field-error">Please enter your first name.</span> : null}
+                  </label>
+                  <label className={`estimate-field${compactFieldAccessibility('lastName').invalid ? ' estimate-field--invalid' : ''}`}>
+                    <span>Last Name</span>
+                    <input ref={(e) => { fieldRefs.current.lastName = e; }} aria-label="Last Name" type="text" value={formState.lastName} onChange={handleChange('lastName')} required {...compactFieldAccessibility('lastName').inputProps} />
+                    {compactFieldAccessibility('lastName').invalid ? <span id={compactFieldErrorId('lastName')} className="estimate-field-error">Please enter your last name.</span> : null}
                   </label>
                   <label className={`estimate-field${compactFieldAccessibility('mobilePhone').invalid ? ' estimate-field--invalid' : ''}`}>
                     <span>Phone</span>
@@ -486,7 +491,7 @@ const CanonicalEstimateRequestForm = ({
             </label>
           </fieldset>
           <fieldset className="qr-section estimate-form-stage">
-            <legend>{compactEstimate ? 'Service location' : 'Stage 2 - Property Details'}</legend>
+            <legend>{compactEstimate ? 'About the property' : 'Stage 2 - Property Details'}</legend>
             <div className="qr-form-grid">
               <label className={`estimate-field${compactEstimate && compactFieldAccessibility('streetAddress').invalid ? ' estimate-field--invalid' : ''}`}>
                 <span>Street address</span>
@@ -531,7 +536,7 @@ const CanonicalEstimateRequestForm = ({
             ) : null}
           </fieldset>
           <fieldset className="qr-section estimate-form-stage">
-            <legend>{compactEstimate ? 'Preferred estimate window (optional)' : 'Stage 3 - Estimate Window'}</legend>
+            <legend>{compactEstimate ? 'When works best?' : 'Stage 3 - Estimate Window'}</legend>
             <p className="estimate-stage-note">This is a request only. We'll review availability before anything is scheduled.</p>
             <div className="estimate-form-grid-2">
               <label className="estimate-field">
@@ -552,7 +557,7 @@ const CanonicalEstimateRequestForm = ({
       ) : null}
 
       {apiFailure && intakeMode !== null ? <p className="qr-error">{apiFailure}{failureRequestId ? ` Reference ID: ${failureRequestId}.` : ''}</p> : null}
-      {intakeMode !== null ? <button type="submit" className="qr-cta estimate-submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : intakeMode === 'call' ? 'Request My Call' : 'Request My On-Site Estimate'}</button> : null}
+      {intakeMode !== null ? <button type="submit" className="qr-cta estimate-submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : intakeMode === 'call' ? 'Call Me Back' : 'Request My On-Site Estimate'}</button> : null}
     </form>
   );
 };
