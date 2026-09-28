@@ -922,6 +922,33 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### FUNNEL-CTA001
+
+- **Task ID:** FUNNEL-CTA001
+- **Task Name:** Contact CTA and Intake Experience Finalization
+- **Status:** ACTIVE
+- **Category:** FUNNEL
+- **Primary Workstream:** Public Content System
+- **Related Workstreams:** Site Architecture; Visual System; Fit Check System; Estimate / Quote System; CRM / HubSpot System; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Finalize the callback and onsite-estimate customer intake experience using operator-approved low-friction copy, identity-field rules, precise validation, and existing supported lead payload mapping while preserving protected runtime behavior.
+- **Allowed Scope:** Contact-page hero copy; callback/onsite CTA descriptions; callback trust/referral/button copy; callback minimal required-field rules; onsite separate required first/last name plus phone/email/service address; existing precise field validation UX; supported client-side first/last payload mapping; directly relevant tests; semantic styling only if required; site patch version; bounded audit and this task record.
+- **Forbidden Scope:** No lead event classification changes; no API/runtime changes; no HubSpot schema/pipeline/stage or persistence-semantics changes; no scheduling changes; no requestId changes; no Resend/email runtime changes; no Stripe/payment changes; no QR attribution changes; no route/navigation changes; no environment/secrets; no dependencies/package-lock; no semantic-token definition changes; no unrelated copy/refactors; no merge or manual deployment.
+- **Target Files:** `src/pages/Contact.tsx`; `src/components/CanonicalEstimateRequestForm.tsx`; `src/components/CanonicalEstimateRequestForm.test.tsx`; `src/styles/canonicalEstimateForm.css` only if required; `src/lib/siteVersion.ts`; `docs/system/master-task-register.md`; `docs/audits/funnel_cta001_implementation_rev01.md`.
+- **Runtime Systems Affected:** No protected runtime behavior changes authorized. Existing callback/estimate client submission paths and already-supported first/last lead payload fields may be exercised only as required by the form changes.
+- **Documentation Updates Required:** Execute and record `docs/codex/work-orders/FUNNEL-CTA001_WORK_ORDER_REV01.md`; create bounded implementation audit; update only this task's lifecycle/evidence.
+- **Validation Required:** Focused canonical estimate-form tests; full `npm test -- --run`; `npm run typecheck:test`; `npm run build`; `git diff --check`; changed-file allowlist/protected-scope verification.
+- **Exit Criteria:** Approved copy and form rules implemented exactly; callback stays minimal; onsite requires separate first/last plus phone/email/service address; protected systems untouched; required validation passes; one draft PR exists; task is returned to DONE with truthful draft-PR evidence.
+- **Dependencies:** Operator-approved `FUNNEL-CTA001_WORK_ORDER_REV01.md`; current `main` including merged LEAD-FIX002 REV02; current funnel/copy/visual/accessibility owner standards as targeted by the work order.
+- **Operator Decision Required:** Review the implementation draft PR and decide whether to merge/deploy.
+- **Publication/Evidence State:** NOT_STARTED
+- **Draft PR Evidence:** Pending.
+- **Merge Evidence:** Pending.
+- **Deployment Applicability / Status / Evidence:** Deployable customer-facing UI task; production deployment pending operator-approved merge.
+- **Main-Sync Status / Evidence:** Pending post-merge verification.
+- **CTR Eligibility:** Not eligible until merge, deployment verification, and main synchronization are complete.
+- **CTR Record / Pointer:** None.
+
 ### LEAD-FIX002
 
 - **Task ID:** LEAD-FIX002
