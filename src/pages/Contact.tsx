@@ -30,8 +30,7 @@ const Contact = () => {
           <p className="wnyhs-eyebrow">Contact</p>
           <h1 className="wnyhs-heading">Request a Free Estimate from {isHomeSecurity ? brandHomeSecurity : brandSite}</h1>
           <p className="wnyhs-description">
-            Tell us about your home security goals, or call/text now for cameras, video doorbells, package theft
-            protection, and smart home security planning.
+            Tell us what you’d like help with, or call/text us now. We’ll help you figure out what makes sense for your home or business.
           </p>
         </div>
         <div className="wnyhs-contact-support-actions">
