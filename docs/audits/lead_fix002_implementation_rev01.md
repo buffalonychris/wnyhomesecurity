@@ -82,3 +82,40 @@ No deployment or live external-system validation was authorized. After a later o
 4. In a controlled preview environment, make required HubSpot persistence unavailable; confirm a safe non-2xx response with the server `requestId`, no normal frontend success state, alternate phone/text guidance, no appointment request, and no lead-intake email attempt.
 5. In a controlled preview environment after successful HubSpot persistence, make each Resend path fail independently; confirm the response remains successful with the corresponding degraded notification status and the HubSpot lead remains traceable by `requestId`.
 6. Confirm the estimate deal remains in `WNYHS Sales Pipeline` (`2282258169`) at `New Estimate Request` (`3680633583`) and that no schema or stage mutation occurred.
+
+## REV02 validation-UX addendum
+
+**Date:** 2026-09-28
+
+**Branch:** `codex/lead-fix002-validation-ux-rev02`
+
+**Draft PR:** #590 — `https://github.com/buffalonychris/wnyhomesecurity/pull/590`
+
+**Work order:** `docs/codex/work-orders/LEAD-FIX002_WORK_ORDER_REV02.md`
+
+### Defect correction
+
+The compact onsite-estimate path now validates full name, mobile phone, email address, and service/street address independently before communication-permission validation or submission. A missing-field summary names only the actual omissions in form order. Each missing field receives a semantic-token error state, `aria-invalid="true"`, an `aria-describedby` reference to its field-level message, and first-invalid-field focus. Correcting a field clears only that field's invalid state. All four compact estimate fields use native `required` semantics, and an invalid required-field state cannot invoke `sendLeadSignal`.
+
+Existing submission payloads, Lead Signal semantics, HubSpot behavior, scheduling behavior, requestId behavior, consent behavior, and success states remain unchanged. The compact estimate email field changed from optional to required exactly as authorized by REV02.
+
+### REV02 files
+
+- `docs/audits/lead_fix002_implementation_rev01.md`
+- `docs/system/master-task-register.md`
+- `src/components/CanonicalEstimateRequestForm.test.tsx`
+- `src/components/CanonicalEstimateRequestForm.tsx`
+- `src/lib/siteVersion.ts`
+- `src/styles/canonicalEstimateForm.css`
+
+### REV02 validation evidence
+
+- Focused compact estimate validation: PASS, 8 tests.
+- `npm test -- --run`: PASS on the permitted serial retry, 34 files and 175 tests. The first full run was executed concurrently with the production build and had one unrelated lazy-loaded operator-navigation timeout while the page remained at `Loading…`; the same operator test passed on the immediate serial retry.
+- `npm run typecheck:test`: PASS.
+- `npm run build`: PASS. Vite reported the existing mixed static/dynamic import warning for `GovernanceViewer.tsx`; the build completed successfully.
+- Exact six-file allowlist, protected-scope, no-deletion, conflict-marker, and staged `git diff --check` gates: PASS.
+
+### REV02 protected-scope confirmation
+
+No runtime/API, HubSpot, Stripe/payment, scheduling, Resend/email, QR attribution, requestId, environment, secret, route, dependency, or package-lock file was changed. No merge or deployment was performed.

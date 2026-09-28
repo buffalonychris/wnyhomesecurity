@@ -100,6 +100,23 @@
 }
 
 .estimate-field textarea { min-height: 112px; resize: vertical; }
+.estimate-field--invalid input {
+  border-color: var(--wnyhs-error);
+  background: var(--wnyhs-error-soft);
+}
+
+.estimate-field.estimate-field--invalid input:focus {
+  border-color: var(--wnyhs-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wnyhs-error) 24%, transparent);
+}
+
+.estimate-field .estimate-field-error {
+  margin: 0.4rem 0 0;
+  color: var(--wnyhs-error);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
 .estimate-field input:focus,
 .estimate-field textarea:focus,
 .estimate-field select:focus {
