@@ -32,7 +32,7 @@ Required result:
 3. the first invalid field must receive focus or be scrolled/focused into view;
 4. accessible invalid-state semantics must be provided;
 5. correcting a field must clear its field-level invalid state;
-6. existing submission payloads, lead-signal semantics, HubSpot behavior, scheduling behavior, requestId behavior, consent behavior, and success states must remain unchanged.
+6. the compact onsite-estimate form must not submit unless full name, mobile phone, email address, and service/street address are all present;\n7. existing submission payloads, lead-signal semantics, HubSpot behavior, scheduling behavior, requestId behavior, consent behavior, and success states must remain unchanged.
 
 This is a narrow LEAD-FIX002 revision. It does not reopen or redesign the runtime reliability work completed in REV01.
 
@@ -124,7 +124,7 @@ On submit with invalid required fields:
 - if needed, use the existing field ref infrastructure to ensure the field is brought into view;
 - do not clear user-entered values.
 
-### Existing communication-permission validation
+### Required-field enforcement\n\nThe compact onsite-estimate fields for full name, mobile phone, email address, and service/street address must also use the component's appropriate native required semantics where compatible with the existing form structure. The explicit submit-time validation remains authoritative for the user-facing exact-message, field-highlighting, and focus behavior.\n\n### Existing communication-permission validation
 
 Preserve existing contact-method and communication-authorization validation behavior. Do not broaden this task into redesigning consent UX.
 
