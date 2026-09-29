@@ -922,6 +922,33 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### KAOS-PLATFORM-BOOTSTRAP001
+
+- **Task ID:** KAOS-PLATFORM-BOOTSTRAP001
+- **Task Name:** Establish Independent KAOS Platform Foundation
+- **Status:** ACTIVE
+- **Category:** GOV
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** KAOS Application; Infrastructure / Deployment System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Establish KAOS as an independently owned platform rather than a WNYHS-internal subsystem while preserving WNYHS as its first production tenant/use case. Through separately bounded child tasks, establish a dedicated KAOS ChatGPT Project; dedicated local repository at `C:\dev\kaos`; dedicated GitHub repository `buffalonychris/kaos`; tenant-neutral KAOS Core and service boundaries; Node 24 LTS toolchain baseline unless dependency verification establishes a blocking incompatibility; separate Cloudflare application/runtime identity; Google Workspace-backed human authentication through Cloudflare Access; separate configuration, secrets, and environment boundaries; dedicated authenticated KAOS MCP endpoint; WNYHS tenant adapter/source routing; CI/CD and platform verification; and a governed assessment of the existing WNYHS `/kaos` implementation. This parent program does not authorize all child implementation at once. Each external-system or implementation phase requires its own bounded child work order.
+- **Allowed Scope:** Establish the bounded child-task sequence required by the approved KAOS Platform Bootstrap & Automation Gameplan; establish the initial repository-owned authorization for creating the independent KAOS technical home; permit future separately bounded automation tasks for GitHub, local repository, Cloudflare, Google authentication, Cloudflare Access, secrets, MCP, CI, WNYHS tenant setup, and platform verification; preserve additive/destructive discipline; and permit a later assessment of the existing WNYHS `/kaos` implementation after the independent KAOS platform boundary exists.
+- **Forbidden Scope:** No immediate migration, deletion, or modification of the existing WNYHS `/kaos` implementation; no WNYHS public website, route, navigation, content, funnel, Lead Signal, requestId, HubSpot/CRM schema/pipeline/property/write-path, quote/agreement/payment/scheduling, Stripe/payment/webhook, QR attribution, Resend/email, Precision Planner, customer-data, or production-analytics change; no Cloudflare, DNS, environment, authentication, Google Workspace, Google Cloud OAuth, or admin mutation except through a separately authorized child task; no secret exposure or secret values committed to Git, Workspace, scripts, PRs, logs, prompts, or source; no new KAOS database unless a later approved task proves a named KAOS-owned mutable-state requirement; no mass document migration, destructive source-of-truth migration, broad Command Center feature implementation, merge by Codex, or silent scope expansion.
+- **Target Files:** Program level: `docs/system/master-task-register.md`. Phase 0 child task: `docs/codex/work-orders/KAOS-BOOTSTRAP001A_WORK_ORDER_REV01.md`. Future child tasks must name their own exact target files and systems.
+- **Runtime Systems Affected:** None for Phase 0. Future child tasks may affect GitHub, the local filesystem, Cloudflare, Google Cloud/Workspace identity, and KAOS MCP runtime only when separately authorized.
+- **Documentation Updates Required:** For Phase 0 only, add this program record to the Master Task Register and create the canonical `KAOS-BOOTSTRAP001A` work order. Do not update catalogs, manifests, indexes, Project KB, current context, historical KAOS documents, or other governance surfaces unless material current authority explicitly requires it and the operator revises the work order.
+- **Validation Required:** Repository convergence check; exact context check; exact OPS004 workstream-routing check; changed-file audit; exact task-ID search; protected-system no-change verification; unexpected-delete audit; `git diff --check`; governed docs-only build skip; branch and draft PR; no merge.
+- **Exit Criteria:** Phase 0 succeeds when this controlling ACTIVE program record exists exactly once; the canonical `KAOS-BOOTSTRAP001A` work order exists; only the two authorized files changed; validation passes; no external infrastructure was created or modified; no existing WNYHS `/kaos` source was changed; a draft PR exists; and no merge occurred. The parent program remains ACTIVE for later bootstrap child tasks.
+- **Dependencies:** Operator approval granted for the Phase 0 package; current WNYHS repository authority remains controlling until the independent KAOS repository contains an approved authority/task baseline; GitHub, Cloudflare, and Google permissions must be verified before their mutation tasks; all resource names require collision checks before creation.
+- **Operator Decision Required:** Yes for this bootstrap authority, each external-system mutation work order, PR merge, Cloudflare production deployment, Google OAuth/admin authorization, and existing `/kaos` migration disposition. Phase 0 operator authorization is approved in chat and encoded by the bounded work order.
+- **Publication/Evidence State:** NOT_STARTED
+- **Draft PR Evidence:** PENDING
+- **Merge Evidence:** PENDING
+- **Deployment Applicability / Status / Evidence:** DEPLOYMENT_NOT_APPLICABLE for Phase 0.
+- **Main-Sync Status / Evidence:** NOT_STARTED
+- **CTR Eligibility:** NO — controlling bootstrap program remains active until approved child work is completed.
+- **CTR Record / Pointer:** N/A
+
 ### FUNNEL-CTA001
 
 - **Task ID:** FUNNEL-CTA001
