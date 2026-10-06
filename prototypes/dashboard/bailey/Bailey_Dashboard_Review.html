@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-size="default" data-font="inter">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Bailey Dashboard Approval Preview</title>
+  <style>
+    :root {
+      --wnyhs-gold: #D4AF37;
+      --action-blue: #0A84FF;
+      --action-blue-hover: #0876E4;
+      --action-blue-selected: #075EBA;
+      --action-blue-disabled: #64748B;
+      --status-normal: #22C55E;
+      --status-active: #0A84FF;
+      --status-attention: #F5A524;
+      --status-alert: #EF4444;
+      --status-unavailable: #94A3B8;
+      --page-bg: #F4F7FB;
+      --shell: #FFFFFF;
+      --tile: #FFFFFF;
+      --recessed: #E8EEF6;
+      --text: #172033;
+      --muted: #5F6B7A;
+      --border: #CDD6E3;
+      --focus: #0A84FF;
+      --icon-bg: #111827;
+      --shadow: 0 8px 24px rgb(15 23 42 / 12%);
+      --inset-shadow: inset 0 1px 3px rgb(15 23 42 / 18%);
+      --font-stack: Inter, Arial, sans-serif;
+      --page-title-size: 32px;
+      --page-title-line: 38px;
+      --tile-title-size: 18px;
+      --tile-title-line: 24px;
+      --body-size: 16px;
+      --body-line: 24px;
+      --status-size: 16px;
+      --status-line: 20px;
+      --tile-pad: 20px;
+      --grid-gap: 16px;
+      --tile-radius: 16px;
+      --header-gap: 12px;
+      --icon-circle: 44px;
+      --icon-size: 22px;
+      --status-min: 128px;
+      --action-height: 48px;
+      --action-radius: 10px;
+      --divider-space: 12px;
+      color-scheme: light;
+    }
+
+    html[data-theme="dark"] {
+      --page-bg: #08111F;
+      --shell: #0D1726;
+      --tile: #111D2E;
+      --recessed: #091321;
+      --text: #F8FAFC;
+      --muted: #A8B3C2;
+      --border: #314056;
+      --focus: #5CB3FF;
+      --icon-bg: #050A12;
+      --shadow: 0 10px 28px rgb(0 0 0 / 28%);
+      --inset-shadow: inset 0 1px 4px rgb(0 0 0 / 45%);
+      color-scheme: dark;
+    }
+
+    html[data-size="compact"] {
+      --page-title-size: 28px;
+      --page-title-line: 34px;
+      --tile-title-size: 17px;
+      --tile-title-line: 22px;
+      --tile-pad: 16px;
+      --grid-gap: 12px;
+      --tile-radius: 14px;
+      --header-gap: 10px;
+      --icon-circle: 40px;
+      --icon-size: 20px;
+      --status-min: 112px;
+      --action-height: 48px;
+      --action-radius: 10px;
+      --divider-space: 10px;
+    }
+
+    html[data-size="large"] {
+      --page-title-size: 36px;
+      --page-title-line: 42px;
+      --tile-title-size: 20px;
+      --tile-title-line: 26px;
+      --body-size: 17px;
+      --body-line: 25px;
+      --status-size: 18px;
+      --status-line: 22px;
+      --tile-pad: 24px;
+      --grid-gap: 20px;
+      --tile-radius: 18px;
+      --header-gap: 14px;
+      --icon-circle: 48px;
+      --icon-size: 24px;
+      --status-min: 144px;
+      --action-height: 56px;
+      --action-radius: 12px;
+      --divider-space: 16px;
+    }
+
+    html[data-font="inter"] { --font-stack: Inter, Arial, sans-serif; }
+    html[data-font="atkinson"] { --font-stack: "Atkinson Hyperlegible", Arial, sans-serif; }
+    html[data-font="system"] { --font-stack: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
+
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: var(--page-bg); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: var(--font-stack);
+      font-size: var(--body-size);
+      line-height: var(--body-line);
+    }
+    button, select { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 8px;
+      left: 8px;
+      transform: translateY(-160%);
+      background: var(--action-blue);
+      color: #FFFFFF;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .preview-banner {
+      position: sticky;
+      z-index: 30;
+      top: 0;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--icon-bg);
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .045em;
+    }
+    .shell-header {
+      border-bottom: 1px solid var(--border);
+      background: var(--shell);
+      box-shadow: var(--shadow);
+    }
+    .header-main {
+      width: min(1600px, 100%);
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand-line { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--icon-bg);
+      color: var(--wnyhs-gold);
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .brand-name { color: var(--wnyhs-gold); font-weight: 800; letter-spacing: .04em; }
+    .property-name { color: var(--muted); font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+    .view-identity { text-align: right; }
+    .view-identity span { display: block; color: var(--muted); font-size: 14px; }
+    .view-identity strong { font-size: 18px; }
+    .nav-wrap {
+      width: min(1600px, 100%);
+      margin: 0 auto;
+      padding: 0 24px 14px;
+    }
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .nav-button {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--recessed);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      padding: 8px 10px;
+    }
+    .nav-button:hover { border-color: var(--action-blue-hover); }
+    .nav-button[aria-current="page"] { background: var(--action-blue-selected); color: #FFFFFF; border-color: var(--action-blue-selected); }
+    .coming-label { display: block; margin-top: 1px; font-size: 10px; letter-spacing: .06em; }
+    main { width: min(1600px, 100%); margin: 0 auto; padding: 28px 24px 36px; }
+    .view-heading { margin-bottom: 20px; }
+    .view-heading h1 { margin: 0; font-size: var(--page-title-size); line-height: var(--page-title-line); }
+    .view-heading p { margin: 4px 0 0; color: var(--muted); }
+    .scope-note {
+      margin-bottom: 20px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--wnyhs-gold);
+      border-radius: 10px;
+      background: var(--shell);
+      color: var(--muted);
+    }
+    .tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); align-items: stretch; }
+    html[data-size="compact"] .tile-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    html[data-size="large"] .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .home-grid { grid-auto-rows: 1fr; }
+    .tile, .panel {
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--tile-radius);
+      background: var(--tile);
+      box-shadow: var(--shadow);
+    }
+    .tile { padding: var(--tile-pad); display: flex; flex-direction: column; min-height: 420px; }
+    html[data-size="compact"] .tile { min-height: 400px; }
+    html[data-size="large"] .tile { min-height: 450px; }
+    .tile-header { display: flex; align-items: center; gap: var(--header-gap); }
+    .tile-icon {
+      width: var(--icon-circle);
+      height: var(--icon-circle);
+      flex: 0 0 var(--icon-circle);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--icon-bg);
+      color: var(--wnyhs-gold);
+    }
+    .tile-icon svg { width: var(--icon-size); height: var(--icon-size); }
+    .tile-title { margin: 0; color: var(--wnyhs-gold); font-size: var(--tile-title-size); line-height: var(--tile-title-line); }
+    .tile-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .divider { height: 1px; margin: var(--divider-space) 0; background: color-mix(in srgb, var(--border) 60%, transparent); }
+    .tile-content { display: flex; flex: 1; flex-direction: column; gap: 12px; }
+    .helper { margin: 0; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .status-list { display: grid; gap: 8px; }
+    .status-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--status-min), auto); align-items: center; gap: 10px; }
+    .status-label { color: var(--muted); }
+    .status-value {
+      min-width: var(--status-min);
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--recessed);
+      box-shadow: var(--inset-shadow);
+      color: var(--text);
+      font-size: var(--status-size);
+      line-height: var(--status-line);
+      font-weight: 700;
+      text-align: right;
+    }
+    .status-value[data-status="normal"] { color: var(--status-normal); }
+    .status-value[data-status="active"] { color: var(--status-active); }
+    .status-value[data-status="attention"] { color: var(--status-attention); }
+    .status-value[data-status="alert"] { color: var(--status-alert); }
+    .status-value[data-status="unavailable"] { color: var(--status-unavailable); }
+    .media-placeholder {
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--recessed);
+      color: var(--muted);
+      text-align: center;
+      padding: 12px;
+    }
+    .media-placeholder svg { width: 34px; height: 34px; margin-bottom: 6px; color: var(--muted); }
+    .media-placeholder strong { display: block; color: var(--text); }
+    .capability-list, .activity-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .capability-list li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 7px; }
+    .capability-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .capability-list span:last-child { color: var(--muted); text-align: right; }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+    .action-button {
+      min-height: var(--action-height);
+      border: 0;
+      border-radius: var(--action-radius);
+      background: var(--action-blue);
+      color: #FFFFFF;
+      cursor: pointer;
+      font-size: var(--status-size);
+      line-height: var(--status-line);
+      font-weight: 650;
+      padding: 0 18px;
+      box-shadow: 0 5px 12px rgb(10 132 255 / 24%);
+    }
+    .action-button:hover, .action-button.is-focus { background: var(--action-blue-hover); }
+    .action-button.is-focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .action-button:active, .action-button.is-pressed { transform: translateY(1px); box-shadow: 0 2px 5px rgb(10 132 255 / 20%); }
+    .action-button[aria-pressed="true"], .action-button.is-selected { background: var(--action-blue-selected); box-shadow: inset 0 2px 5px rgb(0 0 0 / 28%); }
+    .action-button:disabled, .action-button.is-disabled { background: var(--action-blue-disabled); cursor: not-allowed; box-shadow: none; }
+    .action-button.is-pending { cursor: progress; }
+    .action-button.is-pending::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 8px; border: 2px solid rgb(255 255 255 / 45%); border-top-color: #FFFFFF; border-radius: 50%; vertical-align: -1px; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .panel { padding: var(--tile-pad); }
+    .panel h2 { margin: 0 0 6px; font-size: 22px; line-height: 28px; }
+    .panel > p { margin: 0 0 16px; color: var(--muted); }
+    .panel-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
+    .systems-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); }
+    .system-group h2 { color: var(--wnyhs-gold); }
+    .activity-item { padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--recessed); }
+    .activity-meta { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--muted); font-size: 14px; }
+    .activity-item p { margin: 0 0 10px; }
+    .coming-panel { min-height: 340px; display: grid; place-items: center; text-align: center; }
+    .coming-badge { display: inline-block; margin-bottom: 10px; padding: 7px 10px; border: 1px solid var(--wnyhs-gold); border-radius: 999px; color: var(--wnyhs-gold); font-size: 14px; font-weight: 800; letter-spacing: .06em; }
+    fieldset { margin: 0; padding: 0; border: 0; }
+    legend { margin-bottom: 10px; font-size: 18px; font-weight: 700; }
+    .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .segmented.scenarios { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .choice-button {
+      min-height: var(--action-height);
+      border: 1px solid var(--border);
+      border-radius: var(--action-radius);
+      background: var(--recessed);
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px 10px;
+      font-weight: 700;
+    }
+    .choice-button:hover { border-color: var(--action-blue-hover); }
+    .choice-button[aria-pressed="true"] { background: var(--action-blue-selected); border-color: var(--action-blue-selected); color: #FFFFFF; }
+    .control-help { margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .settings-stack { display: grid; gap: var(--grid-gap); }
+    .state-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .state-sample { min-width: 0; }
+    .state-sample .action-button { width: 100%; }
+    .state-sample p { min-height: 40px; margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 20px; }
+    .state-result { display: block; margin-top: 4px; font-weight: 700; }
+    .state-result[data-status="alert"] { color: var(--status-alert); }
+    .state-result[data-status="unavailable"] { color: var(--status-unavailable); }
+    .review-note { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--recessed); color: var(--muted); }
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--shell);
+      box-shadow: var(--shadow);
+    }
+    .footer-inner {
+      width: min(1600px, 100%);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .footer-context { color: var(--muted); text-align: center; font-size: 14px; }
+    .footer-time { color: var(--muted); text-align: right; font-size: 14px; }
+    .feedback {
+      position: fixed;
+      z-index: 60;
+      right: 18px;
+      bottom: 18px;
+      max-width: min(420px, calc(100vw - 36px));
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--icon-bg);
+      color: #FFFFFF;
+      box-shadow: var(--shadow);
+    }
+    [hidden] { display: none !important; }
+
+    @media (max-width: 1150px) {
+      .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .state-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .header-main { padding: 14px 16px; align-items: flex-start; }
+      .view-identity { max-width: 42%; }
+      .brand-name { font-size: 14px; }
+      .property-name { font-size: 12px; }
+      .nav-wrap { padding: 0 16px 12px; }
+      .nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      main { padding: 22px 16px 28px; }
+      .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid, .panel-grid, .systems-grid { grid-template-columns: 1fr; }
+      .tile, html[data-size="compact"] .tile, html[data-size="large"] .tile { min-height: 0; }
+      .segmented, .segmented.scenarios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-inner { grid-template-columns: 1fr; text-align: left; }
+      .footer-context, .footer-time { text-align: left; }
+    }
+    @media (max-width: 430px) {
+      .header-main { display: grid; grid-template-columns: 1fr; }
+      .view-identity { max-width: none; text-align: left; }
+      .status-row { grid-template-columns: 1fr; }
+      .status-value { width: 100%; text-align: left; }
+      .state-grid { grid-template-columns: 1fr; }
+      .activity-meta { display: grid; gap: 2px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    }
+    @media (forced-colors: active) {
+      .tile, .panel, .status-value, .action-button, .choice-button, .nav-button { forced-color-adjust: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="preview-banner" id="truth-banner">APPROVAL PREVIEW · SIMULATED DATA · NOT CONNECTED TO LIVE SYSTEMS</div>
+  <header class="shell-header">
+    <div class="header-main">
+      <div class="brand-line">
+        <div class="brand-mark" aria-hidden="true">WNY</div>
+        <div>
+          <div class="brand-name">WNY HOME SECURITY</div>
+          <div class="property-name">BK LEWIS · BAILEY</div>
+        </div>
+      </div>
+      <div class="view-identity"><span>Current view</span><strong id="current-view-title">Home</strong></div>
+    </div>
+    <nav class="nav-wrap" aria-label="Customer dashboard navigation">
+      <ul class="nav-list">
+        <li><button class="nav-button" type="button" data-view="home" aria-current="page">Home</button></li>
+        <li><button class="nav-button" type="button" data-view="systems">Systems</button></li>
+        <li><button class="nav-button" type="button" data-view="activity">Activity</button></li>
+        <li><button class="nav-button" type="button" data-view="explore">Explore WNYHS<span class="coming-label">COMING SOON</span></button></li>
+        <li><button class="nav-button" type="button" data-view="support">Support</button></li>
+        <li><button class="nav-button" type="button" data-view="property">Property</button></li>
+        <li><button class="nav-button" type="button" data-view="settings">Settings</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="view" id="view-home" data-title="Home">
+      <div class="view-heading"><h1>Bailey Control Center</h1><p>A deterministic approval view for installed and repository-supported capabilities.</p></div>
+      <div class="scope-note">All values are simulated review fixtures. Building status covers only the represented scope. Viewing Room smoke service remains deferred and is never presented as verified Normal.</div>
+      <div class="tile-grid home-grid">
+        <article class="tile">
+          <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V5h10v16M15 9h4v12M8 9h.01M12 9h.01M8 13h.01M12 13h.01"/></svg></div><div><h2 class="tile-title">Building Status</h2><p class="tile-subtitle">Represented scope only</p></div></header>
+          <div class="divider"></div>
+          <div class="tile-content"><p class="helper">Scenario-wide status and the simulated Building Mode / Armed posture.</p><div class="status-list"><div class="status-row"><span class="status-label">Overall review</span><span class="status-value" id="building-status" data-status="attention">Attention</span></div><div class="status-row"><span class="status-label">Building mode</span><span class="status-value" id="building-mode">Closed · Armed</span></div><div class="status-row"><span class="status-label">Attention summary</span><span class="status-value" id="attention-summary">1 deferred item</span></div></div><p class="helper" id="building-helper">Security examples are Normal; smoke service remains deferred.</p></div>
+        </article>
+
+        <article class="tile">
+          <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V4h11v17M4 21h16M10 12h.01M15 8h4v13"/></svg></div><div><h2 class="tile-title">Entrances</h2><p class="tile-subtitle">Customer-safe entry summary</p></div></header>
+          <div class="divider"></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">South Entrance</span><span class="status-value scenario-door" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Bailey Double Doors lock</span><span class="status-value scenario-lock" data-status="normal">Locked</span></div><div class="status-row"><span class="status-label">Window groups</span><span class="status-value scenario-window" data-status="normal">Normal</span></div></div><p class="helper">Ambiguous contact mappings remain grouped; no unverified physical placement is shown.</p></div>
+        </article>
+
+        <article class="tile">
+          <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg></div><div><h2 class="tile-title">Cameras</h2><p class="tile-subtitle">Neutral media review</p></div></header>
+          <div class="divider"></div>
+          <div class="tile-content"><div class="media-placeholder"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m17 10 4-2v8l-4-2z"/></svg><strong id="camera-placeholder">Simulated media placeholder</strong><span>No camera image is included</span></div></div><ul class="capability-list"><li><span>South Entrance Doorbell</span><span class="scenario-camera">Available</span></li><li><span>Bailey Doorbell</span><span class="scenario-camera">Available</span></li><li><span>Parking Lot Camera</span><span class="scenario-camera">Available</span></li></ul></div>
+        </article>
+
+        <article class="tile">
+          <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c3 3 5 5.4 5 9a5 5 0 0 1-10 0c0-2.2 1.2-4.2 3-6 .2 2 1 3.2 2 4 .8-2.1.7-4.4 0-7z"/><path d="M4 21h16"/></svg></div><div><h2 class="tile-title">Smoke / Fire</h2><p class="tile-subtitle">Installed detector review</p></div></header>
+          <div class="divider"></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Aggregate review</span><span class="status-value" id="smoke-aggregate" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Network Closet</span><span class="status-value scenario-smoke-standard" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Viewing Room</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">West Hallway Jog</span><span class="status-value scenario-smoke-standard" data-status="normal">Normal</span></div></div><p class="helper">Viewing Room onsite service is deferred. Unavailable prevents an aggregate Normal result. No monitoring or dispatch is represented.</p></div>
+        </article>
+
+        <article class="tile">
+          <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 22h4M8 14a7 7 0 1 1 8 0c-1 1-1 2-1 2H9s0-1-1-2z"/></svg></div><div><h2 class="tile-title">Environment &amp; Lighting</h2><p class="tile-subtitle">Local prototype controls</p></div></header>
+          <div class="divider"></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Temperature</span><span class="status-value scenario-temperature">70°F</span></div><div class="status-row"><span class="status-label">Humidity</span><span class="status-value scenario-humidity">44%</span></div></div><p class="helper">Buttons change this preview only and never contact a device.</p><div class="button-row"><button class="action-button local-toggle" type="button" aria-pressed="false">South Entrance Light</button><button class="action-button local-toggle" type="button" aria-pressed="false">Parking Lot Floodlight</button></div></div>
+        </article>
+
+        <article class="tile">
+          <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h2 class="tile-title">Recent Activity / Support</h2><p class="tile-subtitle">Simulated review examples</p></div></header>
+          <div class="divider"></div>
+          <div class="tile-content"><ul class="capability-list"><li><span>Current</span><span id="home-current">Smoke service deferred</span></li><li><span>Recent</span><span>Motion example</span></li><li><span>Resolved</span><span>Door example</span></li></ul><p class="helper">Examples are not historical records and do not prove notification delivery.</p><div class="button-row"><button class="action-button local-nav" type="button" data-target="activity">View Activity</button><button class="action-button local-nav" type="button" data-target="support">Support</button></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-systems" data-title="Systems" hidden>
+      <div class="view-heading"><h1>Systems</h1><p>Installed and repository-supported capability groups in customer-safe language.</p></div>
+      <div class="systems-grid">
+        <section class="panel system-group"><h2>Doors &amp; Windows</h2><p>South Entrance Door, Bailey Double Doors, North Wall Windows, and South Wall Windows. Unresolved contact mappings remain grouped.</p><div class="status-row"><span class="status-label">Simulated review</span><span class="status-value scenario-door" data-status="normal">Normal</span></div></section>
+        <section class="panel system-group"><h2>Locks</h2><p>Bailey Double Doors electronic lock only. No retired or future lock is presented.</p><div class="status-row"><span class="status-label">Simulated lock</span><span class="status-value scenario-lock" data-status="normal">Locked</span></div></section>
+        <section class="panel system-group"><h2>Cameras &amp; Doorbells</h2><p>South Entrance Doorbell, Bailey Double Door Doorbell, and Parking Lot Camera. Person, vehicle, and visitor activity are review semantics only.</p><div class="status-row"><span class="status-label">Review availability</span><span class="status-value scenario-camera-status" data-status="normal">Available</span></div></section>
+        <section class="panel system-group"><h2>Lighting</h2><p>South Entrance Light and Parking Lot Floodlight. Any button in this file is local and simulated.</p><div class="status-row"><span class="status-label">Review state</span><span class="status-value" data-status="normal">Available</span></div></section>
+        <section class="panel system-group"><h2>Motion</h2><p>Main Hallway Motion and Viewing Room Motion support Current, Recent, and Resolved activity examples.</p><div class="status-row"><span class="status-label">Simulated activity</span><span class="status-value scenario-motion" data-status="normal">Normal</span></div></section>
+        <section class="panel system-group"><h2>Environment</h2><p>Temperature, humidity, and environmental attention are represented without claiming live readings.</p><div class="status-row"><span class="status-label">Review status</span><span class="status-value scenario-environment" data-status="normal">Normal</span></div></section>
+        <section class="panel system-group"><h2>Smoke / Fire</h2><p>Three installed detectors are represented. Viewing Room onsite service is deferred and remains unavailable in this fixture.</p><div class="status-row"><span class="status-label">Aggregate review</span><span class="status-value smoke-aggregate-copy" data-status="unavailable">Unavailable</span></div></section>
+        <section class="panel system-group"><h2>Alarm Output</h2><p>Status and attention presentation only. No relay, siren, or alarm control is exposed.</p><div class="status-row"><span class="status-label">Control</span><span class="status-value" data-status="unavailable">Not available</span></div></section>
+      </div>
+    </section>
+
+    <section class="view" id="view-activity" data-title="Activity" hidden>
+      <div class="view-heading"><h1>Activity</h1><p>Deterministic simulated examples, not Bailey history or notification evidence.</p></div>
+      <section class="panel"><h2>Activity examples</h2><p>Current, Recent, and Resolved remain distinct. Alert and Attention examples do not imply monitoring or external response.</p><ul class="activity-list" id="activity-list"></ul></section>
+    </section>
+
+    <section class="view" id="view-explore" data-title="Explore WNYHS" hidden>
+      <div class="view-heading"><h1>Explore WNYHS</h1><p>Reserved customer navigation destination.</p></div>
+      <section class="panel coming-panel"><div><span class="coming-badge">COMING SOON</span><h2>Explore WNYHS</h2><p>No offers, links, forms, pricing, or external actions are included in this offline approval file.</p></div></section>
+    </section>
+
+    <section class="view" id="view-support" data-title="Support" hidden>
+      <div class="view-heading"><h1>Support</h1><p>Preview-only contact surfaces using the governed action family.</p></div>
+      <section class="panel"><h2>How can we help?</h2><p>No support hours, service level, contact details, response promise, or external destination is included.</p><div class="button-row"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div><div class="review-note">Every action remains inside this file. No call, email, message, or notification is sent.</div></section>
+    </section>
+
+    <section class="view" id="view-property" data-title="Property" hidden>
+      <div class="view-heading"><h1>Property</h1><p>Safe approval context without an address, network detail, or private identifier.</p></div>
+      <div class="panel-grid">
+        <section class="panel"><h2>BK LEWIS · BAILEY</h2><p>Standalone customer-dashboard approval preview.</p><div class="status-list"><div class="status-row"><span class="status-label">Artifact</span><span class="status-value">Approval preview</span></div><div class="status-row"><span class="status-label">Connection</span><span class="status-value" data-status="unavailable">Not connected</span></div><div class="status-row"><span class="status-label">Fixture</span><span class="status-value">Simulated data</span></div></div></section>
+        <section class="panel"><h2>Represented systems</h2><p>Building status, openings, one installed lock, cameras and doorbells, lighting, environment, smoke/fire, motion, and alarm-output status.</p><div class="status-list"><div class="status-row"><span class="status-label">Smoke service</span><span class="status-value" data-status="unavailable">Deferred onsite</span></div><div class="status-row"><span class="status-label">Contact placement</span><span class="status-value" data-status="unavailable">Some unresolved</span></div></div></section>
+      </div>
+    </section>
+
+    <section class="view" id="view-settings" data-title="Settings" hidden>
+      <div class="view-heading"><h1>Settings</h1><p>Presentation and deterministic review controls only.</p></div>
+      <div class="settings-stack">
+        <div class="panel-grid">
+          <section class="panel"><fieldset><legend>Theme</legend><div class="segmented" data-control="theme"><button class="choice-button" type="button" data-value="light" aria-pressed="true">Light</button><button class="choice-button" type="button" data-value="dark" aria-pressed="false">Dark</button><button class="choice-button" type="button" data-value="auto" aria-pressed="false">Auto</button></div><p class="control-help">Auto follows the device color preference. Meaning and permissions do not change.</p></fieldset></section>
+          <section class="panel"><fieldset><legend>Layout size</legend><div class="segmented" data-control="size"><button class="choice-button" type="button" data-value="compact" aria-pressed="false">Compact</button><button class="choice-button" type="button" data-value="default" aria-pressed="true">Default</button><button class="choice-button" type="button" data-value="large" aria-pressed="false">Large</button></div><p class="control-help">Initial size is Default. Button heights remain 48px, 48px, and 56px.</p></fieldset></section>
+          <section class="panel"><fieldset><legend>Font</legend><div class="segmented" data-control="font"><button class="choice-button" type="button" data-value="inter" aria-pressed="true">Inter</button><button class="choice-button" type="button" data-value="atkinson" aria-pressed="false">Atkinson Hyperlegible</button><button class="choice-button" type="button" data-value="system" aria-pressed="false">System</button></div><p class="control-help">No font file is embedded. Inter and Atkinson Hyperlegible fall back to Arial when unavailable.</p></fieldset></section>
+          <section class="panel"><fieldset><legend>Review Scenario</legend><div class="segmented scenarios" data-control="scenario"><button class="choice-button" type="button" data-value="normal" aria-pressed="true">Normal</button><button class="choice-button" type="button" data-value="active" aria-pressed="false">Active</button><button class="choice-button" type="button" data-value="attention" aria-pressed="false">Attention</button><button class="choice-button" type="button" data-value="alert" aria-pressed="false">Alert</button><button class="choice-button" type="button" data-value="unavailable" aria-pressed="false">Unavailable</button></div><p class="control-help">Scenarios are local simulated fixtures. Normal preserves Viewing Room smoke as deferred/unavailable and therefore does not make the smoke aggregate Normal.</p></fieldset></section>
+        </div>
+        <section class="panel"><h2>Component State Review</h2><p>Governed customer action-button states for visual review only; no production control authority is implied.</p><div class="state-grid">
+          <div class="state-sample"><button class="action-button" type="button">Available / Off</button><p>Ready for an authorized action.</p></div>
+          <div class="state-sample"><button class="action-button is-focus" type="button">Hover / Focus</button><p>Visible focus treatment.</p></div>
+          <div class="state-sample"><button class="action-button is-pressed" type="button">Pressed</button><p>Momentary visual depression.</p></div>
+          <div class="state-sample"><button class="action-button is-pending" type="button">Command Pending</button><p>Awaiting authoritative confirmation.</p></div>
+          <div class="state-sample"><button class="action-button is-selected" type="button">Selected / On</button><p>Confirmed-state appearance.</p></div>
+          <div class="state-sample"><button class="action-button" type="button">Failure</button><p>Stable geometry.<span class="state-result" data-status="alert">Failure</span></p></div>
+          <div class="state-sample"><button class="action-button" type="button">Result Unknown</button><p>Outcome cannot be verified.<span class="state-result" data-status="unavailable">Result Unknown</span></p></div>
+          <div class="state-sample"><button class="action-button is-disabled" type="button" disabled>Disabled</button><p>No action is available.</p></div>
+        </div></section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-actions"><button class="action-button preview-action" type="button">Support</button><button class="action-button preview-action" type="button">Call WNYHS</button><button class="action-button preview-action" type="button">Email Support</button></div>
+      <div class="footer-context">SIMULATED WEATHER · 68°F · Clear · approval fixture</div>
+      <div class="footer-time"><span>Device time</span><br><strong id="device-time">—</strong></div>
+    </div>
+  </footer>
+
+  <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+
+  <script>
+    (() => {
+      'use strict';
+      const root = document.documentElement;
+      const views = [...document.querySelectorAll('.view')];
+      const navButtons = [...document.querySelectorAll('.nav-button')];
+      const validViews = new Set(['home', 'systems', 'activity', 'explore', 'support', 'property', 'settings']);
+      const mediaPreference = window.matchMedia('(prefers-color-scheme: dark)');
+      const state = { view: 'home', theme: 'light', size: 'default', font: 'inter', scenario: 'normal' };
+      const scenarios = {
+        normal: {
+          building: ['Attention', 'attention'], mode: 'Closed · Armed', summary: '1 deferred item', helper: 'Security examples are Normal; smoke service remains deferred.',
+          door: ['Normal', 'normal'], lock: ['Locked', 'normal'], window: ['Normal', 'normal'], camera: ['Available', 'normal'], motion: ['Normal', 'normal'], environment: ['Normal', 'normal'], temperature: '70°F', humidity: '44%', smoke: ['Unavailable', 'unavailable'], standardSmoke: ['Normal', 'normal'], current: 'Smoke service deferred'
+        },
+        active: {
+          building: ['Active', 'active'], mode: 'Open · Disarmed', summary: 'Motion activity', helper: 'Simulated current activity is present; deferred smoke service remains explicit.',
+          door: ['Active', 'active'], lock: ['Unlocked', 'active'], window: ['Normal', 'normal'], camera: ['Activity', 'active'], motion: ['Active', 'active'], environment: ['Normal', 'normal'], temperature: '71°F', humidity: '45%', smoke: ['Unavailable', 'unavailable'], standardSmoke: ['Normal', 'normal'], current: 'Main Hallway motion example'
+        },
+        attention: {
+          building: ['Attention', 'attention'], mode: 'Closing · Disarmed', summary: '2 review items', helper: 'A simulated opening and the deferred smoke item need review.',
+          door: ['Attention', 'attention'], lock: ['Unlocked', 'attention'], window: ['Attention', 'attention'], camera: ['Available', 'normal'], motion: ['Recent', 'active'], environment: ['Attention', 'attention'], temperature: '78°F', humidity: '58%', smoke: ['Attention', 'attention'], standardSmoke: ['Attention', 'attention'], current: 'South Entrance review example'
+        },
+        alert: {
+          building: ['Alert', 'alert'], mode: 'Closed · Armed', summary: 'Priority fixture', helper: 'A simulated high-priority condition is shown without a monitoring or response claim.',
+          door: ['Alert', 'alert'], lock: ['Result unknown', 'unavailable'], window: ['Attention', 'attention'], camera: ['Activity', 'active'], motion: ['Active', 'active'], environment: ['Attention', 'attention'], temperature: '82°F', humidity: '63%', smoke: ['Alert', 'alert'], standardSmoke: ['Alert', 'alert'], current: 'Smoke alert review example'
+        },
+        unavailable: {
+          building: ['Unavailable', 'unavailable'], mode: 'State unknown', summary: 'Verification unavailable', helper: 'Simulated state cannot be verified; nothing defaults to Normal.',
+          door: ['Unavailable', 'unavailable'], lock: ['Unavailable', 'unavailable'], window: ['Unavailable', 'unavailable'], camera: ['Unavailable', 'unavailable'], motion: ['Unavailable', 'unavailable'], environment: ['Unavailable', 'unavailable'], temperature: 'Unavailable', humidity: 'Unavailable', smoke: ['Unavailable', 'unavailable'], standardSmoke: ['Unavailable', 'unavailable'], current: 'Capability unavailable example'
+        }
+      };
+
+      function announce(message) {
+        const feedback = document.getElementById('feedback');
+        feedback.textContent = message;
+        feedback.hidden = false;
+        window.clearTimeout(announce.timer);
+        announce.timer = window.setTimeout(() => { feedback.hidden = true; }, 2600);
+      }
+
+      function setPressed(group, value) {
+        group.querySelectorAll('.choice-button').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.value === value)));
+      }
+
+      function applyTheme() {
+        const resolved = state.theme === 'auto' ? (mediaPreference.matches ? 'dark' : 'light') : state.theme;
+        root.dataset.theme = resolved;
+        root.dataset.themeChoice = state.theme;
+      }
+
+      function setView(requested, updateHash = true) {
+        const view = validViews.has(requested) ? requested : 'home';
+        state.view = view;
+        views.forEach((section) => { section.hidden = section.id !== `view-${view}`; });
+        navButtons.forEach((button) => {
+          if (button.dataset.view === view) button.setAttribute('aria-current', 'page');
+          else button.removeAttribute('aria-current');
+        });
+        const active = document.getElementById(`view-${view}`);
+        document.getElementById('current-view-title').textContent = active.dataset.title;
+        document.title = `${active.dataset.title} · Bailey Dashboard Approval Preview`;
+        if (updateHash && window.location.hash !== `#${view}`) window.location.hash = view;
+      }
+
+      function setStatus(selector, pair) {
+        document.querySelectorAll(selector).forEach((node) => {
+          node.textContent = pair[0];
+          node.dataset.status = pair[1];
+        });
+      }
+
+      function renderScenario(value) {
+        state.scenario = value;
+        const fixture = scenarios[value];
+        setStatus('#building-status', fixture.building);
+        document.getElementById('building-mode').textContent = fixture.mode;
+        document.getElementById('attention-summary').textContent = fixture.summary;
+        document.getElementById('building-helper').textContent = fixture.helper;
+        setStatus('.scenario-door', fixture.door);
+        setStatus('.scenario-lock', fixture.lock);
+        setStatus('.scenario-window', fixture.window);
+        setStatus('.scenario-camera-status', fixture.camera);
+        document.querySelectorAll('.scenario-camera').forEach((node) => { node.textContent = fixture.camera[0]; });
+        setStatus('.scenario-motion', fixture.motion);
+        setStatus('.scenario-environment', fixture.environment);
+        document.querySelectorAll('.scenario-temperature').forEach((node) => { node.textContent = fixture.temperature; });
+        document.querySelectorAll('.scenario-humidity').forEach((node) => { node.textContent = fixture.humidity; });
+        setStatus('#smoke-aggregate, .smoke-aggregate-copy', fixture.smoke);
+        setStatus('.scenario-smoke-standard', fixture.standardSmoke);
+        document.getElementById('home-current').textContent = fixture.current;
+        document.getElementById('camera-placeholder').textContent = value === 'unavailable' ? 'Simulated unavailable media' : 'Simulated media placeholder';
+        renderActivity();
+      }
+
+      function renderActivity() {
+        const fixture = scenarios[state.scenario];
+        const items = [
+          ['Current', 'Review now', fixture.current, fixture.building],
+          ['Recent', 'Example · 10 minutes ago', 'Person activity was simulated at the Parking Lot Camera.', ['Active', 'active']],
+          ['Resolved', 'Example · earlier', 'A simulated South Entrance opening returned to its expected state.', ['Normal', 'normal']],
+          ['Attention', 'Review example', 'An unresolved window-group mapping remains a field-verification item.', ['Attention', 'attention']],
+          ['Alert', 'Priority example', 'A simulated smoke condition demonstrates priority presentation only.', ['Alert', 'alert']]
+        ];
+        document.getElementById('activity-list').innerHTML = items.map(([kind, time, message, status]) => `<li class="activity-item"><div class="activity-meta"><strong>${kind}</strong><span>${time}</span></div><p>${message}</p><div class="status-row"><span class="status-label">Simulated status</span><span class="status-value" data-status="${status[1]}">${status[0]}</span></div></li>`).join('');
+      }
+
+      navButtons.forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
+      document.querySelectorAll('.local-nav').forEach((button) => button.addEventListener('click', () => setView(button.dataset.target)));
+
+      document.querySelectorAll('[data-control]').forEach((group) => {
+        group.addEventListener('click', (event) => {
+          const button = event.target.closest('.choice-button');
+          if (!button) return;
+          const control = group.dataset.control;
+          const value = button.dataset.value;
+          setPressed(group, value);
+          if (control === 'theme') { state.theme = value; applyTheme(); }
+          if (control === 'size') { state.size = value; root.dataset.size = value; }
+          if (control === 'font') { state.font = value; root.dataset.font = value; }
+          if (control === 'scenario') renderScenario(value);
+          announce(`${button.textContent} review setting selected`);
+        });
+      });
+
+      document.querySelectorAll('.preview-action').forEach((button) => button.addEventListener('click', () => announce('Preview only — no external action was sent')));
+      document.querySelectorAll('.local-toggle').forEach((button) => button.addEventListener('click', () => {
+        const next = button.getAttribute('aria-pressed') !== 'true';
+        button.setAttribute('aria-pressed', String(next));
+        announce(`Preview only — ${button.textContent} shown ${next ? 'On' : 'Off'} locally`);
+      }));
+
+      mediaPreference.addEventListener('change', () => { if (state.theme === 'auto') applyTheme(); });
+      window.addEventListener('hashchange', () => setView(window.location.hash.slice(1), false));
+
+      function updateClock() {
+        document.getElementById('device-time').textContent = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
+      }
+
+      updateClock();
+      window.setInterval(updateClock, 60000);
+      renderScenario('normal');
+      setView(window.location.hash.slice(1) || 'home', false);
+    })();
+  </script>
+</body>
+</html>
