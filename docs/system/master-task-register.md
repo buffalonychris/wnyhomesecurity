@@ -922,6 +922,34 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 ## Active Tasks (Execution Driver)
 
+### BAILEY-HA-SOUTH-LOCK-RETIRE-001
+
+- **Task ID:** BAILEY-HA-SOUTH-LOCK-RETIRE-001
+- **Task Name:** Bailey South Lock Retirement and Dashboard Truth Cleanup
+- **Status:** ACTIVE
+- **Category:** RUNTIME
+- **Primary Workstream:** Automation System
+- **Related Workstreams:** Dashboard / Interactive Experience System; Runtime System; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Retire the physically obsolete South Wall Kwikset Home Connect 620 from Bailey Home Assistant repository-controlled security, notification, and customer-dashboard logic while preserving the South Entrance door/contact, doorbell, camera, entrance light, monitoring posture, East/Bailey Double Doors lock, and all unrelated Bailey behavior. Future South mag-lock work is out of scope.
+- **Allowed Scope:** Execute only `docs/codex/work-orders/BAILEY-HA-SOUTH-LOCK-RETIRE-001_WORK_ORDER_REV01.md`; remove the retired South HC620 from active close/arm, secure-state, retry, jam, battery, secure-failure, notification, status, activity/history, and customer lock-control presentation; preserve the South Entrance door/contact as a security prerequisite; preserve the East/Bailey Double Doors lock; perform only bounded local dashboard reflow required by capability removal; update only this task record for lifecycle/evidence.
+- **Forbidden Scope:** No live Home Assistant mutation by Codex; no Z-Wave exclusion/removal; no HA restart/reload; no direct registry/cache/database/history/trace editing; no raw backup/registry/secrets/auth/customer-private evidence committed; no future mag-lock implementation or placeholder; no full Bailey dashboard migration; no new Light/Dark/Auto, Compact/Default/Large, user/profile switching, canonical-navigation migration, Main/Desktop consolidation, or theme/token overhaul; no unrelated HA device/entity/integration/automation changes; no weakening or removal of East/Bailey lock behavior; no Cloudflare/network/DNS/env, dependency/package-lock, website, route, CRM/HubSpot, Stripe/payment, scheduling, email, API, quote, funnel, public-copy, claims, merge, or deployment changes.
+- **Target Files:** `home-assistant/bklf/packages/bklf_security.yaml`; `home-assistant/bklf/packages/bklf_notifications.yaml`; `home-assistant/bklf/dashboards/bklf-main-dashboard.yaml`; `home-assistant/bklf/dashboards/bklf-desktop-dashboard.yaml`; `docs/system/master-task-register.md` only for this task's lifecycle/evidence.
+- **Runtime Systems Affected:** Repository-prepared Bailey Home Assistant customer runtime configuration. Live Bailey HA remains operator-controlled and is not modified by Codex under repository execution.
+- **Documentation Updates Required:** Maintain this exact MTR task record and the canonical work order. Current BKLF inventory/history documents are reference-only in REV01 and must not be rewritten without work-order revision.
+- **Validation Required:** Exact changed-file allowlist; `git diff --check`; no unexpected deletes; zero active references to `lock.south_wall_home_connect_620_connected_smart_lock`, `south_wall_home_connect_620_connected_smart_lock`, or `bklf_south_lock_` in the four target YAML files after cleanup; stale South-lock wording scan; preserve `binary_sensor.c01_south_entrance_door` and `lock.east_wall_bailey_double_doors` where appropriate; no mag-lock placeholder; safe YAML syntax validation using existing tooling only; repository-native HA config validation if safely available; protected-system changed-boundary audit; governed website-build skip because no website/application source changes.
+- **Exit Criteria:** Retired HC620 is absent from active Bailey package logic and customer-dashboard capability presentation; South Entrance door/contact monitoring remains intact; South doorbell/camera/light and valid activity/security presentation remain intact; East/Bailey lock behavior remains intact; no future lock capability is invented; unrelated Bailey behavior remains unchanged; repository validation passes; required draft PR and closeout exist; no live HA/Z-Wave mutation and no merge occur. Live deployment, Z-Wave exclusion, and final field Close/Arm testing remain separate operator-controlled runtime evidence.
+- **Dependencies:** Operator-confirmed South-door replacement incompatibility; operator-provided October 2026 Bailey backup/audit evidence; current Bailey repo YAML; `DASHBOARD-CAMPAIGN-001` ACTIVE; `AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`; `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md`; `DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`; `DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md`; `HA-BACKUP001_CUSTOMER_BACKUP_EXTRACTION_STANDARD_REV02.md`; current Codex Execution Standard.
+- **Operator Decision Required:** Review Codex closeout and draft PR; manually merge only if accepted; separately authorize/apply the live Bailey HA change; perform live configuration validation; verify South contact and East lock behavior; validate Close/Arm; then perform supported HC620 Z-Wave exclusion/removal and final field validation.
+- **Publication/Evidence State:** DRAFT_PR_PENDING
+- **Draft PR Evidence:** Pending creation on branch `task/bailey-ha-south-lock-retire-001`.
+- **Merge Evidence:** None; merge not authorized.
+- **Deployment Applicability / Status / Evidence:** Live Bailey HA deployment is applicable only after operator PR review/merge and is not authorized to Codex. Status: NOT DEPLOYED.
+- **Main-Sync Status / Evidence:** Not applicable until any future operator merge; current task branch was created from main `3127352a1e1ede6d2d8bfed3e6fafabbb5214edd`.
+- **CTR Eligibility:** Not eligible while ACTIVE.
+- **CTR Record / Pointer:** None.
+
+
 ### KAOS-PLATFORM-BOOTSTRAP001
 
 - **Task ID:** KAOS-PLATFORM-BOOTSTRAP001
