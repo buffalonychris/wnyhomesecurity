@@ -1,14 +1,14 @@
 # WNYHS-DASHBOARD-SITE-PIPELINE-001 — WNYHS Dashboard Site Implementation Pipeline Standard
 
-**Revision:** REV01  
-**Status:** OPERATOR AUTHORIZED — EXECUTE THIS REVISION  
-**Category:** GOV / DESIGN  
-**Primary Workstream:** Dashboard / Interactive Experience System  
-**Related Workstreams:** Home Assistant Platform; Automation System; Visual System; Installer Platform; Project Governance  
-**Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01  
+**Revision:** REV01
+**Status:** OPERATOR AUTHORIZED — EXECUTE THIS REVISION
+**Category:** GOV / DESIGN
+**Primary Workstream:** Dashboard / Interactive Experience System
+**Related Workstreams:** Home Assistant Platform; Automation System; Visual System; Installer Platform; Project Governance
+**Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
 **Standing campaign:** DASHBOARD-CAMPAIGN-001
 
-READ MODE: TARGETED  
+READ MODE: TARGETED
 CONTEXT TARGET: LOW
 
 ## 1. Objective

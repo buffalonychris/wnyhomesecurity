@@ -29,6 +29,7 @@ Normal dashboard implementation tasks should not load this map when the correct 
 | Architecture and functional behavior | `docs/installer/INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` | REV02 | REV01 superseded; owns classes, navigation, semantic behavior, permissions presentation, status, Activity/Alert, command and degraded-state behavior. |
 | Visual and component system | `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` | REV02 | REV01 superseded; owns tokens, typography, colors, tile/media/status/action components, themes and accessibility presentation. |
 | Delivery, binding and validation | `docs/design-system/DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` | REV02 | REV01 superseded; owns responsive delivery, customer assembly, evidence binding, fixtures, deterministic prototypes, validation and handoff relationship. |
+| Dashboard site implementation pipeline / cross-site orchestration | `docs/installer/INSTALL011_DASHBOARD_SITE_IMPLEMENTATION_PIPELINE_STANDARD_REV01.md` | REV01 | Coordinates the end-to-end site workflow only; does not supersede INSTALL006, DESIGN001, DASHBOARD001, HA-BACKUP001, the Notification Engine, or INSTALL008/009/010. |
 | Routing and lineage | This map | REV02 | REV01 superseded; no functional, visual, binding, or implementation ownership. |
 
 ## 3. Narrow owners outside the three standards
