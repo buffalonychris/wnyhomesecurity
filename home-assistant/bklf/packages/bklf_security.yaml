@@ -169,9 +169,9 @@ template:
         device_class: problem
         state: >
           {% set smoke_entities = [
-            'binary_sensor.smoke_01_smoke',
-            'binary_sensor.smoke_02_smoke',
-            'binary_sensor.smoke_03_smoke'
+            'binary_sensor.network_closet_smoke_01',
+            'binary_sensor.viewing_room_smoke_02',
+            'binary_sensor.west_hallway_jog_smoke_03'
           ] %}
           {% set ns = namespace(attention=false) %}
           {% for smoke_entity in smoke_entities %}
