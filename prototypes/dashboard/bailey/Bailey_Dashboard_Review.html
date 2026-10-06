@@ -160,13 +160,13 @@
     .header-main {
       width: min(1600px, 100%);
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
     }
-    .brand-line { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-line { display: flex; align-items: center; gap: 12px; min-width: 0; }
     .brand-mark {
       width: 42px;
       height: 42px;
@@ -187,7 +187,7 @@
     .nav-wrap {
       width: min(1600px, 100%);
       margin: 0 auto;
-      padding: 0 24px 14px;
+      padding: 0 24px 8px;
     }
     .nav-list {
       list-style: none;
@@ -211,13 +211,13 @@
     .nav-button:hover { border-color: var(--action-blue-hover); }
     .nav-button[aria-current="page"] { background: var(--action-blue-selected); color: #FFFFFF; border-color: var(--action-blue-selected); }
     .coming-label { display: block; margin-top: 1px; font-size: 10px; letter-spacing: .06em; }
-    main { width: min(1600px, 100%); margin: 0 auto; padding: 28px 24px 36px; }
-    .view-heading { margin-bottom: 20px; }
+    main { width: min(1600px, 100%); margin: 0 auto; padding: 20px 24px 32px; }
+    .view-heading { margin-bottom: 14px; }
     .view-heading h1 { margin: 0; font-size: var(--page-title-size); line-height: var(--page-title-line); }
     .view-heading p { margin: 4px 0 0; color: var(--muted); }
     .scope-note {
-      margin-bottom: 20px;
-      padding: 14px 16px;
+      margin-bottom: 14px;
+      padding: 10px 14px;
       border: 1px solid var(--border);
       border-left: 4px solid var(--wnyhs-gold);
       border-radius: 10px;
@@ -235,9 +235,9 @@
       background: var(--tile);
       box-shadow: var(--shadow);
     }
-    .tile { padding: var(--tile-pad); display: flex; flex-direction: column; min-height: 420px; }
-    html[data-size="compact"] .tile { min-height: 400px; }
-    html[data-size="large"] .tile { min-height: 450px; }
+    .tile { padding: var(--tile-pad); display: flex; flex-direction: column; min-height: 400px; }
+    html[data-size="compact"] .tile { min-height: 360px; }
+    html[data-size="large"] .tile { min-height: 430px; }
     .tile-header { display: flex; align-items: center; gap: var(--header-gap); }
     .tile-icon {
       width: var(--icon-circle);
@@ -249,18 +249,29 @@
       background: var(--icon-bg);
       color: var(--wnyhs-gold);
     }
-    .tile-icon svg { width: var(--icon-size); height: var(--icon-size); }
+    .tile-icon svg, .media-placeholder svg {
+      display: block;
+      overflow: hidden;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      shape-rendering: geometricPrecision;
+    }
+    .tile-icon svg { width: var(--icon-size); height: var(--icon-size); stroke: var(--wnyhs-gold); }
     .tile-title { margin: 0; color: var(--wnyhs-gold); font-size: var(--tile-title-size); line-height: var(--tile-title-line); }
     .tile-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 20px; }
     .divider { height: 1px; margin: var(--divider-space) 0; background: color-mix(in srgb, var(--border) 60%, transparent); }
-    .tile-content { display: flex; flex: 1; flex-direction: column; gap: 12px; }
+    .tile-content { display: flex; flex: 1; flex-direction: column; gap: 10px; }
     .helper { margin: 0; color: var(--muted); font-size: 14px; line-height: 20px; }
-    .status-list { display: grid; gap: 8px; }
-    .status-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--status-min), auto); align-items: center; gap: 10px; }
-    .status-label { color: var(--muted); }
+    .status-list { display: grid; gap: 10px; }
+    .status-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(var(--status-min), auto); align-items: center; gap: 12px; }
+    .status-label { color: var(--muted); font-size: 14px; line-height: 20px; font-weight: 600; }
     .status-value {
       min-width: var(--status-min);
+      min-height: 42px;
       padding: 8px 12px;
+      display: grid;
+      place-items: center end;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: var(--recessed);
@@ -271,6 +282,8 @@
       font-weight: 700;
       text-align: right;
     }
+    html[data-size="compact"] .status-value { min-height: 40px; }
+    html[data-size="large"] .status-value { min-height: 46px; }
     .status-value[data-status="normal"] { color: var(--status-normal); }
     .status-value[data-status="active"] { color: var(--status-active); }
     .status-value[data-status="attention"] { color: var(--status-attention); }
@@ -288,7 +301,7 @@
       text-align: center;
       padding: 12px;
     }
-    .media-placeholder svg { width: 34px; height: 34px; margin-bottom: 6px; color: var(--muted); }
+    .media-placeholder svg { width: 34px; height: 34px; margin: 0 auto 6px; color: var(--muted); stroke: var(--muted); }
     .media-placeholder strong { display: block; color: var(--text); }
     .capability-list, .activity-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
     .capability-list li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 7px; }
@@ -361,13 +374,14 @@
     .footer-inner {
       width: min(1600px, 100%);
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 14px 24px;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
       gap: 16px;
     }
     .footer-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .footer-actions .action-button { box-shadow: 0 2px 6px rgb(10 132 255 / 16%); }
     .footer-context { color: var(--muted); text-align: center; font-size: 14px; }
     .footer-time { color: var(--muted); text-align: right; font-size: 14px; }
     .feedback {
@@ -385,19 +399,23 @@
     }
     [hidden] { display: none !important; }
 
+    @media (min-width: 1151px) {
+      html[data-size="compact"] .home-grid > .tile:nth-child(5),
+      html[data-size="compact"] .home-grid > .tile:nth-child(6) { grid-column: span 2; }
+    }
     @media (max-width: 1150px) {
       .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .state-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .nav-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
     @media (max-width: 760px) {
-      .header-main { padding: 14px 16px; align-items: flex-start; }
+      .header-main { padding: 10px 16px; align-items: flex-start; }
       .view-identity { max-width: 42%; }
       .brand-name { font-size: 14px; }
       .property-name { font-size: 12px; }
-      .nav-wrap { padding: 0 16px 12px; }
+      .nav-wrap { padding: 0 16px 8px; }
       .nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      main { padding: 22px 16px 28px; }
+      main { padding: 18px 16px 28px; }
       .tile-grid, html[data-size="compact"] .tile-grid, html[data-size="large"] .tile-grid, .panel-grid, .systems-grid { grid-template-columns: 1fr; }
       .tile, html[data-size="compact"] .tile, html[data-size="large"] .tile { min-height: 0; }
       .segmented, .segmented.scenarios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -449,19 +467,19 @@
 
   <main id="main-content" tabindex="-1">
     <section class="view" id="view-home" data-title="Home">
-      <div class="view-heading"><h1>Bailey Control Center</h1><p>A deterministic approval view for installed and repository-supported capabilities.</p></div>
-      <div class="scope-note">All values are simulated review fixtures. Building status covers only the represented scope. Viewing Room smoke service remains deferred and is never presented as verified Normal.</div>
+      <div class="view-heading"><h1>WNY Home Security Customer Control Center</h1><p>Installed-capability approval preview.</p></div>
+      <div class="scope-note">Simulated fixture; represented scope only. Viewing Room smoke remains deferred/unavailable and never appears as verified Normal.</div>
       <div class="tile-grid home-grid">
         <article class="tile">
           <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V5h10v16M15 9h4v12M8 9h.01M12 9h.01M8 13h.01M12 13h.01"/></svg></div><div><h2 class="tile-title">Building Status</h2><p class="tile-subtitle">Represented scope only</p></div></header>
           <div class="divider"></div>
-          <div class="tile-content"><p class="helper">Scenario-wide status and the simulated Building Mode / Armed posture.</p><div class="status-list"><div class="status-row"><span class="status-label">Overall review</span><span class="status-value" id="building-status" data-status="attention">Attention</span></div><div class="status-row"><span class="status-label">Building mode</span><span class="status-value" id="building-mode">Closed · Armed</span></div><div class="status-row"><span class="status-label">Attention summary</span><span class="status-value" id="attention-summary">1 deferred item</span></div></div><p class="helper" id="building-helper">Security examples are Normal; smoke service remains deferred.</p></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Overall review</span><span class="status-value" id="building-status" data-status="attention">Attention</span></div><div class="status-row"><span class="status-label">Building mode</span><span class="status-value" id="building-mode">Closed · Armed</span></div><div class="status-row"><span class="status-label">Attention summary</span><span class="status-value" id="attention-summary">1 deferred item</span></div></div><p class="helper" id="building-helper">Smoke service remains deferred/unavailable.</p></div>
         </article>
 
         <article class="tile">
           <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V4h11v17M4 21h16M10 12h.01M15 8h4v13"/></svg></div><div><h2 class="tile-title">Entrances</h2><p class="tile-subtitle">Customer-safe entry summary</p></div></header>
           <div class="divider"></div>
-          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">South Entrance</span><span class="status-value scenario-door" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Bailey Double Doors lock</span><span class="status-value scenario-lock" data-status="normal">Locked</span></div><div class="status-row"><span class="status-label">Window groups</span><span class="status-value scenario-window" data-status="normal">Normal</span></div></div><p class="helper">Ambiguous contact mappings remain grouped; no unverified physical placement is shown.</p></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">South Entrance</span><span class="status-value scenario-door" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Bailey Double Doors lock</span><span class="status-value scenario-lock" data-status="normal">Locked</span></div><div class="status-row"><span class="status-label">Window groups</span><span class="status-value scenario-window" data-status="normal">Normal</span></div></div><p class="helper">Unresolved contact mappings remain grouped.</p></div>
         </article>
 
         <article class="tile">
@@ -473,19 +491,19 @@
         <article class="tile">
           <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c3 3 5 5.4 5 9a5 5 0 0 1-10 0c0-2.2 1.2-4.2 3-6 .2 2 1 3.2 2 4 .8-2.1.7-4.4 0-7z"/><path d="M4 21h16"/></svg></div><div><h2 class="tile-title">Smoke / Fire</h2><p class="tile-subtitle">Installed detector review</p></div></header>
           <div class="divider"></div>
-          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Aggregate review</span><span class="status-value" id="smoke-aggregate" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Network Closet</span><span class="status-value scenario-smoke-standard" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Viewing Room</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">West Hallway Jog</span><span class="status-value scenario-smoke-standard" data-status="normal">Normal</span></div></div><p class="helper">Viewing Room onsite service is deferred. Unavailable prevents an aggregate Normal result. No monitoring or dispatch is represented.</p></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Aggregate review</span><span class="status-value" id="smoke-aggregate" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">Network Closet</span><span class="status-value scenario-smoke-standard" data-status="normal">Normal</span></div><div class="status-row"><span class="status-label">Viewing Room</span><span class="status-value" data-status="unavailable">Unavailable</span></div><div class="status-row"><span class="status-label">West Hallway Jog</span><span class="status-value scenario-smoke-standard" data-status="normal">Normal</span></div></div><p class="helper">Viewing Room service remains deferred/unavailable, so the aggregate cannot be Normal. No monitoring or dispatch is represented.</p></div>
         </article>
 
         <article class="tile">
           <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 22h4M8 14a7 7 0 1 1 8 0c-1 1-1 2-1 2H9s0-1-1-2z"/></svg></div><div><h2 class="tile-title">Environment &amp; Lighting</h2><p class="tile-subtitle">Local prototype controls</p></div></header>
           <div class="divider"></div>
-          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Temperature</span><span class="status-value scenario-temperature">70°F</span></div><div class="status-row"><span class="status-label">Humidity</span><span class="status-value scenario-humidity">44%</span></div></div><p class="helper">Buttons change this preview only and never contact a device.</p><div class="button-row"><button class="action-button local-toggle" type="button" aria-pressed="false">South Entrance Light</button><button class="action-button local-toggle" type="button" aria-pressed="false">Parking Lot Floodlight</button></div></div>
+          <div class="tile-content"><div class="status-list"><div class="status-row"><span class="status-label">Temperature</span><span class="status-value scenario-temperature">70°F</span></div><div class="status-row"><span class="status-label">Humidity</span><span class="status-value scenario-humidity">44%</span></div></div><p class="helper">Preview-only controls; no device connection.</p><div class="button-row"><button class="action-button local-toggle" type="button" aria-pressed="false">South Entrance Light</button><button class="action-button local-toggle" type="button" aria-pressed="false">Parking Lot Floodlight</button></div></div>
         </article>
 
         <article class="tile">
           <header class="tile-header"><div class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h2 class="tile-title">Recent Activity / Support</h2><p class="tile-subtitle">Simulated review examples</p></div></header>
           <div class="divider"></div>
-          <div class="tile-content"><ul class="capability-list"><li><span>Current</span><span id="home-current">Smoke service deferred</span></li><li><span>Recent</span><span>Motion example</span></li><li><span>Resolved</span><span>Door example</span></li></ul><p class="helper">Examples are not historical records and do not prove notification delivery.</p><div class="button-row"><button class="action-button local-nav" type="button" data-target="activity">View Activity</button><button class="action-button local-nav" type="button" data-target="support">Support</button></div></div>
+          <div class="tile-content"><ul class="capability-list"><li><span>Current</span><span id="home-current">Smoke service deferred</span></li><li><span>Recent</span><span>Motion example</span></li><li><span>Resolved</span><span>Door example</span></li></ul><p class="helper">Simulated examples, not notification records.</p><div class="button-row"><button class="action-button local-nav" type="button" data-target="activity">View Activity</button><button class="action-button local-nav" type="button" data-target="support">Support</button></div></div>
         </article>
       </div>
     </section>
@@ -571,23 +589,23 @@
       const state = { view: 'home', theme: 'light', size: 'default', font: 'inter', scenario: 'normal' };
       const scenarios = {
         normal: {
-          building: ['Attention', 'attention'], mode: 'Closed · Armed', summary: '1 deferred item', helper: 'Security examples are Normal; smoke service remains deferred.',
+          building: ['Attention', 'attention'], mode: 'Closed · Armed', summary: '1 deferred item', helper: 'Smoke service remains deferred/unavailable.',
           door: ['Normal', 'normal'], lock: ['Locked', 'normal'], window: ['Normal', 'normal'], camera: ['Available', 'normal'], motion: ['Normal', 'normal'], environment: ['Normal', 'normal'], temperature: '70°F', humidity: '44%', smoke: ['Unavailable', 'unavailable'], standardSmoke: ['Normal', 'normal'], current: 'Smoke service deferred'
         },
         active: {
-          building: ['Active', 'active'], mode: 'Open · Disarmed', summary: 'Motion activity', helper: 'Simulated current activity is present; deferred smoke service remains explicit.',
+          building: ['Active', 'active'], mode: 'Open · Disarmed', summary: 'Motion activity', helper: 'Simulated activity; smoke remains deferred/unavailable.',
           door: ['Active', 'active'], lock: ['Unlocked', 'active'], window: ['Normal', 'normal'], camera: ['Activity', 'active'], motion: ['Active', 'active'], environment: ['Normal', 'normal'], temperature: '71°F', humidity: '45%', smoke: ['Unavailable', 'unavailable'], standardSmoke: ['Normal', 'normal'], current: 'Main Hallway motion example'
         },
         attention: {
-          building: ['Attention', 'attention'], mode: 'Closing · Disarmed', summary: '2 review items', helper: 'A simulated opening and the deferred smoke item need review.',
+          building: ['Attention', 'attention'], mode: 'Closing · Disarmed', summary: '2 review items', helper: 'Simulated opening and deferred smoke need review.',
           door: ['Attention', 'attention'], lock: ['Unlocked', 'attention'], window: ['Attention', 'attention'], camera: ['Available', 'normal'], motion: ['Recent', 'active'], environment: ['Attention', 'attention'], temperature: '78°F', humidity: '58%', smoke: ['Attention', 'attention'], standardSmoke: ['Attention', 'attention'], current: 'South Entrance review example'
         },
         alert: {
-          building: ['Alert', 'alert'], mode: 'Closed · Armed', summary: 'Priority fixture', helper: 'A simulated high-priority condition is shown without a monitoring or response claim.',
+          building: ['Alert', 'alert'], mode: 'Closed · Armed', summary: 'Priority fixture', helper: 'Simulated priority state; no monitoring or response claim.',
           door: ['Alert', 'alert'], lock: ['Result unknown', 'unavailable'], window: ['Attention', 'attention'], camera: ['Activity', 'active'], motion: ['Active', 'active'], environment: ['Attention', 'attention'], temperature: '82°F', humidity: '63%', smoke: ['Alert', 'alert'], standardSmoke: ['Alert', 'alert'], current: 'Smoke alert review example'
         },
         unavailable: {
-          building: ['Unavailable', 'unavailable'], mode: 'State unknown', summary: 'Verification unavailable', helper: 'Simulated state cannot be verified; nothing defaults to Normal.',
+          building: ['Unavailable', 'unavailable'], mode: 'State unknown', summary: 'Verification unavailable', helper: 'Simulated state unavailable; nothing defaults to Normal.',
           door: ['Unavailable', 'unavailable'], lock: ['Unavailable', 'unavailable'], window: ['Unavailable', 'unavailable'], camera: ['Unavailable', 'unavailable'], motion: ['Unavailable', 'unavailable'], environment: ['Unavailable', 'unavailable'], temperature: 'Unavailable', humidity: 'Unavailable', smoke: ['Unavailable', 'unavailable'], standardSmoke: ['Unavailable', 'unavailable'], current: 'Capability unavailable example'
         }
       };
