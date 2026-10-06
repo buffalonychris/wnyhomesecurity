@@ -926,7 +926,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** BAILEY-HA-SOUTH-LOCK-RETIRE-001
 - **Task Name:** Bailey South Lock Retirement and Dashboard Truth Cleanup
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** RUNTIME
 - **Primary Workstream:** Automation System
 - **Related Workstreams:** Dashboard / Interactive Experience System; Runtime System; Project Governance
@@ -946,8 +946,9 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Merge Evidence:** None; merge not authorized.
 - **Deployment Applicability / Status / Evidence:** Live Bailey HA deployment is applicable only after operator PR review/merge and is not authorized to Codex. Status: NOT DEPLOYED.
 - **Main-Sync Status / Evidence:** Not applicable until any future operator merge; current task branch was created from main `3127352a1e1ede6d2d8bfed3e6fafabbb5214edd`.
-- **CTR Eligibility:** Not eligible while ACTIVE.
+- **CTR Eligibility:** Not eligible until operator review, merge, and later main synchronization are verified.
 - **CTR Record / Pointer:** None.
+- **Completion Notes:** Retired the physically obsolete South Wall HC620 from the two authorized Bailey package files and both authorized customer dashboards. Close/Arm now locks and waits only on the installed East/Bailey Double Doors lock while the South Entrance contact remains a required closed-door prerequisite. Removed the South-lock jam, battery, retry, secure-failure, helper, control, status, history, and combined-lock presentation; preserved South Entrance contact, doorbell, camera, entrance-light, activity/security behavior and East/Bailey lock controls, status, jam handling, and Close/Arm behavior. Exact retired-entity/helper and stale wording scans returned zero matches; all four YAML files parsed successfully with the existing PyYAML system parser; changed-file, no-delete, protected-boundary, no-mag-lock, conflict-marker, and `git diff --check` validation passed. Repository-native Home Assistant configuration validation tooling was not present, so no live/runtime validation was claimed. The website build was a governed skip because no website/application source changed. No raw backup, registry export, secret, private evidence, live Home Assistant/Z-Wave mutation, full dashboard migration, dependency, merge, or deployment change occurred. Draft PR #594 remains open and draft for operator review; live deployment, Home Assistant configuration validation, supported Z-Wave exclusion, and field acceptance remain operator-controlled.
 
 
 ### KAOS-PLATFORM-BOOTSTRAP001

@@ -20,17 +20,8 @@ input_boolean:
   bklf_bailey_doorbell_offline_alert_active:
     name: BKLF Bailey Doorbell Offline Alert Active
     icon: mdi:doorbell-video
-  bklf_south_lock_jam_alert_active:
-    name: BKLF South Entrance Lock Jam Alert Active
-    icon: mdi:lock-alert
   bklf_bailey_lock_jam_alert_active:
     name: BKLF Bailey Double Doors Lock Jam Alert Active
-    icon: mdi:lock-alert
-  bklf_south_lock_battery_alert_active:
-    name: BKLF South Entrance Lock Battery Alert Active
-    icon: mdi:battery-alert
-  bklf_south_lock_secure_failure_active:
-    name: BKLF South Entrance Secure Failure Active
     icon: mdi:lock-alert
   bklf_c01_south_entrance_left_open_alert_active:
     name: BKLF C01 South Entrance Left Open Alert Active
@@ -384,9 +375,6 @@ automation:
     max: 2
     trigger:
       - platform: state
-        entity_id: binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed
-        to: "on"
-      - platform: state
         entity_id: binary_sensor.east_wall_bailey_double_doors_lock_jammed
         to: "on"
     condition:
@@ -394,18 +382,15 @@ automation:
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      - variables:
-          lock_name: "{{ 'South Entrance Lock' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'Bailey Double Doors Lock' }}"
-          active_helper: "{{ 'input_boolean.bklf_south_lock_jam_alert_active' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'input_boolean.bklf_bailey_lock_jam_alert_active' }}"
       - condition: template
-        value_template: "{{ not is_state(active_helper, 'on') }}"
+        value_template: "{{ not is_state('input_boolean.bklf_bailey_lock_jam_alert_active', 'on') }}"
       - service: input_boolean.turn_on
-        data:
-          entity_id: "{{ active_helper }}"
+        target:
+          entity_id: input_boolean.bklf_bailey_lock_jam_alert_active
       - service: script.bklf_notify_after_hours_security
         data:
-          title: "{{ lock_name }} Needs Review"
-          message: "{{ lock_name }} needs review. The lock reports a jam or operating problem."
+          title: "Bailey Double Doors Lock Needs Review"
+          message: "Bailey Double Doors Lock needs review. The lock reports a jam or operating problem."
           url: "/bklf-main/locks"
 
   - id: bklf_notify_lock_jam_restored
@@ -414,9 +399,6 @@ automation:
     max: 2
     trigger:
       - platform: state
-        entity_id: binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed
-        to: "off"
-      - platform: state
         entity_id: binary_sensor.east_wall_bailey_double_doors_lock_jammed
         to: "off"
     condition:
@@ -424,97 +406,15 @@ automation:
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      - variables:
-          lock_name: "{{ 'South Entrance Lock' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'Bailey Double Doors Lock' }}"
-          active_helper: "{{ 'input_boolean.bklf_south_lock_jam_alert_active' if trigger.entity_id == 'binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed' else 'input_boolean.bklf_bailey_lock_jam_alert_active' }}"
       - condition: template
-        value_template: "{{ is_state(active_helper, 'on') }}"
+        value_template: "{{ is_state('input_boolean.bklf_bailey_lock_jam_alert_active', 'on') }}"
       - service: input_boolean.turn_off
-        data:
-          entity_id: "{{ active_helper }}"
+        target:
+          entity_id: input_boolean.bklf_bailey_lock_jam_alert_active
       - service: script.bklf_notify_after_hours_security
         data:
-          title: "{{ lock_name }} Restored"
-          message: "{{ lock_name }} no longer reports a jam condition."
-          url: "/bklf-main/locks"
-
-  - id: bklf_notify_south_lock_battery_low
-    alias: BKLF Notify South Entrance Lock Battery Low
-    mode: single
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
-        below: 16
-      - platform: state
-        entity_id:
-          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now
-          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon
-        to: "on"
-      - platform: time
-        at: "10:00:00"
-    condition:
-      - condition: state
-        entity_id: input_boolean.bklf_installer_mode
-        state: "off"
-      - condition: template
-        value_template: >
-          {{ states('sensor.south_wall_home_connect_620_connected_smart_lock_battery_level') | int(100) <= 15
-             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now', 'on')
-             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon', 'on') }}
-    action:
-      - if:
-          - condition: template
-            value_template: "{{ now().hour >= 21 or now().hour < 8 }}"
-        then:
-          - wait_template: "{{ now().hour >= 8 and now().hour < 21 }}"
-            timeout: "12:00:00"
-            continue_on_timeout: true
-      - condition: template
-        value_template: >
-          {{ states('sensor.south_wall_home_connect_620_connected_smart_lock_battery_level') | int(100) <= 15
-             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now', 'on')
-             or is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon', 'on') }}
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.bklf_south_lock_battery_alert_active
-      - service: script.bklf_notify_owner_primary
-        data:
-          title: "South Entrance Lock Battery"
-          message: "South Entrance Lock battery is low. Battery replacement is recommended."
-          url: "/bklf-main/locks"
-
-  - id: bklf_notify_south_lock_battery_restored
-    alias: BKLF Notify South Entrance Lock Battery Restored
-    mode: single
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.south_wall_home_connect_620_connected_smart_lock_battery_level
-        above: 15
-      - platform: state
-        entity_id:
-          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now
-          - binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon
-        to: "off"
-    condition:
-      - condition: state
-        entity_id: input_boolean.bklf_south_lock_battery_alert_active
-        state: "on"
-      - condition: template
-        value_template: >
-          {{ states('sensor.south_wall_home_connect_620_connected_smart_lock_battery_level') | int(0) > 15
-             and is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_now', 'off')
-             and is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_replace_battery_soon', 'off') }}
-      - condition: state
-        entity_id: input_boolean.bklf_installer_mode
-        state: "off"
-    action:
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.bklf_south_lock_battery_alert_active
-      - service: script.bklf_notify_owner_primary
-        data:
-          title: "South Entrance Lock Battery Restored"
-          message: "South Entrance Lock battery is back above the low-battery threshold."
+          title: "Bailey Double Doors Lock Restored"
+          message: "Bailey Double Doors Lock no longer reports a jam condition."
           url: "/bklf-main/locks"
 
   - id: bklf_secure_building_workflow
@@ -535,64 +435,14 @@ automation:
         entity_id: input_boolean.bklf_installer_mode
         state: "off"
     action:
-      - if:
-          - condition: state
-            entity_id: binary_sensor.c01_south_entrance_door
-            state: "off"
-        then:
-          - repeat:
-              while:
-                - condition: template
-                  value_template: "{{ repeat.index <= 5 and not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}"
-              sequence:
-                - service: lock.lock
-                  data:
-                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-                - wait_template: "{{ is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}"
-                  timeout: "00:00:15"
-                  continue_on_timeout: true
-          - if:
-              - condition: template
-                value_template: "{{ not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') }}"
-            then:
-              - service: input_boolean.turn_on
-                target:
-                  entity_id: input_boolean.bklf_south_lock_secure_failure_active
-              - service: script.bklf_notify_after_hours_security
-                data:
-                  title: "South Entrance Lock Could Not Be Secured"
-                  message: "South Entrance Lock could not be secured after repeated attempts. Please review the door and lock."
-                  url: "/bklf-main/locks"
-        else:
-          - service: script.bklf_notify_after_hours_security
-            data:
-              title: "Cannot Secure Building"
-              message: "Cannot secure building - South Entrance Door is open."
-              url: "/bklf-main/security"
-
-  - id: bklf_secure_failure_restored
-    alias: BKLF Secure Failure Restored
-    mode: single
-    trigger:
-      - platform: state
-        entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-        to: "locked"
-    condition:
       - condition: state
-        entity_id: input_boolean.bklf_installer_mode
-        state: "off"
-      - condition: state
-        entity_id: input_boolean.bklf_south_lock_secure_failure_active
+        entity_id: binary_sensor.c01_south_entrance_door
         state: "on"
-    action:
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.bklf_south_lock_secure_failure_active
       - service: script.bklf_notify_after_hours_security
         data:
-          title: "South Entrance Lock Secured"
-          message: "South Entrance Lock is now secured."
-          url: "/bklf-main/locks"
+          title: "Cannot Secure Building"
+          message: "Cannot secure building - South Entrance Door is open."
+          url: "/bklf-main/security"
 
   - id: bklf_notify_exterior_door_left_open
     alias: BKLF Notify Exterior Door Left Open

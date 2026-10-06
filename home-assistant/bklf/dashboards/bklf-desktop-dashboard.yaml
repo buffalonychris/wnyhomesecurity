@@ -48,7 +48,7 @@ views:
             name: Close and Arm
             icon: mdi:shield-lock
             confirmation:
-              text: Run the building preflight, lock both entrances, and arm the building?
+              text: Run the building preflight, lock the Bailey Double Doors, and arm the building?
             tap_action:
               action: call-service
               service: script.bklf_close_and_arm
@@ -151,14 +151,12 @@ views:
               action: navigate
               navigation_path: /bklf-desktop/system
           - type: custom:mushroom-template-card
-            primary: Locks
+            primary: Bailey Double Doors Lock
             secondary: >-
-              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
-                 and is_state('lock.east_wall_bailey_double_doors', 'locked') %}Both entrances locked{% else %}One or more entrances are unlocked{% endif %}
+              {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}Locked{% else %}Needs review{% endif %}
             icon: mdi:lock
             icon_color: >-
-              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
-                 and is_state('lock.east_wall_bailey_double_doors', 'locked') %}green{% else %}amber{% endif %}
+              {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}green{% else %}amber{% endif %}
             tap_action:
               action: navigate
               navigation_path: /bklf-desktop/system
@@ -356,8 +354,8 @@ views:
                 Armed motion alert
               {% elif is_state('binary_sensor.bklf_exterior_secure', 'on') %}
                 Review exterior openings
-              {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') or not is_state('lock.east_wall_bailey_double_doors', 'locked') %}
-                Review entrance locks
+              {% elif not is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+                Review Bailey entrance lock
               {% else %}
                 Ready for normal use
               {% endif %}
@@ -437,16 +435,14 @@ views:
           - type: custom:mushroom-template-card
             primary: System Status
             secondary: >-
-              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on')
-                or is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
+              {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
                 Lock needs service
               {% else %}
                 Ready
               {% endif %}
             icon: mdi:server-network
             icon_color: >-
-              {% if is_state('binary_sensor.south_wall_home_connect_620_connected_smart_lock_lock_jammed', 'on')
-                or is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %} red {% else %} green {% endif %}
+              {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %} red {% else %} green {% endif %}
             tap_action:
               action: navigate
               navigation_path: /bklf-desktop/system
@@ -502,49 +498,6 @@ views:
                 }
           - type: horizontal-stack
             cards:
-              - type: custom:button-card
-                name: Lock
-                icon: mdi:lock
-                tap_action:
-                  action: call-service
-                  service: lock.lock
-                  target:
-                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-                styles: &safe_button
-                  card:
-                    - min-height: 66px
-                    - border-radius: 18px
-                    - background: var(--wnyhs-secondary-button-background)
-                    - border: 1px solid var(--wnyhs-lock-color)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--primary-text-color)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-lock-color)
-              - type: custom:button-card
-                name: Unlock
-                icon: mdi:lock-open-variant
-                confirmation:
-                  text: Unlock the South Entrance?
-                tap_action:
-                  action: call-service
-                  service: lock.unlock
-                  target:
-                    entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-                styles: &caution_button
-                  card:
-                    - min-height: 66px
-                    - border-radius: 18px
-                    - background: var(--wnyhs-emergency-background)
-                    - border: 1px solid var(--wnyhs-unlock-color)
-                    - border-left: 5px solid var(--wnyhs-unlock-color)
-                    - box-shadow: var(--ha-card-box-shadow)
-                  name:
-                    - color: var(--wnyhs-emergency-text)
-                    - font-weight: 800
-                  icon:
-                    - color: var(--wnyhs-unlock-color)
               - type: custom:button-card
                 name: Details
                 icon: mdi:fullscreen
@@ -631,7 +584,18 @@ views:
                   service: lock.lock
                   target:
                     entity_id: lock.east_wall_bailey_double_doors
-                styles: *safe_button
+                styles: &safe_button
+                  card:
+                    - min-height: 66px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-secondary-button-background)
+                    - border: 1px solid var(--wnyhs-lock-color)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--primary-text-color)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-lock-color)
               - type: custom:button-card
                 name: Unlock
                 icon: mdi:lock-open-variant
@@ -642,7 +606,19 @@ views:
                   service: lock.unlock
                   target:
                     entity_id: lock.east_wall_bailey_double_doors
-                styles: *caution_button
+                styles: &caution_button
+                  card:
+                    - min-height: 66px
+                    - border-radius: 18px
+                    - background: var(--wnyhs-emergency-background)
+                    - border: 1px solid var(--wnyhs-unlock-color)
+                    - border-left: 5px solid var(--wnyhs-unlock-color)
+                    - box-shadow: var(--ha-card-box-shadow)
+                  name:
+                    - color: var(--wnyhs-emergency-text)
+                    - font-weight: 800
+                  icon:
+                    - color: var(--wnyhs-unlock-color)
               - type: custom:button-card
                 name: Details
                 icon: mdi:fullscreen
@@ -664,22 +640,6 @@ views:
               action: navigate
               navigation_path: /bklf-desktop/doors-locks
             styles: *section_header
-          - type: custom:mushroom-template-card
-            primary: South Entrance Lock
-            secondary: >-
-              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
-                Locked
-              {% else %}
-                Needs review
-              {% endif %}
-            icon: mdi:lock
-            icon_color: >-
-              {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %} green {% else %} red {% endif %}
-            tap_action:
-              action: more-info
-              entity: lock.south_wall_home_connect_620_connected_smart_lock
-            card_mod:
-              style: *status_tile
           - type: custom:mushroom-template-card
             primary: Bailey Double Doors Lock
             secondary: >-
@@ -743,7 +703,6 @@ views:
           - binary_sensor.east_wall_bailey_double_door_visitor
           - binary_sensor.east_wall_bailey_double_door_person
           - binary_sensor.east_wall_bailey_double_door_motion
-          - lock.south_wall_home_connect_620_connected_smart_lock
           - lock.east_wall_bailey_double_doors
           - switch.south_entrance_lamp
           - binary_sensor.c01_south_entrance_door
@@ -898,28 +857,6 @@ views:
         icon_color: blue
         card_mod:
           style: *status_tile
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            name: Lock
-            icon: mdi:lock
-            tap_action:
-              action: call-service
-              service: lock.lock
-              target:
-                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-            styles: *safe_button
-          - type: custom:button-card
-            name: Unlock
-            icon: mdi:lock-open-variant
-            confirmation:
-              text: Unlock the front entry?
-            tap_action:
-              action: call-service
-              service: lock.unlock
-              target:
-                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-            styles: *caution_button
       - type: custom:button-card
         name: Snapshot
         icon: mdi:camera
@@ -935,18 +872,14 @@ views:
         primary: >-
           {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
             Door is open
-          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
-            Lock needs review
           {% else %}
-            Door is closed and locked
+            Door is closed
           {% endif %}
         secondary: South Entrance / Front Entry
-        icon: mdi:door-closed-lock
+        icon: mdi:door
         icon_color: >-
           {% if is_state('binary_sensor.c01_south_entrance_door', 'on') %}
             amber
-          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
-            red
           {% else %}
             green
           {% endif %}
@@ -959,7 +892,6 @@ views:
           - binary_sensor.south_wall_south_entrance_doorbell_visitor
           - binary_sensor.south_wall_south_entrance_doorbell_person
           - binary_sensor.south_wall_south_entrance_doorbell_motion
-          - lock.south_wall_home_connect_620_connected_smart_lock
         card_mod:
           style: *activity_card
 
@@ -1206,44 +1138,6 @@ views:
         card_mod:
           style: *status_tile
       - type: custom:mushroom-template-card
-        primary: South Entrance Lock
-        secondary: >-
-          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
-            Locked
-          {% else %}
-            Needs review
-          {% endif %}
-        icon: mdi:lock
-        icon_color: >-
-          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %} green {% else %} red {% endif %}
-        tap_action:
-          action: more-info
-          entity: lock.south_wall_home_connect_620_connected_smart_lock
-        card_mod:
-          style: *status_tile
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            name: Lock South Entrance
-            icon: mdi:lock
-            tap_action:
-              action: call-service
-              service: lock.lock
-              target:
-                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-            styles: *safe_button
-          - type: custom:button-card
-            name: Unlock South Entrance
-            icon: mdi:lock-open-variant
-            confirmation:
-              text: Unlock the South Entrance?
-            tap_action:
-              action: call-service
-              service: lock.unlock
-              target:
-                entity_id: lock.south_wall_home_connect_620_connected_smart_lock
-            styles: *caution_button
-      - type: custom:mushroom-template-card
         primary: Bailey Double Doors Lock
         secondary: >-
           {% if is_state('binary_sensor.east_wall_bailey_double_doors_lock_jammed', 'on') %}
@@ -1383,8 +1277,8 @@ views:
             Armed motion alert
           {% elif is_state('binary_sensor.bklf_exterior_secure', 'on') %}
             Review exterior openings
-          {% elif not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') or not is_state('lock.east_wall_bailey_double_doors', 'locked') %}
-            Review entrance locks
+          {% elif not is_state('lock.east_wall_bailey_double_doors', 'locked') %}
+            Review Bailey entrance lock
           {% else %}
             Ready for normal use
           {% endif %}
@@ -1444,22 +1338,6 @@ views:
         card_mod:
           style: *status_tile
       - type: custom:mushroom-template-card
-        primary: South Entrance Lock
-        secondary: >-
-          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %}
-            Locked
-          {% else %}
-            Needs review
-          {% endif %}
-        icon: mdi:lock
-        icon_color: >-
-          {% if is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked') %} green {% else %} red {% endif %}
-        tap_action:
-          action: more-info
-          entity: lock.south_wall_home_connect_620_connected_smart_lock
-        card_mod:
-          style: *status_tile
-      - type: custom:mushroom-template-card
         primary: Bailey Double Doors Lock
         secondary: >-
           {% if is_state('lock.east_wall_bailey_double_doors', 'locked') %}
@@ -1501,7 +1379,6 @@ views:
           - binary_sensor.east_wall_bailey_double_door_visitor
           - binary_sensor.east_wall_bailey_double_door_person
           - binary_sensor.east_wall_bailey_double_door_motion
-          - lock.south_wall_home_connect_620_connected_smart_lock
           - lock.east_wall_bailey_double_doors
           - switch.south_entrance_lamp
           - binary_sensor.c01_south_entrance_door
