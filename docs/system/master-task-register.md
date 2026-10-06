@@ -1180,6 +1180,38 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **CTR Eligibility:** Not eligible while ACTIVE.
 - **CTR Record / Pointer:** None.
 
+### BAILEY-DASH-PROTOTYPE-001
+
+- **Task ID:** BAILEY-DASH-PROTOTYPE-001
+- **Task Name:** Bailey Next-Generation Customer Dashboard Deterministic Prototype
+- **Status:** DONE
+- **Category:** PROTOTYPE / VISUAL APPROVAL
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Visual System; Home Assistant Platform; Automation System; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Create one deterministic, self-contained Bailey customer-dashboard approval prototype for BK Lewis Funeral Home — Bailey using approved dashboard architecture, visual standards, responsive delivery rules, and sanitized repository-owned Bailey capability evidence.
+- **Allowed Scope:** Execute only `docs/codex/work-orders/BAILEY-DASH-PROTOTYPE-001_WORK_ORDER_REV01.md`; create the standalone offline prototype at `prototypes/dashboard/bailey/Bailey_Dashboard_Review.html`; use a deterministic sanitized Bailey fixture; implement the exact seven-view navigation, governed themes, size and font controls, simulated review scenarios, component-state review, responsive behavior, and accessibility requirements; update only this task record for lifecycle and validation evidence.
+- **Forbidden Scope:** No live Home Assistant access or mutation; no existing Bailey dashboard YAML, packages, notifications, automations, device configuration, bindings, registration, assignment, or deployment changes; no raw registry export, private customer data, secret, private URL, raw entity ID, dependency, external asset, network request, website/public funnel, Cloudflare, CRM/HubSpot, Stripe/payment, scheduling, email, API, quote, merge, or deployment change; no claim that deferred SMOKE 02 evidence is Normal or live.
+- **Target Files:** `docs/codex/work-orders/BAILEY-DASH-PROTOTYPE-001_WORK_ORDER_REV01.md`; `docs/system/master-task-register.md`; `prototypes/dashboard/bailey/Bailey_Dashboard_Review.html`.
+- **Runtime Systems Affected:** None. Standalone local approval artifact only.
+- **Home Assistant Affected:** None. Existing Bailey Home Assistant dashboards and runtime configuration remain untouched.
+- **Production Website Affected:** None.
+- **Documentation Updates Required:** Maintain only this exact MTR record and the repository-owned work order; do not modify Bailey inventory, dashboard, package, automation, notification, binding, registration, assignment, or deployment documentation.
+- **Validation Required:** Complete work-order Section 23: exact three-file allowlist; no deletions; `git diff --check`; local standalone HTML parse/open; zero external dependencies or network requests; seven-view navigation; Explore WNYHS `COMING SOON`; Light/Dark/Auto, Compact/Default/Large, Inter/Atkinson/System, review scenarios, component states, responsive geometry, keyboard/focus/accessibility, truthful simulated fixture, Bailey capability/exclusion, and protected-boundary checks; temporary browser evidence removed; governed `npm run build` skip unless repository tooling explicitly requires it.
+- **Exit Criteria:** The exact standalone Bailey HTML prototype exists and conforms to INSTALL006 REV02, DESIGN001 REV02, and DASHBOARD001 REV02; deferred SMOKE 02 appears only as governed simulated unavailable review state and does not block completion; validation passes; this record is DONE; the existing draft PR contains only authorized files; no Home Assistant/runtime/dashboard YAML, merge, or deployment change occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/BAILEY-DASH-PROTOTYPE-001_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; ACTIVE `DASHBOARD-CAMPAIGN-001`; merged PR #595 / merge commit `1884c7f1fad5a9e6d14bf0567bd3a39db449d04a`; INSTALL006 REV02; DESIGN001 REV02; DASHBOARD001 REV02; current sanitized Bailey inventory and semantic package evidence.
+- **Operator Decision Required:** Review the standalone prototype and draft PR; decide separately whether any later Home Assistant binding, registration, assignment, deployment, acceptance, or production implementation task is authorized.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #596: `https://github.com/buffalonychris/wnyhomesecurity/pull/596` on branch `task/bailey-dashboard-prototype-001`.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; this is an offline approval artifact and no deployment is authorized.
+- **Raw / Live State:** None. Repository-supported capabilities and deterministic simulated approval states only; no live bindings or live state.
+- **Main-Sync Status / Evidence:** Task branch is based on merge commit `1884c7f1fad5a9e6d14bf0567bd3a39db449d04a`, containing merged PR #595.
+- **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Validation Evidence:** The standalone HTML parsed successfully and was copied alone to a separate temporary directory for direct `file://` Chromium validation. All seven views, Light/Dark/Auto, Compact/Default/Large, Inter/Atkinson/System, five simulated review scenarios, persistent truthfulness banner, local-only support feedback, deferred Viewing Room smoke behavior, keyboard skip-link focus, exact governed color tokens, equal Home-tile geometry, 48/48/56px action-family heights, and phone/tablet-portrait/tablet-landscape/desktop no-overflow checks passed. Browser evidence returned zero console errors, page errors, failed requests, and external network requests. Static scans found no external dependencies, raw Home Assistant IDs, retired South lock, `Standard` size label, or `LIVE` badge. Temporary copies and screenshots were removed before commit.
+- **Completion Notes:** Created the single self-contained Bailey approval HTML using repository-supported capabilities and deterministic simulated review states. Represented Building Status, South Entrance, Bailey Double Doors lock, grouped windows, three camera/doorbell capabilities, two lighting capabilities, environment, three smoke detectors, motion/activity, and alarm-output status without live binding. Viewing Room SMOKE 02 remains explicitly deferred/unavailable and prevents a Normal smoke aggregate; unresolved contact placement remains grouped; no retired South lock or planned replacement appears. Only the work order, this exact task record, and the standalone prototype are in task scope. No Bailey dashboard YAML, package, notification, automation, device configuration, binding, registration, assignment, Home Assistant runtime, dependency, website, protected system, merge, or deployment change occurred. `npm run build` was a governed skip because this standalone artifact does not modify application source or build configuration. Draft PR #596 remains open and draft for operator/ChatGPT review.
+
 ### T-DASH-PECKHAM-HTML-001
 
 - **Task ID:** T-DASH-PECKHAM-HTML-001
