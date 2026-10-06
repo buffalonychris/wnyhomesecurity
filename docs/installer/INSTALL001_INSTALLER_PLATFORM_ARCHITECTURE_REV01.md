@@ -247,6 +247,9 @@ The following are planning-only future tasks. They are not active tasks unless a
 - INSTALL008 - Bench Testing and Commissioning Checklist
 - INSTALL009 - Customer Handoff Package
 - INSTALL010 - Service Dashboard and Remote Support Standard
+- INSTALL011 - Dashboard Site Implementation Pipeline Standard
+
+INSTALL011 is the post-install dashboard-site orchestration standard. It coordinates the existing registry export/evidence, dashboard architecture, visual/delivery, notification, commissioning, handoff, and service owners into a repeatable cross-site workflow without taking over their layer ownership or authorizing customer implementation.
 
 Recommended next task: INSTALL002 - Bench Build Checklist.
 

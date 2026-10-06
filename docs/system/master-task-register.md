@@ -1180,6 +1180,36 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **CTR Eligibility:** Not eligible while ACTIVE.
 - **CTR Record / Pointer:** None.
 
+### WNYHS-DASHBOARD-SITE-PIPELINE-001
+
+- **Task ID:** WNYHS-DASHBOARD-SITE-PIPELINE-001
+- **Task Name:** WNYHS Dashboard Site Implementation Pipeline Standard
+- **Status:** DONE
+- **Category:** GOV / DESIGN
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Home Assistant Platform; Automation System; Visual System; Installer Platform; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Promote the reusable WNYHS dashboard-site implementation pipeline into durable repository authority so Bailey remains the proving/reference implementation rather than a one-off or a source of universal customer facts.
+- **Allowed Scope:** Execute only `docs/codex/work-orders/WNYHS-DASHBOARD-SITE-PIPELINE-001_WORK_ORDER_REV01.md`; create INSTALL011 as the cross-site orchestration standard; add minimal INSTALL001 and Dashboard Governance Map routing references; maintain only this exact task record; preserve all existing canonical domain owners.
+- **Forbidden Scope:** No live Home Assistant, Bailey dashboard, Bailey prototype, registry export script, notification routing, authentication, permission, dashboard YAML, runtime, deployment, CRM/HubSpot, Stripe/payment, scheduling, email, Cloudflare, dependency, package-lock, secret, customer-data, merge, or adjacent-task change; no fourth canonical dashboard class; no replacement-first rollout.
+- **Target Files:** `docs/codex/work-orders/WNYHS-DASHBOARD-SITE-PIPELINE-001_WORK_ORDER_REV01.md`; `docs/installer/INSTALL011_DASHBOARD_SITE_IMPLEMENTATION_PIPELINE_STANDARD_REV01.md`; `docs/installer/INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md`; `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation and governance only.
+- **Home Assistant Affected:** None. No live instance, dashboard, configuration, automation, notification, user, permission, or remote-access change is authorized.
+- **Documentation Updates Required:** Create INSTALL011 as orchestration authority only; minimally route INSTALL001 and the Dashboard Governance Map to it; update only this exact MTR record.
+- **Validation Required:** Complete work-order Section 12: exact five-file allowlist; no deletions; `git diff --check`; documented duplicate-owner search; required owner references and non-supersession boundary; exact three dashboard classes and customer options; raw-export-to-authorized-binding chain; minimum classification outcomes; additive rollout, rollback, soak, and separate legacy retirement; authorization-backed profile-dropdown boundary; notification/profile relationship; RSI feedback loop; minimal routing updates; protected-scope confirmation; governed docs-only build skip.
+- **Exit Criteria:** INSTALL011 exists as the reusable orchestration standard; existing owners remain intact and referenced; INSTALL001 and the Dashboard Governance Map minimally route to INSTALL011; validation passes; this exact record is DONE; draft PR #597 contains only authorized files; no merge or deployment occurs.
+- **Dependencies:** Operator-authorized `docs/codex/work-orders/WNYHS-DASHBOARD-SITE-PIPELINE-001_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; ACTIVE `DASHBOARD-CAMPAIGN-001`; merged PR #596 / commit `2dd378026def7ad407147fdda2d0ec94765950c8`; current canonical extraction, naming, dashboard, visual, delivery, notification, automation, commissioning, handoff, and service standards.
+- **Operator Decision Required:** Review the standards change and draft PR; decide separately whether to merge. Any customer implementation, Home Assistant access, binding, registration, assignment, deployment, acceptance, or legacy retirement remains separately gated.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #597: `https://github.com/buffalonychris/wnyhomesecurity/pull/597` on branch `task/wnyhs-dashboard-site-pipeline-001`.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; docs/governance only, with no deployment authorized or performed.
+- **Main-Sync Status / Evidence:** Task branch is based on merge commit `2dd378026def7ad407147fdda2d0ec94765950c8`, containing merged PR #596.
+- **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Validation Evidence:** Duplicate-owner search across the canonical installer, Home Assistant, dashboard, design, automation, notification, commissioning, handoff, service, and governance owners found no existing owner for the full export-to-handoff orchestration chain. Exact five-file allowlist, no-deletion check, `git diff --check`, trailing-whitespace scan including the new file, 37 required INSTALL011 content assertions, 12 canonical reference-path checks, exact task-record count, and minimal-routing-update checks passed. `npm run build` was a governed skip because this task changes documentation/governance only and no source or build configuration.
+- **Completion Notes:** Created INSTALL011 as orchestration authority only for the repeatable export, transient intake, audit, sanitized-model, semantic-binding, role/class assembly, deterministic approval, separately bounded implementation, additive rollout, acceptance/soak, handoff, and separately gated legacy-retirement sequence. Existing canonical owners remain intact and are referenced rather than duplicated. INSTALL001 and the Dashboard Governance Map received only minimal routing additions. The operator-authored work-order header received whitespace-only normalization so required `git diff --check` could pass. No live Home Assistant, Bailey dashboard/prototype, registry export script, notification routing, authentication, permissions, runtime, deployment, customer data, protected system, merge, or deployment change occurred.
+
 ### BAILEY-DASH-PROTOTYPE-001
 
 - **Task ID:** BAILEY-DASH-PROTOTYPE-001
