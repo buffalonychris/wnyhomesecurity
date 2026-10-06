@@ -13,7 +13,7 @@ Status: OPERATOR AUTHORIZED
 
 - ID: `BAILEY-HA-CAPABILITY-RECONCILE-001`
 - Name: Bailey smoke/fire semantic-source correction and contact-sensor registry reconciliation
-- Status: ACTIVE
+- Status: PROMPT-CREATED / operator authorized; Codex must add the missing ACTIVE MTR record before implementation under CODEX_EXECUTION_STANDARD_REV01 prompt-created-task authority
 - Category: RUNTIME
 - Primary workstream: Automation System
 - Related workstreams: Dashboard / Interactive Experience System; Runtime System; Project Governance
@@ -39,7 +39,8 @@ Before edits:
 3. Confirm `main` contains merged PR #594 / commit `e804eac2d02ae5bbb8467f303e50d1f14c4693c5`.
 4. Confirm Primary Workstream `Automation System` exactly matches OPS004.
 5. Confirm the controlling context remains `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`.
-6. Stop if any requested runtime/dashboard expansion is required beyond the exact files below.
+6. Confirm no existing MTR record with this exact task ID already conflicts. If absent, add only this task record as ACTIVE before implementation, using the bounded scope in this work order.
+7. Stop if any requested runtime/dashboard expansion is required beyond the exact files below.
 
 ## 6. Required authority / owner documents
 
@@ -49,7 +50,7 @@ Read only applicable sections of:
 - `docs/system/guardrails.md`
 - `docs/system/agent.md`
 - `docs/system/step-current.md`
-- exact `BAILEY-HA-CAPABILITY-RECONCILE-001` MTR record
+- exact `BAILEY-HA-CAPABILITY-RECONCILE-001` MTR record after Codex creates it if absent
 - `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`
 - applicable OPS004 Automation System routing
 - `docs/automation-system/AUTOMATION001_WNYHS_HOME_ASSISTANT_AUTOMATION_STANDARD_REV01.md`
@@ -125,7 +126,7 @@ State explicitly that registry presence is not live alarm-state proof.
 
 ### D. Task lifecycle
 
-Update only the exact `BAILEY-HA-CAPABILITY-RECONCILE-001` record in the MTR to DONE when validation and exit criteria pass. Record draft PR evidence. Do not modify adjacent task records.
+If the exact task record is absent at start, add only `BAILEY-HA-CAPABILITY-RECONCILE-001` to the MTR as ACTIVE using this work order as the bounded source of truth. When validation and exit criteria pass, update only that exact record to DONE and record draft PR evidence. Do not modify adjacent task records.
 
 ## 9. Allowed scope / target files
 
