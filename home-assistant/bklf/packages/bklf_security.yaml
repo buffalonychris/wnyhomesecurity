@@ -77,12 +77,9 @@ script:
         state: "off"
       - service: lock.lock
         target:
-          entity_id:
-            - lock.south_wall_home_connect_620_connected_smart_lock
-            - lock.east_wall_bailey_double_doors
+          entity_id: lock.east_wall_bailey_double_doors
       - wait_template: >
-          {{ is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
-             and is_state('lock.east_wall_bailey_double_doors', 'locked') }}
+          {{ is_state('lock.east_wall_bailey_double_doors', 'locked') }}
         timeout: "00:00:20"
         continue_on_timeout: false
       - service: input_select.select_option
@@ -119,13 +116,10 @@ template:
         device_class: problem
         state: >
           {{ states('binary_sensor.c01_south_entrance_door') != 'off'
-             or states('lock.south_wall_home_connect_620_connected_smart_lock') in ['unknown', 'unavailable']
              or states('lock.east_wall_bailey_double_doors') in ['unknown', 'unavailable'] }}
         attributes:
           monitored_door_contact: binary_sensor.c01_south_entrance_door
-          monitored_locks: >
-            lock.south_wall_home_connect_620_connected_smart_lock,
-            lock.east_wall_bailey_double_doors
+          monitored_lock: lock.east_wall_bailey_double_doors
           onsite_note: "Confirm the physical Bailey entrance contact mapping before adding it to this aggregate."
 
       - name: BKLF Windows Attention
@@ -261,12 +255,10 @@ template:
         device_class: problem
         state: >
           {{ is_state('binary_sensor.bklf_exterior_secure', 'on')
-            or not is_state('lock.south_wall_home_connect_620_connected_smart_lock', 'locked')
             or not is_state('lock.east_wall_bailey_double_doors', 'locked')
             or (is_state('input_boolean.bklf_building_armed', 'on')
               and is_state('binary_sensor.bklf_interior_motion_active', 'on')) }}
         attributes:
-          south_lock: lock.south_wall_home_connect_620_connected_smart_lock
           bailey_lock: lock.east_wall_bailey_double_doors
           exterior_status: binary_sensor.bklf_exterior_secure
           motion_status: binary_sensor.bklf_interior_motion_active
