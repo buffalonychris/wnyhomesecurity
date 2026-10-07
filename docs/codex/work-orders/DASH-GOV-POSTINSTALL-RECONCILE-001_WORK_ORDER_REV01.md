@@ -466,7 +466,7 @@ Do not:
 Confirm:
 
 1. starting main is synchronized and clean;
-2. exact task ID occurs once in the active MTR record;
+2. the exact task heading and the Task ID field each occur once in the active MTR;
 3. only Section 9 files changed;
 4. zero deleted files unless explicitly authorized by work-order revision;
 5. all four conflicts have a recorded reconciliation outcome;
