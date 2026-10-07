@@ -10,17 +10,19 @@
 
 READ MODE: FULL
 
-Justification: the future task is a bounded, comprehensive requirements and governance reconciliation. It must compare current canonical, supporting, site-specific, superseded, historical, conflicting, and missing requirements across the post-install dashboard source universe. Begin with exact-ID and exact-heading searches, then fully read only the bounded candidate documents established by Section 8. Do not hydrate unrelated repository areas, the full Master Task Register, catalogs, manifests, raw customer evidence, or implementation assets by default.
+Justification: this is a bounded cross-source reconciliation. FULL authorizes breadth of relevant discovery, not full loading of every candidate file. Use this sequence:
+
+`exact search -> candidate source inventory -> targeted section reads -> full document read only when classification or lineage requires it -> targeted secondary-source expansion only when current-repository evidence or a coverage gap justifies it`
+
+Once the candidate universe is established, do not repeat broad repository searches or load unrelated registers, catalogs, manifests, raw customer evidence, or implementation assets.
 
 REASONING POSTURE: ADAPTIVE
 
-- STANDARD: authority, routing, bounded-source inventory, extraction, classification, and evidence-table construction.
-- ELEVATED only when source precedence, ownership, or materially conflicting requirements cannot be classified deterministically.
-- Return to STANDARD for validation and closeout. Do not resolve conflicts or invent missing doctrine.
+Use STANDARD for inventory, extraction, classification, validation, and closeout. Elevate only for genuinely ambiguous precedence, ownership, or conflicts; never use deeper reasoning to resolve a finding or invent doctrine.
 
 EXECUTION POSTURE: DIRECT
 
-Use repository-local, read-only discovery and inspection plus normal Git/GitHub delivery commands. No browser, live Home Assistant, connected service, MCP, application-control, customer-system, or deployment access is required or authorized.
+Use read-only evidence inspection and authorized delivery commands. External or connected evidence access is permitted only for the targeted secondary-lineage cases in Section 8.4; live/customer/runtime access remains prohibited.
 
 ## 1. Objective
 
@@ -30,31 +32,13 @@ The audit must distinguish current authority from supporting, site-specific, sup
 
 ## 2. Authorization and execution gate
 
-This REV01 is prepared only. Do not execute it until all of the following are true:
-
-1. the work-order creation PR containing this file and the matching MTR record is merged to `main`;
-2. local `main` is clean and synchronized with `origin/main`;
-3. `DASHBOARD-CAMPAIGN-001` remains ACTIVE and non-implementing;
-4. the exact MTR record `DASH-GOV-POSTINSTALL-AUDIT-001` is present once and is explicitly dispatched for execution;
-5. current context remains `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01` or a higher-authority revision explicitly reauthorizes the task;
-6. the dashboard owner map still routes architecture/behavior to INSTALL006, visuals/components to DESIGN001, delivery/binding/validation to DASHBOARD001, and cross-site orchestration to INSTALL011; and
-7. no other open task or PR owns this exact audit deliverable.
+This REV01 is prepared only. Execute only after its creation PR is merged, `main` is synchronized, the exact READY MTR record is explicitly dispatched, `DASHBOARD-CAMPAIGN-001` remains ACTIVE/non-implementing, the controlling context and dashboard owner map remain current, and no other task or PR owns the audit deliverable.
 
 If any gate fails, stop and request a work-order/context revision. Do not infer authorization from this prepared document alone.
 
 ## 3. Required precheck
 
-Before audit reads:
-
-1. verify repository convergence under the Codex Execution Standard;
-2. verify the exact OPS004 primary-workstream label `Dashboard / Interactive Experience System`;
-3. read only the exact current-context, standing-campaign, and task-record sections needed for the gate;
-4. repeat the exact-task and audit-deliverable duplicate-owner search locally and in open PRs;
-5. inventory candidate files by path and exact headings before opening them;
-6. confirm that no secret, raw backup, raw registry export, private URL, credential, token, or non-repository customer evidence is required; and
-7. create a fresh execution branch from `origin/main` only after the work-order creation PR is merged.
-
-The immediately preceding deployment gate is not applicable unless a later source/runtime task becomes the direct predecessor and materially changes the audit evidence. This audit is docs-only and must not reconstruct unrelated deployment history.
+Follow the convergence and task gates in `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`. Task-specific prechecks are: exact OPS004 primary-workstream match; targeted current-context/campaign/task-record reads; exact-task and deliverable duplicate-owner search locally and in open PRs; candidate inventory before reads; and confirmation that protected, raw, secret, or live customer evidence is unnecessary. Unrelated deployment history is not applicable.
 
 ## 4. Governing authority and routing inputs
 
@@ -70,17 +54,30 @@ Read the minimum applicable sections first:
 - `docs/system/OPS004_WORKSTREAM_CONTEXT_ROUTING_STANDARD_REV02.md` with preserved REV01 dashboard registry section
 - `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md` — current routing and lineage map
 
-Repository authority and current owner documents outrank chat context and historical materials. The audit may report an apparent conflict with higher authority but may not override it.
+### 4.1 Source authority hierarchy
+
+The current WNYHS repository is the authoritative implementation and governance source. Its current authority chain and domain owners control over chat context, other repositories, Project knowledge, and historical material.
+
+The audit may inspect specifically identified secondary lineage sources when materially useful:
+
+- other WNYHS-related repositories available to the operator or authorized tooling;
+- prior ChatGPT Project / Project-knowledge material; and
+- other durable historical sources explicitly referenced by current repository lineage.
+
+These sources are discovery/lineage evidence only. They may reveal historical requirements, prior decisions, superseded concepts, unpromoted value, conflicts, or gaps, but they may not override the current repository, qualify as `CURRENT_CANONICAL` merely because they existed elsewhere, silently become implementation authority, or be promoted during the audit.
+
+Every material secondary-source finding must use the Section 6 classification model and remain supporting, site-specific, historical, unpromoted, conflicting, or gap evidence until separately reconciled and promoted. Secondary expansion must be targeted and justified by a current-repository reference, known lineage, or an identified coverage gap; indiscriminate searches of past repositories or chats are prohibited.
 
 ## 5. Owner Routing Matrix
 
 | Approved concept | Current canonical owner | Exact target | Section / behavior | Action | Reason | Why not elsewhere | Conflict | Confidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Cross-owner post-install dashboard requirement audit | Dashboard / Interactive Experience System under the standing campaign | `docs/audits/DASH-GOV-POSTINSTALL-AUDIT-001_AUDIT_REV01.md` | Evidence inventory, classification, conflict/gap register, coverage matrix | CREATE | No current artifact owns this bounded cross-source audit; it is an evidence report, not a new standard | Domain standards retain their doctrine; INSTALL011 retains orchestration; the Governance Map remains routing-only | NO, subject to execution precheck | HIGH |
-| Task lifecycle and evidence | Project Governance | `docs/system/master-task-register.md` | Exact `DASH-GOV-POSTINSTALL-AUDIT-001` record only | MODIFY | MTR owns operational task status and closeout evidence | The audit deliverable must not become task-state authority | NO | HIGH |
-| Current functional, visual, delivery, and orchestration doctrine | INSTALL006 REV02; DESIGN001 REV02; DASHBOARD001 REV02; INSTALL011 REV01 | Current owner documents named in Section 8 | Requirement evidence only | REFERENCE ONLY | These owners already hold stable doctrine | Duplicating or rewriting doctrine in the audit would create owner drift | NO | HIGH |
-| Supporting, site-specific, superseded, and historical material | Its existing source owner or historical lineage | Bounded candidate set in Section 8 | Requirement evidence and classification only | REFERENCE ONLY | The task must surface material value, conflicts, and gaps without promotion | Promotion or correction requires a separate owner-routed task | Potential findings only | HIGH |
-| Conflicts and missing ownership | Unresolved until a later reconciliation task | Audit conflict/gap registers only | Record source evidence, impact, and candidate owners without choosing a resolution | CREATE | The requested output is diagnostic | Resolving ownership would exceed audit authority | YES by finding, not by task authority | HIGH |
+| Cross-owner audit | Dashboard / Interactive Experience System | `docs/audits/DASH-GOV-POSTINSTALL-AUDIT-001_AUDIT_REV01.md` | Evidence, classifications, coverage, conflicts/gaps | CREATE | No current artifact owns this audit | Domain owners retain doctrine; INSTALL011 owns orchestration | NO after precheck | HIGH |
+| Task lifecycle | Project Governance | `docs/system/master-task-register.md` | Exact task record | MODIFY | MTR owns status/evidence | Audit is not task-state authority | NO | HIGH |
+| Current dashboard doctrine | INSTALL006; DESIGN001; DASHBOARD001; INSTALL011 | Section 8 owner documents | Requirement evidence | REFERENCE ONLY | Existing canonical owners | Restatement would create drift | NO | HIGH |
+| Supporting/governance-audit evidence | Existing narrow owners; GOVREF001 reference | Section 8 current-repository set | Ownership/gap discovery | REFERENCE ONLY | Cross-domain evidence | Does not replace dashboard owners | NO | HIGH |
+| Site, historical, superseded, and secondary lineage | Source owner or recorded lineage | Section 8 bounded sources | Discovery/classification | REFERENCE ONLY | Surfaces value/conflicts/gaps | Promotion requires separate authority | Finding-dependent | HIGH |
+| Conflicts and gaps | Unresolved | Audit registers | Evidence, impact, candidate review owners | CREATE | Diagnostic outcome | Resolution exceeds scope | YES by finding | HIGH |
 
 The audit must not add, supersede, or modify a canonical owner. Any newly discovered write target requires work-order revision.
 
@@ -115,6 +112,8 @@ The audit must include an explicit coverage row for every topic below, even when
 11. Backup, restore, lifecycle change, upgrades, dependency drift, performance, commissioning, acceptance, handoff, rollout, rollback, soak, support transition, legacy retirement, and end-of-life posture.
 12. Bailey/BKLF, Peckham, dashboard campaign, prior dashboard governance, prototypes, implementation work orders, and materially relevant superseded/withdrawn lineage.
 
+For item 1, explicitly research `HACS`, `Mushroom`, `Bubble Card`, `button-card`, `Card Mod`, `Layout Card`, `Swipe Card`, `Browser Mod`, and `Auto-Entities`. For each, determine the authoritative prerequisite status, version/compatibility expectations, and customer/installer usage boundary, then classify it as required baseline, optional/supporting, installer/service only, site-specific, historical, conflicting, or unowned. Presence in a site inventory or theme-readiness document does not by itself make an item universally required.
+
 Coverage is about requirements and governance. It does not authorize runtime testing, UI inspection, dashboard implementation, or customer-system access.
 
 ## 8. Bounded source universe and discovery rules
@@ -147,6 +146,7 @@ At minimum inspect the applicable sections of:
 - `docs/home-assistant/HA-BACKUP001_CUSTOMER_BACKUP_EXTRACTION_STANDARD_REV02.md`
 - current Home Assistant remote-access/support standards and runbooks under `docs/home-assistant/`
 - `docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`
+- `docs/governance/WNYHS_GOVERNANCE_AUDIT_REFERENCE_MODEL_REV01.md` — cross-domain ownership and gap-discovery evidence only; it is non-authoritative and does not supersede current dashboard owners
 - `home-assistant/wnyhs/themes/README.md` and `home-assistant/wnyhs/components/README.md` for declared dependency/usage contracts only
 
 The duplicate `INSTALL008` identifier is audit evidence to classify, not authority to rename or reconcile it.
@@ -163,9 +163,15 @@ Use exact predecessor/supersedes pointers and targeted path searches to identify
 - withdrawn or branch-only work described by current repository lineage; and
 - prior dashboard theme/readiness material absorbed, superseded, or left reference-only.
 
-Do not treat an unmerged branch or PR as current repository authority. If a historical artifact is referenced but absent from the synchronized repository, record the absence and available lineage; do not fetch or reconstruct it unless a revised work order explicitly authorizes that external evidence.
+Do not treat an unmerged branch or PR as current repository authority. If referenced historical evidence is absent, record that fact and use Section 8.4 only when the evidence is materially necessary.
 
-### 8.4 Site-specific reference set
+### 8.4 Targeted secondary lineage
+
+Secondary lineage sources permitted by Section 4.1 may be inspected only when a current-repository reference, known lineage pointer, or unresolved coverage gap identifies a concrete target. For every expansion, record the source, access basis, reason, scope, and whether it changed a classification. Do not conduct open-ended repository, Project, chat, or account history searches.
+
+Secondary evidence remains read-only and non-authoritative. If it cannot be accessed safely or precisely, record it as unavailable; do not reconstruct or infer its contents.
+
+### 8.5 Site-specific reference set
 
 Inspect only repository-owned, text-based requirement/governance evidence needed to characterize Bailey/BKLF and Peckham:
 
@@ -176,12 +182,11 @@ Inspect only repository-owned, text-based requirement/governance evidence needed
 
 Do not default to raw YAML, CSV inventories, backup extracts, live-state records, screenshots, binaries, or customer data. Open an implementation artifact only when an exact requirement cannot otherwise be classified, document why it was necessary, and quote no secret, raw identifier, private URL, credential, or sensitive customer detail.
 
-### 8.5 Discovery limits
+### 8.6 Discovery limits
 
-- Search exact task IDs, titles, predecessor/supersession fields, headings, and coverage terms first.
-- Use file/path inventories to locate candidates; do not fully load the repository.
+- Follow the read sequence declared at the top of this work order and record why each full-document read was needed.
 - Do not read the full MTR, document catalog, Markdown manifest, broad status board, or unrelated audit.
-- Do not use GitHub, browser, live HA, Cloudflare, customer systems, or other external sources for requirement evidence. The only permitted GitHub use is bounded duplicate-PR precheck and final PR delivery.
+- GitHub or authorized connected tooling may be used only for bounded duplicate checks, delivery, or the targeted secondary-lineage cases in Section 8.4; live HA, Cloudflare, customer systems, and runtime evidence remain prohibited.
 - Record excluded candidates and the reason for exclusion so “all” means all materially relevant sources within the declared boundary, not indiscriminate repository hydration.
 
 ## 9. Required audit deliverable
@@ -190,55 +195,19 @@ Create exactly:
 
 `docs/audits/DASH-GOV-POSTINSTALL-AUDIT-001_AUDIT_REV01.md`
 
-The deliverable must contain:
+Required sections: executive summary/boundary; authority and revision map; source register; Section 7 coverage matrix; normalized requirement register; conflict register; gap register; superseded-but-unpromoted register; Bailey/BKLF and Peckham site-reference register; excluded/unavailable evidence; risks/dependencies; and non-resolving follow-up candidates.
 
-1. executive summary and audit boundary;
-2. authority and revision map;
-3. source register with path, document status, owner, revision/lineage, inclusion decision, and evidence date;
-4. coverage matrix for all Section 7 topics;
-5. normalized requirement register;
-6. conflict register;
-7. gap register;
-8. superseded-but-unpromoted value register;
-9. site-specific reference register separating Bailey/BKLF and Peckham facts from universal doctrine;
-10. excluded/unavailable evidence register;
-11. risk and dependency summary; and
-12. non-resolving follow-up candidates for operator review.
+The source register must record path or durable identifier, authority tier, status, owner, revision/lineage, inclusion decision, access/evidence date, and whether the source is current-repository or secondary evidence.
 
-Each normalized requirement row must include at least:
+Each requirement row must record: stable finding ID; topic; concise requirement; source and exact heading; source status/owner; one Section 6 classification; applicability; relationship to current canonical ownership; conflict/gap linkage; confidence/evidence note; and proposed review owner only when later reconciliation is required.
 
-- stable finding ID;
-- topic/domain;
-- concise requirement statement;
-- source path and exact section/heading (line numbers when stable and useful);
-- source status/revision and owner;
-- primary classification from Section 6;
-- applicability: universal, role-specific, lifecycle-stage-specific, or site-specific;
-- relationship to current canonical owner;
-- conflict/gap linkage when applicable;
-- confidence and evidence note; and
-- proposed review owner only when classification requires later reconciliation.
-
-Consolidate duplicate statements into one normalized requirement with multiple source citations. Summarize stable doctrine and cite its owner rather than reproducing large passages. Keep observations, requirements, gaps, and recommendations visibly distinct.
+Consolidate duplicates with multiple citations. Cite stable doctrine instead of reproducing it, and keep observations, requirements, gaps, and recommendations distinct.
 
 ## 10. Conflict and gap handling
 
-For each conflict, record:
+For each conflict, record the competing sources/requirements, material applicability, consequence, any precedence evidence, later reconciliation owners, and missing evidence/decision.
 
-- the exact competing sources and requirements;
-- why both appear materially applicable;
-- operational/dashboard consequence;
-- current precedence evidence, if any;
-- the owner(s) required for later reconciliation; and
-- what evidence or decision is missing.
-
-For each gap, record:
-
-- uncovered topic or lifecycle stage;
-- evidence that current owners do not sufficiently own it;
-- likely impact;
-- plausible owner candidates without selecting one; and
-- whether the gap blocks future implementation, acceptance, support, or retirement.
+For each gap, record the uncovered topic/lifecycle stage, evidence of insufficient ownership, likely impact, plausible owner candidates without selecting one, and whether it blocks implementation, acceptance, support, or retirement.
 
 Do not edit a standard, choose a winning rule, invent a requirement, assign permanent ownership, activate a follow-up, or characterize a gap as resolved.
 
@@ -253,15 +222,13 @@ All other files are read-only inputs. The work order itself is read-only during 
 
 ## 12. Forbidden scope and protected systems
 
-Do not:
+Inherit the scope and protected-system rules in `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md` Sections 10–12. Task-specific prohibitions:
 
-- execute the audit during work-order creation;
-- modify dashboard standards, governance maps, installer standards, HA documentation owners, business-process documents, or historical sources;
-- modify Home Assistant YAML, dashboards, themes, components, cards, buttons, fonts, packages, scripts, helpers, automations, notifications, integrations, registry-export tooling, backups, or runtime configuration;
-- access or mutate live Home Assistant, customer devices, customer accounts, remote access, permissions, authentication, users, Cloudflare, networks, DNS, environments, or deployment systems;
-- modify website/application source, routes, APIs, dependencies, lockfiles, build configuration, CRM/HubSpot, Lead Signal/requestId, Stripe/payment, scheduling, Resend/email, quote/agreement/payment/schedule flows, Precision Planner, secrets, or customer data;
-- create a new canonical standard, resolve conflicts, promote historical content, rename duplicate identifiers, implement missing requirements, or create/activate follow-up tasks;
-- merge, enable auto-merge, mark ready for review, or deploy.
+- do not execute the audit or create its deliverable while this work order remains prepared/undispatched;
+- do not edit any canonical/supporting owner, governance map, historical source, business-process document, Home Assistant/dashboard/theme/component/package/automation/notification/runtime artifact, application/API, dependency, lockfile, or protected-system file;
+- do not access or mutate live Home Assistant, customer systems/data/accounts, authentication/permissions, remote access, Cloudflare/network/environment/deployment, CRM/HubSpot, Lead Signal/requestId, payment, scheduling, email, secrets, or other protected runtime;
+- do not resolve conflicts, promote history, create/supersede an owner, rename identifiers, implement missing requirements, create `PROCESS-DASHBOARD002`, implement Bailey, or create/activate follow-up implementation authority; and
+- do not merge, mark ready, or deploy.
 
 If protected or unavailable evidence appears necessary, record the limitation and stop that line of inquiry. Capability access is not authorization.
 
@@ -275,47 +242,26 @@ The future execution is additive and docs-only. It creates one REV01 audit and u
 
 Required checks:
 
-1. changed-file set equals the exact two-file execution allowlist in Section 11;
-2. zero deleted files;
-3. exact MTR heading `### DASH-GOV-POSTINSTALL-AUDIT-001` appears once and its exact `Task ID` field appears once;
-4. audit includes all seven classification labels exactly as defined and every finding uses one primary classification;
-5. every Section 7 coverage topic has an explicit coverage result;
-6. source register distinguishes current, supporting, site-specific, superseded, historical, unavailable, and excluded evidence;
-7. every `CURRENT_CANONICAL` row cites a current owner and exact section;
-8. every conflict cites at least two materially competing sources and remains unresolved;
-9. every gap includes evidence of missing/insufficient ownership and remains unresolved;
-10. Bailey/BKLF and Peckham material is explicitly site-specific unless a current canonical owner independently supports the universal requirement;
-11. predecessor/supersession and current-owner claims agree with current repository metadata;
-12. no raw secrets, credentials, private URLs, customer-identifying data, raw registry content, or live-state claims appear;
-13. no conflict markers or unexpected binary files;
-14. `git diff --check` passes;
-15. protected-system changed-boundary scan confirms no prohibited file changed; and
-16. governed docs-only build skip is recorded under `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md` Section 16 because no source or build configuration changes.
+1. exact Section 11 two-file allowlist, zero deletions, one exact MTR heading/Task ID field, no prohibited boundary change, no conflict markers/binaries, and `git diff --check`;
+2. current WNYHS repository remains primary authority; every secondary expansion is justified/documented and every secondary finding remains evidence-only under one Section 6 classification;
+3. `docs/governance/WNYHS_GOVERNANCE_AUDIT_REFERENCE_MODEL_REV01.md` appears only as current supporting cross-domain ownership/gap evidence;
+4. every Section 7 topic has a result, including individual authority/prerequisite/compatibility/usage classification for all nine named HACS/frontend items;
+5. source register distinguishes authority tier, current/supporting/site-specific/superseded/historical/secondary/unavailable/excluded evidence, and every `CURRENT_CANONICAL` row cites a current-repository owner section;
+6. every conflict cites competing sources and remains unresolved; every gap cites insufficient ownership and remains unresolved;
+7. Bailey/BKLF and Peckham remain site-specific unless current canonical authority independently supports universality;
+8. predecessor/supersession and ownership claims match current repository metadata;
+9. no secret, credential, private URL, customer-identifying/raw registry content, or unsupported live-state claim; and
+10. record the governed docs-only build skip under the Codex Execution Standard Section 16.
 
 Do not run `npm run build`, browser tests, Home Assistant validation, or runtime checks. They are outside the audit and cannot validate a documentation-only classification artifact.
 
 ## 15. Git and delivery
 
-- After this prepared work order is merged and execution is explicitly dispatched, create fresh branch `task/dash-gov-postinstall-audit-001-execution` from synchronized `origin/main`.
-- Use commit message: `docs: audit post-install dashboard governance`.
-- Push only the task branch.
-- Open one draft PR to `main` containing the audit deliverable and exact MTR record update.
-- PR body must state scope, read boundary, classification method, validation, governed build skip, protected-system posture, unresolved conflicts/gaps, and risks.
-- Do not merge, enable auto-merge, mark ready, or deploy.
+Follow the Codex Execution Standard Section 17. After merge and explicit dispatch, use fresh branch `task/dash-gov-postinstall-audit-001-execution`, commit `docs: audit post-install dashboard governance`, and one draft PR to `main` containing only the Section 11 files. The PR must summarize the source hierarchy, classifications, unresolved conflicts/gaps, validation, build skip, boundaries, and risks.
 
 ## 16. Required closeout
 
-Report:
-
-- repository, base, branch, commit SHA, draft PR URL/state;
-- controlling context, category/workstreams, read mode, reasoning posture, execution posture;
-- exact files created/changed and intentionally untouched owners/protected systems;
-- source count by classification and excluded/unavailable count;
-- conflict and gap counts without resolving them;
-- validation commands/results and governed build skip;
-- assumptions, unresolved evidence limits, and operator decisions required;
-- no-merge/no-deploy confirmation; and
-- the canonical Token Utilization / RSI Report, including essential reads, unnecessary reads, full-read justification, retries/failures, context pressure, prompt compression, and all ten required RSI headings.
+Close out under the Codex Execution Standard Sections 18–19. In addition, report current-repository versus secondary-source counts, classification counts, excluded/unavailable sources, conflict/gap counts, each secondary expansion and justification, evidence limits, build skip, and operator decisions required.
 
 ## 17. Stop conditions
 
@@ -323,7 +269,7 @@ Stop and request revision if:
 
 - current context, campaign authority, exact task record, primary workstream, source boundary, or target files conflict;
 - another task/PR already owns the same audit;
-- a required source is outside the repository or requires protected/customer/live access;
+- a necessary secondary source lacks a precise Section 8.4 justification or safe authorized access, or any source requires protected/customer/live access;
 - material classification cannot be supported without secrets or sensitive data;
 - the audit would need to modify, supersede, promote, or resolve an owner standard;
 - a third changed file is required;
@@ -332,13 +278,4 @@ Stop and request revision if:
 
 ## 18. Exit criteria
 
-The future task is complete only when:
-
-- the single audit deliverable exists and covers every required topic;
-- every material finding is traceable and uses exactly one approved classification;
-- conflicts, gaps, historical value, and site-specific references remain explicit and unresolved;
-- stable doctrine is cited rather than duplicated;
-- exact two-file scope, no-deletion, protected-boundary, task-count, content, and `git diff --check` validation pass;
-- the exact MTR record truthfully records completion evidence;
-- one draft PR to `main` exists for audit execution; and
-- no standard, runtime, protected system, merge, or deployment change occurred.
+The future task is complete only when the single audit covers every required topic; all findings are traceable and singly classified; conflicts, gaps, historical value, and site-specific references remain explicit/unresolved; stable doctrine is cited rather than duplicated; Section 14 passes; the exact MTR record is truthfully closed; one draft PR exists; and no owner, runtime, protected-system, merge, or deployment change occurred.
