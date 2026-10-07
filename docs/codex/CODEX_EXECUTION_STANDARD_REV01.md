@@ -104,6 +104,8 @@ Read breadth and reasoning effort are independent controls. An elevated reasonin
 
 Every work order must name the minimum authority and owner-document set needed for the task. Detailed implementation reasoning, exact files, checks, stop conditions, and closeout requirements belong in the repository-owned work order. An external dispatch prompt should be a minimal pointer to that work order. Chat discussion and approval become durable implementation authority only after promotion into the repository authority chain.
 
+Prefer directly executable, verifiable search and file-inspection operations for targeted reads. A surface-dependent selector, menu, or suggested command is not read evidence unless the active environment actually executes it and the result is verifiable under Section 20.
+
 Escalate to a full-file read only when:
 
 - a higher-authority document explicitly requires it;
@@ -139,19 +141,20 @@ Use these sections, marking a section `Not applicable` only when justified:
 3. Primary and related workstreams
 4. Read mode and justification if FULL
 5. Reasoning posture and concise phase expectations
-6. Objective
-7. Authorization and required precheck
-8. Required authority/owner documents
-9. Operator-approved Owner Routing Matrix
-10. Required work
-11. Allowed scope and target files
-12. Reference-only inputs
-13. Forbidden scope and protected systems
-14. Additive/destructive posture and version rule
-15. Validation tier and exact checks
-16. Git/branch/commit/draft-PR requirements
-17. Required closeout and RSI report
-18. Stop conditions and exit criteria
+6. Execution posture and exact operator/surface handoffs when applicable
+7. Objective
+8. Authorization and required precheck
+9. Required authority/owner documents
+10. Operator-approved Owner Routing Matrix
+11. Required work
+12. Allowed scope and target files
+13. Reference-only inputs
+14. Forbidden scope and protected systems
+15. Additive/destructive posture and version rule
+16. Validation tier and exact checks
+17. Git/branch/commit/draft-PR requirements
+18. Required closeout and RSI report
+19. Stop conditions and exit criteria
 
 Stable rules should be referenced by path, not pasted into every prompt.
 
@@ -173,6 +176,9 @@ READ MODE: TARGETED
 
 REASONING POSTURE: [STANDARD | ADAPTIVE | ELEVATED]
 [For ADAPTIVE, identify concise phase-level expectations without duplicating Section 14.]
+
+EXECUTION POSTURE: [DIRECT | MIXED | OPERATOR-MEDIATED]
+[Default DIRECT. For MIXED or OPERATOR-MEDIATED, identify each exact operator/surface handoff and why direct execution is unavailable or inappropriate.]
 
 OBJECTIVE
 [One bounded outcome.]
@@ -295,6 +301,10 @@ REASONING POSTURE: ADAPTIVE
 
 Do not require every work order to repeat this doctrine. Stable policy stays here; work orders reference it compactly.
 
+### 14.4 Reasoning and execution separation
+
+Reasoning posture and execution posture are independent controls. Reasoning posture governs depth of interpretation; execution posture governs how actions are performed. Examples include LOW reasoning with DIRECT execution for mechanical Git validation, MEDIUM reasoning with DIRECT execution for normal implementation, HIGH reasoning with DIRECT execution for difficult debugging, and MEDIUM reasoning with MIXED execution when an operator must use a client selector. Do not equate interactive commands with higher reasoning.
+
 ## 15. Validation tiers
 
 - **Docs-only:** changed-file audit, focused content/reference checks, `git diff --check`, unexpected-delete check, applicable docs/link validator; no build by default.
@@ -323,6 +333,7 @@ Otherwise record `Governed docs-only build skip` and the controlling rule. A tas
 - Create one fresh branch from `origin/main`; one task per branch and PR.
 - Stage only authorized files and use the task-specified commit message.
 - Push the task branch and open a draft PR to `main` with scope, rationale, validation, build decision, protected-system posture, and risks.
+- Prefer directly executable and verifiable Git or GitHub CLI operations under Section 20. When delivery requires an operator-interactive surface, declare the exact handoff and do not report the operation as executed until verified.
 - Never merge, enable auto-merge, mark ready, approve deployment, or push directly to `main` unless explicitly authorized by the operator and higher governance.
 - The operator performs manual review and merge. Post-merge sync and deployment are separate facts/actions.
 
@@ -331,16 +342,27 @@ Otherwise record `Governed docs-only build skip` and the controlling rule. A tas
 Report, as applicable:
 
 - version; repository; branch; commit SHA; draft PR URL/base;
-- controlling context, task/category/workstreams, and read mode;
+- controlling context, task/category/workstreams, read mode, reasoning posture, and execution posture;
 - files created, changed, and intentionally untouched;
 - concise result and rules consolidated/superseded;
 - validation commands/results and build decision;
 - protected-system and scope confirmations;
 - no-merge confirmation;
 - assumptions, unresolved conflicts/risks, and follow-up tasks without activating them;
+- command outcomes and any operator/surface handoffs material to completion;
 - Token Utilization / RSI Report.
 
 The read/context portion of closeout must identify essential reads, unnecessary or redundant reads, every full/broad-read justification, retries and failures, context pressure, and a shorter next-run dispatch pattern.
+
+### 18.1 Optional post-run full-session evidence review
+
+The normal closeout summary remains required. When the active surface supports and makes available a full-session export capability, the operator may export the completed Codex conversation after the run and provide both the normal closeout summary and the exported full conversation/transcript to ChatGPT for post-run evidence review.
+
+ChatGPT may compare the bounded work order, exported transcript, closeout summary, PR/diff, and validation evidence to identify candidate durable findings such as missed RSI findings, command/tool failures, unnecessary or overly broad reads, reasoning-posture drift, execution-posture drift, governance gaps, reusable process improvements, unresolved risks, candidate business-process improvements, and prompt/work-order improvements.
+
+The raw transcript is execution evidence only. It is not repository authority or implementation authority, is not committed to Git by default, and does not replace the required closeout summary. Durable findings must be promoted into the correct owner document and bounded task before becoming authority. Do not require permanent transcript retention unless a separately governed evidence-retention rule authorizes it.
+
+Refer to the available full-session export capability generically; do not make any specific client or slash command durable governance because surface commands may change.
 
 ## 19. Token Utilization / Recursive Self Improvement Report
 
@@ -356,6 +378,7 @@ Then report observable proxies:
 - full/broad reads and their justification;
 - files modified;
 - tool/terminal and validation commands;
+- execution posture, unavailable commands, approved equivalents, and operator handoffs;
 - retries and failed commands;
 - redundant/unnecessary reads;
 - elapsed time when visible;
@@ -395,6 +418,61 @@ RSI may recommend candidate improvements, but it may not amend governance, activ
 
 The same authority, task, read-mode, retry, file-scope, validation, Git/PR, protected-system, Sites, and closeout rules apply in both surfaces. Surface-specific tools do not change authority. When a Windows path, command runner, or app control differs, use the safest equivalent while preserving evidence and boundaries.
 
+### 20.1 Execution-posture field
+
+Every work order must declare one of:
+
+- `EXECUTION POSTURE: DIRECT` — the task should complete using executable tools and commands only; this is the default unless task requirements prove otherwise.
+- `EXECUTION POSTURE: MIXED` — the task primarily uses executable operations but includes specifically identified operator or surface handoffs.
+- `EXECUTION POSTURE: OPERATOR-MEDIATED` — material steps require operator interaction and must be explicitly identified.
+
+For `MIXED` or `OPERATOR-MEDIATED`, name each exact handoff point and explain why direct execution is unavailable or inappropriate. Keep the controls distinct: `READ MODE` governs context breadth, `REASONING POSTURE` governs reasoning depth, and `EXECUTION POSTURE` governs how actions are performed.
+
+### 20.2 Directly executable and preferred operations
+
+When task-authorized and available, normal work-order primitives include shell/terminal and Git commands; `rg`, `grep`, and other targeted-search tools; PowerShell, Bash, Node, npm/package, and task-authorized Python commands or scripts; repository-owned scripts; authenticated GitHub CLI operations; authorized MCP/tool/API calls; explicitly required browser/application automation; and build, test, lint, typecheck, validation, export, or repository-owned checks.
+
+Illustrative operations include `git status --short --branch`, `git branch --show-current`, `git fetch origin`, `git pull --ff-only`, `git diff --check`, `git diff --name-only`, `git diff --stat`, `git rev-parse HEAD`, `git rev-parse origin/main`, `git worktree list`, `rg`, `Get-Content`, `Test-Path`, `npm run build`, `npm test`, `npm run lint`, `node`, PowerShell, Bash, and authenticated/authorized `gh pr create`, `gh pr view`, `gh pr checks`, or `gh pr diff` operations. These examples are representative, not a complete inventory or unrestricted authorization list.
+
+Every actual operation remains constrained by the active task, file allowlist, protected-system boundaries, destructive-action rules, repository state, tool availability, and operator authority.
+
+### 20.3 Surface-dependent and operator-interactive operations
+
+A command or capability available only in a particular Codex client, CLI version, desktop app, terminal surface, plugin, MCP, or environment is `SURFACE-DEPENDENT / CONDITIONAL`. Use it only when the active surface actually exposes it programmatically, the task permits it, execution is verifiable, and it does not require an undeclared operator selection.
+
+Slash commands or controls that open selectors, menus, configuration panels, dialogs, or other operator-choice surfaces are `OPERATOR-INTERACTIVE / UI`. Representative examples include model, permissions, theme, keymap, or plugin selectors. Reference such a control only as an operator instruction, capability check, or clearly declared handoff. Do not assume it is autonomous or depend on it for normal deterministic completion when an executable equivalent exists.
+
+Do not make the complete current slash-command inventory durable governance; client commands may change. A command's appearance in a menu or slash-command list is not evidence that Codex executed it.
+
+### 20.4 Session-control commands
+
+Commands affecting session state, conversation structure, context, worktrees, background terminals, or agent surfaces are separate from repository execution. Representative controls may compact or recap context, fork or change a conversation surface, manage worktrees or processes, stop activity, or display status, usage, and warnings. They may assist operations but do not create implementation authority, expand task scope, or modify protected-system permissions.
+
+### 20.5 Preference and truthfulness rules
+
+Future work orders should prefer, in order:
+
+1. deterministic executable CLI/tool operation;
+2. repository-owned script;
+3. authenticated authorized tool/MCP/API action;
+4. verified surface-dependent direct command;
+5. operator-interactive UI handoff only when no appropriate autonomous mechanism exists.
+
+Do not substitute an interactive UI command for a deterministic executable operation merely because the UI command is available.
+
+Command reporting must distinguish `requested`, `available`, `executed`, `succeeded`, `failed`, `skipped`, and `required operator interaction`. Do not report execution when only a phase marker, textual intention, menu opening, or suggested slash command occurred.
+
+### 20.6 Executable-command fallback
+
+If a planned executable operation is unavailable:
+
+1. verify the limitation once;
+2. use an approved equivalent tool when it preserves scope and evidence;
+3. use an operator handoff only when necessary;
+4. stop when no safe equivalent exists.
+
+Do not silently replace deterministic commands with destructive operations, broad automation, or UI actions.
+
 ## 21. Failure handling
 
 For command-runner, sandbox, patch-helper, whitespace, or tool-startup faults:
@@ -406,7 +484,7 @@ For command-runner, sandbox, patch-helper, whitespace, or tool-startup faults:
 5. re-check status/diff after partial operations;
 6. stop if file integrity, authorization, secret safety, or validation cannot be established.
 
-Do not use repeated broad reads, repeated blind patches, destructive Git recovery, or secret-revealing diagnostics. Separate tooling faults from repository defects in closeout.
+Apply the Section 20 executable-command fallback and truthfulness rules. Do not use repeated broad reads, repeated blind patches, destructive Git recovery, broad automation, undeclared UI substitution, or secret-revealing diagnostics. Separate unavailable capabilities, operator-interactive requirements, tooling faults, and repository defects in closeout.
 
 ## 22. ChatGPT Sites workflow and boundaries
 
