@@ -1664,7 +1664,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Task ID:** CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001
 - **Task Name:** Add conditional predecessor deployment verification to repository precheck
 - **Task Record Version:** REV01
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** GOVERNANCE
 - **Primary Workstream:** Project Governance
 - **Related Workstreams:** Infrastructure / Deployment System
@@ -1679,15 +1679,15 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** The canonical standard retains the three-part repository convergence gate and adds only the materially applicable predecessor-deployment verification rule; the compact template carries the rule without a new mandatory field; only the exact three files change; validation passes; this record is `DONE`; one draft PR to `main` is open; no merge or deployment occurs.
 - **Dependencies:** Operator-authorized prompt-created `CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001` work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main` at `9d290292487062d259f042b4c4acc5ac8eac0018`; merged PR #600; canonical `CODEX_EXECUTION_STANDARD_REV01.md`; OPS004; current governance authority chain.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. Any broader deployment governance, automated verification, Cloudflare integration, or alternate-owner change requires separate bounded authorization.
-- **Publication/Evidence State:** IMPLEMENTATION_IN_PROGRESS
-- **Draft PR Evidence:** Pending delivery in this run.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #601: `https://github.com/buffalonychris/wnyhomesecurity/pull/601` on branch `codex/codex-predecessor-deployment-check-001`.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Not applicable to this docs-only governance task; no deployment is authorized. The predecessor deployment was operator-confirmed successful but does not materially affect this task, so no history revalidation is required.
 - **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` commit `9d290292487062d259f042b4c4acc5ac8eac0018` after exact local/remote equality and clean-tree verification.
 - **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
 - **CTR Record / Pointer:** None.
-- **Validation Evidence:** Pending final validation.
-- **Completion Notes:** Pending final validation and delivery.
+- **Validation Evidence:** Starting convergence at `9d290292487062d259f042b4c4acc5ac8eac0018`; exact three-file allowlist; zero deleted files; exact single task record; sole-active-owner confirmation; existing three-part convergence gate retained as primary; conditional rather than universal predecessor-deployment verification; GitHub check evidence preference when material; pending-wait and failed-stop behavior; irrelevant-deployment history is not reconstructed; no Cloudflare credentials/API requirement; no new script, hook, workflow, automation, polling, state machine, mandatory template field, or duplicate owner; forbidden-artifact scan; and `git diff --check` passed. `npm run build` was governed-skipped because only governance Markdown changed and no application source or build configuration changed.
+- **Completion Notes:** Created the durable work order and amended only §§9 and 17 of the sole active detailed Codex execution owner plus this exact task record. Repository convergence remains the primary precheck. An immediately preceding merged task's deployment is verified only when it materially affects the current task, with existing GitHub check evidence preferred, pending checks requiring a wait without mutation, and failed checks requiring a stop and failure report. Irrelevant deployment history is not reconstructed or revalidated. No Cloudflare API access or credentials, universal deployment gate, script, hook, workflow, automation, polling, state machine, duplicate owner, runtime/protected-system change, merge, or deployment was introduced.
 
 ### Audit Complete WNYHS Governance Authority Environment
 - **Task ID:** T-GOVAUTH001
