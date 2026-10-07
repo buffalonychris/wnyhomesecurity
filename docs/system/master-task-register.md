@@ -1234,6 +1234,30 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Evidence:** The audit registers 35 current-repository source entries and zero secondary-source entries; 52 singly classified findings (`CURRENT_CANONICAL` 12, `CURRENT_SUPPORTING_REQUIREMENT` 19, `SITE_SPECIFIC_REFERENCE` 6, `SUPERSEDED_WITH_UNPROMOTED_VALUE` 2, `HISTORICAL_NO_LONGER_APPLICABLE` 3, `CONFLICT_RECONCILIATION_REQUIRED` 4, `GAP_REQUIREMENT_NOT_YET_OWNED` 6); all twelve mandatory coverage topics; individual prerequisite/usage/version findings for HACS and the eight named frontend packages; four unresolved conflicts; six unresolved gaps; and explicit excluded/unavailable evidence. Exact two-file scope, zero deletions, one exact task heading/Task ID field, protected-boundary and secondary-evidence posture, no conflict markers or URLs, classification/source/coverage counts, and `git diff --check` passed. `npm run build` was a governed docs-only skip under the work order and Codex Execution Standard Section 16.
 - **Completion Notes:** Created `docs/audits/DASH-GOV-POSTINSTALL-AUDIT-001_AUDIT_REV01.md` without modifying any canonical/supporting owner or protected system. The current repository remains primary authority; GOVREF001 is used only as non-authoritative cross-domain ownership/gap evidence; no secondary-lineage expansion or live/customer/raw evidence access was needed. Bailey/BKLF and Peckham remain site-specific. Historical value, conflicts, and gaps remain explicit and unresolved; no owner was created, superseded, promoted, or amended. No Home Assistant/runtime, authentication, permission, notification, automation, dashboard/theme/component/package, dependency, customer-data, Cloudflare/network/environment, CRM/HubSpot, Lead Signal/requestId, payment, scheduling, email, merge, or deployment change occurred.
 
+
+### DASH-GOV-POSTINSTALL-RECONCILE-001
+
+- **Task ID:** DASH-GOV-POSTINSTALL-RECONCILE-001
+- **Task Name:** Reconcile Post-Install Dashboard Governance Conflicts and Gaps
+- **Status:** READY
+- **Category:** GOV / RECONCILIATION
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Home Assistant Platform; Installer Platform; Automation System; Notification System; Privacy/Data; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Reconcile the four conflicts and six gaps identified by DASH-GOV-POSTINSTALL-AUDIT-001, assign each requirement to the narrowest appropriate owner, create the thin post-install assembly profile, and make the upstream dashboard-preparation packet implementation-ready without performing dashboard/runtime implementation.
+- **Work Order:** docs/codex/work-orders/DASH-GOV-POSTINSTALL-RECONCILE-001_WORK_ORDER_REV01.md is the complete execution contract; this record is pointer-oriented.
+- **Allowed Scope:** After explicit dispatch from a synchronized main, execute only the work-order reconciliation, create only the conditional/new artifacts authorized there, and update only this exact MTR record plus the specifically authorized owner/supporting files.
+- **Forbidden Scope:** No execution while this work-order preparation PR remains unmerged; no Home Assistant runtime/customer access, dashboard implementation, Cloudflare/DNS/Tunnel/Access/SSL change, CRM/HubSpot, Stripe/payment, scheduling, email/runtime notification infrastructure, secrets, application source, Bailey/Peckham implementation, PROCESS-DASHBOARD002 creation, merge, or deployment.
+- **Target Files:** Work-order Section 9 allowlist only.
+- **Required Coverage:** CON-01 through CON-04; GAP-01 through GAP-06; AUD-SUP-01 and AUD-SUP-02; post-install assembly profile; reconciliation record.
+- **Validation Required:** Work-order Section 11, including exact allowlist, zero deleted files unless separately authorized, complete CON/GAP outcomes, owner preservation, no invented policy/versions/thresholds, no protected-system mutation, git diff --check, and governed docs-only build skip.
+- **Dependencies:** DASH-GOV-POSTINSTALL-AUDIT-001 completed and merged; synchronized main at 1216bcaf29946390ca60a13671c02ab2ad452bce; DASHBOARD-CAMPAIGN-001 active; current dashboard owners remain controlling.
+- **Operator Decision Required:** Review and merge the work-order preparation PR if accepted, run SYNC MAIN BATCH, then explicitly dispatch reconciliation execution using the repository-owned work order.
+- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Work-Order Delivery:** Preparation branch task/dash-gov-postinstall-reconcile-001-work-order; execution branch reserved as task/dash-gov-postinstall-reconcile-001-execution.
+- **Completion Notes:** Work order prepared only. No reconciliation finding has been resolved, no canonical/supporting owner has been amended by execution, no runtime/protected-system change has occurred, and no implementation authority is created by this preparation record.
+
+
 ### BAILEY-DASH-PROTOTYPE-001
 
 - **Task ID:** BAILEY-DASH-PROTOTYPE-001
