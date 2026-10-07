@@ -1260,6 +1260,29 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Completion Notes:** Reconciled all four conflicts; assigned implementable governance for all six gaps; created the narrow camera/media privacy owner after duplicate-owner evidence confirmed no current single owner; created the thin post-install assembly profile; promoted DASHBOARD_PREP001 to an implementation-ready, HA-evidence-driven requirements packet; preserved site/operator unknowns as `NOT YET QUALIFIED`, `OPERATOR_DECISION_REQUIRED`, `UNRESOLVED`, or `UNRESOLVED / BLOCKED`. Current preparation may proceed from authorized sanitized HA-derived evidence without waiting for future HubSpot, quote/solution, fulfillment/inventory/warranty, or customer-signoff systems. Those sources remain additive future enrichment; promised and installed evidence stay separate, discrepancies require resolution, and customer training/signoff remains a post-completion handoff stage. `PROCESS-DASHBOARD002` is governance-unblocked for a separate bounded definition task but was not created. Bailey is owner/routing-unblocked only and remains unauthorized/potentially blocked on site-specific evidence and a bounded runtime task. No protected/runtime system, merge, or deployment change occurred.
 
 
+
+### DASH-GOV-BUILD-READINESS-001
+
+- **Task ID:** DASH-GOV-BUILD-READINESS-001
+- **Task Name:** Final Dashboard Build Governance Completeness Review
+- **Status:** READY
+- **Category:** GOV / AUDIT
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Home Assistant Platform; Installer Platform; Automation System; Notification System; Privacy/Data; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Test the complete post-reconciliation dashboard governance set as one production-build contract and determine whether a bounded implementation technician can construct a production dashboard without inventing any material design, behavior, state, control, permission, privacy, validation, lifecycle, or handoff rule.
+- **Work Order:** docs/codex/work-orders/DASH-GOV-BUILD-READINESS-001_WORK_ORDER_REV01.md is the complete execution contract; this record is pointer-oriented.
+- **Allowed Scope:** After explicit dispatch from synchronized main, create only the final build-readiness audit artifact and update only this exact MTR record. Read current dashboard owners as specified by the work order.
+- **Forbidden Scope:** No owner/standard remediation; no live Home Assistant/customer evidence; no dashboard implementation; no Cloudflare/runtime/protected-system changes; no HubSpot/CRM; no payment/scheduling/email/secrets; no Bailey/Peckham implementation; no PROCESS-DASHBOARD002 creation; no WNYHS/KAOS handoff artifact; no KAOS repository modification; no merge or deployment.
+- **Target Files:** Future execution only: docs/audits/DASH-GOV-BUILD-READINESS-001_AUDIT_REV01.md; this exact MTR record.
+- **Required Coverage:** Work-order BR-01 through BR-133, including final authority coverage, no-guessing checks, undefined-area register, site-input register, operator-decision register, PROCESS-DASHBOARD002 readiness, Bailey owner/routing readiness, and final BUILD_READY or NOT_BUILD_READY conclusion.
+- **Validation Required:** Work-order Section 14, including exact two-file execution scope, zero deleted files, complete BR coverage/classification, no owner modifications, no fabricated rules, no protected/runtime access, git diff --check, and governed docs-only build skip.
+- **Dependencies:** DASH-GOV-POSTINSTALL-AUDIT-001 completed; DASH-GOV-POSTINSTALL-RECONCILE-001 completed and merged; synchronized main at 21a462035490306ec4c86d1433b53aeb5179f1bf; DASHBOARD-CAMPAIGN-001 active; current post-reconciliation dashboard owners remain controlling.
+- **Operator Decision Required:** Review and merge the work-order preparation PR if accepted, run SYNC MAIN BATCH, then explicitly dispatch the repository-owned readiness audit. Any remediation discovered by the audit requires separate bounded authority.
+- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Work-Order Delivery:** Preparation branch `task/dash-gov-build-readiness-001-work-order`; execution branch reserved as `task/dash-gov-build-readiness-001-execution`.
+- **Completion Notes:** Work order prepared only. No readiness audit has been executed, no build-readiness conclusion has been reached, no owner has been amended, no process/interface artifact has been created, and no runtime/protected-system change has occurred.
+
 ### BAILEY-DASH-PROTOTYPE-001
 
 - **Task ID:** BAILEY-DASH-PROTOTYPE-001
