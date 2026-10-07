@@ -1619,8 +1619,8 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** The canonical execution standard contains the concise adaptive doctrine; work orders can declare `STANDARD`, `ADAPTIVE`, or `ELEVATED` near but separate from `READ MODE`; targeted reads remain default at every posture; surface limitations are reported truthfully; only the exact three files change; validation passes; this record is DONE; a draft PR to `main` is open; no merge or deployment occurs.
 - **Dependencies:** Operator-authorized prompt-created `CODEX-ADAPTIVE-REASONING-001` work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main`; `T-CODEXGOVCONSOL001`; canonical `CODEX_EXECUTION_STANDARD_REV01.md`; OPS003; OPS004; current governance authority chain.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. Any future duplicate-owner or broader workflow-governance change requires separate bounded authorization.
-- **Publication/Evidence State:** PENDING_DRAFT_PR
-- **Draft PR Evidence:** Pending.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #599: `https://github.com/buffalonychris/wnyhomesecurity/pull/599` on branch `codex/codex-adaptive-reasoning-001`.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Not applicable; docs-only governance and no deployment authorized.
 - **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` commit `643ee90318527e43c5416bb8310dceec9c281d88` after fetch without prune and fast-forward-only convergence.
