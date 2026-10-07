@@ -38,6 +38,13 @@ Normal dashboard implementation tasks should not load this map when the correct 
 - Notification generation, routing, channel delivery, escalation, and deep-link contracts remain with the current Notification System owner.
 - Service/remote-support behavior remains with INSTALL010 and current support owners.
 - Home Assistant backup/registry extraction and transient raw-evidence handling remain with `docs/home-assistant/HA-BACKUP001_CUSTOMER_BACKUP_EXTRACTION_STANDARD_REV02.md`.
+- HACS/custom-frontend compatibility, qualification, rollback, and unsupported/EOL posture remain with `INSTALL008-BOOTSTRAP` (`docs/installer/INSTALL008_HA_GREEN_BOOTSTRAP_STANDARD_REV01.md`).
+- Commissioning and acceptance readiness remain with `INSTALL008-COMMISSIONING` (`docs/installer/INSTALL008_BENCH_TESTING_AND_COMMISSIONING_CHECKLIST_REV01.md`).
+- Camera/doorbell media privacy decisions and evidence remain with `docs/home-assistant/WNYHS_CAMERA_MEDIA_PRIVACY_STANDARD_REV01.md`.
+- Upstream property/install-evidence translation remains with `docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`.
+- The post-install assembly checklist remains with `docs/home-assistant/WNYHS_POSTINSTALL_DASHBOARD_ASSEMBLY_PROFILE_REV01.md`, subordinate to INSTALL011 and all named domain owners.
+
+The two historical `INSTALL008` identifiers are preserved. Future ambiguous citations must use the descriptive alias or the full filename: `INSTALL008-BOOTSTRAP` for HA Green bootstrap/dependency governance and `INSTALL008-COMMISSIONING` for bench testing/commissioning.
 
 ## 4. 2026-09-22 decision pointers
 
@@ -64,10 +71,11 @@ PR #578 remains open, operator-deferred, and unmerged. It is implementation line
 
 The prepared child work order `docs/codex/work-orders/T-DASH-PECKHAM-HTML-001_WORK_ORDER_REV01.md` remains undispatched and unexecuted.
 
-## 7. Unresolved gaps only
+## 7. Remaining implementation boundaries
 
 - Live dashboard registration, assignment, binding, rollback, and customer acceptance require a separately authorized runtime task.
 - Customer-specific unresolved physical mappings remain unresolved until authoritative onsite/current evidence exists.
 - Registry evidence does not prove live availability or physical state.
+- Site-specific dependency versions, retention choices, media recording/audio choices, consent/notice evidence, and backend permission details remain unresolved until approved current evidence is recorded under their narrow owners.
 
 No unresolved item in this map authorizes implementation, live Home Assistant access, protected-system change, merge, or deployment.

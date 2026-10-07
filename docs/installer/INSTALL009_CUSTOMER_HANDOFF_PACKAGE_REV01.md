@@ -201,7 +201,7 @@ This relationship is planning only. INSTALL009 does not create HubSpot fields, H
 ## 11. Relationship to INSTALL Docs
 
 - `INSTALL002_BENCH_BUILD_CHECKLIST_REV01.md` prepares bench output artifacts that may later support customer-safe handoff content.
-- `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md` defines Customer, Installer, and Service Dashboard architecture.
+- `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` defines Customer, Installer / Commissioning, and Service / Operator Dashboard architecture and behavior.
 - `INSTALL006A_SHARED_JOB_DATA_MODEL_AND_HUBSPOT_FIELD_ARCHITECTURE_REV01.md` defines the candidate shared data model.
 - `INSTALL008_BENCH_TESTING_AND_COMMISSIONING_CHECKLIST_REV01.md` validates readiness and commissioning before customer handoff.
 - `INSTALL009_CUSTOMER_HANDOFF_PACKAGE_REV01.md` defines customer handoff contents.

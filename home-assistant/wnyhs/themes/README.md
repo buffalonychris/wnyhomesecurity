@@ -6,7 +6,7 @@ Theme foundation version: `v0.1.0`
 
 This folder contains the reusable WNY Home Security Customer Control Center theme foundation for Home Assistant.
 
-The themes translate the approved dashboard mockups into Home Assistant theme variables as closely as Home Assistant and HACS custom cards allow. They define dark and light presentation values for the WNYHS product feel: gold identity accents, burgundy primary actions, black/charcoal or ivory surfaces, rounded cards, subtle borders, readable text, and semantic status colors.
+The themes translate governed dashboard visual roles into Home Assistant theme variables as closely as Home Assistant and HACS custom cards allow. `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` is the canonical visual/component authority. Values and variable names in this folder are implementation mechanics only; they do not independently define customer-facing color, action, status, surface, or accessibility semantics.
 
 This is theme foundation only. It does not implement dashboard screens, Lovelace cards, navigation YAML, helpers, automations, live Home Assistant changes, or customer-specific dashboard files.
 
@@ -35,15 +35,16 @@ After copying the files, reload themes from Home Assistant developer tools or re
 
 ## Mockup Relationship
 
-These themes are intended to support the approved WNYHS Customer Control Center mockups by providing:
+These themes are intended to support governed WNYHS Customer Control Center implementations by providing platform variables for:
 
-- antique gold identity and active navigation accents
-- burgundy primary action surfaces
-- near-black, charcoal, and warm ivory base surfaces
-- green success, amber warning, and red critical status roles
+- the DESIGN001 identity and interaction roles, including gold identity and blue customer actions
+- DESIGN001 light and dark surface roles
+- the five exclusive DESIGN001 status-value roles, used only for actual status values
 - rounded card feel with subtle borders and shadows where supported
 - mobile Companion App friendly contrast and touch-surface readiness
 - dark/light parity with the same semantic role mapping
+
+Any legacy variable whose name suggests burgundy, gold, lock, unlock, emergency, or another product meaning must be mapped to the current DESIGN001 role before use. A legacy variable name is not authority to restore superseded semantics, create a second action family, or use status color for labels, prose, navigation, or decoration.
 
 Exact pixel matching requires later bounded dashboard/card work. Home Assistant themes can provide global variables, but individual Mushroom, Button Card, Bubble Card, Card Mod, Layout Card, Swipe Card, Browser Mod, and Auto-Entities configuration will still be needed in future tasks.
 

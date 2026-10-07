@@ -5,6 +5,7 @@ Customer-facing: No
 Implementation authority: No
 Task ID: INSTALL-BOOTSTRAP-STANDARD-001
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+Descriptive alias: INSTALL008-BOOTSTRAP
 
 ## 1. Purpose
 
@@ -112,6 +113,37 @@ The approved WNYHS Customer Control Center UI stack is:
 | browser_mod | Browser/device-aware dashboard behavior. | Supports display-specific behavior and customer experience refinement. | Add the browser_mod integration after restart. |
 
 These packages support the WNYHS Customer Control Center product layer. They do not by themselves authorize any customer dashboard implementation.
+
+### 7.1 Frontend Dependency Qualification and Lifecycle
+
+The descriptive alias `INSTALL008-BOOTSTRAP` must be used when a citation could be confused with the commissioning document that also carries the historical `INSTALL008` identifier. This document remains the narrow owner for HACS/custom-frontend compatibility and lifecycle governance; it does not replace INSTALL006, DESIGN001, DASHBOARD001, or INSTALL011.
+
+No universal package version is approved by this revision. Site inventory versions are evidence for that site only. Until a bounded qualification record supplies WNYHS-tested evidence, the tested-version field remains `NOT YET QUALIFIED`.
+
+| Dependency | Posture | Intended use | Current WNYHS-tested version |
+| --- | --- | --- | --- |
+| HACS | Required baseline foundation | Technician-managed custom integration and frontend resource management | NOT YET QUALIFIED |
+| Mushroom | Required baseline frontend | Customer-readable mobile cards | NOT YET QUALIFIED |
+| Bubble Card | Required baseline frontend; per-view use conditional | Customer navigation and compact controls | NOT YET QUALIFIED |
+| button-card | Required baseline frontend | Governed customer actions and status presentation | NOT YET QUALIFIED |
+| Card Mod | Required baseline frontend; styling use conditional | Technician-managed governed styling | NOT YET QUALIFIED |
+| Layout Card | Required baseline frontend | Responsive delivery support | NOT YET QUALIFIED |
+| Swipe Card | Required installed stack; per-view use optional | Compact camera/status groups without hiding primary actions | NOT YET QUALIFIED |
+| Browser Mod | Required installed stack; use conditional on approved device behavior | Technician-managed device-aware experience support | NOT YET QUALIFIED |
+| Auto-Entities | Required installed stack; service/installer use by default | Controlled dynamic internal lists | NOT YET QUALIFIED |
+
+For every installed dependency, the customer install or qualification record must capture:
+
+- exact installed version and evidence date;
+- Home Assistant version and compatibility evidence used for the decision;
+- WNYHS-tested version or explicit `NOT YET QUALIFIED`;
+- applicable Customer, Installer / Commissioning, or Service / Operator use;
+- resource-load and applicable Companion/browser validation result;
+- update candidate, test evidence, and approval outcome before promotion;
+- pre-change backup and the exact rollback target or removal/recovery posture; and
+- supported, deferred, blocked, unsupported, or EOL posture with owner and next action.
+
+An update is qualified only after non-customer or separately authorized bounded testing confirms resource loading, applicable dashboards/components, responsive behavior, and rollback evidence. Failed or incomplete qualification remains blocked and does not become a baseline. Unsupported or EOL dependencies must not be newly promoted; affected capabilities must be replaced, retired, or explicitly blocked through a separate bounded decision without silently removing customer functionality.
 
 ## 8. Install Order
 

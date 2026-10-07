@@ -12,9 +12,9 @@ The component library provides reusable building blocks for future customer dash
 
 ## Relationship To WNYHS Themes
 
-These components are designed to consume the approved `WNYHS Dark` and `WNYHS Light` themes in `home-assistant/wnyhs/themes/`.
+These components are designed to consume the `WNYHS Dark` and `WNYHS Light` implementation themes in `home-assistant/wnyhs/themes/`. `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` remains the canonical visual/component authority; the theme and component folders do not define independent customer-facing semantics.
 
-Use the theme variables wherever Home Assistant and installed HACS cards support them:
+Use theme variables wherever Home Assistant and qualified HACS cards support them. The following names are legacy implementation interfaces and must be mapped to current DESIGN001 semantic roles before use:
 
 - `var(--wnyhs-card-background)`
 - `var(--wnyhs-card-border)`
@@ -29,11 +29,11 @@ Use the theme variables wherever Home Assistant and installed HACS cards support
 - `var(--wnyhs-emergency-background)`
 - `var(--wnyhs-emergency-border)`
 
-Do not hardcode one-off colors in future dashboard YAML when a WNYHS theme variable can express the role.
+Do not hardcode one-off colors in future dashboard YAML when a governed WNYHS semantic role can express the need. Variable names such as `burgundy`, `gold`, `lock`, `unlock`, or `emergency` do not grant semantic authority and must not override DESIGN001's gold identity, blue action family, exclusive status-value roles, or neutral prose rules.
 
 ## Required HACS Stack
 
-These examples assume the approved WNYHS Home Assistant UI stack is installed:
+These examples assume the WNYHS Home Assistant UI stack has been installed and qualified under `INSTALL008-BOOTSTRAP` (`docs/installer/INSTALL008_HA_GREEN_BOOTSTRAP_STANDARD_REV01.md`):
 
 - Mushroom
 - Button Card
@@ -44,7 +44,7 @@ These examples assume the approved WNYHS Home Assistant UI stack is installed:
 - Browser Mod
 - Auto-Entities
 
-Not every component uses every package directly. The stack is listed here because future customer dashboards should be assembled from the same approved UI foundation.
+Not every component uses every package directly. Presence in this list does not establish a version baseline or compatibility approval. The installed version, Home Assistant compatibility evidence, WNYHS qualification state, rollback posture, and unsupported/EOL posture are governed by INSTALL008-BOOTSTRAP.
 
 ## Component List
 

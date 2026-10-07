@@ -5,6 +5,9 @@ Customer-facing: No
 Implementation authority: No
 Task ID: INSTALL008
 Controlling Context: CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+Descriptive alias: INSTALL008-COMMISSIONING
+
+Use `INSTALL008-COMMISSIONING` or the full filename whenever the historical `INSTALL008` identifier could be ambiguous.
 
 ---
 
@@ -141,7 +144,7 @@ The checklist must not store passwords, tokens, recovery codes, private URLs, cu
 
 | Task | Required yes/no | Owner | Status | Evidence / proof | Notes / exception |
 | --- | --- | --- | --- | --- | --- |
-| Confirm dashboard readiness notes include theme-readiness review against `INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md`. | Yes | Bench owner | Not started | Dashboard screenshot reference |  |
+| Confirm dashboard readiness notes include visual/component review against `docs/design-system/DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md`. | Yes | Bench owner | Not started | Dashboard screenshot reference | `INSTALL007` is historical lineage only. |
 | Confirm status meaning is not color-only in planned customer, installer, or service views. | Yes | Bench owner | Not started | Installer observation |  |
 | Confirm light, dark, and high-contrast concerns are documented as readiness notes or exceptions. | Yes | Bench owner | Not started | Support note |  |
 
