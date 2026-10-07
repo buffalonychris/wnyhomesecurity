@@ -1210,6 +1210,28 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Evidence:** Duplicate-owner search across the canonical installer, Home Assistant, dashboard, design, automation, notification, commissioning, handoff, service, and governance owners found no existing owner for the full export-to-handoff orchestration chain. Exact five-file allowlist, no-deletion check, `git diff --check`, trailing-whitespace scan including the new file, 37 required INSTALL011 content assertions, 12 canonical reference-path checks, exact task-record count, and minimal-routing-update checks passed. `npm run build` was a governed skip because this task changes documentation/governance only and no source or build configuration.
 - **Completion Notes:** Created INSTALL011 as orchestration authority only for the repeatable export, transient intake, audit, sanitized-model, semantic-binding, role/class assembly, deterministic approval, separately bounded implementation, additive rollout, acceptance/soak, handoff, and separately gated legacy-retirement sequence. Existing canonical owners remain intact and are referenced rather than duplicated. INSTALL001 and the Dashboard Governance Map received only minimal routing additions. The operator-authored work-order header received whitespace-only normalization so required `git diff --check` could pass. No live Home Assistant, Bailey dashboard/prototype, registry export script, notification routing, authentication, permissions, runtime, deployment, customer data, protected system, merge, or deployment change occurred.
 
+### DASH-GOV-POSTINSTALL-AUDIT-001
+
+- **Task ID:** DASH-GOV-POSTINSTALL-AUDIT-001
+- **Task Name:** Audit and Classify WNYHS Post-Install Dashboard Requirements and Historical Governance
+- **Status:** READY
+- **Category:** GOV / AUDIT
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Home Assistant Platform; Automation System; Visual System; Installer Platform; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Produce one read-only, repository-owned audit of current, supporting, site-specific, superseded, historical, conflicting, and missing post-install Home Assistant dashboard requirements without resolving findings or changing owners.
+- **Work Order:** `docs/codex/work-orders/DASH-GOV-POSTINSTALL-AUDIT-001_WORK_ORDER_REV01.md` is the complete execution contract; this record is pointer-oriented.
+- **Allowed Scope:** After explicit future dispatch, create the one audit deliverable and update only this record. The current WNYHS repository remains primary authority; specifically justified secondary repositories, Project knowledge, and durable historical lineage are discovery evidence only and must use the work order's seven-label model.
+- **Forbidden Scope:** No audit/deliverable while READY; no canonical-owner amendment, conflict resolution, historical promotion, dashboard/runtime implementation, `PROCESS-DASHBOARD002`, Bailey implementation, follow-up implementation authority, live/protected-system change, merge, or deployment.
+- **Target Files:** Future execution only: `docs/audits/DASH-GOV-POSTINSTALL-AUDIT-001_AUDIT_REV01.md`; this exact MTR record.
+- **Required Coverage:** Work-order Sections 7–10, including `docs/governance/WNYHS_GOVERNANCE_AUDIT_REFERENCE_MODEL_REV01.md` as supporting ownership/gap evidence and explicit classification of the nine named HACS/frontend items.
+- **Validation Required:** Work-order Section 14; exact two-file scope, zero deletions, authority/secondary-source boundaries, complete classifications/coverage, protected-scope proof, `git diff --check`, and governed docs-only build skip.
+- **Dependencies:** Merged work-order creation PR; current context and ACTIVE non-implementing dashboard campaign; current dashboard owners, Codex Execution Standard, and OPS004 routing.
+- **Operator Decision Required:** Review/merge the prepared work order if accepted, then explicitly dispatch the audit; later reconciliation or implementation requires separate authority.
+- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Work-Order Delivery:** Existing draft PR #602 on `task/dash-gov-postinstall-audit-001-work-order`; audit execution PR: none.
+- **Completion Notes:** READY and undispatched. No audit deliverable, owner/runtime/protected-system change, merge, or deployment has occurred.
+
 ### BAILEY-DASH-PROTOTYPE-001
 
 - **Task ID:** BAILEY-DASH-PROTOTYPE-001
