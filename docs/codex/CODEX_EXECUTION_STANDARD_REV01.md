@@ -93,6 +93,8 @@ OPS004 routes. OPS005 summarizes current state. Neither authorizes implementatio
 
 `READ MODE: TARGETED` is the default.
 
+Read breadth and reasoning effort are independent controls. An elevated reasoning posture does not authorize broader reads, full-register loading, historical-document loading, unrelated owner-document loading, prior-prototype loading, or broad repository search. Targeted reads remain the default at every reasoning posture unless one of the explicit full-read conditions below applies.
+
 1. Immediately after reading the work-order header, verify that its Primary Workstream exactly matches a registered OPS004 workstream. If it does not, stop immediately and report the routing conflict before broader repository reads, authority discovery, or implementation.
 2. Search exact task IDs, headings, status labels, paths, and references with `rg` or equivalent.
 3. Read the smallest located section that establishes authority, scope, status, owner rules, or validation.
@@ -136,19 +138,20 @@ Use these sections, marking a section `Not applicable` only when justified:
 2. Task ID, name, status, and category
 3. Primary and related workstreams
 4. Read mode and justification if FULL
-5. Objective
-6. Authorization and required precheck
-7. Required authority/owner documents
-8. Operator-approved Owner Routing Matrix
-9. Required work
-10. Allowed scope and target files
-11. Reference-only inputs
-12. Forbidden scope and protected systems
-13. Additive/destructive posture and version rule
-14. Validation tier and exact checks
-15. Git/branch/commit/draft-PR requirements
-16. Required closeout and RSI report
-17. Stop conditions and exit criteria
+5. Reasoning posture and concise phase expectations
+6. Objective
+7. Authorization and required precheck
+8. Required authority/owner documents
+9. Operator-approved Owner Routing Matrix
+10. Required work
+11. Allowed scope and target files
+12. Reference-only inputs
+13. Forbidden scope and protected systems
+14. Additive/destructive posture and version rule
+15. Validation tier and exact checks
+16. Git/branch/commit/draft-PR requirements
+17. Required closeout and RSI report
+18. Stop conditions and exit criteria
 
 Stable rules should be referenced by path, not pasted into every prompt.
 
@@ -167,6 +170,9 @@ Related workstreams: [only touched workstreams]
 
 READ MODE: TARGETED
 [Or FULL with explicit justification.]
+
+REASONING POSTURE: [STANDARD | ADAPTIVE | ELEVATED]
+[For ADAPTIVE, identify concise phase-level expectations without duplicating Section 14.]
 
 OBJECTIVE
 [One bounded outcome.]
@@ -246,12 +252,48 @@ Update only task-authorized catalogs, manifests, indexes, task records, and acti
 
 ## 14. Model and reasoning guidance
 
-Do not hard-code a model name in durable work orders. Use the best currently approved full-capability Codex model available for the risk and complexity. State the reasoning effort and why:
+Do not hard-code a model name in durable work orders. Use the best currently approved full-capability Codex model available for the risk and complexity. Prefer capability requirements over product names so guidance does not stale quickly. If the selected surface cannot meet the task’s safety or tool needs, stop or move the task to a suitable surface.
 
-- standard/medium effort for bounded docs, governance, focused UI, and small source tasks;
-- elevated/high effort for runtime failures, architecture conflicts, large refactors, protected systems, payment, scheduling, API, or ambiguous authority.
+### 14.1 Adaptive reasoning doctrine
 
-Prefer capability requirements over product names so guidance does not stale quickly. If the selected surface cannot meet the task’s safety or tool needs, stop or move the task to a suitable surface.
+Work orders may declare:
+
+- `REASONING POSTURE: STANDARD` for a task that does not materially benefit from phase changes;
+- `REASONING POSTURE: ADAPTIVE` when different execution phases benefit from different effort; or
+- `REASONING POSTURE: ELEVATED` when protected-system or ambiguity-heavy work justifiably begins elevated.
+
+For `ADAPTIVE`, use the lowest posture sufficient for the current phase:
+
+- **LOW / lower effort:** deterministic or mechanical work such as repository status and branch inspection, exact file-existence checks, targeted search after targets are known, deterministic edits with settled requirements, formatting, allowlist checks, `git diff --check`, syntax/lint/build execution, repetitive validation, and commit/push/PR evidence collection.
+- **STANDARD / medium effort:** bounded authority interpretation, ordinary owner-rule reconciliation, normal implementation decisions, cross-file dependency interpretation, and translation of approved specifications into implementation.
+- **ELEVATED / high effort:** only when materially useful for ambiguous architecture, conflicting authority, protected-system implications, authentication/authorization/security behavior, semantic-state derivation, destructive-versus-additive decisions, unexpected root-cause debugging, runtime failure analysis, or significant implementation tradeoffs.
+
+After the complex condition is resolved, de-escalate before returning to mechanical execution and closeout.
+
+Do not elevate merely because a command returns a normal no-match result, a command fails once, output is long, validation is repetitive, or the task contains many mechanical steps. Elevate only when judgment, interpretation, reconciliation, or root-cause analysis could change the outcome.
+
+### 14.2 Reasoning and context separation
+
+Reasoning effort and context breadth are independent. Elevated reasoning does not authorize full MTR reads, broad repository searches, historical-document loading, unrelated owner-document loading, or prior-prototype loading. `READ MODE: TARGETED` remains the default. A full read still requires one of the explicit Section 6 conditions.
+
+### 14.3 Surface capability and phase reporting
+
+Do not assume every Codex surface or version can programmatically change its own reasoning effort. When the active environment supports mid-session adjustment, use it at the governed phase boundary. When it does not, report a concise phase transition such as `REASONING CHANGE: MEDIUM -> HIGH` or `REASONING CHANGE: HIGH -> LOW`, and do not pretend the underlying effort changed.
+
+Do not hard-code product or interface keyboard shortcuts into durable governance; they are implementation details that may change.
+
+For an adaptive work order, identify phase expectations compactly. For example:
+
+```text
+READ MODE: TARGETED
+REASONING POSTURE: ADAPTIVE
+- LOW: repository precheck, deterministic edits, validation/closeout
+- MEDIUM: authority interpretation and normal implementation
+- HIGH: only unresolved architecture/protected-system/root-cause issues
+- return LOW/MEDIUM after resolution
+```
+
+Do not require every work order to repeat this doctrine. Stable policy stays here; work orders reference it compactly.
 
 ## 15. Validation tiers
 
@@ -321,6 +363,16 @@ Then report observable proxies:
 - prompt compression lesson;
 - chat-derived context promoted into repository docs;
 - recommended shorter prompt pattern.
+
+When reasoning posture transitions were observable and material, also report:
+
+- the initial reasoning posture;
+- material escalations and de-escalations and why they were required;
+- whether adjustment was automatic or operator-mediated;
+- whether higher reasoning caused unnecessary context expansion; and
+- any future reasoning-efficiency optimization.
+
+Do not force detailed transition reporting when no meaningful transition occurred.
 
 Do not create a durable token log unless explicitly authorized.
 

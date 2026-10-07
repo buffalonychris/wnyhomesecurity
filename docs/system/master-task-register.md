@@ -1599,6 +1599,36 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Successor Relationship:** T-SITEPROTOTYPE001 remains inactive and may be activated only after this PR is merged and `main` is synchronized.
 - **Completion Notes:** Consolidated Codex execution and work-order governance into concise root `AGENTS.md` plus the ACTIVE AND CANONICAL `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; created the non-authoritative portable starter; marked the four named predecessor owners SUPERSEDED with successor pointers; retained task-register, OPS004 routing, and OPS005 status-board roles while pointing execution mechanics to the canonical owner; authorized SITE and ChatGPT Sites with traceability, production-authority, separate-reconciliation-task, and exact six-category boundaries; registered the result in the catalog and manifest. Targeted validation passed with 14 allowed documentation files changed, no deletes, no protected/implementation files, one task record, and no T-SITEPROTOTYPE001 activation. No repository docs/link script exists. `npm run build` was skipped under the resulting canonical docs-only build rule. HubSpot, Stripe/payment, scheduling, Resend/email, APIs/runtime, Home Assistant, Cloudflare, dependencies/package-lock, environment/secrets, Sites source/config/deployment, and customer data were untouched.
 
+### CODEX-ADAPTIVE-REASONING-001
+
+- **Task ID:** CODEX-ADAPTIVE-REASONING-001
+- **Task Name:** Establish adaptive reasoning posture for Codex work orders
+- **Task Record Version:** REV01
+- **Status:** DONE
+- **Category:** GOVERNANCE
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Context Efficiency; RSI
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add a concise adaptive-reasoning doctrine to the sole canonical Codex execution owner so future bounded work orders can vary reasoning effort by phase without broadening read scope or duplicating governance.
+- **Allowed Scope:** Execute only `docs/codex/work-orders/CODEX-ADAPTIVE-REASONING-001_WORK_ORDER_REV01.md`; modify §§6, 8, 9, 14, and 19 of `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; add and maintain only this exact MTR record; preserve targeted reads as the default; keep reasoning posture separate from read mode; validate and deliver one draft PR.
+- **Forbidden Scope:** No OPS003 edit without a separately approved scope revision; no `AGENTS.md`, Project KB, Skill, historical/superseded Codex standard, source, runtime, website, Home Assistant, Cloudflare, CRM, payment, scheduling, email, dependency, package-lock, secret, adjacent-task, reset, prune, branch deletion, merge, deployment, auto-merge, or ready-for-review change; no model-specific name or durable keyboard shortcut.
+- **Target Files:** `docs/codex/work-orders/CODEX-ADAPTIVE-REASONING-001_WORK_ORDER_REV01.md`; `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance amendment.
+- **Documentation Updates Required:** Create the durable work order; add the adaptive-reasoning doctrine, work-order structure/template field, and material-transition closeout guidance to the canonical execution standard; update only this exact task record.
+- **Validation Required:** Exact three-file allowlist; zero deletions; exact task record count; targeted sole-owner confirmation; separate `READ MODE` and `REASONING POSTURE` confirmation; required LOW/MEDIUM/HIGH, de-escalation, context-separation, escalation-discipline, surface-capability, compact-template, and RSI assertions; no model-specific name or keyboard shortcut; no duplicate adaptive owner; `git diff --check`; governed docs-only build skip.
+- **Exit Criteria:** The canonical execution standard contains the concise adaptive doctrine; work orders can declare `STANDARD`, `ADAPTIVE`, or `ELEVATED` near but separate from `READ MODE`; targeted reads remain default at every posture; surface limitations are reported truthfully; only the exact three files change; validation passes; this record is DONE; a draft PR to `main` is open; no merge or deployment occurs.
+- **Dependencies:** Operator-authorized prompt-created `CODEX-ADAPTIVE-REASONING-001` work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main`; `T-CODEXGOVCONSOL001`; canonical `CODEX_EXECUTION_STANDARD_REV01.md`; OPS003; OPS004; current governance authority chain.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Any future duplicate-owner or broader workflow-governance change requires separate bounded authorization.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #599: `https://github.com/buffalonychris/wnyhomesecurity/pull/599` on branch `codex/codex-adaptive-reasoning-001`.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; docs-only governance and no deployment authorized.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` commit `643ee90318527e43c5416bb8310dceec9c281d88` after fetch without prune and fast-forward-only convergence.
+- **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Validation Evidence:** Exact three-file allowlist, zero deletions, exact single task record, sole-active-owner confirmation, separate `READ MODE` and `REASONING POSTURE` controls, LOW/STANDARD/ELEVATED phase definitions, de-escalation, escalation discipline, context-separation, surface-capability truthfulness, compact template field, material-transition RSI guidance, no duplicate adaptive owner, no model-specific name or hard-coded keyboard shortcut, trailing-whitespace scan, and `git diff --check` passed. `npm run build` was governed-skipped because only governance Markdown changed and no application source or build configuration changed.
+- **Completion Notes:** Created the durable CODEX-ADAPTIVE-REASONING-001 work order and amended only the canonical Codex execution standard plus this exact task record. The standard now supports `STANDARD`, `ADAPTIVE`, and `ELEVATED` work-order postures; defines LOW, STANDARD/MEDIUM, and ELEVATED/HIGH phase use; requires de-escalation after difficult conditions resolve; preserves targeted reads independently from reasoning depth; prevents elevation for normal mechanical friction; requires truthful phase reporting when a surface cannot change effort autonomously; and adds optional material-transition evidence to RSI closeout. OPS003 remains unchanged as context-efficiency support, and no Project KB, Skill, predecessor standard, runtime, protected system, merge, or deployment change occurred.
+
 ### Audit Complete WNYHS Governance Authority Environment
 - **Task ID:** T-GOVAUTH001
 - **Task Name:** Audit Complete WNYHS Governance Authority Environment
