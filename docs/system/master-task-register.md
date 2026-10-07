@@ -1210,6 +1210,35 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Evidence:** Duplicate-owner search across the canonical installer, Home Assistant, dashboard, design, automation, notification, commissioning, handoff, service, and governance owners found no existing owner for the full export-to-handoff orchestration chain. Exact five-file allowlist, no-deletion check, `git diff --check`, trailing-whitespace scan including the new file, 37 required INSTALL011 content assertions, 12 canonical reference-path checks, exact task-record count, and minimal-routing-update checks passed. `npm run build` was a governed skip because this task changes documentation/governance only and no source or build configuration.
 - **Completion Notes:** Created INSTALL011 as orchestration authority only for the repeatable export, transient intake, audit, sanitized-model, semantic-binding, role/class assembly, deterministic approval, separately bounded implementation, additive rollout, acceptance/soak, handoff, and separately gated legacy-retirement sequence. Existing canonical owners remain intact and are referenced rather than duplicated. INSTALL001 and the Dashboard Governance Map received only minimal routing additions. The operator-authored work-order header received whitespace-only normalization so required `git diff --check` could pass. No live Home Assistant, Bailey dashboard/prototype, registry export script, notification routing, authentication, permissions, runtime, deployment, customer data, protected system, merge, or deployment change occurred.
 
+### DASH-GOV-POSTINSTALL-AUDIT-001
+
+- **Task ID:** DASH-GOV-POSTINSTALL-AUDIT-001
+- **Task Name:** Audit and Classify WNYHS Post-Install Dashboard Requirements and Historical Governance
+- **Status:** READY
+- **Category:** GOV / AUDIT
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Home Assistant Platform; Automation System; Visual System; Installer Platform; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Produce a comprehensive repository-owned, read-only audit of current canonical, current supporting, site-specific, superseded, historical, conflicting, and missing requirements that materially affect post-install Home Assistant dashboard creation, without resolving findings or changing owner standards.
+- **Allowed Scope:** After explicit future dispatch, execute only `docs/codex/work-orders/DASH-GOV-POSTINSTALL-AUDIT-001_WORK_ORDER_REV01.md`; inspect the bounded repository source universe; create one audit deliverable; classify every material finding using the work order's seven-label vocabulary; update only this exact task record for lifecycle/evidence.
+- **Forbidden Scope:** No audit execution during work-order creation; no modification of dashboard/HA/installer/design/automation/notification/remote-access/business-process standards or historical sources; no Home Assistant YAML, dashboard, theme, component, package, automation, notification, runtime, live-system, customer-data, remote-access, authentication/permission, website/API, dependency/lockfile, CRM/HubSpot, Lead Signal/requestId, Stripe/payment, scheduling, email, Cloudflare/network, secret, merge, or deployment change; no conflict resolution, historical promotion, new owner, or activated follow-up task.
+- **Target Files:** Future execution only: `docs/audits/DASH-GOV-POSTINSTALL-AUDIT-001_AUDIT_REV01.md`; `docs/system/master-task-register.md` only for this exact record. This prepared work-order creation run is limited to `docs/codex/work-orders/DASH-GOV-POSTINSTALL-AUDIT-001_WORK_ORDER_REV01.md` and this exact record.
+- **Runtime Systems Affected:** None. Documentation audit only.
+- **Home Assistant Affected:** None. No live instance, configuration, dashboard, integration, user, permission, automation, notification, remote-access, backup/restore, or deployment action is authorized.
+- **Documentation Updates Required:** Create the audit deliverable only after explicit dispatch; preserve current owners; record conflicts, gaps, and unpromoted historical value without resolving or promoting them; maintain only this exact MTR record.
+- **Validation Required:** Work-order Section 14: exact two-file audit-execution allowlist; zero deletions; one exact MTR heading and Task ID field; complete seven-label classification and mandatory-topic coverage; source/lineage/owner traceability; unresolved conflict/gap evidence; site-specific separation; secret/customer-data safety; protected-boundary proof; `git diff --check`; governed docs-only build skip.
+- **Exit Criteria:** After future execution, one complete audit exists with traceable classifications for every material finding and explicit unresolved conflicts/gaps; exact validation passes; this record is DONE with truthful evidence; one audit-execution draft PR exists; no owner standard, runtime, protected system, merge, or deployment change occurs.
+- **Dependencies:** Merged work-order creation PR; current `docs/codex/work-orders/DASH-GOV-POSTINSTALL-AUDIT-001_WORK_ORDER_REV01.md`; current context `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; ACTIVE non-implementing `DASHBOARD-CAMPAIGN-001`; INSTALL006 REV02; DESIGN001 REV02; DASHBOARD001 REV02; INSTALL011 REV01; current Codex Execution Standard and OPS004 routing.
+- **Operator Decision Required:** Review and merge the work-order creation PR if accepted, then explicitly dispatch the future audit. Review later conflicts, gaps, promotion candidates, and reconciliation proposals separately; no finding authorizes implementation or owner change.
+- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Draft PR Evidence:** Audit execution PR: none. Work-order creation is delivered separately and does not count as audit execution.
+- **Merge Evidence:** None; merge is not authorized in this run.
+- **Deployment Applicability / Status / Evidence:** Not applicable; documentation audit only, with no deployment authorized.
+- **Main-Sync Status / Evidence:** Future execution must begin only after the work-order creation PR is merged and local `main` is synchronized with `origin/main`.
+- **CTR Eligibility:** Not eligible while READY or until future audit execution, operator review, and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Completion Notes:** Not executed. This record and the prepared work order establish the future audit boundary only. No audit deliverable, owner-standard change, runtime access, protected-system change, merge, or deployment has occurred.
+
 ### BAILEY-DASH-PROTOTYPE-001
 
 - **Task ID:** BAILEY-DASH-PROTOTYPE-001
