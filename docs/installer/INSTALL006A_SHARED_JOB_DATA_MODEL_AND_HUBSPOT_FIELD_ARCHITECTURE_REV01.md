@@ -96,7 +96,7 @@ Downstream concepts map to the existing INSTALL standards:
 | Bench Build | `INSTALL002_BENCH_BUILD_CHECKLIST_REV01.md` | Bench Build record tracks readiness, exceptions, hardware inventory, and installer handoff. |
 | Hardware Naming / Config | `INSTALL004_DEVICE_NAMING_STANDARD_REV01.md` | Device names and labels should map installed or staged hardware back to BOM and inventory allocation. |
 | Entity / Area Setup | `INSTALL005_ENTITY_AND_AREA_STANDARDS_REV01.md` | Area/entity readiness should tie to property, device placement, dashboard readiness, and commissioning. |
-| Dashboards | `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md` | Customer, Installer, and Service Dashboard readiness should be recorded before handoff. |
+| Dashboards | `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` | Customer, Installer / Commissioning, and Service / Operator Dashboard readiness should be recorded before handoff. |
 | Install | `INSTALL001_INSTALLER_PLATFORM_ARCHITECTURE_REV01.md` | Install Job record tracks field execution and onsite exceptions. |
 | Commissioning | `INSTALL001` and future `INSTALL008` | Commissioning Record validates controller, devices, areas, dashboards, automations, backup posture, and handoff readiness. |
 | Customer Signoff | Future `INSTALL009` | Signoff record captures customer training, acceptance, exceptions, and closeout posture. |

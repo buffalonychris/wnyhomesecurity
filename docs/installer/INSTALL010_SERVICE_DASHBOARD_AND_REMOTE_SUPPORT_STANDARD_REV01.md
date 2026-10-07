@@ -61,7 +61,7 @@ It should support:
 - follow-up planning
 - exception review
 
-The Service Dashboard is not a public or customer daily-use surface unless a later bounded task explicitly authorizes a specific customer-facing support posture. Customer daily use remains the Customer Dashboard defined by `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md` and explained in the customer handoff standard.
+The Service / Operator Dashboard is not a public or customer daily-use surface unless a later bounded task explicitly authorizes a specific customer-facing support posture. Customer daily use remains the Customer Dashboard defined by `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` and explained in the customer handoff standard.
 
 The Service Dashboard should help WNYHS review service-relevant state. It must not imply continuous staffed service, emergency-response authority, third-party authority contact, guaranteed uptime, guaranteed detection, or guaranteed prevention.
 
@@ -210,6 +210,18 @@ Candidate remote support authorization fields:
 
 These fields are candidate planning fields only. They do not authorize HubSpot property creation, portal fields, APIs, databases, customer records, remote access implementation, or credential storage.
 
+## 10A. Dashboard Class Assignment and Authorization Acceptance Matrix
+
+INSTALL006 REV02 owns the three dashboard classes and their behavior. This section owns the post-install acceptance evidence needed to prove assignment and authorization without creating a new role system. Home Assistant or another authorized backend remains the source of actual identity and permission truth. UI visibility, a hidden control, a selected profile, or a prototype state is never backend authorization evidence.
+
+| Dashboard class | Intended audience | Assignment and visibility | Permitted control class | Required backend and change evidence | Revocation/offboarding | Acceptance validation |
+| --- | --- | --- | --- | --- | --- | --- |
+| Customer Dashboard | Authorized customer users | Assign only to authenticated users/devices approved for the customer daily-use surface; show only approved installed capabilities | Customer-safe status and controls already authorized by actual backend permissions and bounded scope | Authenticated identity/context, actual backend grants, dashboard assignment result, evidence date, approver, and change record | Remove assignment and applicable grants when customer authorization or user/device eligibility ends; record result | Test with the intended authenticated customer context; verify allowed actions, denied actions, labels, privacy boundary, and fallback behavior |
+| Installer / Commissioning Dashboard | Authorized installer/commissioning personnel during bounded setup and acceptance | Temporary assignment or access only for the approved commissioning context; keep internal setup detail out of customer daily use | Setup, binding, test, and commissioning controls only where the backend and bounded task authorize them | Authenticated installer context, actual backend grants, task/job scope, assignment/change evidence, evidence date, and approver | Remove or reduce temporary access at commissioning closeout unless separately approved support authority requires it | Test allowed setup actions and denied out-of-scope actions; verify customer separation, exception handling, and closeout removal/reduction |
+| Service / Operator Dashboard | Authorized service/operator personnel for approved support review | Assign only where support authority, technical availability, and customer/privacy boundaries permit; never imply continuous observation | Diagnostics and separately authorized support/recovery controls; no customer or security-sensitive action by inference | Authenticated service/operator context, actual backend grants, support authorization where required, assignment/change evidence, evidence date, and approver | Revoke on authorization withdrawal, offboarding, role change, or support-path closure; record the revocation result | Test authorized diagnostic/control paths, denied customer/out-of-scope paths, remote-support boundary, privacy boundary, and revocation behavior |
+
+Acceptance records must identify unresolved grants, assignments, identity mappings, or revocation evidence as `BLOCKED`; they must not substitute intended visibility for a completed backend test. A production role, permission, authentication mechanism, group, or capability name may be recorded only from separately authorized current evidence and is not invented by this standard.
+
 ## 11. Privacy / Claim Guardrails
 
 Service Dashboard and remote support docs must follow these guardrails:
@@ -232,9 +244,9 @@ Service language should explain limitations clearly. It should not create public
 
 ## 12. Relationship to INSTALL Docs
 
-- `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md` defines Service Dashboard architecture as one of the dashboard classes.
+- `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` defines Service / Operator Dashboard architecture and behavior as one of the three dashboard classes.
 - `INSTALL006A_SHARED_JOB_DATA_MODEL_AND_HUBSPOT_FIELD_ARCHITECTURE_REV01.md` defines the candidate shared data model relationships.
-- `INSTALL007_DASHBOARD_THEME_READINESS_STANDARD_REV01.md` defines readability and theme-readiness expectations for service review surfaces.
+- `DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` defines current visual, component, readability, theme-parity, and accessibility expectations; INSTALL007 remains historical lineage only.
 - `INSTALL008_BENCH_TESTING_AND_COMMISSIONING_CHECKLIST_REV01.md` validates Service Dashboard readiness and support blockers during bench and onsite commissioning.
 - `INSTALL009_CUSTOMER_HANDOFF_PACKAGE_REV01.md` defines the customer-safe handoff, support path, and remote access/support explanation.
 - `INSTALL010_SERVICE_DASHBOARD_AND_REMOTE_SUPPORT_STANDARD_REV01.md` defines post-handoff Service Dashboard and remote support posture.

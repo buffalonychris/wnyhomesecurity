@@ -483,6 +483,21 @@ Obtain customer acceptance and training signoff.
 
 # 17. Handoff and Ongoing Maintenance
 
+## 17.1 Activity, Notification History, Retention, and Audit Evidence
+
+Customer Dashboard Activity is a customer-readable presentation of applicable current, recent, and resolved information under INSTALL006. It is not an authoritative compliance, security, or forensic audit log. Notification history is owned here only as evidence of notification lifecycle and delivery behavior; dashboard presentation does not transfer that ownership.
+
+Each customer notification profile or separately authorized deployment record must identify:
+
+- which customer-visible Activity/history, notification history, and authoritative audit-evidence sources apply;
+- the platform/configuration evidence that controls retention for each applicable source;
+- any approved site/customer-specific retention decision and its approving authority;
+- the platform-default retention posture when no explicit duration is approved;
+- whether deletion or export is supported and the authorized procedure/evidence boundary; and
+- the owner, evidence location reference, review event, and unresolved decision state.
+
+This standard does not set a universal retention duration. A site/customer duration or legal/business retention policy that lacks operator-approved authority remains `OPERATOR_DECISION_REQUIRED`. Unsupported deletion or export must remain explicit and must not be promised. Normal customer Activity or notification history must never be represented as an authoritative audit log merely because it is visible or retained.
+
 Remove or disable temporary implementation and all-active test routes.
 
 Confirm final customer and service-team recipients.

@@ -158,6 +158,16 @@ Each implementation validates the applicable set:
 
 ## 10. Registration, assignment, rollback, and handoff
 
+### 10.1 Dependency Health, Upgrade Qualification, Performance Evidence, and Retirement
+
+Every bounded delivery or upgrade must record the applicable dependency/resource set and validate it against the INSTALL008-BOOTSTRAP qualification record. Required evidence includes resource-load health, missing/broken custom-card behavior, affected views/components, installed and candidate versions when known from authorized evidence, test environment, result, backup/rollback evidence, unresolved drift, and owner/next action.
+
+An upgrade is not qualified merely because installation succeeds. Re-run the deterministic Section 9 validation applicable to the changed dependency and compare the same governed views, themes, size/font modes, interaction states, and target surfaces. Failure, missing resources, unqualified compatibility, or rollback uncertainty remains `BLOCKED`; live promotion requires a separately bounded implementation task.
+
+Performance acceptance must collect reproducible observation evidence sufficient to identify a materially degraded customer experience, including the tested surface/viewport, evidence date, dependency set, load/render/interaction observations, console/resource failures, comparison basis, and observed regressions. This revision establishes no universal numeric budget. Numerical thresholds may be promoted only by separately evidenced qualification and approved governance.
+
+Unsupported or EOL components must not be newly promoted. Record impact, replacement/retirement option, affected customer capability, validation need, rollback/continuity posture, owner, and decision state. Removal or substitution that changes customer behavior requires separate bounded authority and must not silently eliminate an installed capability.
+
 Repository approval does not register or deploy a dashboard. A separate bounded runtime task must identify:
 
 - exact Home Assistant instance and dashboard resource;

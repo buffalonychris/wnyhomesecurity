@@ -1239,7 +1239,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** DASH-GOV-POSTINSTALL-RECONCILE-001
 - **Task Name:** Reconcile Post-Install Dashboard Governance Conflicts and Gaps
-- **Status:** READY
+- **Status:** ACTIVE
 - **Category:** GOV / RECONCILIATION
 - **Primary Workstream:** Dashboard / Interactive Experience System
 - **Related Workstreams:** Home Assistant Platform; Installer Platform; Automation System; Notification System; Privacy/Data; Project Governance
@@ -1253,7 +1253,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Required:** Work-order Section 11, including exact allowlist, zero deleted files unless separately authorized, complete CON/GAP outcomes, owner preservation, no invented policy/versions/thresholds, no protected-system mutation, git diff --check, and governed docs-only build skip.
 - **Dependencies:** DASH-GOV-POSTINSTALL-AUDIT-001 completed and merged; synchronized main at 1216bcaf29946390ca60a13671c02ab2ad452bce; DASHBOARD-CAMPAIGN-001 active; current dashboard owners remain controlling.
 - **Operator Decision Required:** Review and merge the work-order preparation PR if accepted, run SYNC MAIN BATCH, then explicitly dispatch reconciliation execution using the repository-owned work order.
-- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Publication/Evidence State:** EXECUTION_IN_PROGRESS
 - **Work-Order Delivery:** Preparation branch task/dash-gov-postinstall-reconcile-001-work-order; execution branch reserved as task/dash-gov-postinstall-reconcile-001-execution.
 - **Completion Notes:** Work order prepared only. No reconciliation finding has been resolved, no canonical/supporting owner has been amended by execution, no runtime/protected-system change has occurred, and no implementation authority is created by this preparation record.
 
