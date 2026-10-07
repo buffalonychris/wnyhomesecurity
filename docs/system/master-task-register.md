@@ -1227,7 +1227,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Required Coverage:** Work-order Sections 7–10, including `docs/governance/WNYHS_GOVERNANCE_AUDIT_REFERENCE_MODEL_REV01.md` as supporting ownership/gap evidence and explicit classification of the nine named HACS/frontend items.
 - **Validation Required:** Work-order Section 14; exact two-file scope, zero deletions, authority/secondary-source boundaries, complete classifications/coverage, protected-scope proof, `git diff --check`, and governed docs-only build skip.
 - **Dependencies:** Merged work-order creation PR; current context and ACTIVE non-implementing dashboard campaign; current dashboard owners, Codex Execution Standard, and OPS004 routing.
-- **Operator Decision Required:** Review/merge the prepared work order if accepted, then explicitly dispatch the audit; later reconciliation or implementation requires separate authority.
+- **Operator Decision Required:** Review draft PR #603 and decide whether to merge the completed audit. Any conflict reconciliation, gap remediation, governance promotion, `PROCESS-DASHBOARD002` work, or dashboard implementation requires separate bounded authority.
 - **Publication/Evidence State:** DRAFT_PR_OPEN
 - **Work-Order Delivery:** Work-order creation PR #602 is merged in the synchronized base; audit execution draft PR #603 is open on branch `task/dash-gov-postinstall-audit-001-execution`.
 - **Draft PR Evidence:** Draft PR #603: `https://github.com/buffalonychris/wnyhomesecurity/pull/603` to `main`.
