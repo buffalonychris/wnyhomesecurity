@@ -1659,6 +1659,36 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Evidence:** Starting convergence at `e6f802e5b5114062fd3decce235187d5c2b8fffb`; exact three-file allowlist; zero deletions; exact single task record; sole-active-owner confirmation; separate `READ MODE`, `REASONING POSTURE`, and `EXECUTION POSTURE` controls; `DIRECT` default; direct, surface-dependent, operator-interactive, and session-control classes; deterministic preference order; command-truthfulness states; limitation/equivalent/handoff/stop fallback; required closeout plus optional full-session evidence review; transcript-as-evidence/non-authority, no-default-commit, separate-promotion, and separate-retention rules; no specific session-export slash command, complete slash-command inventory, model-specific name, hard-coded keyboard shortcut, or duplicate owner; trailing-whitespace scan; and `git diff --check` passed. `npm run build` was governed-skipped because only governance Markdown changed and no application source or build configuration changed.
 - **Completion Notes:** Created and refined the durable CODEX-EXECUTABLE-COMMANDS-001 work order and amended only the canonical Codex execution standard plus this exact task record. The standard defaults work orders to `DIRECT`, permits `MIXED` or `OPERATOR-MEDIATED` only with explicit handoffs, separates execution posture from read breadth and reasoning depth, prefers deterministic executable operations, distinguishes command availability and outcomes truthfully, and provides a safe fallback sequence. The post-run refinement keeps normal closeout mandatory while allowing an available full-session export to be paired with closeout for ChatGPT evidence review; the raw transcript remains non-authoritative, uncommitted and unretained by default, and requires governed promotion before any durable finding becomes authority. OPS003, `AGENTS.md`, Skills, Project KB, predecessor standards, runtime, protected systems, merge, and deployment remained unchanged.
 
+### CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001
+
+- **Task ID:** CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001
+- **Task Name:** Add conditional predecessor deployment verification to repository precheck
+- **Task Record Version:** REV01
+- **Status:** ACTIVE
+- **Category:** GOVERNANCE
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Infrastructure / Deployment System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Extend the existing repository convergence precheck with one conditional verification rule for an immediately preceding merged task's deployment when that deployment materially affects the current bounded task, without creating a separate deployment system or duplicate governance owner.
+- **Allowed Scope:** Execute only `docs/codex/work-orders/CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001_WORK_ORDER_REV01.md`; modify only §9 and §17 of `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; add and maintain only this exact MTR record; preserve repository convergence as the primary precheck; validate and deliver one draft PR.
+- **Forbidden Scope:** No script, GitHub Action, hook, polling, background automation, deployment state machine, separate deployment/preflight standard, duplicate owner, universal docs-only or unrelated-task deployment gate, Cloudflare configuration/write API/credential requirement, DNS, tunnel, source, runtime, website, Home Assistant, CRM, payment, scheduling, email, dependency, package-lock, secret, customer-data, adjacent-task, catalog, manifest, historical-standard, reset, prune, branch-deletion, merge, deployment, auto-merge, or ready-for-review change.
+- **Target Files:** `docs/codex/work-orders/CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001_WORK_ORDER_REV01.md`; `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance amendment.
+- **Documentation Updates Required:** Create the durable work order; amend only the compact template precheck guidance and repository convergence rule in the canonical execution standard; add and maintain only this exact task record.
+- **Validation Required:** Starting convergence at `9d290292487062d259f042b4c4acc5ac8eac0018`; exact three-file allowlist; zero deletions; exact single task record; sole-active-owner confirmation; existing convergence gate remains intact and primary; conditional rather than universal predecessor-deployment verification; GitHub check evidence preference when material; pending wait and failed stop behavior; irrelevant-deployment history is not reconstructed; no Cloudflare credentials/API requirement; no new script, hook, workflow, automation, polling, state machine, mandatory template field, or duplicate owner; `git diff --check`; governed docs-only build skip.
+- **Exit Criteria:** The canonical standard retains the three-part repository convergence gate and adds only the materially applicable predecessor-deployment verification rule; the compact template carries the rule without a new mandatory field; only the exact three files change; validation passes; this record is `DONE`; one draft PR to `main` is open; no merge or deployment occurs.
+- **Dependencies:** Operator-authorized prompt-created `CODEX-PREDECESSOR-DEPLOYMENT-CHECK-001` work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main` at `9d290292487062d259f042b4c4acc5ac8eac0018`; merged PR #600; canonical `CODEX_EXECUTION_STANDARD_REV01.md`; OPS004; current governance authority chain.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Any broader deployment governance, automated verification, Cloudflare integration, or alternate-owner change requires separate bounded authorization.
+- **Publication/Evidence State:** IMPLEMENTATION_IN_PROGRESS
+- **Draft PR Evidence:** Pending delivery in this run.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable to this docs-only governance task; no deployment is authorized. The predecessor deployment was operator-confirmed successful but does not materially affect this task, so no history revalidation is required.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` commit `9d290292487062d259f042b4c4acc5ac8eac0018` after exact local/remote equality and clean-tree verification.
+- **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Validation Evidence:** Pending final validation.
+- **Completion Notes:** Pending final validation and delivery.
+
 ### Audit Complete WNYHS Governance Authority Environment
 - **Task ID:** T-GOVAUTH001
 - **Task Name:** Audit Complete WNYHS Governance Authority Environment

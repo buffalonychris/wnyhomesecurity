@@ -184,7 +184,7 @@ OBJECTIVE
 [One bounded outcome.]
 
 PRECHECK / GOVERNING INPUTS
-[Repo, main sync, existing branch/PR, authority, owner-doc, and protected-scope checks.]
+[Repository convergence; predecessor deployment verification only when materially applicable; existing branch/PR, authority, owner-doc, and protected-scope checks.]
 
 OWNER ROUTING MATRIX
 [Approved concept | canonical owner | exact file | section/behavior | action | reason | alternate-owner exclusion | conflict | confidence.]
@@ -329,7 +329,8 @@ Otherwise record `Governed docs-only build skip` and the controlling rule. A tas
 
 ## 17. Git, commit, PR, and review
 
-- Precheck repository convergence first: confirm the repository is on `main`, the working tree is clean, and local `HEAD` equals `origin/main`. When all three conditions pass, treat the previous task PR/deployment lifecycle as operationally closed. Do not reconstruct, re-read, or revalidate the previous PR, task branch, deployment history, or prior closeout unless the current bounded task explicitly requires that historical evidence. If repository convergence fails, stop immediately and report the exact divergence before further task discovery or implementation.
+- Precheck repository convergence first: confirm the repository is on `main`, the working tree is clean, and local `HEAD` equals `origin/main`. When all three conditions pass, repository convergence is satisfied and the previous task lifecycle is operationally closed unless historical or deployment evidence materially affects the current bounded task. If convergence fails, stop immediately and report the exact divergence before further task discovery or implementation.
+- If the immediately preceding merged task had a deployment that materially affects the current bounded task, verify before mutation that the deployment completed successfully, preferring existing GitHub check evidence. If the relevant check is pending, wait and do not mutate; if it failed, stop and report the failure. If deployment is irrelevant, do not reconstruct or revalidate deployment history. This conditional verification does not require Cloudflare API access or credentials and is not a universal deployment gate for docs-only or unrelated tasks.
 - Create one fresh branch from `origin/main`; one task per branch and PR.
 - Stage only authorized files and use the task-specified commit message.
 - Push the task branch and open a draft PR to `main` with scope, rationale, validation, build decision, protected-system posture, and risks.
