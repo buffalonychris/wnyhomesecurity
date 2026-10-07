@@ -1634,7 +1634,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Task ID:** CODEX-EXECUTABLE-COMMANDS-001
 - **Task Name:** Establish Codex executable-command posture for work orders
 - **Task Record Version:** REV01
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** GOVERNANCE
 - **Primary Workstream:** Project Governance
 - **Related Workstreams:** Context Efficiency; Operator Workflow; RSI
@@ -1649,15 +1649,15 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Exit Criteria:** The canonical execution standard contains the executable-command doctrine and compact execution-posture field; directly executable, surface-dependent, operator-interactive, and session-control classes are distinct; deterministic operations are preferred; command outcomes and handoffs are truthful; only the exact three files change; validation passes; this record is `DONE`; a draft PR to `main` is open; no merge or deployment occurs.
 - **Dependencies:** Operator-authorized prompt-created `CODEX-EXECUTABLE-COMMANDS-001` work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main` at `e6f802e5b5114062fd3decce235187d5c2b8fffb`; `T-CODEXGOVCONSOL001`; `CODEX-ADAPTIVE-REASONING-001`; canonical `CODEX_EXECUTION_STANDARD_REV01.md`; OPS004; current governance authority chain.
 - **Operator Decision Required:** Review the draft PR and decide whether to merge. Any broader command-governance or alternate-owner change requires separate bounded authorization.
-- **Publication/Evidence State:** NOT_PUBLISHED
-- **Draft PR Evidence:** None; draft PR creation is required before final completion.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Draft PR Evidence:** Draft PR #600: `https://github.com/buffalonychris/wnyhomesecurity/pull/600` on branch `codex/codex-executable-commands-001`.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Not applicable; docs-only governance and no deployment authorized.
 - **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` commit `e6f802e5b5114062fd3decce235187d5c2b8fffb`; no additional sync was required because convergence had not changed.
 - **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
 - **CTR Record / Pointer:** None.
-- **Validation Evidence:** Pending final validation and draft-PR delivery.
-- **Completion Notes:** Pending final validation and draft-PR delivery.
+- **Validation Evidence:** Starting convergence at `e6f802e5b5114062fd3decce235187d5c2b8fffb`; exact three-file allowlist; zero deletions; exact single task record; sole-active-owner confirmation; separate `READ MODE`, `REASONING POSTURE`, and `EXECUTION POSTURE` controls; `DIRECT` default; direct, surface-dependent, operator-interactive, and session-control classes; deterministic preference order; command-truthfulness states; limitation/equivalent/handoff/stop fallback; no complete slash-command inventory, model-specific name, hard-coded keyboard shortcut, or duplicate owner; trailing-whitespace scan; and `git diff --check` passed. `npm run build` was governed-skipped because only governance Markdown changed and no application source or build configuration changed.
+- **Completion Notes:** Created the durable CODEX-EXECUTABLE-COMMANDS-001 work order and amended only the canonical Codex execution standard plus this exact task record. The standard now defaults work orders to `DIRECT`, permits `MIXED` or `OPERATOR-MEDIATED` only with explicit handoffs, separates execution posture from read breadth and reasoning depth, prefers deterministic executable operations, distinguishes command availability and outcomes truthfully, and provides a safe fallback sequence. OPS003, `AGENTS.md`, Skills, Project KB, predecessor standards, runtime, protected systems, merge, and deployment remained unchanged.
 
 ### Audit Complete WNYHS Governance Authority Environment
 - **Task ID:** T-GOVAUTH001
