@@ -354,6 +354,16 @@ Report, as applicable:
 
 The read/context portion of closeout must identify essential reads, unnecessary or redundant reads, every full/broad-read justification, retries and failures, context pressure, and a shorter next-run dispatch pattern.
 
+### 18.1 Optional post-run full-session evidence review
+
+The normal closeout summary remains required. When the active surface supports and makes available a full-session export capability, the operator may export the completed Codex conversation after the run and provide both the normal closeout summary and the exported full conversation/transcript to ChatGPT for post-run evidence review.
+
+ChatGPT may compare the bounded work order, exported transcript, closeout summary, PR/diff, and validation evidence to identify candidate durable findings such as missed RSI findings, command/tool failures, unnecessary or overly broad reads, reasoning-posture drift, execution-posture drift, governance gaps, reusable process improvements, unresolved risks, candidate business-process improvements, and prompt/work-order improvements.
+
+The raw transcript is execution evidence only. It is not repository authority or implementation authority, is not committed to Git by default, and does not replace the required closeout summary. Durable findings must be promoted into the correct owner document and bounded task before becoming authority. Do not require permanent transcript retention unless a separately governed evidence-retention rule authorizes it.
+
+Refer to the available full-session export capability generically; do not make any specific client or slash command durable governance because surface commands may change.
+
 ## 19. Token Utilization / Recursive Self Improvement Report
 
 Use one canonical report. When exact metrics are visible, report total, input, output, cached-input, reasoning/compute tokens, model, and reasoning level. Otherwise state:

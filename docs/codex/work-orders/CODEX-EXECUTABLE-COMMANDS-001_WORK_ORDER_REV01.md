@@ -164,8 +164,11 @@ Governance/docs-only checks:
 7. confirm surface/UI controls are never treated as automatically executable;
 8. confirm command truthfulness and failure/fallback rules exist;
 9. confirm no complete slash-command inventory, model-specific name, keyboard shortcut, or duplicate owner was introduced;
-10. run `git diff --check` and changed-file/deletion audits; and
-11. record the governed docs-only build skip under §16 because no source or build configuration changes.
+10. confirm the normal closeout remains required and the optional full-session export is described only as post-run evidence;
+11. confirm the raw transcript is not repository/implementation authority, is not committed by default, and has no permanent-retention requirement without separate governance;
+12. confirm no specific session-export slash command is made durable governance;
+13. run `git diff --check` and changed-file/deletion audits; and
+14. record the governed docs-only build skip under §16 because no source or build configuration changes.
 
 ## 15. Git and delivery
 
@@ -177,6 +180,12 @@ Governance/docs-only checks:
 ## 16. Required closeout
 
 Report branch, commits, draft PR, exact files and canonical sections changed, doctrine and template result, validation, protected-system confirmation, slash-command/UI inventory boundary, actual reasoning and execution posture, operator handoffs, RSI/context-efficiency notes, and no merge/deployment.
+
+### 16.1 Optional post-run evidence review
+
+When supported and available after the run, the operator may use the active surface's full-session export capability and provide both the required closeout summary and exported full conversation/transcript to ChatGPT. ChatGPT may compare the bounded work order, transcript, closeout, PR/diff, and validation evidence for candidate RSI, command/tool failure, read-scope, reasoning/execution-posture, governance, process, risk, business-process, and prompt/work-order improvements.
+
+The transcript remains execution evidence only: it is not repository or implementation authority, is not committed by default, does not replace closeout, and need not be retained permanently without a separately governed evidence-retention rule. Any durable finding requires promotion into the correct owner document and bounded task. Refer only to the available full-session export capability, not a specific client or slash command.
 
 ## 17. Stop conditions and exit criteria
 
