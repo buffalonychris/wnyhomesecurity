@@ -1629,6 +1629,36 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Validation Evidence:** Exact three-file allowlist, zero deletions, exact single task record, sole-active-owner confirmation, separate `READ MODE` and `REASONING POSTURE` controls, LOW/STANDARD/ELEVATED phase definitions, de-escalation, escalation discipline, context-separation, surface-capability truthfulness, compact template field, material-transition RSI guidance, no duplicate adaptive owner, no model-specific name or hard-coded keyboard shortcut, trailing-whitespace scan, and `git diff --check` passed. `npm run build` was governed-skipped because only governance Markdown changed and no application source or build configuration changed.
 - **Completion Notes:** Created the durable CODEX-ADAPTIVE-REASONING-001 work order and amended only the canonical Codex execution standard plus this exact task record. The standard now supports `STANDARD`, `ADAPTIVE`, and `ELEVATED` work-order postures; defines LOW, STANDARD/MEDIUM, and ELEVATED/HIGH phase use; requires de-escalation after difficult conditions resolve; preserves targeted reads independently from reasoning depth; prevents elevation for normal mechanical friction; requires truthful phase reporting when a surface cannot change effort autonomously; and adds optional material-transition evidence to RSI closeout. OPS003 remains unchanged as context-efficiency support, and no Project KB, Skill, predecessor standard, runtime, protected system, merge, or deployment change occurred.
 
+### CODEX-EXECUTABLE-COMMANDS-001
+
+- **Task ID:** CODEX-EXECUTABLE-COMMANDS-001
+- **Task Name:** Establish Codex executable-command posture for work orders
+- **Task Record Version:** REV01
+- **Status:** ACTIVE
+- **Category:** GOVERNANCE
+- **Primary Workstream:** Project Governance
+- **Related Workstreams:** Context Efficiency; Operator Workflow; RSI
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Add a concise executable-command doctrine to the sole canonical Codex execution owner so future work orders prefer deterministic executable operations, classify surface and operator interactions truthfully, and declare how task actions will be performed.
+- **Allowed Scope:** Execute only `docs/codex/work-orders/CODEX-EXECUTABLE-COMMANDS-001_WORK_ORDER_REV01.md`; modify §§6, 8, 9, 14, 17, 18, 19, 20, and 21 of `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; add and maintain only this exact MTR record; validate and deliver one draft PR.
+- **Forbidden Scope:** No OPS003, `AGENTS.md`, Skill, Project KB, historical/superseded Codex standard, separate command standard, duplicate execution owner, source, runtime, application, website, Home Assistant, Cloudflare, CRM, payment, scheduling, email, dependency, package-lock, secret, adjacent-task, reset, prune, branch deletion, merge, deployment, auto-merge, or ready-for-review change; no complete slash-command inventory, model-specific name, or durable keyboard shortcut.
+- **Target Files:** `docs/codex/work-orders/CODEX-EXECUTABLE-COMMANDS-001_WORK_ORDER_REV01.md`; `docs/codex/CODEX_EXECUTION_STANDARD_REV01.md`; `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Documentation-only governance amendment.
+- **Documentation Updates Required:** Create the durable work order; add command classes, preference/truthfulness/fallback rules, execution-posture definitions, work-order template field, reasoning separation, and closeout evidence to the canonical standard; update only this exact task record.
+- **Validation Required:** Starting convergence; exact three-file allowlist; zero deletions; exact task record count; sole-active-owner confirmation; explicit separation of `READ MODE`, `REASONING POSTURE`, and `EXECUTION POSTURE`; `DIRECT` default; surface/UI non-autonomy; command truthfulness; fallback behavior; no complete slash-command inventory, model-specific name, keyboard shortcut, or duplicate owner; `git diff --check`; governed docs-only build skip.
+- **Exit Criteria:** The canonical execution standard contains the executable-command doctrine and compact execution-posture field; directly executable, surface-dependent, operator-interactive, and session-control classes are distinct; deterministic operations are preferred; command outcomes and handoffs are truthful; only the exact three files change; validation passes; this record is `DONE`; a draft PR to `main` is open; no merge or deployment occurs.
+- **Dependencies:** Operator-authorized prompt-created `CODEX-EXECUTABLE-COMMANDS-001` work order; `CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01`; synchronized `origin/main` at `e6f802e5b5114062fd3decce235187d5c2b8fffb`; `T-CODEXGOVCONSOL001`; `CODEX-ADAPTIVE-REASONING-001`; canonical `CODEX_EXECUTION_STANDARD_REV01.md`; OPS004; current governance authority chain.
+- **Operator Decision Required:** Review the draft PR and decide whether to merge. Any broader command-governance or alternate-owner change requires separate bounded authorization.
+- **Publication/Evidence State:** NOT_PUBLISHED
+- **Draft PR Evidence:** None; draft PR creation is required before final completion.
+- **Merge Evidence:** None; merge is not authorized.
+- **Deployment Applicability / Status / Evidence:** Not applicable; docs-only governance and no deployment authorized.
+- **Main-Sync Status / Evidence:** Task branch created from synchronized `origin/main` commit `e6f802e5b5114062fd3decce235187d5c2b8fffb`; no additional sync was required because convergence had not changed.
+- **CTR Eligibility:** Not eligible until operator review and any separately governed completion decision.
+- **CTR Record / Pointer:** None.
+- **Validation Evidence:** Pending final validation and draft-PR delivery.
+- **Completion Notes:** Pending final validation and draft-PR delivery.
+
 ### Audit Complete WNYHS Governance Authority Environment
 - **Task ID:** T-GOVAUTH001
 - **Task Name:** Audit Complete WNYHS Governance Authority Environment
