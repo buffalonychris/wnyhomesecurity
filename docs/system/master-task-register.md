@@ -1285,6 +1285,32 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Completion Notes:** Explicitly dispatched from synchronized `main` at `71d13f9a5521272583de2c96dcc2c18d33bac5d4` and completed as an audit only. Created `docs/audits/DASH-GOV-BUILD-READINESS-001_AUDIT_REV01.md` with all BR-01 through BR-133 rows classified exactly once: 62 `DEFINED`, 43 `DEFINED_SITE_INPUT_REQUIRED`, 8 `DEFINED_OPERATOR_DECISION_REQUIRED`, 0 `NOT_APPLICABLE`, and 20 `UNDEFINED_GOVERNANCE_REQUIRED`. Final conclusion: `NOT_BUILD_READY`. The 20 undefined rows map to BR-GAP-01 through BR-GAP-14: eight `BUILD_BLOCKING`, four `CAPABILITY_BLOCKING`, and two `NONBLOCKING_BEFORE_INITIAL_BUILD`. Site-input-required count is 43; operator-decision-required count is 8. `PROCESS-DASHBOARD002` is not ready for complete no-guessing definition, while Bailey is owner/routing-ready but not production-implementation-ready. No finding was repaired; no current owner standard or post-install audit/reconciliation artifact was changed. No application/source file, dashboard runtime, Bailey/Peckham implementation, protected system, KAOS repository/interface artifact, dependency, package, lockfile, process artifact, merge, or deployment was changed or accessed. Governed docs-only build skip applied under `CODEX_EXECUTION_STANDARD_REV01.md` Section 16; exact-scope, BR coverage/classification, register coverage, unexpected-delete, protected-boundary, and `git diff --check` validation passed.
 
 
+
+### DASH-GOV-BUILD-READINESS-RECONCILE-001
+
+- **Task ID:** DASH-GOV-BUILD-READINESS-RECONCILE-001
+- **Task Name:** Reconcile Final Dashboard Build Governance Gaps
+- **Status:** READY
+- **Category:** GOV / RECONCILIATION
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Resolve BR-GAP-01 through BR-GAP-14 from the completed final dashboard build-readiness audit so the assembled dashboard owner set becomes a complete no-guessing build contract before PROCESS-DASHBOARD002 or any Bailey production dashboard implementation is authorized.
+- **Predecessor Evidence:** `docs/audits/DASH-GOV-BUILD-READINESS-001_AUDIT_REV01.md`; result `NOT_BUILD_READY`; 20 undefined BR rows mapped to 14 findings: 8 BUILD_BLOCKING, 4 CAPABILITY_BLOCKING, 2 NONBLOCKING_BEFORE_INITIAL_BUILD.
+- **Work Order:** `docs/codex/work-orders/DASH-GOV-BUILD-READINESS-RECONCILE-001_WORK_ORDER_REV01.md`.
+- **Allowed Scope:** Narrow docs-only reconciliation of BR-GAP-01..14 in their existing current owner standards; create one reconciliation record; update only this exact MTR record. Use the minimum owner files required. No implementation.
+- **Required Gap Domains:** Home-versus-Systems membership; individual-vs-group representation; empty/loading/error states; Property-vs-Settings boundaries; confirmation-by-risk; multi-step Close/Arm safety; icon authority/mapping/fallback; deterministic peer ordering; density/overflow; hidden/read-only/disabled/unavailable; unresolved prototype/review treatment; media placement; visible-state-without-control-authority; optional/custom frontend dependency fallback.
+- **Forbidden Scope:** No dashboard implementation; no live Home Assistant; no Bailey/Peckham facts promoted universally; no PROCESS-DASHBOARD002 artifact; no KAOS handoff or KAOS repo work; no source/runtime/customer-facing implementation; no dependency install/upgrade; no Cloudflare, HubSpot, Stripe/payment, scheduling, Resend/email, DNS, tunnels, secrets, customer-private data, merge, or deployment.
+- **Authorized Repository Files:** Only the minimum current owner files listed by the work order from INSTALL006 REV02, DESIGN001 REV02, DASHBOARD001 REV02, AUTOMATION001 REV01, exact current INSTALL008-BOOTSTRAP owner if required for BR-GAP-14 cross-reference, new `docs/audits/DASH-GOV-BUILD-READINESS-RECONCILE-001_RECONCILIATION_REV01.md`, and this exact MTR record.
+- **Activation Rule:** Prepared as READY. After explicit operator dispatch from synchronized main, Codex must create the specified execution branch and promote only this exact task READY -> ACTIVE as the first bounded execution action; no separate activation PR. At successful closeout, ACTIVE -> DONE.
+- **Required Validation:** All 14 BR-GAP findings resolved exactly once; predecessor audit unchanged; no new dashboard class/navigation/status vocabulary; no site-specific universal promotion; no protected/runtime access; no PROCESS-DASHBOARD002 or KAOS artifact; exact changed-file allowlist; zero deleted files; conflict-marker scan; `git diff --check`; governed docs-only application-build skip. Cloudflare skipped tracking records are PASS when `is_skipped=true`, `skip_reason=path_config`, and clone/build/deploy never start.
+- **Exit Criteria:** Success only when BR-GAP-01..14 are all converted from undefined governance into DEFINED, DEFINED_SITE_INPUT_REQUIRED, DEFINED_OPERATOR_DECISION_REQUIRED, or NOT_APPLICABLE; reconciliation result is `RECONCILED`; PROCESS-DASHBOARD002 governance readiness is explicitly stated; Bailey owner/routing readiness is explicitly separated from runtime readiness; one draft PR exists; no merge/deployment/runtime implementation occurs.
+- **Dependencies:** DASH-GOV-BUILD-READINESS-001 DONE; CLOUDFLARE-DOCS-BUILD-SKIP-001 DONE; synchronized main `b47d5c03d9a612b44558b465c67ca26c39f6ece3`; DASHBOARD-CAMPAIGN-001 remains ACTIVE/non-implementing.
+- **Operator Decision Required:** Review and merge the work-order preparation PR if accepted, run `SYNC MAIN BATCH`, then explicitly dispatch this reconciliation task. PROCESS-DASHBOARD002 and Bailey production dashboard implementation remain blocked until this reconciliation succeeds or are separately re-authorized under different scope.
+- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Work-Order Delivery:** Preparation branch `task/dash-gov-build-readiness-reconcile-001-work-order`; execution branch reserved as `task/dash-gov-build-readiness-reconcile-001-execution`.
+- **Completion Notes:** Preparation only. No owner standard has been changed by this preparation task. No dashboard, runtime, protected system, process definition, or site implementation has been performed.
+
+
 ### CLOUDFLARE-DOCS-BUILD-SKIP-001
 
 - **Task ID:** CLOUDFLARE-DOCS-BUILD-SKIP-001
