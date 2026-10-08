@@ -1284,6 +1284,32 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Draft PR Evidence:** Draft PR #607: `https://github.com/buffalonychris/wnyhomesecurity/pull/607` on branch `task/dash-gov-build-readiness-001-execution`.
 - **Completion Notes:** Explicitly dispatched from synchronized `main` at `71d13f9a5521272583de2c96dcc2c18d33bac5d4` and completed as an audit only. Created `docs/audits/DASH-GOV-BUILD-READINESS-001_AUDIT_REV01.md` with all BR-01 through BR-133 rows classified exactly once: 62 `DEFINED`, 43 `DEFINED_SITE_INPUT_REQUIRED`, 8 `DEFINED_OPERATOR_DECISION_REQUIRED`, 0 `NOT_APPLICABLE`, and 20 `UNDEFINED_GOVERNANCE_REQUIRED`. Final conclusion: `NOT_BUILD_READY`. The 20 undefined rows map to BR-GAP-01 through BR-GAP-14: eight `BUILD_BLOCKING`, four `CAPABILITY_BLOCKING`, and two `NONBLOCKING_BEFORE_INITIAL_BUILD`. Site-input-required count is 43; operator-decision-required count is 8. `PROCESS-DASHBOARD002` is not ready for complete no-guessing definition, while Bailey is owner/routing-ready but not production-implementation-ready. No finding was repaired; no current owner standard or post-install audit/reconciliation artifact was changed. No application/source file, dashboard runtime, Bailey/Peckham implementation, protected system, KAOS repository/interface artifact, dependency, package, lockfile, process artifact, merge, or deployment was changed or accessed. Governed docs-only build skip applied under `CODEX_EXECUTION_STANDARD_REV01.md` Section 16; exact-scope, BR coverage/classification, register coverage, unexpected-delete, protected-boundary, and `git diff --check` validation passed.
 
+
+### CLOUDFLARE-DOCS-BUILD-SKIP-001
+
+- **Task ID:** CLOUDFLARE-DOCS-BUILD-SKIP-001
+- **Task Name:** Skip Cloudflare Pages Builds for Docs-Only Changes
+- **Status:** READY
+- **Category:** DEPLOYMENT / CLOUDFLARE / WORKFLOW
+- **Primary Workstream:** Deployment / Cloudflare
+- **Related Workstreams:** Project Governance; Codex Execution; Dashboard / Interactive Experience System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Stop unnecessary Cloudflare Pages builds/deployments when a commit or merge changes only files under `docs/`, while preserving automatic preview and production deployment behavior for any change containing a non-`docs/` path.
+- **Work Order:** `docs/codex/work-orders/CLOUDFLARE-DOCS-BUILD-SKIP-001_WORK_ORDER_REV01.md` is the complete execution contract.
+- **Verified Starting Cloudflare Posture:** Pages project `wnyhomesecurity`; GitHub repository `buffalonychris/wnyhomesecurity`; production branch `main`; production deployments enabled; preview deployments enabled for current eligible branches; build watch includes `["*"]`; build watch excludes `[]`; build command `npm run build`; destination `dist`.
+- **Allowed Scope:** After this preparation PR is reviewed/merged and `main` is synchronized, change only the Cloudflare Pages Git source build-watch exclusion from `[]` to `["docs/*"]`; preserve include rule `["*"]` and every other relevant Pages setting; update only this exact MTR record for execution/validation evidence.
+- **Forbidden Scope:** No source/runtime changes; no build-command/output/root changes; no branch-control changes; no disabling preview or production deployments; no broad `*.md` exclusion; no additional excluded paths; no GitHub Actions/custom CI; no commit-message-skip workflow; no DNS, domains, SSL/TLS, tunnels, Access, caching, redirects, headers, Pages Functions, environment variables, secrets, Home Assistant, HubSpot, Stripe/payment, scheduling, Resend/email, merge, or deployment action beyond the automatic behavior being configured.
+- **Protected System:** Cloudflare Pages configuration. Mutation is authorized only within the exact field/value boundary defined by the work order.
+- **Target Repository File During Execution:** `docs/system/master-task-register.md` — this exact task record only.
+- **Required Validation:** Pre-mutation synchronized-main gate; read current Pages source configuration; exact change `path_excludes=[] -> ["docs/*"]`; configuration read-back; all other relevant Pages deployment settings unchanged; docs-only MTR closeout push produces no Cloudflare Pages build/deployment; zero deleted files; `git diff --check`; no secret/token exposure.
+- **Rollback:** Restore `path_excludes=[]` while preserving `path_includes=["*"]` and all other Pages settings.
+- **Dependencies:** Merged DASH-GOV-BUILD-READINESS-001 / PR #607; synchronized main at `def276f3b042ceaab8103f1dc2a5c61db6b1e096`; Cloudflare Pages Git integration remains active; operator authorization to remove docs-only build/deployment churn.
+- **Operator Decision Required:** Review and merge the work-order preparation PR if accepted, then run `SYNC MAIN BATCH` and dispatch this bounded Cloudflare configuration task. Do not resume dashboard BR-GAP remediation until this workflow fix is complete or explicitly deferred.
+- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
+- **Work-Order Delivery:** Preparation branch `task/cloudflare-docs-build-skip-001-work-order`; execution branch reserved as `task/cloudflare-docs-build-skip-001-execution`.
+- **Completion Notes:** Work order prepared only. No Cloudflare configuration has been changed by this repository preparation task. No source/runtime or other protected system has been modified.
+
+
 ### BAILEY-DASH-PROTOTYPE-001
 
 - **Task ID:** BAILEY-DASH-PROTOTYPE-001
