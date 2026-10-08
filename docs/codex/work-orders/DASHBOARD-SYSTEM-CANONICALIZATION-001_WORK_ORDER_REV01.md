@@ -13,11 +13,13 @@ Reconcile the complete WNYHS dashboard documentation corpus newest-to-oldest and
 
 Do not redesign from scratch. Recover and compact.
 
-## 1A. Prerequisite
+## 1A. Prerequisite and required current input
 
-Before this work order executes, `BPROC-INTERDEP-001` must be completed and its approved Business Process Interdependency Register available on the working branch/main lineage. This task must consume that register as a required current input and update dashboard-related entries when reconciliation produces new evidence.
+Before this work order executes, `BPROC-INTERDEP-001` must be completed and `docs/kaos/business-processes/WNYHS_BUSINESS_PROCESS_INTERDEPENDENCY_REGISTER_REV01.md` must be available on the working branch/main lineage as a required current input. This task must inspect the register before reconciling the dashboard corpus, preserve its current-versus-future technology distinctions, and update or propose changes to the existing dashboard-related dependency IDs when reconciliation produces new evidence.
 
 The register defines cross-business relationships/data/lifecycle requirements; this dashboard task must not create a competing dashboard-only dependency registry.
+
+The canonicalization closeout must identify the dependency IDs consumed, any entries updated or proposed, and any `required_for_execution: YES` blocker that remains unresolved for the affected lifecycle stage. Absence of a future enrichment system is not, by itself, a blocker to the current HA-evidence-first preparation baseline.
 
 ## 2. Operator-approved decisions
 
@@ -209,6 +211,7 @@ If a document has active non-dashboard use that cannot be safely migrated inside
 ## 7. Required source set
 
 At minimum inspect the current and predecessor dashboard corpus identified by the completed dashboard audits, including:
+- `docs/kaos/business-processes/WNYHS_BUSINESS_PROCESS_INTERDEPENDENCY_REGISTER_REV01.md` as the required current cross-business dependency input
 - INSTALL006 REV02 and REV01
 - DESIGN001 customer-interface REV02 and predecessors
 - DASHBOARD001 REV02 and REV01
