@@ -1,4 +1,4 @@
-# DASHBOARD001 - Dashboard Delivery, Binding & Validation Standard - REV02
+# DASHBOARD001 - Dashboard Delivery, Prototype, Validation & Acceptance Standard - REV02
 
 Status: Active canonical dashboard standard
 
@@ -16,7 +16,7 @@ Work order: `docs/codex/work-orders/DASH-GOV-REFRESH-001_WORK_ORDER_REV02.md`
 
 ## 1. Purpose and ownership
 
-This is the canonical owner for customer-specific dashboard delivery: responsive size modes, device targets, capability assembly, Home Assistant evidence binding, fixtures, deterministic browser prototypes, acceptance evidence, and the relationship to dashboard registration, assignment, rollback, and handoff.
+This is the canonical owner for customer-specific dashboard delivery: responsive size modes, device targets, Home Assistant-native approval prototypes, customer-safe binding projection, fixtures, validation, acceptance evidence, additive rollout, rollback, soak, and the relationship to dashboard registration, assignment, and handoff.
 
 `INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` owns functional behavior and semantic meaning. `DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` owns visual tokens and components. This standard binds those owners to verified customer evidence without restating their full rules.
 
@@ -117,9 +117,21 @@ Customer screenshot output may remain clean and non-technical, but its accompany
 
 Raw entity IDs do not appear in normal customer UI. Technical bindings may retain them only in authorized internal records.
 
-## 8. Deterministic approval prototypes
+## 8. Home Assistant-native approval prototypes
 
-Once compliance matters, approval prototypes use deterministic browser-rendered HTML/CSS/JavaScript or the governed implementation component system. They use INSTALL006 behavior and DESIGN001 tokens/components.
+The preferred customer/operator approval surface is actual Home Assistant-compatible Lovelace/YAML using governed WNYHS themes and qualified reusable cards/components, rendered in Home Assistant under an explicitly non-live preview or separately authorized site-bound context. The preview must use INSTALL006 behavior, DESIGN001 tokens/components, the sanitized Site Capability Model, and applicable dependency qualification.
+
+Generic deterministic browser-rendered HTML/CSS/JavaScript remains a secondary engineering aid for isolated component, responsive, state, and offline-review proof. It is not the preferred customer approval surface and must not be treated as Home Assistant compatibility or runtime evidence.
+
+At quote/design stage, a customer-specific workspace may show proposed, quoted, or customer-approved capabilities with simulated states when the entire surface is clearly labeled non-live. At later stages it may move through `PROPOSED`, `APPROVED`, `INSTALLED-UNVERIFIED`, `INSTALLED-VERIFIED`, and `PRODUCTION` only with the lifecycle owner's required evidence.
+
+The same workspace may include or link governed spatial artifacts such as 3D Walkthrough, System Layout, Camera Coverage, Sensor Locations, Lighting Plan, or Automation Areas. Spatial evidence supports property location and planning; it never becomes authoritative installed-capability evidence.
+
+Conceptual relationship:
+
+`SITE CAPABILITY MODEL <-> SPATIAL PROPERTY MODEL <-> DASHBOARD`
+
+This standard selects no Gaussian-splat or other 3D implementation stack.
 
 Evidence records:
 
@@ -132,7 +144,7 @@ Evidence records:
 - browser/renderer; and
 - known limitations.
 
-Generated concept art is inspiration only. Browser screenshots from the deterministic output are the approval proof.
+Generated concept art is inspiration only. Approval evidence must come from the governed HA-rendered preview for customer/platform approval and may be supplemented by deterministic browser screenshots for secondary engineering checks.
 
 ## 9. Validation contract
 
@@ -182,8 +194,24 @@ Repository approval does not register or deploy a dashboard. A separate bounded 
 
 If registration, assignment, binding, or validation fails, the runtime task follows its approved rollback and does not treat repository prototype approval as live acceptance.
 
+### 10.2 Additive production, validation, soak, and separate retirement
+
+Production delivery is replacement-safe:
+
+1. preserve the known-working dashboard and exact rollback path;
+2. add the new dashboard under a separate route/name;
+3. bind only installed-verified or truthfully degraded capabilities and authorized actions;
+4. assign/test only authorized users and devices;
+5. execute the applicable validation contract and record failures/result-unknown posture;
+6. complete task-defined field acceptance and soak with current evidence; and
+7. hand off only after critical blockers are resolved or explicitly governed.
+
+Deployment does not retire the legacy dashboard. Legacy dashboard retirement is a separate approved action after successful validation/soak, inbound dependency review, successor mapping, retained rollback/lineage, and exact bounded authority.
+
 ## 11. Privacy, safety, and acceptance
 
 Do not expose secrets, credentials, private URLs, raw export attachments, customer-private data, unique IDs, connections/MACs, or diagnostic internals in customer output or committed sanitized derivatives unless an exact technical task requires a specific field.
 
-Delivery is on-standard when responsive modes, verified assembly, evidence binding, fixture classification, deterministic proof, validation, and registration/rollback/handoff boundaries preserve INSTALL006 meaning and DESIGN001 presentation without inventing facts or authorizing runtime work.
+Delivery is on-standard when responsive modes, HA-native approval posture, verified Site Capability Model projection, fixture classification, deterministic proof, validation, additive rollout, rollback, soak, acceptance, and handoff boundaries preserve INSTALL006 meaning and DESIGN001 presentation without inventing facts or authorizing runtime work.
+
+The Business Process Interdependency Register owns cross-business relationships. This standard consumes applicable BPI records, especially BPI-017 through BPI-021 and BPI-028, without creating a parallel dependency model. The build-readiness audit's unresolved review-surface and optional/custom-component fallback questions remain unresolved until separately approved owner revisions.

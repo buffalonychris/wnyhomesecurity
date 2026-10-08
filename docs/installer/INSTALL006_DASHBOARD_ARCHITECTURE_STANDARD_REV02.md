@@ -20,9 +20,9 @@ Work order: `docs/codex/work-orders/DASH-GOV-REFRESH-001_WORK_ORDER_REV02.md`
 
 ## 1. Purpose and ownership
 
-This is the canonical owner for what WNYHS dashboards mean and how they behave: dashboard classes, customer information architecture, navigation, property/user context, functional state semantics, permission presentation, activity and alert behavior, high-impact controls, degraded-state behavior, capability visibility, and the semantic dashboard data contract.
+This is the canonical owner for what WNYHS dashboards mean and how they behave: dashboard classes, customer information architecture, navigation, property/user context, functional state semantics, permission presentation, activity and alert behavior, high-impact controls, degraded-state behavior, capability visibility, and the functional projection of the Site Capability Model.
 
-`DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` owns visual components, tokens, typography, exact geometry, and presentation states. `DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` owns customer-specific assembly, evidence binding, responsive delivery, deterministic prototypes, validation, registration/assignment relationship, acceptance, rollback, and handoff. Narrow automation, notification-routing, service/support, and Home Assistant extraction owners retain their domains.
+`DESIGN001_WNYHS_CUSTOMER_INTERFACE_STANDARD_REV02.md` owns visual components, tokens, typography, exact geometry, and presentation states. `DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` owns customer-specific delivery, HA-native prototypes, validation, registration/assignment relationship, acceptance, rollback, soak, and handoff evidence. `WNYHS_SITE_CAPABILITY_EVIDENCE_AND_BINDING_STANDARD_REV01.md` owns the sanitized Site Capability Model and variable/evidence contract. `WNYHS_DASHBOARD_CREATION_AND_LIFECYCLE_STANDARD_REV01.md` owns the end-to-end reusable lifecycle. Narrow automation, notification-routing, media privacy, service/support, and Home Assistant extraction owners retain their domains.
 
 This standard does not authorize dashboard YAML, live Home Assistant changes, bindings, automations, registration, assignment, deployment, customer data, authentication/runtime changes, or protected-system work.
 
@@ -203,3 +203,25 @@ When governance compliance is being approved, visual proof must come from determ
 - Keep installer/service surfaces outside normal customer navigation.
 
 Architecture and behavior are on-standard when audience classes stay separated; the exact navigation, hierarchy, property context, permissions posture, five status meanings, Activity/Alert semantics, command lifecycle, degraded-state handling, capability visibility, semantic contract, footer functions, and deterministic proof requirements are preserved without granting implementation authority.
+
+## 17. Building / Household Mode integration contract
+
+One authoritative per-site Building/Household Mode concept is shared across Dashboard, Notification, and Automation consumers.
+
+Dashboard may:
+
+- display the authoritative current mode with source/freshness and unknown/degraded posture;
+- expose only transitions supported by the Site Capability Model, actual backend authorization, and applicable functional/automation contracts; and
+- present pending, confirmed success, failure, and result-unknown outcomes under Section 10.
+
+Dashboard does not own or redefine notification recipients, routing, escalation, suppression, quiet hours, automation consequences, allowed mode values, transition business logic, or recovery behavior. Those remain with the Notification Engine, AUTOMATION001, and the future standalone mode owner/site profile identified by BPI-030.
+
+If the authoritative site source, permitted transition, role authorization, result source, or degraded handling is unresolved, mode-dependent display/control is blocked only for the affected capability. No site-specific Bailey/Peckham mode value becomes universal authority.
+
+## 18. Lifecycle, evidence, and dependency relationship
+
+Dashboard behavior consumes the sanitized Site Capability Model; raw HA exports and registries never directly determine customer structure, state, actions, or permissions. Proposed, quoted, customer-approved, installed, installed-unverified, installed-verified, unavailable/degraded, deferred, and retired/not-installed postures remain distinct.
+
+The Business Process Interdependency Register owns cross-business relationships. This standard consumes applicable BPI records, especially BPI-003, BPI-005, BPI-017 through BPI-020, BPI-027, and BPI-029 through BPI-034, without restating their producer/source/freshness model.
+
+The canonicalization task does not silently resolve the build-readiness audit's functional composition gaps: Home-versus-Systems membership, individual-versus-group representation, empty-state behavior, Property/Settings content boundaries, control-risk confirmation, multi-step protection-changing behavior, peer ordering, density/overflow, state/action visibility, media placement, and permission-driven read-only/suppression behavior remain unresolved until separately approved owner revisions.

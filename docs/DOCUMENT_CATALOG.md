@@ -605,11 +605,11 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 
 ### `/docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`
 - **File path:** `docs/quotesystem/DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md`
-- **Purpose / likely role:** Placeholder standard for translating finalized hardware/BOM decisions into future Home Assistant dashboard requirements.
-- **Authority level:** **Quote-system governance / placeholder**
+- **Purpose / likely role:** Superseded lineage for the earlier HA-evidence-first dashboard preparation packet.
+- **Authority level:** **Superseded historical lineage**
 - **Customer-facing:** No.
 - **Implementation authority:** No.
-- **Notes:** Added by QUOTESYSTEM-001 for future controlled expansion. It does not authorize dashboard generation.
+- **Notes:** Superseded by `docs/home-assistant/WNYHS_SITE_CAPABILITY_EVIDENCE_AND_BINDING_STANDARD_REV01.md`; quote/approved-scope evidence remains an additive source and does not prove installation.
 
 ### `/docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`
 - **File path:** `docs/quotesystem/QUOTE_SYSTEM_DOCUMENT_MAP_REV01.md`
@@ -1951,3 +1951,33 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **ACTIVE DASHBOARD GOVERNANCE RECONCILIATION AND GAP-ANALYSIS REFERENCE**
 - **Implementation authority:** No.
 - **Notes:** Does not authorize Home Assistant, dashboard YAML, automation, notification, KAOS, website, protected-system, merge, or deployment changes. Functional source owners remain controlling.
+
+## DASHBOARD-SYSTEM-CANONICALIZATION-001 Catalog Addendum
+
+### `/docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md`
+- **File path:** `docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV02.md`
+- **Purpose / likely role:** Active thin Dashboard System Authority & Lifecycle Map for the six-owner set, cross-system boundaries, BPI routing, lifecycle summary, predecessor dispositions, and retirement rules.
+- **Authority level:** **ACTIVE CANONICAL DASHBOARD ROUTING AND LINEAGE MAP**
+- **Implementation authority:** No.
+- **Notes:** Supersedes REV01 routing; it is not an additional functional standard.
+
+### `/docs/home-assistant/WNYHS_DASHBOARD_CREATION_AND_LIFECYCLE_STANDARD_REV01.md`
+- **File path:** `docs/home-assistant/WNYHS_DASHBOARD_CREATION_AND_LIFECYCLE_STANDARD_REV01.md`
+- **Purpose / likely role:** Canonical end-to-end Dashboard creation/lifecycle process from quote/design through separate optional legacy retirement.
+- **Authority level:** **ACTIVE CANONICAL DASHBOARD LIFECYCLE STANDARD**
+- **Implementation authority:** No; every prototype/runtime/acceptance/retirement action remains separately bounded.
+- **Notes:** Supersedes INSTALL011 orchestration and the Post-Install Assembly Profile while preserving domain owners.
+
+### `/docs/home-assistant/WNYHS_SITE_CAPABILITY_EVIDENCE_AND_BINDING_STANDARD_REV01.md`
+- **File path:** `docs/home-assistant/WNYHS_SITE_CAPABILITY_EVIDENCE_AND_BINDING_STANDARD_REV01.md`
+- **Purpose / likely role:** Canonical sanitized Site Capability Model, variable schema, evidence classification, customer/internal projection, and binding gate.
+- **Authority level:** **ACTIVE CANONICAL DASHBOARD EVIDENCE AND BINDING STANDARD**
+- **Implementation authority:** No.
+- **Notes:** Supersedes DASHBOARD_PREP001 and absorbs assembly-model fields; raw HA extraction and cross-system facts remain with their owners.
+
+### `/docs/home-assistant/DASHBOARD-SYSTEM-CANONICALIZATION-001_RECONCILIATION_REV01.md`
+- **File path:** `docs/home-assistant/DASHBOARD-SYSTEM-CANONICALIZATION-001_RECONCILIATION_REV01.md`
+- **Purpose / likely role:** Newest-to-oldest source traversal, atomic lost-value dispositions, final owner set, predecessor results, BPI integration, and unresolved-issue evidence.
+- **Authority level:** **GOVERNANCE RECONCILIATION EVIDENCE**
+- **Implementation authority:** No.
+- **Notes:** Does not replace the six canonical owners or any cross-system domain authority.
