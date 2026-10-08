@@ -1289,7 +1289,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** CLOUDFLARE-DOCS-BUILD-SKIP-001
 - **Task Name:** Skip Cloudflare Pages Builds for Docs-Only Changes
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** DEPLOYMENT / CLOUDFLARE / WORKFLOW
 - **Primary Workstream:** Deployment / Cloudflare
 - **Related Workstreams:** Project Governance; Codex Execution; Dashboard / Interactive Experience System
@@ -1304,10 +1304,10 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Required Validation:** Pre-mutation synchronized-main gate; read current Pages source configuration; exact change `path_excludes=[] -> ["docs/*"]`; configuration read-back; all other relevant Pages deployment settings unchanged; docs-only MTR closeout push produces no Cloudflare Pages build/deployment; zero deleted files; `git diff --check`; no secret/token exposure.
 - **Rollback:** Restore `path_excludes=[]` while preserving `path_includes=["*"]` and all other Pages settings.
 - **Dependencies:** Merged DASH-GOV-BUILD-READINESS-001 / PR #607; synchronized main at `def276f3b042ceaab8103f1dc2a5c61db6b1e096`; Cloudflare Pages Git integration remains active; operator authorization to remove docs-only build/deployment churn.
-- **Operator Decision Required:** Review and merge the work-order preparation PR if accepted, then run `SYNC MAIN BATCH` and dispatch this bounded Cloudflare configuration task. Do not resume dashboard BR-GAP remediation until this workflow fix is complete or explicitly deferred.
-- **Publication/Evidence State:** WORK_ORDER_PREPARED — EXECUTION NOT STARTED
-- **Work-Order Delivery:** Preparation branch `task/cloudflare-docs-build-skip-001-work-order`; execution branch reserved as `task/cloudflare-docs-build-skip-001-execution`.
-- **Completion Notes:** Work order prepared only. No Cloudflare configuration has been changed by this repository preparation task. No source/runtime or other protected system has been modified.
+- **Operator Decision Required:** Review the execution draft PR and decide whether to merge. Do not merge automatically.
+- **Publication/Evidence State:** CLOUDFLARE_CONFIGURATION_UPDATED — READBACK PASS — DOCS-ONLY EXECUTION-BRANCH PUSH IS THE SKIPPED-BUILD PROOF
+- **Work-Order Delivery:** Executed on branch `task/cloudflare-docs-build-skip-001-execution` from synchronized `main` at `57d7f6398408a303ed54ce462c6bd013fcf8fadc`; execution draft PR required to `main`.
+- **Completion Notes:** Changed only Cloudflare Pages project `wnyhomesecurity` source configuration field `path_excludes` from `[]` to `["docs/*"]`; preserved `path_includes=["*"]`, GitHub repository owner/name, production branch `main`, production deployments enabled, preview deployment setting `all`, preview branch includes/excludes, PR comments, build command `npm run build`, destination `dist`, and root directory. Authorized API read-back PASS. Exact rollback is `path_excludes=[]` while preserving `path_includes=["*"]` and all other Pages settings. Repository closeout is limited to this exact MTR record; no source/runtime/package/config file or unrelated protected system was changed, no manual deployment occurred, and no secret or token value was displayed or stored. The docs-only execution-branch push of this closeout commit is the required skipped-build proof.
 
 
 ### BAILEY-DASH-PROTOTYPE-001
