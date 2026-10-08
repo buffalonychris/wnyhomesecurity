@@ -227,6 +227,58 @@ At minimum inspect the current and predecessor dashboard corpus identified by th
 
 Search for additional material dashboard sources; do not assume this list is exhaustive.
 
+## 7A. Mandatory cross-business interdependency discovery sweep
+
+This task must not define the dashboard system from dashboard-named documents alone. Before finalizing the canonical model, perform a targeted repository-wide discovery sweep for any document, candidate architecture, historical source, audit, implementation evidence, or business-process artifact that establishes a data, lifecycle, ownership, validation, support, customer-record, property-record, installed-asset, or operational dependency touching dashboards.
+
+Search both direct dashboard references and adjacent concepts even when the source is not dashboard-owned.
+
+At minimum search for and reconcile references involving:
+
+- GitHub/repository-backed customer, property, job, configuration, or generated records;
+- HubSpot / CRM contact, company/household/account, property, deal, ticket, association, pipeline, and lifecycle data;
+- customer identity, primary contact, phone, email, preferred contact method, customer type, and customer-visible/internal-only data boundaries;
+- property/site identity, canonical property ID, service/install address, floor/room/area/location, square footage, floors, detached structures, floorplans, LiDAR/3D scans, spatial models, and location-dependent dashboard widgets;
+- quote, estimate, approved solution, SOW, package, add-on, scope, proposed capability, customer-approved capability, change order, payment/reference state, and quote-to-install lifecycle gates;
+- BOM, approved part/product, manufacturer/make, model, part number/SKU, supplier/vendor, order/procurement reference, inventory allocation, serialized-item requirements, serial number, hardware identity, device naming, and staged/installed/replaced asset lineage;
+- bench build, installer packet, install job, installer notes, scheduling relationship, installation status, commissioning status, exceptions, readiness gates, dashboard readiness, and handoff readiness;
+- installed asset ID, asset-to-property/location relationship, make/model/serial/supplier lineage, install date, replacement history, warranty start/end/status/term, extended warranty, support eligibility, lifecycle status, and retirement/disposal state;
+- support intake, service case/ticket, RMA, replacement, remote troubleshooting, truck-roll/on-site follow-up, issue type, affected asset/device/system, urgency, resolution, recurrence, and add-on/expansion opportunity;
+- customer training, dashboard review, corrections, acceptance/signoff, handoff, closeout evidence, ownership/data explanation, support/warranty explanation, and customer satisfaction/acceptance evidence;
+- remote-access/tunnel status, support authorization, access/revocation, user/role assignment, permission evidence, local-vs-remote availability, and service/operator visibility;
+- notification, automation, Building/Household Mode, media/privacy, retention, consent, and other cross-system contracts whose state or controls appear in dashboards;
+- weather, mapping, address/geolocation, sunrise/sunset, local-time/timezone, utility/environmental, emergency-service, or other widgets/features that require property/customer/site metadata;
+- future Quote, Installer, Inventory, Asset, Warranty, Support, CRM, Portal, Scheduling, Procurement, Handoff, or other business systems expected to populate dashboard-required fields later;
+- any lifecycle gate where dashboard state, visibility, controls, approval, customer access, support access, warranty/support state, installed-asset state, or handoff state is controlled by another system or record.
+
+Known evidence already located and therefore mandatory review material includes:
+
+- `docs/installer/INSTALL006A_SHARED_JOB_DATA_MODEL_AND_HUBSPOT_FIELD_ARCHITECTURE_REV01.md`, including the candidate chain `Contact/Customer -> Property -> Deal/Opportunity -> Estimate -> SOW -> Quote -> BOM -> Order/Procurement -> Inventory Allocation -> Bench Build -> Install Job -> Commissioning Record -> Customer Signoff -> Installed Asset Register -> Warranty Record -> Support Ticket/RMA -> Expansion/Add-on Opportunity`;
+- `docs/installer/INSTALL010_SERVICE_DASHBOARD_AND_REMOTE_SUPPORT_STANDARD_REV01.md`;
+- `docs/kaos/business-processes/candidate-artifacts/bp001-source-package/WNYHS-BP001E_Handoff_Warranty_Support_Deep_Sweep.md`;
+- dashboard audit/reconciliation/build-readiness records that reference future HubSpot identity/relationship data, quote/approved-solution expectations, fulfillment/inventory/warranty lineage, customer handoff/acceptance evidence, service/warranty facts, and site/customer records.
+
+Do not assume the above list is exhaustive. Search by concept as well as filename because material dependencies may live in quote, installer, asset, warranty, support, CRM, business-process, runtime, portal, or historical documents that do not contain `dashboard` in the filename.
+
+For each discovered dependency, record at minimum:
+
+- producing process/system;
+- consuming dashboard process/class/component;
+- exact data/artifact/state exchanged;
+- current source of truth or current evidence source;
+- future intended source if not yet technologically implemented;
+- lifecycle gate or condition controlled by the dependency;
+- whether the dependency is REQUIRED, CONDITIONAL, ENRICHMENT, VALIDATION, or DOWNSTREAM;
+- current fallback/manual-input path;
+- customer-safe versus internal-only handling;
+- freshness/provenance requirement;
+- missing-owner or unresolved-governance state;
+- recommended entry for the future Business Process Interdependency Register.
+
+Do not invent fields merely because they seem useful. Recover documented concepts first. New fields may be added only when they are logically necessary to express an already documented relationship, and they must be identified as normalization rather than recovered history.
+
+The final reconciliation summary must explicitly state whether this cross-business sweep materially changed the dashboard model and list all newly recovered interdependencies.
+
 ## 8. Required outputs
 
 1. Updated canonical dashboard owner documents.
@@ -275,6 +327,8 @@ Required:
 - preferred prototype path is HA-native YAML/rendering
 - additive deployment/rollback/soak/retirement boundaries are explicit
 - Decision Register records promoted owner references after completion
+- cross-business interdependency sweep completed across dashboard and adjacent business-process documentation
+- every recovered dashboard dependency identifies current source, future source where applicable, lifecycle gate, fallback, and proposed Business Process Interdependency Register entry
 
 ## 11. Closeout
 
