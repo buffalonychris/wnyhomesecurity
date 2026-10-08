@@ -191,6 +191,105 @@ These entries are seed candidate categories only. They are not active authority 
 | DECISION-SEO001 | Every public route needs explicit index/sitemap/search/metadata policy | Candidate | SEO / Site Architecture | Public route ownership should include crawl, sitemap, search, and metadata policy. | SEO and site-architecture owner docs | SEO, search, routes, sitemap, robots, metadata | Promote through SEO/site architecture task when route policy is revised. |
 | DECISION-VISUAL001 | Category visual assets require governed parity and anti-crop standards | Candidate | Visual / Image / Category System | Category assets need consistent visual treatment and crop-safety rules before production placement. | Category image and visual-system owner docs | Category pages, image system, SEO image posture, visual QA | Promote through image/category standards task when authorized. |
 
+
+## 10A. Approved Dashboard System Decision Set — 2026-10-08
+
+These decisions were explicitly approved by the Operator in chat and are assigned to bounded task `DASHBOARD-SYSTEM-CANONICALIZATION-001` for promotion into the correct owner documents. Their presence here records the decision; implementation authority still comes from the promoted owner documents and bounded tasks.
+
+### DECISION-DASH001 — Canonical dashboard compaction
+
+- decision_type: Governance Decision
+- status: Approved In Chat
+- domain: Dashboard / Interactive Experience System
+- decision_statement: Reconcile the full dashboard corpus newest-to-oldest, preserve unique surviving value, compact it into a minimal non-conflicting canonical document set, and demote redundant predecessors only after dependency verification.
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+- notes: Newest is the comparison baseline, not automatic truth. Older material must be checked for lost value before supersession.
+
+### DECISION-DASH002 — Sanitized Site Capability Model is the durable dashboard input
+
+- decision_type: Governance Decision
+- status: Approved In Chat
+- domain: Dashboard / Home Assistant Evidence
+- decision_statement: Raw Home Assistant exports and registries are evidence inputs only. Dashboard generation must consume a sanitized Site Capability Model that records semantic capability, provenance, freshness, state source, visibility, permissions, availability, notification/automation relationships, unresolved conditions, and acceptance posture.
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### DECISION-DASH003 — Variable-schema-first preparation and assembly
+
+- decision_type: Business Process Decision
+- status: Approved In Chat
+- domain: Dashboard Preparation / Cross-Business Inputs
+- decision_statement: Absorb DASHBOARD_PREP001 and the Post-Install Assembly Profile into the canonical creation process and Site Capability Model. Preserve the per-site checklist as a generated working artifact, not a competing authority. Define required variables now even when future Quote, Installer, Inventory, CRM, Warranty, or Handoff systems do not yet populate them electronically.
+- rationale: The dashboard system must work now through manual/current evidence while remaining structurally ready for future automated upstream business-process outputs.
+- required_variable_source_states:
+  - AVAILABLE_FROM_CURRENT_EVIDENCE
+  - MANUAL_OPERATOR_INPUT
+  - FUTURE_BUSINESS_SYSTEM_INPUT
+  - UNRESOLVED
+  - NOT_APPLICABLE
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### DECISION-DASH004 — Preserve narrow cross-system authorities
+
+- decision_type: Governance Decision
+- status: Approved In Chat
+- domain: Dashboard / Cross-System Governance
+- decision_statement: Notification, Automation, Camera/Media Privacy, Zero Trust/Remote Support, HA extraction, Commissioning, and Handoff remain separate domain authorities. The dashboard system consumes their contracts and outputs rather than duplicating their doctrine.
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### DECISION-DASH005 — Building/Household Mode is a formal dashboard integration contract
+
+- decision_type: Runtime Contract Decision
+- status: Approved In Chat
+- domain: Dashboard / Building State
+- decision_statement: One authoritative Building/Household Mode concept is shared across Dashboard, Notification, and Automation systems. Dashboards may display and expose authorized mode controls, but do not redefine mode logic, routing, escalation, suppression, quiet-hours behavior, or automation consequences.
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### DECISION-DASH006 — Mandatory RETIRED_ prefix and dependency-safe retirement
+
+- decision_type: Governance Decision
+- status: Approved In Chat
+- domain: Repository Documentation Lifecycle
+- decision_statement: Any document approved for retirement from this point forward must be renamed with `RETIRED_` prefixed to the complete original filename. No file is retired until active inbound dependencies, references, implementation use, and cross-system reliance are checked and migrated or explicitly preserved.
+- example: `RETIRED_INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV01.md`
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### DECISION-DASH007 — Real Home Assistant prototype and evolving customer preview workspace
+
+- decision_type: Customer Artifact Decision
+- status: Approved In Chat
+- domain: Dashboard / Customer Experience / Home Assistant
+- decision_statement: Dashboard approval prototypes must be real Home Assistant-compatible artifacts using governed Lovelace YAML, WNYHS themes, qualified cards/components, and actual HA rendering rather than generic HTML as the preferred approval form. The customer-specific HA environment should become the preferred site-bound build and approval workspace when available.
+- lifecycle_statement: A quote-stage demo may be created before installation completion using proposed/quoted capabilities and simulated states, clearly labeled as design preview/not live. After customer commitment and tunnel availability, the same customer workspace may evolve through proposed, approved, installed-unverified, installed-verified, and production states.
+- customer_review_statement: Whenever practical, customer approval occurs against the HA-rendered preview in the customer-specific environment, not a generic mockup.
+- property_workspace_statement: The same customer preview environment may host or link the governed 3D property walkthrough and spatial planning artifacts, including future Gaussian-splat indoor/outdoor property models for placement and design review.
+- safety_boundary: High-impact actions remain disabled, simulated, or safely bound until capability, permission, and runtime evidence are verified.
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### DECISION-DASH008 — Additive deployment, rollback, soak, and separate retirement
+
+- decision_type: Runtime Contract Decision
+- status: Approved In Chat
+- domain: Dashboard / Deployment
+- decision_statement: New customer dashboards deploy additively beside the existing working dashboard. Rollback must exist before cutover. Production behavior is validated and soaked before legacy retirement. Legacy retirement is a separate approved action and never an automatic result of deploying the new dashboard.
+- operator_decision_required: No
+- related_tasks: DASHBOARD-SYSTEM-CANONICALIZATION-001
+
+### Approved system-level outcome
+
+The canonicalized dashboard system must support this lifecycle without inventing missing data:
+
+`QUOTE/DESIGN -> CUSTOMER PREVIEW WORKSPACE -> DEMO HA DASHBOARD -> 3D PROPERTY REVIEW -> CUSTOMER DESIGN APPROVAL -> INSTALLATION -> SANITIZED SITE CAPABILITY MODEL -> SITE-BOUND HA PREVIEW -> OPERATOR/CUSTOMER APPROVAL -> ADDITIVE PRODUCTION DEPLOYMENT -> VALIDATION/SOAK -> HANDOFF -> OPTIONAL SEPARATELY APPROVED LEGACY RETIREMENT`
+
+The preview workspace is an evolving property workspace, not a disposable sales mockup. Proposed/quoted capability must remain visibly distinct from installed and verified capability.
+
+
 ## 11. Decision Record Template
 
 Use this compact Markdown/YAML-style template for future decision records:
