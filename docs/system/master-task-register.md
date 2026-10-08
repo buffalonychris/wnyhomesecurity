@@ -1289,7 +1289,7 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 
 - **Task ID:** CLOUDFLARE-DOCS-BUILD-SKIP-001
 - **Task Name:** Skip Cloudflare Pages Builds for Docs-Only Changes
-- **Status:** READY
+- **Status:** ACTIVE
 - **Category:** DEPLOYMENT / CLOUDFLARE / WORKFLOW
 - **Primary Workstream:** Deployment / Cloudflare
 - **Related Workstreams:** Project Governance; Codex Execution; Dashboard / Interactive Experience System
