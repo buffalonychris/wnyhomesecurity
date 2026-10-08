@@ -1,7 +1,7 @@
 # DASHBOARD-SYSTEM-CANONICALIZATION-001 — Final Dashboard System Reconciliation and Canonicalization
 
 **Revision:** REV01
-**Status:** OPERATOR AUTHORIZED — EXECUTE THIS REVISION
+**Status:** OPERATOR AUTHORIZED — BLOCKED ON BPROC-INTERDEP-001
 **Category:** GOVERNANCE / DOCUMENTATION RECONCILIATION
 **Primary Workstream:** Dashboard / Interactive Experience System
 **Task ID:** DASHBOARD-SYSTEM-CANONICALIZATION-001
@@ -12,6 +12,12 @@
 Reconcile the complete WNYHS dashboard documentation corpus newest-to-oldest and produce the final canonical dashboard-building document set. Preserve unique high-value historical concepts, eliminate superseded overlap, define one owner per concept, promote the approved decision set recorded in `KAOS001_DECISION_REGISTER_REV01.md`, and leave no competing dashboard authority.
 
 Do not redesign from scratch. Recover and compact.
+
+## 1A. Prerequisite
+
+Before this work order executes, `BPROC-INTERDEP-001` must be completed and its approved Business Process Interdependency Register available on the working branch/main lineage. This task must consume that register as a required current input and update dashboard-related entries when reconciliation produces new evidence.
+
+The register defines cross-business relationships/data/lifecycle requirements; this dashboard task must not create a competing dashboard-only dependency registry.
 
 ## 2. Operator-approved decisions
 
