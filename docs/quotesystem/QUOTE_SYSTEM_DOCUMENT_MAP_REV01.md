@@ -46,7 +46,7 @@ This document maps the initial WNYHS quote-system governance document set create
 | `HARDWARE001_HA_COMPATIBILITY_AND_BOM_STANDARD_REV01.md` | Placeholder for Home Assistant compatibility, WNYHS control-plane fit, BOM fields, and unsupported hardware disclosure/approval. | PLACEHOLDER |
 | `FEATURES001_CUSTOMER_CAPABILITY_MAPPING_STANDARD_REV01.md` | Placeholder for translating BOM hardware into customer-accessible capabilities and future dashboard requirements. | PLACEHOLDER |
 | `QUOTE001_CUSTOMER_PROPOSAL_STRUCTURE_REV01.md` | Placeholder for customer proposal sections, deposit/install-payment terms, scope assumptions, exclusions, change orders, and New York legal/compliance review placeholder. | PLACEHOLDER |
-| `DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md` | Placeholder for future Home Assistant dashboard requirements from finalized hardware and quote scope. | PLACEHOLDER |
+| `DASHBOARD_PREP001_HA_DASHBOARD_REQUIREMENTS_STANDARD_REV01.md` | Superseded lineage for the earlier dashboard preparation packet; current quote/design expectations flow to the canonical Site Capability standard without becoming installed truth. | SUPERSEDED |
 
 ## Future Reserved Areas
 
@@ -61,6 +61,8 @@ Future controlled tasks may add or expand standards for:
 - Quote-system QA plan.
 
 None of those future areas are implemented or authorized by this map.
+
+Current Dashboard preparation authority is `docs/home-assistant/WNYHS_SITE_CAPABILITY_EVIDENCE_AND_BINDING_STANDARD_REV01.md`. Quote/approved-scope evidence is an additive source under that standard and the Business Process Interdependency Register; it cannot manufacture installed or installed-verified capability.
 - `IMPLEMENTATION012_Quote_Workspace_Usability_Pass_REV01.md` — implemented usability/layout pass for the internal Property Model Quote Workspace.
 
 ## QUOTESYSTEM-015 Addendum — Redraw + Photo Analysis Handoff

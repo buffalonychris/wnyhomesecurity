@@ -20,7 +20,7 @@ Work order: `docs/codex/work-orders/DASH-GOV-REFRESH-001_WORK_ORDER_REV02.md`
 
 This is the canonical owner for dashboard visual appearance: surface roles, colors, typography, tile and media geometry, Status Value Fields, action components, visual states, theme parity, accessibility presentation, focus, motion, and deterministic rendering tokens.
 
-`INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` owns functional behavior, permission and command meaning, customer status semantics, navigation, Activity/Alert behavior, and capability visibility. `DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` owns responsive modes, customer-specific assembly, evidence binding, prototypes, and validation.
+`INSTALL006_DASHBOARD_ARCHITECTURE_STANDARD_REV02.md` owns functional behavior, permission and command meaning, customer status semantics, navigation, Activity/Alert behavior, and capability visibility. `DASHBOARD001_RESPONSIVE_DELIVERY_STANDARD_REV02.md` owns responsive modes, HA-native prototypes, customer-specific delivery, validation, and acceptance evidence. The Site Capability, Evidence & Binding Standard owns the sanitized model and evidence contract.
 
 This standard does not authorize functional permissions, command authority, notification routing, Home Assistant binding, dashboard implementation, live systems, or deployment.
 
@@ -187,3 +187,20 @@ Honor reduced-motion preferences. Functional state changes do not require animat
 Deterministic HTML/browser approval output must implement these tokens directly or through an inspectable equivalent mapping. Hardcoded one-off colors, sizes, fonts, radii, status rules, or shadows outside the governed token system are prohibited.
 
 The visual system is on-standard when Light/Dark/Auto parity, exact type and geometry tokens, gold identity, blue interaction, five exclusive status-value colors, tile anatomy, Status Value Field, one action family, 16:9 media footprint, brand treatment, focus, contrast, reduced-motion, and restrained depth all validate without duplicating functional or binding authority.
+
+## 12. Qualified reusable Home Assistant component patterns
+
+Reusable Home Assistant cards/components may implement this standard only when the applicable bounded task records:
+
+- component/resource identity and installed or candidate version when known from authorized evidence;
+- target Home Assistant and Companion/browser context;
+- INSTALL008-BOOTSTRAP qualification result;
+- exact DESIGN001 token/anatomy mapping;
+- functional owner mapping for state, action, permission, confirmation, and failure behavior;
+- keyboard/focus, accessible-name, contrast, touch-target, theme, size/font, and reduced-motion evidence;
+- missing/unavailable-resource behavior and the DASHBOARD001 fallback disposition; and
+- backup, rollback, revalidation trigger, unsupported/EOL posture, and owner/next action.
+
+A reusable component is a presentation implementation, not a source of semantic capability, authorization, notification policy, automation behavior, or evidence truth. Qualification for one site/version does not create a universal supported-version claim. Generic custom-card styling, historical Bailey/Peckham implementation, or visual similarity does not make a component canonical.
+
+The build-readiness audit's icon-library/mapping gap remains unresolved. Until separately governed, use only task-approved inspectable icons with plain-language labels and a non-misleading fallback; do not infer a universal icon library from prototypes.
