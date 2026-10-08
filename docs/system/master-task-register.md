@@ -7157,6 +7157,29 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 ## Backlog Tasks
 
+### HA-EVIDENCE-PROCESSOR-001
+
+- **Task ID:** HA-EVIDENCE-PROCESSOR-001
+- **Task Name:** Governed Home Assistant Evidence Processor
+- **Status:** BACKLOG
+- **Category:** GOV
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Project Governance; Automation System; Runtime System; Estimate / Quote System; Floorplan System; Catalog System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Preserve the approved future direction for a reusable governed processing capability that transforms authorized standardized Home Assistant evidence/export packages into canonical downstream artifacts without creating competing Dashboard doctrine or displacing repository authority.
+- **Intended Future Outputs:** Sanitized Site Capability Model; entity/binding candidate register; device/area/capability mapping; unresolved/missing/conflicting evidence report; stale/orphaned entity findings where supported by evidence; capability change/delta report where prior evidence exists; provenance/freshness evidence; and machine-readable companion artifacts only when later architecture authorizes them.
+- **Current Workflow:** Until this task is separately activated, authorized Home Assistant exports may continue through the canonical Dashboard workflow using governed ChatGPT review, repository standards, sanitized evidence handling, and separately bounded site tasks. This future capability must not block or invalidate the current HA-evidence-first Dashboard workflow.
+- **Activation Gate:** Remain `BACKLOG`; do not promote to `READY` or `ACTIVE` until a later bounded activation review determines that materially relevant upstream interdependencies and structural ownership questions have been addressed sufficiently to avoid encoding temporary assumptions. At minimum, review applicable BPI/database-architecture decisions for Property/Site identity and ownership; sanitized evidence persistence and provenance; Site Capability Model ownership/storage; device/entity/area/capability relationships; installer and commissioning evidence; installed-asset lifecycle; permissions/role/assignment evidence; spatial/property relationships; current/manual/future source distinctions; customer-safe versus internal data boundaries; evidence freshness/versioning/supersession; and unresolved upstream system ownership.
+- **Allowed Scope:** Future planning and implementation only through separately authorized bounded work after the activation gate is satisfied, with the processor subordinate to canonical repository and Dashboard authority.
+- **Forbidden Scope:** Do not create the processor or decide whether it will be a ChatGPT Skill, dedicated agent, custom GPT, repository script/tool, KAOS service, or another processing architecture. Do not create a Skill, agent, GPT, script, service, schema, API, database, runtime, or new business-process authority; change Home Assistant or Dashboard runtime/YAML; modify BPI records; resolve upstream architecture; touch protected systems; activate this task; or merge under this bookkeeping task.
+- **Target Files:** Future implementation targets are intentionally unresolved and require a separately authorized bounded work order. This backlog-capture task may modify only `docs/system/master-task-register.md`.
+- **Runtime Systems Affected:** None. Future-intent governance record only.
+- **Documentation Updates Required:** Preserve this single backlog record in the Master Task Register. Any later owner-document, work-order, catalog, manifest, schema, or architecture update requires separate authorization.
+- **Validation Required:** Confirm exactly one `HA-EVIDENCE-PROCESSOR-001` record; confirm `Status: BACKLOG`; confirm only `docs/system/master-task-register.md` changed; confirm no runtime/protected-system changes or unexpected deletions; run `git diff --check`; preserve unrelated MTR content; commit and push one fresh task branch; open one draft PR to `main`; do not merge.
+- **Exit Criteria:** One complete `HA-EVIDENCE-PROCESSOR-001` future backlog record exists with the stated purpose, current-workflow preservation, unresolved implementation architecture, activation gate, interdependency review topics, and protected boundaries; validation passes; one draft PR is open; no implementation, activation, merge, deployment, runtime, BPI, or protected-system change occurs.
+- **Dependencies:** Current canonical Dashboard workflow and repository authority; later operator-approved activation review; materially relevant upstream BPI/database-architecture and ownership decisions identified in the Activation Gate; a separate bounded work order for any future activation or implementation.
+- **Operator Decision Required:** Review this backlog-capture draft PR. Any promotion to `READY` or `ACTIVE`, selection of processing architecture, implementation, runtime integration, or change to canonical Dashboard doctrine requires a separate explicit operator decision and repository-authorized bounded task.
+
 ### CATALOG002
 - **Task ID:** CATALOG002
 - **Task Name:** Master Parts Data Model and CATALOG001 Expansion
