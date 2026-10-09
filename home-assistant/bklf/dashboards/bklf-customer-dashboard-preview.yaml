@@ -1,0 +1,307 @@
+# BAILEY-DASHBOARD-HA-NATIVE-PREVIEW-001
+# NON-LIVE PREVIEW / UNREGISTERED / UNASSIGNED / NON-PRODUCTION
+# Repository-only Home Assistant-native Lovelace review artifact.
+# Every displayed state or value is deterministic fixture/simulated presentation.
+# No production entity bindings, actions, service calls, live/private media, or runtime authority.
+# This file is not registered and does not replace either existing Bailey dashboard.
+
+title: "Bailey Customer Dashboard — NON-LIVE PREVIEW"
+views:
+  - title: Home
+    path: home
+    icon: mdi:home-outline
+    type: masonry
+    max_columns: 3
+    cards:
+      - type: markdown
+        title: "WNY Home Security | Bailey"
+        content: |-
+          # NON-LIVE PREVIEW
+
+          **UNREGISTERED · UNASSIGNED · NON-PRODUCTION**
+
+          This Home Assistant-native review uses deterministic fixture/simulated presentation only. It has no production entity bindings and grants no action or runtime authority.
+
+          Property reference: **BK Lewis Funeral Home — Bailey**
+
+      - type: markdown
+        title: Preview attention posture
+        content: |-
+          **Fixture classification: ATTENTION / UNVERIFIED**
+
+          No capability in the Bailey evidence model is installed-verified. Displayed examples are not current Bailey state, availability, commissioning, permission, or customer-acceptance evidence.
+
+          Unknown or unresolved evidence is never presented as safe, closed, locked, available, or Normal.
+
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: markdown
+            title: Entrances and access
+            content: |-
+              **INSTALLED_UNVERIFIED — fixture only**
+
+              - South Entrance monitored opening: fixture state **Unknown**
+              - Bailey Double Doors access control: fixture state **Result unknown**
+
+              Read-only preview language. No lock, unlock, mode, or close-and-arm action is available.
+
+          - type: markdown
+            title: Exterior opening coverage
+            content: |-
+              **DEGRADED — grouped fixture only**
+
+              Fixture state: **Attention — mapping unresolved**
+
+              Individual affected contact locations are intentionally omitted. This is not a whole-property or secure/closed claim.
+
+          - type: markdown
+            title: Environment and presence
+            content: |-
+              **INSTALLED_UNVERIFIED — simulated values**
+
+              - Interior motion awareness: fixture state **Unknown**
+              - Viewing Room temperature: fixture **71 °F**
+              - Viewing Room humidity: fixture **45%**
+
+              Values are static review examples, not live readings.
+
+          - type: markdown
+            title: Smoke-device presence
+            content: |-
+              **INSTALLED_UNVERIFIED — installation posture only**
+
+              Three registry-known device locations are represented in evidence. No live alarm state, monitoring, dispatch, response, notification delivery, or emergency-services behavior is shown or claimed.
+
+          - type: markdown
+            title: Visitor and parking-lot capabilities
+            content: |-
+              **NON-LIVE CAPABILITY PLACEHOLDER — TEXT ONLY**
+
+              South Entrance visitor capability, Bailey Double Doors visitor capability, and parking-lot awareness are evidence candidates.
+
+              No image, stream, history, recording, audio, talk, snapshot, remote availability, or media control is present.
+
+          - type: markdown
+            title: Static review workflow
+            content: |-
+              **No customer actions**
+
+              1. Confirm this surface says NON-LIVE PREVIEW.
+              2. Review attention and lifecycle language.
+              3. Record corrections for a separately authorized evidence task.
+
+              This sequence does not register, bind, commission, accept, or deploy anything.
+
+  - title: Systems
+    path: systems
+    icon: mdi:view-grid-outline
+    type: masonry
+    max_columns: 3
+    cards:
+      - type: markdown
+        title: Systems — NON-LIVE PREVIEW
+        content: |-
+          **UNREGISTERED deterministic fixture presentation.** These are customer-safe evidence candidates, not live verified installed systems. Deferred, retired/not-installed, internal-only, and unsupported capabilities are omitted.
+
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: markdown
+            title: Building posture
+            content: |-
+              **INSTALLED_UNVERIFIED**
+
+              Fixture mode: **Unknown**
+
+              Fixture facility posture: **Attention**
+
+              No authoritative current mode, transition, permission, or action result exists for this preview.
+
+          - type: markdown
+            title: South Entrance opening
+            content: |-
+              **INSTALLED_UNVERIFIED**
+
+              Fixture state: **Unknown**
+
+              The monitored-opening relationship is supported; current open/closed state and availability are not.
+
+          - type: markdown
+            title: Bailey Double Doors access
+            content: |-
+              **INSTALLED_UNVERIFIED**
+
+              Fixture state: **Result unknown**
+
+              No lock state is claimed and no access-control action is exposed.
+
+          - type: markdown
+            title: Exterior openings
+            content: |-
+              **DEGRADED**
+
+              Fixture posture: **Attention — grouped coverage only**
+
+              Unresolved and disputed individual mappings remain hidden.
+
+          - type: markdown
+            title: Interior awareness
+            content: |-
+              **INSTALLED_UNVERIFIED**
+
+              Fixture posture: **Unknown**
+
+              Main Hallway and Viewing Room relationships are evidence candidates; this is not live occupancy or automation evidence.
+
+          - type: markdown
+            title: Environmental readings
+            content: |-
+              **INSTALLED_UNVERIFIED — simulated values**
+
+              Viewing Room fixture: **71 °F · 45% humidity**
+
+              Units, freshness, accuracy, and availability require later live validation.
+
+          - type: markdown
+            title: Smoke-device presence
+            content: |-
+              **INSTALLED_UNVERIFIED — presence only**
+
+              No alarm state, monitoring, notification, response, or commissioned detection claim.
+
+          - type: markdown
+            title: Visitor and camera capabilities
+            content: |-
+              **TEXT-ONLY NON-LIVE PLACEHOLDER**
+
+              Visitor and parking-lot capabilities remain unverified. No media card or private/live media is included.
+
+          - type: markdown
+            title: South Entrance light
+            content: |-
+              **INSTALLED_UNVERIFIED**
+
+              Fixture state: **Unknown**
+
+              Read-only semantic preview; no light control or availability claim.
+
+  - title: Activity
+    path: activity
+    icon: mdi:history
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: markdown
+        title: Activity — deterministic examples
+        content: |-
+          **NON-LIVE PREVIEW · NOT BAILEY HISTORY**
+
+          These static examples demonstrate Current, Recent, and Resolved information architecture only. They are not notification records, timestamps, live events, or evidence of automation behavior.
+
+      - type: grid
+        columns: 3
+        square: false
+        cards:
+          - type: markdown
+            title: Current
+            content: |-
+              **Fixture example**
+
+              Exterior opening coverage needs mapping review.
+
+              Classification: **Attention**
+
+          - type: markdown
+            title: Recent
+            content: |-
+              **Fixture example**
+
+              Interior motion review example.
+
+              Classification: **Simulated only**
+
+          - type: markdown
+            title: Resolved
+            content: |-
+              **Fixture example**
+
+              Door-state review example closed in the fixture.
+
+              Classification: **Simulated only**
+
+      - type: markdown
+        title: Activity boundary
+        content: |-
+          No live event delivery, duplicates, cooldown, quiet-hours, recovery, routing, recipient, history, monitoring, dispatch, or response behavior is represented.
+
+  - title: Explore WNYHS
+    path: explore-wnyhs
+    icon: mdi:compass-outline
+    type: masonry
+    max_columns: 1
+    cards:
+      - type: markdown
+        title: Explore WNYHS — COMING SOON
+        content: |-
+          # COMING SOON
+
+          This non-live preview reserves the canonical navigation destination only. No route, offer, integration, production content, or customer action is enabled.
+
+  - title: Support
+    path: support
+    icon: mdi:lifebuoy
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: markdown
+        title: Support — preview information
+        content: |-
+          **NON-LIVE / UNREGISTERED**
+
+          Use the operator review process for preview corrections. This artifact contains no call, email, ticket, notification, remote-access, or service action.
+
+      - type: markdown
+        title: Before site-bound support
+        content: |-
+          A later authorized task must establish live availability, access, permissions, support ownership, fallback, and revocation evidence. None is inferred here.
+
+  - title: Property
+    path: property
+    icon: mdi:office-building-outline
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: markdown
+        title: Bailey property reference
+        content: |-
+          **BK Lewis Funeral Home — Bailey**
+
+          Repository review identity only. No floor model, coordinates, weather, timezone, complete spatial map, or whole-property protection claim is included.
+
+      - type: markdown
+        title: Supported evidence context
+        content: |-
+          Evidence supports limited semantic context for South Entrance, Bailey Double Doors, Parking Lot, Main Hallway, Viewing Room, Network Closet, and West Hallway Jog.
+
+          Area relationships do not prove live placement, installation, availability, or commissioning. Conflicting individual contact mappings remain omitted.
+
+  - title: Settings
+    path: settings
+    icon: mdi:cog-outline
+    type: masonry
+    max_columns: 2
+    cards:
+      - type: markdown
+        title: Preview preferences
+        content: |-
+          **Static review guidance only**
+
+          The governed concepts are Light / Dark / Auto, Compact / Default / Large, and Inter / Atkinson Hyperlegible / System. This YAML adds no theme, font, resource, dependency, user assignment, or runtime preference control.
+
+      - type: markdown
+        title: Core Lovelace limitation
+        content: |-
+          Core/native cards preserve semantic hierarchy, reflow, labels, and text-supported status meaning. Exact DESIGN001 token colors, typography, focus treatment, equal-height geometry, and customer-selectable preference controls require later qualified runtime implementation and validation.

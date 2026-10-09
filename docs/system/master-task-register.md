@@ -9433,7 +9433,7 @@ No ARCHIVED tasks are currently recorded.
 
 - **Task ID:** BAILEY-DASHBOARD-HA-NATIVE-PREVIEW-001
 - **Task Name:** Bailey Non-Live HA-Native Customer Dashboard Preview
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** QA
 - **Primary Workstream:** Dashboard / Interactive Experience System
 - **Related Workstreams:** Project Governance; Home Assistant Platform; Visual System; Automation System
@@ -9449,10 +9449,15 @@ No ARCHIVED tasks are currently recorded.
 - **Exit Criteria:** The exact two later artifacts exist and pass static validation; the preview is visibly `NON-LIVE`, `UNREGISTERED`, fixture/simulated, additive, core/native-card-only, non-actionable, media-free, unbound, and non-production; capability inclusion/exclusion and exception handling remain evidence-conservative; both existing Bailey dashboards remain byte-for-byte unchanged; only the exact three later files changed; one later draft PR is open; no live/protected-system access, registration, assignment, customer acceptance, handoff, merge, or deployment occurred.
 - **Dependencies:** Operator-authorized governance/setup request dated `2026-10-08`; governance/setup baseline `3f5b24418516d7ef5d40b63bfe8b0e09408cf8df`; `docs/codex/work-orders/BAILEY-DASHBOARD-HA-NATIVE-PREVIEW-001_WORK_ORDER_REV01.md`; current repository authority chain; `DASHBOARD-CAMPAIGN-001`; exact OPS004 Dashboard / Interactive Experience System routing; current INSTALL006 REV02, DESIGN001 REV02, DASHBOARD001 REV02, Site Capability standard, merged Bailey Site Capability Model, internal binding-candidate register as reference only, and Bailey evidence exception register; later execution requires this setup delivery merged and then-current `main` synchronized.
 - **Operator Decision Required:** Review and merge the governance/setup draft PR before later execution. After the later preview draft PR, review the HA-native static preview, lifecycle/exception presentation, validation limitations, and follow-up blockers. Any live validation, binding, registration, assignment, implementation approval, customer acceptance, handoff, merge, or deployment requires separate explicit authority.
-- **Publication/Evidence State:** NOT_STARTED
-- **Draft PR Evidence:** Governance/setup PR only; later execution PR pending.
-- **Merge Evidence:** None.
-- **Deployment Applicability / Status / Evidence:** Not applicable to governance setup. Later preview execution remains repository-only and unregistered.
-- **Main-Sync Status / Evidence:** Governance/setup merge and later synchronization pending; not inferred.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Execution Branch / Commit Evidence:** Branch `task/bailey-dashboard-ha-native-preview-001`; one bounded final commit. The immutable final SHA is verified from draft PR #618 head and the required closeout rather than self-referenced inside that commit.
+- **Draft PR Evidence:** Draft PR #618: `https://github.com/buffalonychris/wnyhomesecurity/pull/618`.
+- **Merge Evidence:** None. Draft PR remains open and unmerged for operator review.
+- **Deployment Applicability / Status / Evidence:** Not applicable. The preview is repository-only, `NON-LIVE`, `UNREGISTERED`, unassigned, and non-production; no deployment occurred.
+- **Main-Sync Status / Evidence:** Execution started from clean synchronized `main` / `origin/main` at `71fb23d54cd730547c8d3ff6b87329a68be2598d`.
+- **Validation Evidence:** PyYAML safe-load parsing passed with seven canonical views in exact order; visible `COMING SOON`, non-live, unregistered, and deterministic-fixture labels passed; zero `custom:` cards, production platform-ID bindings, service/action calls, and camera/media cards; capability lifecycle and exception mapping preserved; both existing Bailey dashboard SHA-256 hashes remained unchanged; exact three-file allowlist, task-count, no-conflict-marker, no-deletion, protected-path, and `git diff --check` validation passed. Application build was a governed skip under the work order and `CODEX_EXECUTION_STANDARD_REV01.md` Section 16.
+- **Protected Boundary Evidence:** No live Home Assistant access/mutation, restart/reload, `.storage`, runtime/configuration, binding, registration, assignment, route/sidebar, theme/resource, entity/device, Z-Wave/Zigbee, action/control, media, automation/notification, permission/auth, customer acceptance/handoff, Cloudflare, website/API, CRM/HubSpot, Stripe/payment, scheduling, email, quote/funnel, database/schema, BPI, canonical-owner, secret/private-data, dependency, merge, or deployment change occurred.
+- **Unresolved Risks / Follow-Up:** All applicable Bailey evidence exceptions remain open. Site-bound work still requires current live-state/availability/commissioning evidence, contact-mapping resolution, backend permission and denial tests, media/privacy and remote-access decisions, smoke/alarm-output validation, notification/automation acceptance, mode/access-control evidence, any selected dependency qualification, applicable spatial/time sources, and operator/customer acceptance under separately authorized tasks. The former South HC620 remains `RETIRED_NOT_INSTALLED`; a future South mag lock remains out of scope.
+- **Completion Notes:** Created one additive Home Assistant-native core-card-only Bailey customer-dashboard YAML preview and one durable validation artifact. The preview uses visible fixture/simulated language, canonical navigation, evidence-conservative lifecycle presentation, text-only media capability placeholders, no bindings, no actions, no media, and no runtime authority. Deferred/unresolved contacts, internal-only alarm/strobe output, retired South HC620, future South mag-lock concepts, and unsupported capabilities are excluded. Existing `bklf-main-dashboard.yaml` and `bklf-desktop-dashboard.yaml` remain byte-for-byte unchanged. No merge or deployment occurred.
 - **CTR Eligibility:** Not eligible.
 - **CTR Record / Pointer:** None.
