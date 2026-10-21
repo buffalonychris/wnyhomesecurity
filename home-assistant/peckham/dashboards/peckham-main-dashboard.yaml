@@ -1,193 +1,368 @@
-# T-HA-DASH-PECKHAM-002 REV03
-# RESPONSIVE REPOSITORY CUSTOMER DASHBOARD — NOT REGISTERED OR DEPLOYED.
-# Evidence cutoff: 2026-10-21. Entity state is evaluated dynamically at runtime.
-# Installed frontend resources used: Mushroom and card-mod. No dependency is added.
-# Lock controls remain status-only until a separate runtime task proves the full
-# high-impact command lifecycle, backend permission, and deliberate confirmation.
+# T-HA-DASH-PECKHAM-003 REV01
+# Peckham Dark customer visual production pass. Repository source only; not deployed.
+# Proven runtime bindings and state semantics are preserved from REV03.
+# Installed components used: native Lovelace Sections, Mushroom, button-card, card-mod.
 
-title: Peckham Customer Dashboard
+title: WNY Home Security Customer Control Center
+
+button_card_templates:
+  peckham_panel:
+    show_state: false
+    show_label: true
+    grid_options: &full_width_card
+      columns: 12
+      rows: auto
+    tap_action:
+      action: none
+    hold_action:
+      action: none
+    double_tap_action:
+      action: none
+    styles:
+      card:
+        - background: "var(--peckham-surface-tile, #111D2E)"
+        - border: "1px solid var(--peckham-border, #314056)"
+        - border-radius: 16px
+        - box-shadow: "0 10px 28px rgb(0 0 0 / 28%)"
+        - padding: 20px
+        - color: "var(--peckham-text-primary, #F8FAFC)"
+        - overflow: hidden
+      name:
+        - color: "var(--peckham-text-primary, #F8FAFC)"
+        - font-size: 18px
+        - font-weight: 700
+        - line-height: 24px
+      label:
+        - color: "var(--peckham-text-muted, #A8B3C2)"
+        - font-size: 16px
+        - line-height: 24px
+      icon:
+        - color: "var(--peckham-gold, #D4AF37)"
+
+  peckham_heading:
+    template: peckham_panel
+    name: "[[[ return variables.heading; ]]]"
+    label: "[[[ return variables.description; ]]]"
+    icon: "[[[ return variables.icon; ]]]"
+    styles:
+      card:
+        - min-height: 104px
+      grid:
+        - grid-template-areas: '"i n" "i l"'
+        - grid-template-columns: 52px minmax(0, 1fr)
+        - grid-template-rows: min-content min-content
+        - column-gap: 14px
+      icon:
+        - width: 26px
+      img_cell:
+        - width: 48px
+        - height: 48px
+        - border-radius: 50%
+        - background: "var(--peckham-icon-background, #050A12)"
+        - align-self: center
+      name:
+        - justify-self: start
+        - color: "var(--peckham-heading, #D4AF37)"
+      label:
+        - justify-self: start
+        - text-align: left
+        - white-space: normal
+
+  peckham_contact:
+    template: peckham_panel
+    name: "[[[ return variables.title; ]]]"
+    label: |
+      [[[
+        if (!entity || !['on', 'off'].includes(entity.state)) return 'UNAVAILABLE';
+        return entity.state === 'off' ? 'CLOSED' : 'OPEN';
+      ]]]
+    icon: |
+      [[[
+        if (variables.door) return entity && entity.state === 'on' ? 'mdi:door-open' : 'mdi:door-closed';
+        return 'mdi:checkbox-blank-circle-outline';
+      ]]]
+    styles:
+      card:
+        - min-height: 96px
+      grid:
+        - grid-template-areas: '"i n" "i l"'
+        - grid-template-columns: 48px minmax(0, 1fr)
+        - grid-template-rows: min-content min-content
+        - column-gap: 14px
+      img_cell:
+        - width: 44px
+        - height: 44px
+        - border-radius: 50%
+        - background: "var(--peckham-icon-background, #050A12)"
+      icon:
+        - width: 23px
+      name:
+        - justify-self: start
+        - text-align: left
+      label:
+        - justify-self: start
+        - font-weight: 700
+        - letter-spacing: 0.04em
+        - color: |
+            [[[
+              if (!entity || !['on', 'off'].includes(entity.state)) return 'var(--peckham-status-unavailable, #94A3B8)';
+              return entity.state === 'off' ? 'var(--peckham-status-normal, #22C55E)' : 'var(--peckham-status-attention, #F5A524)';
+            ]]]
+
+  peckham_lock:
+    template: peckham_panel
+    name: "[[[ return variables.title; ]]]"
+    label: |
+      [[[
+        if (!entity) return 'UNAVAILABLE';
+        if (entity.state === 'locked') return 'LOCKED';
+        if (entity.state === 'unlocked') return 'UNLOCKED';
+        return 'UNAVAILABLE';
+      ]]]
+    icon: |
+      [[[
+        return entity && entity.state === 'unlocked' ? 'mdi:lock-open-variant-outline' : 'mdi:lock-outline';
+      ]]]
+    styles:
+      card:
+        - min-height: 96px
+      grid:
+        - grid-template-areas: '"i n" "i l"'
+        - grid-template-columns: 48px minmax(0, 1fr)
+        - grid-template-rows: min-content min-content
+        - column-gap: 14px
+      img_cell:
+        - width: 44px
+        - height: 44px
+        - border-radius: 50%
+        - background: "var(--peckham-icon-background, #050A12)"
+      icon:
+        - width: 23px
+      name:
+        - justify-self: start
+        - text-align: left
+      label:
+        - justify-self: start
+        - font-weight: 700
+        - letter-spacing: 0.04em
+        - color: |
+            [[[
+              if (!entity || !['locked', 'unlocked'].includes(entity.state)) return 'var(--peckham-status-unavailable, #94A3B8)';
+              return entity.state === 'locked' ? 'var(--peckham-status-normal, #22C55E)' : 'var(--peckham-status-attention, #F5A524)';
+            ]]]
+
+  peckham_camera_placeholder:
+    template: peckham_panel
+    name: "[[[ return variables.title; ]]]"
+    label: SETUP PENDING
+    icon: "[[[ return variables.icon; ]]]"
+    styles:
+      card:
+        - aspect-ratio: 16 / 9
+        - min-height: 220px
+        - justify-content: center
+        - background: "var(--peckham-surface-recessed, #091321)"
+      grid:
+        - grid-template-areas: '"i" "n" "l"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 72px min-content min-content
+        - row-gap: 10px
+      img_cell:
+        - width: 64px
+        - height: 64px
+        - justify-self: center
+        - border-radius: 50%
+        - background: "var(--peckham-icon-background, #050A12)"
+      icon:
+        - width: 32px
+      name:
+        - justify-self: center
+        - text-align: center
+      label:
+        - justify-self: center
+        - color: "var(--peckham-text-muted, #A8B3C2)"
+        - font-weight: 700
+        - letter-spacing: 0.08em
+
+  peckham_action:
+    template: peckham_panel
+    styles:
+      card:
+        - min-height: 112px
+        - border: "2px solid var(--peckham-action, #0A84FF)"
+        - cursor: pointer
+      grid:
+        - grid-template-areas: '"i n" "i l"'
+        - grid-template-columns: 52px minmax(0, 1fr)
+        - grid-template-rows: min-content min-content
+        - column-gap: 14px
+      img_cell:
+        - width: 48px
+        - height: 48px
+        - border-radius: 50%
+        - background: "var(--peckham-icon-background, #050A12)"
+      icon:
+        - width: 25px
+        - color: "var(--peckham-action, #0A84FF)"
+      name:
+        - justify-self: start
+      label:
+        - justify-self: start
+        - text-align: left
+        - white-space: normal
+
 views:
   - title: Home
     path: home
-    icon: mdi:home-outline
     type: sections
-    max_columns: 4
+    max_columns: 3
     sections:
       - type: grid
+        column_span: 3
         cards:
           - type: custom:mushroom-template-card
-            primary: BK LEWIS · PECKHAM
+            grid_options:
+              columns: 12
+              rows: auto
+            primary: WNY HOME SECURITY
             secondary: >-
-              {% set contacts = [
-                states('binary_sensor.sensor13'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
-                states('binary_sensor.sensor03'),
-                states('binary_sensor.sensor04'),
-                states('binary_sensor.sensor05'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
-                states('binary_sensor.sensor7'),
-                states('binary_sensor.sensor08'),
-                states('binary_sensor.sensor09'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
-                states('binary_sensor.sensor11'),
-                states('binary_sensor.sensor12'),
-                states('binary_sensor.sensor14'),
-                states('binary_sensor.sensor15'),
-                states('binary_sensor.sensor16')
-              ] %}
-              {% set closed = contacts | select('eq', 'off') | list | count %}
-              {% set open = contacts | select('eq', 'on') | list | count %}
-              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
-              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if open > 0 or deadbolt == 'unlocked' or lever == 'unlocked' %}
-                Building Status · Attention
-              {% elif closed + open < 16
-                    or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}
-                Building Status · Unavailable
-              {% else %}
-                Building Status · Normal
-              {% endif %}
+              BK LEWIS · PECKHAM
+              · {{ now().strftime('%A, %B %d · %I:%M %p') }}
             icon: mdi:shield-home-outline
-            icon_color: >-
-              {% set contacts = [
-                states('binary_sensor.sensor13'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
-                states('binary_sensor.sensor03'),
-                states('binary_sensor.sensor04'),
-                states('binary_sensor.sensor05'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
-                states('binary_sensor.sensor7'),
-                states('binary_sensor.sensor08'),
-                states('binary_sensor.sensor09'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
-                states('binary_sensor.sensor11'),
-                states('binary_sensor.sensor12'),
-                states('binary_sensor.sensor14'),
-                states('binary_sensor.sensor15'),
-                states('binary_sensor.sensor16')
-              ] %}
-              {% set closed = contacts | select('eq', 'off') | list | count %}
-              {% set open = contacts | select('eq', 'on') | list | count %}
-              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
-              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if open > 0 or deadbolt == 'unlocked' or lever == 'unlocked' %}
-                var(--status-attention)
-              {% elif closed + open < 16
-                    or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}
-                var(--status-unavailable)
-              {% else %}
-                var(--status-normal)
-              {% endif %}
+            icon_color: "var(--peckham-gold, #D4AF37)"
             multiline_secondary: true
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            double_tap_action:
-              action: none
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
             card_mod:
               style: |
                 ha-card {
-                  --card-primary-color: var(--primary-text-color);
+                  --card-primary-color: var(--peckham-heading, #D4AF37);
+                  --card-secondary-color: var(--peckham-text-muted, #A8B3C2);
+                  --icon-color: var(--peckham-gold, #D4AF37);
+                  background: var(--peckham-surface-shell, #0D1726);
+                  border: 1px solid var(--peckham-border, #314056);
                   border-radius: 16px;
+                  box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
+                  min-height: 118px;
+                  padding: 14px 18px;
                 }
-          - type: markdown
-            content: |
-              Current status is scoped to the 16 represented opening contacts and
-              both Main Entrance locks. Planned cameras are not part of this result.
-
-              If a status shows **Attention**, review Systems. If it shows
-              **Unavailable**, confirm the property state before relying on it.
 
       - type: grid
+        column_span: 2
         cards:
-          - type: custom:mushroom-template-card
-            primary: Main Entrance
-            secondary: >-
-              {% set door = states('binary_sensor.sensor13') %}
-              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
-              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              Door:
-              {% if door == 'off' %}Closed{% elif door == 'on' %}Open{% else %}Unavailable{% endif %}
-              · Deadbolt:
-              {% if deadbolt == 'locked' %}Locked{% elif deadbolt == 'unlocked' %}Unlocked{% elif deadbolt == 'unavailable' %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
-              · Lever:
-              {% if lever == 'locked' %}Locked{% elif lever == 'unlocked' %}Unlocked{% elif lever == 'unavailable' %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
-            icon: mdi:door
-            icon_color: >-
-              {% set door = states('binary_sensor.sensor13') %}
-              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
-              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}
-                var(--status-attention)
-              {% elif door not in ['on', 'off']
-                    or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}
-                var(--status-unavailable)
-              {% else %}
-                var(--status-normal)
-              {% endif %}
-            multiline_secondary: true
-            tap_action:
-              action: none
-
-      - type: grid
-        cards:
-          - type: custom:mushroom-template-card
-            primary: Opening Contacts
-            secondary: >-
-              {% set contacts = [
-                states('binary_sensor.sensor13'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
-                states('binary_sensor.sensor03'),
-                states('binary_sensor.sensor04'),
-                states('binary_sensor.sensor05'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
-                states('binary_sensor.sensor7'),
-                states('binary_sensor.sensor08'),
-                states('binary_sensor.sensor09'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
-                states('binary_sensor.sensor11'),
-                states('binary_sensor.sensor12'),
-                states('binary_sensor.sensor14'),
-                states('binary_sensor.sensor15'),
-                states('binary_sensor.sensor16')
-              ] %}
-              {% set closed = contacts | select('eq', 'off') | list | count %}
-              {% set open = contacts | select('eq', 'on') | list | count %}
-              Closed {{ closed }} · Open {{ open }} · Unavailable {{ 16 - closed - open }}
-            icon: mdi:door-closed-lock
-            icon_color: >-
-              {% set contacts = [
-                states('binary_sensor.sensor13'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
-                states('binary_sensor.sensor03'),
-                states('binary_sensor.sensor04'),
-                states('binary_sensor.sensor05'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
-                states('binary_sensor.sensor7'),
-                states('binary_sensor.sensor08'),
-                states('binary_sensor.sensor09'),
-                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
-                states('binary_sensor.sensor11'),
-                states('binary_sensor.sensor12'),
-                states('binary_sensor.sensor14'),
-                states('binary_sensor.sensor15'),
-                states('binary_sensor.sensor16')
-              ] %}
-              {% set closed = contacts | select('eq', 'off') | list | count %}
-              {% set open = contacts | select('eq', 'on') | list | count %}
-              {% if open > 0 %}var(--status-attention)
-              {% elif closed + open < 16 %}var(--status-unavailable)
-              {% else %}var(--status-normal){% endif %}
-            tap_action:
-              action: none
+          - type: custom:button-card
+            template: peckham_panel
+            name: PROPERTY STATUS
+            label: |
+              [[[
+                const contacts = [
+                  'binary_sensor.sensor13',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2',
+                  'binary_sensor.sensor03',
+                  'binary_sensor.sensor04',
+                  'binary_sensor.sensor05',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3',
+                  'binary_sensor.sensor7',
+                  'binary_sensor.sensor08',
+                  'binary_sensor.sensor09',
+                  'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4',
+                  'binary_sensor.sensor11',
+                  'binary_sensor.sensor12',
+                  'binary_sensor.sensor14',
+                  'binary_sensor.sensor15',
+                  'binary_sensor.sensor16'
+                ].map(id => states[id]?.state);
+                const open = contacts.filter(state => state === 'on').length;
+                const closed = contacts.filter(state => state === 'off').length;
+                const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
+                const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
+                if (open > 0 || deadbolt === 'unlocked' || lever === 'unlocked') return 'ATTENTION';
+                if (closed + open < 16 || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'UNAVAILABLE';
+                return 'NORMAL';
+              ]]]
+            icon: mdi:shield-home-outline
+            custom_fields:
+              message: |
+                [[[
+                  const contacts = [
+                    'binary_sensor.sensor13',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2',
+                    'binary_sensor.sensor03',
+                    'binary_sensor.sensor04',
+                    'binary_sensor.sensor05',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3',
+                    'binary_sensor.sensor7',
+                    'binary_sensor.sensor08',
+                    'binary_sensor.sensor09',
+                    'binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4',
+                    'binary_sensor.sensor11',
+                    'binary_sensor.sensor12',
+                    'binary_sensor.sensor14',
+                    'binary_sensor.sensor15',
+                    'binary_sensor.sensor16'
+                  ].map(id => states[id]?.state);
+                  const open = contacts.filter(state => state === 'on').length;
+                  const closed = contacts.filter(state => state === 'off').length;
+                  const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
+                  const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
+                  if (open > 0 || deadbolt === 'unlocked' || lever === 'unlocked') return 'An opening or entrance lock needs your attention.';
+                  if (closed + open < 16 || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'Some current conditions cannot be confirmed.';
+                  return 'Connected openings and entrance locks report normal conditions.';
+                ]]]
+            styles:
+              card:
+                - min-height: 248px
+                - padding: 28px
+              grid:
+                - grid-template-areas: '"i n" "i l" "message message"'
+                - grid-template-columns: 72px minmax(0, 1fr)
+                - grid-template-rows: min-content min-content 1fr
+                - column-gap: 18px
+                - row-gap: 10px
+              img_cell:
+                - width: 64px
+                - height: 64px
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              icon:
+                - width: 34px
+              name:
+                - justify-self: start
+                - color: "var(--peckham-text-muted, #A8B3C2)"
+                - font-size: 14px
+                - letter-spacing: 0.12em
+              label:
+                - justify-self: start
+                - font-size: 32px
+                - line-height: 38px
+                - font-weight: 700
+                - color: |
+                    [[[
+                      const contacts = [
+                        'binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'
+                      ].map(id => states[id]?.state);
+                      const open = contacts.filter(state => state === 'on').length;
+                      const closed = contacts.filter(state => state === 'off').length;
+                      const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
+                      const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
+                      if (open > 0 || deadbolt === 'unlocked' || lever === 'unlocked') return 'var(--peckham-status-attention, #F5A524)';
+                      if (closed + open < 16 || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'var(--peckham-status-unavailable, #94A3B8)';
+                      return 'var(--peckham-status-normal, #22C55E)';
+                    ]]]
+              custom_fields:
+                message:
+                  - align-self: end
+                  - justify-self: stretch
+                  - margin-top: 14px
+                  - padding-top: 16px
+                  - border-top: "1px solid var(--peckham-border, #314056)"
+                  - color: "var(--peckham-text-muted, #A8B3C2)"
+                  - font-size: 16px
+                  - line-height: 24px
+                  - text-align: left
 
       - type: grid
         cards:
@@ -197,527 +372,796 @@ views:
             forecast_type: daily
             show_current: true
             show_forecast: true
-          - type: markdown
-            title: Weather availability
-            content: |
-              Weather follows the property source. If it is unavailable, this card
-              remains visible; no outside source is substituted.
+            card_mod:
+              style: |
+                ha-card {
+                  --primary-text-color: var(--peckham-text-primary, #F8FAFC);
+                  --secondary-text-color: var(--peckham-text-muted, #A8B3C2);
+                  background: var(--peckham-surface-tile, #111D2E);
+                  border: 1px solid var(--peckham-border, #314056);
+                  border-radius: 16px;
+                  box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
+                  min-height: 248px;
+                }
+
+      - type: grid
+        column_span: 2
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: MAIN ENTRANCE
+            icon: mdi:door
+            show_label: false
+            custom_fields:
+              door: |
+                [[[
+                  const state = states['binary_sensor.sensor13']?.state;
+                  const value = state === 'off' ? 'CLOSED' : state === 'on' ? 'OPEN' : 'UNAVAILABLE';
+                  const color = state === 'off' ? 'var(--peckham-status-normal, #22C55E)' : state === 'on' ? 'var(--peckham-status-attention, #F5A524)' : 'var(--peckham-status-unavailable, #94A3B8)';
+                  return `<span>Door</span><strong style="color:${color}">${value}</strong>`;
+                ]]]
+              deadbolt: |
+                [[[
+                  const state = states['lock.door_lock_deadbolt_main_door']?.state;
+                  const value = state === 'locked' ? 'LOCKED' : state === 'unlocked' ? 'UNLOCKED' : 'UNAVAILABLE';
+                  const color = state === 'locked' ? 'var(--peckham-status-normal, #22C55E)' : state === 'unlocked' ? 'var(--peckham-status-attention, #F5A524)' : 'var(--peckham-status-unavailable, #94A3B8)';
+                  return `<span>Deadbolt</span><strong style="color:${color}">${value}</strong>`;
+                ]]]
+              lever: |
+                [[[
+                  const state = states['lock.door_lock_lower_lever_handle_main']?.state;
+                  const value = state === 'locked' ? 'LOCKED' : state === 'unlocked' ? 'UNLOCKED' : 'UNAVAILABLE';
+                  const color = state === 'locked' ? 'var(--peckham-status-normal, #22C55E)' : state === 'unlocked' ? 'var(--peckham-status-attention, #F5A524)' : 'var(--peckham-status-unavailable, #94A3B8)';
+                  return `<span>Lever Lock</span><strong style="color:${color}">${value}</strong>`;
+                ]]]
+              overall: |
+                [[[
+                  const door = states['binary_sensor.sensor13']?.state;
+                  const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
+                  const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
+                  let value = 'NORMAL';
+                  let color = 'var(--peckham-status-normal, #22C55E)';
+                  if (door === 'on' || deadbolt === 'unlocked' || lever === 'unlocked') {
+                    value = 'ATTENTION'; color = 'var(--peckham-status-attention, #F5A524)';
+                  } else if (!['on', 'off'].includes(door) || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) {
+                    value = 'UNAVAILABLE'; color = 'var(--peckham-status-unavailable, #94A3B8)';
+                  }
+                  return `<span>Overall</span><strong style="color:${color}">${value}</strong>`;
+                ]]]
+            styles:
+              card:
+                - min-height: 286px
+              grid:
+                - grid-template-areas: '"i n" "door door" "deadbolt deadbolt" "lever lever" "overall overall"'
+                - grid-template-columns: 48px minmax(0, 1fr)
+                - grid-template-rows: min-content repeat(4, min-content)
+                - column-gap: 14px
+                - row-gap: 10px
+              img_cell:
+                - width: 44px
+                - height: 44px
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              icon:
+                - width: 24px
+              name:
+                - justify-self: start
+                - color: "var(--peckham-heading, #D4AF37)"
+                - letter-spacing: 0.08em
+              custom_fields:
+                door: &entrance_row
+                  - display: flex
+                  - justify-content: space-between
+                  - align-items: center
+                  - min-height: 40px
+                  - padding: 8px 12px
+                  - border: "1px solid var(--peckham-border, #314056)"
+                  - border-radius: 8px
+                  - background: "var(--peckham-surface-recessed, #091321)"
+                  - color: "var(--peckham-text-muted, #A8B3C2)"
+                  - font-size: 15px
+                  - line-height: 20px
+                deadbolt: *entrance_row
+                lever: *entrance_row
+                overall:
+                  - display: flex
+                  - justify-content: space-between
+                  - align-items: center
+                  - min-height: 44px
+                  - margin-top: 4px
+                  - padding: 8px 12px
+                  - border: "1px solid var(--peckham-border, #314056)"
+                  - border-radius: 8px
+                  - background: "var(--peckham-surface-recessed, #091321)"
+                  - color: "var(--peckham-text-primary, #F8FAFC)"
+                  - font-size: 16px
+                  - line-height: 20px
+                  - font-weight: 700
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: OPENING CONTACTS
+            icon: mdi:door-closed-lock
+            show_label: false
+            custom_fields:
+              closed: |
+                [[[
+                  const ids = ['binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'];
+                  return `<strong style="color:var(--peckham-status-normal, #22C55E)">${ids.filter(id => states[id]?.state === 'off').length}</strong><span>Closed</span>`;
+                ]]]
+              open: |
+                [[[
+                  const ids = ['binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'];
+                  return `<strong style="color:var(--peckham-status-attention, #F5A524)">${ids.filter(id => states[id]?.state === 'on').length}</strong><span>Open</span>`;
+                ]]]
+              unavailable: |
+                [[[
+                  const ids = ['binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'];
+                  const available = ids.filter(id => ['on', 'off'].includes(states[id]?.state)).length;
+                  return `<strong style="color:var(--peckham-status-unavailable, #94A3B8)">${16 - available}</strong><span>Unavailable</span>`;
+                ]]]
+            styles:
+              card:
+                - min-height: 286px
+              grid:
+                - grid-template-areas: '"i n n n" "closed open unavailable"'
+                - grid-template-columns: 48px repeat(3, minmax(0, 1fr))
+                - grid-template-rows: min-content 1fr
+                - column-gap: 10px
+                - row-gap: 20px
+              img_cell:
+                - width: 44px
+                - height: 44px
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              icon:
+                - width: 24px
+              name:
+                - justify-self: start
+                - color: "var(--peckham-heading, #D4AF37)"
+                - letter-spacing: 0.08em
+              custom_fields:
+                closed: &count_cell
+                  - display: flex
+                  - flex-direction: column
+                  - justify-content: center
+                  - align-items: center
+                  - min-width: 0
+                  - min-height: 132px
+                  - padding: 10px 4px
+                  - border: "1px solid var(--peckham-border, #314056)"
+                  - border-radius: 12px
+                  - background: "var(--peckham-surface-recessed, #091321)"
+                  - color: "var(--peckham-text-muted, #A8B3C2)"
+                  - font-size: 13px
+                  - line-height: 20px
+                open: *count_cell
+                unavailable: *count_cell
 
   - title: Systems
     path: systems
-    icon: mdi:view-grid-outline
     type: sections
     max_columns: 4
     sections:
       - type: grid
+        column_span: 4
         cards:
-          - type: markdown
-            title: BK LEWIS · PECKHAM
-            content: |
-              ## Main Entrance
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Systems
+              description: Entrance and opening status, plus planned camera positions.
+              icon: mdi:view-grid-outline
 
-              Current state is read from the installed door contact and both
-              registered Main Entrance locks.
-          - type: custom:mushroom-template-card
-            primary: Overall Main Entrance
-            secondary: >-
-              {% set door = states('binary_sensor.sensor13') %}
-              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
-              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}
-                Attention
-              {% elif door not in ['on', 'off']
-                    or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}
-                Unavailable
-              {% else %}
-                Normal
-              {% endif %}
-            icon: mdi:shield-door
-            icon_color: >-
-              {% set door = states('binary_sensor.sensor13') %}
-              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
-              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}var(--status-attention)
-              {% elif door not in ['on', 'off']
-                    or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}var(--status-unavailable)
-              {% else %}var(--status-normal){% endif %}
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            double_tap_action:
-              action: none
-          - type: custom:mushroom-template-card
+      - type: grid
+        column_span: 4
+        cards:
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Main Entrance
+              description: Door and lock status in one customer-ready group. Controls are not available from this dashboard yet.
+              icon: mdi:shield-door
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Overall Main Entrance
+            label: |
+              [[[
+                const door = states['binary_sensor.sensor13']?.state;
+                const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
+                const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
+                if (door === 'on' || deadbolt === 'unlocked' || lever === 'unlocked') return 'ATTENTION';
+                if (!['on', 'off'].includes(door) || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'UNAVAILABLE';
+                return 'NORMAL';
+              ]]]
+            icon: mdi:shield-home-outline
+            styles:
+              card:
+                - min-height: 128px
+              grid:
+                - grid-template-areas: '"i n" "i l"'
+                - grid-template-columns: 52px minmax(0, 1fr)
+                - grid-template-rows: min-content min-content
+                - column-gap: 14px
+              img_cell:
+                - width: 48px
+                - height: 48px
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              name:
+                - justify-self: start
+                - text-align: left
+              label:
+                - justify-self: start
+                - font-weight: 700
+                - letter-spacing: 0.04em
+                - color: |
+                    [[[
+                      const door = states['binary_sensor.sensor13']?.state;
+                      const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
+                      const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
+                      if (door === 'on' || deadbolt === 'unlocked' || lever === 'unlocked') return 'var(--peckham-status-attention, #F5A524)';
+                      if (!['on', 'off'].includes(door) || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'var(--peckham-status-unavailable, #94A3B8)';
+                      return 'var(--peckham-status-normal, #22C55E)';
+                    ]]]
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor13
-            primary: Main Entrance Door
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed
-              {% elif is_state(entity, 'on') %}Open
-              {% else %}Unavailable{% endif %}
-            icon: >-
-              {% if is_state(entity, 'on') %}mdi:door-open{% else %}mdi:door-closed{% endif %}
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal)
-              {% elif is_state(entity, 'on') %}var(--status-attention)
-              {% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables:
+              title: Main Entrance Door
+              door: true
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_lock
             entity: lock.door_lock_deadbolt_main_door
-            primary: Main Entrance Deadbolt
-            secondary: >-
-              {% if is_state(entity, 'locked') %}Locked
-              {% elif is_state(entity, 'unlocked') %}Unlocked
-              {% elif is_state(entity, 'unavailable') %}Unavailable
-              {% else %}Unknown / unable to confirm{% endif %}
-            icon: mdi:lock
-            icon_color: >-
-              {% if is_state(entity, 'locked') %}var(--status-normal)
-              {% elif is_state(entity, 'unlocked') %}var(--status-attention)
-              {% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables:
+              title: Main Entrance Deadbolt
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_lock
             entity: lock.door_lock_lower_lever_handle_main
-            primary: Main Entrance Lever Lock
-            secondary: >-
-              {% if is_state(entity, 'locked') %}Locked
-              {% elif is_state(entity, 'unlocked') %}Unlocked
-              {% elif is_state(entity, 'unavailable') %}Unavailable
-              {% else %}Unknown / unable to confirm{% endif %}
-            icon: mdi:lock
-            icon_color: >-
-              {% if is_state(entity, 'locked') %}var(--status-normal)
-              {% elif is_state(entity, 'unlocked') %}var(--status-attention)
-              {% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: markdown
-            content: |
-              Lock controls are intentionally unavailable in this repository
-              artifact. Current status is visible; control activation requires
-              separate runtime lifecycle and permission validation.
+            variables:
+              title: Main Entrance Lever Lock
+
+      - type: grid
+        column_span: 4
+        cards:
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Opening Contacts
+              description: All opening contacts remain visible. Numbered labels will be updated as locations are confirmed.
+              icon: mdi:door-closed-lock
 
       - type: grid
         cards:
-          - type: markdown
-            title: Opening Contacts
-            content: |
-              All 16 installed contacts remain visible. Temporary numbers do not
-              identify a room, window, door, wall, or direction.
-          - type: custom:mushroom-template-card
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor13
-            primary: Main Entrance Door
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:door
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Main Entrance Door, door: true}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003
-            primary: Opening Contact 01
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 01}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2
-            primary: Opening Contact 02
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 02}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor03
-            primary: Opening Contact 03
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
+            variables: {title: Opening Contact 03}
 
       - type: grid
         cards:
-          - type: custom:mushroom-template-card
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor04
-            primary: Opening Contact 04
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 04}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor05
-            primary: Opening Contact 05
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 05}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3
-            primary: Opening Contact 06
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 06}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor7
-            primary: Opening Contact 07
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
+            variables: {title: Opening Contact 07}
 
       - type: grid
         cards:
-          - type: custom:mushroom-template-card
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor08
-            primary: Opening Contact 08
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 08}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor09
-            primary: Opening Contact 09
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 09}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4
-            primary: Opening Contact 10
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 10}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor11
-            primary: Opening Contact 11
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
+            variables: {title: Opening Contact 11}
 
       - type: grid
         cards:
-          - type: custom:mushroom-template-card
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor12
-            primary: Opening Contact 12
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 12}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor14
-            primary: Opening Contact 13
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 13}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor15
-            primary: Opening Contact 14
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-          - type: custom:mushroom-template-card
+            variables: {title: Opening Contact 14}
+          - type: custom:button-card
+            template: peckham_contact
+            grid_options: *full_width_card
             entity: binary_sensor.sensor16
-            primary: Opening Contact 15
-            secondary: >-
-              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-            icon: mdi:checkbox-blank-circle-outline
-            icon_color: >-
-              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
+            variables: {title: Opening Contact 15}
 
       - type: grid
+        column_span: 4
         cards:
-          - type: markdown
-            title: Cameras
-            content: |
-              These are reserved future-bind positions. They are not installed,
-              connected, live, recording, or included in Building Status.
-          - type: custom:mushroom-template-card
-            primary: Main Entrance Doorbell
-            secondary: Setup Pending
-            icon: mdi:doorbell-video
-            icon_color: "var(--status-unavailable)"
-            multiline_secondary: true
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-            card_mod:
-              style: |
-                ha-card {
-                  aspect-ratio: 16 / 9;
-                  min-height: 220px;
-                  display: flex;
-                  align-items: center;
-                }
-          - type: custom:mushroom-template-card
-            primary: PTZ Camera
-            secondary: Setup Pending
-            icon: mdi:cctv
-            icon_color: "var(--status-unavailable)"
-            multiline_secondary: true
-            tap_action: {action: none}
-            hold_action: {action: none}
-            double_tap_action: {action: none}
-            card_mod:
-              style: |
-                ha-card {
-                  aspect-ratio: 16 / 9;
-                  min-height: 220px;
-                  display: flex;
-                  align-items: center;
-                }
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Cameras
+              description: These planned positions are reserved for future installation and are not active camera coverage.
+              icon: mdi:cctv
+
+      - type: grid
+        column_span: 2
+        cards:
+          - type: custom:button-card
+            template: peckham_camera_placeholder
+            variables:
+              title: Main Entrance Doorbell
+              icon: mdi:doorbell-video
+
+      - type: grid
+        column_span: 2
+        cards:
+          - type: custom:button-card
+            template: peckham_camera_placeholder
+            variables:
+              title: PTZ Camera
+              icon: mdi:cctv
 
   - title: Activity
     path: activity
-    icon: mdi:history
     type: sections
     max_columns: 3
     sections:
       - type: grid
+        column_span: 3
         cards:
-          - type: markdown
-            title: BK LEWIS · PECKHAM
-            content: |
-              ## Latest Activity
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Activity
+              description: Recent changes from connected Main Entrance devices. Times show the latest update available here.
+              icon: mdi:history
 
-              Customer-readable latest state changes for the four contacts that
-              reported at backup time and both Main Entrance locks. This is not an
-              audit log and does not prove outbound notification delivery.
+      - type: grid
+        cards:
           - type: custom:mushroom-template-card
+            grid_options: &full_width_activity
+              columns: 12
+              rows: auto
             entity: binary_sensor.sensor13
             primary: Main Entrance Door
             secondary: >-
               {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-              · changed {{ relative_time(states[entity].last_changed) }} ago
+              · Changed {{ relative_time(states[entity].last_changed) }} ago
+            multiline_secondary: true
             icon: mdi:door
+            icon_color: "var(--peckham-gold, #D4AF37)"
             tap_action: {action: more-info}
+            card_mod: &activity_style
+              style: |
+                ha-card {
+                  --card-primary-color: var(--peckham-text-primary, #F8FAFC);
+                  --card-secondary-color: var(--peckham-text-muted, #A8B3C2);
+                  background: var(--peckham-surface-tile, #111D2E);
+                  border: 1px solid var(--peckham-border, #314056);
+                  border-radius: 16px;
+                  box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
+                  min-height: 104px;
+                }
           - type: custom:mushroom-template-card
+            grid_options: *full_width_activity
             entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003
             primary: Opening Contact 01
             secondary: >-
               {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-              · changed {{ relative_time(states[entity].last_changed) }} ago
+              · Changed {{ relative_time(states[entity].last_changed) }} ago
+            multiline_secondary: true
             icon: mdi:checkbox-blank-circle-outline
+            icon_color: "var(--peckham-gold, #D4AF37)"
             tap_action: {action: more-info}
+            card_mod: *activity_style
+
+      - type: grid
+        cards:
           - type: custom:mushroom-template-card
+            grid_options: *full_width_activity
             entity: binary_sensor.sensor04
             primary: Opening Contact 04
             secondary: >-
               {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-              · changed {{ relative_time(states[entity].last_changed) }} ago
+              · Changed {{ relative_time(states[entity].last_changed) }} ago
+            multiline_secondary: true
             icon: mdi:checkbox-blank-circle-outline
+            icon_color: "var(--peckham-gold, #D4AF37)"
             tap_action: {action: more-info}
-
-      - type: grid
-        cards:
+            card_mod: *activity_style
           - type: custom:mushroom-template-card
+            grid_options: *full_width_activity
             entity: binary_sensor.sensor14
             primary: Opening Contact 13
             secondary: >-
               {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
-              · changed {{ relative_time(states[entity].last_changed) }} ago
+              · Changed {{ relative_time(states[entity].last_changed) }} ago
+            multiline_secondary: true
             icon: mdi:checkbox-blank-circle-outline
+            icon_color: "var(--peckham-gold, #D4AF37)"
             tap_action: {action: more-info}
+            card_mod: *activity_style
+
+      - type: grid
+        cards:
           - type: custom:mushroom-template-card
+            grid_options: *full_width_activity
             entity: lock.door_lock_deadbolt_main_door
             primary: Main Entrance Deadbolt
             secondary: >-
-              {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% elif is_state(entity, 'unavailable') %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
-              · changed {{ relative_time(states[entity].last_changed) }} ago
-            icon: mdi:lock
+              {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% else %}Unavailable{% endif %}
+              · Changed {{ relative_time(states[entity].last_changed) }} ago
+            multiline_secondary: true
+            icon: mdi:lock-outline
+            icon_color: "var(--peckham-gold, #D4AF37)"
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
+            card_mod: *activity_style
           - type: custom:mushroom-template-card
+            grid_options: *full_width_activity
             entity: lock.door_lock_lower_lever_handle_main
             primary: Main Entrance Lever Lock
             secondary: >-
-              {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% elif is_state(entity, 'unavailable') %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
-              · changed {{ relative_time(states[entity].last_changed) }} ago
-            icon: mdi:lock
+              {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% else %}Unavailable{% endif %}
+              · Changed {{ relative_time(states[entity].last_changed) }} ago
+            multiline_secondary: true
+            icon: mdi:lock-outline
+            icon_color: "var(--peckham-gold, #D4AF37)"
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
+            card_mod: *activity_style
 
   - title: Explore WNYHS
     path: explore-wnyhs
-    icon: mdi:compass-outline
-    type: sections
-    max_columns: 2
-    sections:
-      - type: grid
-        cards:
-          - type: markdown
-            title: Explore WNYHS
-            content: |
-              # COMING SOON
-
-              This area is reserved for future separately authorized customer
-              experiences.
-
-  - title: Support
-    path: support
-    icon: mdi:lifebuoy
     type: sections
     max_columns: 3
     sections:
       - type: grid
+        column_span: 3
         cards:
-          - type: markdown
-            title: WNY Home Security Support
-            content: |
-              For account or system help, contact WNY Home Security. For an
-              emergency, use the appropriate local emergency service.
-          - type: custom:mushroom-template-card
-            primary: Call or Text
-            secondary: 716-201-0364
+          - type: custom:button-card
+            template: peckham_panel
+            name: EXPLORE WNYHS
+            label: COMING SOON
+            icon: mdi:compass-outline
+            custom_fields:
+              message: A new customer destination is being prepared for you.
+            styles:
+              card:
+                - min-height: 360px
+                - justify-content: center
+                - padding: 32px
+              grid:
+                - grid-template-areas: '"i" "n" "l" "message"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 96px min-content min-content min-content
+                - row-gap: 12px
+              img_cell:
+                - width: 88px
+                - height: 88px
+                - justify-self: center
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              icon:
+                - width: 44px
+              name:
+                - justify-self: center
+                - color: "var(--peckham-heading, #D4AF37)"
+                - font-size: 22px
+                - line-height: 28px
+                - letter-spacing: 0.08em
+              label:
+                - justify-self: center
+                - color: "var(--peckham-text-primary, #F8FAFC)"
+                - font-size: 32px
+                - line-height: 38px
+                - font-weight: 700
+              custom_fields:
+                message:
+                  - justify-self: center
+                  - color: "var(--peckham-text-muted, #A8B3C2)"
+                  - font-size: 16px
+                  - line-height: 24px
+
+  - title: Support
+    path: support
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        column_span: 3
+        cards:
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: WNY Home Security Support
+              description: Choose the contact method that works best for you. For an emergency, contact the appropriate local emergency service.
+              icon: mdi:lifebuoy
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_action
+            name: Call or Text
+            label: 716-201-0364
             icon: mdi:phone
-            icon_color: "var(--action-blue)"
             tap_action:
               action: url
               url_path: tel:+17162010364
-          - type: custom:mushroom-template-card
-            primary: Email Support
-            secondary: support@wnyhomesecurity.com
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_action
+            name: Email Support
+            label: support@wnyhomesecurity.com
             icon: mdi:email-outline
-            icon_color: "var(--action-blue)"
             tap_action:
               action: url
               url_path: mailto:support@wnyhomesecurity.com
-          - type: custom:mushroom-template-card
-            primary: Website
-            secondary: wnyhomesecurity.com
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_action
+            name: Website
+            label: wnyhomesecurity.com
             icon: mdi:web
-            icon_color: "var(--action-blue)"
             tap_action:
               action: url
               url_path: https://wnyhomesecurity.com
 
   - title: Property
     path: property
-    icon: mdi:office-building-outline
     type: sections
     max_columns: 3
     sections:
       - type: grid
+        column_span: 3
         cards:
-          - type: markdown
-            title: BK LEWIS · PECKHAM
-            content: |
-              **Installed customer presentation**
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: BK LEWIS · PECKHAM
+              description: Your connected property overview.
+              icon: mdi:office-building-outline
 
-              - 16 opening contacts
-              - Main Entrance Kwikset 914 deadbolt
-              - Main Entrance Kwikset 912 lever lock
+      - type: grid
+        column_span: 3
+        cards:
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Installed
+              description: Equipment included in your customer dashboard.
+              icon: mdi:check-decagram-outline
 
-              **Planned positions**
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Opening Contacts
+            label: 16 OPENING POSITIONS
+            icon: mdi:door-closed-lock
+            styles:
+              card: [{min-height: 120px}]
 
-              - Main Entrance Doorbell — Setup Pending
-              - PTZ Camera — Setup Pending
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Main Entrance Deadbolt
+            label: KWIKSET 914
+            icon: mdi:lock-outline
+            styles:
+              card: [{min-height: 120px}]
 
-              Planned positions are not active coverage and do not contribute to
-              Building Status.
-          - type: markdown
-            title: Support reference
-            content: |
-              **Phone/Text:** 716-201-0364
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Main Entrance Lever Lock
+            label: KWIKSET 912
+            icon: mdi:lock-outline
+            styles:
+              card: [{min-height: 120px}]
 
-              **Email:** support@wnyhomesecurity.com
+      - type: grid
+        column_span: 3
+        cards:
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Planned
+              description: Reserved positions that are not connected or active yet.
+              icon: mdi:calendar-clock-outline
 
-              **Website:** wnyhomesecurity.com
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Main Entrance Doorbell
+            label: SETUP PENDING
+            icon: mdi:doorbell-video
+            styles:
+              card: [{min-height: 120px}]
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: PTZ Camera
+            label: SETUP PENDING
+            icon: mdi:cctv
+            styles:
+              card: [{min-height: 120px}]
+
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Customer Support
+            label: 716-201-0364
+            icon: mdi:lifebuoy
+            styles:
+              card: [{min-height: 120px}]
 
   - title: Settings
     path: settings
-    icon: mdi:cog-outline
     type: sections
-    max_columns: 3
+    max_columns: 2
     sections:
       - type: grid
+        column_span: 2
         cards:
-          - type: markdown
-            title: Appearance
-            content: |
-              **Light · Dark · Auto**
+          - type: custom:button-card
+            template: peckham_heading
+            variables:
+              heading: Settings
+              description: Personalize how your customer control center looks.
+              icon: mdi:cog-outline
 
-              Choose a supported appearance from your profile settings. Structure,
-              state meaning, and available actions do not change with the theme.
-          - type: markdown
-            title: Display preferences
-            content: |
-              The governed options are **Compact · Default · Large** and
-              **Inter · Atkinson Hyperlegible · System**.
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Appearance
+            label: LIGHT · DARK · AUTO
+            icon: mdi:theme-light-dark
+            custom_fields:
+              message: Choose a supported appearance from your profile settings.
+            styles:
+              card:
+                - min-height: 220px
+              grid:
+                - grid-template-areas: '"i n" "i l" "message message"'
+                - grid-template-columns: 52px minmax(0, 1fr)
+                - grid-template-rows: min-content min-content 1fr
+                - column-gap: 14px
+                - row-gap: 10px
+              img_cell:
+                - width: 48px
+                - height: 48px
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              name: [{justify-self: start}]
+              label:
+                - justify-self: start
+                - color: "var(--peckham-text-primary, #F8FAFC)"
+                - font-weight: 700
+              custom_fields:
+                message:
+                  - align-self: end
+                  - justify-self: stretch
+                  - padding-top: 16px
+                  - border-top: "1px solid var(--peckham-border, #314056)"
+                  - color: "var(--peckham-text-muted, #A8B3C2)"
+                  - font-size: 16px
+                  - line-height: 24px
+                  - text-align: left
 
-              This repository artifact does not add helpers or pretend these
-              selections persist. Activation requires separate runtime support and
-              validation. The current presentation uses the platform default.
+      - type: grid
+        cards:
+          - type: custom:button-card
+            template: peckham_panel
+            name: Display
+            label: CURRENT PRESENTATION
+            icon: mdi:monitor-dashboard
+            custom_fields:
+              message: Additional display and readability choices will appear here when available.
+            styles:
+              card:
+                - min-height: 220px
+              grid:
+                - grid-template-areas: '"i n" "i l" "message message"'
+                - grid-template-columns: 52px minmax(0, 1fr)
+                - grid-template-rows: min-content min-content 1fr
+                - column-gap: 14px
+                - row-gap: 10px
+              img_cell:
+                - width: 48px
+                - height: 48px
+                - border-radius: 50%
+                - background: "var(--peckham-icon-background, #050A12)"
+              name: [{justify-self: start}]
+              label:
+                - justify-self: start
+                - color: "var(--peckham-text-primary, #F8FAFC)"
+                - font-weight: 700
+              custom_fields:
+                message:
+                  - align-self: end
+                  - justify-self: stretch
+                  - padding-top: 16px
+                  - border-top: "1px solid var(--peckham-border, #314056)"
+                  - color: "var(--peckham-text-muted, #A8B3C2)"
+                  - font-size: 16px
+                  - line-height: 24px
+                  - text-align: left
