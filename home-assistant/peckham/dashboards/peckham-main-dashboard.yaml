@@ -1,5 +1,5 @@
 # T-HA-DASH-PECKHAM-003 REV01
-# Peckham customer visual production pass. Repository source only; not deployed.
+# Peckham Dark customer visual production pass. Repository source only; not deployed.
 # Proven runtime bindings and state semantics are preserved from REV03.
 # Installed components used: native Lovelace Sections, Mushroom, button-card, card-mod.
 
@@ -62,7 +62,7 @@ button_card_templates:
         - align-self: center
       name:
         - justify-self: start
-        - color: "var(--peckham-gold, #D4AF37)"
+        - color: "var(--peckham-heading, #D4AF37)"
       label:
         - justify-self: start
         - text-align: left
@@ -105,8 +105,8 @@ button_card_templates:
         - letter-spacing: 0.04em
         - color: |
             [[[
-              if (!entity || !['on', 'off'].includes(entity.state)) return 'var(--status-unavailable, #94A3B8)';
-              return entity.state === 'off' ? 'var(--status-normal, #22C55E)' : 'var(--status-attention, #F5A524)';
+              if (!entity || !['on', 'off'].includes(entity.state)) return 'var(--peckham-status-unavailable, #94A3B8)';
+              return entity.state === 'off' ? 'var(--peckham-status-normal, #22C55E)' : 'var(--peckham-status-attention, #F5A524)';
             ]]]
 
   peckham_lock:
@@ -147,8 +147,8 @@ button_card_templates:
         - letter-spacing: 0.04em
         - color: |
             [[[
-              if (!entity || !['locked', 'unlocked'].includes(entity.state)) return 'var(--status-unavailable, #94A3B8)';
-              return entity.state === 'locked' ? 'var(--status-normal, #22C55E)' : 'var(--status-attention, #F5A524)';
+              if (!entity || !['locked', 'unlocked'].includes(entity.state)) return 'var(--peckham-status-unavailable, #94A3B8)';
+              return entity.state === 'locked' ? 'var(--peckham-status-normal, #22C55E)' : 'var(--peckham-status-attention, #F5A524)';
             ]]]
 
   peckham_camera_placeholder:
@@ -237,7 +237,7 @@ views:
             card_mod:
               style: |
                 ha-card {
-                  --card-primary-color: var(--peckham-gold, #D4AF37);
+                  --card-primary-color: var(--peckham-heading, #D4AF37);
                   --card-secondary-color: var(--peckham-text-muted, #A8B3C2);
                   --icon-color: var(--peckham-gold, #D4AF37);
                   background: var(--peckham-surface-shell, #0D1726);
@@ -348,9 +348,9 @@ views:
                       const closed = contacts.filter(state => state === 'off').length;
                       const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
                       const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
-                      if (open > 0 || deadbolt === 'unlocked' || lever === 'unlocked') return 'var(--status-attention, #F5A524)';
-                      if (closed + open < 16 || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'var(--status-unavailable, #94A3B8)';
-                      return 'var(--status-normal, #22C55E)';
+                      if (open > 0 || deadbolt === 'unlocked' || lever === 'unlocked') return 'var(--peckham-status-attention, #F5A524)';
+                      if (closed + open < 16 || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'var(--peckham-status-unavailable, #94A3B8)';
+                      return 'var(--peckham-status-normal, #22C55E)';
                     ]]]
               custom_fields:
                 message:
@@ -397,21 +397,21 @@ views:
                 [[[
                   const state = states['binary_sensor.sensor13']?.state;
                   const value = state === 'off' ? 'CLOSED' : state === 'on' ? 'OPEN' : 'UNAVAILABLE';
-                  const color = state === 'off' ? 'var(--status-normal, #22C55E)' : state === 'on' ? 'var(--status-attention, #F5A524)' : 'var(--status-unavailable, #94A3B8)';
+                  const color = state === 'off' ? 'var(--peckham-status-normal, #22C55E)' : state === 'on' ? 'var(--peckham-status-attention, #F5A524)' : 'var(--peckham-status-unavailable, #94A3B8)';
                   return `<span>Door</span><strong style="color:${color}">${value}</strong>`;
                 ]]]
               deadbolt: |
                 [[[
                   const state = states['lock.door_lock_deadbolt_main_door']?.state;
                   const value = state === 'locked' ? 'LOCKED' : state === 'unlocked' ? 'UNLOCKED' : 'UNAVAILABLE';
-                  const color = state === 'locked' ? 'var(--status-normal, #22C55E)' : state === 'unlocked' ? 'var(--status-attention, #F5A524)' : 'var(--status-unavailable, #94A3B8)';
+                  const color = state === 'locked' ? 'var(--peckham-status-normal, #22C55E)' : state === 'unlocked' ? 'var(--peckham-status-attention, #F5A524)' : 'var(--peckham-status-unavailable, #94A3B8)';
                   return `<span>Deadbolt</span><strong style="color:${color}">${value}</strong>`;
                 ]]]
               lever: |
                 [[[
                   const state = states['lock.door_lock_lower_lever_handle_main']?.state;
                   const value = state === 'locked' ? 'LOCKED' : state === 'unlocked' ? 'UNLOCKED' : 'UNAVAILABLE';
-                  const color = state === 'locked' ? 'var(--status-normal, #22C55E)' : state === 'unlocked' ? 'var(--status-attention, #F5A524)' : 'var(--status-unavailable, #94A3B8)';
+                  const color = state === 'locked' ? 'var(--peckham-status-normal, #22C55E)' : state === 'unlocked' ? 'var(--peckham-status-attention, #F5A524)' : 'var(--peckham-status-unavailable, #94A3B8)';
                   return `<span>Lever Lock</span><strong style="color:${color}">${value}</strong>`;
                 ]]]
               overall: |
@@ -420,11 +420,11 @@ views:
                   const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
                   const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
                   let value = 'NORMAL';
-                  let color = 'var(--status-normal, #22C55E)';
+                  let color = 'var(--peckham-status-normal, #22C55E)';
                   if (door === 'on' || deadbolt === 'unlocked' || lever === 'unlocked') {
-                    value = 'ATTENTION'; color = 'var(--status-attention, #F5A524)';
+                    value = 'ATTENTION'; color = 'var(--peckham-status-attention, #F5A524)';
                   } else if (!['on', 'off'].includes(door) || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) {
-                    value = 'UNAVAILABLE'; color = 'var(--status-unavailable, #94A3B8)';
+                    value = 'UNAVAILABLE'; color = 'var(--peckham-status-unavailable, #94A3B8)';
                   }
                   return `<span>Overall</span><strong style="color:${color}">${value}</strong>`;
                 ]]]
@@ -446,7 +446,7 @@ views:
                 - width: 24px
               name:
                 - justify-self: start
-                - color: "var(--peckham-gold, #D4AF37)"
+                - color: "var(--peckham-heading, #D4AF37)"
                 - letter-spacing: 0.08em
               custom_fields:
                 door: &entrance_row
@@ -489,18 +489,18 @@ views:
               closed: |
                 [[[
                   const ids = ['binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'];
-                  return `<strong style="color:var(--status-normal, #22C55E)">${ids.filter(id => states[id]?.state === 'off').length}</strong><span>Closed</span>`;
+                  return `<strong style="color:var(--peckham-status-normal, #22C55E)">${ids.filter(id => states[id]?.state === 'off').length}</strong><span>Closed</span>`;
                 ]]]
               open: |
                 [[[
                   const ids = ['binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'];
-                  return `<strong style="color:var(--status-attention, #F5A524)">${ids.filter(id => states[id]?.state === 'on').length}</strong><span>Open</span>`;
+                  return `<strong style="color:var(--peckham-status-attention, #F5A524)">${ids.filter(id => states[id]?.state === 'on').length}</strong><span>Open</span>`;
                 ]]]
               unavailable: |
                 [[[
                   const ids = ['binary_sensor.sensor13','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2','binary_sensor.sensor03','binary_sensor.sensor04','binary_sensor.sensor05','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3','binary_sensor.sensor7','binary_sensor.sensor08','binary_sensor.sensor09','binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4','binary_sensor.sensor11','binary_sensor.sensor12','binary_sensor.sensor14','binary_sensor.sensor15','binary_sensor.sensor16'];
                   const available = ids.filter(id => ['on', 'off'].includes(states[id]?.state)).length;
-                  return `<strong style="color:var(--status-unavailable, #94A3B8)">${16 - available}</strong><span>Unavailable</span>`;
+                  return `<strong style="color:var(--peckham-status-unavailable, #94A3B8)">${16 - available}</strong><span>Unavailable</span>`;
                 ]]]
             styles:
               card:
@@ -520,7 +520,7 @@ views:
                 - width: 24px
               name:
                 - justify-self: start
-                - color: "var(--peckham-gold, #D4AF37)"
+                - color: "var(--peckham-heading, #D4AF37)"
                 - letter-spacing: 0.08em
               custom_fields:
                 closed: &count_cell
@@ -605,9 +605,9 @@ views:
                       const door = states['binary_sensor.sensor13']?.state;
                       const deadbolt = states['lock.door_lock_deadbolt_main_door']?.state;
                       const lever = states['lock.door_lock_lower_lever_handle_main']?.state;
-                      if (door === 'on' || deadbolt === 'unlocked' || lever === 'unlocked') return 'var(--status-attention, #F5A524)';
-                      if (!['on', 'off'].includes(door) || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'var(--status-unavailable, #94A3B8)';
-                      return 'var(--status-normal, #22C55E)';
+                      if (door === 'on' || deadbolt === 'unlocked' || lever === 'unlocked') return 'var(--peckham-status-attention, #F5A524)';
+                      if (!['on', 'off'].includes(door) || !['locked', 'unlocked'].includes(deadbolt) || !['locked', 'unlocked'].includes(lever)) return 'var(--peckham-status-unavailable, #94A3B8)';
+                      return 'var(--peckham-status-normal, #22C55E)';
                     ]]]
 
       - type: grid
@@ -913,7 +913,7 @@ views:
                 - width: 44px
               name:
                 - justify-self: center
-                - color: "var(--peckham-gold, #D4AF37)"
+                - color: "var(--peckham-heading, #D4AF37)"
                 - font-size: 22px
                 - line-height: 28px
                 - letter-spacing: 0.08em
