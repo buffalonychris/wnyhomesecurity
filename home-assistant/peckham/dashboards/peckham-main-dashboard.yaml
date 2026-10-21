@@ -1,196 +1,723 @@
-# T-HA-DASH-PECKHAM-001 REV02
-# UNBOUND REPOSITORY FOUNDATION — DO NOT DEPLOY BEFORE ONSITE BINDING.
-# GOLD LOGO PLACEMENT: reserve the top of each view for the approved WNYHS gold
-# logo after a repository-owned asset path is authorized. No image is bound here.
-# APPEARANCE: the shell uses core cards and theme variables only. Light, Dark,
-# and Auto controls are added during a later authorized registration/binding task.
+# T-HA-DASH-PECKHAM-002 REV03
+# RESPONSIVE REPOSITORY CUSTOMER DASHBOARD — NOT REGISTERED OR DEPLOYED.
+# Evidence cutoff: 2026-10-21. Entity state is evaluated dynamically at runtime.
+# Installed frontend resources used: Mushroom and card-mod. No dependency is added.
+# Lock controls remain status-only until a separate runtime task proves the full
+# high-impact command lifecycle, backend permission, and deliberate confirmation.
 
 title: Peckham Customer Dashboard
 views:
   - title: Home
     path: home
     icon: mdi:home-outline
-    type: masonry
-    cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending**
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            primary: BK LEWIS · PECKHAM
+            secondary: >-
+              {% set contacts = [
+                states('binary_sensor.sensor13'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
+                states('binary_sensor.sensor03'),
+                states('binary_sensor.sensor04'),
+                states('binary_sensor.sensor05'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
+                states('binary_sensor.sensor7'),
+                states('binary_sensor.sensor08'),
+                states('binary_sensor.sensor09'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
+                states('binary_sensor.sensor11'),
+                states('binary_sensor.sensor12'),
+                states('binary_sensor.sensor14'),
+                states('binary_sensor.sensor15'),
+                states('binary_sensor.sensor16')
+              ] %}
+              {% set closed = contacts | select('eq', 'off') | list | count %}
+              {% set open = contacts | select('eq', 'on') | list | count %}
+              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
+              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
+              {% if open > 0 or deadbolt == 'unlocked' or lever == 'unlocked' %}
+                Building Status · Attention
+              {% elif closed + open < 16
+                    or deadbolt not in ['locked', 'unlocked']
+                    or lever not in ['locked', 'unlocked'] %}
+                Building Status · Unavailable
+              {% else %}
+                Building Status · Normal
+              {% endif %}
+            icon: mdi:shield-home-outline
+            icon_color: >-
+              {% set contacts = [
+                states('binary_sensor.sensor13'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
+                states('binary_sensor.sensor03'),
+                states('binary_sensor.sensor04'),
+                states('binary_sensor.sensor05'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
+                states('binary_sensor.sensor7'),
+                states('binary_sensor.sensor08'),
+                states('binary_sensor.sensor09'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
+                states('binary_sensor.sensor11'),
+                states('binary_sensor.sensor12'),
+                states('binary_sensor.sensor14'),
+                states('binary_sensor.sensor15'),
+                states('binary_sensor.sensor16')
+              ] %}
+              {% set closed = contacts | select('eq', 'off') | list | count %}
+              {% set open = contacts | select('eq', 'on') | list | count %}
+              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
+              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
+              {% if open > 0 or deadbolt == 'unlocked' or lever == 'unlocked' %}
+                var(--status-attention)
+              {% elif closed + open < 16
+                    or deadbolt not in ['locked', 'unlocked']
+                    or lever not in ['locked', 'unlocked'] %}
+                var(--status-unavailable)
+              {% else %}
+                var(--status-normal)
+              {% endif %}
+            multiline_secondary: true
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  --card-primary-color: var(--primary-text-color);
+                  border-radius: 16px;
+                }
+          - type: markdown
+            content: |
+              Current status is scoped to the 16 represented opening contacts and
+              both Main Entrance locks. Planned cameras are not part of this result.
 
-          Live building status begins after onsite setup and verification.
-          No live status or security conclusion is shown by this foundation.
-      - type: markdown
-        title: Main Entrance
-        content: |
-          The Main Entrance will bring the door contact, visitor view, and both
-          locks together after onsite setup.
+              If a status shows **Attention**, review Systems. If it shows
+              **Unavailable**, confirm the property state before relying on it.
 
-          **Current display:** Setup pending
-      - type: markdown
-        title: Windows
-        content: |
-          Fifteen first-floor window contacts are prepared with temporary names.
-          Final window names will be added only after each contact is triggered onsite.
-      - type: markdown
-        title: Appearance
-        content: |
-          **Light · Dark · Auto**
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Main Entrance
+            secondary: >-
+              {% set door = states('binary_sensor.sensor13') %}
+              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
+              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
+              Door:
+              {% if door == 'off' %}Closed{% elif door == 'on' %}Open{% else %}Unavailable{% endif %}
+              · Deadbolt:
+              {% if deadbolt == 'locked' %}Locked{% elif deadbolt == 'unlocked' %}Unlocked{% elif deadbolt == 'unavailable' %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
+              · Lever:
+              {% if lever == 'locked' %}Locked{% elif lever == 'unlocked' %}Unlocked{% elif lever == 'unavailable' %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
+            icon: mdi:door
+            icon_color: >-
+              {% set door = states('binary_sensor.sensor13') %}
+              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
+              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
+              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}
+                var(--status-attention)
+              {% elif door not in ['on', 'off']
+                    or deadbolt not in ['locked', 'unlocked']
+                    or lever not in ['locked', 'unlocked'] %}
+                var(--status-unavailable)
+              {% else %}
+                var(--status-normal)
+              {% endif %}
+            multiline_secondary: true
+            tap_action:
+              action: none
 
-          The same navigation, status words, and controls will remain in every mode.
-          Approved appearance controls become available after onsite setup.
-      - type: markdown
-        content: |
-          ---
-          **WNY Home Security**
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Opening Contacts
+            secondary: >-
+              {% set contacts = [
+                states('binary_sensor.sensor13'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
+                states('binary_sensor.sensor03'),
+                states('binary_sensor.sensor04'),
+                states('binary_sensor.sensor05'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
+                states('binary_sensor.sensor7'),
+                states('binary_sensor.sensor08'),
+                states('binary_sensor.sensor09'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
+                states('binary_sensor.sensor11'),
+                states('binary_sensor.sensor12'),
+                states('binary_sensor.sensor14'),
+                states('binary_sensor.sensor15'),
+                states('binary_sensor.sensor16')
+              ] %}
+              {% set closed = contacts | select('eq', 'off') | list | count %}
+              {% set open = contacts | select('eq', 'on') | list | count %}
+              Closed {{ closed }} · Open {{ open }} · Unavailable {{ 16 - closed - open }}
+            icon: mdi:door-closed-lock
+            icon_color: >-
+              {% set contacts = [
+                states('binary_sensor.sensor13'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2'),
+                states('binary_sensor.sensor03'),
+                states('binary_sensor.sensor04'),
+                states('binary_sensor.sensor05'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3'),
+                states('binary_sensor.sensor7'),
+                states('binary_sensor.sensor08'),
+                states('binary_sensor.sensor09'),
+                states('binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4'),
+                states('binary_sensor.sensor11'),
+                states('binary_sensor.sensor12'),
+                states('binary_sensor.sensor14'),
+                states('binary_sensor.sensor15'),
+                states('binary_sensor.sensor16')
+              ] %}
+              {% set closed = contacts | select('eq', 'off') | list | count %}
+              {% set open = contacts | select('eq', 'on') | list | count %}
+              {% if open > 0 %}var(--status-attention)
+              {% elif closed + open < 16 %}var(--status-unavailable)
+              {% else %}var(--status-normal){% endif %}
+            tap_action:
+              action: none
 
-          wnyhomesecurity.com · 716-201-0364
+      - type: grid
+        cards:
+          - type: weather-forecast
+            entity: weather.forecast_home
+            name: Peckham Weather
+            forecast_type: daily
+            show_current: true
+            show_forecast: true
+          - type: markdown
+            title: Weather availability
+            content: |
+              Weather follows the property source. If it is unavailable, this card
+              remains visible; no outside source is substituted.
 
-  - title: Main Entrance
-    path: main-entrance
-    icon: mdi:door
-    type: masonry
-    cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      # Unbound contact slot: operator-verified Sensor 13. Exact entity ID is unknown.
-      - type: markdown
-        title: Main Entrance Door
-        content: |
-          Door status will appear here after onsite setup and verification.
-      # Planned unbound slot: Reolink Main Entrance doorbell. Model capabilities are unverified.
-      - type: markdown
-        title: Main Entrance Doorbell
-        content: |
-          Visitor view and any supported actions will appear only after onsite setup
-          and verification.
+  - title: Systems
+    path: systems
+    icon: mdi:view-grid-outline
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: BK LEWIS · PECKHAM
+            content: |
+              ## Main Entrance
 
-          **Current display:** Setup pending
-      # Planned unbound slot: Kwikset SmartCode 912 lever. Exact entity ID is unknown.
-      - type: markdown
-        title: Lever Lock
-        content: |
-          Status and deliberate controls will be added after onsite setup and testing.
+              Current state is read from the installed door contact and both
+              registered Main Entrance locks.
+          - type: custom:mushroom-template-card
+            primary: Overall Main Entrance
+            secondary: >-
+              {% set door = states('binary_sensor.sensor13') %}
+              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
+              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
+              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}
+                Attention
+              {% elif door not in ['on', 'off']
+                    or deadbolt not in ['locked', 'unlocked']
+                    or lever not in ['locked', 'unlocked'] %}
+                Unavailable
+              {% else %}
+                Normal
+              {% endif %}
+            icon: mdi:shield-door
+            icon_color: >-
+              {% set door = states('binary_sensor.sensor13') %}
+              {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
+              {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
+              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}var(--status-attention)
+              {% elif door not in ['on', 'off']
+                    or deadbolt not in ['locked', 'unlocked']
+                    or lever not in ['locked', 'unlocked'] %}var(--status-unavailable)
+              {% else %}var(--status-normal){% endif %}
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor13
+            primary: Main Entrance Door
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed
+              {% elif is_state(entity, 'on') %}Open
+              {% else %}Unavailable{% endif %}
+            icon: >-
+              {% if is_state(entity, 'on') %}mdi:door-open{% else %}mdi:door-closed{% endif %}
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal)
+              {% elif is_state(entity, 'on') %}var(--status-attention)
+              {% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: lock.door_lock_deadbolt_main_door
+            primary: Main Entrance Deadbolt
+            secondary: >-
+              {% if is_state(entity, 'locked') %}Locked
+              {% elif is_state(entity, 'unlocked') %}Unlocked
+              {% elif is_state(entity, 'unavailable') %}Unavailable
+              {% else %}Unknown / unable to confirm{% endif %}
+            icon: mdi:lock
+            icon_color: >-
+              {% if is_state(entity, 'locked') %}var(--status-normal)
+              {% elif is_state(entity, 'unlocked') %}var(--status-attention)
+              {% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: lock.door_lock_lower_lever_handle_main
+            primary: Main Entrance Lever Lock
+            secondary: >-
+              {% if is_state(entity, 'locked') %}Locked
+              {% elif is_state(entity, 'unlocked') %}Unlocked
+              {% elif is_state(entity, 'unavailable') %}Unavailable
+              {% else %}Unknown / unable to confirm{% endif %}
+            icon: mdi:lock
+            icon_color: >-
+              {% if is_state(entity, 'locked') %}var(--status-normal)
+              {% elif is_state(entity, 'unlocked') %}var(--status-attention)
+              {% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: markdown
+            content: |
+              Lock controls are intentionally unavailable in this repository
+              artifact. Current status is visible; control activation requires
+              separate runtime lifecycle and permission validation.
 
-          **Current display:** Setup pending
-      # Planned unbound slot: Kwikset Home Connect 620 deadbolt. Exact entity ID is unknown.
-      - type: markdown
-        title: Deadbolt
-        content: |
-          Status and deliberate controls will be added after onsite setup and testing.
+      - type: grid
+        cards:
+          - type: markdown
+            title: Opening Contacts
+            content: |
+              All 16 installed contacts remain visible. Temporary numbers do not
+              identify a room, window, door, wall, or direction.
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor13
+            primary: Main Entrance Door
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:door
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003
+            primary: Opening Contact 01
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2
+            primary: Opening Contact 02
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor03
+            primary: Opening Contact 03
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
 
-          **Current display:** Setup pending
-      - type: markdown
-        title: Overall Main Entrance
-        content: |
-          **No combined lock conclusion is available yet.**
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor04
+            primary: Opening Contact 04
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor05
+            primary: Opening Contact 05
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3
+            primary: Opening Contact 06
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor7
+            primary: Opening Contact 07
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
 
-          After onsite setup, the Main Entrance may show fully locked only when
-          both the lever lock and deadbolt are verified locked. One lock alone is not
-          enough to show the complete entrance as locked.
-      - type: markdown
-        content: |
-          ---
-          **WNY Home Security**
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor08
+            primary: Opening Contact 08
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor09
+            primary: Opening Contact 09
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4
+            primary: Opening Contact 10
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor11
+            primary: Opening Contact 11
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
 
-          wnyhomesecurity.com · 716-201-0364
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor12
+            primary: Opening Contact 12
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor14
+            primary: Opening Contact 13
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor15
+            primary: Opening Contact 14
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor16
+            primary: Opening Contact 15
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+            icon: mdi:checkbox-blank-circle-outline
+            icon_color: >-
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
 
-  - title: Windows
-    path: windows
-    icon: mdi:window-closed-variant
-    type: masonry
-    cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      - type: markdown
-        title: First-Floor Windows
-        content: |
-          - **Window Sensor 01** — Setup pending
-          - **Window Sensor 02** — Setup pending
-          - **Window Sensor 03** — Setup pending
-          - **Window Sensor 04** — Setup pending
-          - **Window Sensor 05** — Setup pending
-          - **Window Sensor 06** — Setup pending
-          - **Window Sensor 07** — Setup pending
-          - **Window Sensor 08** — Setup pending
-          - **Window Sensor 09** — Setup pending
-          - **Window Sensor 10** — Setup pending
-          - **Window Sensor 11** — Setup pending
-          - **Window Sensor 12** — Setup pending
-          - **Window Sensor 13** — Setup pending
-          - **Window Sensor 14** — Setup pending
-          - **Window Sensor 15** — Setup pending
+      - type: grid
+        cards:
+          - type: markdown
+            title: Cameras
+            content: |
+              These are reserved future-bind positions. They are not installed,
+              connected, live, recording, or included in Building Status.
+          - type: custom:mushroom-template-card
+            primary: Main Entrance Doorbell
+            secondary: Setup Pending
+            icon: mdi:doorbell-video
+            icon_color: "var(--status-unavailable)"
+            multiline_secondary: true
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+            card_mod:
+              style: |
+                ha-card {
+                  aspect-ratio: 16 / 9;
+                  min-height: 220px;
+                  display: flex;
+                  align-items: center;
+                }
+          - type: custom:mushroom-template-card
+            primary: PTZ Camera
+            secondary: Setup Pending
+            icon: mdi:cctv
+            icon_color: "var(--status-unavailable)"
+            multiline_secondary: true
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+            card_mod:
+              style: |
+                ha-card {
+                  aspect-ratio: 16 / 9;
+                  min-height: 220px;
+                  display: flex;
+                  align-items: center;
+                }
 
-          Temporary numbers do not identify a room, wall, or exact opening.
-          Final names are assigned only after onsite trigger testing.
-      - type: markdown
-        content: |
-          ---
-          **WNY Home Security**
+  - title: Activity
+    path: activity
+    icon: mdi:history
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: BK LEWIS · PECKHAM
+            content: |
+              ## Latest Activity
 
-          wnyhomesecurity.com · 716-201-0364
+              Customer-readable latest state changes for the four contacts that
+              reported at backup time and both Main Entrance locks. This is not an
+              audit log and does not prove outbound notification delivery.
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor13
+            primary: Main Entrance Door
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+              · changed {{ relative_time(states[entity].last_changed) }} ago
+            icon: mdi:door
+            tap_action: {action: more-info}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003
+            primary: Opening Contact 01
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+              · changed {{ relative_time(states[entity].last_changed) }} ago
+            icon: mdi:checkbox-blank-circle-outline
+            tap_action: {action: more-info}
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor04
+            primary: Opening Contact 04
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+              · changed {{ relative_time(states[entity].last_changed) }} ago
+            icon: mdi:checkbox-blank-circle-outline
+            tap_action: {action: more-info}
 
-  - title: Appearance
-    path: appearance
-    icon: mdi:theme-light-dark
-    type: masonry
-    cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      - type: markdown
-        title: Choose Your View
-        content: |
-          ### Light
-          Bright daily-use presentation.
+      - type: grid
+        cards:
+          - type: custom:mushroom-template-card
+            entity: binary_sensor.sensor14
+            primary: Opening Contact 13
+            secondary: >-
+              {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
+              · changed {{ relative_time(states[entity].last_changed) }} ago
+            icon: mdi:checkbox-blank-circle-outline
+            tap_action: {action: more-info}
+          - type: custom:mushroom-template-card
+            entity: lock.door_lock_deadbolt_main_door
+            primary: Main Entrance Deadbolt
+            secondary: >-
+              {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% elif is_state(entity, 'unavailable') %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
+              · changed {{ relative_time(states[entity].last_changed) }} ago
+            icon: mdi:lock
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
+          - type: custom:mushroom-template-card
+            entity: lock.door_lock_lower_lever_handle_main
+            primary: Main Entrance Lever Lock
+            secondary: >-
+              {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% elif is_state(entity, 'unavailable') %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
+              · changed {{ relative_time(states[entity].last_changed) }} ago
+            icon: mdi:lock
+            tap_action: {action: none}
+            hold_action: {action: none}
+            double_tap_action: {action: none}
 
-          ### Dark
-          Low-light daily-use presentation.
+  - title: Explore WNYHS
+    path: explore-wnyhs
+    icon: mdi:compass-outline
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: Explore WNYHS
+            content: |
+              # COMING SOON
 
-          ### Auto
-          Follow the device or system preference where supported.
+              This area is reserved for future separately authorized customer
+              experiences.
 
-          Appearance does not change navigation, status meaning, or available actions.
-          Controls become available only after approved appearance modes are confirmed onsite.
-      - type: markdown
-        content: |
-          ---
-          **WNY Home Security**
+  - title: Support
+    path: support
+    icon: mdi:lifebuoy
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: WNY Home Security Support
+            content: |
+              For account or system help, contact WNY Home Security. For an
+              emergency, use the appropriate local emergency service.
+          - type: custom:mushroom-template-card
+            primary: Call or Text
+            secondary: 716-201-0364
+            icon: mdi:phone
+            icon_color: "var(--action-blue)"
+            tap_action:
+              action: url
+              url_path: tel:+17162010364
+          - type: custom:mushroom-template-card
+            primary: Email Support
+            secondary: support@wnyhomesecurity.com
+            icon: mdi:email-outline
+            icon_color: "var(--action-blue)"
+            tap_action:
+              action: url
+              url_path: mailto:support@wnyhomesecurity.com
+          - type: custom:mushroom-template-card
+            primary: Website
+            secondary: wnyhomesecurity.com
+            icon: mdi:web
+            icon_color: "var(--action-blue)"
+            tap_action:
+              action: url
+              url_path: https://wnyhomesecurity.com
 
-          wnyhomesecurity.com · 716-201-0364
+  - title: Property
+    path: property
+    icon: mdi:office-building-outline
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: BK LEWIS · PECKHAM
+            content: |
+              **Installed customer presentation**
 
-  - title: More
-    path: more
-    icon: mdi:dots-horizontal-circle-outline
-    type: masonry
-    cards:
-      - type: markdown
-        title: PK | PECKHAM
-        content: |
-          ## Building Status
-          **Setup pending** — live status begins after onsite setup.
-      - type: markdown
-        title: Status Words
-        content: |
-          - **Normal** — no current action is indicated.
-          - **Information** — helpful context.
-          - **Attention** — review is recommended.
-          - **Critical** — prompt action is needed.
+              - 16 opening contacts
+              - Main Entrance Kwikset 914 deadbolt
+              - Main Entrance Kwikset 912 lever lock
 
-          Hidden setup noise is not a customer status level.
-      - type: markdown
-        title: Service
-        content: |
-          **WNY Home Security**
+              **Planned positions**
 
-          wnyhomesecurity.com
+              - Main Entrance Doorbell — Setup Pending
+              - PTZ Camera — Setup Pending
 
-          716-201-0364
+              Planned positions are not active coverage and do not contribute to
+              Building Status.
+          - type: markdown
+            title: Support reference
+            content: |
+              **Phone/Text:** 716-201-0364
+
+              **Email:** support@wnyhomesecurity.com
+
+              **Website:** wnyhomesecurity.com
+
+  - title: Settings
+    path: settings
+    icon: mdi:cog-outline
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            title: Appearance
+            content: |
+              **Light · Dark · Auto**
+
+              Choose a supported appearance from your profile settings. Structure,
+              state meaning, and available actions do not change with the theme.
+          - type: markdown
+            title: Display preferences
+            content: |
+              The governed options are **Compact · Default · Large** and
+              **Inter · Atkinson Hyperlegible · System**.
+
+              This repository artifact does not add helpers or pretend these
+              selections persist. Activation requires separate runtime support and
+              validation. The current presentation uses the platform default.

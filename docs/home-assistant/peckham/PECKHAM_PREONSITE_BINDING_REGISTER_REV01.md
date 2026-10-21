@@ -1,76 +1,77 @@
 # Peckham Pre-Onsite Dashboard Binding Register REV01
 
-Status: Pre-onsite, unbound
+Status: REV03 current-backup repository binding record; runtime validation required
 
-Task: `T-HA-DASH-PECKHAM-001`
+Task: `T-HA-DASH-PECKHAM-002 REV03`
 
-Site identity: `PK | PECKHAM`
+Evidence date: `2026-10-21`
+
+Backup platform evidence: Home Assistant Core `2026.8.2`
+
+Site identity: `BK LEWIS · PECKHAM`
 
 ## Purpose and boundary
 
-This sanitized register maps the authorized Peckham pre-onsite dashboard slots without recording or guessing live Home Assistant entity IDs or unresolved physical locations. Entity IDs, final physical labels, areas, tested states, and onsite notes are filled only after physical verification onsite.
+This sanitized internal register maps only the entity bindings and evidence facts explicitly authorized by REV03. It does not contain raw registries, unique IDs, network identifiers, credentials, secrets, or guessed physical locations. The October 21 backup establishes registry and recorder/restore-state evidence; it is not current runtime-state or commissioning proof.
 
-The repository dashboard files are unbound foundations. They are not deployment artifacts and do not represent live state until a later authorized binding and deployment task is completed.
+The repository dashboards dynamically consume actual Home Assistant state only if later loaded under a separately authorized runtime task. They are not registered, assigned, deployed, or runtime-validated by this task.
 
 ## Contact binding register
 
-There are 16 installed Zigbee contact sensors: Sensor 13 is the Main Entrance Door contact, and the remaining 15 contacts are first-floor windows with unresolved individual locations.
+There are 16 registered opening/contact binary sensors. Sensor13 is the operator-confirmed Main Entrance Door. The remaining 15 physical identities are unresolved and are not classified as windows.
 
-| Slot | Temporary label | Live entity ID | Final physical label | Area | Tested state | Onsite notes |
-|---|---|---|---|---|---|---|
-| Contact 01 | Main Entrance Door (Sensor 13) | Pending onsite verification | Main Entrance Door | Main Entrance | Not tested in this task | Trigger Sensor 13 and verify open/closed state before binding. |
-| Contact 02 | Window Sensor 01 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 03 | Window Sensor 02 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 04 | Window Sensor 03 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 05 | Window Sensor 04 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 06 | Window Sensor 05 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 07 | Window Sensor 06 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 08 | Window Sensor 07 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 09 | Window Sensor 08 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 10 | Window Sensor 09 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 11 | Window Sensor 10 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 12 | Window Sensor 11 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 13 | Window Sensor 12 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 14 | Window Sensor 13 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 15 | Window Sensor 14 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
-| Contact 16 | Window Sensor 15 | Pending onsite verification | Pending onsite verification | Pending onsite verification | Not tested in this task | Trigger physically; do not infer location. |
+| Customer label | Entity binding | Evidence classification | Backup restore-state observation | Physical identity / runtime posture |
+|---|---|---|---|---|
+| Main Entrance Door | `binary_sensor.sensor13` | Backup registry verified; Operator-confirmed physical identity; Restore-state evidence | `off` | Main Entrance Door; Runtime validation required |
+| Opening Contact 01 | `binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003` | Backup registry verified; Restore-state evidence | `off` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 02 | `binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_2` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 03 | `binary_sensor.sensor03` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 04 | `binary_sensor.sensor04` | Backup registry verified; Restore-state evidence | `off` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 05 | `binary_sensor.sensor05` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 06 | `binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_3` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 07 | `binary_sensor.sensor7` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 08 | `binary_sensor.sensor08` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 09 | `binary_sensor.sensor09` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 10 | `binary_sensor.ewelink_ck_tlsr8656_ss5_01_7003_4` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 11 | `binary_sensor.sensor11` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 12 | `binary_sensor.sensor12` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 13 | `binary_sensor.sensor14` | Backup registry verified; Restore-state evidence | `off` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 14 | `binary_sensor.sensor15` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
+| Opening Contact 15 | `binary_sensor.sensor16` | Backup registry verified; Restore-state evidence | `unavailable` | Physical identity unresolved; Runtime validation required |
 
-`Contact 01` through `Contact 16` are register slots, not device numbers or entity IDs. `Window Sensor 01` through `Window Sensor 15` are temporary customer-facing labels only.
+Backup observation totals were four contacts reporting a valid `off` state and twelve contacts `unavailable`. These values are evidence posture only. Dashboard cards evaluate current runtime state dynamically: `off = Closed`, `on = Open`, and `unavailable` or `unknown = Unavailable`.
 
-## Main Entrance planned-device register
+## Main Entrance capability register
 
-| Device slot | Temporary label | Live entity ID | Final physical label | Area | Tested state | Onsite notes |
-|---|---|---|---|---|---|---|
-| Doorbell 01 | Main Entrance Doorbell | Pending onsite verification | Main Entrance Doorbell | Main Entrance | Not tested in this task | Confirm installed Reolink model and supported integration capabilities before adding video, event, talk, snapshot, recording, or light controls. |
-| Lock 01 | Lever Lock — Kwikset SmartCode 912 | Pending onsite verification | Main Entrance Lever Lock | Main Entrance | Not tested in this task | Include through the authorized Z-Wave workflow; verify state and safe controls before binding. |
-| Lock 02 | Deadbolt — Kwikset Home Connect 620 | Pending onsite verification | Main Entrance Deadbolt | Main Entrance | Not tested in this task | Include through the authorized Z-Wave workflow; verify state and safe controls before binding. |
+| Customer label | Entity binding | Manufacturer / model | Evidence classification | Customer action posture |
+|---|---|---|---|---|
+| Main Entrance Deadbolt | `lock.door_lock_deadbolt_main_door` | Kwikset 914 | Backup registry verified; Recorder evidence; Runtime validation required | Status-only. Control activation is `RUNTIME_REQUIRED`. |
+| Main Entrance Lever Lock | `lock.door_lock_lower_lever_handle_main` | Kwikset 912 | Backup registry verified; Recorder evidence; Runtime validation required | Status-only. Control activation is `RUNTIME_REQUIRED`. |
+| Main Entrance Doorbell | Not yet bound | Reolink model/capabilities unresolved | Operator-confirmed planned device; Runtime validation required | Layout placeholder only; no service or media binding. |
+| PTZ Camera | Not yet bound | Reolink model/capabilities unresolved | Operator-confirmed planned device; Runtime validation required | Layout placeholder only; no service, media, or PTZ binding. |
+
+The former Peckham Kwikset 620 assumption is superseded by the backup-verified Kwikset 914 deadbolt. It is not a current device binding or customer-dashboard capability.
 
 ## Composite Main Entrance rule
 
-The Main Entrance assembly contains the lever lock and deadbolt. A later bound dashboard may present the overall Main Entrance as fully locked only when both verified lock states support that conclusion. If either state is unlocked, unresolved, stale, or otherwise not verified, the overall entrance must not be labeled fully locked.
+The Main Entrance customer summary consumes `binary_sensor.sensor13`, `lock.door_lock_deadbolt_main_door`, and `lock.door_lock_lower_lever_handle_main`. It may show `Normal` only when the door is closed and both locks are locked. Door open or either lock unlocked maps to `Attention`. Any required unknown/unavailable state maps to `Unavailable` unless an open/unlocked state already supports `Attention`. No Alert condition is invented.
 
 This rule documents presentation only. It does not create a helper, template, automation, or entity.
 
-## Onsite completion workflow
+## Runtime-required follow-up
 
-1. Confirm the dashboard remains unbound before field verification begins.
-2. Physically trigger Sensor 13, verify its open and closed states, and record its exact live entity ID.
-3. Trigger one remaining contact at a time.
-4. For each verified window contact, record the exact live entity ID, final physical label, area, tested state, and any onsite note in the corresponding generic window row.
-5. Do not assign a room, wall, compass direction, or exact opening until physical trigger evidence establishes it.
-6. Include and verify the two locks through the separately governed onsite Z-Wave process; record exact bindings only after successful state testing.
-7. Verify the installed Reolink model and integration; record only capabilities that are actually supported and tested.
-8. Bind cards and composite entry presentation only through a later authorized task.
-9. Validate mobile and expanded variants in the customer-used Companion App and browser targets, including Light, Dark, and Auto behavior where technically feasible.
-10. Capture approved onsite acceptance evidence without secrets, private URLs, credentials, or unnecessary customer data.
+1. Physically trigger and identify Opening Contact 01 through Opening Contact 15; do not infer a room, wall, direction, window, door, or other opening before that evidence exists.
+2. Validate all 16 contact entities against current runtime state and unavailable/unknown behavior.
+3. Validate both lock entities, permissions, authoritative result state, failure/result-unknown behavior, and deliberate unlock confirmation before enabling customer controls.
+4. Install/integrate each planned Reolink device under a separate bounded task; record the exact entity and only actually supported, privacy-approved capabilities.
+5. Validate `weather.forecast_home`, property-local weather/time behavior, both dashboard artifacts, Light/Dark/Auto parity, Companion phone portrait, tablet portrait/landscape, and desktop browser.
+6. Separately authorize any dashboard registration, assignment, customer acceptance, notification implementation, or deployment.
 
-## Deferred bindings
+## Explicit unresolved conditions
 
-- Approved WNYHS gold logo asset path.
-- All 16 exact contact entity IDs.
-- Fifteen final window locations and areas.
-- Reolink doorbell entity bindings and supported actions.
-- Kwikset SmartCode 912 entity binding.
-- Kwikset Home Connect 620 entity binding.
-- Composite Main Entrance implementation.
-- Live dashboard registration, assignment, validation screenshots, and deployment.
+- Physical identity and final customer label for 15 contacts.
+- Current runtime availability and commissioning evidence for every represented entity.
+- Lock-control lifecycle and backend permission/denial evidence; current repository cards remain status-only.
+- Reolink Doorbell and PTZ entity bindings, media/privacy decisions, and supported capabilities.
+- Compact/Default/Large and Inter/Atkinson Hyperlegible/System selection persistence; no helpers or fake controls are added by REV03.
+- Live dashboard registration, assignment, acceptance evidence, and deployment.
