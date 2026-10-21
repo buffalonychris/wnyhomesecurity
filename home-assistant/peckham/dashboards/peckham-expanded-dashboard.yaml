@@ -64,11 +64,11 @@ views:
               {% set open = contacts | select('eq', 'on') | list | count %}
               {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
               {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if open > 0 or deadbolt == 'unlocked' or lever == 'unlocked' %}#F5A524
+              {% if open > 0 or deadbolt == 'unlocked' or lever == 'unlocked' %}var(--status-attention)
               {% elif closed + open < 16
                     or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}#94A3B8
-              {% else %}#22C55E{% endif %}
+                    or lever not in ['locked', 'unlocked'] %}var(--status-unavailable)
+              {% else %}var(--status-normal){% endif %}
             multiline_secondary: true
             tap_action: {action: none}
             hold_action: {action: none}
@@ -94,13 +94,13 @@ views:
               {% set door = states('binary_sensor.sensor13') %}
               {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
               {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}#F5A524
+              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}var(--status-attention)
               {% elif door not in ['on', 'off']
                     or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}#94A3B8
-              {% else %}#22C55E{% endif %}
+                    or lever not in ['locked', 'unlocked'] %}var(--status-unavailable)
+              {% else %}var(--status-normal){% endif %}
             multiline_secondary: true
-            tap_action: {action: navigate, navigation_path: /lovelace/systems}
+            tap_action: {action: none}
 
       - type: grid
         cards:
@@ -142,8 +142,8 @@ views:
               ] %}
               {% set closed = contacts | select('eq', 'off') | list | count %}
               {% set open = contacts | select('eq', 'on') | list | count %}
-              {% if open > 0 %}#F5A524{% elif closed + open < 16 %}#94A3B8{% else %}#22C55E{% endif %}
-            tap_action: {action: navigate, navigation_path: /lovelace/systems}
+              {% if open > 0 %}var(--status-attention){% elif closed + open < 16 %}var(--status-unavailable){% else %}var(--status-normal){% endif %}
+            tap_action: {action: none}
 
       - type: grid
         cards:
@@ -187,11 +187,11 @@ views:
               {% set door = states('binary_sensor.sensor13') %}
               {% set deadbolt = states('lock.door_lock_deadbolt_main_door') %}
               {% set lever = states('lock.door_lock_lower_lever_handle_main') %}
-              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}#F5A524
+              {% if door == 'on' or deadbolt == 'unlocked' or lever == 'unlocked' %}var(--status-attention)
               {% elif door not in ['on', 'off']
                     or deadbolt not in ['locked', 'unlocked']
-                    or lever not in ['locked', 'unlocked'] %}#94A3B8
-              {% else %}#22C55E{% endif %}
+                    or lever not in ['locked', 'unlocked'] %}var(--status-unavailable)
+              {% else %}var(--status-normal){% endif %}
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
@@ -202,7 +202,7 @@ views:
               {% if is_state(entity, 'off') %}Closed{% elif is_state(entity, 'on') %}Open{% else %}Unavailable{% endif %}
             icon: mdi:door
             icon_color: >-
-              {% if is_state(entity, 'off') %}#22C55E{% elif is_state(entity, 'on') %}#F5A524{% else %}#94A3B8{% endif %}
+              {% if is_state(entity, 'off') %}var(--status-normal){% elif is_state(entity, 'on') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
@@ -213,7 +213,7 @@ views:
               {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% elif is_state(entity, 'unavailable') %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
             icon: mdi:lock
             icon_color: >-
-              {% if is_state(entity, 'locked') %}#22C55E{% elif is_state(entity, 'unlocked') %}#F5A524{% else %}#94A3B8{% endif %}
+              {% if is_state(entity, 'locked') %}var(--status-normal){% elif is_state(entity, 'unlocked') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
@@ -224,7 +224,7 @@ views:
               {% if is_state(entity, 'locked') %}Locked{% elif is_state(entity, 'unlocked') %}Unlocked{% elif is_state(entity, 'unavailable') %}Unavailable{% else %}Unknown / unable to confirm{% endif %}
             icon: mdi:lock
             icon_color: >-
-              {% if is_state(entity, 'locked') %}#22C55E{% elif is_state(entity, 'unlocked') %}#F5A524{% else %}#94A3B8{% endif %}
+              {% if is_state(entity, 'locked') %}var(--status-normal){% elif is_state(entity, 'unlocked') %}var(--status-attention){% else %}var(--status-unavailable){% endif %}
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
@@ -401,7 +401,7 @@ views:
             primary: Main Entrance Doorbell
             secondary: Setup Pending
             icon: mdi:doorbell-video
-            icon_color: "#94A3B8"
+            icon_color: "var(--status-unavailable)"
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
@@ -417,7 +417,7 @@ views:
             primary: PTZ Camera
             secondary: Setup Pending
             icon: mdi:cctv
-            icon_color: "#94A3B8"
+            icon_color: "var(--status-unavailable)"
             tap_action: {action: none}
             hold_action: {action: none}
             double_tap_action: {action: none}
@@ -535,19 +535,19 @@ views:
             primary: Call or Text
             secondary: 716-201-0364
             icon: mdi:phone
-            icon_color: "#0A84FF"
+            icon_color: "var(--action-blue)"
             tap_action: {action: url, url_path: "tel:+17162010364"}
           - type: custom:mushroom-template-card
             primary: Email Support
             secondary: support@wnyhomesecurity.com
             icon: mdi:email-outline
-            icon_color: "#0A84FF"
+            icon_color: "var(--action-blue)"
             tap_action: {action: url, url_path: "mailto:support@wnyhomesecurity.com"}
           - type: custom:mushroom-template-card
             primary: Website
             secondary: wnyhomesecurity.com
             icon: mdi:web
-            icon_color: "#0A84FF"
+            icon_color: "var(--action-blue)"
             tap_action: {action: url, url_path: "https://wnyhomesecurity.com"}
 
   - title: Property
@@ -588,8 +588,8 @@ views:
             content: |
               **Light · Dark · Auto**
 
-              Use the Home Assistant profile theme setting. Theme choice changes
-              presentation only.
+              Choose a supported appearance from your profile settings. Your choice
+              changes presentation only.
           - type: markdown
             title: Display preferences
             content: |
