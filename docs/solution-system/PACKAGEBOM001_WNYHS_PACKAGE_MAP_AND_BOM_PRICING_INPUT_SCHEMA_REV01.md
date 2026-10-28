@@ -430,3 +430,21 @@ This task creates no customer BOM and authorizes no purchasing, pricing, or quot
 ### 15.3 Explicit Non-Eligibility
 
 Research-Only candidates including Broadlink Matter Superbridge, Third Reality R3 until validated, BLE room-presence pattern, TRMNL and large-format e-paper displays until HA/cloud posture is known, SofaBaton X2 until integration/local posture is verified, digital poster/sports displays, Reolink local AI appliance, TP-Link/Tapo solar cameras, Roborock/robot lawn platforms, Aqara/Eve thermostat uncertainty rows, and pet-water-level awareness are not customer-BOM eligible under this task.
+
+## 16. LIGHTING-CAMPAIGN-GOV001 interim permanent outdoor lighting materials rule
+
+For `HL-008` permanent outdoor lighting quotes only, the operator-approved interim target is a **40% gross margin on total qualifying materials cost**. This is not a 40% cost markup.
+
+`materials selling price = validated qualifying materials cost / (1 - 0.40) = validated qualifying materials cost / 0.60`
+
+`materials gross profit = materials selling price - validated qualifying materials cost`
+
+Qualifying materials cost must use current, verified acquisition costs for the exact selected model/kit configuration and applicable track or individual mounts, controllers, power supplies, adapters, extensions, electrical/accessory items, junctions, cable management, fasteners, shipping, and material waste/overage, without double-counting kit-included components. The exact BOM and current provider evidence govern.
+
+Labor, installation effort, jobsite height/access/scaffolding/lift, travel, equipment, design or preview services, tax, discounts, and other non-material quote inputs remain separate. The materials rule is not a complete-job margin rule and does not set installer compensation, final quote approval, tax handling, deposits, payment behavior, or scheduling.
+
+Where current software does not apply the interim formula, the operator may calculate and review it outside the application and enter approved totals through the existing shared quote workflow. This section does not authorize a pricing engine, schema, automation, runtime, or source change.
+
+The rule is internal only. Do not publish supplier/vendor costs, material cost, material selling price, margin, gross profit, per-foot price, or historical 100/150/200-foot scenario figures. No public per-foot pricing is approved initially. Final customer quotes remain subject to operator review and the existing WNYHS quote/payment/scheduling gates.
+
+Source basis: [interim 40% materials-margin decision](https://docs.google.com/document/d/1HzQaWA-3QnWFmWE4-ncQABKdzYJeSLLE2x19H2YLpdI/edit) and [approved campaign exception/back-office reuse decision](https://docs.google.com/document/d/1XzHOqtOyOkM5CC4gHmQkaRdfNX2Rm249eOsYlH5GcXE/edit).

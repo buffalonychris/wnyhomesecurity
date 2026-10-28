@@ -482,3 +482,26 @@ This claims addendum does not authorize:
 - legal/insurance/life-safety assertions
 
 Each future public-copy, implementation, advertising, sales-collateral, or runtime change must receive its own bounded task and work order.
+
+## 14. LIGHTING-CAMPAIGN-GOV001 permanent outdoor lighting claims
+
+The permanent outdoor lighting campaign remains subject to all universal, Home Lighting, hardware-status, disclosure, advertising, and public-copy review rules in this standard.
+
+Allowed, with exact model/site qualification:
+
+- offer-family language covering Govee outdoor lighting families while stating that capabilities, configuration, availability, and suitability vary by model and property;
+- optional compatible permanent track/channel and color-keyed finishes as evaluated custom options and design goals;
+- AI-generated illustrative previews based on actual property photographs, available property measurements, the selected lighting concept, and the best verified manufacturer specifications available at the time of preparation;
+- example palettes/scenes described as customer-created or representative when they are not verified named manufacturer presets.
+
+Required AI-preview disclosure: the preview is illustrative, not a photometric, engineering, electrical, compatibility, or installation plan. Camera perspective, color rendering, brightness, light distribution, module count/spacing/position, scene availability, power/controller/cable routing, mounting, and installed results may differ. Final scope requires onsite measurement, access/substrate/electrical review, exact model verification, and field qualification. Concept images must not be presented as completed customer installations.
+
+Forbidden:
+
+- exact-match or guaranteed-result claims;
+- universal Govee model compatibility, features, scenes, cut/extend behavior, Home Assistant integration, or stock status;
+- claims that PermTrack or another mounting vendor is required, exclusive, partnered, authorized, accredited, or certified when evidence has not established that status;
+- public per-foot rates, supplier/vendor costs, material selling prices, internal margin, or historical package figures;
+- crime-prevention, deterrence, safety, monitoring, dispatch, response, or other unsupported outcome claims.
+
+Source basis: [lighting decision register](https://docs.google.com/document/d/1_FiD-n4xkshe8sI0y-p7hHi8SyYp0V4tHMIBEvPhxVM/edit), [approved landing-page copy direction](https://docs.google.com/document/d/13eXl98Ole_QvL0hJYMobDuXy8_KJ-s8Nev3yDjtUVzE/edit), and [launch claims/QA checklist](https://docs.google.com/document/d/1V_pbNxDrO4X64w0t1qNQk0c-7O3vP7CJI6uaJlhRTBo/edit).

@@ -1924,3 +1924,9 @@ T-GOVEXEC001 addendum: `docs/system/completed-task-register.md`, `docs/governanc
 | Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | docs/home-assistant/WNYHS_DASHBOARD_GOVERNANCE_MASTER_REV01.md | WNYHS Dashboard Governance Master REV01 | Reconciles and classifies current dashboard governance, BKLF reference evidence, conflicts, revisions, and missing reusable governance. | Dashboard / Interactive Experience System | Active reconciliation and gap-analysis document | Reconciliation reference; functional source owners remain controlling | No | No | dashboard governance, Home Assistant, BKLF, owner routing, KAOS gaps | No implementation authority; does not authorize dashboard YAML, automations, notifications, KAOS, website, merge, or deployment changes. |
+
+## LIGHTING-CAMPAIGN-GOV001 Manifest Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/LIGHTING-CAMPAIGN-GOV001_WORK_ORDER_REV01.md | LIGHTING-CAMPAIGN-GOV001 Work Order REV01 | Controls the docs-only reconciliation of the permanent outdoor lighting campaign into existing category, route, offering, hardware, marketing, funnel, claims, and pricing-input owners. | Project Governance / Category / Solution / Public Content / Site Architecture / Quote Inputs | Active bounded work order | LIGHTING-CAMPAIGN-GOV001 only | No | No | permanent outdoor lighting, HL-008, Govee, direct-link campaign, materials gross margin | No landing-page, route, runtime, protected-system, merge, or deployment authority. |

@@ -40,3 +40,9 @@ Prefer language like:
 - no mandatory monthly contracts
 - equipment options you can own
 - clear recommendations
+
+## 5. LIGHTING-CAMPAIGN-GOV001 narrow acquisition exception
+
+The permanent outdoor lighting campaign may use one separate direct-link, email-only acquisition entry point under the existing WNYHS domain. This exception is limited to campaign entry and initial contact. It does not change the canonical public funnel routes or CTA hierarchy, replace the Home Lighting category or `HL-008`, add a form, bypass `/api/lead-signal`, or create alternate CRM, quote, payment, scheduling, email-runtime, customer-record, or fulfillment behavior.
+
+Once an inquiry is identified, the currently governed WNYHS processes and their documented maturity limits apply. The later `LIGHTING-LANDING-001` implementation task must confirm the public contact email, route/indexing treatment, final claims/copy, assets, accessibility, and regression checks. No implementation is authorized by this exception. Source basis: [approved campaign exception and back-office reuse decision](https://docs.google.com/document/d/1XzHOqtOyOkM5CC4gHmQkaRdfNX2Rm249eOsYlH5GcXE/edit).

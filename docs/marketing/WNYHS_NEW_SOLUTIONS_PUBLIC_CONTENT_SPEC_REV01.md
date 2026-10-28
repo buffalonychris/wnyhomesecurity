@@ -247,3 +247,13 @@ Commercial path:
 ## 16. Implementation hold
 
 A separate ACTIVE implementation task and work order must name exact source files, route, navigation/homepage scope, final public copy, assets, metadata, search/sitemap treatment, CTA behavior, analytics plan, focused tests, and build/QA requirements. This specification does not activate that task.
+
+## 17. LIGHTING-CAMPAIGN-GOV001 acquisition and reuse exception
+
+The permanent outdoor lighting campaign may use one separate direct-link, email-only acquisition entry point under the existing WNYHS domain. This is a narrow campaign exception to the default tracked-CTA/intake path described above; it does not replace the Home Lighting category, `HL-008`, existing site navigation, or the standard WNYHS funnel.
+
+The campaign page may describe the operator-approved Govee outdoor lighting offer-family range, optional compatible permanent track/channel and color-keyed finishes, and illustrative AI property previews only within the current offering, hardware, claims, asset-provenance, visual, accessibility, and site-review boundaries. The final public email address must be confirmed as monitored in the later implementation task; this governance record does not select or verify an address.
+
+After an inquiry is identified, existing WNYHS processes govern customer and property references, evidence/measurements, model selection, field qualification, BOM, pricing, quote review, purchasing, fulfillment, installation, payment/scheduling gates, installer packet, testing, handoff, and support. No campaign-specific CRM, customer store, catalog, pricing sheet/engine, inventory ledger, fulfillment process, payment pipeline, installer packet, scheduling process, or runtime integration may be created by inference.
+
+No public price, per-foot rate, vendor cost, material selling price, internal margin, historical package figure, stocking claim, PermTrack exclusivity, or installer certification/accreditation is approved. A separate `LIGHTING-LANDING-001` task must approve final copy, email, route/indexing posture, assets/provenance, claims, accessibility, tests, and deployment handoff. Source basis: [approved campaign governance work order](https://docs.google.com/document/d/12vyQAroE8KxJaiLGNO5JORN64Ni9Bnlf0Dg_BhvYOnM/edit), [approved landing-page copy direction](https://docs.google.com/document/d/13eXl98Ole_QvL0hJYMobDuXy8_KJ-s8Nev3yDjtUVzE/edit), and [campaign exception/back-office reuse decision](https://docs.google.com/document/d/1XzHOqtOyOkM5CC4gHmQkaRdfNX2Rm249eOsYlH5GcXE/edit).

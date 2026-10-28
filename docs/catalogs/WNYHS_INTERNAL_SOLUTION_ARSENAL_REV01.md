@@ -245,3 +245,11 @@ The catalog applies no arbitrary maximum. It consolidates materially distinct cu
 ## 9. Protected-system boundary
 
 This document defines only classifications and recommendations. It makes no source/runtime changes and authorizes no CRM, payment, scheduling, email, Cloudflare, Home Assistant customer-instance, purchasing, inventory, pricing, or external-platform action. Future lead capture remains at the existing estimate/contact path and protected `/api/lead-signal` boundary. Scheduling remains request-based and operator-confirmed.
+
+## 10. LIGHTING-CAMPAIGN-GOV001 HL-008 business-offering reconciliation
+
+`HL-008` Permanent Exterior Lighting remains the single canonical Solution record for the permanent outdoor lighting campaign. The existing `CUSTOMER_SPECIFIC_EXCEPTION`, `PUBLIC_CUSTOM`, `CONDITIONAL`, and `Hold` fields remain conservative technical/readiness controls; they are not replaced by the family-level business approval below.
+
+All Govee outdoor lighting families are approved for customer-facing consideration through `HL-008` as custom/site-reviewed business offerings. This approval does not create or approve atomic SKU/model records, inventory, purchase orders, customer BOMs, prices, universal capabilities, universal Home Assistant integration, or installed status. Exact product selection requires current manufacturer evidence, model/variant identity, property fit, field qualification, HARDWARE001 status, BOM/quote review, and operator approval.
+
+The campaign may also consider compatible permanent track/channel and color-keyed finishes without asserting vendor exclusivity, partnership, authorization, or installer certification. Source basis: [approved lighting decision register](https://docs.google.com/document/d/1_FiD-n4xkshe8sI0y-p7hHi8SyYp0V4tHMIBEvPhxVM/edit). The controlling repository work order is `docs/codex/work-orders/LIGHTING-CAMPAIGN-GOV001_WORK_ORDER_REV01.md`.

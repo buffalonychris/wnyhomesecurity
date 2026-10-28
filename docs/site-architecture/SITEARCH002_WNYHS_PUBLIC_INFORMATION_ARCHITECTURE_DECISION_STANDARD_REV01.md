@@ -343,3 +343,11 @@ This standard is successful when:
 - Campaign, support/about/our-work/contact, legal/system, primary nav, footer, breadcrumbs, internal links, canonical/redirect, SEO, and route-conflict decisions are documented.
 - Required future implementation tasks are listed.
 - No source, route, navigation, footer, search, page-content, category, solution, image, protected runtime, HubSpot, Stripe/payment, scheduling, Resend/email, Cloudflare, dependency, package-lock, environment, or secret files are changed.
+
+## 27. LIGHTING-CAMPAIGN-GOV001 campaign-entry decision
+
+One permanent outdoor lighting campaign entry point may be implemented later under the existing WNYHS domain as a direct-entry Campaign page. The proposed route is `/lighting-installation`, subject to collision, canonical, index/noindex, sitemap, search, metadata, and implementation validation in a separately authorized `LIGHTING-LANDING-001` work order.
+
+The campaign entry point must remain separate from main navigation and must not replace the canonical Home Lighting category or the canonical `HL-008` Permanent Exterior Lighting Solution relationship. Its acquisition behavior is direct-link/email-only. It does not create a second public-site architecture, standard funnel, catalog, or post-inquiry workflow.
+
+This decision is route governance only. It does not add or reserve the route in source, choose final indexing treatment, modify navigation, publish content, or authorize deployment. Source basis: [approved campaign governance work order](https://docs.google.com/document/d/12vyQAroE8KxJaiLGNO5JORN64Ni9Bnlf0Dg_BhvYOnM/edit) and [lighting decision register](https://docs.google.com/document/d/1_FiD-n4xkshe8sI0y-p7hHi8SyYp0V4tHMIBEvPhxVM/edit).

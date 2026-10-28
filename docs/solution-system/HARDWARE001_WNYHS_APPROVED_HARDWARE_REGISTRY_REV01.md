@@ -375,3 +375,11 @@ UniFi networking, TP-Link mesh, wired access points, PoE switching, UPS, dual WA
 ### 15.4 Pilot Validation Evidence Required
 
 Pilot promotion requires documented evidence for exact model, firmware, integration version, pairing path, local/cloud behavior, restart recovery, internet-outage behavior, battery/power behavior, false triggers, customer acceptance, support burden, accessory requirements, WNY environmental behavior, installer notes, field duration, and promotion recommendation. This is recorded as follow-up `T-FIELDTEST001`.
+
+## 16. LIGHTING-CAMPAIGN-GOV001 Govee family-level commercial approval boundary
+
+The operator-approved decision to offer all Govee outdoor lighting families is a business-offering decision under `HL-008`; it does not change the `Premium / Custom` hardware status of the Permanent exterior lighting ecosystem row and does not promote any Govee model, SKU, kit, controller, extension, track, channel, or accessory to `Approved Standard`.
+
+Before an item enters a customer BOM or quote, the exact model/variant and configuration must be qualified against current manufacturer specifications, availability, property/site fit, supported segment and extension behavior, power/controller requirements, mounting and substrate conditions, weather/environmental ratings, app/cloud/local behavior, Home Assistant behavior if claimed, service burden, and required accessories. Family-level availability must never be represented as universal technical compatibility, inventory-on-hand, purchase authorization, or completed field validation.
+
+Compatible permanent track/channel and color-keyed finishes may be considered as custom mounting options. No PermTrack exclusivity, manufacturer partnership, installer authorization, accreditation, or certification may be claimed without separate verified evidence. Source basis: [lighting decision register](https://docs.google.com/document/d/1_FiD-n4xkshe8sI0y-p7hHi8SyYp0V4tHMIBEvPhxVM/edit).

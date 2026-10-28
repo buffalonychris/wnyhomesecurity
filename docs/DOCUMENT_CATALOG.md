@@ -1981,3 +1981,9 @@ This catalog inventories all Markdown (`.md`) files currently present in the rep
 - **Authority level:** **GOVERNANCE RECONCILIATION EVIDENCE**
 - **Implementation authority:** No.
 - **Notes:** Does not replace the six canonical owners or any cross-system domain authority.
+
+## LIGHTING-CAMPAIGN-GOV001 Catalog Addendum
+
+| Path | Title | Purpose | System Area | Status | Authority | Runtime Change | Protected System Change | Keywords | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| docs/codex/work-orders/LIGHTING-CAMPAIGN-GOV001_WORK_ORDER_REV01.md | LIGHTING-CAMPAIGN-GOV001 Work Order REV01 | Controls the docs-only reconciliation of the permanent outdoor lighting campaign into existing category, route, offering, hardware, marketing, funnel, claims, and pricing-input owners. | Codex Execution / Project Governance | Active bounded work order | LIGHTING-CAMPAIGN-GOV001 only | No | No | permanent outdoor lighting, HL-008, Govee, direct-link campaign, materials gross margin | No landing-page, route, runtime, protected-system, merge, or deployment authority. |
