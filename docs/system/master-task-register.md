@@ -7188,7 +7188,7 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 
 - **Task ID:** LIGHTING-LANDING-001
 - **Task Name:** Permanent Outdoor Lighting Campaign Landing Page
-- **Status:** ACTIVE
+- **Status:** DONE
 - **Category:** FUNNEL
 - **Primary Workstream:** Public Content System
 - **Related Workstreams:** Project Governance; Site Architecture; Visual System; SEO; Search System; Image System; Category System; Solution System
@@ -7203,9 +7203,10 @@ Only tasks in this section with `Status: ACTIVE` are executable by Codex.
 - **Exit Criteria:** The exact route renders directly as a responsive, accessible, claims-safe, email-only draft candidate; Home Lighting and `HL-008` remain unchanged; no unqualified image is used; the route is self-canonical, `noindex, follow`, and absent from sitemap/search/navigation/homepage; `SITE_VERSION` is `v1.0.201`; validation passes; exact scope and protected-system audits pass; one draft PR is open and remains unpublished pending approved image assets and monitored-inbox confirmation; no merge or deployment occurs.
 - **Dependencies:** Operator-authorized dispatch dated October 27, 2026; merged `LIGHTING-CAMPAIGN-GOV001` / PR #622 at `55970e0503f08add2041f8d98c574157e4a372e4`; readable approved Google Docs and source folder; current authority chain and context; approved Owner Routing Matrix in the controlling work order; repository-owned public contact configuration; current public-content, route, visual, claims, asset, SEO, search, category, and solution owners.
 - **Operator Decision Required:** Supply and approve provenance-qualified final lighting mockup assets with exact intended use; confirm the selected campaign inbox is actively monitored; review the draft PR; then decide whether a later bounded release action may publish. Merge and deployment remain operator-controlled and are not authorized in this task.
-- **Publication/Evidence State:** NOT_STARTED
-- **Execution Branch / Commit Evidence:** Branch `task/lighting-landing-001`; commit evidence pending.
-- **Draft PR Evidence:** Pending one draft PR to `main`.
+- **Publication/Evidence State:** DRAFT_PR_OPEN
+- **Execution Branch / Commit Evidence:** Branch `task/lighting-landing-001`; implementation commit `6b72d4d` (`feat: add governed outdoor lighting landing page`).
+- **Draft PR Evidence:** Draft PR #623 to `main`: `https://github.com/buffalonychris/wnyhomesecurity/pull/623`.
+- **Completion Notes:** Added the exact direct route, responsive token-based page, `noindex, follow` self-canonical SEO policy, visible version `v1.0.201`, and focused page/SEO tests. `npm run build`, `npm run typecheck:test`, focused Vitest (18 tests), focused changed-file ESLint, and token compliance passed; desktop/mobile direct-route, focus, heading, overflow, mailto, footer, and metadata QA passed. Full repository lint remains blocked by 32 pre-existing unrelated findings (20 errors, 12 warnings); no out-of-scope repair was made. Exact 10-file scope, no deletions, protected-system exclusions, discovery-surface exclusions, and `git diff --check` passed. No campaign image was used because the approved source folder contained no image assets; publication remains blocked pending provenance-qualified final imagery and operator confirmation that the selected public inbox is actively monitored.
 - **Merge Evidence:** None; merge is not authorized.
 - **Deployment Applicability / Status / Evidence:** Deployment is applicable only after separate operator acceptance; currently blocked and not authorized because final campaign assets and monitored-inbox confirmation are unavailable.
 - **Main-Sync Status / Evidence:** Execution started from clean synchronized `main` / `origin/main` at `55970e0503f08add2041f8d98c574157e4a372e4`; post-merge main synchronization is not applicable or inferred.

@@ -1,6 +1,6 @@
 # LIGHTING-LANDING-001 Work Order REV01
 
-Status: ACTIVE
+Status: DONE
 Task ID: LIGHTING-LANDING-001
 Task Name: Permanent Outdoor Lighting Campaign Landing Page
 Category: FUNNEL
