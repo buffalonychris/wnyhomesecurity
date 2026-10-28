@@ -218,3 +218,11 @@ No category change may silently emerge from a page, campaign, catalog, or source
 This REV02 standard records the reconciliation authorized by `T-CATEGORYRECON001`. The route and source implementation inventory is in `docs/site-architecture/SITEARCH005_WNYHS_SIX_CATEGORY_RECONCILIATION_DECISION_REV01.md`.
 
 This task does not implement the sixth route or page, change existing category labels in source, alter Solution records, or modify any protected system. Those changes remain deferred to separately authorized implementation work after this reconciliation is merged and synchronized.
+
+## 15. LIGHTING-CAMPAIGN-GOV001 narrow campaign exception
+
+The permanent outdoor lighting campaign authorized by `LIGHTING-CAMPAIGN-GOV001` is a narrow exception to Section 6, Rule 6 and the default marketing-routing posture in Section 9. It may use one separate permanent outdoor lighting direct-link entry point under the existing WNYHS domain for campaign acquisition without replacing, renaming, or duplicating the canonical `Home Lighting` category.
+
+`HL-008` Permanent Exterior Lighting remains the canonical Solution owner. The campaign must reference that owner and must not create a parallel category, Solution, catalog, hardware, pricing, customer-record, quote, purchasing, fulfillment, installation, or handoff system. The exception is limited to direct-link/email-only acquisition; after inquiry identification, current WNYHS processes and their documented maturity limits continue to govern.
+
+This governance exception does not create a route, page, navigation entry, sitemap/indexing decision, public copy, asset, form, runtime behavior, or deployment. Those decisions remain deferred to a separately authorized `LIGHTING-LANDING-001` task. Source basis: [approved campaign governance work order](https://docs.google.com/document/d/12vyQAroE8KxJaiLGNO5JORN64Ni9Bnlf0Dg_BhvYOnM/edit) and [approved campaign exception and back-office reuse decision](https://docs.google.com/document/d/1XzHOqtOyOkM5CC4gHmQkaRdfNX2Rm249eOsYlH5GcXE/edit).

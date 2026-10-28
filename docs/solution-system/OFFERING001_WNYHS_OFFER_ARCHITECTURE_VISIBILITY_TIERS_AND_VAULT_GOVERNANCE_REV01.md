@@ -486,3 +486,13 @@ This offer architecture document does not authorize:
 - legal/insurance/life-safety assertions
 
 Each future public-copy, implementation, advertising, sales-collateral, pricing, package, runtime, or internal-access change must receive its own bounded task and work order.
+
+## 15. LIGHTING-CAMPAIGN-GOV001 permanent outdoor lighting offer-family decision
+
+All Govee outdoor lighting families are business-approved WNYHS offering families under the existing Tier 2 / Vault custom-project path and the canonical `HL-008` Permanent Exterior Lighting Solution. This is family-level commercial approval, not a promotion of any individual model, SKU, kit, controller, extension, mounting accessory, integration, stock position, supplier source, or BOM line to Approved Standard status.
+
+Every selected model/variant remains subject to current availability; exact manufacturer specifications; property and site fit; power, controller, extension, segmentation, cutting, mounting, weather, and environmental limits; supportability; field qualification; HARDWARE001 status; BOM/quote review; and claims verification. No universal Home Assistant integration, scene set, cut/extend behavior, compatibility, inventory, or purchase status may be inferred from the family-level approval.
+
+Optional compatible permanent track/channel and color-keyed installation finishes may be offered as custom options where the selected lighting system, mounting material, finish, substrate, structure, and manufacturer requirements permit. WNYHS must not claim that PermTrack or any other vendor is required or exclusive, or that WNYHS holds a manufacturer partnership, authorization, accreditation, or installer certification unless separately verified and approved.
+
+Public prices, per-foot prices, supplier costs, internal margin, and fixed package cards are not authorized. Separate bounded tasks remain required for copy, route/page implementation, assets, BOM/quote execution, purchasing, installation, runtime, and deployment. Source basis: [lighting decision register](https://docs.google.com/document/d/1_FiD-n4xkshe8sI0y-p7hHi8SyYp0V4tHMIBEvPhxVM/edit) and [approved campaign exception and back-office reuse decision](https://docs.google.com/document/d/1XzHOqtOyOkM5CC4gHmQkaRdfNX2Rm249eOsYlH5GcXE/edit).
