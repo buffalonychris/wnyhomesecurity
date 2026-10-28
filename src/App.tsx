@@ -18,6 +18,7 @@ const HomeAutomation = lazy(() => import('./pages/HomeAutomation'));
 const AgingInPlace = lazy(() => import('./pages/AgingInPlace'));
 const HomeSafety = lazy(() => import('./pages/HomeSafety'));
 const HomeLighting = lazy(() => import('./pages/HomeLighting'));
+const LightingInstallation = lazy(() => import('./pages/LightingInstallation'));
 const ElderCareTech = lazy(() => import('./pages/ElderCare'));
 const Packages = lazy(() => import('./pages/Packages'));
 const PackageDetail = lazy(() => import('./pages/PackageDetail'));
@@ -204,6 +205,7 @@ const App = () => {
             <Route path="/aging-in-place" element={<AgingInPlace />} />
             <Route path="/home-safety" element={<HomeSafety />} />
             <Route path="/home-lighting" element={<HomeLighting />} />
+            <Route path="/lighting-installation" element={<LightingInstallation />} />
             <Route path="/categories/home-security" element={<HomeSecurity />} />
             <Route path="/categories/home-automation" element={<HomeAutomation />} />
             <Route path="/categories/home-safety" element={<HomeSafety />} />

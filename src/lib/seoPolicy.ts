@@ -137,6 +137,11 @@ const routeMetadata: Record<string, RouteMetadata> = {
     canonicalPath: '/qrlanding',
     image: '/images/home-security/homepage/WNYHSCorePhone.png',
   },
+  '/lighting-installation': {
+    title: 'Permanent Outdoor Lighting Installation | WNY Home Security',
+    description:
+      'Explore site-reviewed permanent outdoor lighting, property-photo concept previews, and installation planning for homes and businesses in Western New York.',
+  },
   '/privacy': {
     title: 'Privacy Policy | WNY Home Security',
     description:
@@ -281,7 +286,9 @@ export const getSeoPolicy = (pathname: string, search = ''): SeoPolicy => {
           ? 'Legacy homepage route canonicalizes to root'
           : isSearchQueryUrl
             ? 'Search query URL canonicalizes to the main search page'
-            : undefined,
+            : normalized === '/lighting-installation'
+              ? 'Direct-link lighting campaign remains noindex and outside public search'
+              : undefined,
       title: metadata.title,
       description: metadata.description,
       openGraph: {

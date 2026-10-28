@@ -1,0 +1,184 @@
+.wnyhs-lighting-page {
+  min-height: 100vh;
+}
+
+.wnyhs-lighting-shell {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.wnyhs-lighting-hero {
+  grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.75fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.wnyhs-lighting-hero-copy,
+.wnyhs-lighting-hero-panel,
+.wnyhs-lighting-contact > div,
+.wnyhs-lighting-options-grid > div {
+  display: grid;
+  gap: 1rem;
+}
+
+.wnyhs-lighting-hero-copy .wnyhs-heading {
+  max-width: 15ch;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+}
+
+.wnyhs-lighting-hero-lede {
+  max-width: 52rem;
+  margin: 0;
+  color: var(--wnyhs-dark-muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.wnyhs-lighting-hero-copy .wnyhs-button,
+.wnyhs-lighting-contact .wnyhs-button {
+  justify-self: start;
+}
+
+.wnyhs-lighting-hero-panel {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--wnyhs-dark-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-dark-panel);
+}
+
+.wnyhs-lighting-hero-panel h2,
+.wnyhs-lighting-hero-panel ul,
+.wnyhs-lighting-track-card h3,
+.wnyhs-lighting-track-card p,
+.wnyhs-lighting-contact h2,
+.wnyhs-lighting-contact p {
+  margin: 0;
+}
+
+.wnyhs-lighting-hero-panel ul {
+  display: grid;
+  gap: 0.6rem;
+  padding-left: 1.25rem;
+  color: var(--wnyhs-dark-muted);
+}
+
+.wnyhs-lighting-preview {
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.wnyhs-lighting-preview .wnyhs-section-header {
+  max-width: 58rem;
+}
+
+.wnyhs-lighting-disclosure {
+  display: grid;
+  gap: 0.65rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 2px solid var(--wnyhs-gold);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-gold-soft);
+}
+
+.wnyhs-lighting-disclosure h3,
+.wnyhs-lighting-disclosure p {
+  margin: 0;
+}
+
+.wnyhs-lighting-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.wnyhs-lighting-planning-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: lighting-plan;
+}
+
+.wnyhs-lighting-planning-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--wnyhs-border);
+  border-radius: var(--wnyhs-radius-card);
+  background: var(--wnyhs-surface);
+  counter-increment: lighting-plan;
+}
+
+.wnyhs-lighting-planning-list li::before {
+  grid-row: 1 / 3;
+  content: counter(lighting-plan, decimal-leading-zero);
+  color: var(--wnyhs-gold-strong);
+  font-family: var(--wnyhs-font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.wnyhs-lighting-planning-list span {
+  color: var(--wnyhs-ink-secondary);
+}
+
+.wnyhs-lighting-options-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
+  gap: clamp(1rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.wnyhs-lighting-options-grid p {
+  margin: 0;
+}
+
+.wnyhs-lighting-contact {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.wnyhs-lighting-contact p {
+  max-width: 52rem;
+  color: var(--wnyhs-dark-muted);
+}
+
+.wnyhs-lighting-final-disclosure {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0.5rem 1rem 1.5rem;
+  color: var(--wnyhs-ink-secondary);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .wnyhs-lighting-hero,
+  .wnyhs-lighting-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wnyhs-lighting-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .wnyhs-lighting-hero {
+    padding: 1.25rem;
+  }
+
+  .wnyhs-lighting-card-grid,
+  .wnyhs-lighting-planning-list,
+  .wnyhs-lighting-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .wnyhs-lighting-contact .wnyhs-button {
+    justify-self: stretch;
+    text-align: center;
+  }
+}
