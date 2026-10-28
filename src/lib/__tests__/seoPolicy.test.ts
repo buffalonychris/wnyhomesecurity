@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -51,6 +52,7 @@ const excludedSitemapUrls = [
   'https://www.wnyhomesecurity.com/certificate',
   'https://www.wnyhomesecurity.com/halo-pushbutton',
   'https://www.wnyhomesecurity.com/vendors',
+  'https://www.wnyhomesecurity.com/lighting-installation',
 ];
 
 const excludedSitemapFragments = ['https://wnyhomesecurity.com', '/search?q=', '/newsite/'];
@@ -175,6 +177,24 @@ describe('seoPolicy route metadata', () => {
 
     expect(getSeoPolicy('/qrlanding').canonicalPath).toBe('/qrlanding');
     expect(getSeoPolicy('/qrlanding.htm').canonicalPath).toBe('/qrlanding');
+  });
+
+  it('keeps the lighting campaign directly accessible, self-canonical, and outside discovery surfaces', () => {
+    const policy = getSeoPolicy('/lighting-installation');
+
+    expect(policy.robots).toBe('noindex, follow');
+    expect(policy.canonicalPath).toBe('/lighting-installation');
+    expect(policy.noindexReason).toBe('Direct-link lighting campaign remains noindex and outside public search');
+    expect(policy.title).toContain('Permanent Outdoor Lighting Installation');
+    expect(policy.description).toContain('Western New York');
+
+    for (const path of [
+      'public/sitemap.xml',
+      'src/content/publicSearchIndex.ts',
+      'src/content/wnyhsNavigation.ts',
+    ]) {
+      expect(readRepoFile(path)).not.toContain('/lighting-installation');
+    }
   });
 
   it('keeps package routes accessible but out of public search indexing', () => {

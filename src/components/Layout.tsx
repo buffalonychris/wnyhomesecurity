@@ -44,8 +44,13 @@ const Layout = () => {
       '/about',
       '/privacy',
       '/terms',
+      '/lighting-installation',
     ]);
-    return location.pathname.startsWith('/home-security') || (isHomeSecurityVertical && marketingRoutes.has(location.pathname));
+    return (
+      location.pathname === '/lighting-installation' ||
+      location.pathname.startsWith('/home-security') ||
+      (isHomeSecurityVertical && marketingRoutes.has(location.pathname))
+    );
   }, [isHomeSecurityVertical, location.pathname]);
   const isHomeSecurityMarketingShell = isHomeSecurityMarketingRoute && !isNewSite;
   const funnelStepRoutes = useMemo(
