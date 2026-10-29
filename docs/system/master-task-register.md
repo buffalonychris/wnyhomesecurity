@@ -2074,6 +2074,24 @@ This workstream records REPO001 / KAOS001 governance evolution tasks without tre
 - **Operator Decision Required:** Review draft PR, merge if acceptable, copy theme YAML files into `/config/themes/` on a future live Home Assistant instance, reload or restart Home Assistant, select `WNYHS Dark` or `WNYHS Light`, and validate in the Companion App before any customer handoff.
 - **Completion Notes:** Created reusable WNYHS Home Assistant theme foundation files for `WNYHS Dark` and `WNYHS Light` plus a theme README. The dark theme uses near-black/charcoal surfaces, antique gold accents, burgundy primary action roles, ivory text, green success, amber warning, red critical, rounded cards, subtle borders, and premium shadows where supported. The light theme preserves the same semantic role mapping on warm ivory/cream surfaces with burgundy and gold accents and charcoal text. Added HACS/custom-card readiness variables for Mushroom, Button Card, Bubble Card, Card Mod, Layout Card, Swipe Card, Browser Mod, and Auto-Entities. No BK Lewis dashboard YAML, customer dashboard implementation, dashboard layouts, packages/helpers, scripts, live Home Assistant, Cloudflare, notification, companion app, runtime/API, HubSpot, Stripe/payment, scheduling, Resend/email, funnel, dependency, package-lock, environment, or secret files were changed.
 
+### WNYHS-HA-THEME-REFRESH-001
+- **Task ID:** WNYHS-HA-THEME-REFRESH-001
+- **Task Name:** WNYHS Home Assistant Theme Alignment to DESIGN001 REV02
+- **Status:** IN PROGRESS — THEME RECONCILIATION
+- **Category:** GOV / Home Assistant / Design System / Theme
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Align the reusable Home Assistant WNYHS Light/Dark theme implementation with DESIGN001 REV02 so customer dashboards can consume current semantic visual roles without stale burgundy/action/status mappings.
+- **Allowed Scope:** Create the bounded work order; update this task record; reconcile the reusable WNYHS Light/Dark theme YAML and README to current DESIGN001 identity, action, status, surface, text, border, compatibility-alias, and Light/Dark parity requirements.
+- **Forbidden Scope:** No Peckham dashboard YAML; no Bailey/BKLF theme YAML; no live Home Assistant configuration or runtime; no `configuration.yaml`; no HACS or frontend-resource changes; no website, Cloudflare, CRM/HubSpot, payment, scheduling, email, notification-routing, dependency, environment, secret, merge, deployment, auto-merge, or ready-for-review changes.
+- **Target Files:** `docs/codex/work-orders/WNYHS-HA-THEME-REFRESH-001_WORK_ORDER_REV01.md`; `docs/system/master-task-register.md`; `home-assistant/wnyhs/themes/README.md`; `home-assistant/wnyhs/themes/wnyhs-light.yaml`; `home-assistant/wnyhs/themes/wnyhs-dark.yaml`.
+- **Runtime Systems Affected:** None. Repository theme foundation and governance records only.
+- **Documentation Updates Required:** Create the REV01 work order; update this bounded task record; revise the reusable theme README to document DESIGN001 authority, exact theme names, installation, semantic mappings, compatibility aliases, gold/action distinction, five status roles, BKLF overlay boundary, and hardcoded-color prohibition.
+- **Validation Required:** Parse both theme YAML files; confirm the exact five-file allowlist and no unexpected deletes; verify exact DESIGN001 action, identity, status, surface, text, border, focus, radius, and shadow mappings; verify Light/Dark semantic parity; scan for burgundy-as-primary-action behavior and stale README semantics; run `git diff --check`; report diff stat.
+- **Exit Criteria:** Both reusable themes expose current DESIGN001 roles with blue customer actions, gold identity/accent, the five canonical status roles, governed Light/Dark surfaces, and documented subordinate compatibility aliases; BKLF remains untouched; validation passes; one draft PR opens without merge or deployment.
+- **Dependencies:** Prompt-created bounded `WNYHS-HA-THEME-REFRESH-001` work order; DESIGN001 REV02; DASHBOARD001 REV02; INSTALL006 REV02; current governance authority chain; Codex execution standard; existing reusable WNYHS component consumers.
+- **Operator Decision Required:** Review the draft PR and separately authorize any merge or future live Home Assistant installation/validation.
+
 ### WNYHS-UI-COMPONENT-LIBRARY-001
 - **Task ID:** WNYHS-UI-COMPONENT-LIBRARY-001
 - **Task Name:** WNYHS Customer Control Center Home Assistant Component Library Foundation
