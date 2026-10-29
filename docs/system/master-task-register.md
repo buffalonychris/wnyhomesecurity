@@ -9462,6 +9462,26 @@ No ARCHIVED tasks are currently recorded.
 - **Dependencies:** Operator authorization dated 2026-10-21; sanitized October 21, 2026 Peckham backup facts supplied in the REV03 dispatch; synchronized `origin/main` at `54b257331d787941e9cae08c5c8b32c5e176f437`; current repository authority chain; exact OPS004 Dashboard / Interactive Experience System routing; current Dashboard governance, lifecycle, Site Capability, INSTALL006, DESIGN001, and DASHBOARD001 owners; existing installed frontend resource inventory.
 - **Operator Decision Required:** Review the new draft PR and repository dashboard artifacts. Any live Home Assistant validation, registration, assignment, lock-control activation, Reolink binding, notification implementation, merge, or deployment requires separate explicit authority.
 
+### T-HA-DASH-PECKHAM-003
+
+- **Task ID:** T-HA-DASH-PECKHAM-003
+- **Task Name:** Peckham Customer Dashboard Visual Production Pass
+- **Status:** IN PROGRESS — CUSTOMER GUI PRODUCTION PASS
+- **Category:** OPS / Home Assistant / Customer Dashboard
+- **Primary Workstream:** Dashboard / Interactive Experience System
+- **Related Workstreams:** Visual System; Project Governance
+- **Controlling Context:** CTX-WNYHS-FINAL-HOUR-BUSDEV-REV01
+- **Purpose:** Transform the proven Peckham dashboard into polished Light and Dark WNY Home Security customer presentations for Mr. Lewis while preserving all verified entity bindings, status logic, seven views, status-only locks, and unbound planned-camera positions.
+- **Allowed Scope:** Follow `docs/codex/work-orders/T-HA-DASH-PECKHAM-003_WORK_ORDER_REV01.md`; update only this task record; refine the main Peckham Dark customer-dashboard YAML and add its functionally identical Light presentation using the existing installed frontend stack and operator-approved Peckham-specific styling.
+- **Forbidden Scope:** No PR #620 change or dependency; no reusable WNYHS or BKLF theme change; no expanded Peckham dashboard change; no canonical-standard, `configuration.yaml`, HACS, frontend-resource, live Home Assistant, registration, deployment, automation, notification, Cloudflare, user, lock, Z-Wave, Zigbee, dependency, secret, merge, auto-merge, or ready-for-review change.
+- **Target Files:** `docs/codex/work-orders/T-HA-DASH-PECKHAM-003_WORK_ORDER_REV01.md`; `docs/system/master-task-register.md`; `home-assistant/peckham/dashboards/peckham-main-dashboard.yaml`; `home-assistant/peckham/dashboards/peckham-main-dashboard-light.yaml`.
+- **Runtime Systems Affected:** None. Repository dashboard source and task-governance records only.
+- **Documentation Updates Required:** Maintain the existing REV01 work order and this single bounded task record with the operator-approved Peckham-specific execution exception and four-file allowlist.
+- **Validation Required:** Parse both customer YAML artifacts; confirm identical seven-view information architecture, all 16 contact bindings in both, exact Main Entrance and weather bindings, status semantics, status-only locks/contacts, unbound camera placeholders, existing-only dependencies, customer-safe language, no visible raw IDs, Light/Dark functional parity and readable contrast, equivalent phone/Companion, tablet, and desktop/browser structure, exact four-file allowlist, no unexpected deletes, and `git diff --check`; update draft PR #621 without merge or deployment.
+- **Exit Criteria:** The Peckham Dark and Light artifacts present a materially improved, functionally identical WNYHS customer GUI across phone, tablet, and desktop; all bindings and truthful semantics remain intact; only the four allowed files change; validation passes; one task commit is pushed to the existing branch and existing draft PR #621 is updated; no live system, merge, or deployment occurs.
+- **Dependencies:** Operator authorization dated 2026-10-21, including the Peckham-specific exception to unresolved universal theme/action-label governance; accepted live-render evidence in the bounded prompt; synchronized `origin/main` at `bac3936cd9cca937d98525d8ef48084e9871398b`; current authority chain; INSTALL006 REV02; DESIGN001 REV02 as preferred visual source without universal redefinition; DASHBOARD001 REV02; existing installed Lovelace, Sections, Mushroom, button-card, card-mod, layout-card, auto-entities, Bubble Card, swipe-card, and Browser Mod stack. PR #620 is neither a dependency nor in scope.
+- **Operator Decision Required:** Review the draft PR and separately authorize any merge, live dashboard update, assignment, runtime acceptance, or deployment.
+
 ### BPROC-INTERDEP-001
 
 - **Task ID:** BPROC-INTERDEP-001
